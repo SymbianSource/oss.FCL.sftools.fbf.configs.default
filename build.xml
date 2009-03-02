@@ -4,7 +4,7 @@
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
   
   <!--
-  * Property defaults
+  * Property defaults 
    -->
      
   <!-- load build type from config/ -->
