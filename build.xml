@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-CONFIG">
+  <!-- location of this config -->
+  <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
+  
+  <!--
+  * Property defaults
+   -->
+     
+  <!-- load build type from config/ -->
+  <import file="${sf.config.dir}/../build/config/pfconfig.xml" />
+     
+  <import file="sf-${sf.build.type}/build.xml" />
+  
+  
+</project>
+

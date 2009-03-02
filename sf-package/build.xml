@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-PACKAGE-CONFIG">
+  <!-- location of this config -->
+  <dirname property="sf.package.config.dir" file="${ant.file.SF-PACKAGE-CONFIG}"/>
+  
+  <!--
+  * Property defaults
+   -->
+
+  <!--
+  
+  * Load package specific properties. Mandatory that this file exists otherwise
+  * the target will fail.
+  
+   -->
+  <loadproperties srcFile="${sf.package.config.dir}/package.properties"/>
+  
+  
+  
+  
+  
+  
+  <!-- import sf-common-config -->
+  <import file="../common/build.xml" />
+  
+</project>
+

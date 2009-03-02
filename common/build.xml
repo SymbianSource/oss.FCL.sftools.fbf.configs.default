@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-COMMON-CONFIG">
+	<dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
+
+        <!-- import default properties file config -->
+        <import file="${sf.common.config.dir}/properties.default.ant.xml"/>        
+
+	<!-- import all core HELIUM targets -->
+	<import file="${helium.dir}/helium.ant.xml" />
+        
+        <!-- import sysdef file location config -->
+        <import file="${sf.common.config.dir}/sysdef.config.ant.xml"/>
+        
+        <!--
+        ** TARGET DEFINITIONS
+        -->
+        
+        <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-run,sf-postbuild">            
+            <echo>[SF-BUILD]</echo>
+        </target>
+        
+        <target name="sf-build-noprep">            
+            <echo>[SF-BUILD-NO-PREP]</echo>
+        </target>
+        
+        <target name="sf-prep" depends="check-tool-dependencies, prep-drive,init-build-area,create-bom,log-build-env">
+            <echo>[SF-PREP]</echo>   
+            <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
+            
+            <!-- new implementation that only rely on Ant -->
+            <fmpp sourceFile="${sf.common.config.dir}/templates/hg-prep.ant.xml.ftl"
+                         outputFile="${prep.dynamic.config}">
+                   <data expandProperties="yes">
+                        ant: antProperties()
+                        data: csv(${sf.common.config.dir}/../../build/${hg.config}, {separator:','})
+                    </data>
+            </fmpp>
+            <ant antfile="${prep.dynamic.config}"/>
+        </target>
+        
+        <target name="sf-prebuild" depends="preparation-getenv"> 
+        
+            <echo>[SF-PREBUILD]</echo>                                    
+            
+        </target>
+        
+        <!-- <target name="sf-preparation-getenv">        
+            <antcall target="preparation-getenv">            
+                                
+            </antcall>        
+        </target>
+        
+        -->
+        
+        <target name="sf-postbuild">            
+            <echo>[SF-POSTBUILD]</echo>                        
+        </target>        
+        
+        <target name="sf-build-run">            
+            <echo>[SF-BUILD-RUN]</echo>
+        </target>
+
+        
+</project>
+
+

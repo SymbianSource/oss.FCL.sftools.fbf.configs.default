@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-PLATFORM-CONFIG">
+  <!-- location of this config -->
+  <dirname property="sf.platform.config.dir" file="${ant.file.SF-PLATFORM-CONFIG}"/>
+  
+  <!--
+  * Property defaults
+   -->
+
+  <!--
+  
+  * Load platform specific properties. Mandatory that this file exists otherwise
+  * the target will fail.
+  
+   -->
+  <loadproperties srcFile="${sf.platform.config.dir}/platform.properties"/>
+  
+  <!-- import sf-common-config -->
+  <import file="../common/build.xml" />
+  
+</project>
+
