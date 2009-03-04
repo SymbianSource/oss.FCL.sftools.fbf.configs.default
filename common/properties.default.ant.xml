@@ -11,9 +11,14 @@
         <!-- Template for the WA location, each branch got a different location -->
         <property name="ccm.project.wa_path" location="${data.drive.letter}:\Build_${data.drive.letter}\${env.USERNAME}\ido_wa\${build.name}"/>
 
-        <!-- defaults to get source/bin release for package/platform -->
-        <property name="release.getsource" value="1"/>
-        <property name="release.getbin"    value="1"/>
+        <!--  to get run getenv package/platform, what to get is defined by props below -->
+        <property name="sf.prebuild.getenv"               value="true"/>   
+        <property name="sf.prebuild.getsrc"               value="true"/>   
+             
+        <property name="base_release.getenv_options"     value=""/>
+        <!--property name="base_release.path"               value="\\fasrrm01.europe.nokia.com\GRACE\s60_devices_sw\S60_5_1\S60.MCL_200904_S60.51"/-->
+        <property name="base_release.path"     value="\\lon-engbuild88\d$\TB91_Releases\week04.grace"/> 
+
         
         <property name="email.from"        value="shabe.razvi@nokia.com"/>
         
@@ -21,12 +26,7 @@
         <property name="network.free.space"    value="10"/>
         <property name="network.drive"         value="\\builds01\devbuilds\GRACE"/>
         <property name="publish.root.dir"      value="\\builds01\devbuilds\GRACE"/>
-        
-        <property name="base_release.path"     value="\\fasrrm01.europe.nokia.com\GRACE\s60_devices_sw\S60_5_1\S60.MCL_200904_S60.51"/>
-        <!--<property name="base_release.path"     value="\\lonfiler02\nokbuilds\from_nokia\DFS70_91_91\S60.e_200906_hw79"/> -->
-        
-        <property name="base_release.getenv_options"     value=""/>
-       
+
         <property name="hg.tag"      value="1"/>
             
 </project>

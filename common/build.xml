@@ -28,27 +28,51 @@
             <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
         </target>
         
-        <target name="sf-prebuild" depends="preparation-getenv"> 
-        
+      <target name="sf-prebuild"> 
             <echo>[SF-PREBUILD]</echo>                                    
             
+            <if>
+                <istrue value="${sf.prebuild.getenv}" />
+                <then>
+                    <runtarget target="preparation-getenv"/>
+                </then>
+            </if>
+            
+            <if>
+                <istrue value="${sf.prebuild.getsrc}" />
+                <then>
+                    <runtarget target="sf-get-source"/>
+                </then>
+            </if>            
+            
+            
         </target>
-        
-        <!-- <target name="sf-preparation-getenv">        
-            <antcall target="preparation-getenv">            
-                                
-            </antcall>        
-        </target>
-        
-        -->
         
         <target name="sf-postbuild">            
             <echo>[SF-POSTBUILD]</echo>                        
         </target>        
         
-        <target name="sf-build-run">            
+        <target name="sf-build-run" depends="sf-compile">            
             <echo>[SF-BUILD-RUN]</echo>
         </target>
+
+        <target name="sf-compile">
+            
+                <!--<path id="sf.system.definition.files">
+                    <fileset dir="${sf.common.config.dir}/sysdefs" includes="*.sysdef.xml"/>
+                    <fileset dir="${build.drive}/sf/app/camera"        includes="*.sysdef.xml"/>
+                </path>
+                -->
+            
+            	<!-- target name="compile-main-prebuild" -->
+		<antcall target="compile-main" inheritAll="false">
+			<param name="build.system" value="sbs" />
+			<param name="sysdef.configurations.list" value="s60_build_clean,s60_build" />
+			<!--<reference refid="sf.system.definition.files" torefid="system.definition.files" />-->
+		</antcall>
+            
+        </target>
+
 
     <target name="scm-get-input">
         <ant antfile="${sf.common.config.dir}/../../build/hg-pkg-build.ant.xml" />
