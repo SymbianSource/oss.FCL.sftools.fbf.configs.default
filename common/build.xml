@@ -23,7 +23,7 @@
             <echo>[SF-BUILD-NO-PREP]</echo>
         </target>
         
-        <target name="sf-prep" depends="check-tool-dependencies, prep-drive,init-build-area,create-bom,log-build-env">
+        <target name="sf-prep" depends="prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
             <echo>[SF-PREP]</echo>   
             <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
         </target>
