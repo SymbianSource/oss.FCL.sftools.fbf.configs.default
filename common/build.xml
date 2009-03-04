@@ -15,7 +15,7 @@
         ** TARGET DEFINITIONS
         -->
         
-        <target name="sf-build" depends="sf-prep,sf-prebuild,scm-get-input,sf-build-run,sf-postbuild">            
+        <target name="sf-build" depends="sf-prep,sf-prebuild,sf-get-source,sf-build-run,sf-postbuild">            
             <echo>[SF-BUILD]</echo>
         </target>
         
@@ -74,7 +74,7 @@
         </target>
 
 
-    <target name="scm-get-input">
+    <target name="sf-get-source">
         <ant antfile="${sf.common.config.dir}/../../build/hg-pkg-build.ant.xml" />
     </target>        
 </project>
