@@ -9,13 +9,13 @@
 	<import file="${helium.dir}/helium.ant.xml" />
         
         <!-- import sysdef file location config -->
-        <import file="${sf.common.config.dir}/sysdef.config.ant.xml"/>
+        <import file="${sf.common.config.dir}/../../build/hg-pkg-build.ant.xml"/>
         
         <!--
         ** TARGET DEFINITIONS
         -->
         
-        <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-run,sf-postbuild">            
+        <target name="sf-build" depends="sf-prep,sf-prebuild,scm-get-input,sf-build-run,sf-postbuild">            
             <echo>[SF-BUILD]</echo>
         </target>
         
@@ -26,16 +26,6 @@
         <target name="sf-prep" depends="check-tool-dependencies, prep-drive,init-build-area,create-bom,log-build-env">
             <echo>[SF-PREP]</echo>   
             <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
-            
-            <!-- new implementation that only rely on Ant -->
-            <fmpp sourceFile="${sf.common.config.dir}/templates/hg-prep.ant.xml.ftl"
-                         outputFile="${prep.dynamic.config}">
-                   <data expandProperties="yes">
-                        ant: antProperties()
-                        data: csv(${sf.common.config.dir}/../../build/${hg.config}, {separator:','})
-                    </data>
-            </fmpp>
-            <ant antfile="${prep.dynamic.config}"/>
         </target>
         
         <target name="sf-prebuild" depends="preparation-getenv"> 
@@ -60,7 +50,9 @@
             <echo>[SF-BUILD-RUN]</echo>
         </target>
 
-        
+    <target name="scm-get-input">
+        <ant antfile="${sf.common.config.dir}/../../build/hg-pkg-build.ant.xml" />
+    </target>        
 </project>
 
 

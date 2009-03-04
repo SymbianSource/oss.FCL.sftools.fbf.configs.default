@@ -4,14 +4,13 @@
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
   
   <!--
-  * Property defaults 
+  * Property defaults
    -->
      
   <!-- load build type from config/ -->
-  <import file="${sf.config.dir}/../build/config/pfconfig.xml" />
+  <import file="${sf.config.dir}/../build/config/project_spec.xml" />
      
-  <import file="sf-${sf.build.type}/build.xml" />
+  <import file="sf-${sf.project.type}/build.xml" />
   
   
 </project>
-
