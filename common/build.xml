@@ -1,82 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SF-COMMON-CONFIG">
-	<dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
 
-        <!-- import default properties file config -->
-        <import file="${sf.common.config.dir}/properties.default.ant.xml"/>        
-
-	<!-- import all core HELIUM targets -->
-	<import file="${helium.dir}/helium.ant.xml" />
+    <dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
+    
+    <!-- import default properties file config -->
+    <import file="${sf.common.config.dir}/properties.default.ant.xml"/>
+    
+    <!-- import all core HELIUM targets -->
+    <import file="${helium.dir}/helium.ant.xml" />
+             
+    <!-- conditional import of generated source spec if available -->
+    <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
+        <then>		    		
+            <echo message="Generated source spec found, importing..." />
+    				<import file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
+    		</then>
+    </if>
+    
+    <!--
+    ** TARGET DEFINITIONS
+    -->
+    
+    <target name="sf-parse-project-config">
+    <!-- TODO: Parse the project config and generate properties and csv file to be
+    used by the builds. -->
+        <echo message="Parse the project configuration" />
+    </target>
+    
+    <target name="sf-generate-source-spec" depends="sf-parse-project-config">
+        <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
+        for multiple package builds, this needs to be linked with package name. -->
+        <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
         
-        <!-- import sysdef file location config -->
-        <import file="${sf.common.config.dir}/../../build/hg-pkg-build.ant.xml"/>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
+              outputFile="${sf.common.config.dir}/generated/source-spec.ant.xml">
+              <data expandProperties="yes">
+                    ant: antProperties()
+                    data: csv(${sf.common.config.dir}/../../build/config/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+              </data>
+        </fmpp>
+    </target>
+    
+    <target name="sf-build" depends="sf-prep,sf-prebuild,sf-get-source,sf-build-run,sf-postbuild">
+        <echo>[SF-BUILD]</echo>
+    </target>
+    
+    <target name="sf-build-noprep">
+        <echo>[SF-BUILD-NO-PREP]</echo>
+    </target>
+    
+    <target name="sf-prep" depends="sf-generate-source-spec, prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
+        <echo>[SF-PREP]</echo>
+        <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
+    </target>
+    
+    <target name="sf-prebuild">
+        <echo>[SF-PREBUILD]</echo>
         
-        <!--
-        ** TARGET DEFINITIONS
-        -->
+        <if>
+            <istrue value="${sf.spec.baseline.enable}" />
+            <then>
+                <runtarget target="preparation-getenv"/>
+            </then>
+        </if>
         
-        <target name="sf-build" depends="sf-prep,sf-prebuild,sf-get-source,sf-build-run,sf-postbuild">            
-            <echo>[SF-BUILD]</echo>
-        </target>
-        
-        <target name="sf-build-noprep">            
-            <echo>[SF-BUILD-NO-PREP]</echo>
-        </target>
-        
-        <target name="sf-prep" depends="prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
-            <echo>[SF-PREP]</echo>   
-            <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
-        </target>
-        
-      <target name="sf-prebuild"> 
-            <echo>[SF-PREBUILD]</echo>                                    
-            
-            <if>
-                <istrue value="${sf.prebuild.getenv}" />
-                <then>
-                    <runtarget target="preparation-getenv"/>
-                </then>
-            </if>
-            
-            <if>
-                <istrue value="${sf.prebuild.getsrc}" />
-                <then>
-                    <runtarget target="sf-get-source"/>
-                </then>
-            </if>            
-            
-            
-        </target>
-        
-        <target name="sf-postbuild">            
-            <echo>[SF-POSTBUILD]</echo>                        
-        </target>        
-        
-        <target name="sf-build-run" depends="sf-compile">            
-            <echo>[SF-BUILD-RUN]</echo>
-        </target>
-
-        <target name="sf-compile">
-            
-                <!--<path id="sf.system.definition.files">
-                    <fileset dir="${sf.common.config.dir}/sysdefs" includes="*.sysdef.xml"/>
-                    <fileset dir="${build.drive}/sf/app/camera"        includes="*.sysdef.xml"/>
-                </path>
-                -->
-            
-            	<!-- target name="compile-main-prebuild" -->
-		<antcall target="compile-main" inheritAll="false">
-			<param name="build.system" value="sbs" />
-			<param name="sysdef.configurations.list" value="s60_build_clean,s60_build" />
-			<!--<reference refid="sf.system.definition.files" torefid="system.definition.files" />-->
-		</antcall>
-            
-        </target>
-
-
-    <target name="sf-get-source">
-        <ant antfile="${sf.common.config.dir}/../../build/hg-pkg-build.ant.xml" />
-    </target>        
+        <if>
+            <istrue value="${sf.spec.sourcesync.enable}" />
+            <then>
+                <runtarget target="sf-get-source"/>
+            </then>
+        </if>     
+    </target>
+    
+    <target name="sf-postbuild">
+        <echo>[SF-POSTBUILD]</echo>
+    </target>
+    
+    <target name="sf-build-run" depends="sf-compile">
+        <echo>[SF-BUILD-RUN]</echo>
+    </target>
+    
+    <target name="sf-compile">    
+        <!-- target name="compile-main-prebuild" -->
+        <antcall target="compile-main" inheritAll="false">
+            <param name="build.system" value="sbs" />
+            <param name="sysdef.configurations.list" value="s60_build_clean,s60_build" />
+            <!--<reference refid="sf.system.definition.files" torefid="system.definition.files" />-->
+        </antcall>    
+    </target>
+    
+    
+    <target name="sf-get-source" depends="sf-generate-source-spec">
+        <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
+    </target>
+    
+    
 </project>
 
 
