@@ -15,24 +15,30 @@
         ** TARGET DEFINITIONS
         -->
         
-        <target name="sf-build" depends="sf-prep,sf-prebuild,sf-get-source,sf-build-run,sf-postbuild">            
-            <echo>[SF-BUILD]</echo>
-        </target>
-        
-        <target name="sf-build-noprep">            
-            <echo>[SF-BUILD-NO-PREP]</echo>
-        </target>
-        
-        <target name="sf-prep" depends="prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
+        <target name="sf-prep" depends="sf-parse-spec,prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
             <echo>[SF-PREP]</echo>   
             <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
         </target>
         
+        <!--target name="sf-build" depends="sf-parse-spec,sf-prebuild,sf-build-run,sf-postbuild"-->
+        <target name="sf-build" depends="sf-parse-spec,sf-prebuild,sf-build-run">
+            <echo>[SF-BUILD]</echo>
+        </target>
+        
+        <target name="sf-build-noprep">
+            <echo>[SF-BUILD-NO-PREP]</echo>
+        </target>
+        
+        <target name="sf-parse-spec">
+            <echo>[SF-PARSE-SPEC]</echo>
+            
+        </target>
+
       <target name="sf-prebuild"> 
             <echo>[SF-PREBUILD]</echo>                                    
             
             <if>
-                <istrue value="${sf.prebuild.getenv}" />
+                <istrue value="${sf.baseline.enable}" />
                 <then>
                     <runtarget target="preparation-getenv"/>
                 </then>
