@@ -41,13 +41,9 @@
         </fmpp>
     </target>
     
-    <target name="sf-build" depends="sf-prep,sf-prebuild,sf-get-source,sf-build-run,sf-postbuild">
+    <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD]</echo>
-    </target>
-    
-    <target name="sf-build-noprep">
-        <echo>[SF-BUILD-NO-PREP]</echo>
-    </target>
+    </target>   
     
     <target name="sf-prep" depends="sf-generate-source-spec, prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
@@ -76,8 +72,8 @@
         <echo>[SF-POSTBUILD]</echo>
     </target>
     
-    <target name="sf-build-run" depends="sf-compile">
-        <echo>[SF-BUILD-RUN]</echo>
+    <target name="sf-build-noprep" depends="sf-compile">
+        <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
     <target name="sf-compile">    
