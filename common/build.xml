@@ -19,7 +19,20 @@
     
     <!--
     ** TARGET DEFINITIONS
-    -->
+    -->   
+    
+    <target name="sf-prep" depends="sf-generate-source-spec, prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
+        <echo>[SF-PREP]</echo>
+        <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
+    </target>
+        
+    <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
+        <echo>[SF-BUILD-ALL]</echo>
+    </target>
+    
+    <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-noprep,sf-postbuild">
+        <echo>[SF-BUILD]</echo>
+    </target>
     
     <target name="sf-parse-project-config">
     <!-- TODO: Parse the project config and generate properties and csv file to be
@@ -39,15 +52,6 @@
                     data: csv(${sf.common.config.dir}/../../build/config/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
               </data>
         </fmpp>
-    </target>
-    
-    <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-noprep,sf-postbuild">
-        <echo>[SF-BUILD]</echo>
-    </target>   
-    
-    <target name="sf-prep" depends="sf-generate-source-spec, prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
-        <echo>[SF-PREP]</echo>
-        <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
     </target>
     
     <target name="sf-prebuild">

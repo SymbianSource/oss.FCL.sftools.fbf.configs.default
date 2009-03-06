@@ -12,12 +12,12 @@
         <property name="ccm.project.wa_path" location="${data.drive.letter}:\Build_${data.drive.letter}\${env.USERNAME}\ido_wa\${build.name}"/>
 
         <!--  to get run getenv package/platform, what to get is defined by props below -->
-        <property name="sf.prebuild.getenv"               value="true"/>   
+        <property name="sf.baseline.enable" value="true" />
         <property name="sf.prebuild.getsrc"               value="true"/>   
              
         <property name="base_release.getenv_options"     value=""/>
-        <!--property name="base_release.path"               value="\\fasrrm01.europe.nokia.com\GRACE\s60_devices_sw\S60_5_1\S60.MCL_200904_S60.51"/-->
-        <property name="base_release.path"     value="\\lon-engbuild88\d$\TB91_Releases\week04.grace"/> 
+        <!-- property name="base_release.path"               value="\\fasrrm01.europe.nokia.com\GRACE\s60_devices_sw\S60_5_1\S60.MCL_200904_S60.51"/ -->
+        <property name="base_release.path"     value="\\lon-engbuild68\d$\GRACE\Dummy\Symbian_OS_vtb91sf\SY_TB91_200910_101"/> 
 
         
         <property name="email.from"        value="shabe.razvi@nokia.com"/>
