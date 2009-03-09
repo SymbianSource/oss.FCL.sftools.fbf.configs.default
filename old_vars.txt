@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="SF-PROPERTIES-DEFAULT">
+<!-- project name="SF-PROPERTIES-DEFAULT">
     
         <property environment="env"/> <!-- make environment variables available via env -->
         <property name="build.system"      value="sbs"/>
@@ -29,5 +28,4 @@
 
         <property name="hg.tag"      value="1"/>
             
-</project>
-
+</project -->

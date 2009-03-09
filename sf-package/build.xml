@@ -13,14 +13,11 @@
   * the target will fail.
   
    -->
+  <!-- import properties/spec for this type of build -->
   <loadproperties srcFile="${sf.package.config.dir}/package.properties"/>
+  <import file="${sf.package.config.dir}/package_spec.ant.xml" />
   
-  
-  
-  
-  
-  
-  <!-- import sf-common-config -->
+  <!-- import common config -->
   <import file="../common/build.xml" />
   
 </project>

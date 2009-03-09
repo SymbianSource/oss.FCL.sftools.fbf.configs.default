@@ -3,8 +3,9 @@
 
     <dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
     
-    <!-- import default properties file config -->
-    <import file="${sf.common.config.dir}/properties.default.ant.xml"/>
+    <!-- import common properties/spec -->
+    <loadproperties srcFile="${sf.common.config.dir}/common.properties"/>
+    <import file="${sf.common.config.dir}/common_spec.ant.xml" />
     
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
@@ -60,6 +61,9 @@
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
             <then>
+                <property name="base_release.path" value="${sf.spec.baseline.location}"/>
+                <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
+                <echo>base_release.path=${base_release.path}, base_release.getenv_options=${base_release.getenv_options}</echo>
                 <runtarget target="preparation-getenv"/>
             </then>
         </if>
