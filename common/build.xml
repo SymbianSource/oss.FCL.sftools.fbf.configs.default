@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SF-COMMON-CONFIG">
 
+    <property environment="env"/> <!-- make environment variables available via env -->
+
     <dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
     
     <!-- import common properties/spec -->

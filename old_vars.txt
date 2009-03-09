@@ -1,6 +1,5 @@
 <!-- project name="SF-PROPERTIES-DEFAULT">
     
-        <property environment="env"/> <!-- make environment variables available via env -->
         <property name="build.system"      value="sbs"/>
         <property name="prep.root.dir"     value=""/>
         
@@ -12,11 +11,7 @@
 
         <!--  to get run getenv package/platform, what to get is defined by props below -->
         <property name="sf.baseline.enable" value="true" />
-        <property name="sf.prebuild.getsrc"               value="true"/>   
-             
-        <property name="base_release.getenv_options"     value=""/>
-        <!-- property name="base_release.path"               value="\\fasrrm01.europe.nokia.com\GRACE\s60_devices_sw\S60_5_1\S60.MCL_200904_S60.51"/ -->
-        <property name="base_release.path"     value="\\lon-engbuild68\d$\GRACE\Dummy\Symbian_OS_vtb91sf\SY_TB91_200910_101"/> 
+        <property name="sf.prebuild.getsrc"               value="true"/>
 
         
         <property name="email.from"        value="shabe.razvi@nokia.com"/>
