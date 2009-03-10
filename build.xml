@@ -4,7 +4,7 @@
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
   
   <!-- Property defaults -->
-  <import file="${sf.config.dir}/config/properties.default.ant.xml" />   
+  <import file="${sf.config.dir}/common/properties.default.ant.xml" />   
      
   <!-- load build type from project location/.name -->
   <import file="${sf.project.location}/${sf.project.name}" />
