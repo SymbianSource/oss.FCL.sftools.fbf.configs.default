@@ -7,7 +7,7 @@
     
     <!-- import common properties/spec -->
     <loadproperties srcFile="${sf.common.config.dir}/common.properties"/>
-    <import file="${sf.common.config.dir}/common_spec.ant.xml" />
+    <import file="${sf.common.config.dir}/common_spec.ant.xml" />    
     
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
@@ -52,7 +52,7 @@
               outputFile="${sf.common.config.dir}/generated/source-spec.ant.xml">
               <data expandProperties="yes">
                     ant: antProperties()
-                    data: csv(${sf.common.config.dir}/../../build/config/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                    data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
               </data>
         </fmpp>
     </target>

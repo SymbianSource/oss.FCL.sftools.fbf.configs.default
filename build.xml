@@ -3,12 +3,11 @@
   <!-- location of this config -->
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
   
-  <!--
-  * Property defaults
-   -->
+  <!-- Property defaults -->
+  <import file="${sf.config.dir}/config/properties.default.ant.xml" />   
      
-  <!-- load build type from config/ -->
-  <import file="${sf.config.dir}/../build/config/project_spec.ant.xml" />
+  <!-- load build type from project location/.name -->
+  <import file="${sf.project.location}/${sf.project.name}" />
      
   <import file="sf-${sf.project.type}/build.xml" />
   
