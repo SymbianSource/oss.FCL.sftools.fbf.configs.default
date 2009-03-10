@@ -13,7 +13,7 @@
         <property name="publish.root.dir"      value="\\builds01\devbuilds\GRACE"/>
 
         <property name="sf.project.location"   value="${sf.common.properties.dir}/../../build/config"/>
-        <property name="sf.project.name"       value="project_spec.xml"/>
+        <property name="sf.project.name"       value="project_spec.ant.xml"/>
             
 </project>
 
