@@ -3,22 +3,14 @@
   <!-- location of this config -->
   <dirname property="sf.package.config.dir" file="${ant.file.SF-PACKAGE-CONFIG}"/>
   
-  <!--
-  * Property defaults
-   -->
-
-  <!--
+  <!-- import package properties -->
+  <import file="${sf.package.config.dir}/package_props.ant.xml" />
   
-  * Load package specific properties. Mandatory that this file exists otherwise
-  * the target will fail.
-  
-   -->
-  <!-- import properties/spec for this type of build -->
-  <loadproperties srcFile="${sf.package.config.dir}/package.properties"/>
-  <import file="${sf.package.config.dir}/package_spec.ant.xml" />
-  
-  <!-- import common config -->
+  <!-- import common properties/targets/references -->
   <import file="../common/build.xml" />
+  
+  <!-- import package references -->
+  <import file="${sf.package.config.dir}/package_refs.ant.xml" />
   
 </project>
 

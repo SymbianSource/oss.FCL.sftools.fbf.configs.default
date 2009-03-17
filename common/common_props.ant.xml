@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<project name="SF-COMMON-PROPS" >
+	
+	<property name="sf.spec.sbs.config" value="ramv5"/>
+
+    <property name="sf.project.type" value="package"/>
+	
+    <property name="sf.spec.job.name" value="mypackage"/>
+    <property name="sf.spec.job.number" value="77"/>
+    <property name="sf.spec.job.rootdir" value="myrootdir"/>
+    <property name="sf.spec.job.freespace" value="10"/>
+    <property name="sf.spec.corebuildversion" value="mycorebuildversion"/>
+    <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
+    
+    <property name="sf.spec.build.target" value="all"/>
+    <property name="sf.spec.build.variant" value=""/>
+    <property name="sf.spec.build.productioncode.enable" value="true"/>
+    <property name="sf.spec.build.testcode.enable" value="false"/>
+    <property name="sf.spec.build.system" value="sbs"/> <!-- sbs|ebs|ec -->
+    <!-- property name="sf.spec.build.sbsv2.config" value=""/ -->
+    <!-- property name="sf.spec.build.sbsv2.options" value="-k"/ -->
+    <property name="sf.spec.build.clean.enable" value="true"/>
+    <property name="sf.spec.sysdef.configurations.list" value="s60_build,s60_bldmelast"/>
+    
+    <property name="sf.spec.referenceroms.createimages.enable" value="false"/>
+    <property name="sf.spec.testroms.createimages.enable" value="false"/>
+    
+    <property name="sf.spec.sourcesync.enable" value="true"/>
+    <property name="sf.spec.sourcesync.usecache" value="false"/>
+    <property name="sf.spec.sourcesync.sourcespecfile" value="sources.csv"/>
+    
+    <property name="sf.spec.baseline.enable" value="true"/>
+    <property name="sf.spec.baseline.select" value="auto"/> <!-- auto|explicit|location -->
+    <property name="sf.spec.baseline.getenv_options" value="-l emu"/>
+    <property name="sf.spec.toolsbaseline.enable" value="true"/>
+    <property name="sf.spec.toolsbaseline.select" value="auto"/>
+    
+    <property name="sf.spec.publish.unpackagedartefacts.enable" value="true"/>
+    <property name="sf.spec.publish.packagedartefacts.enable" value="true"/>
+    <property name="sf.spec.publish.network.freespace" value="10"/>
+    <property name="sf.spec.publish.networkdrive" value="\\builds01\devbuilds\GRACE"/>
+    <property name="sf.spec.publish.publish.rootdir" value="\\builds01\devbuilds\GRACE"/>
+    
+    <property name="sf.spec.tagafterbuild.enable" value="true"/>
+</project>
+
+

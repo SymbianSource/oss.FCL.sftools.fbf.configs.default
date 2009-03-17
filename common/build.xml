@@ -2,15 +2,31 @@
 <project name="SF-COMMON-CONFIG">
 
     <property environment="env"/> <!-- make environment variables available via env -->
-
+    
     <dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
     
-    <!-- import common properties/spec -->
-    <loadproperties srcFile="${sf.common.config.dir}/common.properties"/>
-    <import file="${sf.common.config.dir}/common_spec.ant.xml" />
+    <!-- import common properties -->
+    <import file="${sf.common.config.dir}/common_props.ant.xml" />
+    
+    <!-- setup Helium internal properties from their equivalent in the project spec -->
+    <property name="build.name" value="${sf.spec.job.name}"/>
+    <property name="build.number" value="${sf.spec.job.number}"/>
+    <property name="build.family" value="${sf.project.type}"/>
+    <property name="core.build.version" value="${sf.spec.corebuildversion}"/>
+    <property name="email.from" value="${sf.spec.email.from}"/>
+    <property name="local.free.space" value="${sf.spec.job.freespace}"/>
+    <property name="network.free.space" value="${sf.spec.publish.network.freespace}"/>
+    <property name="network.drive" value="${sf.spec.publish.networkdrive}"/>
+    <property name="publish.root.dir" value="${sf.spec.publish.publish.rootdir}"/>
+    <property name="build.system" value="${sf.spec.build.system}"/>
+    <property name="base_release.path" value="${sf.spec.baseline.location}"/>
+    <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
+    
+    <!-- import common references -->
+    <import file="${sf.common.config.dir}/common_refs.ant.xml" />
              
     <!-- conditional import of generated source spec if available -->
     <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
@@ -63,9 +79,6 @@
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
             <then>
-                <property name="base_release.path" value="${sf.spec.baseline.location}"/>
-                <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
-                <echo>base_release.path=${base_release.path}, base_release.getenv_options=${base_release.getenv_options}</echo>
                 <runtarget target="preparation-getenv"/>
             </then>
         </if>
@@ -87,20 +100,27 @@
     </target>
     
     <target name="sf-compile">    
+    
+    	<!-- TODO: add here assigments to raptor-related ant references -->
+ 	
+    	<!-- hlm:argSet id="sbs.tools.var">
+			<hlm:arg name="config" value="${sf.spec.sbs.config}" />
+			<hlm:arg name="singlejob" value="..." />
+			<hlm:arg name="enable-filter" value="..." />
+		</hlm:argSet -->
+    	
         <!-- target name="compile-main-prebuild" -->
         <antcall target="compile-main" inheritAll="false">
-            <param name="build.system" value="sbs" />
-            <param name="sysdef.configurations.list" value="s60_build_clean,s60_build" />
+            <param name="build.system" value="${sf.spec.build.system}"/>
+            <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
             <!--<reference refid="sf.system.definition.files" torefid="system.definition.files" />-->
         </antcall>    
     </target>
     
-    
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
     </target>
-    
-    
+
 </project>
 
 

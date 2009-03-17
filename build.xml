@@ -2,15 +2,14 @@
 <project name="SF-CONFIG">
   <!-- location of this config -->
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
+     
+  <!-- import job properties -->
+  <import file="${sf.config.dir}/../build/config/job_props.ant.xml" />
   
-  <!--
-  * Property defaults
-   -->
-     
-  <!-- load build type from config/ -->
-  <import file="${sf.config.dir}/../build/config/project_spec.ant.xml" />
-     
+  <!-- import project properties/targets/references -->
   <import file="sf-${sf.project.type}/build.xml" />
   
+  <!-- import job references -->
+  <import file="${sf.config.dir}/../build/config/job_refs.ant.xml" />
   
 </project>
