@@ -2,7 +2,7 @@
 <project name="SF-CONFIG">
   <!-- location of this config -->
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
-  <property name="sf.project.location" value="../build/config"/>
+  <property name="sf.project.location" value="${sf.config.dir}/../build/config"/>
   <property name="sf.project.name" value="job"/>
      
   <!-- import job properties -->
