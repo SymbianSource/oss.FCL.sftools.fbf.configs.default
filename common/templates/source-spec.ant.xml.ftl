@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="hg-build-gen-xml" default="all" xmlns:hlm="http://www.nokia.com/helium">
+<project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
 <#assign fileset = "" />
 <#assign target_depends = "" />
@@ -9,7 +9,7 @@
 <#list data as pkg_detail>
     <target name="sf-prebuild-${count}">
         <#if (count > 0) >
-            <#assign fileset = "${fileset}" + "," />
+            <#assign fileset = "${fileset}"  />
         </#if>
         <sequential>
             <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false"/>
@@ -26,8 +26,16 @@
         </sequential>
     </target>
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />
-    <#assign target_depends = "${target_depends}" + "sf-prebuild-${count}" />
-    <#assign count = "${count}" + 1 />
+    
+    <#if (count == 0) >
+    				<#assign target_depends = "${target_depends}" + "sf-prebuild-${count}" />
+    </#if>
+    <#if (count > 0) >
+            <#assign target_depends ="${target_depends}" + ","+"sf-prebuild-${count}"/>
+    </#if>
+    
+    <#assign count = count + 1 />
+
 </#list>
 
     <path id="system.definition.files">

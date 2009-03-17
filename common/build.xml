@@ -68,7 +68,7 @@
               outputFile="${sf.common.config.dir}/generated/source-spec.ant.xml">
               <data expandProperties="yes">
                     ant: antProperties()
-                    data: csv(${sf.common.config.dir}/../../build/config/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                    data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
               </data>
         </fmpp>
     </target>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-PROPERTIES-DEFAULT">
+
+        <dirname property="sf.common.properties.dir" file="${ant.file.SF-PROPERTIES-DEFAULT}"/>    
+
+        <property environment="env"/> <!-- make environment variables available via env -->
+        <property name="build.system"      value="sbs"/>
+        <property name="prep.root.dir"     value=""/>
+                    
+        <property name="local.free.space"      value="10"/>
+        <property name="network.free.space"    value="10"/>
+        <property name="network.drive"         value="\\builds01\devbuilds\GRACE"/>
+        <property name="publish.root.dir"      value="\\builds01\devbuilds\GRACE"/>
+
+        <property name="sf.project.location"   value="${sf.common.properties.dir}/../../build/config"/>
+        <property name="sf.project.name"       value="project_spec.ant.xml"/>
+            
+</project>
+
