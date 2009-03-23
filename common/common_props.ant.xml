@@ -13,6 +13,9 @@
     <property name="sf.spec.corebuildversion" value="mycorebuildversion"/>
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
+    <property name="sf.spec.systemdefinition.assemble" value="true"/>
+    <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
+    
     <property name="sf.spec.build.target" value="all"/>
     <property name="sf.spec.build.variant" value=""/>
     <property name="sf.spec.build.productioncode.enable" value="true"/>

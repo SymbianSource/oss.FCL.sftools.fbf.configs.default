@@ -22,6 +22,11 @@
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     
+    <target name="create-canonical-sysdef-file">
+      <echo message="Copying given system definition file where Helium expects it."/>
+      <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
+    </target>
+    
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
     
