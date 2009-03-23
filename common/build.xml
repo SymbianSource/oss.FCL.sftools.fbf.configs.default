@@ -22,11 +22,6 @@
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     
-    <target name="create-canonical-sysdef-file">
-      <echo message="Copying given system definition file where Helium expects it."/>
-      <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
-    </target>
-    
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
     
@@ -102,6 +97,20 @@
     
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
+    </target>
+    
+    <target name="create-canonical-sysdef-file">
+      <if>
+        <istrue value="${sf.spec.systemdefinition.assemble}"/>
+        <then>
+          <echo message="Calling Helium create-canonical-sysdef-file target to assemble sysdef fragments."/>
+          <runtarget target="compile.create-canonical-sysdef-file"/>
+        </then>
+        <else>
+          <echo message="Will use ${build.drive}/${sf.spec.systemdefinition.location} as is as sysdef file"/>
+          <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
+        </else>
+      </if>
     </target>
     
     <target name="sf-compile">    
