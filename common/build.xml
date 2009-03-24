@@ -93,6 +93,8 @@
     
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
+        <echo message="Publishing log files and reports"/>
+        <runtarget target="publish"/>
     </target>
     
     <target name="sf-build-noprep" depends="sf-compile">
