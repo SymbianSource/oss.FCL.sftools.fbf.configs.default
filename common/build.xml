@@ -17,7 +17,8 @@
     <property name="local.free.space" value="${sf.spec.job.freespace}"/>
     <property name="network.free.space" value="${sf.spec.publish.network.freespace}"/>
     <property name="network.drive" value="${sf.spec.publish.networkdrive}"/>
-    <property name="publish.root.dir" value="${sf.spec.publish.publish.rootdir}"/>
+    <property name="publish" value="${sf.spec.publish.enable}"/>
+    <property name="publish.root.dir" value="${sf.spec.publish.rootdir}"/>
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
@@ -91,11 +92,17 @@
         </if>     
     </target>
     
-    <target name="sf-postbuild">
-        <echo>[SF-POSTBUILD]</echo>
-        <echo message="Publishing log files and reports"/>
+  <target name="sf-postbuild">
+    <echo>[SF-POSTBUILD]</echo>
+    <runtarget target="publish"/>
+    <if>
+      <istrue value="${sf.spec.publish.enable}" />
+      <then>
+        <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
         <runtarget target="publish"/>
-    </target>
+      </then>
+    </if>
+  </target>
     
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
