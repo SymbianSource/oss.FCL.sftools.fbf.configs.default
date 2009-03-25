@@ -9,8 +9,8 @@
     <import file="${sf.common.config.dir}/common_props.ant.xml" />
     
     <!-- setup Helium internal properties from their equivalent in the project spec -->
-    <property name="build.name" value="${sf.spec.job.product}"/>
-    <property name="core.build.version" value="${sf.spec.job.release}"/>
+    <property name="build.name" value="${sf.spec.job.name}"/>
+    <property name="core.build.version" value="${sf.spec.job.codeline}"/>
     <property name="build.number" value="${sf.spec.job.number}"/>
     <property name="build.drive" value="${sf.spec.job.drive}"/>
     <property name="build.family" value="${sf.project.type}"/>
