@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 
 <project name="SF-COMMON-PROPS" >
-	
-	<property name="sf.spec.sbs.config" value="ramv5"/>
 
     <property name="sf.project.type" value="package"/>
 	
     <property name="sf.spec.job.product" value="myproduct"/>
     <property name="sf.spec.job.release" value="1.0.0"/>
+    <property name="sf.spec.job.rootdir" value="D:\fbf_job"/>
     <property name="sf.spec.job.number" value="77"/>
-    <property name="sf.spec.job.rootdir" value="myrootdir"/>
     <property name="sf.spec.job.freespace" value="10"/>
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
     <property name="sf.spec.systemdefinition.assemble" value="true"/>
     <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
+    
+    <property name="sf.spec.sbs.config" value="armv5"/>
     
     <property name="sf.spec.build.target" value="all"/>
     <property name="sf.spec.build.variant" value=""/>
@@ -25,6 +25,7 @@
     <!-- property name="sf.spec.build.sbsv2.options" value="-k"/ -->
     <property name="sf.spec.build.clean.enable" value="true"/>
     <property name="sf.spec.sysdef.configurations.list" value="s60_build,s60_bldmelast"/>
+    
     
     <property name="sf.spec.referenceroms.createimages.enable" value="false"/>
     <property name="sf.spec.testroms.createimages.enable" value="false"/>

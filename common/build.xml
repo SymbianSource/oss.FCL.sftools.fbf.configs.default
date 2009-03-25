@@ -17,6 +17,7 @@
     <property name="local.free.space" value="${sf.spec.job.freespace}"/>
     <property name="network.free.space" value="${sf.spec.publish.network.freespace}"/>
     <property name="network.drive" value="${sf.spec.publish.networkdrive}"/>
+    <property name="prep.root.dir" value="${sf.spec.job.rootdir}"/>
     <property name="publish" value="${sf.spec.publish.enable}"/>
     <property name="publish.root.dir" value="${sf.spec.publish.rootdir}"/>
     <property name="build.system" value="${sf.spec.build.system}"/>
