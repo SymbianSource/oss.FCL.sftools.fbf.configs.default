@@ -6,11 +6,11 @@
 
     <property name="sf.project.type" value="package"/>
 	
-    <property name="sf.spec.job.name" value="mypackage"/>
+    <property name="sf.spec.job.product" value="myproduct"/>
+    <property name="sf.spec.job.release" value="1.0.0"/>
     <property name="sf.spec.job.number" value="77"/>
     <property name="sf.spec.job.rootdir" value="myrootdir"/>
     <property name="sf.spec.job.freespace" value="10"/>
-    <property name="sf.spec.corebuildversion" value="mycorebuildversion"/>
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
     <property name="sf.spec.systemdefinition.assemble" value="true"/>

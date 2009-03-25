@@ -9,10 +9,10 @@
     <import file="${sf.common.config.dir}/common_props.ant.xml" />
     
     <!-- setup Helium internal properties from their equivalent in the project spec -->
-    <property name="build.name" value="${sf.spec.job.name}"/>
+    <property name="build.name" value="${sf.spec.job.product}"/>
+    <property name="core.build.version" value="${sf.spec.job.release}"/>
     <property name="build.number" value="${sf.spec.job.number}"/>
     <property name="build.family" value="${sf.project.type}"/>
-    <property name="core.build.version" value="${sf.spec.corebuildversion}"/>
     <property name="email.from" value="${sf.spec.email.from}"/>
     <property name="local.free.space" value="${sf.spec.job.freespace}"/>
     <property name="network.free.space" value="${sf.spec.publish.network.freespace}"/>
