@@ -96,7 +96,17 @@
     
   <target name="sf-postbuild">
     <echo>[SF-POSTBUILD]</echo>
-    <runtarget target="publish"/>
+    
+    <!-- TAG SOURCE CODE -->
+    <if>
+      <istrue value="${sf.spec.tagafterbuild.enable}" />
+      <then>
+        <echo message="Apply tag to the source code used in this build"/>
+        <runtarget target="sf-tag-hg-code"/>
+      </then>
+    </if>
+
+    <!-- PUBLISH LOGS/REPORTS -->
     <if>
       <istrue value="${sf.spec.publish.enable}" />
       <then>
@@ -104,6 +114,7 @@
         <runtarget target="publish"/>
       </then>
     </if>
+    
   </target>
     
     <target name="sf-build-noprep" depends="sf-compile">
@@ -144,6 +155,18 @@
     
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
+    </target>
+    
+    <target name="sf-tag-hg-code">
+      <property name="sf.tagafterbuild.tag" value="${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
+      <fmpp sourceFile="${sf.common.config.dir}/templates/tag-hg-code.ant.xml.ftl"
+            outputFile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml">
+        <data expandProperties="yes">
+              ant: antProperties()
+              data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+        </data>
+      </fmpp>
+      <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
     </target>
 
 </project>
