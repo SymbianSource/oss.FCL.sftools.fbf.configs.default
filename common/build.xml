@@ -10,14 +10,17 @@
     
     <!-- setup Helium internal properties from their equivalent in the project spec -->
     <property name="build.name" value="${sf.spec.job.name}"/>
+    <property name="core.build.version" value="${sf.spec.job.codeline}"/>
     <property name="build.number" value="${sf.spec.job.number}"/>
+    <property name="build.drive" value="${sf.spec.job.drive}"/>
     <property name="build.family" value="${sf.project.type}"/>
-    <property name="core.build.version" value="${sf.spec.corebuildversion}"/>
     <property name="email.from" value="${sf.spec.email.from}"/>
     <property name="local.free.space" value="${sf.spec.job.freespace}"/>
     <property name="network.free.space" value="${sf.spec.publish.network.freespace}"/>
     <property name="network.drive" value="${sf.spec.publish.networkdrive}"/>
-    <property name="publish.root.dir" value="${sf.spec.publish.publish.rootdir}"/>
+    <property name="prep.root.dir" value="${sf.spec.job.rootdir}"/>
+    <property name="publish" value="${sf.spec.publish.enable}"/>
+    <property name="publish.root.dir" value="${sf.spec.publish.rootdir}"/>
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
@@ -91,12 +94,34 @@
         </if>     
     </target>
     
-    <target name="sf-postbuild">
-        <echo>[SF-POSTBUILD]</echo>
-    </target>
+  <target name="sf-postbuild">
+    <echo>[SF-POSTBUILD]</echo>
+    <runtarget target="publish"/>
+    <if>
+      <istrue value="${sf.spec.publish.enable}" />
+      <then>
+        <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
+        <runtarget target="publish"/>
+      </then>
+    </if>
+  </target>
     
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
+    </target>
+    
+    <target name="create-canonical-sysdef-file">
+      <if>
+        <istrue value="${sf.spec.systemdefinition.assemble}"/>
+        <then>
+          <echo message="Calling Helium create-canonical-sysdef-file target to assemble sysdef fragments."/>
+          <runtarget target="compile.create-canonical-sysdef-file"/>
+        </then>
+        <else>
+          <echo message="Will use ${build.drive}/${sf.spec.systemdefinition.location} as is as sysdef file"/>
+          <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
+        </else>
+      </if>
     </target>
     
     <target name="sf-compile">    
