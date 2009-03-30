@@ -8,7 +8,7 @@
     <target name="sf-tag-hg-code-${count}">
         <sequential>
           <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
-            <hlm:tag basedir="${ant['sf.spec.job.drive']}${pkg_detail.dst}" name="${ant['sf.tagafterbuild.tag']}" level="local"/>
+            <hlm:tag basedir="${ant['sf.spec.job.drive']}${pkg_detail.dst}" name="${ant['sf.tagafterbuild.tag']}" level="normal"/>
           </hlm:scm>
         </sequential>
     </target>
