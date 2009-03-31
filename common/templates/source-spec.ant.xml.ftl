@@ -2,7 +2,7 @@
 <project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
 <#assign fileset = "" />
-<#assign target_depends = "" />
+<#assign sync_list = "" />
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
@@ -25,15 +25,9 @@
             </hlm:scm>
         </sequential>
     </target>
-    <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />
     
-    <#if (count == 0) >
-    				<#assign target_depends = "${target_depends}" + "sf-prebuild-${count}" />
-    </#if>
-    <#if (count > 0) >
-            <#assign target_depends ="${target_depends}" + ","+"sf-prebuild-${count}"/>
-    </#if>
-    
+    <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />       
+    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n"/>    
     <#assign count = count + 1 />
 
 </#list>
@@ -43,6 +37,11 @@
         ${fileset}
     </path>
 
-<target name="all" depends="${target_depends}"/>
+<target name="all">
 
+  <parallel>
+    ${sync_list}
+  </parallel>
+
+</target>
 </project>

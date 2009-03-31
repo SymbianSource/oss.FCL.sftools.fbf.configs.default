@@ -106,8 +106,14 @@
     -->
   <target name="sf-os-compile">
       
-        <hlm:argSet id="sbs.tools.var">
-                <hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />
+        <hlm:argSet id="sbs.tools2.var">
+                <hlm:arg name="config" value="tools2_rel" />
+                <hlm:arg name="singlejob" value="false" />
+                <hlm:arg name="enable-filter" value="true" />
+        </hlm:argSet>
+        
+        <hlm:argSet id="sbs.tools.var"> 
+                <hlm:arg name="config" value="tools_rel" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="true" />
         </hlm:argSet>
@@ -120,7 +126,18 @@
         <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
         <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
-        <!-- OS tools build -->
+        <!-- OS tools2 build first-->
+        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+                <param name="build.system" value="${sf.spec.build.system}" />
+                <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
+                <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
+                <reference refid="sbs.tools2.var" torefid="sbs.var" />
+                <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
+                <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
+        </antcall>
+
+        <!-- OS tools build after tools2 -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
                 <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
