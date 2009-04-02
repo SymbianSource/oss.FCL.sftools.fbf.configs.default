@@ -8,7 +8,7 @@
     <property name="sf.spec.job.codeline" value="MCL"/>
     <property name="sf.spec.job.number" value="001"/> <!-- this is always overriden from the commandline -->
     <property name="sf.spec.job.rootdir" value="D:\fbf_job"/>
-    <property name="sf.spec.job.drive" value="G:"/>
+    <property name="sf.spec.job.drive" value="M:"/>
     <property name="sf.spec.job.freespace" value="10"/>
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
