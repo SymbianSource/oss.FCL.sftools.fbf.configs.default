@@ -37,7 +37,7 @@
     
     <property name="sf.spec.baseline.enable" value="true"/>
     <property name="sf.spec.baseline.select" value="auto"/> <!-- auto|explicit|location -->
-    <property name="sf.spec.baseline.getenv_options" value="-l emu"/>
+    <property name="sf.spec.baseline.getenv_options" value="-i emu"/>
     <property name="sf.spec.toolsbaseline.enable" value="true"/>
     <property name="sf.spec.toolsbaseline.select" value="auto"/>
     
