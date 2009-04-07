@@ -94,7 +94,7 @@
         </if>     
     </target>
     
-  <target name="sf-postbuild">
+  <target name="sf-postbuild" depends="sf-zip-logs">
     <echo>[SF-POSTBUILD]</echo>
     <runtarget target="publish"/>
     <if>
@@ -106,6 +106,15 @@
     </if>
   </target>
     
+		
+    <!-- package all logs into zipfile before publish -->
+    <target name="sf-zip-logs">
+        <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
+        <zip destfile="${temp.log.zip}" basedir="${build.log.dir}"/>
+        <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>		
+    </target>
+	
+	
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
@@ -145,6 +154,7 @@
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
     </target>
+
 
 </project>
 
