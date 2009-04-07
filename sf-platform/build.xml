@@ -8,12 +8,11 @@
    -->
 
   <!--
+  TODO if needed in future
   
-  * Load platform specific properties. Mandatory that this file exists otherwise
-  * the target will fail.
+  * Load platform specific properties.
   
    -->
-  <loadproperties srcFile="${sf.platform.config.dir}/platform.properties"/>
   
   <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <target name="create-canonical-sysdef-file">
