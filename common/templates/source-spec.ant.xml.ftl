@@ -25,9 +25,6 @@
                         <hlm:tagSet refid="hg.tags.id${dollar}{refid}" />
                     </hlm:latestTag>
                 </hlm:update>
-                <exec command="hg identify -n" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.repo.n"/>
-                <exec command="hg identify -i" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.repo.i"/>
-                <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${sf.sourcesync.repo.n}:${sf.sourcesync.repo.i}"/>
             </hlm:scm>
             
             <!-- record info on sf-config repo/rev -->
