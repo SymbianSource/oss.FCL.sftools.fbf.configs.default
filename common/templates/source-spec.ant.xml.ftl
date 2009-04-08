@@ -27,7 +27,7 @@
                 </hlm:update>
             </hlm:scm>
             
-            <!-- record info on sf-config repo/rev -->
+            <!-- record info on source code repo/rev -->
             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.rev">
                 <arg value="identify"/>
                 <arg value="-i"/>
