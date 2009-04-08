@@ -6,6 +6,9 @@
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
+<!-- remove actual_sources.csv file -->
+<delete file="${ant['build.drive']}/output/BOM/sources.csv" quiet="true"/>
+
 <#list data as pkg_detail>
     <target name="sf-prebuild-${count}">
         <#if (count > 0) >
@@ -26,6 +29,19 @@
                 <exec command="hg identify -i" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.repo.i"/>
                 <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${sf.sourcesync.repo.n}:${sf.sourcesync.repo.i}"/>
             </hlm:scm>
+            
+            <!-- record info on sf-config repo/rev -->
+            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.rev">
+                <arg value="identify"/>
+                <arg value="-i"/>
+            </exec>
+            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${sf.sourcesync.${count}.rev}"/>
+            <exec executable="cmd" dir="${ant['build.drive']}/output/BOM" output="sources.csv" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="${pkg_detail.source},${pkg_detail.dst},${sf.sourcesync.${count}.rev}"/>
+            </exec>
+        
         </sequential>
     </target>
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />

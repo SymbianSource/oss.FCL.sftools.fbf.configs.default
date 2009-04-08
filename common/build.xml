@@ -43,7 +43,7 @@
     ** TARGET DEFINITIONS
     -->   
     
-    <target name="sf-prep" depends="sf-generate-source-spec, prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
+    <target name="sf-prep" depends="sf-generate-source-spec,prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
     </target>
@@ -78,6 +78,9 @@
     
     <target name="sf-prebuild">
         <echo>[SF-PREBUILD]</echo>
+        
+        <!-- create BOM dir -->
+        <mkdir dir="${build.drive}/output/BOM"/>
         
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
