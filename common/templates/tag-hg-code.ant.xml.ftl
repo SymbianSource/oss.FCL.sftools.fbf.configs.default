@@ -7,9 +7,18 @@
 <#list data as pkg_detail>
     <target name="sf-tag-hg-code-${count}">
         <sequential>
-          <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
-            <hlm:tag basedir="${ant['sf.spec.job.drive']}${pkg_detail.dst}" name="${ant['sf.tagafterbuild.tag']}" level="normal"/>
-          </hlm:scm>
+        
+          <trycatch> <!-- build must not fail if this command gives an error -->
+            <try>
+              <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
+                <hlm:tag basedir="${ant['sf.spec.job.drive']}${pkg_detail.dst}" name="${ant['sf.tagafterbuild.tag']}" level="normal"/>
+              </hlm:scm>
+            </try>
+            <catch>
+              <echo message="WARNING: failed to tag code with label '${ant['sf.tagafterbuild.tag']}' (does the tag already exist?)"/>
+            </catch>
+          </trycatch>
+          
         </sequential>
     </target>
     
@@ -26,3 +35,17 @@
 <target name="all" depends="${target_depends}"/>
 
 </project>
+
+
+
+<trycatch>
+    <try>
+ 
+        <scm ....>
+            <tag ....>
+        </scm>
+    </try>
+    <catch>
+        <echo>Fail to tag: &lt;catch&gt;.</echo>
+    </catch>
+</trycatch>
