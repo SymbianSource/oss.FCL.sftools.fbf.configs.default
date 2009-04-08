@@ -2,12 +2,13 @@
 <project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
 <#assign fileset = "" />
-<#assign target_depends = "" />
+<#assign target_depends = "reset-bom-sources-csv" />
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
-<!-- remove actual_sources.csv file -->
-<delete file="${ant['build.drive']}/output/BOM/sources.csv" quiet="true"/>
+    <target name="reset-bom-sources-csv">
+        <delete file="${ant['build.drive']}/output/BOM/sources.csv" quiet="true"/>
+    </target>
 
 <#list data as pkg_detail>
     <target name="sf-prebuild-${count}">
