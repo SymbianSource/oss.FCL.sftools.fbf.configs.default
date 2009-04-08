@@ -2,7 +2,7 @@
 <project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
 <#assign fileset = "" />
-<#assign target_depends = "reset-bom-sources-csv" />
+<#assign target_depends = "" />
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
@@ -45,10 +45,10 @@
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />
     
     <#if (count == 0) >
-    				<#assign target_depends = "${target_depends}" + "sf-prebuild-${count}" />
+    				<#assign target_depends = "reset-bom-sources-csv," + "sf-prebuild-${count}" />
     </#if>
     <#if (count > 0) >
-            <#assign target_depends ="${target_depends}" + ","+"sf-prebuild-${count}"/>
+            <#assign target_depends ="${target_depends}," + "sf-prebuild-${count}"/>
     </#if>
     
     <#assign count = count + 1 />
