@@ -35,17 +35,3 @@
 <target name="all" depends="${target_depends}"/>
 
 </project>
-
-
-
-<trycatch>
-    <try>
- 
-        <scm ....>
-            <tag ....>
-        </scm>
-    </try>
-    <catch>
-        <echo>Fail to tag: &lt;catch&gt;.</echo>
-    </catch>
-</trycatch>
