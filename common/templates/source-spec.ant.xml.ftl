@@ -35,11 +35,11 @@
                 <arg value="identify"/>
                 <arg value="-i"/>
             </exec>
-            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${sf.sourcesync.${count}.rev}"/>
+            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${dollar}{sf.sourcesync.${count}.rev}"/>
             <exec executable="cmd" dir="${ant['build.drive']}/output/BOM" output="sources.csv" append="true">
                 <arg value="/c"/>
                 <arg value="echo"/>
-                <arg value="${pkg_detail.source},${pkg_detail.dst},${sf.sourcesync.${count}.rev}"/>
+                <arg value="${pkg_detail.source},${pkg_detail.dst},${dollar}{sf.sourcesync.${count}.rev}"/>
             </exec>
         
         </sequential>
