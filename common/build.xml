@@ -87,8 +87,8 @@
             <then>
             
                 <!-- record baseline information in BOM file -->
-                <delete file="${ant['build.drive']}/output/BOM/baseline.txt" quiet="true"/>
-                <exec executable="cmd" output="${ant['build.drive']}/output/BOM/baseline.txt">
+                <delete file="${build.drive}/output/BOM/baseline.txt" quiet="true"/>
+                <exec executable="cmd" output="${build.drive}/output/BOM/baseline.txt">
                     <arg value="/c"/>
                     <arg value="echo"/>
                     <arg value="${sf.spec.baseline.location}"/>
