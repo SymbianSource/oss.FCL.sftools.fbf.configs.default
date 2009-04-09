@@ -2,46 +2,46 @@
 <project name="SF-PLATFORM-CONFIG" xmlns:hlm="http://www.nokia.com/helium">
   <!-- location of this config -->
   <dirname property="sf.platform.config.dir" file="${ant.file.SF-PLATFORM-CONFIG}"/>
-  
+
   <!--
   * Property defaults
    -->
 
   <!--
   TODO if needed in future
-  
+
   * Load platform specific properties.
-  
+
    -->
-  
+
   <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <target name="create-canonical-sysdef-file">
-            
+
        <if>
           <!-- TODO use scripting to match this -->
-          <equals arg1="${sf.spec.sysdef.version}" arg2="1.4.0" /> 
+          <equals arg1="${sf.spec.sysdef.version}" arg2="1.4.0" />
           <then>
             <echo message="Using System Definition v1.4.0 "/>
             <runtarget target="compile.create-canonical-sysdef-file"/>
           </then>
           <else>
-            <runtarget target="preprocess-sysdef-files"/>  
-            <echo message="Exporting preprocessed System Definition"/> 
-            
+            <runtarget target="preprocess-sysdef-files"/>
+            <echo message="Exporting preprocessed System Definition"/>
+
             <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\0000000000000001_system_definition.xml" 
+            <copy file="${build.output.dir}\build\input\0000000000000001_system_definition.xml"
                   tofile="${canonical.sysdef.file}" failonerror="true" verbose="true"/>
           </else>
         </if>
-          
+
   </target>
-    
-  <!-- 
+
+  <!--
     == Name: PREPROCESS-SYSDEF-FILES
     ==
     == Desc: Override of default target in order to deal with symbian os
-    ==       system_definition.xml that does not have /sf source prefix    
-    ==       
+    ==       system_definition.xml that does not have /sf source prefix
+    ==
     ==       TODO get this moved as a Helium core target?
     -->
   <target name="preprocess-sysdef-files">
@@ -49,7 +49,7 @@
         <delete verbose="true">
             <fileset dir="${build.output.dir}/build/input/" includes="**"/>
         </delete>
-        
+
         <for param="file">
             <resources refid="system.definition.files"/>
             <sequential>
@@ -71,48 +71,74 @@
             </sequential>
         </for>
     </target>
-  
-  <!-- 
+
+    <target name="generate-layers">
+       <echo message="canno-file:${canonical.sysdef.file}"/>
+       <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
+
+	   <!-- split builds currently generate layer sysdef from original -->
+	   <if><istrue value="${sf.spec.splitbuild}"/>
+       <then>
+           <hlm:compileGenxmlFilterMacro xmlns:hlm="http://www.nokia.com/helium" input="${canonical.sysdef.file}" filter="raptor_${sysdef.configuration}" output="${build.output.dir}/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/ >
+	   </then>
+	   <else>
+	       <!-- but all we want is a sysdef with the config name appended, so just copy it -->
+           <echo message="INFO: skip genxml and copy sysdef to sysdef+config name"/>
+           <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+       </else>
+    </if>
+
+	<copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml">
+		<filterchain>
+			<linecontainsregexp negate="true">
+			  <regexp pattern="^\s*$"/>
+			</linecontainsregexp>
+		</filterchain>
+	</copy>
+	<delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+	</target>
+
+  <!--
     == Name: SF-COMPILE
     ==
     == Desc: Override of common sf-compile target defined in
     ==       common\build.xml
-    ==       
+    ==
     ==       os  build will be skipped if sf.spec.os.skipbuild=true
     ==       s60 build will be skipped if sf.spec.s60.skipbuild=true
-    == 
+    ==
     -->
   <target name="sf-compile">
-  
+
     <!-- TODO clean up to single target once genxml v2.0.0 merge is fixed -->
     <if><istrue value="${sf.spec.splitbuild}"/>
        <then>
        <if><istrue value="${sf.spec.os.skipbuild}" />
-            <then><echo message="Skipping OS build"/></then>      
+            <then><echo message="Skipping OS build"/></then>
        <else><runtarget target="sf-os-compile"/></else></if>
-       
+
        <if><istrue value="${sf.spec.s60.skipbuild}" />
-            <then><echo message="Skipping S60 build"/></then>       
+            <then><echo message="Skipping S60 build"/></then>
        <else><runtarget target="sf-s60-compile"/></else></if>
 	   </then>
 	   <else>
 	        <!-- TODO targets for single sysdef build -->
-	   
+	        <runtarget target="sf-os-compile"/>
 	   </else>
     </if>
   </target>
 
-  <!-- 
+  <!--
     == Name: SF-OS-COMPILE
     ==
     == Desc: Compile OS part of build using the spec defined in:
-    == 
+    ==
     ==         - job_props.ant.xml
     ==         - job_refs.ant.xml
     ==
     -->
   <target name="sf-os-compile">
-      
+
         <hlm:argSet id="sbs.tools2.var">
                 <hlm:arg name="config" value="tools2_rel" />
                 <hlm:arg name="singlejob" value="false" />
@@ -125,14 +151,14 @@
                 <hlm:arg name="enable-filter" value="true" />
 				<hlm:arg name="command" value="CLEAN" />
         </hlm:argSet>
-        
-        <hlm:argSet id="sbs.tools.var"> 
+
+        <hlm:argSet id="sbs.tools.var">
                 <hlm:arg name="config" value="tools_rel" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="true" />
         </hlm:argSet>
-		
-		<hlm:argSet id="sbs.tools.clean.var"> 
+
+		<hlm:argSet id="sbs.tools.clean.var">
                 <hlm:arg name="config" value="tools_rel" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="true" />
@@ -149,7 +175,7 @@
                 <hlm:arg name="enable-filter" value="true" />
 				<hlm:arg name="command" value="CLEAN" />
         </hlm:argSet>
-		
+
         <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
         <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
@@ -163,7 +189,7 @@
                 <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall-->
-		
+
         <!-- OS tools2 build first-->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
@@ -185,7 +211,7 @@
                 <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall-->
-		
+
         <!-- OS tools build after tools2 -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
@@ -202,58 +228,58 @@
                 <param name="build.system" value="${sf.spec.build.system}" />
                 <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
                 <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>                    
+                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
                 <reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
                 <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall> 
-		
+        </antcall>
+
         <!-- OS main build -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
                 <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
                 <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>                    
+                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
                 <reference refid="sbs.main.sbs.var" torefid="sbs.var" />
                 <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall>            
+        </antcall>
   </target>
-  
-  <!-- 
+
+  <!--
     == Name: SF-S60-COMPILE
     ==
     == Desc: Compile S60 part of build using the spec defined in:
-    == 
+    ==
     ==         - job_props.ant.xml
     ==         - job_refs.ant.xml
     ==
     -->
   <target name="sf-s60-compile">
-  
+
         <hlm:argSet id="sbs.tools.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />
           			<hlm:arg name="singlejob" value="true" />
           			<hlm:arg name="enable-filter" value="true" />
     		</hlm:argSet>
-			
+
 			<hlm:argSet id="sbs.tools.clean.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />
           			<hlm:arg name="singlejob" value="true" />
           			<hlm:arg name="enable-filter" value="true" />
     		</hlm:argSet>
-    
+
     		<hlm:argSet id="sbs.main.sbs.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.config}" />
           			<hlm:arg name="enable-filter" value="true" />
     		</hlm:argSet>
-			
+
 			<hlm:argSet id="sbs.main.clean.sbs.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.config}" />
           			<hlm:arg name="enable-filter" value="true" />
 					<hlm:arg name="command" value="CLEAN" />
     		</hlm:argSet>
-        
+
     		<hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
     		<hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
@@ -261,42 +287,42 @@
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>                                   
+                    <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>
           			<reference refid="sbs.tools.clean.var" torefid="sbs.var" />
           			<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall-->
-			
+
             <!-- s60  tools build -->
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>                                   
+                <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>
           			<reference refid="sbs.tools.var" torefid="sbs.var" />
           			<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
-    
+
 	        <!-- s60 clean main build -->
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/> 
+                    <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/>
           			<reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
           			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
-			
+
     		<!-- s60 main build -->
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/> 
+                    <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/>
           			<reference refid="sbs.main.sbs.var" torefid="sbs.var" />
           			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
-    
+
     		<!-- s60 postbuild bldmelast using ebs -->
     		<antcall target="compile-main" inheritAll="false">
           			<param name="build.system" value="ebs" />
@@ -305,9 +331,9 @@
     		</antcall>
 
 	</target>
-  
+
   <!-- import sf-common-config -->
   <import file="../common/build.xml" />
-  
+
 </project>
 
