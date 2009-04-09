@@ -80,15 +80,15 @@
         <echo>[SF-PREBUILD]</echo>
         
         <!-- create BOM dir -->
-        <mkdir dir="${build.drive}/output/BOM"/>
+        <mkdir dir="${build.drive}/output/logs/BOM"/>
         
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
             <then>
             
                 <!-- record baseline information in BOM file -->
-                <delete file="${build.drive}/output/BOM/baseline.txt" quiet="true"/>
-                <exec executable="cmd" output="${build.drive}/output/BOM/baseline.txt">
+                <delete file="${build.drive}/output/logs/BOM/baseline.txt" quiet="true"/>
+                <exec executable="cmd" output="${build.drive}/output/logs/BOM/baseline.txt">
                     <arg value="/c"/>
                     <arg value="echo"/>
                     <arg value="${sf.spec.baseline.location}"/>

@@ -8,7 +8,7 @@
 
     <!-- remove previous version of BOM file (if exists)  -->
     <target name="reset-bom-sources-csv">
-        <delete file="${ant['build.drive']}/output/BOM/sources.csv" quiet="true"/>
+        <delete file="${ant['build.drive']}/output/logs/BOM/sources.csv" quiet="true"/>
     </target>
 
 <#list data as pkg_detail>
@@ -32,13 +32,17 @@
             <!-- record info on source code repo/rev in BOM file  -->
             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.rev">
                 <arg value="identify"/>
+                <arg value="-n"/>
+            </exec>
+            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                <arg value="identify"/>
                 <arg value="-i"/>
             </exec>
-            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${dollar}{sf.sourcesync.${count}.rev}"/>
-            <exec executable="cmd" output="${ant['build.drive']}/output/BOM/sources.csv" append="true">
+            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${dollar}{sf.sourcesync.${count}.rev}:${dollar}{sf.sourcesync.${count}.checksum}"/>
+            <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
                 <arg value="/c"/>
                 <arg value="echo"/>
-                <arg value="${pkg_detail.source},${pkg_detail.dst},${dollar}{sf.sourcesync.${count}.rev}"/>
+                <arg value="${pkg_detail.source},${pkg_detail.dst},${dollar}{sf.sourcesync.${count}.rev}:${dollar}{sf.sourcesync.${count}.checksum}"/>
             </exec>
         
         </sequential>
