@@ -97,7 +97,7 @@
             <arg value="-i"/>
         </exec>
         <echo message="dir ${sf.config.dir} : revision ${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
-        <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/config.csv" append="true">
+        <exec executable="cmd" output="${build.drive}/output/logs/BOM/config.csv" append="true">
             <arg value="/c"/>
             <arg value="echo"/>
             <arg value="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
@@ -116,7 +116,7 @@
             <arg value="-i"/>
         </exec>
         <echo message="dir ${sf.config.dir}/../build/config : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
-        <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/project.csv" append="true">
+        <exec executable="cmd" output="${build.drive}/output/logs/BOM/project.csv" append="true">
             <arg value="/c"/>
             <arg value="echo"/>
             <arg value="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
