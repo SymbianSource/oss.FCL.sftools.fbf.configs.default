@@ -6,6 +6,7 @@
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
+    <!-- remove previous version of BOM file (if exists)  -->
     <target name="reset-bom-sources-csv">
         <delete file="${ant['build.drive']}/output/BOM/sources.csv" quiet="true"/>
     </target>
@@ -28,7 +29,7 @@
                 </hlm:update>
             </hlm:scm>
             
-            <!-- record info on source code repo/rev -->
+            <!-- record info on source code repo/rev in BOM file  -->
             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.rev">
                 <arg value="identify"/>
                 <arg value="-i"/>
