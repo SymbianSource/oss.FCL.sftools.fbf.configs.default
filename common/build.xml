@@ -82,6 +82,46 @@
         <!-- create BOM dir -->
         <mkdir dir="${build.drive}/output/logs/BOM"/>
         
+        <!-- record project and config information in BOM files -->
+        <delete file="${build.drive}/output/logs/BOM/config.csv" quiet="true"/>
+        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.repo">
+            <arg value="showconfig"/>
+            <arg value="paths.default"/>
+        </exec>
+        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.rev">
+            <arg value="identify"/>
+            <arg value="-n"/>
+        </exec>
+        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.checksum">
+            <arg value="identify"/>
+            <arg value="-i"/>
+        </exec>
+        <echo message="dir ${sf.config.dir} : revision ${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
+        <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/config.csv" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
+        </exec>
+        <delete file="${build.drive}/output/logs/BOM/project.csv" quiet="true"/>
+        <exec executable="hg" dir="${sf.config.dir}/../build/config" outputproperty="sf.job.bom.project.repo">
+            <arg value="showconfig"/>
+            <arg value="paths.default"/>
+        </exec>
+        <exec executable="hg" dir="${sf.config.dir}/../build/config" outputproperty="sf.job.bom.project.rev">
+            <arg value="identify"/>
+            <arg value="-n"/>
+        </exec>
+        <exec executable="hg" dir="${sf.config.dir}/../build/config" outputproperty="sf.job.bom.project.checksum">
+            <arg value="identify"/>
+            <arg value="-i"/>
+        </exec>
+        <echo message="dir ${sf.config.dir}/../build/config : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
+        <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/project.csv" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
+        </exec>
+        
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
             <then>
