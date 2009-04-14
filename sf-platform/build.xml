@@ -79,7 +79,7 @@
 	   <!-- split builds currently generate layer sysdef from original -->
 	   <if><istrue value="${sf.spec.splitbuild}"/>
        <then>
-           <hlm:compileGenxmlFilterMacro xmlns:hlm="http://www.nokia.com/helium" input="${canonical.sysdef.file}" filter="raptor_${sysdef.configuration}" output="${build.output.dir}/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/ >
+           <hlm:compileGenxmlFilterMacro xmlns:hlm="http://www.nokia.com/helium" input="${canonical.sysdef.file}" filter="raptor_${sysdef.configuration}" output="${build.output.dir}/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
 	   </then>
 	   <else>
 	       <!-- but all we want is a sysdef with the config name appended, so just copy it -->
@@ -179,17 +179,26 @@
         <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
         <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
-		<!-- OS clean tools2 build first>
+		<!-- generate baseline dir list to allow delta creation -->
+		<antcall target="sf-list-dir" inheritAll="false">
+			<param name="sf.list.name" value="baseline"/>
+		</antcall>
+
+		<!-- OS clean main build -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
                 <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
                 <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
                 <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-                <reference refid="sbs.tools2.clean.var" torefid="sbs.var" />
-                <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
+                <reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
+                <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall-->
-
+        </antcall>
+		
+		<antcall target="sf-list-dir" inheritAll="false">
+			<param name="sf.list.name" value="post-clean"/>
+		</antcall>
+		
         <!-- OS tools2 build first-->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
@@ -201,16 +210,9 @@
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall>
 
-		<!-- OS clean tools build after tools2>
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-                <param name="build.system" value="${sf.spec.build.system}" />
-                <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
-                <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-                <reference refid="sbs.tools.clean.var" torefid="sbs.var" />
-                <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-                <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall-->
+		<antcall target="sf-list-dir" inheritAll="false">
+			<param name="sf.list.name" value="post-build-tools2"/>
+		</antcall>
 
         <!-- OS tools build after tools2 -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
@@ -223,17 +225,10 @@
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall>
 
-		<!-- OS clean main build -->
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-                <param name="build.system" value="${sf.spec.build.system}" />
-                <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
-                <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-                <reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
-                <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-                <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall>
-
+		<antcall target="sf-list-dir" inheritAll="false">
+			<param name="sf.list.name" value="post-build-tools"/>
+		</antcall>
+		
         <!-- OS main build -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
@@ -244,6 +239,10 @@
                 <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall>
+		
+		<antcall target="sf-list-dir" inheritAll="false">
+			<param name="sf.list.name" value="post-build-main"/>
+		</antcall>
   </target>
 
   <!--
@@ -283,27 +282,11 @@
     		<hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
     		<hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
-            <!-- s60 clean tools build>
-    		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
-          			<param name="build.system" value="${sf.spec.build.system}" />
-          			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>
-          			<reference refid="sbs.tools.clean.var" torefid="sbs.var" />
-          			<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-          			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-    		</antcall-->
-
-            <!-- s60  tools build -->
-    		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
-          			<param name="build.system" value="${sf.spec.build.system}" />
-          			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>
-          			<reference refid="sbs.tools.var" torefid="sbs.var" />
-          			<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-          			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-    		</antcall>
-
-	        <!-- s60 clean main build -->
+		<antcall target="sf-list-dir" inheritAll="false">
+			<param name="sf.list.name" value="pre-s60-clean"/>
+		</antcall>	        
+		
+			<!-- s60 clean main build -->
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
@@ -312,6 +295,24 @@
           			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
+
+			<antcall target="sf-list-dir" inheritAll="false">
+				<param name="sf.list.name" value="post-s60-clean"/>
+			</antcall>
+
+            <!-- s60  tools build -->
+    		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
+          			<param name="build.system" value="${sf.spec.build.system}" />
+          			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
+					<param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>
+          			<reference refid="sbs.tools.var" torefid="sbs.var" />
+          			<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
+          			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
+    		</antcall>
+
+			<antcall target="sf-list-dir" inheritAll="false">
+				<param name="sf.list.name" value="post-s60-build-tools"/>
+			</antcall>
 
     		<!-- s60 main build -->
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
@@ -322,13 +323,22 @@
           			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
+			
+			<antcall target="sf-list-dir" inheritAll="false">
+				<param name="sf.list.name" value="post-s60-build-main"/>
+			</antcall>
 
+			
     		<!-- s60 postbuild bldmelast using ebs -->
     		<antcall target="compile-main" inheritAll="false">
           			<param name="build.system" value="ebs" />
           			<param name="sysdef.configurations.list" value="S60_bldmelast" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
+
+			<antcall target="sf-list-dir" inheritAll="false">
+				<param name="sf.list.name" value="post-s60-bldmelast"/>
+			</antcall>
 
 	</target>
 

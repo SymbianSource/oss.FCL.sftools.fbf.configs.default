@@ -114,6 +114,28 @@
         <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>		
     </target>
 	
+	<!-- generate dir list using passed location and name 
+	if a baseline list is available then generate deltas too -->
+	
+	<target name="sf-list-dir">
+		<property name="sf.currentlist.name" value="${sf.list.name}"/>
+		<property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+    
+		<exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
+			<arg value="${sf.common.config.dir}/tools/listdir.pl"/>
+			<arg value="${sf.dir.location}"/>
+		</exec>
+		
+		<if><available file="${build.log.dir}/listdir_${build.id}_baseline.log"/>
+		<then>
+			<exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}_delta.log">
+				<arg value="${sf.common.config.dir}/tools/difflist.pl"/>
+				<arg value="${build.log.dir}/listdir_${build.id}_baseline.log"/>
+				<arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log"/>
+			</exec>
+		</then>
+		</if>
+	</target>
 	
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
