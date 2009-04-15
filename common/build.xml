@@ -145,7 +145,14 @@
             <then>
                 <runtarget target="sf-get-source"/>
             </then>
-        </if>     
+        </if>
+        
+      <if>
+        <istrue value="${sf.spec.publish.enable}"/>
+        <then>
+          <runtarget target="sf-diamondize-bom"/>
+        </then>
+      </if>
     </target>
     
   <target name="sf-postbuild">
@@ -221,6 +228,20 @@
         </data>
       </fmpp>
       <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
+    </target>
+    
+    <target name="sf-diamondize-bom">
+      <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
+            outputFile="${build.drive}/output/logs/BOM/build-info.xml">
+        <data expandProperties="yes">
+              ant: antProperties()
+              config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
+              project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
+              baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
+              sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})
+              
+        </data>
+      </fmpp>
     </target>
 
 </project>
