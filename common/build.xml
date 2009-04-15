@@ -109,34 +109,50 @@
 		
     <!-- package all logs into zipfile before publish -->
     <target name="sf-zip-logs">
-        <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
-        <zip destfile="${temp.log.zip}" basedir="${build.log.dir}"/>
-        <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>		
+		<if><istrue value="${sf.spec.logs.zip.enable}"/>
+			<then>
+				<property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
+				<echo message="Zip log requested, zipping logs..."/>
+				<zip destfile="${temp.log.zip}" basedir="${build.log.dir}"/>
+				<move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>
+			</then>
+		</if>
     </target>
 	
 	<!-- generate dir list using passed location and name 
 	if a baseline list is available then generate deltas too -->
 	
 	<target name="sf-list-dir">
-		<property name="sf.currentlist.name" value="${sf.list.name}"/>
+		<property name="sf.currentlist.name"   value="${sf.list.name}"/> 
 		<property name="sf.dir.location" value="${build.drive}/epoc32"/> 
-    
-		<exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
-			<arg value="${sf.common.config.dir}/tools/listdir.pl"/>
-			<arg value="${sf.dir.location}"/>
-		</exec>
 		
-		<if><available file="${build.log.dir}/listdir_${build.id}_baseline.log"/>
-		<then>
-			<exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}_delta.log">
-				<arg value="${sf.common.config.dir}/tools/difflist.pl"/>
-				<arg value="${build.log.dir}/listdir_${build.id}_baseline.log"/>
-				<arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log"/>
+		<if><istrue value="${sf.spec.dirlist.enable}"/>
+			<then>
+			<echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location}"/>
+			<exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
+				<arg value="${sf.common.config.dir}/tools/listdir.pl"/>
+				<arg value="${sf.dir.location}"/>
 			</exec>
-		</then>
+			</then>
 		</if>
 	</target>
 	
+	<target name="sf-delta-dir">
+		<property name="sf.currentlist_a.name"   value="${sf.list_b.name}"/> 
+		<property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
+		<property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+    		
+		<if><istrue value="${sf.spec.dirdelta.enable}"/>
+		<then>
+		<echo message="Delta requested for ${sf.currentlist_a.name} vs ${sf.currentlist_b.name} "/>
+			<exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}_delta.log">
+				<arg value="${sf.common.config.dir}/tools/difflist.pl"/>
+				<arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_a.name}.log"/>
+				<arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}.log"/>
+			</exec>
+		</then>
+		</if>
+	</target>	
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>

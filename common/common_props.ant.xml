@@ -49,6 +49,19 @@
     <property name="sf.spec.publish.rootdir" value="\\lon-engbuild68\d$\SF_builds"/>
     
     <property name="sf.spec.tagafterbuild.enable" value="true"/>
+
+    <!-- if sf-list-dir called, generate dir list(s) of epoc32 tree -->
+    <property name="sf.spec.dirlist.enable"  value="false"/>
+    
+    <!-- if sf-list-dir called, generate delta of two epoc32 trees. note: this takes a while! -->
+    <property name="sf.spec.dirdelta.enable" value="false"/>
+    
+    <!-- prefilter raptor logs -->
+    <property name="sf.spec.logs.raptorfilter.enable" value="true"/>
+    
+    <!-- zip all logs before publish -->
+    <property name="sf.spec.logs.zip.enable"  value="true"/>
+	
 </project>
 
 
