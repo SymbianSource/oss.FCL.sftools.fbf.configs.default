@@ -211,7 +211,7 @@
   </target>
 	
   <target name="sf-delta-dir">
-    <property name="sf.currentlist_a.name"   value="${sf.list_b.name}"/> 
+    <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
     <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
     <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
     		
