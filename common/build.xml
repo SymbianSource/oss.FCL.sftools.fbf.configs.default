@@ -228,6 +228,24 @@
     </if>
   </target>
   
+    <target name="sf-intersect-dir">
+    <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
+    <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
+    <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+    		
+    <if>
+      <istrue value="${sf.spec.dirdelta.enable}"/>
+      <then>
+        <echo message="Inersection requested for ${sf.currentlist_a.name} vs ${sf.currentlist_b.name} "/>
+        <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}_intersect.log">
+          <arg value="${sf.common.config.dir}/tools/difflist.pl"/>
+          <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_a.name}.log"/>
+          <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}.log"/>
+          <arg value="-I"/> <!-- run difflist in intersect mode -->
+        </exec>
+      </then>
+    </if>
+  </target>
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>

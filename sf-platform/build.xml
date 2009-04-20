@@ -273,6 +273,15 @@
 			<param name="sf.list_a.name" value="post-clean"/>
 			<param name="sf.list_b.name" value="post-build-main"/>
 		</antcall>
+		
+		<!-- what has been cleaned and rebuilt -->
+		<antcall target="sf-intersect-dir" inheritAll="false">
+			<param name="sf.list_a.name" value="post-clean_delta"/>       <!-- clean list -->
+			<param name="sf.list_b.name" value="post-build-main_delta"/>  <!-- built list -->
+		</antcall>
+		
+		<!-- what has been cleaned and not rebuilt -->
+		
   </target>
 
   <!--
@@ -397,6 +406,13 @@
 				<param name="sf.list_a.name" value="s60-baseline"/>
 				<param name="sf.list_b.name" value="post-s60-bldmelast"/>
 			</antcall>		
+			
+			<!-- what has been cleaned and rebuilt -->
+			<antcall target="sf-intersect-dir" inheritAll="false">
+				<param name="sf.list_a.name" value="post-s60-clean_delta"/>       <!-- clean list -->
+				<param name="sf.list_b.name" value="post-s60-bldmelast_delta"/>  <!-- built list -->
+			</antcall>
+		
 	</target>
 
   <!-- import sf-common-config -->
