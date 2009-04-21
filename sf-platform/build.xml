@@ -17,22 +17,37 @@
   <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <target name="create-canonical-sysdef-file">
 
-       <if>
-          <!-- TODO use scripting to match this -->
-          <equals arg1="${sf.spec.sysdef.version}" arg2="1.4.0" />
-          <then>
-            <echo message="Using System Definition v1.4.0 "/>
-            <runtarget target="compile.create-canonical-sysdef-file"/>
-          </then>
-          <else>
-            <runtarget target="preprocess-sysdef-files"/>
-            <echo message="Exporting preprocessed System Definition"/>
-
+    <runtarget target="preprocess-sysdef-files"/>
+    <echo message="Exporting preprocessed System Definition"/>
+    <if><istrue value="${sf.spec.splitbuild}"/>
+       <then>
+       <if><istrue value="${sf.spec.os.skipbuild}" />
+            <then><echo message="Skipping OS sysdef creation"/></then>
+       <else>
             <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\0000000000000001_system_definition.xml"
-                  tofile="${canonical.sysdef.file}" failonerror="true" verbose="true"/>
-          </else>
-        </if>
+            <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
+            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+       </else>
+       </if>
+
+       <if><istrue value="${sf.spec.s60.skipbuild}" />
+            <then><echo message="Skipping S60 sysdef creation"/></then>
+       <else>
+            <!-- TODO use better method to export or wait for GenXML fix?-->
+            <copy file="${build.output.dir}\build\input\*_system_model_s60.xml"
+            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+	   </else>
+	   </if>
+	   </then>
+	   <else>
+	        <!-- TODO use better method to export or wait for GenXML fix?-->
+            <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
+            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+
+	        <!-- TODO targets for single sysdef build -->
+	        <runtarget target="sf-os-compile"/>
+	   </else>
+
 
   </target>
 
@@ -76,17 +91,9 @@
        <echo message="canno-file:${canonical.sysdef.file}"/>
        <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
 
-	   <!-- split builds currently generate layer sysdef from original -->
-	   <if><istrue value="${sf.spec.splitbuild}"/>
-       <then>
-           <hlm:compileGenxmlFilterMacro xmlns:hlm="http://www.nokia.com/helium" input="${canonical.sysdef.file}" filter="raptor_${sysdef.configuration}" output="${build.output.dir}/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-	   </then>
-	   <else>
-	       <!-- but all we want is a sysdef with the config name appended, so just copy it -->
-           <echo message="INFO: skip genxml and copy sysdef to sysdef+config name"/>
-           <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-       </else>
-    </if>
+       <!-- All we want is a sysdef with the config name appended, so just copy it -->
+       <echo message="INFO: Skip GenXML and copy sysdef to sysdef+config name"/>
+       <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
 
 	<copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml">
 		<filterchain>
