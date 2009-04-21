@@ -3,6 +3,7 @@
 
 <#assign fileset = "" />
 <#assign sync_list = "" />
+<#assign bom_list  = "" />
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
@@ -28,6 +29,13 @@
                     </hlm:latestTag>
                 </hlm:update>
             </hlm:scm>
+        
+        </sequential>
+    </target>
+
+    <target name="sf-bom-info-${count}">
+
+        <sequential>
             
             <!-- record info on source code repo/rev in BOM file  -->
             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.rev">
@@ -47,9 +55,11 @@
         
         </sequential>
     </target>
-    
+
+
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />       
-    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n"/>    
+    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n"/>       
+    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\n"/>    
     <#assign count = count + 1 />
 
 </#list>
@@ -64,6 +74,9 @@
   <parallel>
     ${sync_list}
   </parallel>
+
+
+  ${bom_list}
 
 </target>
 </project>
