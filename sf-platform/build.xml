@@ -39,14 +39,15 @@
 	   </else>
 	   </if>
 	   </then>
-	   <else>
-	        <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
-            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+	</if>
+	<else>
+	    <!-- TODO use better method to export or wait for GenXML fix?-->
+        <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
+        tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
 
-	        <!-- TODO targets for single sysdef build -->
-	        <runtarget target="sf-os-compile"/>
-	   </else>
+	    <!-- TODO targets for single sysdef build -->
+	    <runtarget target="sf-os-compile"/>
+	</else>
 
 
   </target>
