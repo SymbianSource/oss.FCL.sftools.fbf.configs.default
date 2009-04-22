@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="SF-PACKAGE-PROPS"/>
+<project name="SF-PACKAGE-PROPS">
+  <property name="sf.spec.baseline.getenv_options" value="-i emu -i patch"/>
+</project>
 
