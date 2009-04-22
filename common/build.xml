@@ -38,10 +38,7 @@
     				<import file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
     		</then>
     </if>
-    
-    <!--
-    ** TARGET DEFINITIONS
-    -->   
+     
     
     <target name="sf-prep" depends="sf-generate-source-spec,prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>

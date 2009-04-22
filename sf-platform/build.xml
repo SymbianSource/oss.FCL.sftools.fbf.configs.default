@@ -25,7 +25,7 @@
             <then><echo message="Skipping OS sysdef creation"/></then>
        <else>
             <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
+            <copy file="${build.output.dir}\build\input\0000000000000001_system_model_os.xml"
             tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
        </else>
        </if>
@@ -34,12 +34,12 @@
             <then><echo message="Skipping S60 sysdef creation"/></then>
        <else>
             <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\*_system_model_s60.xml"
+            <copy file="${build.output.dir}\build\input\0000000000000001_system_model_s60.xml"
             tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
 	   </else>
 	   </if>
 	   </then>
-	</if>
+	
 	<else>
 	    <!-- TODO use better method to export or wait for GenXML fix?-->
         <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
@@ -48,7 +48,7 @@
 	    <!-- TODO targets for single sysdef build -->
 	    <runtarget target="sf-os-compile"/>
 	</else>
-
+        </if>
 
   </target>
 
