@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SF-PACKAGE-CONFIG">
+<project name="SF-PACKAGE-CONFIG" xmlns:hlm="http://www.nokia.com/helium">
   <!-- location of this config -->
   <dirname property="sf.package.config.dir" file="${ant.file.SF-PACKAGE-CONFIG}"/>
   
