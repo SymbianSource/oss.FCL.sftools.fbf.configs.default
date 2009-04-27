@@ -15,7 +15,8 @@
     <property name="sf.spec.systemdefinition.assemble" value="true"/>
     <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
     
-    <property name="sf.spec.sbs.config" value="armv5"/>
+    <!-- property name="sf.spec.sbs.config" value="armv5"/ -->
+    <property name="sf.spec.sbs.config" value="winscw"/>
     
     <property name="sf.spec.build.target" value="all"/>
     <property name="sf.spec.build.variant" value=""/>
@@ -57,7 +58,7 @@
     <property name="sf.spec.dirdelta.enable" value="false"/>
     
     <!-- prefilter raptor logs -->
-    <property name="sf.spec.logs.raptorfilter.enable" value="true"/>
+    <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
     
     <!-- zip all logs before publish -->
     <property name="sf.spec.logs.zip.enable"  value="true"/>
