@@ -27,7 +27,7 @@
     <hlm:argSet id="sbs.main.check.sbs.var"> 
       <hlm:arg name="config" value="${sf.spec.sbs.config}" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="--check" />
+      <hlm:arg name="command" value="CHECK" />
     </hlm:argSet>
     
     <hlm:argSet id="sbs.main.clean.sbs.var">
