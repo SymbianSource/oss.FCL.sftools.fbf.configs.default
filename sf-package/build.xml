@@ -79,7 +79,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <!-- param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" / -->
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
       <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.main.what.sbs.var" torefid="sbs.var" />
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
@@ -90,7 +90,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <!-- param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" / -->
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
       <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
@@ -111,7 +111,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <!-- param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" / -->
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
       <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.tools2.var" torefid="sbs.var" />
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
@@ -127,7 +127,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <!-- param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" / -->
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
       <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.tools.var" torefid="sbs.var" />
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
@@ -142,7 +142,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <!-- param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" / -->
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
       <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.main.sbs.var" torefid="sbs.var" />
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
@@ -153,7 +153,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <!-- param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" / -->
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
       <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.main.check.sbs.var" torefid="sbs.var" />
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
