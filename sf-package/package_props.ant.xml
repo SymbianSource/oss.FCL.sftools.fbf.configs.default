@@ -2,5 +2,10 @@
 
 <project name="SF-PACKAGE-PROPS">
   <property name="sf.spec.baseline.getenv_options" value="-i emu -i patch"/>
+  
+  <property name="sf.spec.baseline.enable" value="true"/>
+  <property name="sf.spec.baseline.select" value="location"/>
+  <property name="sf.spec.baseline.location" value="\\lon-engbuild89\d$\GRACE\PDK_20090401"/>
+
 </project>
 
