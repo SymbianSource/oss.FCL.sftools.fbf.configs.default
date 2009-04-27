@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 
-<project name="SF-PACKAGE-PROPS"/>
+<project name="SF-PACKAGE-PROPS">
+
+  <property name="sf.spec.baseline.location" value="\\lon-engbuild89\d$\GRACE\PDK_20090401"/>
+
+</project>
 
