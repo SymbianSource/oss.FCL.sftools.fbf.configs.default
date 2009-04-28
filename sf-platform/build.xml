@@ -394,34 +394,37 @@
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
 			
+			<runtarget target="sf-s60-create-cenrep"/>
+			
 			<antcall target="sf-list-dir" inheritAll="false">
 				<param name="sf.list.name" value="post-s60-build-main"/>
 			</antcall>
 
-    		<!-- s60 postbuild bldmelast using ebs -->
-    		<!-- Remove bldmelast for the moment
-                                antcall target="compile-main" inheritAll="false">
-          			<param name="build.system" value="ebs" />
-          			<param name="sysdef.configurations.list" value="S60_bldmelast" />
-          			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-    		</antcall -->
-
-			<antcall target="sf-list-dir" inheritAll="false">
-				<param name="sf.list.name" value="post-s60-bldmelast"/>
-			</antcall>
-
-			<!-- what has been built by tools+2+main+bldmelast -->
+			<!-- what has been built by tools+2+main -->
 			<antcall target="sf-delta-dir" inheritAll="false">
 				<param name="sf.list_a.name" value="s60-baseline"/>
-				<param name="sf.list_b.name" value="post-s60-bldmelast"/>
+				<param name="sf.list_b.name" value="post-s60-build-main"/>
 			</antcall>		
 			
 			<!-- what has been cleaned and rebuilt -->
 			<antcall target="sf-intersect-dir" inheritAll="false">
 				<param name="sf.list_a.name" value="post-s60-clean_delta"/>       <!-- clean list -->
-				<param name="sf.list_b.name" value="post-s60-bldmelast_delta"/>  <!-- built list -->
+				<param name="sf.list_b.name" value="post-s60-build-main_delta"/>  <!-- built list -->
 			</antcall>
 		
+	</target>
+
+	<target name="sf-s60-create-cenrep">
+        <echo message="INFO Generating CenRep"/>
+        <exec executable="${helium.dir}/../ConfigurationTool/cli_build.cmd" dir="${build.drive}" failonerror="true" output="${build.log.dir}/${build.id}_create_cenrep.log">
+		  <arg value="-master_conf"/>
+		  <arg value="s60"/>
+		  <arg value="-impl"/>
+		  <arg value="/epoc32/rom/config/confml_data/s60"/>
+		  <arg value="-confml"/>
+		  <arg value="/epoc32/rom/config/confml_data/s60"/>
+		  <arg value="-ignore_errors"/>
+        </exec>
 	</target>
 
   <!-- import sf-common-config -->
