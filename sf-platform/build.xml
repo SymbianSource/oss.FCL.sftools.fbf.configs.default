@@ -416,7 +416,7 @@
 
 	<target name="sf-s60-create-cenrep">
         <echo message="INFO Generating CenRep"/>
-        <exec executable="${helium.dir}/../ConfigurationTool/cli_build.cmd" dir="${build.drive}" failonerror="true" output="${build.log.dir}/${build.id}_create_cenrep.log">
+        <exec executable="${helium.dir}/../ConfigurationTool/cli_build.cmd" dir="${build.drive}" failonerror="false" output="${build.log.dir}/${build.id}_create_cenrep.log">
 		  <arg value="-master_conf"/>
 		  <arg value="s60"/>
 		  <arg value="-impl"/>
@@ -425,6 +425,14 @@
 		  <arg value="/epoc32/rom/config/confml_data/s60"/>
 		  <arg value="-ignore_errors"/>
         </exec>
+		
+		<if><available  file="${build.drive}/cli_build_error.log" />
+		<then>
+            <echo message="INFO CenRep error log found, moving to ${build.log.dir}" />
+    		<move file="${build.drive}/cli_build_error.log" todir="${build.log.dir}" failonerror="false"/>
+		</then>
+		</if>
+		
 	</target>
 
   <!-- import sf-common-config -->
