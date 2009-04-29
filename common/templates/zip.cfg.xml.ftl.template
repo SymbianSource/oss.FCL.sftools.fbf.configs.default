@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<build>
+	<config abstract="true">
+		<!-- Options that apply accross the board -->
+		<set name="archive.tool" value="7za" />
+		<set name="root.dir" value="${build.drive}/" />
+		<set name="temp.build.dir" value="${temp.build.dir}" />
+		<set name="casesensitive" value="false" />
+		<set name="archives.dir" value="${build.output.dir}/zips" />
+		<set name="policy.internal.name" value="removed" />
+		<!--set name="policy.csv" value="${policy.csv}" /-->
+		<set name="policy.zip2zip" value="false" />
+		<set name="policy.default.value" value="" />
+		
+		<!--  Metadata creation -->
+		<set name="grace.template" value="${temp.build.dir}/release_metadata_template.xml" />
+		<set name="grace.metadata" value="true" />
+		<set name="grace.service" value="${grace.service.name}" />
+		<set name="grace.product" value="${grace.product.name}" />
+		<set name="grace.release" value="${grace.release.name}" />
+		
+		<!-- Specify this config to package all inputs to the build -->
+		<config name="src" abstract="true">
+			<config name="sfl" abstract="true">
+				<set name="grace.filters" value="src" />
+			</config>
+			<config name="epl" abstract="true">
+				<set name="grace.filters" value="src" />
+			</config>
+			<config name="rnd" abstract="true">
+				<set name="grace.filters" value="rnd" />
+			</config>
+		</config>
+		<!-- Specify this config to package all outputs from the build -->
+		<config name="bin" abstract="true">
+			<config>
+				<set name="name" value="binaries_epoc"/>
+				<set name="grace.filters" value="emu" />
+				<set name="include" value="epoc32/**"/>
+			</config>
+		</config>
+	</config>
+</build>

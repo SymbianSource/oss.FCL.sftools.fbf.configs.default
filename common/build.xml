@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SF-COMMON-CONFIG">
+<project name="SF-COMMON-CONFIG" xmlns:hlm="http://www.nokia.com/helium">
 
     <property environment="env"/> <!-- make environment variables available via env -->
     
@@ -229,7 +229,7 @@
     <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
     <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
     <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
-    		
+	
     <if>
       <istrue value="${sf.spec.dirdelta.enable}"/>
       <then>
@@ -303,12 +303,39 @@
               config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
               project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
               baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
-              sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})
-              
+              sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
         </data>
       </fmpp>
     </target>
 
+	<target name="sf-preprocess-package-config">
+        <exec executable="perl" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/zipconfig.log">
+          <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
+          <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+          <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
+        </exec>
+	</target>
+	
+	<target name="sf-zip-content" depends="preprocess-zip-config">
+		<property name="zip.${zip.target.name}.log.file" location="${build.log.dir}/${build.id}_${zip.target.name}_zip.log" />
+		<property name="zips.${zip.target.name}.spec.name" value="${zip.target.name}" />
+		<hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
+	</target>
+	
+	<target name="sf-package-source" depends="sf-preprocess-package-config">
+		<antcall target="sf-zip-content">
+			<param name="zip.config.file" value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl"/>
+			<param name="zip.target.name" value="src" />
+		</antcall>	
+	</target>
+	
+	<target name="sf-package-binary" depends="sf-preprocess-package-config">
+		<antcall target="sf-zip-content">
+		    <param name="zip.config.file" value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl"/>
+			<param name="zip.target.name" value="bin" />
+		</antcall>	
+	</target>
+	
 </project>
 
 
