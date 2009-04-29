@@ -141,9 +141,14 @@
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
                 <runtarget target="sf-get-source"/>
+				
+				<if><istrue value="${sf.spec.package.src.enable}"/>
+				<then>
+					<echo message="INFO Packaging Source"/>
+					<runtarget target="sf-package-source"/>
+				</then>
             </then>
-        </if>
-        
+        </if>        
       <if>
         <istrue value="${sf.spec.publish.enable}"/>
         <then>
@@ -163,6 +168,14 @@
         <runtarget target="sf-tag-hg-code"/>
       </then>
     </if>
+	
+	<if>
+		<istrue value="${sf.spec.package.bin.enable}"/>
+		<then>
+			<echo message="INFO Packaging Binaries"/>
+			<runtarget target="sf-package-binary"/>
+		</then>
+	</if>
 
     <!-- PUBLISH LOGS/REPORTS -->
     <if>
