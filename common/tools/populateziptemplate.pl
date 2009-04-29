@@ -56,15 +56,16 @@ my @allRndFiles;
 foreach my $package (@packages)
 {
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
+	$package->{dst} =~ s{^/}{}g;
 	if ($package->{source} =~ m{/(sfl|epl)/sf/([^/]+)/([^/]+)})
-	{
+	{	    
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
 		{
 			set =>
 			[
 				{
 					name => "name",
-					value=> "src_$2_$3",
+					value=> "src_$1_$2_$3",
 				},
 				{
 					name => "include",
@@ -76,16 +77,17 @@ foreach my $package (@packages)
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{
 		# RnD repository
-		my $name = "rnd_$1_$2";
+		my $name = "bin_rnd_$1_$2";
 		# Enumerate all the files on the local disk that are in this repository
 		(my $dosCompatibleDst = $package->{dst}) =~ s{/}{\\}g;
 		my @files = `dir /b/s/a-d $dosCompatibleDst 2> nul:`;
+		#print "@files\n";
 		next unless @files;
 		# Add the files to this zip object
 		@files = grep {
 			chomp;
 			s{\\}{/}g;
-			s!^[A-Z]:$package->{dst}/!!i;
+			s!^[A-Z]:/$package->{dst}/!!i;
 			m{^epoc32/}i;
 		} @files;
 		#print "@files\n";

@@ -323,7 +323,7 @@
     </target>
 
 	<target name="sf-preprocess-package-config">
-        <exec executable="perl" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/zipconfig.log">
+        <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
           <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
           <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
           <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
