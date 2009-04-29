@@ -147,6 +147,7 @@
 					<echo message="INFO Packaging Source"/>
 					<runtarget target="sf-package-source"/>
 				</then>
+				</if>
             </then>
         </if>        
       <if>
