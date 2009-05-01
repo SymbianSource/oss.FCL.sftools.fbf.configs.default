@@ -148,6 +148,12 @@
 					<runtarget target="sf-package-source"/>
 				</then>
 				</if>
+				
+				<!-- merge RnD binaries into the epoc tree -->
+				<echo message="Merges RnD binaries into the Epoc tree"/>
+				<exec executable="perl" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/mergeepoc32.log">
+					<arg value="${sf.common.config.dir}/tools/mergeepoc32.pl"/>
+				</exec>
             </then>
         </if>        
       <if>
