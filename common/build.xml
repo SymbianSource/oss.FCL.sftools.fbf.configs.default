@@ -33,10 +33,10 @@
              
     <!-- conditional import of generated source spec if available -->
     <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
-        <then>		    		
+        <then>
             <echo message="Generated source spec found, importing..." />
-    				<import file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
-    		</then>
+            <import file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
+        </then>
     </if>
      
     
@@ -141,19 +141,19 @@
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
                 <runtarget target="sf-get-source"/>
-				
-				<if><istrue value="${sf.spec.package.src.enable}"/>
-				<then>
-					<echo message="INFO Packaging Source"/>
-					<runtarget target="sf-package-source"/>
-				</then>
-				</if>
-				
-				<!-- merge RnD binaries into the epoc tree -->
-				<echo message="Merges RnD binaries into the Epoc tree"/>
-				<exec executable="perl" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/mergeepoc32.log">
-					<arg value="${sf.common.config.dir}/tools/mergeepoc32.pl"/>
-				</exec>
+                
+                <if><istrue value="${sf.spec.package.src.enable}"/>
+                <then>
+                    <echo message="INFO Packaging Source"/>
+                    <runtarget target="sf-package-source"/>
+                </then>
+                </if>
+                
+                <!-- merge RnD binaries into the epoc tree -->
+                <echo message="Merges RnD binaries into the Epoc tree"/>
+                <exec executable="perl" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/mergeepoc32.log">
+                    <arg value="${sf.common.config.dir}/tools/mergeepoc32.pl"/>
+                </exec>
             </then>
         </if>        
       <if>
@@ -164,133 +164,132 @@
       </if>
     </target>
     
-  <target name="sf-postbuild" depends="sf-zip-logs">
-    <echo>[SF-POSTBUILD]</echo>
+    <target name="sf-postbuild" depends="sf-zip-logs">
+        <echo>[SF-POSTBUILD]</echo>
+        
+        <!-- TAG SOURCE CODE -->
+        <if>
+            <istrue value="${sf.spec.tagafterbuild.enable}" />
+            <then>
+                <echo message="Apply tag to the source code used in this build"/>
+                <runtarget target="sf-tag-hg-code"/>
+            </then>
+        </if>
     
-    <!-- TAG SOURCE CODE -->
-    <if>
-      <istrue value="${sf.spec.tagafterbuild.enable}" />
-      <then>
-        <echo message="Apply tag to the source code used in this build"/>
-        <runtarget target="sf-tag-hg-code"/>
-      </then>
-    </if>
-	
-	<if>
-		<istrue value="${sf.spec.package.bin.enable}"/>
-		<then>
-			<echo message="INFO Packaging Binaries"/>
-			<runtarget target="sf-package-binary"/>
-		</then>
-	</if>
+        <if>
+            <istrue value="${sf.spec.package.bin.enable}"/>
+            <then>
+                <echo message="INFO Packaging Binaries"/>
+                <runtarget target="sf-package-binary"/>
+            </then>
+        </if>
 
-    <!-- PUBLISH LOGS/REPORTS -->
-    <if>
-      <istrue value="${sf.spec.publish.enable}" />
-      <then>
-        <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
-        <runtarget target="publish"/>
-      </then>
-    </if>
+        <!-- PUBLISH LOGS/REPORTS -->
+        <if>
+            <istrue value="${sf.spec.publish.enable}" />
+            <then>
+                <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
+                <runtarget target="publish"/>
+            </then>
+        </if>
+    </target>
+
+    <!-- package all logs into zipfile before publish -->
+    <target name="sf-zip-logs">
+        <if>
+            <istrue value="${sf.spec.logs.zip.enable}"/>
+            <then>
+                <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
+                <echo message="Zip log requested, zipping logs..."/>
+                <zip destfile="${temp.log.zip}" basedir="${build.log.dir}"/>
+                <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>
+            </then>
+        </if>
+    </target>
     
-  </target>
+    <!-- generate dir list using passed location and name 
+    if a baseline list is available then generate deltas too -->
 
-  <!-- package all logs into zipfile before publish -->
-  <target name="sf-zip-logs">
-    <if>
-      <istrue value="${sf.spec.logs.zip.enable}"/>
-      <then>
-        <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
-        <echo message="Zip log requested, zipping logs..."/>
-        <zip destfile="${temp.log.zip}" basedir="${build.log.dir}"/>
-        <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>
-      </then>
-    </if>
-  </target>
-
-  <!-- generate dir list using passed location and name 
-  if a baseline list is available then generate deltas too -->
-
-  <target name="sf-list-dir">
-    <property name="sf.currentlist.name"   value="${sf.list.name}"/> 
-    <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
-
-    <if>
-      <istrue value="${sf.spec.dirlist.enable}"/>
-      <then>
-        <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location}"/>
-        <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
-          <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
-          <arg value="${sf.dir.location}"/>
-        </exec>
-      </then>
-    </if>
-  </target>
-	
-  <target name="sf-delta-dir">
-    <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
-    <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
-    <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
-    		
-    <if>
-      <istrue value="${sf.spec.dirdelta.enable}"/>
-      <then>
-        <echo message="Delta requested for ${sf.currentlist_a.name} vs ${sf.currentlist_b.name} "/>
-        <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}_delta.log">
-          <arg value="${sf.common.config.dir}/tools/difflist.pl"/>
-          <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_a.name}.log"/>
-          <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}.log"/>
-        </exec>
-      </then>
-    </if>
-  </target>
+    <target name="sf-list-dir">
+        <property name="sf.currentlist.name"   value="${sf.list.name}"/> 
+        <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+    
+        <if>
+            <istrue value="${sf.spec.dirlist.enable}"/>
+            <then>
+                <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location}"/>
+                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
+                    <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
+                    <arg value="${sf.dir.location}"/>
+                </exec>
+            </then>
+        </if>
+    </target>
+    
+    <target name="sf-delta-dir">
+        <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
+        <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
+        <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+        
+        <if>
+            <istrue value="${sf.spec.dirdelta.enable}"/>
+            <then>
+                <echo message="Delta requested for ${sf.currentlist_a.name} vs ${sf.currentlist_b.name} "/>
+                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}_delta.log">
+                    <arg value="${sf.common.config.dir}/tools/difflist.pl"/>
+                    <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_a.name}.log"/>
+                    <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}.log"/>
+                </exec>
+            </then>
+        </if>
+    </target>
   
     <target name="sf-intersect-dir">
-    <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
-    <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
-    <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
-	
-    <if>
-      <istrue value="${sf.spec.dirdelta.enable}"/>
-      <then>
-        <echo message="Inersection requested for ${sf.currentlist_a.name} vs ${sf.currentlist_b.name} "/>
-        <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}_intersect.log">
-          <arg value="${sf.common.config.dir}/tools/difflist.pl"/>
-          <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_a.name}.log"/>
-          <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}.log"/>
-          <arg value="-I"/> <!-- run difflist in intersect mode -->
-        </exec>
-      </then>
-    </if>
-  </target>
+        <property name="sf.currentlist_a.name"   value="${sf.list_a.name}"/> 
+        <property name="sf.currentlist_b.name"   value="${sf.list_b.name}"/>
+        <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+    
+        <if>
+            <istrue value="${sf.spec.dirdelta.enable}"/>
+            <then>
+                <echo message="Inersection requested for ${sf.currentlist_a.name} vs ${sf.currentlist_b.name} "/>
+                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}_intersect.log">
+                    <arg value="${sf.common.config.dir}/tools/difflist.pl"/>
+                    <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_a.name}.log"/>
+                    <arg value="${build.log.dir}/listdir_${build.id}_${sf.currentlist_b.name}.log"/>
+                    <arg value="-I"/> <!-- run difflist in intersect mode -->
+                </exec>
+            </then>
+        </if>
+    </target>
+
     <target name="sf-build-noprep" depends="sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
     <target name="create-canonical-sysdef-file">
-      <if>
-        <istrue value="${sf.spec.systemdefinition.assemble}"/>
-        <then>
-          <echo message="Calling Helium create-canonical-sysdef-file target to assemble sysdef fragments."/>
-          <runtarget target="compile.create-canonical-sysdef-file"/>
-        </then>
-        <else>
-          <echo message="Will use ${build.drive}/${sf.spec.systemdefinition.location} as is as sysdef file"/>
-          <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
-        </else>
-      </if>
+        <if>
+            <istrue value="${sf.spec.systemdefinition.assemble}"/>
+            <then>
+                <echo message="Calling Helium create-canonical-sysdef-file target to assemble sysdef fragments."/>
+                <runtarget target="compile.create-canonical-sysdef-file"/>
+            </then>
+            <else>
+                <echo message="Will use ${build.drive}/${sf.spec.systemdefinition.location} as is as sysdef file"/>
+                <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
+            </else>
+        </if>
     </target>
     
     <target name="sf-compile">    
+        <!-- TODO: add here assigments to raptor-related ant references -->
     
-    	<!-- TODO: add here assigments to raptor-related ant references -->
- 	
-    	<!-- hlm:argSet id="sbs.tools.var">
-			<hlm:arg name="config" value="${sf.spec.sbs.config}" />
-			<hlm:arg name="singlejob" value="..." />
-			<hlm:arg name="enable-filter" value="..." />
-		</hlm:argSet -->
-    	
+        <!-- hlm:argSet id="sbs.tools.var">
+            <hlm:arg name="config" value="${sf.spec.sbs.config}" />
+            <hlm:arg name="singlejob" value="..." />
+            <hlm:arg name="enable-filter" value="..." />
+        </hlm:argSet -->
+        
         <!-- target name="compile-main-prebuild" -->
         <antcall target="compile-main" inheritAll="false">
             <param name="build.system" value="${sf.spec.build.system}"/>
@@ -304,58 +303,58 @@
     </target>
     
     <target name="sf-tag-hg-code">
-      <property name="sf.tagafterbuild.tag" value="${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
-      <fmpp sourceFile="${sf.common.config.dir}/templates/tag-hg-code.ant.xml.ftl"
-            outputFile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml">
-        <data expandProperties="yes">
-              ant: antProperties()
-              data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
-        </data>
-      </fmpp>
-      <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
+        <property name="sf.tagafterbuild.tag" value="${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/tag-hg-code.ant.xml.ftl"
+              outputFile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml">
+            <data expandProperties="yes">
+                ant: antProperties()
+                data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+            </data>
+        </fmpp>
+        <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
     </target>
     
     <target name="sf-diamondize-bom">
-      <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
-            outputFile="${build.drive}/output/logs/BOM/build-info.xml">
-        <data expandProperties="yes">
-              ant: antProperties()
-              config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
-              project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
-              baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
-              sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
-        </data>
-      </fmpp>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
+              outputFile="${build.drive}/output/logs/BOM/build-info.xml">
+            <data expandProperties="yes">
+                ant: antProperties()
+                config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
+                project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
+                baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
+                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
+            </data>
+        </fmpp>
     </target>
 
-	<target name="sf-preprocess-package-config">
+    <target name="sf-preprocess-package-config">
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
-          <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
-          <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
-          <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
+            <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
+            <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+            <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
+            <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
         </exec>
-	</target>
-	
-	<target name="sf-zip-content" depends="preprocess-zip-config">
-		<property name="zip.${zip.target.name}.log.file" location="${build.log.dir}/${build.id}_${zip.target.name}_zip.log" />
-		<property name="zips.${zip.target.name}.spec.name" value="${zip.target.name}" />
-		<hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
-	</target>
-	
-	<target name="sf-package-source" depends="sf-preprocess-package-config">
-		<antcall target="sf-zip-content">
-			<param name="zip.config.file" value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl"/>
-			<param name="zip.target.name" value="src" />
-		</antcall>	
-	</target>
-	
-	<target name="sf-package-binary" depends="sf-preprocess-package-config">
-		<antcall target="sf-zip-content">
-		    <param name="zip.config.file" value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl"/>
-			<param name="zip.target.name" value="bin" />
-		</antcall>	
-	</target>
-	
-</project>
+    </target>
+    
+    <target name="sf-zip-content" depends="preprocess-zip-config">
+        <property name="zip.${zip.target.name}.log.file" location="${build.log.dir}/${build.id}_${zip.target.name}_zip.log" />
+        <property name="zips.${zip.target.name}.spec.name" value="${zip.target.name}" />
+        <hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
+    </target>
+    
+    <target name="sf-package-source" depends="sf-preprocess-package-config">
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="src" />
+        </antcall>
+    </target>
+    
+    <target name="sf-package-binary" depends="sf-preprocess-package-config">
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="bin" />
+        </antcall>
+    </target>
 
+</project>
 

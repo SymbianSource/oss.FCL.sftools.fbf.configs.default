@@ -4,14 +4,12 @@ use warnings;
 use Text::CSV;
 require XML::Simple;
 
-# Raw inputs (should probably come in as parameters to the script)
+# Raw inputs come in as parameters to the script
+# TODO: Use a proper option parsing module
 my $sourcesCSV = shift or die "First arg must be source csv file";
 my $template = shift or die "Second arg must be template file";
-
-# Derived values
-my ($ftl) = $template =~ m{(.*)\.template$};
-#$ftl =~ m{[^/\\]+$};
-#$ftl = $1;
+my $ftl = shift or die "Third arg must be output file";
+shift and die "No more than three arguments please";
 
 # Load CSV
 open my $csvText, "<", $sourcesCSV or die;
