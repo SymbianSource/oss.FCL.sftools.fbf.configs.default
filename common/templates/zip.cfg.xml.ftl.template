@@ -42,7 +42,7 @@
 				<set name="name" value="binaries_epoc"/>
 				<set name="grace.filters" value="emu" />
 				<set name="include" value="epoc32/**"/>
-				<set name="exclude" value="epoc32/include/**"/>
+				<set name="exclude" value="epoc32/build/**"/>
 			</config>
 		</config>
 	</config>
