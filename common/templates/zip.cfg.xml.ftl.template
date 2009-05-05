@@ -21,6 +21,10 @@
 		
 		<!-- Specify this config to package all inputs to the build -->
 		<config name="src" abstract="true">
+			<!-- Options that apply to all src configs -->
+			<set name="exclude" value="**/.hg/**"/>
+			
+			<!-- These configs will be populated with tags for the source -->
 			<config name="sfl" abstract="true">
 				<set name="grace.filters" value="src" />
 			</config>
@@ -33,6 +37,7 @@
 		</config>
 		<!-- Specify this config to package all outputs from the build -->
 		<config name="bin" abstract="true">
+			<!-- This config will be populated with exclusions for the rnd bins -->
 			<config>
 				<set name="name" value="binaries_epoc"/>
 				<set name="grace.filters" value="emu" />
