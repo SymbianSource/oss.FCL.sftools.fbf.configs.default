@@ -135,26 +135,29 @@
                 <runtarget target="preparation-getenv"/>
                 
             </then>
+            <else>
+                <!-- record fact that no baseline used. required by diamondize-bom  -->
+                <touch file="${build.drive}/output/logs/BOM/baseline.txt"/>
+            </else>
         </if>
         
         <if>
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
                 <runtarget target="sf-get-source"/>
-                
+                <runtarget target="sf-merge-epoc32"/>
+
                 <if><istrue value="${sf.spec.package.src.enable}"/>
                 <then>
                     <echo message="INFO Packaging Source"/>
                     <runtarget target="sf-package-source"/>
                 </then>
                 </if>
-                
-                <!-- merge RnD binaries into the epoc tree -->
-                <echo message="Merges RnD binaries into the Epoc tree"/>
-                <exec executable="perl" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/mergeepoc32.log">
-                    <arg value="${sf.common.config.dir}/tools/mergeepoc32.pl"/>
-                </exec>
             </then>
+            <else>
+                <!-- record fact that no sources.csv used. required by diamondize-bom  -->
+                <touch file="${build.log.dir}/BOM/sources.csv"/> 
+            </else>
         </if>        
       <if>
         <istrue value="${sf.spec.publish.enable}"/>
@@ -356,5 +359,13 @@
         </antcall>
     </target>
 
+    <target name="sf-merge-epoc32">
+    <!-- merge RnD binaries into the epoc tree -->
+        <echo message="Merges RnD binaries into the Epoc tree"/>
+        <copy todir="${build.drive}/epoc32" verbose="false" overwrite="true">
+            <fileset dir="${build.drive}/rnd"/>
+            <regexpmapper from="^(.*)/(.*)/epoc32/(.*)" to="\3" handledirsep="true"/>
+        </copy>
+  </target>
 </project>
 
