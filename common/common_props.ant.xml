@@ -12,7 +12,7 @@
     <property name="sf.spec.job.freespace" value="10"/>
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
-    <property name="sf.spec.systemdefinition.assemble" value="true"/>
+    <property name="sf.spec.systemdefinition.assemble" value="false"/>
     <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
     
     <!-- property name="sf.spec.sbs.config" value="armv5"/ -->
