@@ -21,23 +21,7 @@
     <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options"/>
     <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options"/>
     
-    <!-- OS what -->
-    <hlm:argSet id="sbs.main.what.sbs.var"> 
-      <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="WHAT" />
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
-      <reference refid="sbs.main.what.sbs.var" torefid="sbs.var" />
-      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    
-    <!-- OS clean main build -->
+    <!-- CLEAN -->
     <hlm:argSet id="sbs.main.clean.sbs.var">
       <hlm:arg name="config" value="${sf.spec.sbs.config}" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
@@ -53,7 +37,7 @@
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
     
-    <!-- OS tools2 build first -->
+    <!-- BUILD tools2 -->
     <hlm:argSet id="sbs.tools2.var">
       <hlm:arg name="config" value="tools2_rel" />
       <hlm:arg name="singlejob" value="false" />
@@ -69,7 +53,7 @@
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
     
-    <!-- OS tools build after tools2 -->
+    <!-- BUILD tools -->
     <hlm:argSet id="sbs.tools.var">
       <hlm:arg name="config" value="tools_rel" />
       <hlm:arg name="singlejob" value="true" />
@@ -85,11 +69,10 @@
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
     
-    <!-- OS main build -->
+    <!-- BUILD -->
     <hlm:argSet id="sbs.main.sbs.var">
       <hlm:arg name="config" value="${sf.spec.sbs.config}.whatlog" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="BUILD --check" />
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
@@ -100,6 +83,17 @@
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    
+    <!-- CHECK -->
+    <exec executable="sbs" dir="M:\" output="M:\output\logs\build_check_sbs_ant_output.log">
+      <arg value="-s M:\output\build\canonical_system_definition_SF.xml"/>
+      <arg value="-k"/>
+      <arg value="-c ${sf.spec.sbs.config}"/>
+      <arg value="-j 32"/>
+      <arg value="--check"/>
+      <arg value="-m M:\output\logs\build_check_Makefile"/>
+      <arg value="-f M:\output\logs\build_check_compile.log"/>
+    </exec>
     
   </target>
   
