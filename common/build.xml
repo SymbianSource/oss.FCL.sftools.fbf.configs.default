@@ -360,12 +360,17 @@
     </target>
 
     <target name="sf-merge-epoc32">
-    <!-- merge RnD binaries into the epoc tree -->
-        <echo message="Merges RnD binaries into the Epoc tree"/>
+    <!-- conditional execution of merge if rnd dir is found -->
+    <if><available file="${build.drive}/rnd" type="dir" />
+        <then>
+        <echo message="RnD binaries found, merging into ${build.drive}/epoc32 tree"/>
         <copy todir="${build.drive}/epoc32" verbose="false" overwrite="true">
             <fileset dir="${build.drive}/rnd"/>
             <regexpmapper from="^(.*)/(.*)/epoc32/(.*)" to="\3" handledirsep="true"/>
         </copy>
+        </then>
+    </if>
   </target>
+  
 </project>
 
