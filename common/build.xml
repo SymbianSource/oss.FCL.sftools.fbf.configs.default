@@ -363,14 +363,14 @@
     <!-- conditional execution of merge if rnd dir is found -->
     <if><available file="${build.drive}/rnd" type="dir" />
         <then>
-        <echo message="RnD binaries found, merging into ${build.drive}/epoc32 tree"/>
-        <copy todir="${build.drive}/epoc32" verbose="false" overwrite="true">
+        <echo message="RnD binaries found, fast-copying into ${build.drive}/epoc32 tree"/>
+        <hlm:fastcopy todir="${build.drive}/epoc32" verbose="false" overwrite="true" threadCount="8">
             <fileset dir="${build.drive}/rnd"/>
             <regexpmapper from="^(.*)/(.*)/epoc32/(.*)" to="\3" handledirsep="true"/>
-        </copy>
+        </hlm:fastcopy>
         </then>
     </if>
   </target>
-  
+
 </project>
 
