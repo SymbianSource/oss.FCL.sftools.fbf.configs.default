@@ -58,7 +58,7 @@
     <property name="sf.spec.dirdelta.enable" value="false"/>
     
     <!-- prefilter raptor logs -->
-    <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
+    <property name="sf.spec.logs.raptorfilter.enable" value="true"/>
     
     <!-- zip all logs before publish -->
     <property name="sf.spec.logs.zip.enable"  value="true"/>
