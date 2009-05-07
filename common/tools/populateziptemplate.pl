@@ -97,10 +97,17 @@ foreach my $package (@packages)
 			set =>
 			[
 				{
+					name => "root.dir",
+					value=> "\${build.drive}/$package->{dst}",
+				},
+				{
 					name => "name",
 					value=> "$name",
 				},
-				@includes,
+				{
+					name => "include",
+					value=> "/**",
+				},
 			]
 		};
 	}
