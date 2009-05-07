@@ -85,14 +85,9 @@
     </antcall>
     
     <!-- CHECK -->
-    <exec executable="sbs" dir="M:\" output="M:\output\logs\build_check_sbs_ant_output.log">
-      <arg value="-s M:\output\build\canonical_system_definition_SF.xml"/>
-      <arg value="-k"/>
-      <arg value="-c ${sf.spec.sbs.config}"/>
-      <arg value="-j 32"/>
-      <arg value="--check"/>
-      <arg value="-m M:\output\logs\build_check_Makefile"/>
-      <arg value="-f M:\output\logs\build_check_compile.log"/>
+    <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">
+      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c ${sf.spec.sbs.config} -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
+      <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
     </exec>
     
   </target>
