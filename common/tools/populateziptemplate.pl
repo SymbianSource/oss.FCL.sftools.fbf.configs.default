@@ -78,22 +78,7 @@ foreach my $package (@packages)
 	{
 		# RnD repository
 		my $name = "bin_rnd_$1_$2";
-		# Enumerate all the files on the local disk that are in this repository
-		(my $dosCompatibleDst = $package->{dst}) =~ s{/}{\\}g;
-		my @files = `dir /b/s/a-d $dosCompatibleDst 2> nul:`;
-		#print "@files\n";
-		next unless @files;
-		# Add the files to this zip object
-		@files = grep {
-			chomp;
-			s{\\}{/}g;
-			s!^[A-Z]:/$package->{dst}/!!i;
-			m{^epoc32/}i;
-		} @files;
-		#print "@files\n";
-		push @allRndFiles, @files;
 		# Create a zip object
-		my @includes = map { {name => "include", value => "$_"} } @files;
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{rnd}->{config}},
 		{
 			set =>
@@ -112,6 +97,19 @@ foreach my $package (@packages)
 				},
 			]
 		};
+		# Enumerate all the files on the local disk that are in this repository
+		(my $dosCompatibleDst = $package->{dst}) =~ s{/}{\\}g;
+		my @files = `dir /b/s/a-d $dosCompatibleDst 2> nul:`;
+		#print "@files\n";
+		next unless @files;
+		# Add the files to this zip object
+		@files = grep {
+			chomp;
+			s{\\}{/}g;
+			s!^[A-Z]:/$package->{dst}/!!i;
+			m{^epoc32/}i;
+		} @files;
+		push @allRndFiles, @files;
 	}
 	else
 	{
