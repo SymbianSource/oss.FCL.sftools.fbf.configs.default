@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use FindBin;
+use lib "$FindBin::Bin/lib";
 use Text::CSV;
 require XML::Simple;
 
@@ -22,7 +24,7 @@ while (my $line = <$csvText>)
 	next unless $line;
 	unless ($csv->parse($line))
 	{
-		my $err = $csv->error_input;
+		my $err = $csv->error_input();
 		die "Failed to parse line '$line': $err";
 	}
 
