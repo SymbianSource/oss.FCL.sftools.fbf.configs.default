@@ -61,11 +61,19 @@
     
     <!-- zip all logs before publish -->
     <property name="sf.spec.logs.zip.enable"  value="true"/>
-	
-	<!-- packaging options for bin/src-->
-	<property name="sf.spec.package.bin.enable"  value="false"/>
-	<property name="sf.spec.package.src.enable"  value="false"/>
-	
+    
+    <!-- packaging options for bin/src-->
+    <property name="sf.spec.package.bin.enable"  value="false"/>
+    <property name="sf.spec.package.src.enable"  value="false"/>
+
+    <!-- ATS client properties -->
+    <property name="sf.spec.test.sendpkg.enable" value="false"/>
+    <property name="sf.spec.test.host.name" value=""/>
+    <property name="sf.spec.test.host.path" value=""/>
+
+    <property name="sf.spec.test.package.name" value=""/>
+    <property name="sf.spec.test.package.path" value=""/>
+
 </project>
 
 

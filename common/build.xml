@@ -146,7 +146,7 @@
             <then>
                 <runtarget target="sf-get-source"/>
                 <runtarget target="sf-merge-epoc32"/>
-
+                
                 <if><istrue value="${sf.spec.package.src.enable}"/>
                 <then>
                     <echo message="INFO Packaging Source"/>
@@ -184,6 +184,12 @@
             <then>
                 <echo message="INFO Packaging Binaries"/>
                 <runtarget target="sf-package-binary"/>
+            </then>
+        </if>
+
+        <if><istrue value="${sf.spec.test.send.enable}"/>
+            <then>
+                <runtarget target="sf-send-testpkg"/>
             </then>
         </if>
 
@@ -353,10 +359,43 @@
     </target>
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config">
-        <antcall target="sf-zip-content">
+        <!--antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
-        </antcall>
+        </antcall-->
+
+        <if><available file="${build.drive}/rnd/internal/initial" type="dir" />
+        <then>
+            <!-- get listing of rnd location for exclude later -->
+            <antcall target="sf-list-dir" inheritAll="false">
+                <param name="sf.list.name" value="rnd_binaries"/>
+                <param name="sf.dir.location" value="${build.drive}/rnd/internal/initial"/>
+            </antcall>
+            <echo message="Packaging with exclude list"/>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/listdir_${build.id}_rnd_binaries.log"/>
+            <arg value="-x!epoc32\build"/> 
+            <arg value="binaries_epoc.zip"/> 
+            <arg value="epoc32\"/>
+        </exec>
+        </then>
+        <else>
+        <echo message="Packaging without exclude list"/>
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x!epoc32\build"/> <!-- exclude -->
+            <arg value="binaries_epoc.zip"/> 
+            <arg value="epoc32\"/>
+
+        </exec>
+        </else>
+        </if>
+        <if><available file="${build.drive}/binaries_epoc.zip"/>
+        <then><move file="${build.drive}/binaries_epoc.zip" todir="${build.drive}/output/zips/"/></then>
+        </if>
     </target>
 
     <target name="sf-merge-epoc32">
@@ -364,13 +403,25 @@
     <if><available file="${build.drive}/rnd" type="dir" />
         <then>
         <echo message="RnD binaries found, fast-copying into ${build.drive}/epoc32 tree"/>
-        <hlm:fastcopy todir="${build.drive}/epoc32" verbose="false" overwrite="true" threadCount="8">
+        <hlm:fastcopy todir="${build.drive}/epoc32" verbose="true" overwrite="true" threadCount="4">
             <fileset dir="${build.drive}/rnd"/>
             <regexpmapper from="^(.*)/(.*)/epoc32/(.*)" to="\3" handledirsep="true"/>
         </hlm:fastcopy>
         </then>
     </if>
   </target>
+  
+    <target name="sf-send-testpkg">
+        <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name}"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/" failonerror="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+            <arg value="ats3_testdrop.pl"/>
+            <arg value="${sf.spec.test.host.name}"/>
+            <arg value="${sf.spec.test.host.path}"/>
+            <arg value="${sf.spec.test.package.name}"/>
+            <arg value="${sf.spec.test.package.path}"/>
+        </exec>
 
+  </target>
+  
 </project>
 
