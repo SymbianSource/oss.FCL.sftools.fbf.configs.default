@@ -375,8 +375,9 @@
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/listdir_${build.id}_rnd_binaries.log"/>
+            <arg value="-x@${build.log.dir}/listdir_${build.id}_rnd_binaries.log"/> <!-- excludes -->
             <arg value="-x!epoc32\build"/> 
+            <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
             <arg value="epoc32\"/>
         </exec>
@@ -386,7 +387,8 @@
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
-            <arg value="-x!epoc32\build"/> <!-- exclude -->
+            <arg value="-x!epoc32\build"/> <!-- excludes -->
+            <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
             <arg value="epoc32\"/>
 
