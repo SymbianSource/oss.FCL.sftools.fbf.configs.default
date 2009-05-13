@@ -406,8 +406,12 @@
         <then>
         <echo message="RnD binaries found, fast-copying into ${build.drive}/epoc32 tree"/>
         <hlm:fastcopy todir="${build.drive}/epoc32" verbose="true" overwrite="true" threadCount="4">
-            <fileset dir="${build.drive}/rnd"/>
-            <regexpmapper from="^(.*)/(.*)/epoc32/(.*)" to="\3" handledirsep="true"/>
+            <fileset dir="${build.drive}/rnd">
+            <exclude name="**/.hg/**"/>
+            </fileset>
+            <regexpmapper from="internal/initial/epoc32/(.*)" to="\1" handledirsep="true"/>
+            <!--regexpmapper from="[^/]+/[^/]+/epoc32/(.*)" to="\1" handledirsep="true"/-->
+            <!-- TODO make match exactly 2 levels deep otherwise nested epoc32 trees will also be merged -->
         </hlm:fastcopy>
         </then>
     </if>
