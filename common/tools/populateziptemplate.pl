@@ -57,7 +57,7 @@ foreach my $package (@packages)
 {
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	$package->{dst} =~ s{^/}{}g;
-	if ($package->{source} =~ m{/(sfl|epl)/sf/([^/]+)/([^/]+)})
+	if ($package->{source} =~ m{/(sfl|oss)/sf/([^/]+)/([^/]+)})
 	{	    
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
 		{
