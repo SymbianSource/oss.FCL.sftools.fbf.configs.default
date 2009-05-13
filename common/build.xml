@@ -28,6 +28,9 @@
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
     
+    <!-- import other files -->
+    <import file="${sf.common.config.dir}/smoketest/smoke_test.ant.xml" />
+    
     <!-- import common references -->
     <import file="${sf.common.config.dir}/common_refs.ant.xml" />
              
@@ -134,7 +137,7 @@
                     <arg value="${sf.spec.baseline.location}"/>
                 </exec>
                 
-                <!-- run interal target preparation-getenv -->
+                <!-- run internal target preparation-getenv -->
                 <runtarget target="preparation-getenv"/>
                 
             </then>
@@ -175,6 +178,9 @@
         <runtarget target="publish"/>
       </then>
     </if>
+    
+    <!-- EXEC SMOKE TEST -->
+    <runtarget target="sf-smoke-test"/>
     
   </target>
 
