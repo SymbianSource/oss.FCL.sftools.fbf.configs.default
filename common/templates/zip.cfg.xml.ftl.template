@@ -28,7 +28,7 @@
 			<config name="sfl" abstract="true">
 				<set name="grace.filters" value="src" />
 			</config>
-			<config name="epl" abstract="true">
+			<config name="oss" abstract="true">
 				<set name="grace.filters" value="src" />
 			</config>
 			<config name="rnd" abstract="true">
