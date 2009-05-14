@@ -2,6 +2,7 @@
 
 use strict;
 use Getopt::Long;
+use File::Spec;
 
 my $link;
 my $target;
@@ -33,6 +34,25 @@ usage_error(), unless (defined($link) && defined($target));
 my $junction_help = `junction /?`;
 die("Need command \"junction\". Not found\n"), if ($junction_help =~ /is not recognised/);
 die("Directory \"$target\" not found\n"), unless -d "$target";
+
+my ($vol,$dir,$file) = File::Spec->splitpath($target);
+my @subst_lines = `subst`;
+
+foreach (@subst_lines) {
+    my $line = $_;
+    chomp($line);
+    $line =~ /^(.:)\\: => (.*)$/;
+    die("Cannot parse output of 'subst'. Bailing out confused."), unless (defined($1) and defined($2));    
+    my $subst_drive = $1;
+    my $subst_targ = $2;
+    if (lc($subst_drive) eq lc($vol)) {
+        print("Target $target is in a substituted drive: $line\n");
+        $target = File::Spec->catfile(($subst_targ,$dir),$file);
+        print("Target $target will be used\n");
+        last;
+    }
+}
+
 
 if ( -e "$link") {
     print("\"$link\" already exists. ");
@@ -78,7 +98,8 @@ sub usage($)
             "options:\n" .
             "  --help                        Display this help and exit\n" .
             "  --link=LINKDIR                LINKDIR specifies the junction to be created. Last component is the junction. The rest must exist\n" .
-            "  --target=TARGDIR              TARGDIR is directory to which the junction will point.\n";
+            "  --target=TARGDIR              TARGDIR is directory to which the junction will point.\n" .
+            "                                If TARGDIR is in a substed drive, the real path will be used.\n";
     exit $error;            
 }
 
