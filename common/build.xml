@@ -180,7 +180,12 @@
     </if>
     
     <!-- EXEC SMOKE TEST -->
-    <runtarget target="sf-smoke-test"/>
+    <if>
+      <istrue value="${sf.spec.smoketest.enable}"/>
+      <then>
+        <runtarget target="sf-smoke-test"/>
+      </then>
+    </if>
     
   </target>
 
