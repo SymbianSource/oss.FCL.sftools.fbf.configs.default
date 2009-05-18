@@ -167,8 +167,11 @@
       </if>
     </target>
     
-    <target name="sf-postbuild" depends="sf-zip-logs">
+    <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
+        
+        <!-- run build analysis tools -->
+        <runtarget target="sf-run-analysis"/>
         
         <!-- TAG SOURCE CODE -->
         <if>
@@ -192,6 +195,8 @@
                 <runtarget target="sf-send-testpkg"/>
             </then>
         </if>
+
+        <runtarget target="sf-zip-logs"/>
 
         <!-- PUBLISH LOGS/REPORTS -->
         <if>
@@ -426,6 +431,37 @@
             <arg value="${sf.spec.test.package.name}"/>
             <arg value="${sf.spec.test.package.path}"/>
         </exec>
+  </target>
+  
+  <!-- runs analysis of missing bins and source -->
+  <target name="sf-run-analysis">
+        <mkdir dir="${build.log.dir}/analysis"/>
+
+        <echo message="Running source analysis of ANT output"/>
+        <exec executable="perl" dir="${build.log.dir}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_scan_ant.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/scan_antlogs.pl"/>
+            <arg value="*ant*"/>
+        </exec>
+
+        <echo message="Running list analysis"/>
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_list_results.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/parselistdirs.pl"/>
+            <arg value="..\"/>
+        </exec>
+
+        <echo message="Running whatlog analysis"/>
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_what_results.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/parsewhatlog.pl"/>
+            <arg value="..\"/>
+        </exec>
+
+        <echo message="Running summary analysis"/>
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_summary.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
+            <arg value="${build.id}_list_results.log"/>
+            <arg value="${build.id}_what_results.log"/>
+        </exec>
+
 
   </target>
   
