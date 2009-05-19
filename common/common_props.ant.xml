@@ -68,11 +68,15 @@
 
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
-    <property name="sf.spec.test.host.name" value=""/>
-    <property name="sf.spec.test.host.path" value=""/>
+    <property name="sf.spec.test.host.name"      value="172.16.11.11"/> <!-- sym-build01 -->
+    <property name="sf.spec.test.host.username"  value="admin"/>
+    <property name="sf.spec.test.host.pasasword" value="admin"/>
+    <property name="sf.spec.test.host.droppath"  value="T:\TestDrops"/>
+    <property name="sf.spec.test.epocroot"       value="D:\ATS3\winscw_smoketest"/>
 
-    <property name="sf.spec.test.package.name" value=""/>
-    <property name="sf.spec.test.package.path" value=""/>
+    <!-- ATS local properties -->
+    <property name="sf.spec.test.package.name"      value="D:\ATS3\smoketest_package\9.zip"/>
+    <property name="sf.spec.test.package.droppath"  value="D:\ATS3\TestDrops"/>
 
 </project>
 

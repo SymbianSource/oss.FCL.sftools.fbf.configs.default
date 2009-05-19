@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+#curl "http://sym-build01:8080/ats3/XTestRunExecute.do?username=admin&password=admin&testrunpath=D:\smoketests\test_drops\9.zip
 use strict;
 use Getopt::Long;
 use File::Copy;
@@ -13,6 +14,7 @@ my $host_drop_path;
 my $local_drop_path;
 my $local_test_pkg;
 my $help;
+my $dev_null = $^O =~ /^MSWin/ ? "nul" : "/dev/null";
 
 sub usage($);
 sub help();
@@ -44,10 +46,11 @@ if ($help) {
 
 usage_error(), unless (defined($host) && defined($local_test_pkg) && defined($local_drop_path) && defined($host_drop_path));
 
-my $cscript_help = `cscript /?`;
-die("Need command \"cscript\". Not in found"), if ($?);
-die("Need VB script wshTestRunX.vbs. Not found"), unless ( -f "wshTestRunX.vbs");
+my $curl_version = $^O =~ /^MSWin/ ? `curl --version 1> $dev_null 2>&1` : `curl --version 1> $dev_null 2>&1`;
+die("Need program \"curl\". Not found"), if ($?);
 die("Test drop path \"$local_drop_path\" not found"), unless ( -d "$local_drop_path");
+
+$host .= ":8080", unless ($host =~ /:\d+$/);
 
 my ($vol,$dir,$pkg);
 my $local_test_drop;
@@ -62,27 +65,30 @@ else {
     die("Test package file \"$local_test_pkg\" not found"), unless ( -f "$local_test_pkg");
     ($vol,$dir,$pkg) = File::Spec->splitpath($local_test_pkg);
     $local_test_drop = File::Spec->catfile($local_drop_path,$pkg);
-    my $lc_local_test_drop = lc($local_test_drop);
-    my $lc_local_test_pkg = lc($local_test_pkg);    
-    if ("$lc_local_test_drop" ne "$lc_local_test_pkg") {
-        if (unlink($local_test_drop) == 0) {
-            die("Can't delete stale testdrop \"$local_test_drop\". $!");
+    if ( -f "$local_test_drop") {
+        my $cmp_local_test_drop = $local_test_drop;
+        my $cmp_local_test_pkg = $local_test_pkg;
+        if ($^O =~ /^MSWin/) {
+            $cmp_local_test_drop = lc($local_test_drop);
+            $cmp_local_test_pkg = lc($local_test_pkg);        
+        }   
+        if ("$cmp_local_test_drop" eq "$cmp_local_test_pkg") {
+            if (unlink($local_test_drop) == 0) {
+                die("Can't delete stale test drop \"$local_test_drop\". $!");
+            }
+            else {
+                print("A stale test drop \"$local_test_drop\" existed. Deleted\n");
+            }
         }
-        else {
-            print("A stale testtop \"$local_test_drop\" existed. Deleted\n");
-        }
-        copy("$local_test_pkg","$local_test_drop")
-            or die("Cannot copy \"$local_test_pkg\" -> \"$local_test_drop\". $!");
-    }    
+    }
+    copy("$local_test_pkg","$local_test_drop")
+        or die("Cannot copy \"$local_test_pkg\" -> \"$local_test_drop\". $!");
 }
 $host_test_drop = File::Spec->catfile($host_drop_path,$pkg);
-
-$ENV{'ats3.host'} = $host;
-$ENV{'ats3.pathToDrop'} = $host_test_drop;
-$ENV{'ats3.username'} = $username;
-$ENV{'ats3.password'} = $password;
-$ENV{'ats3.schedule'} = $schedule, if defined($schedule);
-system("cscript wshTestRunX.vbs");
+my $url ="http://$host/ats3/XTestRunExecute.do?username=$username&password=$password&testrunpath=$host_test_drop";
+$url .= "&schedule=$schedule", if (defined($schedule));
+my $curl_cmd = "curl \"$url\"";
+system("$curl_cmd");
 die("\nTest drop failed: $!"), if ($?);
 print("\nTest drop done");
 
