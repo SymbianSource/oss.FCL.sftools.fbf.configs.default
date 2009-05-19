@@ -17,6 +17,9 @@ use strict;
 
 my $lowercase = 1;
 my $useoutputfiles = 1;
+my $path = shift @ARGV;
+my $outputpath = shift @ARGV; 
+
 main();
 
 
@@ -27,7 +30,6 @@ sub main()
   {
     print "Running in lower case mode!\n";
   }
-  my $path = shift @ARGV;
   my @listfiles = glob($path."listdir*");
   
   my $gt_base;
@@ -94,16 +96,20 @@ sub main()
  #printgroup($try,"try");
 
   my $uptodate = finduptodate($path); # this is a bit dicey, 'cos it might get deleted/rebuilt by another part...
+  my $exported = findexported($path);
   
-  
-  printgroup(diff($untouched,$uptodate),"untouched"); # 'clean' doesn't remove headers if they are 'uptodate'
+  printgroup($exported,'exported');
+  $untouched = diff($untouched,union($exported,$uptodate)); 
+  printgroup($untouched,"untouched"); # 'clean' doesn't remove headers if they are 'uptodate'
+
+  #here's where the fun begins...
 
   my $rebuildfail = intersect(union($gt_built,$gt_add), $s60_fail); #everything built in GT, minus stuff that failed in S60 
   my $rebuilt = intersect($gt_built, $s60_built); # everything built in both
   my $built = diff(diff(union($gt_built, $s60_built),$rebuilt),$rebuildfail); # everything built, minus rebuilt, minus rebuildfail  
   my $fail = diff(union($gt_fail,$s60_fail),$rebuildfail); #everyhting that failed, minus the rebuild failures
 
-  my $added = diff(union($gt_add,$s60_add),$rebuildfail); #all the stuff that got added, minus the stuff that filaed to rebuild
+  my $added = diff(diff(union($gt_add,$s60_add),$exported),$rebuildfail); #all the stuff that got added, minus the stuff that filaed to rebuild
 
   printgroup($built,"built"); 
   printgroup($rebuilt,'rebuilt');
@@ -113,7 +119,7 @@ sub main()
 
   printgroup($fail,"failed");
   
-  $uptodate = diff($uptodate,union($added,$built)); #remove all stuff in other categories...'uptodate' was added late in the program
+  $uptodate = diff($uptodate,union(union($added,$built),$exported)); #remove all stuff in other categories...'uptodate' was added late in the program
   printgroup($uptodate,"uptodate"); # uptodate list isn't that good at the moment...put it last.
 }
 
@@ -127,7 +133,7 @@ sub printgroup($$)
   }
   if($useoutputfiles)
   {
-    my $filename = "results_$label.log"; 
+    my $filename = $outputpath."results_$label.log"; 
     open(FILE,">$filename") or die "Couldn't open $filename\n";
     foreach my $key (sort keys %$group)
     {
@@ -189,7 +195,7 @@ sub union($s1,$s2)
 sub finduptodate($path)
 {
   my $path = shift;
-  my @files = glob($path."*CLEAN*compile.log");
+  my @files = glob($path."*compile.log");
   my %results;
   foreach my $file (@files)
   {
@@ -215,6 +221,36 @@ sub finduptodate($path)
 
   return \%results;
 }
+
+sub findexported($)
+{
+  my $path = shift;
+  my @files = glob($path."*compile.log");
+  my %results;
+  foreach my $file (@files)
+  {
+    print "Reading $file\n";
+    open(FILE,"<$file") or die "Cannot open $file\n";
+    while( my $line = <FILE>)
+    {
+#<info>Copied u:/sf/app/conntools/emulatorlan/data/s60_32_default_snaps.xml to u:/epoc32/winscw/c/s60_32_default_snaps.xml</info>
+      if($line =~ m/<info>Copied\s+(\S+)\s+to\s+(\S+)<\/info>/)
+      {
+
+        my $str = $2; #we want the destination, not the source...
+        $str =~ s/^\S:\///;
+        if($lowercase)
+        {
+          $str = lc($str);
+        }      
+        $results{$str} = "";
+      }
+    }     
+    close FILE;
+  }
+  return \%results;
+}
+
 
 
 sub parsefile($file)
