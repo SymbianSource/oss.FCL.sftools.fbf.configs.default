@@ -4,8 +4,8 @@
   
   <property name="sf.spec.baseline.enable" value="true"/>
   <property name="sf.spec.baseline.select" value="location"/>
-  <property name="sf.spec.baseline.location" value="\\lon-engbuild87\d$\PDK\PDK_candidate_0"/>
-  <property name="sf.spec.baseline.getenv_options" value="-i emu"/>
+  <property name="sf.spec.baseline.location" value="\\lon-engbuild87\d$\PDK\PDK_candidate_1"/>
+  <property name="sf.spec.baseline.getenv_options" value="-i emu -i rnd"/>
   
   <property name="sf.spec.sysdef.configurations.list" value="SF"/>
 
