@@ -70,7 +70,7 @@
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
     <property name="sf.spec.test.host.name"      value="172.16.11.11"/> <!-- sym-build01 -->
     <property name="sf.spec.test.host.username"  value="admin"/>
-    <property name="sf.spec.test.host.pasasword" value="admin"/>
+    <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="T:\TestDrops"/>
     <property name="sf.spec.test.epocroot"       value="D:\ATS3\winscw_smoketest"/>
 

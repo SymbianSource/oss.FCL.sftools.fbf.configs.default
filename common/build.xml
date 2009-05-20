@@ -190,7 +190,7 @@
             </then>
         </if>
 
-        <if><istrue value="${sf.spec.test.send.enable}"/>
+        <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
             <then>
                 <runtarget target="sf-send-testpkg"/>
             </then>
