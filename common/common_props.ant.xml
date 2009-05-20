@@ -48,7 +48,7 @@
     <property name="sf.spec.publish.networkdrive" value="\\lon-engbuild87\d$\SF_builds"/>
     <property name="sf.spec.publish.rootdir" value="\\lon-engbuild87\d$\SF_builds"/>
     
-    <property name="sf.spec.tagafterbuild.enable" value="true"/>
+    <property name="sf.spec.tagafterbuild.enable" value="false"/>
 
     <!-- if sf-list-dir called, generate dir list(s) of epoc32 tree -->
     <property name="sf.spec.dirlist.enable"  value="false"/>
