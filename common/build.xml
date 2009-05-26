@@ -342,6 +342,7 @@
     </target>
 
     <target name="sf-preprocess-package-config">
+        <mkdir dir="${sf.common.config.dir}/generated"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
@@ -385,18 +386,17 @@
             <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
             <arg value="epoc32\"/>
-        </exec>
+            </exec>
         </then>
         <else>
-        <echo message="Packaging without exclude list"/>
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+            <echo message="Packaging without exclude list"/>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
             <arg value="-x!epoc32\build"/> <!-- excludes -->
             <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
             <arg value="epoc32\"/>
-
         </exec>
         </else>
         </if>
@@ -404,24 +404,15 @@
         <then><move file="${build.drive}/binaries_epoc.zip" todir="${build.drive}/output/zips/"/></then>
         </if>
     </target>
-
+    <!-- unpack rnd zips if available -->
     <target name="sf-merge-epoc32">
-    <!-- conditional execution of merge if rnd dir is found -->
-    <if><available file="${build.drive}/rnd" type="dir" />
-        <then>
-        <echo message="RnD binaries found, fast-copying into ${build.drive}/epoc32 tree"/>
-        <hlm:fastcopy todir="${build.drive}/epoc32" verbose="true" overwrite="true" threadCount="4">
-            <fileset dir="${build.drive}/rnd">
-            <exclude name="**/.hg/**"/>
-            </fileset>
-            <regexpmapper from="internal/initial/epoc32/(.*)" to="\1" handledirsep="true"/>
-            <!--regexpmapper from="[^/]+/[^/]+/epoc32/(.*)" to="\1" handledirsep="true"/-->
-            <!-- TODO make match exactly 2 levels deep otherwise nested epoc32 trees will also be merged -->
-        </hlm:fastcopy>
-        </then>
-    </if>
+        <echo message="Unpacking any available RnD binaries"/>
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log">
+        <arg value="x"/>
+        <arg value="${build.drive}/output/zips/bin_rnd*.zip"/>
+        </exec>
     </target>
-  
+    
     <target name ="sf-make-junction">
         
         <mkdir dir="${sf.spec.test.epocroot}"/>
@@ -472,7 +463,7 @@
         </exec>
 
         <echo message="Running whatlog analysis"/>
-        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_what_results.log">
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_what_results.csv">
             <arg value="${sf.common.config.dir}/tools/analysis/parsewhatlog.pl"/>
             <arg value="..\"/>
         </exec>
@@ -480,8 +471,14 @@
         <echo message="Running summary analysis"/>
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_summary.log">
             <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
+            <arg value="${build.id}_what_results.csv"/>
             <arg value="${build.id}_list_results.log"/>
-            <arg value="${build.id}_what_results.log"/>
+        </exec>
+
+        <echo message="Running collision analysis"/>
+        <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_collisions.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/find_collisions.pl"/>
+            <arg value="${build.log.dir}/analysis/${build.id}_what_results.csv"/>
         </exec>
     </target>
   
