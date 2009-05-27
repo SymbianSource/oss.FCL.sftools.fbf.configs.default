@@ -148,26 +148,26 @@
   <target name="sf-os-compile">
 
         <hlm:argSet id="sbs.tools2.var">
-                <hlm:arg name="config" value="tools2_rel" />
+                <hlm:arg name="config" value="tools2_rel.whatlog" />
                 <hlm:arg name="singlejob" value="false" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
         </hlm:argSet>
 
 		<hlm:argSet id="sbs.tools2.clean.var">
-                <hlm:arg name="config" value="tools2_rel" />
+                <hlm:arg name="config" value="tools2_rel.whatlog" />
                 <hlm:arg name="singlejob" value="false" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
 		<hlm:arg name="command" value="CLEAN --check" />
         </hlm:argSet>
 
         <hlm:argSet id="sbs.tools.var">
-                <hlm:arg name="config" value="tools_rel" />
+                <hlm:arg name="config" value="tools_rel.whatlog" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
         </hlm:argSet>
 
 		<hlm:argSet id="sbs.tools.clean.var">
-                <hlm:arg name="config" value="tools_rel" />
+                <hlm:arg name="config" value="tools_rel.whatlog" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
 		<hlm:arg name="command" value="CLEAN --check" />

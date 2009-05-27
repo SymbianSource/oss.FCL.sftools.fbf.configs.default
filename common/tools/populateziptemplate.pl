@@ -118,12 +118,15 @@ foreach my $package (@packages)
 		next unless @files;
 		# Add the files to this zip object
 		@files = grep {
-			chomp;
 			s{\\}{/}g;
 			s!^[A-Z]:/$package->{dst}/!!i;
 			m{^epoc32/}i;
 		} @files;
 		push @allRndFiles, @files;
+		
+		open FILE, ">", $name ."_includefile.txt" or die "Cannot write includefile!";
+		print FILE @files;
+		close FILE;
 	}
 	else
 	{
@@ -137,3 +140,7 @@ push @{$zipConfig->{config}->{config}->{bin}->{config}->{set}}, @excludes;
 
 $xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', KeyAttr => $keyAttr);
 
+# Output all rnd files into exclude list for later
+open FILE, "> rnd_excludefile.txt" or die "Cannot write exludefile!";
+print FILE @allRndFiles;
+close FILE;

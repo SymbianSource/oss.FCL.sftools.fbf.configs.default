@@ -145,7 +145,6 @@
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
                 <runtarget target="sf-get-source"/>
-                <runtarget target="sf-merge-epoc32"/>
                 
                 <if><istrue value="${sf.spec.package.src.enable}"/>
                 <then>
@@ -153,6 +152,8 @@
                     <runtarget target="sf-package-source"/>
                 </then>
                 </if>
+                
+                <runtarget target="sf-unpack-rnd"/>
             </then>
             <else>
                 <!-- record fact that no sources.csv used. required by diamondize-bom  -->
@@ -364,29 +365,25 @@
         </antcall>
     </target>
     
-    <target name="sf-package-binary" depends="sf-preprocess-package-config">
+    <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
         <!--antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
         </antcall-->
 
-        <if><available file="${build.drive}/rnd/internal/initial" type="dir" />
+        <if><available file="${build.drive}/rnd_excludefile.txt" />
         <then>
-            <!-- get listing of rnd location for exclude later -->
-            <antcall target="sf-list-dir" inheritAll="false">
-                <param name="sf.list.name" value="rnd_binaries"/>
-                <param name="sf.dir.location" value="${build.drive}/rnd/internal/initial"/>
-            </antcall>
             <echo message="Packaging with exclude list"/>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/listdir_${build.id}_rnd_binaries.log"/> <!-- excludes -->
+            <arg value="-x@${build.drive}/rnd_excludefile.txt"/> <!-- excludes -->
             <arg value="-x!epoc32\build"/> 
             <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
             <arg value="epoc32\"/>
             </exec>
+            <move file="${build.drive}/rnd_excludefile.txt" todir="${build.log.dir}/"/>
         </then>
         <else>
             <echo message="Packaging without exclude list"/>
@@ -404,8 +401,25 @@
         <then><move file="${build.drive}/binaries_epoc.zip" todir="${build.drive}/output/zips/"/></then>
         </if>
     </target>
+
+    <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
+
+        <!-- zip any RnD _includefile.txt files generated during source packaging -->
+        <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zip_postbuild.log">
+            <arg value="${sf.common.config.dir}/tools/zip_includefiles.pl"/>
+        </exec>
+        <!-- cleanup my moving includefiles to logs and zips to zips\postbuild -->
+        <move todir="${build.log.dir}">
+           <fileset dir="${build.drive}"><include name="*_includefile.txt"/></fileset>
+        </move>
+        <move todir="${build.drive}/output/zips/postbuild">
+           <fileset dir="${build.drive}"><include name="bin_rnd_*.zip"/></fileset>
+        </move>
+        <!-- TODO: merge with release_metadata.xml ? -->
+    </target>
+
     <!-- unpack rnd zips if available -->
-    <target name="sf-merge-epoc32">
+    <target name="sf-unpack-rnd">
         <echo message="Unpacking any available RnD binaries"/>
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log">
         <arg value="x"/>
