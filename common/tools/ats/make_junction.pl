@@ -1,5 +1,20 @@
 #!/usr/bin/perl
 
+# Copyright (c) 2009 Symbian Foundation Ltd
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Symbian Foundation Ltd - initial contribution.
+#   Mike Kinghan, mikek@symbian.org
+#
+# Contributors:
+#
+# Description:
+#   This is a tool for sending an ATS3 testdrop to an ATS3 server.
+
 use strict;
 use Getopt::Long;
 use File::Spec;
@@ -98,6 +113,7 @@ sub usage($)
             "options:\n" .
             "  --help                        Display this help and exit\n" .
             "  --link=LINKDIR                LINKDIR specifies the junction to be created. Last component is the junction. The rest must exist\n" .
+            "                                If LINKDIR is an existing junction it is pre-emptively deleted\n" .
             "  --target=TARGDIR              TARGDIR is directory to which the junction will point.\n" .
             "                                If TARGDIR is in a substed drive, the real path will be used.\n";
     exit $error;            
