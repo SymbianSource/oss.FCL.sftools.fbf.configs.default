@@ -170,10 +170,7 @@
     
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
-        
-        <!-- run build analysis tools -->
-        <runtarget target="sf-run-analysis"/>
-        
+                
         <!-- TAG SOURCE CODE -->
         <if>
             <istrue value="${sf.spec.tagafterbuild.enable}" />
@@ -196,6 +193,9 @@
                 <runtarget target="sf-send-testpkg"/>
             </then>
         </if>
+
+        <!-- run build analysis tools -->
+        <runtarget target="sf-run-analysis"/>
 
         <runtarget target="sf-zip-logs"/>
 
