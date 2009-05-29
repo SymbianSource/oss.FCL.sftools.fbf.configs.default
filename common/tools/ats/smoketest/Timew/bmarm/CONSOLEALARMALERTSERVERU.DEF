@@ -1,0 +1,2 @@
+EXPORTS
+	StartConsoleAlarmAlertServerL__23ConsoleAlarmAlertServerPv @1 NONAME ; public: static void __cdecl ConsoleAlarmAlertServer::StartConsoleAlarmAlertServerL(void *)

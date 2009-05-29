@@ -1,5 +1,19 @@
+#!perl -w
+# Copyright (c) 2009 Symbian Foundation Ltd
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Symbian Foundation Ltd - initial contribution.
+# 
+# Contributors:
+#
+# Description:
+# Populates the template for packaging src and binaries in the build
+
 use strict;
-use warnings;
 
 use FindBin;
 use lib "$FindBin::Bin/lib";
@@ -57,7 +71,7 @@ foreach my $package (@packages)
 {
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	$package->{dst} =~ s{^/}{}g;
-	if ($package->{source} =~ m{/(sfl|oss)/sf/([^/]+)/([^/]+)})
+	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/sf/([^/]+)/([^/]+)})
 	{	    
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
 		{
@@ -65,7 +79,7 @@ foreach my $package (@packages)
 			[
 				{
 					name => "name",
-					value=> "src_$1_$2_$3",
+					value=> "src_$1_$3_$4",
 				},
 				{
 					name => "include",
@@ -104,12 +118,15 @@ foreach my $package (@packages)
 		next unless @files;
 		# Add the files to this zip object
 		@files = grep {
-			chomp;
 			s{\\}{/}g;
 			s!^[A-Z]:/$package->{dst}/!!i;
 			m{^epoc32/}i;
 		} @files;
 		push @allRndFiles, @files;
+		
+		open FILE, ">", $name ."_includefile.txt" or die "Cannot write includefile!";
+		print FILE @files;
+		close FILE;
 	}
 	else
 	{
@@ -123,3 +140,7 @@ push @{$zipConfig->{config}->{config}->{bin}->{config}->{set}}, @excludes;
 
 $xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', KeyAttr => $keyAttr);
 
+# Output all rnd files into exclude list for later
+open FILE, "> rnd_excludefile.txt" or die "Cannot write exludefile!";
+print FILE @allRndFiles;
+close FILE;

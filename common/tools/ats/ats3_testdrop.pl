@@ -1,6 +1,20 @@
 #!/usr/bin/perl
 
-#curl "http://sym-build01:8080/ats3/XTestRunExecute.do?username=admin&password=admin&testrunpath=D:\smoketests\test_drops\9.zip
+# Copyright (c) 2009 Symbian Foundation Ltd
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Symbian Foundation Ltd - initial contribution.
+#   Mike Kinghan, mikek@symbian.org
+#
+# Contributors:
+#
+# Description:
+#   This is a tool for sending an ATS3 testdrop to an ATS3 server.
+
 use strict;
 use Getopt::Long;
 use File::Copy;
@@ -109,7 +123,7 @@ sub usage($)
             "  --help                        Display this help and exit\n" .
             "  --host=HOSTAME                HOSTNAME is ATS3 server\n" .
             "  --local-test-pkg=PKGFILE      PKGFILE is the test package.\n" .
-            "                                If PKGFILE begins "..." a filename in LOCALPATH is assumed\n" .
+            "                                If PKGFILE begins \"...\" a filename in LOCALPATH is assumed\n" .
             "  --local-drop-path=LOCALPATH   Path to local directory where PKGFILE will be dropped\n" .            
             "  --host-drop-path=HOSTPATH     Host directory that is mapped to LOCALPATH.\n" .
             "                                Must agree with the properties of the registered device that the test package nominates\n" .

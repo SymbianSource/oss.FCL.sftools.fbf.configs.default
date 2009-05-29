@@ -1,0 +1,10 @@
+EXPORTS
+	?ChangeLocaleName@RTestSecureFSclient@@QAEHABVTDesC16@@@Z @ 1 NONAME ; int RTestSecureFSclient::ChangeLocaleName(class TDesC16 const &)
+	?CheckForFile@RTestSecureFSclient@@QAEHABVTDesC16@@@Z @ 2 NONAME ; int RTestSecureFSclient::CheckForFile(class TDesC16 const &)
+	?Connect@RTestSecureFSclient@@QAEHXZ @ 3 NONAME ; int RTestSecureFSclient::Connect(void)
+	?CopyFile@RTestSecureFSclient@@QAEHABVTDesC16@@0@Z @ 4 NONAME ; int RTestSecureFSclient::CopyFile(class TDesC16 const &, class TDesC16 const &)
+	?DeleteFileL@RTestSecureFSclient@@QAEHABVTDesC16@@@Z @ 5 NONAME ; int RTestSecureFSclient::DeleteFileL(class TDesC16 const &)
+	?KillProcessL@RTestSecureFSclient@@QAEXABVTDesC16@@@Z @ 6 NONAME ; void RTestSecureFSclient::KillProcessL(class TDesC16 const &)
+	?SetHomeTime@RTestSecureFSclient@@QAEHABVTTime@@@Z @ 7 NONAME ; int RTestSecureFSclient::SetHomeTime(class TTime const &)
+	?SetUpFbs@RTestSecureFSclient@@QAEXXZ @ 8 NONAME ; void RTestSecureFSclient::SetUpFbs(void)
+
