@@ -73,6 +73,65 @@
         </fmpp>
     </target>
     
+    <target name="sf-bc-check">
+        <!-- create BC dir -->
+        <mkdir dir="${build.log.dir}/BC"/>
+
+        <delete file="${build.log.dir}/BC/bc.config" quiet="true"/>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="BASELINE_NAME=${sf.spec.bccheck.baseline.name}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="BASELINE_SDK_DIR=${sf.spec.bccheck.baseline.skd.dir}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="BASELINE_SDK_S60_VERSION=${sf.spec.bccheck.baseline.s60.version}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="CURRENT_NAME=${build.id}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="CURRENT_SDK_DIR=${build.drive}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="CURRENT_SDK_S60_VERSION=${sf.spec.bccheck.current.s60.version}"/>
+        </exec>
+
+        <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
+        <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
+			<arg value="CheckBC.py"/>
+            <arg value="${build.log.dir}/BC/bc.config"/>
+            <arg value="-la"/>
+            <arg value="-f"/>
+            <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
+        </exec>
+        <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
+        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="true" verbose="true"/>
+
+        <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
+        <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
+			<arg value="CheckBC.py"/>
+            <arg value="${build.log.dir}/BC/bc.config"/>
+            <arg value="-ha"/>
+            <arg value="-f"/>
+            <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
+        </exec>
+        <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
+        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="true" verbose="true"/>
+    </target>
+
     <target name="sf-prebuild">
         <echo>[SF-PREBUILD]</echo>
         
@@ -198,6 +257,13 @@
         <runtarget target="sf-run-analysis"/>
 
         <runtarget target="sf-zip-logs"/>
+
+        <!-- Do BC check -->
+        <if><istrue value="${sf.spec.bccheck.enable}"/>
+            <then>
+                <runtarget target="sf-bc-check"/>
+            </then>
+        </if>
 
         <!-- PUBLISH LOGS/REPORTS -->
         <if>
