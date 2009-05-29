@@ -14,7 +14,9 @@
     
     <property name="sf.spec.systemdefinition.assemble" value="true"/>
     <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
-    
+
+    <property name="sf.spec.pdt.root" value="C:\Symbian\Tools\PDT_1.0"/>
+
     <property name="sf.spec.sbs.config" value="armv5"/>
     
     <property name="sf.spec.build.target" value="all"/>
@@ -78,6 +80,13 @@
     <property name="sf.spec.test.package.name"      value="D:\ATS3\smoketest_package\9.zip"/>
     <property name="sf.spec.test.package.droppath"  value="D:\ATS3\TestDrops"/>
 
+    <!-- BC check properties -->
+    <property name="sf.spec.bccheck.enable" value="false"/>
+    <property name="sf.spec.bccheck.baseline.name" value="SDK_3rd_Edition"/>
+    <property name="sf.spec.bccheck.baseline.skd.dir" value="C:\Symbian\9.1\S60_3rd_MR\"/>
+    <property name="sf.spec.bccheck.baseline.s60.version" value="5.1"/>
+    <property name="sf.spec.bccheck.current.s60.version" value="5.1"/>
+    <property name="sf.spec.bccheck.reportid" value="report"/>
 </project>
 
 
