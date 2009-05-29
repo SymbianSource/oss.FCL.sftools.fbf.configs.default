@@ -423,6 +423,7 @@
         <echo message="Unpacking any available RnD binaries"/>
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log">
         <arg value="x"/>
+        <arg value="-x@${sf.common.config.dir}/tools/lists/rebuiltok.txt"/>
         <arg value="${build.drive}/output/zips/bin_rnd*.zip"/>
         </exec>
     </target>
