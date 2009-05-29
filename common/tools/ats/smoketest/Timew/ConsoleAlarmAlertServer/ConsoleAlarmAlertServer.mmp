@@ -1,0 +1,44 @@
+// Copyright (c) 1999-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+TARGET					ConsoleAlarmAlertServer.dll
+TARGETTYPE				dll
+CAPABILITY   All -TCB
+UID						0x1000008D	0x101F502A
+VENDORID 0x70000001
+
+SOURCEPATH				..\ConsoleAlarmAlertServer\Source
+
+SOURCE					ConsoleAlarmAlertServer.cpp
+SOURCE					ConsoleAlarmAlertSession.cpp
+SOURCE					ConsoleAlarmAlertConsole.cpp
+SOURCE					ConsoleAlarmAlertServerMain.cpp
+SOURCE					ConsoleAlarmAlertLEDFlasher.cpp
+
+USERINCLUDE				..\ConsoleAlarmAlertServer\Include
+//USERINCLUDE				..\AlarmAlert\Shared
+//USERINCLUDE				..\Shared\Include
+
+SYSTEMINCLUDE			\Epoc32\Include
+
+LIBRARY					euser.lib
+LIBRARY					hal.lib
+LIBRARY					AlarmShared.lib
+
+DEFFILE					ConsoleAlarmAlertServer.DEF
+
+START WINS
+	baseaddress			0x40700000
+END

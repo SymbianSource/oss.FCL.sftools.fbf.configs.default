@@ -1,0 +1,50 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// Using relative paths for sourcepath and user includes
+// 
+//
+
+#include "..\..\Group\Configuration.cfg"
+
+TARGET			SmokeTest_Utils.dll
+TARGETTYPE		dll
+UID           	0x1000008D 0x101FF341
+
+#if (!defined __NO_VENDORID__)
+VENDORID		0x70000001
+#endif
+
+CAPABILITY		All -TCB
+
+SOURCEPATH		..\Src
+
+SOURCE			SmokeTestTimeOutTimer.cpp
+SOURCE			SmokeTestActive.cpp
+SOURCE			TestStepSmokeTest.cpp
+SOURCE			SmokeTestProperty.cpp
+
+USERINCLUDE		..\Inc
+USERINCLUDE		..\..\Group
+
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\test
+
+LIBRARY			euser.lib
+LIBRARY			efsrv.lib
+LIBRARY			TestExecuteUtils.lib 
+LIBRARY			TestExecuteLogClient.lib
+LIBRARY			TestConfigFileParser.lib
+
+// We're quite heavy on the stack... 4k in WinS isn't enough...
+EPOCSTACKSIZE	0x6000
