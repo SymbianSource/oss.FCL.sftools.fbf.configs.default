@@ -1,0 +1,31 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// Integration test system build description file for self test suite
+// 
+//
+
+PRJ_TESTEXPORTS
+// For Emulator
+../Inc/SmokeTestTimeOutTimer.h			/epoc32/include/test/smoketesttimeouttimer.h
+../Inc/SmokeTestActive.h					/epoc32/include/test/smoketestactive.h
+../Inc/TestStepSmokeTest.h			/epoc32/include/test/teststepsmoketest.h
+../Inc/SmokeTestProperty.h				/epoc32/include/test/smoketestproperty.h
+../Inc/SmokeTestSecureFSclientserver.h			/epoc32/include/test/smoketestsecurefsclientserver.h
+../Inc/SmokeTestSecureFSclient.h				/epoc32/include/test/smoketestsecurefsclient.h
+../Inc/SmokeTestSecureFSserver.h				/epoc32/include/test/smoketestsecurefsserver.h
+
+PRJ_TESTMMPFILES
+SmokeTestSecureFSclient.mmp
+SmokeTestSecureFSserver.mmp
+SmokeTest_Utils.mmp

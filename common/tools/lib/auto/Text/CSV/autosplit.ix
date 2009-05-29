@@ -1,0 +1,13 @@
+# Index created by AutoSplit for blib\lib\Text\CSV.pm
+#    (file acts as timestamp)
+package Text::CSV;
+sub version  ;
+sub new  ;
+sub status  ;
+sub error_input  ;
+sub string  ;
+sub fields  ;
+sub combine  ;
+sub parse  ;
+sub _bite  ;
+1;

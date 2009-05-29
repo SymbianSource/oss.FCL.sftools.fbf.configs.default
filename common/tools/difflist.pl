@@ -1,4 +1,18 @@
 #! perl -w
+# Copyright (c) 2009 Symbian Foundation Ltd
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Symbian Foundation Ltd - initial contribution.
+# 
+# Contributors:
+#
+# Description:
+# Compares two files
+
 use strict;
 
 my $element;
@@ -7,9 +21,9 @@ my @intersection = ();
 my @difference = ();
 my %count = ();
 
-my $file1 = shift or die "Usage: $0 file1 file2\n";
-my $file2 = shift or die "Usage: $0 file1 file2\n";
-
+my $file1 = shift or die "Usage: $0 file1 file2 | optional -I[ntersection]\n";
+my $file2 = shift or die "Usage: $0 file1 file2 | optional -I[ntersection]\n";
+my $mode  = shift;
 open FILE1, "<$file1" or die "ERROR: Can't read $file1";
 open FILE2, "<$file2" or die "ERROR: Can't read $file2";
 
@@ -26,10 +40,20 @@ foreach $element (keys %count) {
     push @{ $count{$element} > 1 ? \@intersection : \@difference }, $element;
 }
 
-if (@difference > 0) {
-    foreach (@difference){
-        print $_;
-    }
+if (!defined $mode) {
+	if (@difference > 0) {
+		foreach (@difference){
+			print $_;
+		}
+	} else {
+		print "* Files are identical\n";
+	}
+} elsif ($mode eq "-I") {
+	if (@intersection > 0) {
+		foreach (@intersection){
+			print $_;
+		}
+	}
 } else {
-    print "* Files are identical\n";
+	print "Usage: $0 file1 file2 | optional -I[ntersection]\n";
 }

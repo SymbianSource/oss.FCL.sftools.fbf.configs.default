@@ -1,0 +1,63 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// using relative paths for sourcepath and user includes
+// 
+//
+
+
+TARGET			Smoketest_Timew_Server.exe
+TARGETTYPE		exe
+UID				0x1000007A 0x101F7775
+
+#if (!defined __NO_VENDORID__)
+VENDORID		0x70000001
+#endif
+
+CAPABILITY		WriteUserData ReadUserData
+
+SOURCEPATH		..\Src
+
+SOURCE			TestTimewServer.cpp
+SOURCE			TestTimewSetAlarm.cpp
+SOURCE			TestTimewBase.cpp
+SOURCE			SM_ALM.CPP
+SOURCE			SM_UTL.CPP
+SOURCE			SM_MOD.CPP
+SOURCE			SM_RSP.CPP
+
+USERINCLUDE		..\Inc ..\..\Group
+USERINCLUDE		..\ConsoleAlarmAlertServer\Include
+
+
+SYSTEMINCLUDE	\Epoc32\include
+SYSTEMINCLUDE	\Epoc32\include\Test
+SYSTEMINCLUDE	\Epoc32\include\ecom
+
+library  		BAFL.LIB
+library			FBSCLI.LIB
+library			WS32.LIB
+library			CONE.LIB
+library			DIAL.LIB
+library			FEPBASE.LIB
+LIBRARY			apparc.lib
+LIBRARY			etext.lib
+LIBRARY			estor.lib
+LIBRARY			efsrv.lib
+
+library			AlarmClient.lib
+library			AlarmShared.lib
+library			EUSER.LIB
+LIBRARY			ecom.lib
+LIBRARY			TestExecuteUtils.lib
+LIBRARY			TestExecuteLogClient.lib

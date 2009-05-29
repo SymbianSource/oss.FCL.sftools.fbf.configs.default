@@ -1,0 +1,11 @@
+component	testtools_smoketest
+source	\sf\app\techview\buildverification\smoketest
+exports \sf\app\techview\buildverification\smoketest\Group
+# binary	\sf\app\techview\buildverification\smoketest\group	all
+
+notes_source	\component_defs\release.src
+
+#  == IPR section auto-inserted from distribution.policy files  ==
+ipr T 
+
+# == end auto-inserted section ==

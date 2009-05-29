@@ -17,21 +17,37 @@
   <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <target name="create-canonical-sysdef-file">
 
-       <if>
-          <!-- TODO use scripting to match this -->
-          <equals arg1="${sf.spec.sysdef.version}" arg2="1.4.0" />
-          <then>
-            <echo message="Using System Definition v1.4.0 "/>
-            <runtarget target="compile.create-canonical-sysdef-file"/>
-          </then>
-          <else>
-            <runtarget target="preprocess-sysdef-files"/>
-            <echo message="Exporting preprocessed System Definition"/>
-
+    <runtarget target="preprocess-sysdef-files"/>
+    <echo message="Exporting preprocessed System Definition"/>
+    <if><istrue value="${sf.spec.splitbuild}"/>
+       <then>
+       <if><istrue value="${sf.spec.os.skipbuild}" />
+            <then><echo message="Skipping OS sysdef creation"/></then>
+       <else>
             <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\0000000000000001_system_definition.xml"
-                  tofile="${canonical.sysdef.file}" failonerror="true" verbose="true"/>
-          </else>
+            <copy file="${build.output.dir}\build\input\0000000000000001_system_model_os.xml"
+            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+       </else>
+       </if>
+
+       <if><istrue value="${sf.spec.s60.skipbuild}" />
+            <then><echo message="Skipping S60 sysdef creation"/></then>
+       <else>
+            <!-- TODO use better method to export or wait for GenXML fix?-->
+            <copy file="${build.output.dir}\build\input\0000000000000001_system_model_s60.xml"
+            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+	   </else>
+	   </if>
+	   </then>
+	
+	<else>
+	    <!-- TODO use better method to export or wait for GenXML fix?-->
+        <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
+        tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
+
+	    <!-- TODO targets for single sysdef build -->
+	    <runtarget target="sf-os-compile"/>
+	</else>
         </if>
 
   </target>
@@ -71,32 +87,6 @@
             </sequential>
         </for>
     </target>
-
-    <target name="generate-layers">
-       <echo message="canno-file:${canonical.sysdef.file}"/>
-       <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
-
-	   <!-- split builds currently generate layer sysdef from original -->
-	   <if><istrue value="${sf.spec.splitbuild}"/>
-       <then>
-           <hlm:compileGenxmlFilterMacro xmlns:hlm="http://www.nokia.com/helium" input="${canonical.sysdef.file}" filter="raptor_${sysdef.configuration}" output="${build.output.dir}/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-	   </then>
-	   <else>
-	       <!-- but all we want is a sysdef with the config name appended, so just copy it -->
-           <echo message="INFO: skip genxml and copy sysdef to sysdef+config name"/>
-           <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-       </else>
-    </if>
-
-	<copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml">
-		<filterchain>
-			<linecontainsregexp negate="true">
-			  <regexp pattern="^\s*$"/>
-			</linecontainsregexp>
-		</filterchain>
-	</copy>
-	<delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-	</target>
 
   <!--
     == Name: SF-COMPILE
@@ -140,29 +130,29 @@
   <target name="sf-os-compile">
 
         <hlm:argSet id="sbs.tools2.var">
-                <hlm:arg name="config" value="tools2_rel" />
+                <hlm:arg name="config" value="tools2_rel.whatlog" />
                 <hlm:arg name="singlejob" value="false" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
         </hlm:argSet>
 
 		<hlm:argSet id="sbs.tools2.clean.var">
-                <hlm:arg name="config" value="tools2_rel" />
+                <hlm:arg name="config" value="tools2_rel.whatlog" />
                 <hlm:arg name="singlejob" value="false" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-				<hlm:arg name="command" value="CLEAN" />
+		<hlm:arg name="command" value="CLEAN --check" />
         </hlm:argSet>
 
         <hlm:argSet id="sbs.tools.var">
-                <hlm:arg name="config" value="tools_rel" />
+                <hlm:arg name="config" value="tools_rel.whatlog" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
         </hlm:argSet>
 
 		<hlm:argSet id="sbs.tools.clean.var">
-                <hlm:arg name="config" value="tools_rel" />
+                <hlm:arg name="config" value="tools_rel.whatlog" />
                 <hlm:arg name="singlejob" value="true" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-				<hlm:arg name="command" value="CLEAN" />
+		<hlm:arg name="command" value="CLEAN --check" />
         </hlm:argSet>
 
         <hlm:argSet id="sbs.main.sbs.var">
@@ -173,13 +163,13 @@
 		<hlm:argSet id="sbs.main.clean.sbs.var">
                 <hlm:arg name="config" value="${sf.spec.sbs.config}" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-				<hlm:arg name="command" value="CLEAN" />
+		<hlm:arg name="command" value="CLEAN --check" />
         </hlm:argSet>
 		
 		<hlm:argSet id="sbs.main.what.sbs.var">
                 <hlm:arg name="config" value="${sf.spec.sbs.config}" />
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-				<hlm:arg name="command" value="WHAT" />
+		<hlm:arg name="command" value="WHAT" />
         </hlm:argSet>
 
         <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
@@ -202,15 +192,19 @@
         </antcall>
 		
 		<!-- OS clean main build -->
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-                <param name="build.system" value="${sf.spec.build.system}" />
-                <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
-                <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-                <reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
-                <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-                <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall>
+		<if><istrue value="${sf.spec.baseline.clean}"/>
+			<then>
+				<antcall target="compile-main" inheritAll="false" inheritRefs="true">
+						<param name="build.system" value="${sf.spec.build.system}" />
+						<param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
+						<param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+						<param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
+						<reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
+						<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+						<reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
+				</antcall>
+			</then>
+		</if>
 		
 		<antcall target="sf-list-dir" inheritAll="false">
 			<param name="sf.list.name" value="post-clean"/>
@@ -273,6 +267,15 @@
 			<param name="sf.list_a.name" value="post-clean"/>
 			<param name="sf.list_b.name" value="post-build-main"/>
 		</antcall>
+		
+		<!-- what has been cleaned and rebuilt -->
+		<antcall target="sf-intersect-dir" inheritAll="false">
+			<param name="sf.list_a.name" value="post-clean_delta"/>       <!-- clean list -->
+			<param name="sf.list_b.name" value="post-build-main_delta"/>  <!-- built list -->
+		</antcall>
+		
+		<!-- what has been cleaned and not rebuilt -->
+		
   </target>
 
   <!--
@@ -306,13 +309,13 @@
 			<hlm:argSet id="sbs.main.clean.sbs.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.config}" />
           			<hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-					<hlm:arg name="command" value="CLEAN" />
+				<hlm:arg name="command" value="CLEAN --check" />
     		</hlm:argSet>
 			
 			<hlm:argSet id="sbs.main.what.sbs.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.config}" />
           			<hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-					<hlm:arg name="command" value="WHAT" />
+				<hlm:arg name="command" value="WHAT" />
     		</hlm:argSet>
 
     		<hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
@@ -333,14 +336,18 @@
     		</antcall>
 			
 			<!-- s60 clean main build -->
-    		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
-          			<param name="build.system" value="${sf.spec.build.system}" />
-          			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/>
-          			<reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
-          			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-          			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-    		</antcall>
+			<if><istrue value="${sf.spec.baseline.clean}"/>
+				<then>
+					<antcall target="compile-main" inheritAll="false" inheritRefs="true">
+							<param name="build.system" value="${sf.spec.build.system}" />
+							<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
+							<param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/>
+							<reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
+							<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+							<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
+					</antcall>
+				</then>
+			</if>
 
 			<antcall target="sf-list-dir" inheritAll="false">
 				<param name="sf.list.name" value="post-s60-clean"/>
@@ -371,32 +378,51 @@
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/>
+                                <param name="sf.spec.sysdef.version" value="${sf.spec.s60.sysdef.version}"/>
           			<reference refid="sbs.main.sbs.var" torefid="sbs.var" />
           			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
 			
+			<runtarget target="sf-s60-create-cenrep"/>
+			
 			<antcall target="sf-list-dir" inheritAll="false">
 				<param name="sf.list.name" value="post-s60-build-main"/>
 			</antcall>
 
-    		<!-- s60 postbuild bldmelast using ebs -->
-    		<antcall target="compile-main" inheritAll="false">
-          			<param name="build.system" value="ebs" />
-          			<param name="sysdef.configurations.list" value="S60_bldmelast" />
-          			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-    		</antcall>
-
-			<antcall target="sf-list-dir" inheritAll="false">
-				<param name="sf.list.name" value="post-s60-bldmelast"/>
-			</antcall>
-
-			<!-- what has been built by tools+2+main+bldmelast -->
+			<!-- what has been built by tools+2+main -->
 			<antcall target="sf-delta-dir" inheritAll="false">
 				<param name="sf.list_a.name" value="s60-baseline"/>
-				<param name="sf.list_b.name" value="post-s60-bldmelast"/>
+				<param name="sf.list_b.name" value="post-s60-build-main"/>
 			</antcall>		
+			
+			<!-- what has been cleaned and rebuilt -->
+			<antcall target="sf-intersect-dir" inheritAll="false">
+				<param name="sf.list_a.name" value="post-s60-clean_delta"/>       <!-- clean list -->
+				<param name="sf.list_b.name" value="post-s60-build-main_delta"/>  <!-- built list -->
+			</antcall>
+		
+	</target>
+
+	<target name="sf-s60-create-cenrep">
+        <echo message="INFO Generating CenRep"/>
+        <exec executable="${helium.dir}/../ConfigurationTool/cli_build.cmd" dir="${build.drive}" failonerror="false" output="${build.log.dir}/${build.id}_create_cenrep.log">
+		  <arg value="-master_conf"/>
+		  <arg value="s60"/>
+		  <arg value="-impl"/>
+		  <arg value="/epoc32/rom/config/confml_data/s60"/>
+		  <arg value="-confml"/>
+		  <arg value="/epoc32/rom/config/confml_data/s60"/>
+		  <arg value="-ignore_errors"/>
+        </exec>
+		
+		<if><available  file="${build.drive}/cli_build_error.log" />
+		<then>
+            <echo message="INFO CenRep error log found, moving to ${build.log.dir}" />
+    		<move file="${build.drive}/cli_build_error.log" todir="${build.log.dir}" failonerror="false"/>
+		</then>
+		</if>
+		
 	</target>
 
   <!-- import sf-common-config -->

@@ -1,0 +1,53 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// using relative paths for sourcepath and user includes
+// 
+//
+
+
+TARGET          smoketest_apploader.exe
+TARGETTYPE		exe
+UID				0x1000007A 0x101F7776
+
+#if (!defined __NO_VENDORID__)
+VENDORID		0x70000001
+#endif
+
+CAPABILITY		All -TCB
+
+
+SOURCEPATH		..\Src
+
+SOURCE			TestAppLoaderServer.cpp
+SOURCE			TestAppLoaderBase.cpp
+SOURCE			TestAppLoaderAppStart.cpp
+SOURCE			TestAppLoaderEndTask.cpp
+SOURCE			TestAppLoaderKillProcess.cpp
+SOURCE			TestAppLoaderTaskRunning.cpp
+
+USERINCLUDE		..\Inc ..\..\Group
+
+SYSTEMINCLUDE	\Epoc32\include
+SYSTEMINCLUDE	\Epoc32\include\Test
+
+LIBRARY			apparc.lib
+LIBRARY			euser.lib
+LIBRARY			etext.lib
+LIBRARY			estor.lib
+LIBRARY			efsrv.lib
+LIBRARY			apgrfx.lib
+LIBRARY			ws32.lib
+LIBRARY			cone.lib
+LIBRARY			TestExecuteUtils.lib
+LIBRARY			TestExecuteLogClient.lib

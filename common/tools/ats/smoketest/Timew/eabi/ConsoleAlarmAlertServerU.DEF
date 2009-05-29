@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN23ConsoleAlarmAlertServer29StartConsoleAlarmAlertServerLEPv @ 1 NONAME
+	_ZTI24CConsoleAlarmAlertServer @ 2 NONAME ; #<TI>#
+	_ZTI25CConsoleAlarmAlertConsole @ 3 NONAME ; #<TI>#
+	_ZTI25CConsoleAlarmAlertSession @ 4 NONAME ; #<TI>#
+	_ZTI28CConsoleAlarmAlertLEDFlasher @ 5 NONAME ; #<TI>#
+	_ZTV24CConsoleAlarmAlertServer @ 6 NONAME ; #<VT>#
+	_ZTV25CConsoleAlarmAlertConsole @ 7 NONAME ; #<VT>#
+	_ZTV25CConsoleAlarmAlertSession @ 8 NONAME ; #<VT>#
+	_ZTV28CConsoleAlarmAlertLEDFlasher @ 9 NONAME ; #<VT>#
+
