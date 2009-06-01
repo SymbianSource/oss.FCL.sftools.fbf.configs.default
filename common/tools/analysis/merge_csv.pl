@@ -32,8 +32,8 @@ if(!-e $filelist)
         my %ziptimes;
         if(defined $zipfile)
           {
-          open(ZIP,"7z l $zipfile 2>&1|")  or die "Error: Couldn't look in $zipfile\n";
-#          print "time,file\n";
+          open(ZIP,"7za l $zipfile 2>&1|")  or die "Error: Couldn't look in $zipfile\n";
+          #print "time,file\n";
           while( my $line = <ZIP>)
             {
             if($line =~ m/^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})\s\S{5}\s+(\d+)\s+\d+\s+(.+)$/) #ignoring packed size...
@@ -44,7 +44,7 @@ if(!-e $filelist)
               $name =~ s/\\/\//g;
               $name = lc($name);
               $ziptimes{$name} = $time;
-#              print "$time,$name\n";
+              #print "$time,$name\n";
               }
             }
           close ZIP;

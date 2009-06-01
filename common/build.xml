@@ -554,6 +554,14 @@
             <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
             <arg value="${build.id}_what_results.csv"/>
             <arg value="${build.id}_list_results.log"/>
+	    <arg value="${build.drive}/output/zips/postbuild/bin_rnd_internal_initial.zip"/>
+        </exec>
+	<exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
+            <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+	    <arg value="${build.id}_what_results.csv_results.csv"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_os_contributed.xml"/>
+	    <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
         </exec>
 
         <echo message="Running collision analysis"/>
