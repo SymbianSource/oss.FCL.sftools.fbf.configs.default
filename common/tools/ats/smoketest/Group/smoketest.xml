@@ -186,11 +186,6 @@
 		</session>
 	</plan>
 	<files>
-		<file>smoketest/general/setup_smoketest_agenda.script</file>
-		<file>smoketest/general/setup_smoketest_apploader.script</file>
-		<file>smoketest/general/setup_smoketest_contacts.script</file>
-		<file>smoketest/general/setup_smoketest_mess.script</file>
-		<file>smoketest/general/setup_smoketest_timew.script</file>
 		<file>smoketest/general/smoketest_agenda.ini</file>
 		<file>smoketest/general/smoketest_agenda.script</file>
 		<file>smoketest/general/smoketest_apploader.ini</file>
