@@ -82,6 +82,8 @@
 
     <!-- BC check properties -->
     <property name="sf.spec.bccheck.enable" value="false"/>
+    <property name="sf.spec.bccheck.enable.la" value="true"/>
+    <property name="sf.spec.bccheck.enable.ha" value="true"/>
     <property name="sf.spec.bccheck.baseline.name" value="SDK_3rd_Edition"/>
     <property name="sf.spec.bccheck.baseline.skd.dir" value="C:\Symbian\9.1\S60_3rd_MR\"/>
     <property name="sf.spec.bccheck.baseline.s60.version" value="5.1"/>

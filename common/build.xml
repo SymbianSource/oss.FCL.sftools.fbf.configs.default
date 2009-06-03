@@ -78,6 +78,12 @@
         <mkdir dir="${build.log.dir}/BC"/>
 
         <delete file="${build.log.dir}/BC/bc.config" quiet="true"/>
+        <delete file="${build.log.dir}/BC/BBCResults.xsl" quiet="true"/>
+        <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
+        <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
+        <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
+        <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
+
         <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
             <arg value="/c"/>
             <arg value="echo"/>
@@ -109,27 +115,33 @@
             <arg value="CURRENT_SDK_S60_VERSION=${sf.spec.bccheck.current.s60.version}"/>
         </exec>
 
-        <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
-        <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
-			<arg value="CheckBC.py"/>
-            <arg value="${build.log.dir}/BC/bc.config"/>
-            <arg value="-la"/>
-            <arg value="-f"/>
-            <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
-        </exec>
-        <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
-        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="true" verbose="true"/>
+        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/BBCResults.xsl" tofile="${build.log.dir}/BC/BBCResults.xsl" failonerror="true" verbose="true"/>
 
-        <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
-        <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
-			<arg value="CheckBC.py"/>
-            <arg value="${build.log.dir}/BC/bc.config"/>
-            <arg value="-ha"/>
-            <arg value="-f"/>
-            <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
-        </exec>
-        <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
-        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="true" verbose="true"/>
+        <if><istrue value="${sf.spec.bccheck.enable.la}"/>
+            <then>
+                <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
+			        <arg value="CheckBC.py"/>
+                    <arg value="${build.log.dir}/BC/bc.config"/>
+                    <arg value="-la"/>
+                    <arg value="-f"/>
+                    <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
+                </exec>
+                <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="true" verbose="true"/>
+            </then>
+        </if>
+
+        <if><istrue value="${sf.spec.bccheck.enable.ha}"/>
+            <then>
+                <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
+		        	<arg value="CheckBC.py"/>
+                    <arg value="${build.log.dir}/BC/bc.config"/>
+                    <arg value="-ha"/>
+                    <arg value="-f"/>
+                    <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
+                </exec>
+                <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="true" verbose="true"/>
+            </then>
+        </if>
     </target>
 
     <target name="sf-prebuild">
