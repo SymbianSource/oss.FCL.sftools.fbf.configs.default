@@ -73,6 +73,77 @@
         </fmpp>
     </target>
     
+    <target name="sf-bc-check">
+        <!-- create BC dir -->
+        <mkdir dir="${build.log.dir}/BC"/>
+
+        <delete file="${build.log.dir}/BC/bc.config" quiet="true"/>
+        <delete file="${build.log.dir}/BC/BBCResults.xsl" quiet="true"/>
+        <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
+        <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
+        <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
+        <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
+
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="BASELINE_NAME=${sf.spec.bccheck.baseline.name}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="BASELINE_SDK_DIR=${sf.spec.bccheck.baseline.skd.dir}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="BASELINE_SDK_S60_VERSION=${sf.spec.bccheck.baseline.s60.version}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="CURRENT_NAME=${build.id}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="CURRENT_SDK_DIR=${build.drive}"/>
+        </exec>
+        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="CURRENT_SDK_S60_VERSION=${sf.spec.bccheck.current.s60.version}"/>
+        </exec>
+
+        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/BBCResults.xsl" tofile="${build.log.dir}/BC/BBCResults.xsl" failonerror="true" verbose="true"/>
+
+        <if><istrue value="${sf.spec.bccheck.enable.la}"/>
+            <then>
+                <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
+			        <arg value="CheckBC.py"/>
+                    <arg value="${build.log.dir}/BC/bc.config"/>
+                    <arg value="-la"/>
+                    <arg value="-f"/>
+                    <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
+                </exec>
+                <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="true" verbose="true"/>
+            </then>
+        </if>
+
+        <if><istrue value="${sf.spec.bccheck.enable.ha}"/>
+            <then>
+                <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
+		        	<arg value="CheckBC.py"/>
+                    <arg value="${build.log.dir}/BC/bc.config"/>
+                    <arg value="-ha"/>
+                    <arg value="-f"/>
+                    <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
+                </exec>
+                <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="true" verbose="true"/>
+            </then>
+        </if>
+    </target>
+
     <target name="sf-prebuild">
         <echo>[SF-PREBUILD]</echo>
         
@@ -170,10 +241,7 @@
     
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
-        
-        <!-- run build analysis tools -->
-        <runtarget target="sf-run-analysis"/>
-        
+                
         <!-- TAG SOURCE CODE -->
         <if>
             <istrue value="${sf.spec.tagafterbuild.enable}" />
@@ -197,7 +265,17 @@
             </then>
         </if>
 
+        <!-- run build analysis tools -->
+        <runtarget target="sf-run-analysis"/>
+
         <runtarget target="sf-zip-logs"/>
+
+        <!-- Do BC check -->
+        <if><istrue value="${sf.spec.bccheck.enable}"/>
+            <then>
+                <runtarget target="sf-bc-check"/>
+            </then>
+        </if>
 
         <!-- PUBLISH LOGS/REPORTS -->
         <if>
@@ -423,6 +501,7 @@
         <echo message="Unpacking any available RnD binaries"/>
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log">
         <arg value="x"/>
+        <arg value="-x@${sf.common.config.dir}/tools/lists/rebuiltok.txt"/>
         <arg value="${build.drive}/output/zips/bin_rnd*.zip"/>
         </exec>
     </target>
@@ -487,6 +566,14 @@
             <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
             <arg value="${build.id}_what_results.csv"/>
             <arg value="${build.id}_list_results.log"/>
+	    <arg value="${build.drive}/output/zips/postbuild/bin_rnd_internal_initial.zip"/>
+        </exec>
+	<exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
+            <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+	    <arg value="${build.id}_what_results.csv_results.csv"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_os_contributed.xml"/>
+	    <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
         </exec>
 
         <echo message="Running collision analysis"/>

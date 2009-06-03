@@ -1,0 +1,40 @@
+EXPORTS
+	_ZN11CTestActive4NewLER19MTestActiveCallbacki @ 1 NONAME
+	_ZN11CTestActive5NewLCER19MTestActiveCallbacki @ 2 NONAME
+	_ZN11CTestActive8ActivateEv @ 3 NONAME
+	_ZN11CTestActiveD0Ev @ 4 NONAME
+	_ZN11CTestActiveD1Ev @ 5 NONAME
+	_ZN11CTestActiveD2Ev @ 6 NONAME
+	_ZN13CTestProperty12GetPropertyLE4TUidiR5TDes8 @ 7 NONAME
+	_ZN13CTestProperty12GetPropertyLE4TUidiR6TDes16 @ 8 NONAME
+	_ZN13CTestProperty12GetPropertyLE4TUidiRi @ 9 NONAME
+	_ZN13CTestProperty12SetPropertyLE4TUidiRK6TDesC8 @ 10 NONAME
+	_ZN13CTestProperty12SetPropertyLE4TUidiRK7TDesC16 @ 11 NONAME
+	_ZN13CTestProperty12SetPropertyLE4TUidii @ 12 NONAME
+	_ZN13CTestPropertyC1ER9CTestStep @ 13 NONAME
+	_ZN13CTestPropertyC2ER9CTestStep @ 14 NONAME
+	_ZN13CTestPropertyD0Ev @ 15 NONAME
+	_ZN13CTestPropertyD1Ev @ 16 NONAME
+	_ZN13CTestPropertyD2Ev @ 17 NONAME
+	_ZN18CTestStepSmokeTest13GetCapabilityE7TPtrC16R11TCapability @ 18 NONAME
+	_ZN18CTestStepSmokeTest13VerifyUTCTimeE5TTime @ 19 NONAME
+	_ZN18CTestStepSmokeTest19doTestStepPreambleLEv @ 20 NONAME
+	_ZN18CTestStepSmokeTest20doTestStepPostambleLEv @ 21 NONAME
+	_ZN18CTestStepSmokeTestC2Ev @ 22 NONAME
+	_ZN18CTestStepSmokeTestD0Ev @ 23 NONAME
+	_ZN18CTestStepSmokeTestD1Ev @ 24 NONAME
+	_ZN18CTestStepSmokeTestD2Ev @ 25 NONAME
+	_ZN17CTestTimeOutTimer4NewLER25MTestTimeOutTimerCallbacki @ 26 NONAME
+	_ZN17CTestTimeOutTimer5NewLCER25MTestTimeOutTimerCallbacki @ 27 NONAME
+	_ZN17CTestTimeOutTimerD0Ev @ 28 NONAME
+	_ZN17CTestTimeOutTimerD1Ev @ 29 NONAME
+	_ZN17CTestTimeOutTimerD2Ev @ 30 NONAME
+	_ZTI11CTestActive @ 31 NONAME ; #<TI>#
+	_ZTI13CTestProperty @ 32 NONAME ; #<TI>#
+	_ZTI18CTestStepSmokeTest @ 33 NONAME ; #<TI>#
+	_ZTI17CTestTimeOutTimer @ 34 NONAME ; #<TI>#
+	_ZTV11CTestActive @ 35 NONAME ; #<VT>#
+	_ZTV13CTestProperty @ 36 NONAME ; #<VT>#
+	_ZTV18CTestStepSmokeTest @ 37 NONAME ; #<VT>#
+	_ZTV17CTestTimeOutTimer @ 38 NONAME ; #<VT>#
+

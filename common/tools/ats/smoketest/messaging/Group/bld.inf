@@ -1,0 +1,27 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// Integration test system build description file for self test suite
+// 
+//
+
+PRJ_TESTEXPORTS
+
+../Scripts/Smoketest_CreateSmsAccount.script	z:/smoketest/smoketest_createsmsaccount.script
+../Scripts/setup_Smoketest_Mess.script			z:/smoketest/setup_smoketest_mess.script
+../Scripts/Smoketest_Mess.script				z:/smoketest/smoketest_mess.script
+../TestData/Sms/Message1.txt					z:/smoketest/sms/message1.txt
+../TestData/Smoketest_Mess.ini			   		z:/smoketest/smoketest_mess.ini
+
+PRJ_TESTMMPFILES
+Smoketest_Mess.mmp

@@ -1,0 +1,63 @@
+//
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+LOAD_SUITE smoketest_apploader -SharedData
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0001
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0001
+//! @SYMTestCaseDesc	Start Smoketest_system.exe, and kill the process
+	RUN_TEST_STEP		1000	smoketest_apploader	AppStart	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_LAUNCH_0001
+	DELAY				5000
+	RUN_TEST_STEP		1000	smoketest_apploader	KillProcess	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_END_0001
+END_TESTCASE 			SMOKE_APP_LAUNCH_0001
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0002
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0002
+//! @SYMTestCaseDesc	Verify the "Telephone" task is running
+	RUN_TEST_STEP		1000	smoketest_apploader	TaskRunning	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_RUNNING_0002
+END_TESTCASE 			SMOKE_APP_LAUNCH_0002
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0003
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0003
+//! @SYMTestCaseDesc	Verify the "Clock" task is running
+	RUN_TEST_STEP		1000	smoketest_apploader	TaskRunning	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_RUNNING_0003
+END_TESTCASE 			SMOKE_APP_LAUNCH_0003
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0004
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0004
+//! @SYMTestCaseDesc	Verify the "Messaging" task is running
+	RUN_TEST_STEP		1000	smoketest_apploader	TaskRunning	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_RUNNING_0004
+END_TESTCASE 			SMOKE_APP_LAUNCH_0004
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0005
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0005
+//! @SYMTestCaseDesc	Start the SymcML task and end it.
+	RUN_TEST_STEP		1000	smoketest_apploader	AppStart	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_LAUNCH_0005
+	DELAY				5000
+	RUN_TEST_STEP		1000	smoketest_apploader	EndTask		c:\smoketest\smoketest_apploader.ini	SMOKE_APP_END_0005
+END_TESTCASE 	SMOKE_APP_LAUNCH_0005
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0006
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0006
+//! @SYMTestCaseDesc	Verify the "Calendar" task is running
+	RUN_TEST_STEP		1000	smoketest_apploader	TaskRunning	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_RUNNING_0006
+END_TESTCASE 			SMOKE_APP_LAUNCH_0006
+
+START_TESTCASE	SMOKE_APP_LAUNCH_0007
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0007
+//! @SYMTestCaseDesc	Verify the "Contacts" task is running
+	RUN_TEST_STEP		1000	smoketest_apploader	TaskRunning	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_RUNNING_0007
+END_TESTCASE 	SMOKE_APP_LAUNCH_0007

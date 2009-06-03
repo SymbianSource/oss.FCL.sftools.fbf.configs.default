@@ -1,0 +1,82 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// using relative paths for sourcepath and user includes
+// 
+//
+
+TARGET			Smoketest_Mess_Server.exe
+TARGETTYPE		exe
+UID				0x1000007A 0x101F7774
+
+#if (!defined __NO_VENDORID__)
+VENDORID		0x70000001
+#endif
+
+CAPABILITY		ReadUserData WriteUserData WriteDeviceData NetworkServices
+
+#if (defined _PLATTEST_CDMA_)
+MACRO			CDMA_API_ENABLED
+MACRO			GSM_COMPATIBILITY_MODE
+#endif
+
+SOURCEPATH		..\Src
+
+SOURCE			TestMessServer.cpp
+SOURCE			TestMessSession.cpp
+SOURCE			TestMessSharedData.cpp
+SOURCE			TestMessWatcher.cpp
+SOURCE			TestMessProcessor.cpp
+SOURCE			TestMessTimer.cpp
+SOURCE			TestMessBase.cpp
+SOURCE			TestMessCleanMessageFolder.cpp
+SOURCE			TestMessCreateSmsAccount.cpp
+SOURCE			TestMessSetDefaultSc.cpp
+SOURCE			TestMessCreateSMS.cpp
+SOURCE			TestMessCreateGsmSmsUtil.cpp
+#ifdef _PLATTEST_CDMA_
+SOURCE			TestMessCreateCdmaSmsUtil.cpp
+#endif
+SOURCE			TestMessCreateSmsUtilBase.cpp
+SOURCE			TestMessProcessExistingMsg.cpp
+SOURCE			TestMessEditEntry.cpp
+SOURCE			TestMessStoreProcessUtil.cpp
+SOURCE			TestMessEditEntryUtil.cpp
+SOURCE			TestMessPrintEntryUtil.cpp
+
+USERINCLUDE		..\Inc 
+USERINCLUDE		..\..\Group
+
+SYSTEMINCLUDE	\Epoc32\include
+SYSTEMINCLUDE	\Epoc32\include\Test
+
+LIBRARY			etel.lib
+LIBRARY			schsend.lib
+LIBRARY			estor.lib
+LIBRARY			euser.lib
+LIBRARY			bafl.lib
+LIBRARY			msgs.lib
+LIBRARY			fbscli.lib
+LIBRARY			imcm.lib
+LIBRARY			efsrv.lib
+LIBRARY			sendas2.lib
+LIBRARY			etext.lib
+LIBRARY			smcm.lib
+
+LIBRARY			gsmu.lib
+LIBRARY			esock.lib
+LIBRARY			smsu.lib
+LIBRARY			TestExecuteUtils.lib 
+LIBRARY			TestExecuteLogClient.lib
+LIBRARY			SmokeTest_Utils.lib
+LIBRARY			etelmm.lib
