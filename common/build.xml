@@ -241,7 +241,7 @@
     
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
-                
+        <parallel>                
         <!-- TAG SOURCE CODE -->
         <if>
             <istrue value="${sf.spec.tagafterbuild.enable}" />
@@ -250,7 +250,14 @@
                 <runtarget target="sf-tag-hg-code"/>
             </then>
         </if>
-    
+        
+        <if>
+            <istrue value="${sf.spec.md5.enable}"/>
+            <then>
+                <echo message="INFO Creating MD5s"/>
+                <runtarget target="sf-run-evalid"/>
+            </then>
+        </if>
         <if>
             <istrue value="${sf.spec.package.bin.enable}"/>
             <then>
@@ -258,7 +265,8 @@
                 <runtarget target="sf-package-binary"/>
             </then>
         </if>
-
+        </parallel>
+        
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
             <then>
                 <runtarget target="sf-send-testpkg"/>
@@ -566,14 +574,15 @@
             <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
             <arg value="${build.id}_what_results.csv"/>
             <arg value="${build.id}_list_results.log"/>
-	    <arg value="${build.drive}/output/zips/postbuild/bin_rnd_internal_initial.zip"/>
+            <arg value="${build.drive}/output/zips/postbuild/bin_rnd_internal_initial.zip"/>
         </exec>
-	<exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
+
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
             <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
             <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
-	    <arg value="${build.id}_what_results.csv_results.csv"/>
+            <arg value="${build.id}_what_results.csv_results.csv"/>
             <arg value="${sf.project.location}/sysdefs/system_model_os_contributed.xml"/>
-	    <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
         </exec>
 
         <echo message="Running collision analysis"/>
@@ -583,5 +592,108 @@
         </exec>
     </target>
   
+    <target name="sf-run-evalid">
+        <delete dir="${build.drive}/output/md5"/>
+        <mkdir  dir="${build.drive}/output/md5"/>
+
+        <parallel>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/include output/md5/epoc32_include.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/s60 output/md5/epoc32_s60.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/localisation output/md5/epoc32_localisation.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -x ^armv5/udeb -x ^armv5/urel -x ^winscw/udeb -x ^winscw/urel -g epoc32/release output/md5/epoc32_release.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/armv5/udeb output/md5/epoc32_release_armv5_udeb.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/armv5/urel output/md5/epoc32_release_armv5_urel.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/urel output/md5/epoc32_release_winscw_udeb.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/udeb output/md5/epoc32_release_winscw_urel.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/cshlpcmp_template 	output/md5/epoc32_cshlpcmp_template.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/data output/md5/epoc32_data.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/engdoc output/md5/epoc32_engdoc.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/engineeringtools output/md5/epoc32_engineeringtools.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/gcc output/md5/epoc32_gcc.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/gcc_mingw output/md5/epoc32_gcc_mingw.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/ksa output/md5/epoc32_ksa.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/rom output/md5/epoc32_rom.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/rombuild output/md5/epoc32_rombuild.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/sbs_config output/md5/epoc32_sbs_config.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/sdk_special output/md5/epoc32_sdk_special.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/stdapis output/md5/epoc32_stdapis.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/stubs output/md5/epoc32_stubs.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/tools output/md5/epoc32_tools.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/wins output/md5/epoc32_wins.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/winscw output/md5/epoc32_winscw.md5"/>
+        </exec>
+        </parallel>
+    </target>
 </project>
 

@@ -68,6 +68,9 @@
     <property name="sf.spec.package.bin.enable"  value="false"/>
     <property name="sf.spec.package.src.enable"  value="false"/>
 
+    <!-- enable creation of MD5s -->
+    <property name="sf.spec.md5.enable"          value="false"/>
+
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
     <property name="sf.spec.test.host.name"      value="172.16.11.11"/> <!-- sym-build01 -->
