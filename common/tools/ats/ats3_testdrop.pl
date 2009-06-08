@@ -103,7 +103,7 @@ my $url ="http://$host/ats3/XTestRunExecute.do?username=$username&password=$pass
 $url .= "&schedule=$schedule", if (defined($schedule));
 # Post URL to server with cURL.
 my $curl_cmd = "curl \"$url\"";
-my $curl_response = `$curl_cmd 2>$1`;
+my $curl_response = `$curl_cmd 2>&1`;
 die("\nTest drop failed: $!\n"), if ($?);
 if ($curl_response =~ /(TEST_RUN_REF_ID=\d+)/) {
     #extract test run id from cURL response.
