@@ -30,10 +30,11 @@ if(!-e $filelist)
   die "Cannot find $filelist\n";
 }
         my %ziptimes;
+        my %zipused;
         if(defined $zipfile)
           {
-          open(ZIP,"7za l $zipfile 2>&1|")  or die "Error: Couldn't look in $zipfile\n";
-          #print "time,file\n";
+          open(ZIP,"7z l $zipfile 2>&1|")  or die "Error: Couldn't look in $zipfile\n";
+#          print "time,file\n";
           while( my $line = <ZIP>)
             {
             if($line =~ m/^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})\s\S{5}\s+(\d+)\s+\d+\s+(.+)$/) #ignoring packed size...
@@ -44,7 +45,7 @@ if(!-e $filelist)
               $name =~ s/\\/\//g;
               $name = lc($name);
               $ziptimes{$name} = $time;
-              #print "$time,$name\n";
+#              print "$time,$name\n";
               }
             }
           close ZIP;
@@ -87,7 +88,6 @@ if(!-e $filelist)
         my $targetindex = 0;
         my $counter = 0;
         my $bldinfindex = 0;
-        
         my %failed;
         my %bldinffiles;
         foreach my $column (@fields)
@@ -102,6 +102,8 @@ if(!-e $filelist)
             }
             ++$counter;
         }
+        ++$counter;
+        my $timeindex = $counter;
 #        print "\ntarget:$targetindex\tbuildinf:$bldinfindex\n";
         while(my $line = <CSV>)
             {
@@ -129,6 +131,7 @@ if(!-e $filelist)
                 }
             if(defined $ziptimes{$target})
               {
+                $zipused{$target} = 1;
                 if($found)
                 {
                   $line = $line.",".$ziptimes{$target};
@@ -141,8 +144,46 @@ if(!-e $filelist)
             print RESULTS $line."\n";
             
             }            
-        close RESULTS;
         close CSV;
+        
+        foreach my $target (sort(keys %ziptimes))
+        {
+
+          if(!defined $zipused{$target})
+          {
+            my $time = $ziptimes{$target};
+            my $columnCounter=0;
+            my @row;
+            while($columnCounter <= $counter)
+            {
+              if($columnCounter == $bldinfindex)
+              {
+                push(@row,"Orphaned,");
+              }
+              elsif($columnCounter == $targetindex)
+              {
+                push(@row,"$target,");
+              }
+              elsif($columnCounter == $timeindex-1)
+              {
+                push(@row,"untouched,");
+              }
+              elsif($columnCounter == $timeindex)
+              {
+                push(@row,"$time,");
+              }              
+              else
+              {
+                push(@row,",");
+              }
+              ++$columnCounter;
+            }
+            print RESULTS @row;
+            print RESULTS "\n";
+          }
+        }  
+        close RESULTS;
+
         foreach my $bldinf (sort(keys %bldinffiles))
         {
           if(!defined $failed{$bldinf})

@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>smoketest</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="GENERIC" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="1.01" name="WINSCW UDEB SmokeTest" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="1.01.1" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
+			<set id="1.01.1.1" name="agenda" harness="GENERIC" enabled="true" passrate="100">
+				<case id="1.01.1.1.1" name="agenda smoketest" harness="GENERIC" enabled="true" passrate="100">
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="*"/>
+							<param dst="c:\smoketest"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="message1.txt"/>
+							<param dst="c:/smoketest/sms/message1.txt"/>
+							<param component-path="smoketest\sms" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="Smoketest_Agenda_Server.exe"/>
+							<param dst="c:\sys\bin\Smoketest_Agenda_Server.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="Smoketest_Agenda_Server.exe"/>
+							<param dst="c:\sys\bin\Smoketest_Agenda_Server.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="smoketest_apploader.exe"/>
+							<param dst="c:\sys\bin\smoketest_apploader.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="Smoketest_Contacts_Server.exe"/>
+							<param dst="c:\sys\bin\Smoketest_Contacts_Server.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="Smoketest_Mess_Server.exe"/>
+							<param dst="c:\sys\bin\Smoketest_Mess_Server.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="Smoketest_System.exe"/>
+							<param dst="c:\sys\bin\Smoketest_System.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="Smoketest_Timew_Server.exe"/>
+							<param dst="c:\sys\bin\Smoketest_Timew_Server.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SmokeTest_Utils.dll"/>
+							<param dst="c:\sys\bin\SmokeTest_Utils.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SmokeTestSecureFSclient.dll"/>
+							<param dst="c:\sys\bin\SmokeTestSecureFSclient.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SmokeTestSecureFSserver.exe"/>
+							<param dst="c:\sys\bin\SmokeTestSecureFSserver.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_apploader.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_apploader.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_agenda.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_agenda.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_contacts.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_contacts.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_mess.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_mess.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_timew.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_timew.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>smoketest/general/smoketest_agenda.ini</file>
+		<file>smoketest/general/smoketest_agenda.script</file>
+		<file>smoketest/general/smoketest_apploader.ini</file>
+		<file>smoketest/general/smoketest_apploader.script</file>
+		<file>smoketest/general/smoketest_contacts.ini</file>
+		<file>smoketest/general/smoketest_contacts.script</file>
+		<file>smoketest/general/smoketest_createsmsaccount.script</file>
+		<file>smoketest/general/smoketest_mess.ini</file>
+		<file>smoketest/general/smoketest_mess.script</file>
+		<file>smoketest/general/smoketest_phone.script</file>
+		<file>smoketest/general/smoketest_syncmlapp.script</file>
+		<file>smoketest/general/smoketest_system.script</file>
+		<file>smoketest/general/smoketest_timew.ini</file>
+		<file>smoketest/general/smoketest_timew.script</file>
+		<file>smoketest/sms/general/message1.txt</file>
+		<file>smoketest/winscw_udeb/SmokeTestSecureFSclient.dll</file>
+		<file>smoketest/winscw_udeb/SmokeTestSecureFSserver.exe</file>
+		<file>smoketest/winscw_udeb/Smoketest_Agenda_Server.exe</file>
+		<file>smoketest/winscw_udeb/smoketest_apploader.exe</file>
+		<file>smoketest/winscw_udeb/Smoketest_Contacts_Server.exe</file>
+		<file>smoketest/winscw_udeb/Smoketest_Mess_Server.exe</file>
+		<file>smoketest/winscw_udeb/Smoketest_System.exe</file>
+		<file>smoketest/winscw_udeb/Smoketest_Timew_Server.exe</file>
+		<file>smoketest/winscw_udeb/SmokeTest_Utils.dll</file>
+	</files>
+</test>
