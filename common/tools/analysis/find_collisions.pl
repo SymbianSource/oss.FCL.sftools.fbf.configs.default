@@ -21,7 +21,6 @@ main();
 sub main()
 {
   my $csvfile = shift @ARGV;
-  my $filelist = shift @ARGV;
 
   if(! -e $csvfile)
   {
