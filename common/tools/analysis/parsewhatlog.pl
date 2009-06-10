@@ -70,7 +70,7 @@ sub parsefile($filename)
   while(my $line = <FILE>)
   {
     ++$linecount;
-    if($line =~ m/^<whatlog bldinf='(\S+)' mmp='(\S*)' config='\S+'>/) #brittle
+    if($line =~ m/^<whatlog bldinf='(\S+)' mmp='(\S*)' config='\S*'>/) #brittle
     {
       $bldinf = $1;
       $makefile = $2;
