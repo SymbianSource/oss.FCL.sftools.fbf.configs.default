@@ -581,6 +581,26 @@
             <arg value="${sf.common.config.dir}/tools/analysis/find_collisions.pl"/>
             <arg value="${build.log.dir}/analysis/${build.id}_what_results.csv"/>
         </exec>
+        
+    <echo message="Running yarp over *_compile.log files"/>
+    <for param="logfile">
+      <path>
+        <fileset dir="${build.log.dir}">
+          <include name="*_compile.log"/>
+          <exclude name="*build_check_compile.log"/>
+        </fileset>
+      </path>
+      <sequential>
+        <propertyregex override="yes" property="yarpfile"  input="@{logfile}" regexp=".*[\\|\/](.*)_compile\.log" replace="\1_yarp.csv"/>
+        <echo message="Yarping @{logfile}..."/>
+        <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_yarp.log" append="true">
+          <arg value="${sf.common.config.dir}/tools/analysis/yarp.pl"/>
+          <arg value="@{logfile}"/>
+          <arg value="${build.log.dir}/analysis/${yarpfile}"/>
+        </exec>
+      </sequential>
+    </for>
+
     </target>
   
 </project>
