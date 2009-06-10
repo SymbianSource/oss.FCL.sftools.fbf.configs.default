@@ -195,9 +195,6 @@
 		<file>smoketest/general/smoketest_createsmsaccount.script</file>
 		<file>smoketest/general/smoketest_mess.ini</file>
 		<file>smoketest/general/smoketest_mess.script</file>
-		<file>smoketest/general/smoketest_phone.script</file>
-		<file>smoketest/general/smoketest_syncmlapp.script</file>
-		<file>smoketest/general/smoketest_system.script</file>
 		<file>smoketest/general/smoketest_timew.ini</file>
 		<file>smoketest/general/smoketest_timew.script</file>
 		<file>smoketest/sms/general/message1.txt</file>

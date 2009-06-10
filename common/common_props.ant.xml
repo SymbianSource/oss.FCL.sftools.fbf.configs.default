@@ -42,6 +42,7 @@
     <property name="sf.spec.baseline.getenv_options" value="-i emu"/>
     <property name="sf.spec.toolsbaseline.enable" value="true"/>
     <property name="sf.spec.toolsbaseline.select" value="auto"/>
+    <property name="sf.spec.toolsbaseline.getenv_options" value="-i tools"/>
     
     <property name="sf.spec.publish.enable" value="true"/>
     <property name="sf.spec.publish.unpackagedartefacts.enable" value="true"/>
@@ -68,6 +69,9 @@
     <property name="sf.spec.package.bin.enable"  value="false"/>
     <property name="sf.spec.package.src.enable"  value="false"/>
 
+    <!-- enable creation of MD5s -->
+    <property name="sf.spec.md5.enable"          value="false"/>
+
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
     <property name="sf.spec.test.host.name"      value="172.16.11.11"/> <!-- sym-build01 -->
@@ -77,7 +81,8 @@
     <property name="sf.spec.test.epocroot"       value="D:\ATS3\winscw_smoketest"/>
 
     <!-- ATS local properties -->
-    <property name="sf.spec.test.package.name"      value="D:\ATS3\smoketest_package\9.zip"/>
+    <property name="sf.spec.test.package.location"  value="D:\ATS3\smoketest_package"/>
+    <property name="sf.spec.test.package.name"      value="Smoketest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/> <!-- build.id not available at this point, so construct it from component parts -->
     <property name="sf.spec.test.package.droppath"  value="D:\ATS3\TestDrops"/>
 
     <!-- BC check properties -->

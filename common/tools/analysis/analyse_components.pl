@@ -149,14 +149,14 @@ foreach my $item (@outputList) {
 	$value = $2;
 	$status = $3;
 	chomp($status);
-	if ($status ne "OK") {$status = "KO"};
+	if ($status ne "OK") {$status = "Bad"};
     if ($seen{$value}) 
 	{
 		$seen{$value} =~ /^[^,]+,([^,]+)/;
 		my $currentstatus = $1;
-		if ($currentstatus eq "KO")
+		if ($currentstatus eq "Bad")
 		{
-			$status = "KO";
+			$status = "Bad";
 		}
 	}
 	$seen{$value} = "$remains,$status\n";
@@ -166,18 +166,19 @@ my @uniq = values(%seen);
 # Prepend system model info (block name, component name)
 foreach my $line (@uniq)
 {
+  chomp $line;
 	if ($line =~ /^[^,]+,[^,]+,([^,]+),/)
 	{
 		my $bldfile = $1;
 		my $sysmodelinfo = &getSysModelInfo($bldfile);
-		$line = "$sysmodelinfo, $line";
+		$line = "$line, $sysmodelinfo\n";
 	}
 }
 
 
 # Write the summary log
 open(OUTPUT,">PkgComponentAnalysisSummary.csv") or die "Error: Couldn't open PkgComponentAnalysisSummary.csv for writing\n";
-print OUTPUT "Package Name, Component Name, Package Path (from Sources.csv), License, BldFile (from whatlog), Status\n"; 
+print OUTPUT "Source Path (from Sources.csv), License, BldFile (from whatlog), Package Name, Component Name\n"; 
 print OUTPUT @uniq;
 close(OUTPUT);
 close(WHATLOG);
