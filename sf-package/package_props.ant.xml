@@ -16,9 +16,6 @@
   <!-- property name="sf.spec.publish.rootdir" value="\\sym-build01\f$\SF_builds"/ -->
   
   <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
-  
-  <property name="sf.spec.publish.networkdrive" value="D:\SF_builds"/>
-  <property name="sf.spec.publish.rootdir" value="D:\SF_builds"/>
 
 </project>
 

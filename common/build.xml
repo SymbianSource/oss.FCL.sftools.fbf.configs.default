@@ -21,6 +21,9 @@
     <property name="prep.root.dir" value="${sf.spec.job.rootdir}"/>
     <property name="publish" value="${sf.spec.publish.enable}"/>
     <property name="publish.root.dir" value="${sf.spec.publish.rootdir}"/>
+    <property name="diamonds.host" value="${sf.spec.publish.diamonds.server}"/>
+    <property name="diamonds.port" value="${sf.spec.publish.diamonds.port}"/>
+    <property name="diamonds.path" value="${sf.spec.publish.diamonds.path}"/>
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
@@ -146,6 +149,13 @@
 
     <target name="sf-prebuild">
         <echo>[SF-PREBUILD]</echo>
+        
+        <if>
+            <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+                <runtarget target="diamonds"/>
+            </then>
+        </if>
         
         <!-- create BOM dir -->
         <mkdir dir="${build.drive}/output/logs/BOM"/>
