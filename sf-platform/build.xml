@@ -199,6 +199,7 @@
 		</antcall>
 
 		<!-- OS what -->
+		<!--
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
                 <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
@@ -208,6 +209,7 @@
                 <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall>
+		-->
 		
 		<!-- OS clean main build -->
 		<if><istrue value="${sf.spec.baseline.clean}"/>
@@ -344,6 +346,7 @@
 		</antcall>
 		
 			<!-- s60 what  -->
+			<!--
     		<antcall target="compile-main" inheritAll="false" inheritRefs="true">
           			<param name="build.system" value="${sf.spec.build.system}" />
           			<param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
@@ -352,7 +355,7 @@
           			<reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
-			
+			-->
 			<!-- s60 clean main build -->
 			<if><istrue value="${sf.spec.baseline.clean}"/>
 				<then>

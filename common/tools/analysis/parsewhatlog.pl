@@ -48,7 +48,8 @@ sub ext($)
 sub main()
 {
   my $path = shift @ARGV;
-  my @files = glob($path."/*whatlog*WHAT_*compile.log"); 
+#  my @files = glob($path."/*whatlog*WHAT_*compile.log");
+  my @files = glob($path."/*whatlog*_*compile.log"); 
   foreach my $filename (@files)
   {
 #    print $filename."\n";
@@ -70,7 +71,7 @@ sub parsefile($filename)
   while(my $line = <FILE>)
   {
     ++$linecount;
-    if($line =~ m/^<whatlog bldinf='(\S+)' mmp='(\S*)' config='\S*'>/) #brittle
+    if($line =~ m/^<whatlog bldinf='(\S+)' mmp='(\S*)' config='\S+'>/) #brittle
     {
       $bldinf = $1;
       $makefile = $2;
