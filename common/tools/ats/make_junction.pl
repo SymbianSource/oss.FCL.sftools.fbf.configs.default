@@ -46,7 +46,7 @@ if ($help) {
 
 usage_error(), unless (defined($link) && defined($target));
 
-my $junction_help = `junction /?`;
+my $junction_help = `junction /accepteula /?`;
 die("Need command \"junction\". Not found\n"), if ($junction_help =~ /is not recognised/);
 die("Directory \"$target\" not found\n"), unless -d "$target";
 
@@ -82,7 +82,7 @@ if ( -e "$link") {
         $force = $choice eq 'y';
     }    
     if ($force) {
-        system("junction -d \"$link\" > nul");
+        system("junction /accepteula -d \"$link\" > nul");
         if ($?) {
             die("Cannot delete \"$link\": $!\n");
         }
@@ -92,7 +92,7 @@ if ( -e "$link") {
     }
 } 
 
-system("junction \"$link\" \"$target\" > nul");
+system("junction /accepteula \"$link\" \"$target\" > nul");
 if ($?) {
     die("Cannot cteate junction \"$link\" -> \"$target\": $!\n");
 }
