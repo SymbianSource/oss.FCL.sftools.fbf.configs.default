@@ -74,7 +74,7 @@
 
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
-    <property name="sf.spec.test.host.name"      value="172.16.11.11"/> <!-- sym-build01 -->
+    <property name="sf.spec.test.host.name"      value="10.99.30.24"/> <!-- sym-build01 -->
     <property name="sf.spec.test.host.username"  value="admin"/>
     <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="T:\TestDrops"/>
