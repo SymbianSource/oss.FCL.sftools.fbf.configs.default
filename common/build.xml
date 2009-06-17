@@ -48,7 +48,11 @@
     <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-ALL]</echo>
     </target>
-    
+
+    <target name="sf-build-and-pack" depends="sf-build-noprep,sf-postbuild">
+        <echo>[SF-BUILD-AND-PACK]</echo>
+    </target>
+
     <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD]</echo>
     </target>
