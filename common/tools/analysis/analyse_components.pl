@@ -178,7 +178,7 @@ foreach my $line (@uniq)
 
 # Write the summary log
 open(OUTPUT,">PkgComponentAnalysisSummary.csv") or die "Error: Couldn't open PkgComponentAnalysisSummary.csv for writing\n";
-print OUTPUT "Source Path (from Sources.csv), License, BldFile (from whatlog), Package Name, Component Name\n"; 
+print OUTPUT "Source Path (from Sources.csv), License, BldFile (from whatlog), Status, Package Name, Component Name\n"; 
 print OUTPUT @uniq;
 close(OUTPUT);
 close(WHATLOG);
