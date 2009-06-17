@@ -390,7 +390,7 @@
         </if>
     </target>
 
-    <target name="sf-build-noprep" depends="sf-compile">
+    <target name="sf-build-noprep" depends="sf-compile,sf-postbuild">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
@@ -587,7 +587,7 @@
         <echo message="INFO Building smoketest"/>
         <exec executable="cmd" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="/c"/>
-            <arg value="sbs -b bld.inf -c winscw.test"/>
+            <arg value="sbs -b bld.inf -c winscw_udeb.test"/>
         </exec>
 
         <echo message="INFO Creating smoketest testpackage"/>
