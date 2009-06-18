@@ -25,7 +25,7 @@ for my $nYarpFile (@asYarpFiles)
 	{
 		if ( m/Overall attempts:\s*(\d+),(\d+)/ )
 		{
-			print "Attempt: $1 Errors: $2\n";
+			#print "Attempt: $1 Errors: $2\n";
 			$nRecipeErrors = $2;
 		}
 	}
