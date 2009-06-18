@@ -1,0 +1,1161 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>bctest</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="GENERIC" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="0.53" name="BCTESTGENERICTests" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="GENERIC" harness="GENERIC" enabled="true" passrate="100">
+			<set id="" name="BCTestButtons" harness="GENERIC" enabled="true" passrate="100">
+				<case id="" name="BCUI" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="UIFW.bat"/>
+							<param dst="c:\UIFW.bat"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="*"/>
+							<param dst="c:\BCTestLog"/>
+							<param component-path="bctest\BCTestLog" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/*"/>
+							<param dst="z:\resource\apps"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/*"/>
+							<param dst="z:\private\10003a3f\import\apps"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestutil.dll"/>
+							<param dst="c:\sys\bin\bctestutil.dll"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlauncher.exe"/>
+							<param dst="c:\sys\bin\bctestlauncher.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestaknsound.exe"/>
+							<param dst="c:\sys\bin\bctestaknsound.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestappfrm.exe"/>
+							<param dst="c:\sys\bin\bctestappfrm.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestbutton.exe"/>
+							<param dst="c:\sys\bin\bctestbutton.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestbuttons.exe"/>
+							<param dst="c:\sys\bin\bctestbuttons.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestchoicelist.exe"/>
+							<param dst="c:\sys\bin\bctestchoicelist.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestcmdlg.exe"/>
+							<param dst="c:\sys\bin\bctestcmdlg.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestdocandinit.exe"/>
+							<param dst="c:\sys\bin\bctestdocandinit.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesteditor.exe"/>
+							<param dst="c:\sys\bin\bctesteditor.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesteh.exe"/>
+							<param dst="c:\sys\bin\bctesteh.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesteikbctrl.exe"/>
+							<param dst="c:\sys\bin\bctesteikbctrl.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesteikfrm.exe"/>
+							<param dst="c:\sys\bin\bctesteikfrm.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestfontinput.exe"/>
+							<param dst="c:\sys\bin\bctestfontinput.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestform.exe"/>
+							<param dst="c:\sys\bin\bctestform.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestgrids.exe"/>
+							<param dst="c:\sys\bin\bctestgrids.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestimage.exe"/>
+							<param dst="c:\sys\bin\bctestimage.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestkeylock.exe"/>
+							<param dst="c:\sys\bin\bctestkeylock.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlabelinfoindicators.exe"/>
+							<param dst="c:\sys\bin\bctestlabelinfoindicators.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlist.exe"/>
+							<param dst="c:\sys\bin\bctestlist.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlocalizer.exe"/>
+							<param dst="c:\sys\bin\bctestlocalizer.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlocation.exe"/>
+							<param dst="c:\sys\bin\bctestlocation.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmenu.exe"/>
+							<param dst="c:\sys\bin\bctestmenu.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmisc.exe"/>
+							<param dst="c:\sys\bin\bctestmisc.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmisc32.exe"/>
+							<param dst="c:\sys\bin\bctestmisc32.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmisccontrol.exe"/>
+							<param dst="c:\sys\bin\bctestmisccontrol.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmix50.exe"/>
+							<param dst="c:\sys\bin\bctestmix50.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestnote.exe"/>
+							<param dst="c:\sys\bin\bctestnote.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestnotifier.exe"/>
+							<param dst="c:\sys\bin\bctestnotifier.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestocr.exe"/>
+							<param dst="c:\sys\bin\bctestocr.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestpane.exe"/>
+							<param dst="c:\sys\bin\bctestpane.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestpopups.exe"/>
+							<param dst="c:\sys\bin\bctestpopups.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestpreviewpopup.exe"/>
+							<param dst="c:\sys\bin\bctestpreviewpopup.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestprivateuifrm.exe"/>
+							<param dst="c:\sys\bin\bctestprivateuifrm.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestptieng.exe"/>
+							<param dst="c:\sys\bin\bctestptieng.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestquery.exe"/>
+							<param dst="c:\sys\bin\bctestquery.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestscreenclearer.exe"/>
+							<param dst="c:\sys\bin\bctestscreenclearer.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestscroller.exe"/>
+							<param dst="c:\sys\bin\bctestscroller.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestsearchfield.exe"/>
+							<param dst="c:\sys\bin\bctestsearchfield.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestserverapp.exe"/>
+							<param dst="c:\sys\bin\bctestserverapp.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestservicehandler.exe"/>
+							<param dst="c:\sys\bin\bctestservicehandler.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestsettingpage.exe"/>
+							<param dst="c:\sys\bin\bctestsettingpage.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestskins.exe"/>
+							<param dst="c:\sys\bin\bctestskins.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestsliderandicons.exe"/>
+							<param dst="c:\sys\bin\bctestsliderandicons.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesttoolbar.exe"/>
+							<param dst="c:\sys\bin\bctesttoolbar.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesttouchpane.exe"/>
+							<param dst="c:\sys\bin\bctesttouchpane.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesttreelist.exe"/>
+							<param dst="c:\sys\bin\bctesttreelist.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestuniteditor.exe"/>
+							<param dst="c:\sys\bin\bctestuniteditor.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestutilities.exe"/>
+							<param dst="c:\sys\bin\bctestutilities.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestvolume.exe"/>
+							<param dst="c:\sys\bin\bctestvolume.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestaknsound"/>
+							<param result-file="c:\BCTestLog\bctestaknsound_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestappfrm"/>
+							<param result-file="c:\BCTestLog\bctestappfrm_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestbutton"/>
+							<param result-file="c:\BCTestLog\bctestbutton_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestbuttons"/>
+							<param result-file="c:\BCTestLog\bctestbuttons_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestchoicelist"/>
+							<param result-file="c:\BCTestLog\bctestchoicelist_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestcmdlg"/>
+							<param result-file="c:\BCTestLog\bctestcmdlg_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestdocandinit"/>
+							<param result-file="c:\BCTestLog\bctestdocandinit_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesteditor"/>
+							<param result-file="c:\BCTestLog\bctesteditor_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesteh"/>
+							<param result-file="c:\BCTestLog\bctesteh_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesteikbctrl"/>
+							<param result-file="c:\BCTestLog\bctesteikbctrl_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesteikfrm"/>
+							<param result-file="c:\BCTestLog\bctesteikfrm_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestfontinput"/>
+							<param result-file="c:\BCTestLog\bctestfontinput_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestform"/>
+							<param result-file="c:\BCTestLog\bctestform_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestgrids"/>
+							<param result-file="c:\BCTestLog\bctestgrids_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestimage"/>
+							<param result-file="c:\BCTestLog\bctestimage_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestkeylock"/>
+							<param result-file="c:\BCTestLog\bctestkeylock_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestlabelinfoindicators"/>
+							<param result-file="c:\BCTestLog\bctestlabelinfoindicators_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestlist"/>
+							<param result-file="c:\BCTestLog\bctestlist_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestlocalizer"/>
+							<param result-file="c:\BCTestLog\bctestlocalizer_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestlocation"/>
+							<param result-file="c:\BCTestLog\bctestlocation_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestmenu"/>
+							<param result-file="c:\BCTestLog\bctestmenu_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestmisc"/>
+							<param result-file="c:\BCTestLog\bctestmisc_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestmisc32"/>
+							<param result-file="c:\BCTestLog\bctestmisc32_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestmisccontrol"/>
+							<param result-file="c:\BCTestLog\bctestmisccontrol_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestmix50"/>
+							<param result-file="c:\BCTestLog\bctestmix50_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestnote"/>
+							<param result-file="c:\BCTestLog\bctestnote_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestnotifier"/>
+							<param result-file="c:\BCTestLog\bctestnotifier_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestocr"/>
+							<param result-file="c:\BCTestLog\bctestocr_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestpane"/>
+							<param result-file="c:\BCTestLog\bctestpane_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestpopups"/>
+							<param result-file="c:\BCTestLog\bctestpopups_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestpreviewpopup"/>
+							<param result-file="c:\BCTestLog\bctestpreviewpopup_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestprivateuifrm"/>
+							<param result-file="c:\BCTestLog\bctestprivateuifrm_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestptieng"/>
+							<param result-file="c:\BCTestLog\bctestptieng_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestquery"/>
+							<param result-file="c:\BCTestLog\bctestquery_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestscreenclearer"/>
+							<param result-file="c:\BCTestLog\bctestscreenclearer_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestscroller"/>
+							<param result-file="c:\BCTestLog\bctestscroller_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestsearchfield"/>
+							<param result-file="c:\BCTestLog\bctestsearchfield_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestserverapp"/>
+							<param result-file="c:\BCTestLog\bctestserverapp_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestservicehandler"/>
+							<param result-file="c:\BCTestLog\bctestservicehandler_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestsettingpage"/>
+							<param result-file="c:\BCTestLog\bctestsettingpage_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestskins"/>
+							<param result-file="c:\BCTestLog\bctestskins_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestsliderandicons"/>
+							<param result-file="c:\BCTestLog\bctestsliderandicons_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesttoolbar"/>
+							<param result-file="c:\BCTestLog\bctesttoolbar_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesttouchpane"/>
+							<param result-file="c:\BCTestLog\bctesttouchpane_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctesttreelist"/>
+							<param result-file="c:\BCTestLog\bctesttreelist_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestuniteditor"/>
+							<param result-file="c:\BCTestLog\bctestuniteditor_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestutilities"/>
+							<param result-file="c:\BCTestLog\bctestutilities_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestvolume"/>
+							<param result-file="c:\BCTestLog\bctestvolume_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>bctest/general/UIFW.bat</file>
+		<file>bctest/BCTestLog/general/release_note.txt</file>
+		<file>bctest/BCTestLog/general/config.xml</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlauncher_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlauncher.r01</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlauncher_reg.r01</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestbuttons.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestbuttons.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestbuttons_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsliderandicons.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsliderandicons_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestaknsound_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestappfrm.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestappfrm_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestcmdlg.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestcmdlg_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestdocandinit.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestdocandinit_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteditor.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteditor_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteh.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteh_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteikbctrl_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteikbctrl.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteikbctrl_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteikfrm.r01</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteikfrm_reg.r01</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestfontinput_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestform.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestform_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestgrids.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestgrids_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestimage_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestimage.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestimage_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestkeylock.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestkeylock_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlabelinfoindicators.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlabelinfoindicators_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlist_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlist.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestist_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmenu.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmenu_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestnote.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestnote.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestnote_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestnotifier.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestnotifier_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpane.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpane_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpopups.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpopups.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpopups_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestprivateuifrm.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestprivateuifrm_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestptieng.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestptieng_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestquery.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestquery_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestscreenclearer_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscroller.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestscroller_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsearchfield.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsearchfield_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestserverapp.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestserverapp_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsettingpage_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestskins.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestskins_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestutilities.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestutilities_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestvolume.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestvolume.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestvolume_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestocr.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestocr_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisc.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisc_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlocation.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlocation_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestuniteditor.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestuniteditor_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisc32.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisc32_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlocalizer.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlocalizer_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpreviewpopup.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpreviewpopup_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestservicehandler.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestservicehandler_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestbutton.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestbutton_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestchoicelist.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestchoicelist_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmix50.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmix50_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesttoolbar.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttoolbar_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesttouchpane.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttouchpane_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesttreelist.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttreelist_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisccontrol.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisccontrol.rsc</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisccontrol_reg.rsc</file>
+		<file>bctest/winscw_udeb/bctestutil.dll</file>
+		<file>bctest/winscw_udeb/bctestlauncher.exe</file>
+		<file>bctest/winscw_udeb/bctestaknsound.exe</file>
+		<file>bctest/winscw_udeb/bctestappfrm.exe</file>
+		<file>bctest/winscw_udeb/bctestbutton.exe</file>
+		<file>bctest/winscw_udeb/bctestbuttons.exe</file>
+		<file>bctest/winscw_udeb/bctestchoicelist.exe</file>
+		<file>bctest/winscw_udeb/bctestcmdlg.exe</file>
+		<file>bctest/winscw_udeb/bctestdocandinit.exe</file>
+		<file>bctest/winscw_udeb/bctesteditor.exe</file>
+		<file>bctest/winscw_udeb/bctesteh.exe</file>
+		<file>bctest/winscw_udeb/bcteikbctrl.exe</file>
+		<file>bctest/winscw_udeb/bctesteikfrm.exe"</file>
+		<file>bctest/winscw_udeb/bctestfontinput.exe"</file>
+		<file>bctest/winscw_udeb/bctestform.exe"</file>
+		<file>bctest/winscw_udeb/bctestgrids.exe"</file>
+		<file>bctest/winscw_udeb/bctestimage.exe"</file>
+		<file>bctest/winscw_udeb/bctestkeylock.exe"</file>
+		<file>bctest/winscw_udeb/bctestlabelinfoindicators.exe"</file>
+		<file>bctest/winscw_udeb/bctestlist.exe"</file>
+		<file>bctest/winscw_udeb/bctestlocalizer.exe"</file>
+		<file>bctest/winscw_udeb/bctestlocation.exe"</file>
+		<file>bctest/winscw_udeb/bctestmenu.exe"</file>
+		<file>bctest/winscw_udeb/bctestmisc.exe"</file>
+		<file>bctest/winscw_udeb/bctestmisc32.exe"</file>
+		<file>bctest/winscw_udeb/bctestmisccontrol.exe"</file>
+		<file>bctest/winscw_udeb/bctestmix50.exe"</file>
+		<file>bctest/winscw_udeb/bctestnote.exe"</file>
+		<file>bctest/winscw_udeb/bctestnotifier.exe"</file>
+		<file>bctest/winscw_udeb/bctestocr.exe"</file>
+		<file>bctest/winscw_udeb/bctestpane.exe"</file>
+		<file>bctest/winscw_udeb/bctestpopups.exe"</file>
+		<file>bctest/winscw_udeb/bctestpreviewpopup.exe"</file>
+		<file>bctest/winscw_udeb/bctestprivateuifrm.exe"</file>
+		<file>bctest/winscw_udeb/bctestptieng.exe"</file>
+		<file>bctest/winscw_udeb/bctestquery.exe"</file>
+		<file>bctest/winscw_udeb/bctestscreenclearer.exe"</file>
+		<file>bctest/winscw_udeb/bctestscroller.exe"</file>
+		<file>bctest/winscw_udeb/bctestsearchfield.exe"</file>
+		<file>bctest/winscw_udeb/bctestserverapp.exe"</file>
+		<file>bctest/winscw_udeb/bctestservicehandler.exe"</file>
+		<file>bctest/winscw_udeb/bctestsettingpage.exe"</file>
+		<file>bctest/winscw_udeb/bctestskins.exe"</file>
+		<file>bctest/winscw_udeb/bctestsliderandicons.exe"</file>
+		<file>bctest/winscw_udeb/bctesttoolbar.exe"</file>
+		<file>bctest/winscw_udeb/bctesttouchpane.exe"</file>
+		<file>bctest/winscw_udeb/bctesttreelist.exe"</file>
+		<file>bctest/winscw_udeb/bctestuniteditor.exe"</file>
+		<file>bctest/winscw_udeb/bctestutilities.exe"</file>
+		<file>bctest/winscw_udeb/bctestvolume.exe"</file>
+	</files>
+</test>

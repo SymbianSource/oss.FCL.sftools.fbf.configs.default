@@ -16,9 +16,9 @@
 			<device rank="master" alias="emulator_udeb"/>
 		</target>
 		<session id="1.01.1" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
-			<set id="1.01.1.1" name="agenda" harness="GENERIC" enabled="true" passrate="100">
-				<case id="1.01.1.1.1" name="agenda smoketest" harness="GENERIC" enabled="true" passrate="100">
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+			<set id="1.01.1.1" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
+				<case id="1.01.1.1.1" name="install and run smoketests" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="data"/>
@@ -27,7 +27,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="data"/>
@@ -36,7 +36,7 @@
 							<param component-path="smoketest\sms" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -45,7 +45,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -54,7 +54,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -63,7 +63,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -72,7 +72,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -81,7 +81,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -90,7 +90,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -99,7 +99,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -108,7 +108,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -117,7 +117,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.1" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -126,7 +126,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
@@ -137,7 +137,7 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
-					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
@@ -148,7 +148,7 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
-					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
@@ -159,7 +159,7 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
-					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
@@ -170,7 +170,7 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
-					<step id="1.01.1.1.1.2" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
