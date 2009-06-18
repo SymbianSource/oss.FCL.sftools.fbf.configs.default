@@ -23,10 +23,10 @@ for my $nYarpFile (@asYarpFiles)
 	open(FILE, $nYarpFile);
 	while ( <FILE> )
 	{
-		if ( m/Overall attempts:\s*(\d+),(\d+)/ )
+		if ( m/^Failures:(\d+)$/ )
 		{
 			#print "Attempt: $1 Errors: $2\n";
-			$nRecipeErrors = $2;
+			$nRecipeErrors = $1;
 		}
 	}
 	close(FILE);
