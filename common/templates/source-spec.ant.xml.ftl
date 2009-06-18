@@ -71,7 +71,7 @@
 
 <target name="all" depends="reset-bom-sources-csv">
 
-  <parallel>
+  <parallel threadCount="${ant['env.NUMBER_OF_PROCESSORS']}">
     ${sync_list}
   </parallel>
 
