@@ -47,8 +47,8 @@
     <property name="sf.spec.publish.unpackagedartefacts.enable" value="true"/>
     <property name="sf.spec.publish.packagedartefacts.enable" value="true"/>
     <property name="sf.spec.publish.network.freespace" value="10"/>
-    <property name="sf.spec.publish.networkdrive" value="\\v800008.ad-sfpd.intra\builds01\SF_builds"/>
-    <property name="sf.spec.publish.rootdir" value="\\v800008.ad-sfpd.intra\builds01\SF_builds"/>
+    <property name="sf.spec.publish.networkdrive" value="\\v800008.ad-sfpd.intra\g$\SF_builds"/>
+    <property name="sf.spec.publish.rootdir" value="\\v800008.ad-sfpd.intra\g$\SF_builds"/>
     <property name="sf.spec.publish.diamonds.server" value="v800002.ad-sfpd.intra"/>
     <property name="sf.spec.publish.diamonds.port" value="80"/>
     <property name="sf.spec.publish.diamonds.path" value="/diamonds/builds/"/>
