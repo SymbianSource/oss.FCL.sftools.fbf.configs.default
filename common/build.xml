@@ -24,13 +24,24 @@
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
-
+	
+	
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
     
     <!-- import common references -->
     <import file="${sf.common.config.dir}/common_refs.ant.xml" />
              
+	<!-- setup conditional Helium internal properties -->
+	<if><istrue value="${sf.spec.sourcesync.usecache}"/>
+		<then>
+			<property name="sf.spec.sourcesync.sourcespecdir" value="${sf.common.config.dir}/generated"/>
+		</then>
+		<else>
+			<property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
+		</else>
+	</if>
+
     <!-- conditional import of generated source spec if available -->
     <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
         <then>
@@ -40,7 +51,7 @@
     </if>
      
     
-    <target name="sf-prep" depends="sf-generate-source-spec,prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
+    <target name="sf-prep" depends="prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
     </target>
@@ -48,7 +59,7 @@
     <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-ALL]</echo>
     </target>
-
+    
     <target name="sf-build-and-pack" depends="sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-AND-PACK]</echo>
     </target>
@@ -64,6 +75,20 @@
     </target>
     
     <target name="sf-generate-source-spec" depends="sf-parse-project-config">
+	
+		<!-- Generate the sources.csv if hg cache is activated -->
+		<if><istrue value="${sf.spec.sourcesync.usecache}"/>
+			<then>
+				<echo message="Generating Hg local cache..." />
+				<exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
+					<arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
+					<arg value="${sf.spec.job.rootdir}/hgcache"/>
+					<arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+					<arg value="${sf.common.config.dir}/generated/${sf.spec.sourcesync.sourcespecfile}"/>
+				</exec>
+			</then>
+		</if>
+		
         <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
         for multiple package builds, this needs to be linked with package name. -->
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
@@ -72,7 +97,7 @@
               outputFile="${sf.common.config.dir}/generated/source-spec.ant.xml">
               <data expandProperties="yes">
                     ant: antProperties()
-                    data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                    data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
               </data>
         </fmpp>
     </target>
@@ -435,7 +460,7 @@
               outputFile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml">
             <data expandProperties="yes">
                 ant: antProperties()
-                data: csv(${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
             </data>
         </fmpp>
         <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
@@ -458,7 +483,7 @@
         <mkdir dir="${sf.common.config.dir}/generated"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
-            <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+            <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
         </exec>
@@ -641,7 +666,7 @@
 
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
             <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
-            <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+            <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${build.id}_what_results.csv_results.csv"/>
             <arg value="${sf.project.location}/sysdefs/system_model_os_contributed.xml"/>
             <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
