@@ -633,13 +633,10 @@
         <exec executable="cmd" output="${build.drive}/output/logs/analysis/tmp_yarp_files.csv" append="true">
           <arg value="/c"/>
           <arg value="echo"/>
-          <arg value="${yarpfile_short},${sf.spec.publish.networkdrive}\${sf.spec.job.name}\builds\${sf.spec.job.codeline}\${build.id}\logs\analysis\${yarpfile}"/>
+          <arg value="${yarpfile_short},${sf.spec.publish.networkdrive}\${sf.spec.job.name}\builds\${sf.spec.job.codeline}\${build.id}\logs\analysis\${yarpfile},${build.drive}\output\logs\analysis\${yarpfile}"/>
         </exec>
       </sequential>
     </for>
-    
-    <!-- fake build results file -->
-    <!-- copy file="D:\zoo\fake_results_file\sf-run-analysis.xml" todir="${build.drive}/output/logs" failonerror="false" verbose="true"/ -->
     
     <exec executable="perl" dir="${build.drive}" failonerror="false" outputproperty="sf.job.totalyarperrors">
       <arg value="${sf.common.config.dir}/tools/analysis/parse_yarp_files.pl"/>
@@ -650,7 +647,7 @@
     <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis.xml">
       <data expandProperties="yes">
         ant: antProperties()
-        files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path]})
+        files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
       </data>
     </fmpp>
 

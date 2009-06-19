@@ -3,7 +3,7 @@ my @asYarpFiles = ();
 open(FILE, $ARGV[0]);
 while ( <FILE> )
 {
-	if ( m/[^,]*,([^,]*)/ )
+	if ( m/^[^,]*,[^,]*,([^,]*)/ )
 	{
 		my $sFile = $1;
 		chomp $sFile;
@@ -25,7 +25,7 @@ for my $nYarpFile (@asYarpFiles)
 	{
 		if ( m/^Raptor recipe failures:\s+(\d+)$/ )
 		{
-			#print "Attempt: $1 Errors: $2\n";
+#			print "Raptor recipe failures: $1\n";
 			$nRecipeErrors = $1;
 		}
 	}
