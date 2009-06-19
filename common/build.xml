@@ -281,6 +281,7 @@
             <then>
                 <echo message="INFO Packaging Binaries"/>
                 <runtarget target="sf-package-binary"/>
+                <runtarget target="sf-package-tools"/>
             </then>
         </if>
         </parallel>
@@ -477,6 +478,23 @@
         </antcall>
     </target>
     
+    <target name="sf-package-tools" depends="sf-preprocess-package-config">
+        <echo message="Packaging epoc32 tools - Temporary method"/>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+<!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
+            <arg value="tools_epoc.zip"/> 
+            <arg value="epoc32/tools"/>
+            </exec>
+        <if><available file="${build.drive}/tools_epoc.zip"/>
+            <then><move file="${build.drive}/tools_epoc.zip" todir="${build.drive}/output/zips/"/></then>
+        </if>
+
+    </target>
+
+    
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
         <!--antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
@@ -490,6 +508,7 @@
             <arg value="a"/>
             <arg value="-tzip"/>
             <arg value="-x@${build.drive}/rnd_excludefile.txt"/> <!-- excludes -->
+            <arg value="-x!epoc32\tools"/>
             <arg value="-x!epoc32\build"/> 
             <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
@@ -502,6 +521,7 @@
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
+            <arg value="-x!epoc32\tools"/> 
             <arg value="-x!epoc32\build"/> <!-- excludes -->
             <arg value="-xr!*.sym"/> 
             <arg value="binaries_epoc.zip"/> 
@@ -512,6 +532,7 @@
         <if><available file="${build.drive}/binaries_epoc.zip"/>
         <then><move file="${build.drive}/binaries_epoc.zip" todir="${build.drive}/output/zips/"/></then>
         </if>
+
     </target>
 
     <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
