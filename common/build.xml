@@ -21,11 +21,16 @@
     <property name="prep.root.dir" value="${sf.spec.job.rootdir}"/>
     <property name="publish" value="${sf.spec.publish.enable}"/>
     <property name="publish.root.dir" value="${sf.spec.publish.rootdir}"/>
+    <property name="diamonds.host" value="${sf.spec.publish.diamonds.server}"/>
+    <property name="diamonds.port" value="${sf.spec.publish.diamonds.port}"/>
+    <property name="diamonds.path" value="${sf.spec.publish.diamonds.path}"/>
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
 	
-	
+    <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
+    <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>
+    
     <!-- import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
     
@@ -176,6 +181,13 @@
     <target name="sf-prebuild">
         <echo>[SF-PREBUILD]</echo>
         
+        <if>
+            <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+                <runtarget target="diamonds"/>
+            </then>
+        </if>
+        
         <!-- create BOM dir -->
         <mkdir dir="${build.drive}/output/logs/BOM"/>
         
@@ -245,7 +257,7 @@
                     <arg value="${sf.spec.baseline.location}"/>
                 </exec>
                 
-                <!-- run interal target preparation-getenv -->
+                <!-- run internal target preparation-getenv -->
                 <runtarget target="preparation-getenv"/>
                 
             </then>
@@ -469,7 +481,7 @@
     
     <target name="sf-diamondize-bom">
         <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
-              outputFile="${build.drive}/output/logs/BOM/build-info.xml">
+              outputFile="${build.drive}/output/logs/sf-diamondize-bom.xml">
             <data expandProperties="yes">
                 ant: antProperties()
                 config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
@@ -709,14 +721,33 @@
       </path>
       <sequential>
         <propertyregex override="yes" property="yarpfile"  input="@{logfile}" regexp=".*[\\|\/](.*)_compile\.log" replace="\1_yarp.csv"/>
+        <propertyregex override="yes" property="yarpfile_short"  input="${yarpfile}" regexp="[^_]*_[^_]*_[^_]*_(.+)_[^_]*_yarp\.csv" replace="YARP_\1"/>
         <echo message="Yarping @{logfile}..."/>
         <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_yarp.log" append="true">
           <arg value="${sf.common.config.dir}/tools/analysis/yarp.pl"/>
           <arg value="@{logfile}"/>
           <arg value="${build.log.dir}/analysis/${yarpfile}"/>
         </exec>
+        <exec executable="cmd" output="${build.drive}/output/logs/analysis/tmp_yarp_files.csv" append="true">
+          <arg value="/c"/>
+          <arg value="echo"/>
+          <arg value="${yarpfile_short},${sf.spec.publish.networkdrive}\${sf.spec.job.name}\builds\${sf.spec.job.codeline}\${build.id}\logs\analysis\${yarpfile},${build.drive}\output\logs\analysis\${yarpfile}"/>
+        </exec>
       </sequential>
     </for>
+    
+    <exec executable="perl" dir="${build.drive}" failonerror="false" outputproperty="sf.job.totalyarperrors">
+      <arg value="${sf.common.config.dir}/tools/analysis/parse_yarp_files.pl"/>
+      <arg value="${build.drive}/output/logs/analysis/tmp_yarp_files.csv"/>
+    </exec>
+    <echo message="Total yarp errors: ${sf.job.totalyarperrors}"/>
+    
+    <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis.xml">
+      <data expandProperties="yes">
+        ant: antProperties()
+        files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
+      </data>
+    </fmpp>
 
     </target>
   

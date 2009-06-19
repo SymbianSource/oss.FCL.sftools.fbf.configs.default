@@ -68,6 +68,7 @@ sub  parsefile($filename)
     my %licenceattempts;
     my $counter = 0;
     my $licence = 0;
+    my $failures = 0;
     while( my $line = <FILE>)
     {
       ++$counter;
@@ -84,6 +85,7 @@ sub  parsefile($filename)
 #          if($recipe->{'exit'} !~ m/ok/)
           if($recipe->{'exit'} =~ m/failed/)
           {
+	          ++$failures;
 #            if($recipe->{'target'} =~ m/\S:epoc32\//i) 
 #               && $recipe->{'target'} !~ m/\S:epoc32\/build/i)
             {
@@ -131,6 +133,9 @@ sub  parsefile($filename)
     }
   close FILE;
   print OUT "\n\nSummaries\n\n";
+  
+  print OUT "Raptor recipe failures: $failures\n";
+  
   foreach my $attempt (sort keys %attempts)
   {
     print OUT "Overall attempts: $attempt,".$attempts{$attempt}.",\n";

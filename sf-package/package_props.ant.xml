@@ -1,4 +1,18 @@
 <?xml version="1.0"?>
 
-<project name="SF-PACKAGE-PROPS"/>
+<project name="SF-PACKAGE-PROPS">
+  
+  <property name="sf.spec.baseline.enable" value="true"/>
+  <property name="sf.spec.baseline.select" value="location"/>
+  <property name="sf.spec.baseline.location" value="\\v800008.ad-sfpd.intra\g$\Releases\PDK_candidate_2.0.b_flat"/>
+  <property name="sf.spec.baseline.getenv_options" value="-i emu -i rnd"/>
+  
+  <property name="sf.spec.systemdefinition.assemble" value="false"/>
+  <property name="sf.spec.sysdef.configurations.list" value="SF"/>
+  
+  <property name="sf.spec.sbs.config" value="winscw"/>
+  
+  <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
+
+</project>
 
