@@ -23,7 +23,7 @@ for my $nYarpFile (@asYarpFiles)
 	open(FILE, $nYarpFile);
 	while ( <FILE> )
 	{
-		if ( m/^Failures:(\d+)$/ )
+		if ( m/^Raptor recipe failures:\s+(\d+)$/ )
 		{
 			#print "Attempt: $1 Errors: $2\n";
 			$nRecipeErrors = $1;

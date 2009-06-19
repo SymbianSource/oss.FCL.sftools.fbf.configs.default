@@ -134,7 +134,8 @@ sub  parsefile($filename)
   close FILE;
   print OUT "\n\nSummaries\n\n";
   
-  print "Failures:$failures\n";
+  print OUT "Raptor recipe failures: $failures\n";
+  
   foreach my $attempt (sort keys %attempts)
   {
     print OUT "Overall attempts: $attempt,".$attempts{$attempt}.",\n";
