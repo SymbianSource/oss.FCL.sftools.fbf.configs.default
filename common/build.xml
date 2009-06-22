@@ -176,6 +176,11 @@
                 <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="true" verbose="true"/>
             </then>
         </if>
+
+        <if><istrue value="${sf.spec.bccheck.enable.dynamic}"/>
+            <then>
+            </then>
+        </if>
     </target>
 
     <target name="sf-prebuild">
