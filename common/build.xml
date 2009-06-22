@@ -490,6 +490,8 @@
                 sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
             </data>
         </fmpp>
+        <!-- Make a copy in BOM dir -->
+        <copy file="${build.drive}/output/logs/sf-diamondize-bom.xml" tofile="${build.log.dir}/BOM/build-info.xml/>
     </target>
 
     <target name="sf-preprocess-package-config">
