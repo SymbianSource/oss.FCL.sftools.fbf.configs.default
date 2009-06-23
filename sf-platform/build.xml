@@ -35,7 +35,7 @@
 	
 	<else>
 	    <!-- TODO use better method to export or wait for GenXML fix?-->
-        <copy file="${build.output.dir}\build\input\*_system_model_os.xml"
+        <copy file="${build.output.dir}\build\input\0000000000000001_system_model_os.xml"
         tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
 
 	    <!-- TODO targets for single sysdef build -->
@@ -71,6 +71,11 @@
                         <replaceregex pattern="mrp=&quot;mw" replace="mrp=&quot;sf\\\\mw" flags="gi"/>
                         <replaceregex pattern="bldFile=&quot;app" replace="bldFile=&quot;sf\\\\app" flags="gi"/>
                         <replaceregex pattern="mrp=&quot;app" replace="mrp=&quot;sf\\\\app" flags="gi"/>
+                        <replaceregex pattern="bldFile=&quot;tools" replace="bldFile=&quot;sf\\\\tools" flags="gi"/>
+                        <replaceregex pattern="mrp=&quot;tools" replace="mrp=&quot;sf\\\\tools" flags="gi"/>
+                        <replaceregex pattern="bldFile=&quot;adaptation" replace="bldFile=&quot;sf\\\\adaptation" flags="gi"/>
+                        <replaceregex pattern="mrp=&quot;adaptation" replace="mrp=&quot;sf\\\\adaptation" flags="gi"/>
+                        
                         <expandproperties/>
                     </filterchain>
                     <mapper>
