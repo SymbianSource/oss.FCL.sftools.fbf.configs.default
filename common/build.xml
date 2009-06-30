@@ -371,12 +371,12 @@
             <then>
                 <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
                 <echo message="Zip log requested, zipping logs..."/>
-                <zip destfile="${temp.log.zip}" basedir="${build.log.dir}"/>
+                <zip destfile="${temp.log.zip}" basedir="${build.drive}" includes="output/logs/**"/>
                 <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>
             </then>
         </if>
     </target>
-    
+
     <!-- generate dir list using passed location and name 
     if a baseline list is available then generate deltas too -->
 
@@ -814,11 +814,11 @@
         </exec>
         <exec executable="cmd" dir="${build.drive}">
             <arg value="/c"/>
-            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/urel output/md5/epoc32_release_winscw_udeb.md5"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/udeb output/md5/epoc32_release_winscw_udeb.md5"/>
         </exec>
         <exec executable="cmd" dir="${build.drive}">
             <arg value="/c"/>
-            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/udeb output/md5/epoc32_release_winscw_urel.md5"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/urel output/md5/epoc32_release_winscw_urel.md5"/>
         </exec>
         <exec executable="cmd" dir="${build.drive}">
             <arg value="/c"/>
@@ -885,6 +885,14 @@
             <arg value="evalid -g epoc32/winscw output/md5/epoc32_winscw.md5"/>
         </exec>
         </parallel>
+        
+        <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
+        <property name="temp.md5.zip" value="${env.TEMP}/MD5_${sf.spec.job.name}_${build.number}.zip"/>
+        <echo message="INFO Packaging MD5s"/>
+        <zip destfile="${temp.md5.zip}">
+            <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
+        </zip>
+        <move file="${temp.md5.zip}" todir="${build.log.dir}" failonerror="false"/>
     </target>
 </project>
 
