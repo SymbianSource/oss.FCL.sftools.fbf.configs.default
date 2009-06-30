@@ -755,6 +755,31 @@
         files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
       </data>
     </fmpp>
+    
+    <echo message="Extracting whatlog information from *whatlog*_compile.log files"/>
+    <for param="logfile">
+      <path>
+        <fileset dir="${build.log.dir}">
+          <include name="*whatlog*_compile.log"/>
+        </fileset>
+      </path>
+      <sequential>
+        <propertyregex override="yes" property="whatlogfile"  input="@{logfile}" regexp=".*[\\|\/].*\.\d+_+(.*)_compile\.log" replace="\1_preprocessed.log"/>
+        <echo message="Preprocessing @{logfile}..."/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
+          <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
+          <arg value="--in=@{logfile}"/>
+          <arg value="--out=${build.log.dir}/analysis/${whatlogfile}"/>
+        </exec>
+        <echo message="Extracting whatlog info from ${whatlogfile}..."/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
+          <arg value="${sf.common.config.dir}/tools/raptor/package_what.pl"/>
+          <arg value="--log=${build.log.dir}/analysis/${whatlogfile}"/>
+          <arg value="--basedir=${build.log.dir}/deliverables"/>
+          <arg value="--append"/>
+        </exec>
+      </sequential>
+    </for>
 
     </target>
   
