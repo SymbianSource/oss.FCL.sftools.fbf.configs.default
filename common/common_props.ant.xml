@@ -77,14 +77,14 @@
 
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
-    <property name="sf.spec.test.host.name"      value="10.99.30.24"/> <!-- sym-build01 -->
+    <property name="sf.spec.test.host.name"      value="sym-build01"/>
     <property name="sf.spec.test.host.username"  value="admin"/>
     <property name="sf.spec.test.host.password"  value="admin"/>
-    <property name="sf.spec.test.host.droppath"  value="T:\TestDrops"/>
+    <property name="sf.spec.test.host.droppath"  value="D:\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
     <property name="sf.spec.test.epocroot"       value="D:\ATS3\winscw_smoketest"/>
 
     <!-- ATS local properties -->
-    <property name="sf.spec.test.package.location"  value="D:\ATS3\smoketest_package"/>
+    <property name="sf.spec.test.package.location"  value="T:\${env.COMPUTERNAME}"/>
     <property name="sf.spec.test.package.name"      value="Smoketest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/> <!-- build.id not available at this point, so construct it from component parts -->
     <property name="sf.spec.test.package.droppath"  value="D:\ATS3\TestDrops"/>
 
