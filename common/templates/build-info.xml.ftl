@@ -20,6 +20,12 @@
       </#list>
     </project>
     <project>
+      <name>Tools Baseline</name>
+      <#list toolsbaseline as b>
+      <baseline>${b}</baseline>
+      </#list>
+    </project>
+    <project>
  	  <name>Sources</name>
  	  <#list sources as s>
  	  <baseline>${s.loc}#${s.rev}</baseline>

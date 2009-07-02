@@ -240,6 +240,15 @@
         <if>
             <istrue value="${sf.spec.toolsbaseline.enable}" />
             <then>
+
+                <!-- record toolsbaseline information in BOM file -->
+                <delete file="${build.drive}/output/logs/BOM/toolsbaseline.txt" quiet="true"/>
+                <exec executable="cmd" output="${build.drive}/output/logs/BOM/toolsbaseline.txt">
+                    <arg value="/c"/>
+                    <arg value="echo"/>
+                    <arg value="${sf.spec.toolsbaseline.location}"/>
+                </exec>
+
                 <!-- wrapper around preparation-getenv but with diff params -->
                 <runtarget target="sf-getenv-tools"/>
                 
@@ -249,6 +258,10 @@
                     <arg value="${build.drive}/epoc32"/>
                 </exec>
             </then>
+            <else>
+                <!-- record fact that no tools baseline used. required by diamondize-bom  -->
+                <touch file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
+            </else>
         </if>        
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
@@ -492,6 +505,7 @@
                 config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
                 project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
                 baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
+                toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
                 sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
             </data>
         </fmpp>
