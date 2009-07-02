@@ -31,7 +31,7 @@ if(defined $cache && defined $generated && defined $csv)
     my @args = split(',',$line);
     my $repo = shift @args;
 	my $master = "";
-	if ( $repo =~ m/^(.*\/)((oss|rnd|sfl)\/.*\/)$/i )
+	if ( $repo =~ m/^(.*\/)(.*\/(oss|rnd|sfl)\/.*\/)$/i )
 	{
 		$master = $1;
 		$repo = $2;
