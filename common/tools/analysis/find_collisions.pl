@@ -135,30 +135,31 @@ sub diffcollision($$$)
   {
     if(-e $left && -e $right)
     {
-      my $leftdiff = 0;
-      my $rightdiff = 0;
-      open(DIFF,"diff $left $target|") or die "couldn't execute diff";
-      print "diff $left $target\n";
+      my $leftdiff = 1;
+      my $rightdiff = 1;
+      open(DIFF,"fc $left $target|") or die "couldn't execute fc";
+      print "fc $left $target\n";
       
       while(my $line = <DIFF>)
       {
-        if($line =~ m/\S+/)
+        
+        if($line =~ m/FC:\sno\sdifferences\sencountered/i)
         {
-          $leftdiff = 1;
-          print "\t$line";
+          $leftdiff = 0;
         }
+        print "\t$line";
       }
       close DIFF;
 
-      open(DIFF,"diff $right $target|") or die "couldn't execute diff";
-      print "diff $right $target\n";
+      open(DIFF,"fc $right $target|") or die "couldn't execute fc";
+      print "fc $right $target\n";
       while( my $line = <DIFF>)
       {
-        if($line =~ m/\S+/)
+        if($line =~ m/FC:\sno\sdifferences\sencountered/i)
         {
-          $rightdiff = 1;
-         print "\t$line";
+          $rightdiff = 0;
         }
+        print "\t$line";
       }
       close DIFF;
 
