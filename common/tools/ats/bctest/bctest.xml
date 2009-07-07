@@ -31,8 +31,17 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="*"/>
-							<param dst="c:\BCTestLog"/>
+							<param src="release_note.txt"/>
+							<param dst="c:\BCTestLog\release_note.txt"/>
+							<param component-path="bctest\BCTestLog" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="config.xml"/>
+							<param dst="c:\BCTestLog\config.xml"/>
 							<param component-path="bctest\BCTestLog" />
 						</params>
 					</step>
@@ -40,8 +49,26 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestlauncher_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestlauncher_aif.mbm"/>
+							<param src="bctestutil.dll"/>
+							<param dst="c:\sys\bin\bctestutil.dll"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlauncher.exe"/>
+							<param dst="c:\sys\bin\bctestlauncher.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestlauncher_reg.r01"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestlauncher_reg.r01"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -58,8 +85,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestlauncher_reg.r01"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestlauncher_reg.r01"/>
+							<param src="z/resource/apps/bctestlauncher_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestlauncher_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestbuttons_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestbuttons_reg.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -85,17 +121,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestbuttons_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestbuttons_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestsliderandicons.rsc"/>
-							<param dst="z:\resource\apps\bctestsliderandicons.rsc"/>
+							<param src="bctestbuttons.exe"/>
+							<param dst="c:\sys\bin\bctestbuttons.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -112,8 +139,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestaknsound.mbm"/>
-							<param dst="z:\resource\apps\bctestaknsound.mbm"/>
+							<param src="z/resource/apps/bctestsliderandicons.rsc"/>
+							<param dst="z:\resource\apps\bctestsliderandicons.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -121,17 +148,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestaknsound_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestaknsound_aif.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestaknsound.rsc"/>
-							<param dst="z:\resource\apps\bctestaknsound.rsc"/>
+							<param src="bctestsliderandicons.exe"/>
+							<param dst="c:\sys\bin\bctestsliderandicons.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -148,8 +166,35 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestappfrm.rsc"/>
-							<param dst="z:\resource\apps\bctestappfrm.rsc"/>
+							<param src="z/resource/apps/bctestaknsound.mbm"/>
+							<param dst="z:\resource\apps\bctestaknsound.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestaknsound.rsc"/>
+							<param dst="z:\resource\apps\bctestaknsound.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestaknsound_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestaknsound_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestaknsound.exe"/>
+							<param dst="c:\sys\bin\bctestaknsound.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -166,8 +211,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestcmdlg.rsc"/>
-							<param dst="z:\resource\apps\bctestcmdlg.rsc"/>
+							<param src="z/resource/apps/bctestappfrm.rsc"/>
+							<param dst="z:\resource\apps\bctestappfrm.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestappfrm.exe"/>
+							<param dst="c:\sys\bin\bctestappfrm.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -184,8 +238,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestdocandinit.rsc"/>
-							<param dst="z:\resource\apps\bctestdocandinit.rsc"/>
+							<param src="z/resource/apps/bctestcmdlg.rsc"/>
+							<param dst="z:\resource\apps\bctestcmdlg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestcmdlg.exe"/>
+							<param dst="c:\sys\bin\bctestcmdlg.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -202,8 +265,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctesteditor.rsc"/>
-							<param dst="z:\resource\apps\bctesteditor.rsc"/>
+							<param src="z/resource/apps/bctestdocandinit.rsc"/>
+							<param dst="z:\resource\apps\bctestdocandinit.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestdocandinit.exe"/>
+							<param dst="c:\sys\bin\bctestdocandinit.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -220,8 +292,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctesteh.rsc"/>
-							<param dst="z:\resource\apps\bctesteh.rsc"/>
+							<param src="z/resource/apps/bctesteditor.rsc"/>
+							<param dst="z:\resource\apps\bctesteditor.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesteditor.exe"/>
+							<param dst="c:\sys\bin\bctesteditor.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -238,8 +319,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctesteikbctrl_aif.mbm"/>
-							<param dst="z:\resource\apps\bctesteikbctrl_aif.mbm"/>
+							<param src="z/resource/apps/bctesteh.rsc"/>
+							<param dst="z:\resource\apps\bctesteh.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -247,8 +328,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctesteikbctrl.rsc"/>
-							<param dst="z:\resource\apps\bctesteikbctrl.rsc"/>
+							<param src="bctesteh.exe"/>
+							<param dst="c:\sys\bin\bctesteh.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -265,8 +346,26 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctesteikfrm.r01"/>
-							<param dst="z:\resource\apps\bctesteikfrm.r01"/>
+							<param src="z/resource/apps/bctesteikbctrl.rsc"/>
+							<param dst="z:\resource\apps\bctesteikbctrl.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctesteikbctrl_aif.mbm"/>
+							<param dst="z:\resource\apps\bctesteikbctrl_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesteikbctrl.exe"/>
+							<param dst="c:\sys\bin\bctesteikbctrl.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -283,8 +382,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestfontinput.mbm"/>
-							<param dst="z:\resource\apps\bctestfontinput.mbm"/>
+							<param src="z/resource/apps/bctesteikfrm.r01"/>
+							<param dst="z:\resource\apps\bctesteikfrm.r01"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -292,17 +391,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestfontinput_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestfontinput_aif.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestfontinput.rsc"/>
-							<param dst="z:\resource\apps\bctestfontinput.rsc"/>
+							<param src="bctesteikfrm.exe"/>
+							<param dst="c:\sys\bin\bctesteikfrm.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -319,8 +409,35 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestform.rsc"/>
-							<param dst="z:\resource\apps\bctestform.rsc"/>
+							<param src="z/resource/apps/bctestfontinput.mbm"/>
+							<param dst="z:\resource\apps\bctestfontinput.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestfontinput.rsc"/>
+							<param dst="z:\resource\apps\bctestfontinput.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestfontinput_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestfontinput_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestfontinput.exe"/>
+							<param dst="c:\sys\bin\bctestfontinput.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -337,8 +454,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestgrids.rsc"/>
-							<param dst="z:\resource\apps\bctestgrids.rsc"/>
+							<param src="z/resource/apps/bctestform.rsc"/>
+							<param dst="z:\resource\apps\bctestform.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestform.exe"/>
+							<param dst="c:\sys\bin\bctestform.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -355,8 +481,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestimage_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestimage_aif.mbm"/>
+							<param src="z/resource/apps/bctestgrids.rsc"/>
+							<param dst="z:\resource\apps\bctestgrids.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -364,8 +490,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestimage.rsc"/>
-							<param dst="z:\resource\apps\bctestimage.rsc"/>
+							<param src="bctestgrids.exe"/>
+							<param dst="c:\sys\bin\bctestgrids.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -382,8 +508,26 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestkeylock.rsc"/>
-							<param dst="z:\resource\apps\bctestkeylock.rsc"/>
+							<param src="z/resource/apps/bctestimage.rsc"/>
+							<param dst="z:\resource\apps\bctestimage.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestimage_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestimage_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestimage.exe"/>
+							<param dst="c:\sys\bin\bctestimage.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -400,8 +544,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestlabelinfoindicators.rsc"/>
-							<param dst="z:\resource\apps\bctestlabelinfoindicators.rsc"/>
+							<param src="z/resource/apps/bctestkeylock.rsc"/>
+							<param dst="z:\resource\apps\bctestkeylock.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestkeylock.exe"/>
+							<param dst="c:\sys\bin\bctestkeylock.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -418,8 +571,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestlist_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestlist_aif.mbm"/>
+							<param src="z/resource/apps/bctestlabelinfoindicators.rsc"/>
+							<param dst="z:\resource\apps\bctestlabelinfoindicators.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -427,8 +580,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestlist.rsc"/>
-							<param dst="z:\resource\apps\bctestlist.rsc"/>
+							<param src="bctestlabelinfoindicators.exe"/>
+							<param dst="c:\sys\bin\bctestlabelinfoindicators.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -445,8 +598,26 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestmenu.rsc"/>
-							<param dst="z:\resource\apps\bctestmenu.rsc"/>
+							<param src="z/resource/apps/bctestlist.rsc"/>
+							<param dst="z:\resource\apps\bctestlist.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestlist_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestlist_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlist.exe"/>
+							<param dst="c:\sys\bin\bctestlist.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -463,8 +634,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestnote.mbm"/>
-							<param dst="z:\resource\apps\bctestnote.mbm"/>
+							<param src="z/resource/apps/bctestmenu.rsc"/>
+							<param dst="z:\resource\apps\bctestmenu.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -472,8 +643,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/apps/bctestnote.rsc"/>
-							<param dst="z:\resource\apps\bctestnote.rsc"/>
+							<param src="bctestmenu.exe"/>
+							<param dst="c:\sys\bin\bctestmenu.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -481,566 +652,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestnote_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestnote_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestnotifier.rsc"/>
-							<param dst="z:\resource\apps\bctestnotifier.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestnotifier_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestnotifier_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestpane.rsc"/>
-							<param dst="z:\resource\apps\bctestpane.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestpane_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestpane_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestpopups.mbm"/>
-							<param dst="z:\resource\apps\bctestpopups.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestpopups.rsc"/>
-							<param dst="z:\resource\apps\bctestpopups.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestpopups_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestpopups_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestprivateuifrm.rsc"/>
-							<param dst="z:\resource\apps\bctestprivateuifrm.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestprivateuifrm_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestprivateuifrm_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestptieng.rsc"/>
-							<param dst="z:\resource\apps\bctestptieng.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestptieng_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestptieng_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestquery.rsc"/>
-							<param dst="z:\resource\apps\bctestquery.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestquery_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestquery_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestscreenclearer.mbm"/>
-							<param dst="z:\resource\apps\bctestscreenclearer.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestscreenclearer_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestscreenclearer_aif.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestscreenclearer.rsc"/>
-							<param dst="z:\resource\apps\bctestscreenclearer.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestscreenclearer_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestscreenclearer_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestscroller.rsc"/>
-							<param dst="z:\resource\apps\bctestscroller.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestscroller_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestscroller_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestsearchfield.rsc"/>
-							<param dst="z:\resource\apps\bctestsearchfield.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestsearchfield_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestsearchfield_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestserverapp.rsc"/>
-							<param dst="z:\resource\apps\bctestserverapp.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestserverapp_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestserverapp_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestsettingpage.mbm"/>
-							<param dst="z:\resource\apps\bctestsettingpage.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestsettingpage_aif.mbm"/>
-							<param dst="z:\resource\apps\bctestsettingpage_aif.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestsettingpage.rsc"/>
-							<param dst="z:\resource\apps\bctestsettingpage.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestsettingpage_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestsettingpage_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestskins.rsc"/>
-							<param dst="z:\resource\apps\bctestskins.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestskins_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestskins_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestutilities.rsc"/>
-							<param dst="z:\resource\apps\bctestutilities.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestutilities_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestutilities_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestvolume.mbm"/>
-							<param dst="z:\resource\apps\bctestvolume.mbm"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestvolume.rsc"/>
-							<param dst="z:\resource\apps\bctestvolume.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestvolume_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestvolume_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestocr.rsc"/>
-							<param dst="z:\resource\apps\bctestocr.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestocr_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestocr_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestmisc.rsc"/>
-							<param dst="z:\resource\apps\bctestmisc.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestmisc_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestmisc_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestlocation.rsc"/>
-							<param dst="z:\resource\apps\bctestlocation.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestlocation_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestlocation_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestuniteditor.rsc"/>
-							<param dst="z:\resource\apps\bctestuniteditor.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestuniteditor_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestuniteditor_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestmisc32.rsc"/>
-							<param dst="z:\resource\apps\bctestmisc32.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestmisc32_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestmisc32_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestlocalizer.rsc"/>
-							<param dst="z:\resource\apps\bctestlocalizer.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestlocalizer_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestlocalizer_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestpreviewpopup.rsc"/>
-							<param dst="z:\resource\apps\bctestpreviewpopup.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestpreviewpopup_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestpreviewpopup_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestservicehandler.rsc"/>
-							<param dst="z:\resource\apps\bctestservicehandler.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestservicehandler_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestservicehandler_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestbutton.rsc"/>
-							<param dst="z:\resource\apps\bctestbutton.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestbutton_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestbutton_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestchoicelist.rsc"/>
-							<param dst="z:\resource\apps\bctestchoicelist.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestchoicelist_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestchoicelist_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctestmix50.rsc"/>
-							<param dst="z:\resource\apps\bctestmix50.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestmix50_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestmix50_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctesttoolbar.rsc"/>
-							<param dst="z:\resource\apps\bctesttoolbar.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctesttoolbar_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctesttoolbar_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctesttouchpane.rsc"/>
-							<param dst="z:\resource\apps\bctesttouchpane.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctesttouchpane_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctesttouchpane_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/resource/apps/bctesttreelist.rsc"/>
-							<param dst="z:\resource\apps\bctesttreelist.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctesttreelist_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctesttreelist_reg.rsc"/>
+							<param src="z/private/10003a3f/apps/bctestmisccontrol_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestmisccontrol_reg.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1066,240 +679,6 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/private/10003a3f/apps/bctestmisccontrol_reg.rsc"/>
-							<param dst="z:\private\10003a3f\import\apps\bctestmisccontrol_reg.rsc"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestutil.dll"/>
-							<param dst="c:\sys\bin\bctestutil.dll"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestlauncher.exe"/>
-							<param dst="c:\sys\bin\bctestlauncher.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestaknsound.exe"/>
-							<param dst="c:\sys\bin\bctestaknsound.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestappfrm.exe"/>
-							<param dst="c:\sys\bin\bctestappfrm.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestbutton.exe"/>
-							<param dst="c:\sys\bin\bctestbutton.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestbuttons.exe"/>
-							<param dst="c:\sys\bin\bctestbuttons.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestchoicelist.exe"/>
-							<param dst="c:\sys\bin\bctestchoicelist.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestcmdlg.exe"/>
-							<param dst="c:\sys\bin\bctestcmdlg.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestdocandinit.exe"/>
-							<param dst="c:\sys\bin\bctestdocandinit.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctesteditor.exe"/>
-							<param dst="c:\sys\bin\bctesteditor.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctesteh.exe"/>
-							<param dst="c:\sys\bin\bctesteh.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctesteikbctrl.exe"/>
-							<param dst="c:\sys\bin\bctesteikbctrl.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctesteikfrm.exe"/>
-							<param dst="c:\sys\bin\bctesteikfrm.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestfontinput.exe"/>
-							<param dst="c:\sys\bin\bctestfontinput.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestform.exe"/>
-							<param dst="c:\sys\bin\bctestform.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestgrids.exe"/>
-							<param dst="c:\sys\bin\bctestgrids.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestimage.exe"/>
-							<param dst="c:\sys\bin\bctestimage.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestkeylock.exe"/>
-							<param dst="c:\sys\bin\bctestkeylock.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestlabelinfoindicators.exe"/>
-							<param dst="c:\sys\bin\bctestlabelinfoindicators.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestlist.exe"/>
-							<param dst="c:\sys\bin\bctestlist.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestlocalizer.exe"/>
-							<param dst="c:\sys\bin\bctestlocalizer.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestlocation.exe"/>
-							<param dst="c:\sys\bin\bctestlocation.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestmenu.exe"/>
-							<param dst="c:\sys\bin\bctestmenu.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestmisc.exe"/>
-							<param dst="c:\sys\bin\bctestmisc.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestmisc32.exe"/>
-							<param dst="c:\sys\bin\bctestmisc32.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
 							<param src="bctestmisccontrol.exe"/>
 							<param dst="c:\sys\bin\bctestmisccontrol.exe"/>
 							<param component-path="bctest" />
@@ -1309,8 +688,26 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="bctestmix50.exe"/>
-							<param dst="c:\sys\bin\bctestmix50.exe"/>
+							<param src="z/private/10003a3f/apps/bctestnote_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestnote_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestnote.mbm"/>
+							<param dst="z:\resource\apps\bctestnote.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestnote.rsc"/>
+							<param dst="z:\resource\apps\bctestnote.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1327,6 +724,24 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestnotifier_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestnotifier_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestnotifier.rsc"/>
+							<param dst="z:\resource\apps\bctestnotifier.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestnotifier.exe"/>
 							<param dst="c:\sys\bin\bctestnotifier.exe"/>
 							<param component-path="bctest" />
@@ -1336,8 +751,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="bctestocr.exe"/>
-							<param dst="c:\sys\bin\bctestocr.exe"/>
+							<param src="z/private/10003a3f/apps/bctestpane_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestpane_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestpane.rsc"/>
+							<param dst="z:\resource\apps\bctestpane.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1354,6 +778,33 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestpopups_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestpopups_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestpopups.mbm"/>
+							<param dst="z:\resource\apps\bctestpopups.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestpopups.rsc"/>
+							<param dst="z:\resource\apps\bctestpopups.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestpopups.exe"/>
 							<param dst="c:\sys\bin\bctestpopups.exe"/>
 							<param component-path="bctest" />
@@ -1363,8 +814,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="bctestpreviewpopup.exe"/>
-							<param dst="c:\sys\bin\bctestpreviewpopup.exe"/>
+							<param src="z/private/10003a3f/apps/bctestprivateuifrm_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestprivateuifrm_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestprivateuifrm.rsc"/>
+							<param dst="z:\resource\apps\bctestprivateuifrm.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1381,8 +841,44 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestptieng_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestptieng_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestptieng.rsc"/>
+							<param dst="z:\resource\apps\bctestptieng.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestptieng.exe"/>
 							<param dst="c:\sys\bin\bctestptieng.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestquery_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestquery_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestquery.rsc"/>
+							<param dst="z:\resource\apps\bctestquery.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1399,8 +895,62 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestscreenclearer_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestscreenclearer_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestscreenclearer.mbm"/>
+							<param dst="z:\resource\apps\bctestscreenclearer.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestscreenclearer.rsc"/>
+							<param dst="z:\resource\apps\bctestscreenclearer.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestscreenclearer_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestscreenclearer_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestscreenclearer.exe"/>
 							<param dst="c:\sys\bin\bctestscreenclearer.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestscroller_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestscroller_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestscroller.rsc"/>
+							<param dst="z:\resource\apps\bctestscroller.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1417,8 +967,44 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestsearchfield_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestsearchfield_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestsearchfield.rsc"/>
+							<param dst="z:\resource\apps\bctestsearchfield.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestsearchfield.exe"/>
 							<param dst="c:\sys\bin\bctestsearchfield.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestserverapp_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestserverapp_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestserverapp.rsc"/>
+							<param dst="z:\resource\apps\bctestserverapp.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1435,8 +1021,35 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="bctestservicehandler.exe"/>
-							<param dst="c:\sys\bin\bctestservicehandler.exe"/>
+							<param src="z/private/10003a3f/apps/bctestsettingpage_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestsettingpage_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestsettingpage.rsc"/>
+							<param dst="z:\resource\apps\bctestsettingpage.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestsettingpage_aif.mbm"/>
+							<param dst="z:\resource\apps\bctestsettingpage_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestsettingpage.mbm"/>
+							<param dst="z:\resource\apps\bctestsettingpage.mbm"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1453,6 +1066,24 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestskins_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestskins_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestskins.rsc"/>
+							<param dst="z:\resource\apps\bctestskins.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestskins.exe"/>
 							<param dst="c:\sys\bin\bctestskins.exe"/>
 							<param component-path="bctest" />
@@ -1462,8 +1093,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="bctestsliderandicons.exe"/>
-							<param dst="c:\sys\bin\bctestsliderandicons.exe"/>
+							<param src="z/private/10003a3f/apps/bctestutilities_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestutilities_reg.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1471,35 +1102,8 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="bctesttoolbar.exe"/>
-							<param dst="c:\sys\bin\bctesttoolbar.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctesttouchpane.exe"/>
-							<param dst="c:\sys\bin\bctesttouchpane.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctesttreelist.exe"/>
-							<param dst="c:\sys\bin\bctesttreelist.exe"/>
-							<param component-path="bctest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="binary"/>
-							<param src="bctestuniteditor.exe"/>
-							<param dst="c:\sys\bin\bctestuniteditor.exe"/>
+							<param src="z/resource/apps/bctestutilities.rsc"/>
+							<param dst="z:\resource\apps\bctestutilities.rsc"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1516,8 +1120,413 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestvolume_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestvolume_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestvolume.mbm"/>
+							<param dst="z:\resource\apps\bctestvolume.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestvolume.rsc"/>
+							<param dst="z:\resource\apps\bctestvolume.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
 							<param src="bctestvolume.exe"/>
 							<param dst="c:\sys\bin\bctestvolume.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestocr_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestocr_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestocr.rsc"/>
+							<param dst="z:\resource\apps\bctestocr.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestocr.exe"/>
+							<param dst="c:\sys\bin\bctestocr.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestmisc_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestmisc_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestmisc.rsc"/>
+							<param dst="z:\resource\apps\bctestmisc.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmisc.exe"/>
+							<param dst="c:\sys\bin\bctestmisc.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestlocation_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestlocation_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestlocation.rsc"/>
+							<param dst="z:\resource\apps\bctestlocation.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlocation.exe"/>
+							<param dst="c:\sys\bin\bctestlocation.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestuniteditor_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestuniteditor_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestuniteditor.rsc"/>
+							<param dst="z:\resource\apps\bctestuniteditor.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestuniteditor.exe"/>
+							<param dst="c:\sys\bin\bctestuniteditor.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestmisc32_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestmisc32_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestmisc32.rsc"/>
+							<param dst="z:\resource\apps\bctestmisc32.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmisc32.exe"/>
+							<param dst="c:\sys\bin\bctestmisc32.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestlocalizer_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestlocalizer_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestlocalizer.rsc"/>
+							<param dst="z:\resource\apps\bctestlocalizer.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestlocalizer.exe"/>
+							<param dst="c:\sys\bin\bctestlocalizer.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestpreviewpopup_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestpreviewpopup_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestpreviewpopup.rsc"/>
+							<param dst="z:\resource\apps\bctestpreviewpopup.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestpreviewpopup.exe"/>
+							<param dst="c:\sys\bin\bctestpreviewpopup.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestservicehandler_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestservicehandler_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestservicehandler.rsc"/>
+							<param dst="z:\resource\apps\bctestservicehandler.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestservicehandler.exe"/>
+							<param dst="c:\sys\bin\bctestservicehandler.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestbutton_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestbutton_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestbutton.rsc"/>
+							<param dst="z:\resource\apps\bctestbutton.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestbutton.exe"/>
+							<param dst="c:\sys\bin\bctestbutton.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestchoicelist_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestchoicelist_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestchoicelist.rsc"/>
+							<param dst="z:\resource\apps\bctestchoicelist.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestchoicelist.exe"/>
+							<param dst="c:\sys\bin\bctestchoicelist.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctestmix50_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctestmix50_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestmix50.rsc"/>
+							<param dst="z:\resource\apps\bctestmix50.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestmix50.exe"/>
+							<param dst="c:\sys\bin\bctestmix50.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctesttoolbar_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctesttoolbar_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctesttoolbar.rsc"/>
+							<param dst="z:\resource\apps\bctesttoolbar.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesttoolbar.exe"/>
+							<param dst="c:\sys\bin\bctesttoolbar.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctesttouchpane_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctesttouchpane_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctesttouchpane.rsc"/>
+							<param dst="z:\resource\apps\bctesttouchpane.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesttouchpane.exe"/>
+							<param dst="c:\sys\bin\bctesttouchpane.exe"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/private/10003a3f/apps/bctesttreelist_reg.rsc"/>
+							<param dst="z:\private\10003a3f\import\apps\bctesttreelist_reg.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctesttreelist.rsc"/>
+							<param dst="z:\resource\apps\bctesttreelist.rsc"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctesttreelist.exe"/>
+							<param dst="c:\sys\bin\bctesttreelist.exe"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -2009,170 +2018,170 @@
 		<file>bctest/general/UIFW.bat</file>
 		<file>bctest/BCTestLog/general/release_note.txt</file>
 		<file>bctest/BCTestLog/general/config.xml</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlauncher_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlauncher.r01</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlauncher_reg.r01</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestbuttons.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestbuttons.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestbuttons_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestsliderandicons.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsliderandicons_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestaknsound_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestappfrm.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestappfrm_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestcmdlg.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestcmdlg_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestdocandinit.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestdocandinit_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesteditor.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteditor_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesteh.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteh_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesteikbctrl_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesteikbctrl.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteikbctrl_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesteikfrm.r01</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteikfrm_reg.r01</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestfontinput_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestform.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestform_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestgrids.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestgrids_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestimage_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestimage.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestimage_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestkeylock.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestkeylock_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlabelinfoindicators.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlabelinfoindicators_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlist_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlist.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestist_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestmenu.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmenu_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestnote.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestnote.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestnote_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestnotifier.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestnotifier_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestpane.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpane_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestpopups.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestpopups.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpopups_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestprivateuifrm.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestprivateuifrm_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestptieng.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestptieng_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestquery.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestquery_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestscreenclearer_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestscroller.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestscroller_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestsearchfield.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsearchfield_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestserverapp.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestserverapp_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage_aif.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsettingpage_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestskins.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestskins_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestutilities.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestutilities_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestvolume.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestvolume.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestvolume_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestocr.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestocr_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestmisc.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisc_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlocation.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlocation_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestuniteditor.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestuniteditor_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestmisc32.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisc32_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestlocalizer.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlocalizer_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestpreviewpopup.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpreviewpopup_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestservicehandler.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestservicehandler_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestbutton.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestbutton_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestchoicelist.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestchoicelist_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestmix50.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmix50_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesttoolbar.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttoolbar_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesttouchpane.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttouchpane_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctesttreelist.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttreelist_reg.rsc</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestmisccontrol.mbm</file>
-		<file>bctest/winscw_udeb/z/resource/apps/bctestmisccontrol.rsc</file>
-		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisccontrol_reg.rsc</file>
 		<file>bctest/winscw_udeb/bctestutil.dll</file>
 		<file>bctest/winscw_udeb/bctestlauncher.exe</file>
-		<file>bctest/winscw_udeb/bctestaknsound.exe</file>
-		<file>bctest/winscw_udeb/bctestappfrm.exe</file>
-		<file>bctest/winscw_udeb/bctestbutton.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlauncher_reg.r01</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlauncher.r01</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlauncher_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestbuttons_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestbuttons.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestbuttons.rsc</file>
 		<file>bctest/winscw_udeb/bctestbuttons.exe</file>
-		<file>bctest/winscw_udeb/bctestchoicelist.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsliderandicons_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsliderandicons.rsc</file>
+		<file>bctest/winscw_udeb/bctestsliderandicons.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestaknsound_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestaknsound_aif.mbm</file>
+		<file>bctest/winscw_udeb/bctestaknsound.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestappfrm_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestappfrm.rsc</file>
+		<file>bctest/winscw_udeb/bctestappfrm.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestcmdlg_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestcmdlg.rsc</file>
 		<file>bctest/winscw_udeb/bctestcmdlg.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestdocandinit_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestdocandinit.rsc</file>
 		<file>bctest/winscw_udeb/bctestdocandinit.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteditor_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteditor.rsc</file>
 		<file>bctest/winscw_udeb/bctesteditor.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteh_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteh.rsc</file>
 		<file>bctest/winscw_udeb/bctesteh.exe</file>
-		<file>bctest/winscw_udeb/bcteikbctrl.exe</file>
-		<file>bctest/winscw_udeb/bctesteikfrm.exe"</file>
-		<file>bctest/winscw_udeb/bctestfontinput.exe"</file>
-		<file>bctest/winscw_udeb/bctestform.exe"</file>
-		<file>bctest/winscw_udeb/bctestgrids.exe"</file>
-		<file>bctest/winscw_udeb/bctestimage.exe"</file>
-		<file>bctest/winscw_udeb/bctestkeylock.exe"</file>
-		<file>bctest/winscw_udeb/bctestlabelinfoindicators.exe"</file>
-		<file>bctest/winscw_udeb/bctestlist.exe"</file>
-		<file>bctest/winscw_udeb/bctestlocalizer.exe"</file>
-		<file>bctest/winscw_udeb/bctestlocation.exe"</file>
-		<file>bctest/winscw_udeb/bctestmenu.exe"</file>
-		<file>bctest/winscw_udeb/bctestmisc.exe"</file>
-		<file>bctest/winscw_udeb/bctestmisc32.exe"</file>
-		<file>bctest/winscw_udeb/bctestmisccontrol.exe"</file>
-		<file>bctest/winscw_udeb/bctestmix50.exe"</file>
-		<file>bctest/winscw_udeb/bctestnote.exe"</file>
-		<file>bctest/winscw_udeb/bctestnotifier.exe"</file>
-		<file>bctest/winscw_udeb/bctestocr.exe"</file>
-		<file>bctest/winscw_udeb/bctestpane.exe"</file>
-		<file>bctest/winscw_udeb/bctestpopups.exe"</file>
-		<file>bctest/winscw_udeb/bctestpreviewpopup.exe"</file>
-		<file>bctest/winscw_udeb/bctestprivateuifrm.exe"</file>
-		<file>bctest/winscw_udeb/bctestptieng.exe"</file>
-		<file>bctest/winscw_udeb/bctestquery.exe"</file>
-		<file>bctest/winscw_udeb/bctestscreenclearer.exe"</file>
-		<file>bctest/winscw_udeb/bctestscroller.exe"</file>
-		<file>bctest/winscw_udeb/bctestsearchfield.exe"</file>
-		<file>bctest/winscw_udeb/bctestserverapp.exe"</file>
-		<file>bctest/winscw_udeb/bctestservicehandler.exe"</file>
-		<file>bctest/winscw_udeb/bctestsettingpage.exe"</file>
-		<file>bctest/winscw_udeb/bctestskins.exe"</file>
-		<file>bctest/winscw_udeb/bctestsliderandicons.exe"</file>
-		<file>bctest/winscw_udeb/bctesttoolbar.exe"</file>
-		<file>bctest/winscw_udeb/bctesttouchpane.exe"</file>
-		<file>bctest/winscw_udeb/bctesttreelist.exe"</file>
-		<file>bctest/winscw_udeb/bctestuniteditor.exe"</file>
-		<file>bctest/winscw_udeb/bctestutilities.exe"</file>
-		<file>bctest/winscw_udeb/bctestvolume.exe"</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteikbctrl_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteikbctrl.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteikbctrl_aif.mbm</file>
+		<file>bctest/winscw_udeb/bctesteikbctrl.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesteikfrm_reg.r01</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesteikfrm.r01</file>
+		<file>bctest/winscw_udeb/bctesteikfrm.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestfontinput_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestfontinput_aif.mbm</file>
+		<file>bctest/winscw_udeb/bctestfontinput.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestform_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestform.rsc</file>
+		<file>bctest/winscw_udeb/bctestform.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestgrids_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestgrids.rsc</file>
+		<file>bctest/winscw_udeb/bctestgrids.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestimage_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestimage.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestimage_aif.mbm</file>
+		<file>bctest/winscw_udeb/bctestimage.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestkeylock_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestkeylock.rsc</file>
+		<file>bctest/winscw_udeb/bctestkeylock.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlabelinfoindicators_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlabelinfoindicators.rsc</file>
+		<file>bctest/winscw_udeb/bctestlabelinfoindicators.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlist_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlist.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlist_aif.mbm</file>
+		<file>bctest/winscw_udeb/bctestlist.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmenu_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmenu.rsc</file>
+		<file>bctest/winscw_udeb/bctestmenu.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisccontrol_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisccontrol.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisccontrol.rsc</file>
+		<file>bctest/winscw_udeb/bctestmisccontrol.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestnote_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestnote.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestnote.rsc</file>
+		<file>bctest/winscw_udeb/bctestnote.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestnotifier_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestnotifier.rsc</file>
+		<file>bctest/winscw_udeb/bctestnotifier.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpane_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpane.rsc</file>
+		<file>bctest/winscw_udeb/bctestpane.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpopups_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpopups.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpopups.rsc</file>
+		<file>bctest/winscw_udeb/bctestpopups.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestprivateuifrm_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestprivateuifrm.rsc</file>
+		<file>bctest/winscw_udeb/bctestprivateuifrm.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestptieng_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestptieng.rsc</file>
+		<file>bctest/winscw_udeb/bctestptieng.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestquery_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestquery.rsc</file>
+		<file>bctest/winscw_udeb/bctestquery.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestscreenclearer_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscreenclearer_aif.mbm</file>
+		<file>bctest/winscw_udeb/bctestscreenclearer.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestscroller_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestscroller.rsc</file>
+		<file>bctest/winscw_udeb/bctestscroller.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsearchfield_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsearchfield.rsc</file>
+		<file>bctest/winscw_udeb/bctestsearchfield.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestserverapp_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestserverapp.rsc</file>
+		<file>bctest/winscw_udeb/bctestserverapp.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestsettingpage_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestsettingpage.mbm</file>
+		<file>bctest/winscw_udeb/bctestsettingpage.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestskins_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestskins.rsc</file>
+		<file>bctest/winscw_udeb/bctestskins.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestutilities_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestutilities.rsc</file>
+		<file>bctest/winscw_udeb/bctestutilities.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestvolume_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestvolume.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestvolume.rsc</file>
+		<file>bctest/winscw_udeb/bctestvolume.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestocr_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestocr.rsc</file>
+		<file>bctest/winscw_udeb/bctestocr.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisc_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisc.rsc</file>
+		<file>bctest/winscw_udeb/bctestmisc.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlocation_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlocation.rsc</file>
+		<file>bctest/winscw_udeb/bctestlocation.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestuniteditor_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestuniteditor.rsc</file>
+		<file>bctest/winscw_udeb/bctestuniteditor.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmisc32_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmisc32.rsc</file>
+		<file>bctest/winscw_udeb/bctestmisc32.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlocalizer_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlocalizer.rsc</file>
+		<file>bctest/winscw_udeb/bctestlocalizer.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestpreviewpopup_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestpreviewpopup.rsc</file>
+		<file>bctest/winscw_udeb/bctestpreviewpopup.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestservicehandler_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestservicehandler.rsc</file>
+		<file>bctest/winscw_udeb/bctestservicehandler.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestbutton_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestbutton.rsc</file>
+		<file>bctest/winscw_udeb/bctestbutton.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestchoicelist_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestchoicelist.rsc</file>
+		<file>bctest/winscw_udeb/bctestchoicelist.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmix50_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestmix50.rsc</file>
+		<file>bctest/winscw_udeb/bctestmix50.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttoolbar_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesttoolbar.rsc</file>
+		<file>bctest/winscw_udeb/bctesttoolbar.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttouchpane_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesttouchpane.rsc</file>
+		<file>bctest/winscw_udeb/bctesttouchpane.exe</file>
+		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctesttreelist_reg.rsc</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctesttreelist.rsc</file>
+		<file>bctest/winscw_udeb/bctesttreelist.exe</file>
 	</files>
 </test>
