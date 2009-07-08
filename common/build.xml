@@ -433,7 +433,7 @@
         </if>
     </target>
 
-    <target name="sf-build-noprep" depends="sf-compile,sf-postbuild">
+    <target name="sf-build-noprep" depends="sf-truclean,sf-compile,sf-postbuild">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
@@ -451,7 +451,27 @@
         </if>
     </target>
     
-    <target name="sf-compile">    
+  <target name="sf-truclean">
+    <if>
+      <istrue value="${sf.spec.build.clean.enable}"/>
+      <then>
+        <echo message="Executing truclean step."/>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/truclean.ant.xml.ftl"
+            outputFile="${sf.common.config.dir}/generated/truclean.ant.xml">
+          <data expandProperties="yes">
+              ant: antProperties()
+              data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+          </data>
+        </fmpp>
+        <ant antfile="${sf.common.config.dir}/generated/truclean.ant.xml"/>
+      </then>
+      <else>
+        <echo message="Skipping truclean step."/>
+      </else>
+    </if>
+  </target>
+    
+    <target name="sf-compile">
         <!-- TODO: add here assigments to raptor-related ant references -->
     
         <!-- hlm:argSet id="sbs.tools.var">
