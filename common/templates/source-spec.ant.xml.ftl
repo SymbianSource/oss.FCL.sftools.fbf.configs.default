@@ -90,7 +90,7 @@
       <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
       <arg value="/c"/>
       <arg value="echo"/>
-      <arg value="source,dst,type,pattern,sysdef,"/>
+      <arg value="source,dst,type,pattern,sysdef"/>
   </exec>
   
   ${bom_list}
