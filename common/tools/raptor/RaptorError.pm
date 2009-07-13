@@ -34,28 +34,41 @@ $buildlog_error_status->{on_start} = 'RaptorError::on_start_buildlog_error';
 $buildlog_error_status->{on_end} = 'RaptorError::on_end_buildlog_error';
 $buildlog_error_status->{on_chars} = 'RaptorError::on_chars_buildlog_error';
 
+my $filename = '';
+
 my $characters = '';
 
 my $category = $RaptorCommon::CATEGORY_RAPTORERROR;
 
 sub process
 {
-	my ($text) = @_;
+	my ($text, $component, $phase, $recipe, $file, $line) = @_;
 	
 	my $severity = $RaptorCommon::SEVERITY_UNKNOWN;
 	
 	if ($text =~ m,Cannot process schema version .* of file,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
-		
-		#dump_error($category, $severity, $text);
-		print "$category, $severity, $text\n";
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,No bld\.inf found at,)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_NOBLDINFFOUND;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	else # log everything by default
+	{
+		$severity = $RaptorCommon::SEVERITY_UNKNOWN;
+		my $subcategory = '';
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 }
 
 sub on_start_buildlog_error
 {
-	my $filename = "$::basedir/errors.txt";
+	$filename = "$::basedir/errors.txt";
 	print "Writing error file $filename\n" if (!-f$filename);
 	open(FILE, ">>$filename");
 }
@@ -75,14 +88,19 @@ sub on_end_buildlog_error
 {
 	#print "on_end_buildlog_error\n";
 	
-	process($characters);
-	
 	print FILE $characters if ($characters =~ m,[^\s^\r^\n],);
 	print FILE "\n" if ($characters !~ m,[\r\n]$, );
+	close(FILE);
+	
+	# get the line number - not really optimized
+	my $linecount = 0;
+	open(FILE, "$filename");
+	for ($linecount = 0; <FILE>; $linecount++) { }
+	close(FILE);
+	
+	process($characters, '', '', '', "errors.txt", $linecount);
 	
 	$characters = '';
-	
-	close(FILE);
 }
 
 
