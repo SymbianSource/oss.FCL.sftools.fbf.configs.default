@@ -757,6 +757,61 @@
             <arg value="${build.log.dir}/analysis/${build.id}_what_results.csv"/>
         </exec>
         
+        
+      <echo message="Preprocessing *_compile.log files"/>
+      <for param="logfile">
+        <path>
+          <fileset dir="${build.log.dir}">
+            <include name="*_compile.log"/>
+            <exclude name="*build_check_compile.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\|\/].*\.\d+_+(.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+	        <echo message="Preprocessing @{logfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
+          </exec>
+      </for>
+      
+      <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
+      <for param="whatlogfile">
+        <path>
+          <fileset dir="${build.log.dir}">
+            <include name="*whatlog*_compile_preprocessed.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <echo message="Extracting whatlog info from @{whatlogfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
+            <arg value="--releaseable"/>
+            <arg value="--log=${build.log.dir}/analysis/${whatlogfile}"/>
+            <arg value="--basedir=${build.log.dir}"/>
+            <arg value="--append"/>
+          </exec>
+        </sequential>
+      </for>
+      
+      <echo message="Extracting error information from *_compile_preprocessed.log files"/>
+      <for param="raptorlogfile">
+        <path>
+          <fileset dir="${build.log.dir}">
+            <include name="*_compile_preprocessed.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <echo message="Extracting error info from @{raptorlogfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
+            <arg value="--error"/>
+            <arg value="--log=${build.log.dir}/analysis/${raptorlogfile}"/>
+            <arg value="--basedir=${build.log.dir}/raptorbits"/>
+            <arg value="--append"/>
+          </exec>
+        </sequential>
+      </for>
+      
       <echo message="Running yarp over *_compile.log files"/>
       <for param="logfile">
         <path>
@@ -794,30 +849,6 @@
           files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
         </data>
       </fmpp>
-      
-      <echo message="Extracting whatlog information from *whatlog*_compile.log files"/>
-      <for param="logfile">
-        <path>
-          <fileset dir="${build.log.dir}">
-            <include name="*whatlog*_compile.log"/>
-          </fileset>
-        </path>
-        <sequential>
-          <propertyregex override="yes" property="whatlogfile" input="@{logfile}" regexp=".*[\\|\/].*\.\d+_+(.*)_compile\.log" replace="\1_preprocessed.log"/>
-	  <echo message="Preprocessing @{logfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${whatlogfile}" error="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
-            <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
-          </exec>
-          <echo message="Extracting whatlog info from ${whatlogfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
-            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
-            <arg value="--releaseable"/>
-            <arg value="--log=${build.log.dir}/analysis/${whatlogfile}"/>
-            <arg value="--basedir=${build.log.dir}/releaseables"/>
-            <arg value="--append"/>
-          </exec>
-        </sequential>
-      </for>
 
     </target>
   
