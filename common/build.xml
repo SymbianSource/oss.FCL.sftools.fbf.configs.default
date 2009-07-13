@@ -812,9 +812,10 @@
         </exec>
         <echo message="Extracting whatlog info from ${whatlogfile}..."/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
-          <arg value="${sf.common.config.dir}/tools/raptor/package_what.pl"/>
+          <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
+          <arg value="--releaseable"/>
           <arg value="--log=${build.log.dir}/analysis/${whatlogfile}"/>
-          <arg value="--basedir=${build.log.dir}/deliverables"/>
+          <arg value="--basedir=${build.log.dir}/releaseables"/>
           <arg value="--append"/>
         </exec>
       </sequential>

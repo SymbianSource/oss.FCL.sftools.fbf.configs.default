@@ -13,7 +13,7 @@
       <exec executable="perl" dir="${ant['build.drive']}/" failonerror="false" output="${ant['build.log.dir']}/truclean.log">
         <arg value="${ant['sf.common.config.dir']}/tools/raptor/truclean.pl"/>
         <arg value="--packageexpr=${dollar}{package}"/>
-        <arg value="--deliverablesdir=${ant['build.drive']}/build_info/logs/deliverables"/>
+        <arg value="--releaseablesdir=${ant['build.drive']}/build_info/logs/releaseables"/>
       </exec>
   </sequential>
 </target>

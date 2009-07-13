@@ -15,14 +15,14 @@
 use strict;
 use Getopt::Long;
 
-my $DELIVERABLES_DIR = "/deliverables";
+my $RELEASEABLES_DIR = "/releaseables";
 
-my $deliverablesdir = "";
+my $releaseablesdir = "";
 my $packageexpr = '';
 my $help = 0;
 GetOptions((
 	'packageexpr:s' => \$packageexpr,
-	'deliverablesdir:s' => \$DELIVERABLES_DIR,
+	'releaseablesdir:s' => \$RELEASEABLES_DIR,
 	'help!' => \$help
 ));
 
@@ -39,16 +39,16 @@ if ($help)
 	print "\tLAYER_EXPR can be * or the name of a layer\n";
 	print "\tPACKAGE_EXPR can be * or the name of a package\n";
 	print "and OPTIONS are:\n";
-	print "\t--deliverablesdir=DIR Use DIR as the root of the deliverables dir (default: $DELIVERABLES_DIR\n";
+	print "\t--releaseablesdir=DIR Use DIR as the root of the releaseables dir (default: $RELEASEABLES_DIR\n";
 	exit(0);
 }
 
-$DELIVERABLES_DIR = $deliverablesdir if ($deliverablesdir);
+$RELEASEABLES_DIR = $releaseablesdir if ($releaseablesdir);
 
 my @layers = ();
 if ($layer_expr eq '*')
 {
-	opendir(DIR, $DELIVERABLES_DIR);
+	opendir(DIR, $RELEASEABLES_DIR);
 	@layers = readdir(DIR);
 	closedir(DIR);
 	@layers = grep(!/^\.\.?$/, @layers);
@@ -64,7 +64,7 @@ for my $layer (@layers)
 	my @packages = ();
 	if ($package_expr eq '*')
 	{
-		opendir(DIR, "$DELIVERABLES_DIR/$layer");
+		opendir(DIR, "$RELEASEABLES_DIR/$layer");
 		@packages = readdir(DIR);
 		closedir(DIR);
 		@packages = grep(!/^\.\.?$/, @packages);
@@ -79,7 +79,7 @@ for my $layer (@layers)
 	{
 		print "Processing package $layer/$package...\n";
 
-		open(FILE, "$DELIVERABLES_DIR/$layer/$package/info.tsv");
+		open(FILE, "$RELEASEABLES_DIR/$layer/$package/info.tsv");
 		while (<FILE>)
 		{
 			my $line = $_;
