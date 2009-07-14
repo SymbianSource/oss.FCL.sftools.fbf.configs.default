@@ -680,7 +680,7 @@
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="ats_specialise_test_drop.pl"/>
             <arg value="--test-drop-name=Smoketest-${build.id}"/> 
-            <arg value="--device-name=ATSINTERFACE EMULATOR on ${env.COMPUTERNAME}"/>
+            <arg value="--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}"/>
             <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
             <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
         </exec>
@@ -721,8 +721,7 @@
             <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${build.id}_what_results.csv_results.csv"/>
-            <arg value="${sf.project.location}/sysdefs/system_model_os_contributed.xml"/>
-            <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_os.xml"/>
         </exec>
 
         <echo message="Running collision analysis"/>
