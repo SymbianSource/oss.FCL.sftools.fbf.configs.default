@@ -78,6 +78,8 @@ copy($epoc . "data/z/private/10003a3f/apps/bctestlabelinfoindicators_reg.rsc",	"
 
 copy($epoc . "data/z/resource/apps/bctestlist_aif.mbm",							"temp/bctest/winscw_udeb/z/resource/apps/bctestlist_aif.mbm");
 copy($epoc . "data/z/resource/apps/bctestlist.rsc",								"temp/bctest/winscw_udeb/z/resource/apps/bctestlist.rsc");
+copy($epoc . "release/winscw/udeb/z/resource/apps/bctestlist.mbm",				"temp/bctest/winscw_udeb/z/resource/apps/bctestlist.mbm");
+copy($epoc . "release/winscw/udeb/z/resource/apps/bctestlist.mif",				"temp/bctest/winscw_udeb/z/resource/apps/bctestlist.mif");
 copy($epoc . "data/z/private/10003a3f/apps/bctestlist_reg.rsc",					"temp/bctest/winscw_udeb/z/private/10003a3f/apps/bctestlist_reg.rsc");
 
 copy($epoc . "data/z/resource/apps/bctestmenu.rsc",								"temp/bctest/winscw_udeb/z/resource/apps/bctestmenu.rsc");

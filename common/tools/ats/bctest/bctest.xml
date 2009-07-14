@@ -31,8 +31,8 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="release_note.txt"/>
-							<param dst="c:\BCTestLog\release_note.txt"/>
+							<param src="config.xml"/>
+							<param dst="c:\BCTestLog\config.xml"/>
 							<param component-path="bctest\BCTestLog" />
 						</params>
 					</step>
@@ -40,8 +40,8 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="config.xml"/>
-							<param dst="c:\BCTestLog\config.xml"/>
+							<param src="release_note.txt"/>
+							<param dst="c:\BCTestLog\release_note.txt"/>
 							<param component-path="bctest\BCTestLog" />
 						</params>
 					</step>
@@ -609,6 +609,24 @@
 							<param type="binary"/>
 							<param src="z/resource/apps/bctestlist_aif.mbm"/>
 							<param dst="z:\resource\apps\bctestlist_aif.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestlist.mbm"/>
+							<param dst="z:\resource\apps\bctestlist.mbm"/>
+							<param component-path="bctest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/apps/bctestlist.mif"/>
+							<param dst="z:\resource\apps\bctestlist.mif"/>
 							<param component-path="bctest" />
 						</params>
 					</step>
@@ -1684,16 +1702,6 @@
 						<command>execute</command>
 						<params>
 							<param file="bctestlauncher.exe"/>
-							<param parameters="bctestkeylock"/>
-							<param result-file="c:\BCTestLog\bctestkeylock_TestLog.txt"/>
-							<param parser="BCTestResultParser"/>
-							<param timeout="1000"/>
-						</params>
-					</step>
-					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="bctestlauncher.exe"/>
 							<param parameters="bctestlabelinfoindicators"/>
 							<param result-file="c:\BCTestLog\bctestlabelinfoindicators_TestLog.txt"/>
 							<param parser="BCTestResultParser"/>
@@ -2010,6 +2018,16 @@
 							<param timeout="1000"/>
 						</params>
 					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="bctestlauncher.exe"/>
+							<param parameters="bctestkeylock"/>
+							<param result-file="c:\BCTestLog\bctestkeylock_TestLog.txt"/>
+							<param parser="BCTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
 				</case>
 			</set>
 		</session>
@@ -2081,6 +2099,8 @@
 		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlist_reg.rsc</file>
 		<file>bctest/winscw_udeb/z/resource/apps/bctestlist.rsc</file>
 		<file>bctest/winscw_udeb/z/resource/apps/bctestlist_aif.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlist.mbm</file>
+		<file>bctest/winscw_udeb/z/resource/apps/bctestlist.mif</file>
 		<file>bctest/winscw_udeb/bctestlist.exe</file>
 		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestmenu_reg.rsc</file>
 		<file>bctest/winscw_udeb/z/resource/apps/bctestmenu.rsc</file>
