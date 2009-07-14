@@ -818,7 +818,20 @@
           </exec>
         </sequential>
       </for>
-
+      
+      <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
+      <for param="tsv">
+        <path>
+          <fileset dir="${build.log.dir}/releaseables">
+            <include name="**/*.tsv"/>
+          </fileset>
+        </path>
+        <sequential>
+          <exec executable="perl" input="@{tsv}" output="@{tsv}">
+            <arg value="${sf.common.config.dir}/tools/sortUnique.pl"/>
+          </exec>
+        </sequential>
+      </for>
     </target>
   
     <target name="sf-run-evalid">
