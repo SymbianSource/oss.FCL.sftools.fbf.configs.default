@@ -506,7 +506,7 @@
                 project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
                 baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
                 toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
-                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
+                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
             </data>
         </fmpp>
         <!-- Make a copy in BOM dir -->
@@ -683,7 +683,6 @@
             <arg value="--device-name=ATSINTERFACE EMULATOR on ${env.COMPUTERNAME}"/>
             <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
             <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
-
         </exec>
         <!-- Now ready to send to ATS3 -->
     </target>   

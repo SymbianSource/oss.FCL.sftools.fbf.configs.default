@@ -18,18 +18,34 @@
             <#assign fileset = "${fileset}"  />
         </#if>
         <sequential>
+            <!-- create sf\layer dir  -->
             <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false"/>
             <mkdir dir="${ant['build.drive']}${pkg_detail.dst}"/>
+            <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false"/>
+
+            <exec executable="hg" dir="${ant['build.drive']}">
+                <arg value="clone"/>
+                <arg value="-U"/>
+                <arg value="${pkg_detail.source}"/>
+                <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+            </exec>
+
             <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
-                <hlm:checkout basedir="${ant['build.drive']}${pkg_detail.dst}"/>
+                <!--hlm:checkout basedir="${ant['build.drive']}${pkg_detail.dst}"/-->
+                <#if "${pkg_detail.type}"=="tag" >
                 <hlm:tags basedir="${ant['build.drive']}${pkg_detail.dst}" reference="hg.tags.id${dollar}{refid}"/>
                 <hlm:update basedir="${ant['build.drive']}${pkg_detail.dst}">
-                    <hlm:latestTag pattern="${pkg_detail.tag}">
+                <hlm:latestTag pattern="${pkg_detail.pattern}">
                         <hlm:tagSet refid="hg.tags.id${dollar}{refid}" />
-                    </hlm:latestTag>
+                </hlm:latestTag>
                 </hlm:update>
+                </#if>
+                <#if "${pkg_detail.type}"== "changeset" || "${pkg_detail.type}"=="branch">
+                <hlm:update basedir="${ant['build.drive']}${pkg_detail.dst}">
+                     <hlm:tag name="${pkg_detail.pattern}"/>
+                </hlm:update>
+                </#if>
             </hlm:scm>
-        
         </sequential>
     </target>
 
@@ -38,26 +54,21 @@
         <sequential>
             
             <!-- record info on source code repo/rev in BOM file  -->
-            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.rev">
-                <arg value="identify"/>
-                <arg value="-n"/>
-            </exec>
             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
                 <arg value="identify"/>
                 <arg value="-i"/>
             </exec>
-            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : revision ${dollar}{sf.sourcesync.${count}.rev}:${dollar}{sf.sourcesync.${count}.checksum}"/>
+            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : ${dollar}{sf.sourcesync.${count}.checksum}"/>
             <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
                 <arg value="/c"/>
                 <arg value="echo"/>
-                <arg value="${pkg_detail.source},${pkg_detail.dst},${dollar}{sf.sourcesync.${count}.rev}:${dollar}{sf.sourcesync.${count}.checksum}"/>
+                <arg value="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum}"/>
             </exec>
-        
         </sequential>
     </target>
 
 
-    <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.pattern}\"/>" />       
+    <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.sysdef}\"/>" />       
     <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n"/>       
     <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\n"/>    
     <#assign count = count + 1 />
@@ -75,7 +86,13 @@
     ${sync_list}
   </parallel>
 
-
+  <echo message="Adding BOM header"/>
+      <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
+      <arg value="/c"/>
+      <arg value="echo"/>
+      <arg value="source,dst,type,pattern,sysdef"/>
+  </exec>
+  
   ${bom_list}
 
 </target>
