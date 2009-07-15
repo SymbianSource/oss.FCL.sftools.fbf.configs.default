@@ -133,9 +133,10 @@
 	        <!-- TODO targets for single sysdef build -->
 	        <runtarget target="sf-os-compile"/>
 	   </else>
+    </if>
        <!-- always run cenrep -->
        <runtarget target="sf-s60-create-cenrep"/>
-    </if>
+
   </target>
 
   <!--
