@@ -388,10 +388,18 @@
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>
-                <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
+                <property name="temp.log.dir" value="${env.TEMP}/${build.id}_output_logs"/>
                 <echo message="Zip log requested, zipping logs..."/>
-                <zip destfile="${temp.log.zip}" basedir="${build.drive}" includes="output/logs/**"/>
-                <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>
+                <mkdir dir="${temp.log.dir}"/>
+                <zip destfile="${temp.log.dir}/${build.id}_build_logs.zip" basedir="${build.drive}" includes="output/logs/**"/>
+                <zip destfile="${temp.log.dir}/${build.id}_BOM.zip" basedir="${build.drive}">
+                    <include name="output/logs/BOM/**"/>
+                    <include name="output/logs/deliverables/**"/>
+                    <include name="output/logs/releaseables/**"/>
+                </zip>
+                <move todir="${build.log.dir}">
+                    <fileset dir="${temp.log.dir}"/>
+                </move>
             </then>
         </if>
     </target>
