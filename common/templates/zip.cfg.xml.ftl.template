@@ -38,6 +38,34 @@
 				<set name="grace.filters" value="rnd" />
 			</config>
 		</config>
+		<config name="src-by-layer" abstract="true">
+			<set name="grace.filters" value="src" />
+			<set name="root.dir" value="${build.output.dir}/zips"/>
+			<config>
+				<set name="name" value="src_adaptation"/>
+				<set name="include" value="src_sfl_adaptation_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_app"/>
+				<set name="include" value="src_sfl_app_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_mw"/>
+				<set name="include" value="src_sfl_mw_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_os"/>
+				<set name="include" value="src_sfl_os_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_ostools"/>
+				<set name="include" value="src_sfl_ostools_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_tools"/>
+				<set name="include" value="src_sfl_tools_*.zip"/>
+			</config>
+		</config>
 		<!-- Specify this config to package all outputs from the build -->
 		<config name="bin" abstract="true">
 			<!-- This config will be populated with exclusions for the rnd bins -->

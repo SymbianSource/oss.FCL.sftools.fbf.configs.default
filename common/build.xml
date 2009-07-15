@@ -564,9 +564,15 @@
     </target>
     
     <target name="sf-package-source" depends="sf-preprocess-package-config">
+        <!-- Firstly zip up src by package -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="src" />
+        </antcall>
+        <!-- Then zip up zips by layer -->
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="src-by-layer" />
         </antcall>
     </target>
     
