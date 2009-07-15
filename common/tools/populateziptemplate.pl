@@ -25,7 +25,8 @@ require XML::Simple;
 my $sourcesCSV = shift or die "First arg must be source csv file";
 my $template = shift or die "Second arg must be template file";
 my $ftl = shift or die "Third arg must be output file";
-shift and die "No more than three arguments please";
+my $rndExcludes = shift or die "Fourth arg must be rnd-excludes file";
+shift and die "No more than four arguments please";
 
 # Load CSV
 open my $csvText, "<", $sourcesCSV or die;
@@ -141,6 +142,6 @@ push @{$zipConfig->{config}->{config}->{bin}->{config}->{set}}, @excludes;
 $xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', KeyAttr => $keyAttr);
 
 # Output all rnd files into exclude list for later
-open FILE, "> rnd_excludefile.txt" or die "Cannot write exludefile!";
-print FILE @allRndFiles;
-close FILE;
+open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
+print $fh @allRndFiles;
+close $fh;

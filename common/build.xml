@@ -545,6 +545,7 @@
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
     </target>
     
@@ -564,58 +565,34 @@
     <target name="sf-package-tools" depends="sf-preprocess-package-config">
         <echo message="Packaging epoc32 tools - Temporary method"/>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-<!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
-            <arg value="tools_epoc.zip"/> 
-            <arg value="epoc32/tools"/>
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+<!--                <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
+                <arg value="tools_epoc.zip"/> 
+                <arg value="epoc32/tools"/>
             </exec>
         <if><available file="${build.drive}/tools_epoc.zip"/>
             <then><move file="${build.drive}/tools_epoc.zip" todir="${build.drive}/output/zips/"/></then>
         </if>
-
     </target>
-
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
         <!--antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
         </antcall-->
-
-        <if><available file="${build.drive}/rnd_excludefile.txt" />
-        <then>
-            <echo message="Packaging with exclude list"/>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+        
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
-            <arg value="-x@${build.drive}/rnd_excludefile.txt"/> <!-- excludes -->
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
             <arg value="-x!epoc32\tools"/>
-            <arg value="-x!epoc32\build"/> 
-            <arg value="-xr!*.sym"/> 
-            <arg value="binaries_epoc.zip"/> 
-            <arg value="epoc32\"/>
-            </exec>
-            <move file="${build.drive}/rnd_excludefile.txt" todir="${build.log.dir}/"/>
-        </then>
-        <else>
-            <echo message="Packaging without exclude list"/>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x!epoc32\tools"/> 
-            <arg value="-x!epoc32\build"/> <!-- excludes -->
-            <arg value="-xr!*.sym"/> 
-            <arg value="binaries_epoc.zip"/> 
+            <arg value="-x!epoc32\build"/>
+            <arg value="-xr!*.sym"/>
+            <arg value="${build.drive}/output/zips/binaries_epoc.zip"/>
             <arg value="epoc32\"/>
         </exec>
-        </else>
-        </if>
-        <if><available file="${build.drive}/binaries_epoc.zip"/>
-        <then><move file="${build.drive}/binaries_epoc.zip" todir="${build.drive}/output/zips/"/></then>
-        </if>
-
     </target>
 
     <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
