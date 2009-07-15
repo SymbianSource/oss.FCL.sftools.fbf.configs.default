@@ -578,6 +578,8 @@
     </target>
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
+        <!-- Warning: Reverting to using the He zipper will also revert to a single zip for the binaries:
+             would need to update the template and possibly the script that populates it -->
         <!--antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
@@ -589,9 +591,29 @@
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
             <arg value="-x!epoc32\tools"/>
             <arg value="-x!epoc32\build"/>
+            <arg value="-x!epoc32\release\armv5"/>
+            <arg value="-x!epoc32\release\winscw"/>
             <arg value="-xr!*.sym"/>
             <arg value="${build.drive}/output/zips/binaries_epoc.zip"/>
             <arg value="epoc32\"/>
+        </exec>
+        
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+            <arg value="-xr!*.sym"/>
+            <arg value="${build.drive}/output/zips/binaries_winscw.zip"/>
+            <arg value="epoc32\release\winscw\"/>
+        </exec>
+        
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+            <arg value="-xr!*.sym"/>
+            <arg value="${build.drive}/output/zips/binaries_armv5.zip"/>
+            <arg value="epoc32\release\armv5\"/>
         </exec>
     </target>
 
