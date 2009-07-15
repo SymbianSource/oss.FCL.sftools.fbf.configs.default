@@ -598,7 +598,7 @@
             <arg value="epoc32\"/>
         </exec>
         
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
             <arg value="a"/>
             <arg value="-tzip"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
@@ -607,7 +607,7 @@
             <arg value="epoc32\release\winscw\"/>
         </exec>
         
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5.log">
             <arg value="a"/>
             <arg value="-tzip"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
