@@ -133,6 +133,8 @@
 	        <!-- TODO targets for single sysdef build -->
 	        <runtarget target="sf-os-compile"/>
 	   </else>
+       <!-- always run cenrep -->
+       <runtarget target="sf-s60-create-cenrep"/>
     </if>
   </target>
 
@@ -405,7 +407,6 @@
           			<reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
     		</antcall>
 			
-			<runtarget target="sf-s60-create-cenrep"/>
 			
 			<antcall target="sf-list-dir" inheritAll="false">
 				<param name="sf.list.name" value="post-s60-build-main"/>
