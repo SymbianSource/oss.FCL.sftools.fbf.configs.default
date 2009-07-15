@@ -388,10 +388,18 @@
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>
-                <property name="temp.log.zip" value="${env.TEMP}/build_logs_${sf.spec.job.name}_${build.number}.zip"/>
+                <property name="temp.log.dir" value="${env.TEMP}/${build.id}_output_logs"/>
                 <echo message="Zip log requested, zipping logs..."/>
-                <zip destfile="${temp.log.zip}" basedir="${build.drive}" includes="output/logs/**"/>
-                <move file="${temp.log.zip}" todir="${build.log.dir}" failonerror="false"/>
+                <mkdir dir="${temp.log.dir}"/>
+                <zip destfile="${temp.log.dir}/${build.id}_build_logs.zip" basedir="${build.drive}" includes="output/logs/**"/>
+                <zip destfile="${temp.log.dir}/${build.id}_BOM.zip" basedir="${build.drive}">
+                    <include name="output/logs/BOM/**"/>
+                    <include name="output/logs/deliverables/**"/>
+                    <include name="output/logs/releaseables/**"/>
+                </zip>
+                <move todir="${build.log.dir}">
+                    <fileset dir="${temp.log.dir}"/>
+                </move>
             </then>
         </if>
     </target>
@@ -545,6 +553,7 @@
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
     </target>
     
@@ -564,58 +573,56 @@
     <target name="sf-package-tools" depends="sf-preprocess-package-config">
         <echo message="Packaging epoc32 tools - Temporary method"/>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-<!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
-            <arg value="tools_epoc.zip"/> 
-            <arg value="epoc32/tools"/>
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+<!--                <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
+                <arg value="tools_epoc.zip"/> 
+                <arg value="epoc32/tools"/>
             </exec>
         <if><available file="${build.drive}/tools_epoc.zip"/>
             <then><move file="${build.drive}/tools_epoc.zip" todir="${build.drive}/output/zips/"/></then>
         </if>
-
     </target>
-
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
+        <!-- Warning: Reverting to using the He zipper will also revert to a single zip for the binaries:
+             would need to update the template and possibly the script that populates it -->
         <!--antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
         </antcall-->
-
-        <if><available file="${build.drive}/rnd_excludefile.txt" />
-        <then>
-            <echo message="Packaging with exclude list"/>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+        
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
-            <arg value="-x@${build.drive}/rnd_excludefile.txt"/> <!-- excludes -->
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
             <arg value="-x!epoc32\tools"/>
-            <arg value="-x!epoc32\build"/> 
-            <arg value="-xr!*.sym"/> 
-            <arg value="binaries_epoc.zip"/> 
-            <arg value="epoc32\"/>
-            </exec>
-            <move file="${build.drive}/rnd_excludefile.txt" todir="${build.log.dir}/"/>
-        </then>
-        <else>
-            <echo message="Packaging without exclude list"/>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x!epoc32\tools"/> 
-            <arg value="-x!epoc32\build"/> <!-- excludes -->
-            <arg value="-xr!*.sym"/> 
-            <arg value="binaries_epoc.zip"/> 
+            <arg value="-x!epoc32\build"/>
+            <arg value="-x!epoc32\release\armv5"/>
+            <arg value="-x!epoc32\release\winscw"/>
+            <arg value="-xr!*.sym"/>
+            <arg value="${build.drive}/output/zips/binaries_epoc.zip"/>
             <arg value="epoc32\"/>
         </exec>
-        </else>
-        </if>
-        <if><available file="${build.drive}/binaries_epoc.zip"/>
-        <then><move file="${build.drive}/binaries_epoc.zip" todir="${build.drive}/output/zips/"/></then>
-        </if>
-
+        
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+            <arg value="-xr!*.sym"/>
+            <arg value="${build.drive}/output/zips/binaries_winscw.zip"/>
+            <arg value="epoc32\release\winscw\"/>
+        </exec>
+        
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+            <arg value="-xr!*.sym"/>
+            <arg value="${build.drive}/output/zips/binaries_armv5.zip"/>
+            <arg value="epoc32\release\armv5\"/>
+        </exec>
     </target>
 
     <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
@@ -852,6 +859,20 @@
         </data>
       </fmpp>
 
+
+      <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
+      <for param="tsv">
+        <path>
+          <fileset dir="${build.log.dir}/releaseables">
+            <include name="**/*.tsv"/>
+          </fileset>
+        </path>
+        <sequential>
+          <exec executable="perl" input="@{tsv}" output="@{tsv}">
+            <arg value="${sf.common.config.dir}/tools/sortUnique.pl"/>
+          </exec>
+        </sequential>
+      </for>
     </target>
   
     <target name="sf-run-evalid">
