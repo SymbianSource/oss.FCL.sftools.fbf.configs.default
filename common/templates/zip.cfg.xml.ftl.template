@@ -41,29 +41,55 @@
 		<config name="src-by-layer" abstract="true">
 			<set name="grace.metadata" value="false" />
 			<set name="root.dir" value="${build.output.dir}/zips"/>
+			<!-- Zips of zips for SFL code -->
 			<config>
-				<set name="name" value="src_adaptation"/>
+				<set name="name" value="src_sfl_adaptation"/>
 				<set name="include" value="src_sfl_adaptation_*.zip"/>
 			</config>
 			<config>
-				<set name="name" value="src_app"/>
+				<set name="name" value="src_sfl_app"/>
 				<set name="include" value="src_sfl_app_*.zip"/>
 			</config>
 			<config>
-				<set name="name" value="src_mw"/>
+				<set name="name" value="src_sfl_mw"/>
 				<set name="include" value="src_sfl_mw_*.zip"/>
 			</config>
 			<config>
-				<set name="name" value="src_os"/>
+				<set name="name" value="src_sfl_os"/>
 				<set name="include" value="src_sfl_os_*.zip"/>
 			</config>
 			<config>
-				<set name="name" value="src_ostools"/>
+				<set name="name" value="src_sfl_ostools"/>
 				<set name="include" value="src_sfl_ostools_*.zip"/>
 			</config>
 			<config>
-				<set name="name" value="src_tools"/>
+				<set name="name" value="src_sfl_tools"/>
 				<set name="include" value="src_sfl_tools_*.zip"/>
+			</config>
+			<!-- Zips of zips for OSS code -->
+			<config>
+				<set name="name" value="src_oss_adaptation"/>
+				<set name="include" value="src_oss_adaptation_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_oss_app"/>
+				<set name="include" value="src_oss_app_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_oss_mw"/>
+				<set name="include" value="src_oss_mw_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_oss_os"/>
+				<set name="include" value="src_oss_os_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_oss_ostools"/>
+				<set name="include" value="src_oss_ostools_*.zip"/>
+			</config>
+			<config>
+				<set name="name" value="src_oss_tools"/>
+				<set name="include" value="src_oss_tools_*.zip"/>
 			</config>
 		</config>
 		<!-- Specify this config to package all outputs from the build -->
