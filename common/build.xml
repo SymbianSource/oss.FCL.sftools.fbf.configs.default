@@ -564,31 +564,30 @@
     </target>
     
     <target name="sf-package-source" depends="sf-preprocess-package-config">
-        <!-- Firstly zip up src by package -->
+        <!-- Firstly zip up src & rnd by package -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="src" />
         </antcall>
-        <!-- Then zip up zips by layer -->
+        <!-- Then zip up src zips by layer -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="src-by-layer" />
         </antcall>
+        <!-- Copy the zip that needs to have a different name when a PDK is released -->
+	<copy file="${build.drive}/output/zips/bin_rnd_internal_updated.zip" tofile="${build.drive}/output/zips/binaries_epoc_additional.zip" failonerror="false"/>
     </target>
     
     <target name="sf-package-tools" depends="sf-preprocess-package-config">
         <echo message="Packaging epoc32 tools - Temporary method"/>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
-                <arg value="a"/>
-                <arg value="-tzip"/>
-                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-<!--                <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
-                <arg value="tools_epoc.zip"/> 
-                <arg value="epoc32/tools"/>
-            </exec>
-        <if><available file="${build.drive}/tools_epoc.zip"/>
-            <then><move file="${build.drive}/tools_epoc.zip" todir="${build.drive}/output/zips/"/></then>
-        </if>
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+<!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
+            <arg value="${build.drive}/output/zips/tools_epoc.zip"/> 
+            <arg value="epoc32/tools"/>
+        </exec>
     </target>
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
