@@ -597,37 +597,38 @@
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
         </antcall-->
-        
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-            <arg value="-x!epoc32\tools"/>
-            <arg value="-x!epoc32\build"/>
-            <arg value="-x!epoc32\release\armv5"/>
-            <arg value="-x!epoc32\release\winscw"/>
-            <arg value="-xr!*.sym"/>
-            <arg value="${build.drive}/output/zips/binaries_epoc.zip"/>
-            <arg value="epoc32\"/>
-        </exec>
-        
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-            <arg value="-xr!*.sym"/>
-            <arg value="${build.drive}/output/zips/binaries_winscw.zip"/>
-            <arg value="epoc32\release\winscw\"/>
-        </exec>
-        
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5.log">
-            <arg value="a"/>
-            <arg value="-tzip"/>
-            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-            <arg value="-xr!*.sym"/>
-            <arg value="${build.drive}/output/zips/binaries_armv5.zip"/>
-            <arg value="epoc32\release\armv5\"/>
-        </exec>
+	<parallel>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x!epoc32\tools"/>
+                <arg value="-x!epoc32\build"/>
+                <arg value="-x!epoc32\release\armv5"/>
+                <arg value="-x!epoc32\release\winscw"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/binaries_epoc.zip"/>
+                <arg value="epoc32\"/>
+            </exec>
+            
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/binaries_winscw.zip"/>
+                <arg value="epoc32\release\winscw\"/>
+            </exec>
+            
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/binaries_armv5.zip"/>
+                <arg value="epoc32\release\armv5\"/>
+            </exec>
+        </parallel>
     </target>
 
     <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
