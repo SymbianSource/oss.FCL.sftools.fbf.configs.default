@@ -36,6 +36,7 @@
     <property name="sf.spec.sourcesync.enable" value="true"/>
     <property name="sf.spec.sourcesync.usecache" value="false"/>
     <property name="sf.spec.sourcesync.sourcespecfile" value="sources.csv"/>
+    <property name="sf.spec.sourcesync.cachelocation" value="${sf.spec.job.rootdir}/hgcache"/>
     
     <property name="sf.spec.baseline.enable" value="true"/>
     <property name="sf.spec.baseline.select" value="auto"/> <!-- auto|explicit|location -->
@@ -85,7 +86,7 @@
 
     <!-- ATS local properties -->
     <property name="sf.spec.test.package.location"  value="T:\${env.COMPUTERNAME}"/>
-    <property name="sf.spec.test.package.name"      value="Smoketest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/> <!-- build.id not available at this point, so construct it from component parts -->
+    <property name="sf.spec.test.package.name"      value="${env.COMPUTERNAME}-Smoketest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/> <!-- build.id not available at this point, so construct it from component parts -->
     <property name="sf.spec.test.package.droppath"  value="D:\ATS3\TestDrops"/>
 
     <!-- BC check properties -->

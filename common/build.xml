@@ -87,7 +87,7 @@
 				<echo message="Generating Hg local cache..." />
 				<exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
 					<arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
-					<arg value="${sf.spec.job.rootdir}/hgcache"/>
+					<arg value="${sf.spec.sourcesync.cachelocation}"/>
 					<arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
 					<arg value="${sf.common.config.dir}/generated/${sf.spec.sourcesync.sourcespecfile}"/>
 				</exec>
@@ -259,6 +259,15 @@
         <if>
             <istrue value="${sf.spec.toolsbaseline.enable}" />
             <then>
+
+                <!-- record toolsbaseline information in BOM file -->
+                <delete file="${build.drive}/output/logs/BOM/toolsbaseline.txt" quiet="true"/>
+                <exec executable="cmd" output="${build.drive}/output/logs/BOM/toolsbaseline.txt">
+                    <arg value="/c"/>
+                    <arg value="echo"/>
+                    <arg value="${sf.spec.toolsbaseline.location}"/>
+                </exec>
+
                 <!-- wrapper around preparation-getenv but with diff params -->
                 <runtarget target="sf-getenv-tools"/>
                 
@@ -268,6 +277,10 @@
                     <arg value="${build.drive}/epoc32"/>
                 </exec>
             </then>
+            <else>
+                <!-- record fact that no tools baseline used. required by diamondize-bom  -->
+                <touch file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
+            </else>
         </if>        
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
@@ -539,7 +552,8 @@
                 config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
                 project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
                 baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
-                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,rev]})              
+                toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
+                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
             </data>
         </fmpp>
         <!-- Make a copy in BOM dir -->
@@ -719,10 +733,9 @@
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="ats_specialise_test_drop.pl"/>
             <arg value="--test-drop-name=Smoketest-${build.id}"/> 
-            <arg value="--device-name=ATSINTERFACE EMULATOR on ${env.COMPUTERNAME}"/>
+            <arg value="--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}"/>
             <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
             <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
-
         </exec>
         <!-- Now ready to send to ATS3 -->
     </target>   
@@ -761,8 +774,7 @@
             <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${build.id}_what_results.csv_results.csv"/>
-            <arg value="${sf.project.location}/sysdefs/system_model_os_contributed.xml"/>
-            <arg value="${sf.project.location}/sysdefs/system_model_s60_contributed.xml"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_os.xml"/>
         </exec>
 
         <echo message="Running collision analysis"/>

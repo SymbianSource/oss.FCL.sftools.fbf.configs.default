@@ -15,6 +15,7 @@ my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("bctest.xml",																"temp/test.xml");
 copy($epoc . "winscw/c/UIFW.bat",												"temp/bctest/general/UIFW.bat");
 copy($epoc . "winscw/c/BCTestLog/config.xml",									"temp/bctest/BCTestLog/general/config.xml");
+copy($epoc . "winscw/c/BCTestLog/sdkversion.log",								"temp/bctest/BCTestLog/general/sdkversion.log");
 copy($epoc . "winscw/c/BCTestLog/release_note.txt",								"temp/bctest/BCTestLog/general/release_note.txt");
 
 copy($epoc . "data/z/resource/apps/bctestlauncher_aif.mbm",						"temp/bctest/winscw_udeb/z/resource/apps/bctestlauncher_aif.mbm");
@@ -78,6 +79,8 @@ copy($epoc . "data/z/private/10003a3f/apps/bctestlabelinfoindicators_reg.rsc",	"
 
 copy($epoc . "data/z/resource/apps/bctestlist_aif.mbm",							"temp/bctest/winscw_udeb/z/resource/apps/bctestlist_aif.mbm");
 copy($epoc . "data/z/resource/apps/bctestlist.rsc",								"temp/bctest/winscw_udeb/z/resource/apps/bctestlist.rsc");
+copy($epoc . "release/winscw/udeb/z/resource/apps/bctestlist.mbm",				"temp/bctest/winscw_udeb/z/resource/apps/bctestlist.mbm");
+copy($epoc . "release/winscw/udeb/z/resource/apps/bctestlist.mif",				"temp/bctest/winscw_udeb/z/resource/apps/bctestlist.mif");
 copy($epoc . "data/z/private/10003a3f/apps/bctestlist_reg.rsc",					"temp/bctest/winscw_udeb/z/private/10003a3f/apps/bctestlist_reg.rsc");
 
 copy($epoc . "data/z/resource/apps/bctestmenu.rsc",								"temp/bctest/winscw_udeb/z/resource/apps/bctestmenu.rsc");

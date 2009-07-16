@@ -15,6 +15,7 @@
 //
 
 LOAD_SUITE smoketest_apploader -SharedData
+DELAY 30000
 
 START_TESTCASE			SMOKE_APP_LAUNCH_0001
 //! @SYMTestCaseID		SMOKE_APP_LAUNCH_0001
