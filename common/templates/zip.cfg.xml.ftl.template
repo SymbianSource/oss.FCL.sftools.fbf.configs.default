@@ -39,7 +39,7 @@
 			</config>
 		</config>
 		<config name="src-by-layer" abstract="true">
-			<set name="grace.filters" value="src" />
+			<set name="grace.metadata" value="false" />
 			<set name="root.dir" value="${build.output.dir}/zips"/>
 			<config>
 				<set name="name" value="src_adaptation"/>
