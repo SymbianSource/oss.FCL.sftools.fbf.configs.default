@@ -588,9 +588,6 @@
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="src-by-layer" />
         </antcall>
-        <!-- Copy the zips that need to have different names when a PDK is released -->
-	<copy file="${build.drive}/output/zips/bin_rnd_internal_updated.zip" tofile="${build.drive}/output/zips/binaries_epoc_additional.zip" failonerror="false"/>
-	<copy file="${build.drive}/output/zips/bin_rnd_internal_bldmefirst.zip" tofile="${build.drive}/output/zips/binaries_bldmefirst.zip" failonerror="false"/>
     </target>
     
     <target name="sf-package-tools" depends="sf-preprocess-package-config">
@@ -600,7 +597,7 @@
             <arg value="-tzip"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
 <!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
-            <arg value="${build.drive}/output/zips/tools_epoc.zip"/> 
+            <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
             <arg value="epoc32/tools"/>
         </exec>
     </target>
@@ -622,7 +619,7 @@
                 <arg value="-x!epoc32\release\armv5"/>
                 <arg value="-x!epoc32\release\winscw"/>
                 <arg value="-xr!*.sym"/>
-                <arg value="${build.drive}/output/zips/binaries_epoc.zip"/>
+                <arg value="${build.drive}/output/zips/release/binaries_epoc.zip"/>
                 <arg value="epoc32\"/>
             </exec>
             
@@ -631,7 +628,7 @@
                 <arg value="-tzip"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
-                <arg value="${build.drive}/output/zips/binaries_winscw.zip"/>
+                <arg value="${build.drive}/output/zips/release/binaries_winscw.zip"/>
                 <arg value="epoc32\release\winscw\"/>
             </exec>
             
@@ -640,7 +637,7 @@
                 <arg value="-tzip"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
-                <arg value="${build.drive}/output/zips/binaries_armv5.zip"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5.zip"/>
                 <arg value="epoc32\release\armv5\"/>
             </exec>
         </parallel>
@@ -652,12 +649,12 @@
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zip_postbuild.log">
             <arg value="${sf.common.config.dir}/tools/zip_includefiles.pl"/>
         </exec>
-        <!-- cleanup my moving includefiles to logs and zips to zips\postbuild -->
+        <!-- cleanup my moving includefiles to logs and zips to zips\release -->
         <move todir="${build.log.dir}">
            <fileset dir="${build.drive}"><include name="*_includefile.txt"/></fileset>
         </move>
-        <move todir="${build.drive}/output/zips/postbuild">
-           <fileset dir="${build.drive}"><include name="bin_rnd_*.zip"/></fileset>
+        <move todir="${build.drive}/output/zips/release">
+           <fileset dir="${build.drive}"><include name="bin*.zip"/></fileset>
         </move>
         <!-- TODO: merge with release_metadata.xml ? -->
     </target>
@@ -668,8 +665,7 @@
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log">
         <arg value="x"/>
         <arg value="-y"/> <!-- Need to unpack in overwrite mode, due to TEF -->
-        <arg value="-x@${sf.common.config.dir}/tools/lists/rebuiltok.txt"/>
-        <arg value="${build.drive}/output/zips/bin_rnd*.zip"/>
+        <arg value="${build.drive}/output/zips/bin*.zip"/>
         </exec>
     </target>
     
@@ -767,7 +763,7 @@
             <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
             <arg value="${build.id}_what_results.csv"/>
             <arg value="${build.id}_list_results.log"/>
-            <arg value="${build.drive}/output/zips/postbuild/bin_rnd_internal_initial.zip"/>
+            <arg value="${build.drive}/output/zips/release/binaries_epoc_additional.zip"/>
         </exec>
 
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">

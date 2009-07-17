@@ -92,7 +92,9 @@ foreach my $package (@packages)
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{
 		# RnD repository
-		my $name = "bin_rnd_$1_$2";
+		my $name = "binaries_$2";
+		if ($1 eq "rndonly") { $name="bin_$1_$2";}
+		
 		# Create a zip object
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{rnd}->{config}},
 		{

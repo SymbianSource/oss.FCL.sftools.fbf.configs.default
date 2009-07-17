@@ -41,6 +41,7 @@
 		<config name="src-by-layer" abstract="true">
 			<set name="grace.metadata" value="false" />
 			<set name="root.dir" value="${build.output.dir}/zips"/>
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
 			<!-- Zips of zips for SFL code -->
 			<config>
 				<set name="name" value="src_sfl_adaptation"/>
