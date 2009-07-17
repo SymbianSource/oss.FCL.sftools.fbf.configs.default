@@ -356,6 +356,9 @@
                 <echo message="INFO Packaging Binaries"/>
                 <runtarget target="sf-package-binary"/>
                 <runtarget target="sf-package-tools"/>
+
+                <echo message="INFO Validate Zip files"/>
+                <runtarget target="sf-package-validate"/>
             </then>
         </if>
         </parallel>
@@ -889,7 +892,18 @@
         </sequential>
       </for>
     </target>
-  
+
+    <target name="sf-package-validate">
+        <exec executable="7z" dir="${build.drive}/output/zips" failonerror="false" output="${build.drive}/output/zips/validate.log">
+            <arg value="t"/>
+            <arg value="*.zip"/>
+        </exec>  
+        <exec executable="7z" dir="${build.drive}/output/zips/release" failonerror="false" output="${build.drive}/output/zips/release/validate.log">
+            <arg value="t"/>
+            <arg value="*.zip"/>
+        </exec>  
+    </target>
+
     <target name="sf-run-evalid">
         <delete dir="${build.drive}/output/md5"/>
         <mkdir  dir="${build.drive}/output/md5"/>
