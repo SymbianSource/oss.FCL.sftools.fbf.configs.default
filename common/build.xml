@@ -27,7 +27,7 @@
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
-	
+    
     <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
     <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>
     
@@ -37,15 +37,15 @@
     <!-- import common references -->
     <import file="${sf.common.config.dir}/common_refs.ant.xml" />
              
-	<!-- setup conditional Helium internal properties -->
-	<if><istrue value="${sf.spec.sourcesync.usecache}"/>
-		<then>
-			<property name="sf.spec.sourcesync.sourcespecdir" value="${sf.common.config.dir}/generated"/>
-		</then>
-		<else>
-			<property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
-		</else>
-	</if>
+    <!-- setup conditional Helium internal properties -->
+    <if><istrue value="${sf.spec.sourcesync.usecache}"/>
+        <then>
+            <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.common.config.dir}/generated"/>
+        </then>
+        <else>
+            <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
+        </else>
+    </if>
 
     <!-- conditional import of generated source spec if available -->
     <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
@@ -80,20 +80,20 @@
     </target>
     
     <target name="sf-generate-source-spec" depends="sf-parse-project-config">
-	
-		<!-- Generate the sources.csv if hg cache is activated -->
-		<if><istrue value="${sf.spec.sourcesync.usecache}"/>
-			<then>
-				<echo message="Generating Hg local cache..." />
-				<exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
-					<arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
-					<arg value="${sf.spec.sourcesync.cachelocation}"/>
-					<arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
-					<arg value="${sf.common.config.dir}/generated/${sf.spec.sourcesync.sourcespecfile}"/>
-				</exec>
-			</then>
-		</if>
-		
+
+        <!-- Generate the sources.csv if hg cache is activated -->
+        <if><istrue value="${sf.spec.sourcesync.usecache}"/>
+            <then>
+                <echo message="Generating Hg local cache..." />
+                <exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
+                    <arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
+                    <arg value="${sf.spec.sourcesync.cachelocation}"/>
+                    <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+                    <arg value="${sf.common.config.dir}/generated/${sf.spec.sourcesync.sourcespecfile}"/>
+                </exec>
+            </then>
+        </if>
+
         <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
         for multiple package builds, this needs to be linked with package name. -->
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
@@ -108,78 +108,86 @@
     </target>
     
     <target name="sf-bc-check">
-        <!-- create BC dir -->
-        <mkdir dir="${build.log.dir}/BC"/>
 
-        <delete file="${build.log.dir}/BC/bc.config" quiet="true"/>
-        <delete file="${build.log.dir}/BC/BBCResults.xsl" quiet="true"/>
-        <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
-        <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
-        <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
-        <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
+        <if><isset property="env.PDT_HOME"/>
+        <then>
+            <!-- create BC dir -->
+            <mkdir dir="${build.log.dir}/BC"/>
 
-        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="BASELINE_NAME=${sf.spec.bccheck.baseline.name}"/>
-        </exec>
-        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="BASELINE_SDK_DIR=${sf.spec.bccheck.baseline.skd.dir}"/>
-        </exec>
-        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="BASELINE_SDK_S60_VERSION=${sf.spec.bccheck.baseline.s60.version}"/>
-        </exec>
-        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="CURRENT_NAME=${build.id}"/>
-        </exec>
-        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="CURRENT_SDK_DIR=${build.drive}"/>
-        </exec>
-        <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="CURRENT_SDK_S60_VERSION=${sf.spec.bccheck.current.s60.version}"/>
-        </exec>
+            <delete file="${build.log.dir}/BC/bc.config" quiet="true"/>
+            <delete file="${build.log.dir}/BC/BBCResults.xsl" quiet="true"/>
+            <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
+            <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
+            <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
+            <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
 
-        <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/BBCResults.xsl" tofile="${build.log.dir}/BC/BBCResults.xsl" failonerror="true" verbose="true"/>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="BASELINE_NAME=${sf.spec.bccheck.baseline.name}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="BASELINE_SDK_DIR=${sf.spec.bccheck.baseline.skd.dir}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="BASELINE_SDK_S60_VERSION=${sf.spec.bccheck.baseline.s60.version}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="CURRENT_NAME=${build.id}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="CURRENT_SDK_DIR=${build.drive}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="CURRENT_SDK_S60_VERSION=${sf.spec.bccheck.current.s60.version}"/>
+            </exec>
 
-        <if><istrue value="${sf.spec.bccheck.enable.la}"/>
-            <then>
-                <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
-			        <arg value="CheckBC.py"/>
-                    <arg value="${build.log.dir}/BC/bc.config"/>
-                    <arg value="-la"/>
-                    <arg value="-f"/>
-                    <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
-                </exec>
-                <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="true" verbose="true"/>
-            </then>
-        </if>
+            <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/BBCResults.xsl" tofile="${build.log.dir}/BC/BBCResults.xsl" failonerror="false" verbose="true"/>
 
-        <if><istrue value="${sf.spec.bccheck.enable.ha}"/>
-            <then>
-                <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
-		        	<arg value="CheckBC.py"/>
-                    <arg value="${build.log.dir}/BC/bc.config"/>
-                    <arg value="-ha"/>
-                    <arg value="-f"/>
-                    <arg value="${sf.spec.bccheck.reportid}${sf.spec.job.number}"/>
-                </exec>
-                <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}${sf.spec.job.number}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="true" verbose="true"/>
-            </then>
-        </if>
+            <if><istrue value="${sf.spec.bccheck.enable.la}"/>
+                <then>
+                    <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
+                        <arg value="CheckBC.py"/>
+                        <arg value="${build.log.dir}/BC/bc.config"/>
+                        <arg value="-la"/>
+                        <arg value="-f"/>
+                        <arg value="${sf.spec.bccheck.reportid}"/>
+                    </exec>
+                    <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}.xml" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="false" verbose="true"/>
+                </then>
+            </if>
 
-        <if><istrue value="${sf.spec.bccheck.enable.dynamic}"/>
-            <then>
-            </then>
+            <if><istrue value="${sf.spec.bccheck.enable.ha}"/>
+                <then>
+                    <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
+                        <arg value="CheckBC.py"/>
+                        <arg value="${build.log.dir}/BC/bc.config"/>
+                        <arg value="-ha"/>
+                        <arg value="-f"/>
+                        <arg value="${sf.spec.bccheck.reportid}"/>
+                    </exec>
+                    <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="false" verbose="true"/>
+                </then>
+            </if>
+
+            <if><istrue value="${sf.spec.bccheck.enable.dynamic}"/>
+                <then>
+                </then>
+            </if>
+        </then>
+        <else>
+            <echo message="WARNING: PDT_HOME not set, I dont know where the BC tools are installed so cannot continue"/>
+        </else>
         </if>
     </target>
     
@@ -407,8 +415,13 @@
                 <property name="temp.log.dir" value="${env.TEMP}/${build.id}_output_logs"/>
                 <echo message="Zip log requested, zipping logs..."/>
                 <mkdir dir="${temp.log.dir}"/>
-                <zip destfile="${temp.log.dir}/${build.id}_build_logs.zip" basedir="${build.drive}" includes="output/logs/**"/>
-                <zip destfile="${temp.log.dir}/${build.id}_BOM.zip" basedir="${build.drive}">
+                <zip destfile="${temp.log.dir}/build_logs.zip" basedir="${build.drive}"> 
+                    <include name="output/logs/**"/>
+                    <exclude name="output/logs/BOM/**"/>
+                    <exclude name="output/logs/deliverables/**"/>
+                    <exclude name="output/logs/releaseables/**"/>
+                </zip>
+                <zip destfile="${temp.log.dir}/build_BOM.zip" basedir="${build.drive}">
                     <include name="output/logs/BOM/**"/>
                     <include name="output/logs/deliverables/**"/>
                     <include name="output/logs/releaseables/**"/>
@@ -612,7 +625,7 @@
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
         </antcall-->
-	<parallel>
+    <parallel>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
                 <arg value="a"/>
                 <arg value="-tzip"/>
