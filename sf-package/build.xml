@@ -13,6 +13,16 @@
   <import file="${sf.package.config.dir}/package_refs.ant.xml" />
   
   <target name="sf-compile">
+  
+    <!-- Check that package_definition is not in v 3.0.0 otherwise transforms it to 2.0.1 -->
+    <echo message="Check that model file is in a version usable by Raptor"/>
+    <exec executable="perl" dir="${sf.common.config.dir}/sysdefdowngrade" failonerror="false" output="${build.log.dir}/sysdefdowngrade.log">
+      <arg value="sysdefdowngrade.pl"/>
+      <arg value="--model=${build.drive}/${sf.spec.systemdefinition.location}"/>
+      <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+    </exec>
+        
+        
     <runtarget target="sf-package-compile"/>
   </target>
   
