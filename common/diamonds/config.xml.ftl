@@ -27,7 +27,7 @@ Diamonds configuration template
         <property name="path" value="diamonds.path" />
         <property name="tstampformat" value="yyyy-MM-dd'T'HH:mm:ss" />
         <property name="mail" value="diamonds.mail" />
-        <property name="category-property" value="sf.spec.publish.diamonds.category" />
+        <property name="category-property" value="build.family" />
         <property name="buildid-property" value="diamonds.build.id" />
     </server>
 </config>
