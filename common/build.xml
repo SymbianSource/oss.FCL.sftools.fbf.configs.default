@@ -209,6 +209,7 @@
             <istrue value="${sf.spec.publish.enable}"/>
             <then>
                 <runtarget target="diamonds"/>
+                <runtarget target="sf-tag-build"/>
             </then>
         </if>
         
@@ -329,6 +330,15 @@
           <runtarget target="sf-diamondize-bom"/>
         </then>
       </if>
+    </target>
+    
+    <target name="sf-tag-build">
+      <echo>[SF-TAG-BUILD]</echo>
+      <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
+        <data expandProperties="yes">
+          ant: antProperties()
+        </data>
+      </fmpp>
     </target>
     
     <target name="sf-postbuild">

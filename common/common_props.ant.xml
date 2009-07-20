@@ -54,7 +54,7 @@
     <property name="sf.spec.publish.diamonds.server" value="v800002.ad-sfpd.intra"/>
     <property name="sf.spec.publish.diamonds.port" value="80"/>
     <property name="sf.spec.publish.diamonds.path" value="/diamonds/builds/"/>
-    <property name="sf.spec.publish.diamonds.category" value="${sf.project.type}"/>
+    <property name="sf.spec.publish.diamonds.tag" value="test"/>
     
     <property name="sf.spec.tagafterbuild.enable" value="false"/>
 

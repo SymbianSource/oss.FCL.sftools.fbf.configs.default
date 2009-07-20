@@ -71,6 +71,7 @@ Diamonds configuration template
             defer="true"/>
             
         <!-- SF specific -->
+        <target name="sf-tag-build"/>
         <target name="sf-diamondize-bom"/>
         <target name="sf-run-analysis"/>
     </targets>
