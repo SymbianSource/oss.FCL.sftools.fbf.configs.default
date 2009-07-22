@@ -23,6 +23,17 @@ our $CATEGORY_RAPTORERROR_NOBLDINFFOUND = 'no_bld_inf_found';
 our $SEVERITY_UNKNOWN = 'unknown';
 our $SEVERITY_CRITICAL = 'critical';
 
+sub init
+{
+	my $filename = "$::basedir/summary.csv";
+	if (!-f$filename)
+	{
+		print "Writing summary file $filename\n";
+		open(SUMMARY, ">$filename");
+		close(SUMMARY);
+	}
+}
+
 sub dump_fault
 {
 	my ($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line) = @_;

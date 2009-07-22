@@ -27,6 +27,7 @@ $reset_status->{next_status} = {buildlog=>$buildlog_status};
 
 $buildlog_status->{name} = 'buildlog_status';
 $buildlog_status->{next_status} = {error=>$buildlog_error_status};
+$buildlog_status->{on_start} = 'RaptorError::on_start_buildlog';
 
 $buildlog_error_status->{name} = 'buildlog_error_status';
 $buildlog_error_status->{next_status} = {};
@@ -66,10 +67,21 @@ sub process
 	}
 }
 
+sub on_start_buildlog
+{
+	RaptorCommon::init();
+	
+	$filename = "$::basedir/errors.txt";
+	if (!-f$filename)
+	{
+		print "Writing error file $filename\n";
+		open(FILE, ">$filename");
+		close(FILE);
+	}
+}
+
 sub on_start_buildlog_error
 {
-	$filename = "$::basedir/errors.txt";
-	print "Writing error file $filename\n" if (!-f$filename);
 	open(FILE, ">>$filename");
 }
 
