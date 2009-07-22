@@ -35,11 +35,9 @@
 	
 	<else>
 	    <!-- TODO use better method to export or wait for GenXML fix?-->
-        <copy file="${build.output.dir}\build\input\0000000000000001_system_model_os.xml"
+        <copy file="${build.output.dir}\build\input\0000000000000001_system_model.xml"
         tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
 
-	    <!-- TODO targets for single sysdef build -->
-	    <runtarget target="sf-os-compile"/>
 	</else>
         </if>
 
