@@ -208,7 +208,4 @@
 		<file>smoketest/winscw_udeb/Smoketest_Timew_Server.exe</file>
 		<file>smoketest/winscw_udeb/SmokeTest_Utils.dll</file>
 	</files>
-	<postAction>
-	<type>DiamondsAction</type>
-	</postAction>
 </test>
