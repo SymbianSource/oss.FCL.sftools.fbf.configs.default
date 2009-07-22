@@ -15,6 +15,7 @@ my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("bctest.xml",																"temp/test.xml");
 copy($epoc . "winscw/c/UIFW.bat",												"temp/bctest/general/UIFW.bat");
 copy($epoc . "winscw/c/BCTestLog/config.xml",									"temp/bctest/BCTestLog/general/config.xml");
+copy($epoc . "winscw/c/BCTestLog/sdkversion.log",								"temp/bctest/BCTestLog/general/sdkversion.log");
 copy($epoc . "winscw/c/BCTestLog/release_note.txt",								"temp/bctest/BCTestLog/general/release_note.txt");
 
 copy($epoc . "data/z/resource/apps/bctestlauncher_aif.mbm",						"temp/bctest/winscw_udeb/z/resource/apps/bctestlauncher_aif.mbm");

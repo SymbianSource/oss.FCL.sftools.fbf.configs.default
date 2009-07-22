@@ -25,7 +25,8 @@ require XML::Simple;
 my $sourcesCSV = shift or die "First arg must be source csv file";
 my $template = shift or die "Second arg must be template file";
 my $ftl = shift or die "Third arg must be output file";
-shift and die "No more than three arguments please";
+my $rndExcludes = shift or die "Fourth arg must be rnd-excludes file";
+shift and die "No more than four arguments please";
 
 # Load CSV
 open my $csvText, "<", $sourcesCSV or die;
@@ -91,7 +92,9 @@ foreach my $package (@packages)
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{
 		# RnD repository
-		my $name = "bin_rnd_$1_$2";
+		my $name = "binaries_$2";
+		if ($1 eq "rndonly") { $name="bin_$1_$2";}
+		
 		# Create a zip object
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{rnd}->{config}},
 		{
@@ -141,6 +144,6 @@ push @{$zipConfig->{config}->{config}->{bin}->{config}->{set}}, @excludes;
 $xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', KeyAttr => $keyAttr);
 
 # Output all rnd files into exclude list for later
-open FILE, "> rnd_excludefile.txt" or die "Cannot write exludefile!";
-print FILE @allRndFiles;
-close FILE;
+open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
+print $fh @allRndFiles;
+close $fh;

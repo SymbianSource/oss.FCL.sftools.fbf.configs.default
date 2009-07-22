@@ -40,6 +40,15 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
+							<param src="sdkversion.log"/>
+							<param dst="c:\BCTestLog\sdkversion.log"/>
+							<param component-path="bctest\BCTestLog" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
 							<param src="release_note.txt"/>
 							<param dst="c:\BCTestLog\release_note.txt"/>
 							<param component-path="bctest\BCTestLog" />
@@ -2036,6 +2045,7 @@
 		<file>bctest/general/UIFW.bat</file>
 		<file>bctest/BCTestLog/general/release_note.txt</file>
 		<file>bctest/BCTestLog/general/config.xml</file>
+		<file>bctest/BCTestLog/general/sdkversion.log</file>
 		<file>bctest/winscw_udeb/bctestutil.dll</file>
 		<file>bctest/winscw_udeb/bctestlauncher.exe</file>
 		<file>bctest/winscw_udeb/z/private/10003a3f/apps/bctestlauncher_reg.r01</file>

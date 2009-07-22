@@ -22,11 +22,13 @@ sub new
     return bless {}, $type;
 }
 
-sub set_init_status
+sub add_observer
 {
-	my ($self, $initialstatus) = @_;
+	my ($self, $name, $initialstatus) = @_;
 	
-	$self->{status} = $initialstatus;
+	$self->{observers} = {} if (!defined $self->{observers});
+	
+	$self->{observers}->{$name} = $initialstatus;
 }
 
 sub start_document
@@ -46,23 +48,30 @@ sub start_element
 	
 	#print "start_element($tagname)\n";
 	
-	
-	if (defined $self->{status}->{next_status}->{$tagname})
+	for my $observer (keys %{$self->{observers}})
 	{
-		my $oldstatus = $self->{status};
-		$self->{status} = $self->{status}->{next_status}->{$tagname};
-		#print "status is now $self->{status}->{name}\n";
-		$self->{status}->{next_status}->{$tagname} = $oldstatus;
-		&{$self->{status}->{on_start}}($el) if (defined $self->{status}->{on_start});
-	}
-	elsif (defined $self->{status}->{next_status}->{'?default?'})
-	{
-		#print "changing to default status\n";
-		my $oldstatus = $self->{status};
-		$self->{status} = $self->{status}->{next_status}->{'?default?'};
-		#print "status is now ?default?\n";
-		$self->{status}->{next_status}->{$tagname} = $oldstatus;
-		&{$self->{status}->{on_start}}($el) if (defined $self->{status}->{on_start});
+		#print "processing observer $observer: $self->{observers}->{$observer} $self->{observers}->{$observer}->{name}\n";
+		#for (keys %{$self->{observers}->{$observer}->{next_status}}) {print "$_\n";}
+		
+		if (defined $self->{observers}->{$observer}->{next_status}->{$tagname})
+		{
+			#print "processing observer $observer\n";
+			my $oldstatus = $self->{observers}->{$observer};
+			$self->{observers}->{$observer} = $self->{observers}->{$observer}->{next_status}->{$tagname};
+			#print "$observer: status is now $self->{observers}->{$observer}->{name}\n";
+			$self->{observers}->{$observer}->{next_status}->{$tagname} = $oldstatus;
+			&{$self->{observers}->{$observer}->{on_start}}($el) if (defined $self->{observers}->{$observer}->{on_start});
+		}
+		elsif (defined $self->{observers}->{$observer}->{next_status}->{'?default?'})
+		{
+			#print "processing observer $observer\n";
+			#print "changing to default status\n";
+			my $oldstatus = $self->{observers}->{$observer};
+			$self->{observers}->{$observer} = $self->{observers}->{$observer}->{next_status}->{'?default?'};
+			#print "status is now ?default?\n";
+			$self->{observers}->{$observer}->{next_status}->{$tagname} = $oldstatus;
+			&{$self->{observers}->{$observer}->{on_start}}($el) if (defined $self->{observers}->{$observer}->{on_start});
+		}
 	}
 }
 
@@ -75,11 +84,14 @@ sub end_element
 	
 	#print "end_element($tagname)\n";
 	
-	if (defined $self->{status}->{next_status}->{$tagname})
+	for my $observer (keys %{$self->{observers}})
 	{
-		&{$self->{status}->{on_end}}($el) if (defined $self->{status}->{on_end});
-		$self->{status} = $self->{status}->{next_status}->{$tagname};
-		#print "status is now $self->{status}->{name}\n";
+		if (defined $self->{observers}->{$observer}->{next_status}->{$tagname})
+		{
+			&{$self->{observers}->{$observer}->{on_end}}($el) if (defined $self->{observers}->{$observer}->{on_end});
+			$self->{observers}->{$observer} = $self->{observers}->{$observer}->{next_status}->{$tagname};
+			#print "status is now $self->{observers}->{$observer}->{name}\n";
+		}
 	}
 }
 
@@ -87,7 +99,10 @@ sub characters
 {
 	my ($self, $ch) = @_;
 	
-	&{$self->{status}->{on_chars}}($ch) if (defined $self->{status}->{on_chars});
+	for my $observer (keys %{$self->{observers}})
+	{
+		&{$self->{observers}->{$observer}->{on_chars}}($ch) if (defined $self->{observers}->{$observer}->{on_chars});
+	}
 }
 
 1;

@@ -62,7 +62,7 @@
             <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
                 <arg value="/c"/>
                 <arg value="echo"/>
-                <arg value="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum}"/>
+                <arg value="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}"/>
             </exec>
         </sequential>
     </target>
@@ -87,6 +87,7 @@
   </parallel>
 
   <echo message="Adding BOM header"/>
+      <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
       <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
       <arg value="/c"/>
       <arg value="echo"/>
