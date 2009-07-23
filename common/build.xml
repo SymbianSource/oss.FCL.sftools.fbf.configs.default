@@ -760,7 +760,7 @@
             <arg value="--test-drop-name=Smoketest-${build.id}"/> 
             <arg value="--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}"/>
             <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
-            <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
+            <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>		
         </exec>
         <!-- Now ready to send to ATS3 -->
     </target>   
