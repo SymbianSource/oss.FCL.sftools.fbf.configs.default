@@ -182,6 +182,19 @@
 
             <if><istrue value="${sf.spec.bccheck.enable.dynamic}"/>
                 <then>
+                    <echo message="INFO Updating bctest package with test info"/>
+                    <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_dynamicbc.log">
+                        <arg value="ats_specialise_test_drop.pl"/>
+                        <arg value="--test-drop-name=bctest-${build.id}"/> 
+                        <arg value="--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}"/>
+                        <arg value="--src=${sf.spec.test.package.location}\..\bctest\bctest.zip"/>
+                        <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.bccheck.package.name}"/>
+                    </exec>
+                    <!-- Now ready to send to ATS3 -->
+
+                    <antcall target="sf-send-testpkg" inheritAll="false">
+                        <param name="sf.spec.test.package.name" value="${sf.spec.bccheck.package.name}"/>
+                    </antcall>    
                 </then>
             </if>
         </then>
