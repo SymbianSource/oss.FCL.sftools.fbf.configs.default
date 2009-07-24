@@ -15,7 +15,7 @@
     <property name="sf.spec.systemdefinition.assemble" value="true"/>
     <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
 
-    <property name="sf.spec.pdt.root" value="C:\Symbian\Tools\PDT_1.0"/>
+    <property name="sf.spec.pdt.root" value="${env.PDT_HOME}"/> <!-- e.g. C:\Symbian\Tools\PDT_1.0\ -->
 
     <property name="sf.spec.sbs.config" value="armv5"/>
     
@@ -26,7 +26,7 @@
     <property name="sf.spec.build.system" value="sbs"/> <!-- sbs|ebs|ec -->
     <!-- property name="sf.spec.build.sbsv2.config" value=""/ -->
     <!-- property name="sf.spec.build.sbsv2.options" value="-k"/ -->
-    <property name="sf.spec.build.clean.enable" value="true"/>
+    <property name="sf.spec.build.clean.enable" value="false"/>
     <property name="sf.spec.sysdef.configurations.list" value="s60_build,s60_bldmelast"/>
     
     
@@ -94,11 +94,12 @@
     <property name="sf.spec.bccheck.enable.la" value="true"/>
     <property name="sf.spec.bccheck.enable.ha" value="true"/>
     <property name="sf.spec.bccheck.enable.dynamic" value="true"/>
-    <property name="sf.spec.bccheck.baseline.name" value="SDK_3rd_Edition"/>
-    <property name="sf.spec.bccheck.baseline.skd.dir" value="C:\Symbian\9.1\S60_3rd_MR\"/>
+    <property name="sf.spec.bccheck.baseline.name" value="symbian1"/>
+    <property name="sf.spec.bccheck.baseline.skd.dir" value="\\v800008\builds01\releases\installed\s60_5th_sdk_installed"/>
     <property name="sf.spec.bccheck.baseline.s60.version" value="5.1"/>
     <property name="sf.spec.bccheck.current.s60.version" value="5.1"/>
     <property name="sf.spec.bccheck.reportid" value="report"/>
+    <property name="sf.spec.bccheck.package.name" value="${env.COMPUTERNAME}-bctest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/>
 </project>
 
 

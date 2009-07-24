@@ -10,38 +10,15 @@
 # Contributors:
 #
 # Description:
-# Extracts whatlog information from a raptor log file
+# Raptor parser module.
+# Extract releaseable (whatlog) information
+
+package RaptorReleaseable;
 
 use strict;
+use RaptorCommon;
 
-use XML::SAX;
-use RaptorSAXHandler;
-use Getopt::Long;
-
-my @logfiles;
-my $basedir = '';
-my $append = 0;
-my $help = 0;
-GetOptions((
-	'log:s' => \@logfiles,
-	'basedir:s' => \$basedir,
-	'append!' => \$append,
-	'help!' => \$help
-));
-
-$help = 1 if (!@logfiles);
-
-if ($help)
-{
-	print "Extracts whatlog information from a raptor log file\n";
-	print "Usage: perl package_what.pl --log=FILE1 --log=FILE2 [OPTIONS]\n";
-	print "where OPTIONS are:\n";
-	print "\t--basedir=DIR Generate info files under DIR\n";
-	print "\t--append Do not stop if basedir exists but append newly extracted info to already existing.\n";
-	exit(0);
-}
-
-my $reset_status = {};
+our $reset_status = {};
 my $buildlog_status = {};
 my $whatlog_status = {};
 my $bitmap_status = {};
@@ -61,49 +38,49 @@ $buildlog_status->{next_status} = {whatlog=>$whatlog_status};
 
 $whatlog_status->{name} = 'whatlog_status';
 $whatlog_status->{next_status} = {bitmap=>$bitmap_status, resource=>$resource_status, build=>$build_status, export=>$export_status, stringtable=>$stringtable_status, archive=>$archive_status, '?default?'=>$whatlog_default_status};
-$whatlog_status->{on_start} = 'main::on_start_whatlog';
-$whatlog_status->{on_end} = 'main::on_end_whatlog';
+$whatlog_status->{on_start} = 'RaptorReleaseable::on_start_whatlog';
+$whatlog_status->{on_end} = 'RaptorReleaseable::on_end_whatlog';
 
 $bitmap_status->{name} = 'bitmap_status';
 $bitmap_status->{next_status} = {};
-$bitmap_status->{on_start} = 'main::on_start_bitmap';
-$bitmap_status->{on_end} = 'main::on_end_whatlog_subtag';
-$bitmap_status->{on_chars} = 'main::on_chars_whatlog_subtag';
+$bitmap_status->{on_start} = 'RaptorReleaseable::on_start_bitmap';
+$bitmap_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
+$bitmap_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
 
 $resource_status->{name} = 'resource_status';
 $resource_status->{next_status} = {};
-$resource_status->{on_start} = 'main::on_start_resource';
-$resource_status->{on_end} = 'main::on_end_whatlog_subtag';
-$resource_status->{on_chars} = 'main::on_chars_whatlog_subtag';
+$resource_status->{on_start} = 'RaptorReleaseable::on_start_resource';
+$resource_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
+$resource_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
 
 $build_status->{name} = 'build_status';
 $build_status->{next_status} = {};
-$build_status->{on_start} = 'main::on_start_build';
-$build_status->{on_end} = 'main::on_end_whatlog_subtag';
-$build_status->{on_chars} = 'main::on_chars_whatlog_subtag';
+$build_status->{on_start} = 'RaptorReleaseable::on_start_build';
+$build_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
+$build_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
 
 $stringtable_status->{name} = 'stringtable_status';
 $stringtable_status->{next_status} = {};
-$stringtable_status->{on_start} = 'main::on_start_stringtable';
-$stringtable_status->{on_end} = 'main::on_end_whatlog_subtag';
-$stringtable_status->{on_chars} = 'main::on_chars_whatlog_subtag';
+$stringtable_status->{on_start} = 'RaptorReleaseable::on_start_stringtable';
+$stringtable_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
+$stringtable_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
 
 $archive_status->{name} = 'archive_status';
 $archive_status->{next_status} = {member=>$archive_member_status};
 
 $archive_member_status->{name} = 'archive_member_status';
 $archive_member_status->{next_status} = {};
-$archive_member_status->{on_start} = 'main::on_start_archive_member';
-$archive_member_status->{on_end} = 'main::on_end_whatlog_subtag';
-$archive_member_status->{on_chars} = 'main::on_chars_whatlog_subtag';
+$archive_member_status->{on_start} = 'RaptorReleaseable::on_start_archive_member';
+$archive_member_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
+$archive_member_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
 
 $export_status->{name} = 'export_status';
 $export_status->{next_status} = {};
-$export_status->{on_start} = 'main::on_start_export';
+$export_status->{on_start} = 'RaptorReleaseable::on_start_export';
 
 $whatlog_default_status->{name} = 'whatlog_default_status';
 $whatlog_default_status->{next_status} = {};
-$whatlog_default_status->{on_start} = 'main::on_start_whatlog_default';
+$whatlog_default_status->{on_start} = 'RaptorReleaseable::on_start_whatlog_default';
 
 my $whatlog_info = {};
 my $curbldinf = 'unknown';
@@ -111,41 +88,9 @@ my $curconfig = 'unknown';
 my $curfiletype = 'unknown';
 my $characters = '';
 
-if (!$basedir)
-{
-	$basedir = time;
-	
-	print "Using $basedir as basedir.\n";
-}
-if (-d $basedir)
-{
-	if ($append)
-	{
-		print "Directory $basedir exists. Appending new info to it.\n";
-	}
-	else
-	{
-		print "Directory $basedir exists. Quitting.\n";
-		exit(1);
-	}
-}
-mkdir($basedir);
-#print "Created dir $basedir.\n";
-
-my $saxhandler = RaptorSAXHandler->new();
-$saxhandler->set_init_status($reset_status);
-my $parser = XML::SAX::ParserFactory->parser(Handler=>$saxhandler);
-for (@logfiles)
-{
-	$parser->parse_uri($_);
-}
-
-
 sub on_start_whatlog
 {
 	my ($el) = @_;
-	
-	#print "on_start_whatlog\n";
 	
 	$whatlog_info = {};
 	
@@ -278,10 +223,11 @@ sub on_end_whatlog
 			my $layer = $1;
 			my $package = $2;
 			
-			mkdir("$basedir/$layer");
-			mkdir("$basedir/$layer/$package");
+			mkdir("$::basedir/releaseables");
+			mkdir("$::basedir/releaseables/$layer");
+			mkdir("$::basedir/releaseables/$layer/$package");
 			
-			my $filename = "$basedir/$layer/$package/info.tsv";
+			my $filename = "$::basedir/releaseables/$layer/$package/info.tsv";
 			
 			print "Writing info file $filename\n" if (!-f$filename);
 			open(FILE, ">>$filename");
@@ -338,3 +284,5 @@ sub on_start_whatlog_default
 	
 	print "WARNING: unsupported tag '$tagname' in <whatlog> context\n";
 }
+
+1;
