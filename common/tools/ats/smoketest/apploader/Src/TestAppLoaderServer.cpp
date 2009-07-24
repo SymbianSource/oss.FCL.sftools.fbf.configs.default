@@ -18,6 +18,7 @@
 // USER includes
 #include "TestAppLoaderServer.h"
 #include "TestAppLoaderAppStart.h"
+#include "TestAppLoaderKeyEvents.h"
 #include "TestAppLoaderKillProcess.h"
 #include "TestAppLoaderEndTask.h"
 #include "TestAppLoaderTaskRunning.h"
@@ -115,6 +116,10 @@ CTestStep* CTestAppLoaderServer::CreateTestStep(const TDesC& aStepName)
 	if(aStepName == _L("AppStart"))
 		{
 		testStep = new CTestAppLoaderAppStart();
+		}
+	else if(aStepName == _L("KeyEvents"))
+		{
+		testStep = new CTestAppLoaderKeyEvents();
 		}
 	else if(aStepName == _L("KillProcess"))
 		{

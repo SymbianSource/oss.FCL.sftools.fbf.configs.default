@@ -62,3 +62,9 @@ START_TESTCASE	SMOKE_APP_LAUNCH_0007
 //! @SYMTestCaseDesc	Verify the "Contacts" task is running
 	RUN_TEST_STEP		1000	smoketest_apploader	TaskRunning	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_RUNNING_0007
 END_TESTCASE 	SMOKE_APP_LAUNCH_0007
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0008
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0008
+//! @SYMTestCaseDesc	Send key events to close UI setup dialogs
+	RUN_TEST_STEP		1000	smoketest_apploader	KeyEvents	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_KEYEVENTS_0008
+END_TESTCASE 			SMOKE_APP_LAUNCH_0008

@@ -33,6 +33,7 @@ SOURCE			TestAppLoaderServer.cpp
 SOURCE			TestAppLoaderBase.cpp
 SOURCE			TestAppLoaderAppStart.cpp
 SOURCE			TestAppLoaderEndTask.cpp
+SOURCE			TestAppLoaderKeyEvents.cpp
 SOURCE			TestAppLoaderKillProcess.cpp
 SOURCE			TestAppLoaderTaskRunning.cpp
 
