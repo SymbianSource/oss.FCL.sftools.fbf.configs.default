@@ -12,6 +12,10 @@
   <property name="sf.spec.build.clean.enable" value="true"/>
   
   <property name="sf.spec.systemdefinition.assemble" value="false"/>
+  <!-- if this is defined then the model is taken from this location (relative to the project dir) and copied to BUILDDRIVE\definition.xml -->
+  <property name="sf.spec.systemdefinition.source" value="package_definition.xml"/>
+  <!-- location of the model (related to the build drive) -->
+  <property name="sf.spec.systemdefinition.location" value="\definition.xml"/>
   <property name="sf.spec.sysdef.configurations.list" value="SF"/>
   
   <property name="sf.spec.sbs.config" value="winscw"/>

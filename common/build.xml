@@ -483,7 +483,7 @@
         </if>
     </target>
 
-    <target name="sf-build-noprep" depends="sf-truclean,sf-compile,sf-postbuild">
+    <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile,sf-postbuild">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
@@ -518,6 +518,17 @@
       <else>
         <echo message="Skipping truclean step."/>
       </else>
+    </if>
+  </target>
+  
+  <target name="sf-model-from-project">
+    <if>
+      <isset property="sf.spec.systemdefinition.source"/>
+      <then>
+        <echo message="Using ${sf.spec.systemdefinition.source} as model file"/>
+        <echo message="Copying to ${build.drive}/definition.xml"/>
+        <copy file="${sf.project.location}/${sf.spec.systemdefinition.source}" tofile="${build.drive}/definition.xml"/>
+      </then>
     </if>
   </target>
     

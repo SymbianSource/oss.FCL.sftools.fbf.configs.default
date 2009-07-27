@@ -21,8 +21,7 @@
       <arg value="--model=${build.drive}/${sf.spec.systemdefinition.location}"/>
       <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
     </exec>
-        
-        
+    
     <runtarget target="sf-package-compile"/>
   </target>
   
