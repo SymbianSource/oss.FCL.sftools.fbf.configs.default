@@ -96,7 +96,7 @@ if ($srctype =~ /^\.zip$/) { # Test drop is zip. Must contain test.xml.
         $zipper = "zip -m $destfile.zip test.xml";
         $unzipper = "unzip -o $srcfile $xml_in -d .";
     }
-    elsif (!silent_command("7z -version")) { # Else see if we've got 7zip
+    elsif (!silent_command("7z -h")) { # Else see if we've got 7zip
         $zipper = "7z u $destfile.zip test.xml";
         $unzipper = "7z e $srcfile $xml_in";
     }
