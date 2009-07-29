@@ -875,7 +875,7 @@
           <propertyregex override="yes" property="yarpfile"  input="@{logfile}" regexp=".*[\\|\/](.*)_compile\.log" replace="\1_yarp.csv"/>
           <propertyregex override="yes" property="yarpfile_short"  input="${yarpfile}" regexp="[^_]*_[^_]*_[^_]*_(.+)_[^_]*_yarp\.csv" replace="YARP_\1"/>
           <echo message="Yarping @{logfile}..."/>
-          <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_yarp.log" append="true">
+          <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${yarpfile}.log" append="true">
             <arg value="${sf.common.config.dir}/tools/analysis/yarp.pl"/>
             <arg value="@{logfile}"/>
             <arg value="${build.log.dir}/analysis/${yarpfile}"/>

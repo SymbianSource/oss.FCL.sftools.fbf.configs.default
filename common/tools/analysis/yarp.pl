@@ -71,11 +71,23 @@ sub  parsefile($filename)
     my $failures = 0;
     while( my $line = <FILE>)
     {
+      if(defined $recipe)
+      {
+        if(defined $recipe->{'content'})
+        {
+          my $ref = $recipe->{'content'}; 
+          push(@$ref, $line);
+        }
+      }
       ++$counter;
       if($line =~ m/^<recipe\s+(\S.+)>/)
       {
         $recipe = XMLin($line."</recipe>");
         $recipe->{'line'} = $counter;
+        my @content;
+        push(@content, $line);
+        $recipe->{'content'} = \@content;
+        
 #        print Dumper($recipe);
       }
       elsif($line =~ m/<\/recipe>/)
@@ -160,7 +172,12 @@ sub DumpRecipe($)
     }
     print OUT ",";
   }
-  print OUT "\n";            
+  print OUT "\n";
+  my $content = $recipe->{'content'};
+  for my $line (@$content)
+  {
+    print $line;
+  }              
   #print Dumper($recipe);
 
 }
