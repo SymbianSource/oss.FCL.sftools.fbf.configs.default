@@ -175,9 +175,16 @@
         <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
 		<!-- generate baseline dir list to allow delta creation -->
-		<antcall target="sf-list-dir" inheritAll="false">
-			<param name="sf.list.name" value="baseline"/>
-		</antcall>
+		<if><isset property="sf.os.compile.fast"/>
+			<then>
+				<echo message="INFO [FAST COMPILE] Skipping baseline dir list generation"/>
+			</then>
+			<else>
+				<antcall target="sf-list-dir" inheritAll="false">
+					<param name="sf.list.name" value="baseline"/>
+				</antcall>
+			</else>
+		</if>
 
 		<!-- OS what -->
 		<!--
@@ -207,46 +214,59 @@
 			</then>
 		</if>
 		
-		<antcall target="sf-list-dir" inheritAll="false">
-			<param name="sf.list.name" value="post-clean"/>
-		</antcall>
-
-		<!-- what has been cleaned from baseline PDK by sos model -->
-		<antcall target="sf-delta-dir" inheritAll="false">
-			<param name="sf.list_a.name" value="baseline"/>
-			<param name="sf.list_b.name" value="post-clean"/>
-		</antcall>		
+		<if><isset property="sf.os.compile.fast"/>
+			<then>
+				<echo message="INFO [FAST COMPILE] Skipping baseline vs post-clean delta generation"/>
+			</then>
+			<else>
+				<antcall target="sf-list-dir" inheritAll="false">
+					<param name="sf.list.name" value="post-clean"/>
+				</antcall>
+				<!-- what has been cleaned from baseline PDK by sos model -->
+				<antcall target="sf-delta-dir" inheritAll="false">
+					<param name="sf.list_a.name" value="baseline"/>
+					<param name="sf.list_b.name" value="post-clean"/>
+				</antcall>		
+			</else>
+		</if>
 		
-        <!-- OS tools2 build first-->
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-                <param name="build.system" value="${sf.spec.build.system}" />
-                <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
-                <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-                <reference refid="sbs.tools2.var" torefid="sbs.var" />
-                <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-                <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall>
+		<if><isset property="sf.os.compile.fast"/>
+			<then>
+				<echo message="INFO [FAST COMPILE] Skipping Tools/Tools2 builds"/>
+			</then>
+			<else>
+				<!-- OS tools2 build first-->
+				<antcall target="compile-main" inheritAll="false" inheritRefs="true">
+						<param name="build.system" value="${sf.spec.build.system}" />
+						<param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
+						<param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+						<param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
+						<reference refid="sbs.tools2.var" torefid="sbs.var" />
+						<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
+						<reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
+				</antcall>
 
-		<antcall target="sf-list-dir" inheritAll="false">
-			<param name="sf.list.name" value="post-build-tools2"/>
-		</antcall>
-		
-		
-        <!-- OS tools build after tools2 -->
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-                <param name="build.system" value="${sf.spec.build.system}" />
-                <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
-                <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-                <reference refid="sbs.tools.var" torefid="sbs.var" />
-                <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-                <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall>
+				<antcall target="sf-list-dir" inheritAll="false">
+					<param name="sf.list.name" value="post-build-tools2"/>
+				</antcall>
+				
+				
+				<!-- OS tools build after tools2 -->
+				<antcall target="compile-main" inheritAll="false" inheritRefs="true">
+						<param name="build.system" value="${sf.spec.build.system}" />
+						<param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
+						<param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+						<param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
+						<reference refid="sbs.tools.var" torefid="sbs.var" />
+						<reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
+						<reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
+				</antcall>
 
-		<antcall target="sf-list-dir" inheritAll="false">
-			<param name="sf.list.name" value="post-build-tools"/>
-		</antcall>
+				<antcall target="sf-list-dir" inheritAll="false">
+					<param name="sf.list.name" value="post-build-tools"/>
+				</antcall>
+			</else>
+		</if>
 		
         <!-- OS main build -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
@@ -259,23 +279,30 @@
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall>
 		
-		<antcall target="sf-list-dir" inheritAll="false">
-			<param name="sf.list.name" value="post-build-main"/>
-		</antcall>
-		
-		<!-- what has been built in tools2+tools+main -->
-		<antcall target="sf-delta-dir" inheritAll="false">
-			<param name="sf.list_a.name" value="post-clean"/>
-			<param name="sf.list_b.name" value="post-build-main"/>
-		</antcall>
-		
-		<!-- what has been cleaned and rebuilt -->
-		<antcall target="sf-intersect-dir" inheritAll="false">
-			<param name="sf.list_a.name" value="post-clean_delta"/>       <!-- clean list -->
-			<param name="sf.list_b.name" value="post-build-main_delta"/>  <!-- built list -->
-		</antcall>
-		
-		<!-- what has been cleaned and not rebuilt -->
+		<if><isset property="sf.os.compile.fast"/>
+			<then>
+				<echo message="INFO [FAST COMPILE] Skipping delta and intersect list generation"/>
+			</then>
+			<else>
+				<antcall target="sf-list-dir" inheritAll="false">
+					<param name="sf.list.name" value="post-build-main"/>
+				</antcall>
+				
+				<!-- what has been built in tools2+tools+main -->
+				<antcall target="sf-delta-dir" inheritAll="false">
+					<param name="sf.list_a.name" value="post-clean"/>
+					<param name="sf.list_b.name" value="post-build-main"/>
+				</antcall>
+				
+				<!-- what has been cleaned and rebuilt -->
+				<antcall target="sf-intersect-dir" inheritAll="false">
+					<param name="sf.list_a.name" value="post-clean_delta"/>       <!-- clean list -->
+					<param name="sf.list_b.name" value="post-build-main_delta"/>  <!-- built list -->
+				</antcall>
+				
+				<!-- what has been cleaned and not rebuilt -->
+			</else>
+		</if>
 		
   </target>
 
