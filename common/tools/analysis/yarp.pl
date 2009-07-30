@@ -20,7 +20,7 @@
 #
 # Notes:
 # Currently it won't tell you any info about why it fails, with the exception of arm licence issues.
-# It also uses a lot of memory, so while there is a subroutine for doing multiple files, it's not used, and is out of date.
+# XML::Simple leaks memory, so there is now a manual parsing mode which is enabled by the '$manualparsing' global variable.
 # Writing output to a file is hacked in, so it's not too pretty.
 
 use strict;
@@ -28,6 +28,7 @@ use XML::Simple;
 use Data::Dumper;
 
 my @header = qw(line layer component name armlicence platform phase code bldinf mmp target source);
+my $manualparsing = 1; #XML::Simple leaks memory. Manual parsing doesn't, but may not be as robust if Raptor changes it's output...
 
 main();
 
@@ -63,12 +64,13 @@ sub  parsefile($filename)
     my $filename = shift;
 #    print "Scanning $filename\n";
     open(FILE,"<$filename") or die "Couldn't open filename\n";
-    my $recipe;
+    my $recipe = undef;
     my %attempts;
     my %licenceattempts;
     my $counter = 0;
     my $licence = 0;
     my $failures = 0;
+
     while( my $line = <FILE>)
     {
       if(defined $recipe)
@@ -82,7 +84,7 @@ sub  parsefile($filename)
       ++$counter;
       if($line =~ m/^<recipe\s+(\S.+)>/)
       {
-        $recipe = XMLin($line."</recipe>");
+        $recipe = parseline($line."</recipe>");
         $recipe->{'line'} = $counter;
         my @content;
         push(@content, $line);
@@ -118,7 +120,7 @@ sub  parsefile($filename)
       }
       elsif($line =~ m/(<status\s.+\/>)/)
       {
-        my $status = XMLin($1);
+        my $status = parseline($1);
         if(defined $recipe)
         {
           $recipe->{'exit'} = $status->{'exit'};
@@ -180,4 +182,40 @@ sub DumpRecipe($)
   }              
   #print Dumper($recipe);
 
+}
+
+sub parseline($line)
+{
+  my $line = shift;
+#  print "\t$line\n";
+  my $val;
+  if($manualparsing)
+  {
+    my $strippedline;    
+    if($line =~ m/<\S+(.+)\/>/)
+    {
+      $strippedline = $1;
+    }
+    elsif($line =~ m/<\S+(.+)>\s*<\/\S+>/)
+    {
+      $strippedline = $1;
+    }
+#    print $strippedline."\n";
+    my @stuff = split('\s+', $strippedline);
+    my %results;
+    foreach my $pair (@stuff)
+    {
+#      print $pair."\n";
+      if($pair =~ m/^(\S+)=\'(\S+)\'$/)
+      {
+        $results{$1}=$2;
+      }
+    }
+    $val = \%results;
+  }  
+  else
+  {
+    $val = XMLin($line);
+  }   
+  return $val; 
 }
