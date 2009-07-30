@@ -1379,6 +1379,10 @@
                     </step>
                 </case>
             </set>
+            <set id="" name="Font Store" harness="GENERIC" enabled="true" passrate="100">
+                <case>
+                </case>
+            </set>
         </session>
 	</plan>
 	<files>
@@ -1477,5 +1481,6 @@
         <file>graphicssvs/graphics/general/graphics-fbserv-fbssession-publicapi.ini</file>
         <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.script</file>
         <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.ini</file>
+        <file>graphicssvs/winscw_udeb/t_graphicsfntstoreapi.exe</file>
     </files>
 </test>
