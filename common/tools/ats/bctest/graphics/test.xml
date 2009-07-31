@@ -1380,7 +1380,154 @@
                 </case>
             </set>
             <set id="" name="Font Store" harness="GENERIC" enabled="true" passrate="100">
-                <case>
+                <case id="" name="Install Common Files for Font Store" harness="GENERIC" enabled="true" passrate="100">
+                    <step id="" name="t_graphicsfntstoreapi.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="binary"/>
+                            <param src="t_graphicsfntstoreapi.exe"/>
+                            <param dst="c:\sys\bin\t_graphicsfntstoreapi.exe"/>
+                            <param component-path="graphicssvs" />
+                        </params>
+                    </step>
+                    <step id="" name="t_graphics.ini (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_graphics.ini"/>
+							<param dst="c:\graphics\t_graphics.ini"/>
+							<param component-path="graphicssvs\graphics" />
+						</params>
+					</step>
+                    <step id="" name="testfontws.gdr (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testfontws.gdr"/>
+							<param dst="c:\graphics\fntstore\testfontws.gdr"/>
+							<param component-path="graphicssvs\graphics\fntstore" />
+						</params>
+					</step>
+                    <step id="" name="bad_entrysel (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="bad_entrysel"/>
+							<param dst="c:\graphics\fntstore\bad_entrysel"/>
+							<param component-path="graphicssvs\graphics\fntstore" />
+						</params>
+					</step>
+                    <step id="" name="dummy (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="dummy"/>
+							<param dst="c:\graphics\fntstore\dummy"/>
+							<param component-path="graphicssvs\graphics\fntstore" />
+						</params>
+					</step>
+                    <step id="" name="dummy_2 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="dummy_2"/>
+							<param dst="c:\graphics\fntstore\dummy_2"/>
+							<param component-path="graphicssvs\graphics\fntstore" />
+						</params>
+					</step>
+                </case>
+                <case id="" name="Bitmap Font" harness="GENERIC" enabled="true" passrate="100">
+                    <step id="" name="graphics-fntstore-bitmapfont-publicapi.script (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="data"/>
+                            <param src="graphics-fntstore-bitmapfont-publicapi.script"/>
+                            <param dst="c:\graphics\graphics-fntstore-bitmapfont-publicapi.script"/>
+                            <param component-path="graphicssvs\graphics" />
+                        </params>
+                    </step>
+                    <step id="" name="graphics-fntstore-bitmapfont-publicapi.ini (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="data"/>
+                            <param src="graphics-fntstore-bitmapfont-publicapi.ini"/>
+                            <param dst="c:\graphics\graphics-fntstore-bitmapfont-publicapi.ini"/>
+                            <param component-path="graphicssvs\graphics" />
+                        </params>
+                    </step>
+                    <step id="" name="graphics-fntstore-bitmapfont-publicapi.script (execute)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>execute</command>
+                        <params>
+                            <param file="testexecute.exe" /> 
+                            <param parameters="c:\graphics\graphics-fntstore-bitmapfont-publicapi.script" /> 
+                            <param result-file="c:\logs\testexecute\graphics-fntstore-bitmapfont-publicapi.htm" /> 
+                            <param timeout="1200" /> 
+                            <param parser="TEFTestResultParser" /> 
+                            <param leave-old-result="true" /> 
+                        </params>
+                    </step>
+                </case>
+                <case id="" name="Font Store" harness="GENERIC" enabled="true" passrate="100">
+                    <step id="" name="graphics-fntstore-fntstore-publicapi.script (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="data"/>
+                            <param src="graphics-fntstore-fntstore-publicapi.script"/>
+                            <param dst="c:\graphics\graphics-fntstore-fntstore-publicapi.script"/>
+                            <param component-path="graphicssvs\graphics" />
+                        </params>
+                    </step>
+                    <step id="" name="graphics-fntstore-fntstore-publicapi.ini (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="data"/>
+                            <param src="graphics-fntstore-fntstore-publicapi.ini"/>
+                            <param dst="c:\graphics\graphics-fntstore-fntstore-publicapi.ini"/>
+                            <param component-path="graphicssvs\graphics" />
+                        </params>
+                    </step>
+                    <step id="" name="graphics-fntstore-fntstore-publicapi.script (execute)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>execute</command>
+                        <params>
+                            <param file="testexecute.exe" /> 
+                            <param parameters="c:\graphics\graphics-fntstore-fntstore-publicapi.script" /> 
+                            <param result-file="c:\logs\testexecute\graphics-fntstore-fntstore-publicapi.htm" /> 
+                            <param timeout="1200" /> 
+                            <param parser="TEFTestResultParser" /> 
+                            <param leave-old-result="true" /> 
+                        </params>
+                    </step>
+                </case>
+                <case id="" name="Open Font Rasterizer Context" harness="GENERIC" enabled="true" passrate="100">
+                    <step id="" name="graphics-fntstore-openfontrasterizercontext-publicapi.script (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="data"/>
+                            <param src="graphics-fntstore-openfontrasterizercontext-publicapi.script"/>
+                            <param dst="c:\graphics\graphics-fntstore-openfontrasterizercontext-publicapi.script"/>
+                            <param component-path="graphicssvs\graphics" />
+                        </params>
+                    </step>
+                    <step id="" name="graphics-fntstore-openfontrasterizercontext-publicapi.ini (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>install</command>
+                        <params>
+                            <param type="data"/>
+                            <param src="graphics-fntstore-openfontrasterizercontext-publicapi.ini"/>
+                            <param dst="c:\graphics\graphics-fntstore-openfontrasterizercontext-publicapi.ini"/>
+                            <param component-path="graphicssvs\graphics" />
+                        </params>
+                    </step>
+                    <step id="" name="graphics-fntstore-openfontrasterizercontext-publicapi.script (execute)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+                        <command>execute</command>
+                        <params>
+                            <param file="testexecute.exe" /> 
+                            <param parameters="c:\graphics\graphics-fntstore-openfontrasterizercontext-publicapi.script" /> 
+                            <param result-file="c:\logs\testexecute\graphics-fntstore-openfontrasterizercontext-publicapi.htm" /> 
+                            <param timeout="1200" /> 
+                            <param parser="TEFTestResultParser" /> 
+                            <param leave-old-result="true" /> 
+                        </params>
+                    </step>
                 </case>
             </set>
         </session>
@@ -1482,5 +1629,15 @@
         <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.script</file>
         <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.ini</file>
         <file>graphicssvs/winscw_udeb/t_graphicsfntstoreapi.exe</file>
+        <file>graphicssvs/graphics/fntstore/general/bad_entrysel</file>
+        <file>graphicssvs/graphics/fntstore/general/dummy</file>
+        <file>graphicssvs/graphics/fntstore/general/dummy_2</file>
+        <file>graphicssvs/graphics/fntstore/general/testfontws.gdr</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-bitmapfont-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-bitmapfont-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-fntstore-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-fntstore-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-openfontrasterizercontext-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-openfontrasterizercontext-publicapi.ini</file>
     </files>
 </test>
