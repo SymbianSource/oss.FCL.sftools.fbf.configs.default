@@ -55,13 +55,25 @@ sub process
 	}
 	elsif ($text =~ m,No bld\.inf found at,)
 	{
-		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_NOBLDINFFOUND;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,Can't find mmp file,)
+	{
+		$severity = $RaptorCommon::SEVERITY_NORMAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_CANTFINDMMPFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,The make-engine exited with errors,)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
 	{
-		$severity = $RaptorCommon::SEVERITY_UNKNOWN;
+		$severity = $RaptorCommon::SEVERITY_NORMAL;
 		my $subcategory = '';
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
