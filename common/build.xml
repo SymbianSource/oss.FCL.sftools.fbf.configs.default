@@ -434,10 +434,9 @@
                     <exclude name="output/logs/deliverables/**"/>
                     <exclude name="output/logs/releaseables/**"/>
                 </zip>
-                <zip destfile="${temp.log.dir}/build_BOM.zip" basedir="${build.drive}">
-                    <include name="output/logs/BOM/**"/>
-                    <include name="output/logs/deliverables/**"/>
-                    <include name="output/logs/releaseables/**"/>
+                <zip destfile="${temp.log.dir}/build_BOM.zip">
+                    <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
+                    <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
                 </zip>
                 <move todir="${build.log.dir}">
                     <fileset dir="${temp.log.dir}"/>
