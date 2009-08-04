@@ -529,6 +529,13 @@
         <echo message="Copying to ${build.drive}/definition.xml"/>
         <copy file="${sf.project.location}/${sf.spec.systemdefinition.source}" tofile="${build.drive}/definition.xml"/>
       </then>
+      <else>
+        <!-- Collate the system definition from the packages listed in sources.csv -->
+        <exec executable="perl" output="${build.drive}${sf.spec.systemdefinition.location}" logError="true">
+          <arg value="${sf.common.config.dir}/tools/csvToSysDef.pl"/>
+          <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+        </exec>
+      </else>
     </if>
   </target>
     
@@ -695,7 +702,6 @@
     </target>
     
     <target name ="sf-make-junction">
-        
         <mkdir dir="${sf.spec.test.epocroot}"/>
 
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_make_junction.log">

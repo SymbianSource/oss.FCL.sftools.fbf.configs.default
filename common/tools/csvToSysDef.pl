@@ -55,7 +55,7 @@ foreach my $package (@packages)
 		$pkgDef =~ s{^/sf/}{};
 		$pkgDef =~ s{/[^/]*$}{};
 		# TODO: Where will this be on the build machine?
-		$pkgDef = "./packages/3k/$pkgDef/package_definition.xml";
+		$pkgDef = "../../packages/3k/$pkgDef/package_definition.xml";
 	}
 	die unless -f $pkgDef;
 
