@@ -2,12 +2,16 @@
 
 use strict;
 
+use FindBin;
+use lib "$FindBin::Bin/lib";
+
 use XML::Parser;
 use Data::Dumper;
 use Text::CSV;
 
 my $sourcesCSV = shift or die "First arg must be source csv file";
-shift and die "No more than one argument please";
+my $backupBaseDir = shift or die "Second arg must be path to tree of package_definitions to use if not found in the source packages";
+shift and die "No more than two arguments please";
 
 # Load CSV
 open my $csvText, "<", $sourcesCSV or die;
@@ -55,7 +59,7 @@ foreach my $package (@packages)
 		$pkgDef =~ s{^/sf/}{};
 		$pkgDef =~ s{/[^/]*$}{};
 		# TODO: Where will this be on the build machine?
-		$pkgDef = "../../packages/3k/$pkgDef/package_definition.xml";
+		$pkgDef = "$backupBaseDir/$pkgDef/package_definition.xml";
 	}
 	die unless -f $pkgDef;
 
