@@ -85,6 +85,7 @@
         <if><istrue value="${sf.spec.sourcesync.usecache}"/>
             <then>
                 <echo message="Generating Hg local cache..." />
+                <mkdir dir="${sf.common.config.dir}/generated"/>
                 <exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
                     <arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
                     <arg value="${sf.spec.sourcesync.cachelocation}"/>
