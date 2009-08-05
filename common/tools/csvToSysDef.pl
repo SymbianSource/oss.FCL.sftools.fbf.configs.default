@@ -61,9 +61,9 @@ foreach my $package (@packages)
 		# TODO: Where will this be on the build machine?
 		$pkgDef = "$backupBaseDir/$pkgDef/package_definition.xml";
 	}
-	die unless -f $pkgDef;
+	die "Unable to locate any package_definition at all for $package->{dst}" unless -f $pkgDef;
 
-	my $pkgTree = $parser->parsefile($pkgDef) or die;
+	my $pkgTree = eval { $parser->parsefile($pkgDef) } or die "Failed to parse $pkgDef : $@";
 	if (!$outTree)
 	{
 		# The first file is taken verbatim
@@ -88,7 +88,7 @@ sub mergeTrees
 	my $baseTree = shift or die;
 	my $extrasTree = shift or die;
 
-	die unless ref $baseTree eq ref $extrasTree;
+	die ("Package Definitions do not match: ".(ref $baseTree)." vs ".(ref $extrasTree)) unless ref $baseTree eq ref $extrasTree;
 	return if ref $baseTree eq "main::Characters";
 
 	foreach my $extraChild (@{$extrasTree->{Kids}})
