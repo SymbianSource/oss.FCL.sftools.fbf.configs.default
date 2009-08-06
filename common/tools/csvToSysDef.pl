@@ -50,6 +50,8 @@ my $outTree;
 # For each package in CSV...
 foreach my $package (@packages)
 {
+	# If the sources.csv does not include a sys def for this package, it doesn't get built
+	next unless $package->{sysdef};
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	# Look for the pkg defn in the root of the package tree
 	my $pkgDef = "$package->{dst}/$package->{sysdef}";
