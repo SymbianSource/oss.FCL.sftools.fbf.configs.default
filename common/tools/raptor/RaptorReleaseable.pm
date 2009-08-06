@@ -35,6 +35,7 @@ $reset_status->{next_status} = {buildlog=>$buildlog_status};
 
 $buildlog_status->{name} = 'buildlog_status';
 $buildlog_status->{next_status} = {whatlog=>$whatlog_status};
+$buildlog_status->{on_start} = 'RaptorReleaseable::on_start_buildlog';
 
 $whatlog_status->{name} = 'whatlog_status';
 $whatlog_status->{next_status} = {bitmap=>$bitmap_status, resource=>$resource_status, build=>$build_status, export=>$export_status, stringtable=>$stringtable_status, archive=>$archive_status, '?default?'=>$whatlog_default_status};
@@ -87,6 +88,11 @@ my $curbldinf = 'unknown';
 my $curconfig = 'unknown';
 my $curfiletype = 'unknown';
 my $characters = '';
+
+sub on_start_buildlog
+{
+	mkdir("$::basedir/releaseables");
+}
 
 sub on_start_whatlog
 {
@@ -223,7 +229,6 @@ sub on_end_whatlog
 			my $layer = $1;
 			my $package = $2;
 			
-			mkdir("$::basedir/releaseables");
 			mkdir("$::basedir/releaseables/$layer");
 			mkdir("$::basedir/releaseables/$layer/$package");
 			

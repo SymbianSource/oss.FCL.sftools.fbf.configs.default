@@ -910,7 +910,7 @@
       <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
       <for param="tsv">
         <path>
-          <fileset dir="${build.log.dir}/releaseables" erroronmissingdir="false">
+          <fileset dir="${build.log.dir}/releaseables">
             <include name="**/*.tsv"/>
           </fileset>
         </path>
