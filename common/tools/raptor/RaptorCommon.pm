@@ -21,6 +21,7 @@ our $CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION = 'cannot_process_schema_ve
 our $CATEGORY_RAPTORERROR_NOBLDINFFOUND = 'no_bld_inf_found';
 our $CATEGORY_RAPTORERROR_CANTFINDMMPFILE = 'cant_find_mmp_file';
 our $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS = 'make_exited_with_errors';
+our $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION = 'tool_didnot_return_version';
 
 our $SEVERITY_UNKNOWN = 'unknown';
 our $SEVERITY_CRITICAL = 'critical';

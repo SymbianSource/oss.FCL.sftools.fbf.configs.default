@@ -71,6 +71,12 @@ sub process
 		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
+	elsif ($text =~ m,tool .* from config .* did not return version .* as required,)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
 	else # log everything by default
 	{
 		$severity = $RaptorCommon::SEVERITY_NORMAL;
