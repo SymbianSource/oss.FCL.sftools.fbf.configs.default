@@ -6,7 +6,6 @@ use FindBin;
 use lib "$FindBin::Bin/lib";
 
 use XML::Parser;
-use Data::Dumper;
 use Text::CSV;
 
 my $sourcesCSV = shift or die "First arg must be source csv file";
@@ -78,8 +77,6 @@ foreach my $package (@packages)
 	}
 }
 
-#print Data::Dumper->Dump([$outTree->[0]], ["tree"]);
-
 # Output total tree
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 printTree($outTree->[0]);
@@ -106,14 +103,12 @@ sub mergeTrees
 		if ($extraChildTag =~ m{^(SystemDefinition|systemModel)$})
 		{
 			# Should be merged if there's already one there
-#			warn "Always merge $extraChildTag";
 			# Look for a namesake in the base
 			$mergeIt = matchTag($baseTree->{Kids}, $extraChild, undef);
 		}
 		elsif ($extraChildTag =~ m{layer|block|package|collection|component})
 		{
 			# Should be merged if there is another tag with the same "name" attribute
-#			warn "Sometimes merge $extraChildTag";
 			# Look for a namesake in the base
 			$mergeIt = matchTag($baseTree->{Kids}, $extraChild, "name");
 		}
