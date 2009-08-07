@@ -52,16 +52,16 @@ foreach my $package (@packages)
 {
 	# If the sources.csv does not include a sys def for this package, it doesn't get built
 	next unless $package->{sysdef};
-	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
-	# Look for the pkg defn in the root of the package tree
+	# If it's in the "backup" location, use that one (ie our copy overrides the package's own copy)
 	my $pkgDef = "$package->{dst}/$package->{sysdef}";
+	$pkgDef =~ s{^/sf/}{};
+	$pkgDef =~ s{/[^/]*$}{};
+	$pkgDef = "$backupBaseDir/$pkgDef/package_definition.xml";
 	if (!-f $pkgDef)
 	{
-		# Not there, so try the "backup" location
-		$pkgDef =~ s{^/sf/}{};
-		$pkgDef =~ s{/[^/]*$}{};
-		# TODO: Where will this be on the build machine?
-		$pkgDef = "$backupBaseDir/$pkgDef/package_definition.xml";
+		# Not there, so look for the pkg defn in the root of the package tree
+		warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
+		$pkgDef = "$package->{dst}/$package->{sysdef}";
 	}
 	die "Unable to locate any package_definition at all for $package->{dst}" unless -f $pkgDef;
 
@@ -81,9 +81,11 @@ foreach my $package (@packages)
 #print Data::Dumper->Dump([$outTree->[0]], ["tree"]);
 
 # Output total tree
-print "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
+print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 printTree($outTree->[0]);
 print "\n";
+
+exit;
 
 sub mergeTrees
 {
@@ -161,7 +163,18 @@ sub printTree
 	
 	print "<$tagName";
 
-	foreach my $attr (grep { ! ref $tree->{$_} } keys %$tree)
+	foreach my $attr (
+		sort {
+			my $order = "name long-name tech_domain level span schema levels filter introduced deprecated purpose class plugin origin-model bldFile mrp version priority";
+			my $ixA = index $order, $a;
+			my $ixB = index $order, $b;
+			die "$a $b" if $ixA + $ixB == -2;
+			$ixA - $ixB;
+		}
+		grep {
+			! ref $tree->{$_}
+		}
+		keys %$tree)
 	{
 		print " $attr=\"$tree->{$attr}\"";
 	}
