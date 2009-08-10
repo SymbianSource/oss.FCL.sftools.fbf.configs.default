@@ -768,25 +768,54 @@
     <!-- runs analysis of missing bins and source -->
     <target name="sf-run-analysis">
         <mkdir dir="${build.log.dir}/analysis"/>
+        <parallel>
+          <runtarget target="sf-run-analysis-ant"/>
+          <runtarget target="sf-run-analysis-raptor"/>
+          <runtarget target="sf-run-analysis-yarp"/>
+          <runtarget target="sf-run-analysis-whatlog-summary"/>
+        </parallel>
+        <runtarget target="sf-run-analysis-diamonds"/>
+    </target>
 
+    <target name="sf-run-analysis-ant">    
         <echo message="Running source analysis of ANT output"/>
         <exec executable="perl" dir="${build.log.dir}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_scan_ant.log">
             <arg value="${sf.common.config.dir}/tools/analysis/scan_antlogs.pl"/>
             <arg value="*ant*"/>
         </exec>
+    </target>
 
+    <target name="sf-run-analysis-list">    
         <echo message="Running list analysis"/>
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_list_results.log">
             <arg value="${sf.common.config.dir}/tools/analysis/parselistdirs.pl"/>
             <arg value="..\"/>
         </exec>
+    </target>
 
+    <target name="sf-run-analysis-whatlog">    
         <echo message="Running whatlog analysis"/>
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_what_results.csv">
             <arg value="${sf.common.config.dir}/tools/analysis/parsewhatlog.pl"/>
             <arg value="..\"/>
         </exec>
+    </target>
 
+    <target name="sf-run-analysis-whatlog-summary" >
+        <sequential>
+          <parallel>
+            <runtarget target="sf-run-analysis-list"/>
+            <runtarget target="sf-run-analysis-whatlog"/>
+          </parallel>
+          <runtarget target="sf-run-analysis-whatlog-merge" />
+          <parallel>
+            <runtarget target="sf-run-analysis-whatlog-package"/>
+            <runtarget target="sf-run-analysis-whatlog-collisons"/>
+          </parallel>
+        </sequential>
+    </target>
+    
+    <target name="sf-run-analysis-whatlog-merge" >        
         <echo message="Running summary analysis"/>
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_summary.log">
             <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
@@ -794,21 +823,26 @@
             <arg value="${build.id}_list_results.log"/>
             <arg value="${build.drive}/output/zips/release/binaries_epoc_additional.zip"/>
         </exec>
-
+    </target>
+    
+    <target name="sf-run-analysis-whatlog-package" >        
         <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
             <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${build.id}_what_results.csv_results.csv"/>
             <arg value="${sf.project.location}/sysdefs/system_model_os.xml"/>
         </exec>
-
+    </target>
+    
+    <target name="sf-run-analysis-whatlog-collisons" >        
         <echo message="Running collision analysis"/>
         <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_collisions.log">
             <arg value="${sf.common.config.dir}/tools/analysis/find_collisions.pl"/>
             <arg value="${build.log.dir}/analysis/${build.id}_what_results.csv"/>
         </exec>
-        
-        
+    </target>
+
+    <target name="sf-run-analysis-raptor">            
       <echo message="Preprocessing *_compile.log files"/>
       <for param="logfile">
         <path>
@@ -863,7 +897,22 @@
           </exec>
         </sequential>
       </for>
-      
+            <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
+      <for param="tsv">
+        <path>
+          <fileset dir="${build.log.dir}/releaseables">
+            <include name="**/*.tsv"/>
+          </fileset>
+        </path>
+        <sequential>
+          <exec executable="perl" input="@{tsv}" output="@{tsv}">
+            <arg value="${sf.common.config.dir}/tools/sortUnique.pl"/>
+          </exec>
+        </sequential>
+      </for>
+    </target>
+
+    <target name="sf-run-analysis-yarp">          
       <echo message="Running yarp over *_compile.log files"/>
       <for param="logfile">
         <path>
@@ -894,7 +943,9 @@
         <arg value="${build.drive}/output/logs/analysis/tmp_yarp_files.csv"/>
       </exec>
       <echo message="Total yarp errors: ${sf.job.totalyarperrors}"/>
-      
+    </target>
+    
+    <target name="sf-run-analysis-diamonds">      
       <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis.xml">
         <data expandProperties="yes">
           ant: antProperties()
@@ -902,22 +953,9 @@
           files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
         </data>
       </fmpp>
-
-
-      <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
-      <for param="tsv">
-        <path>
-          <fileset dir="${build.log.dir}/releaseables">
-            <include name="**/*.tsv"/>
-          </fileset>
-        </path>
-        <sequential>
-          <exec executable="perl" input="@{tsv}" output="@{tsv}">
-            <arg value="${sf.common.config.dir}/tools/sortUnique.pl"/>
-          </exec>
-        </sequential>
-      </for>
     </target>
+    
+
 
     <target name="sf-package-validate">
         <exec executable="7z" dir="${build.drive}/output/zips" failonerror="false" output="${build.drive}/output/zips/validate.log">
