@@ -30,34 +30,37 @@
     <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options"/>
     <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options"/>
     
-    <!-- BUILD tools2 CLEAN -->
-    <hlm:argSet id="sbs.tools2.clean.var">
-      <hlm:arg name="config" value="tools2" />
+    <!-- BUILD tools2_rel CLEAN -->
+    <!--
+    <hlm:argSet id="sbs.tools2_rel.clean.var">
+      <hlm:arg name="config" value="tools2_rel" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}"/>
       <hlm:arg name="command" value="CLEAN"/>
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.tools2.clean.var" torefid="sbs.var" />
+      <reference refid="sbs.tools2_rel.clean.var" torefid="sbs.var" />
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
-    <!-- BUILD tools2 -->
-    <hlm:argSet id="sbs.tools2.var">
-      <hlm:arg name="config" value="tools2.whatlog" />
+    <!-- BUILD tools2_rel -->
+    <hlm:argSet id="sbs.tools2_rel.var">
+      <hlm:arg name="config" value="tools2_rel.whatlog" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
       <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.tools2.var" torefid="sbs.var" />
+      <reference refid="sbs.tools2_rel.var" torefid="sbs.var" />
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
     
     <!-- BUILD tools CLEAN -->
+    <!-- 
     <hlm:argSet id="sbs.tools.clean.var">
       <hlm:arg name="config" value="tools"/>
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
@@ -70,8 +73,10 @@
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
     <!-- BUILD tools -->
+    <!-- 
     <hlm:argSet id="sbs.tools.var">
       <hlm:arg name="config" value="tools.whatlog"/>
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
@@ -83,8 +88,10 @@
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
     <!-- BUILD winscw CLEAN -->
+    <!--
     <hlm:argSet id="sbs.winscw.clean.var">
       <hlm:arg name="config" value="winscw" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
@@ -97,6 +104,7 @@
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
     <!-- BUILD winscw -->
     <hlm:argSet id="sbs.winscw.var">
@@ -112,6 +120,7 @@
     </antcall>
     
     <!-- BUILD armv5 CLEAN -->
+    <!--
     <hlm:argSet id="sbs.armv5.clean.var">
       <hlm:arg name="config" value="armv5" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
@@ -124,6 +133,7 @@
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
     <!-- BUILD armv5 -->
     <hlm:argSet id="sbs.armv5.var">
@@ -140,7 +150,7 @@
     
     <!-- CHECK -->
     <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">
-      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools -c tools2 -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
+      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools2_rel -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
       <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
     </exec>
     
