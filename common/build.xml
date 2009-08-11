@@ -527,7 +527,7 @@
       <then>
         <echo message="Using ${sf.spec.systemdefinition.source} as model file"/>
         <echo message="Copying to ${build.drive}/definition.xml"/>
-        <copy file="${sf.project.location}/${sf.spec.systemdefinition.source}" tofile="${build.drive}/definition.xml"/>
+        <copy file="${sf.project.location}/${sf.spec.systemdefinition.source}" tofile="${build.drive}${sf.spec.systemdefinition.location}"/>
       </then>
       <else>
         <!-- Collate the system definition from the packages listed in sources.csv -->
@@ -540,23 +540,6 @@
       </else>
     </if>
   </target>
-    
-    <target name="sf-compile">
-        <!-- TODO: add here assigments to raptor-related ant references -->
-    
-        <!-- hlm:argSet id="sbs.tools.var">
-            <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-            <hlm:arg name="singlejob" value="..." />
-            <hlm:arg name="enable-filter" value="..." />
-        </hlm:argSet -->
-        
-        <!-- target name="compile-main-prebuild" -->
-        <antcall target="compile-main" inheritAll="false">
-            <param name="build.system" value="${sf.spec.build.system}"/>
-            <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-            <!--<reference refid="sf.system.definition.files" torefid="system.definition.files" />-->
-        </antcall>    
-    </target>
     
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
