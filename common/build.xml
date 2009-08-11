@@ -531,6 +531,7 @@
       </then>
       <else>
         <!-- Collate the system definition from the packages listed in sources.csv -->
+        <echo message="Building system model from ${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" output="${build.drive}${sf.spec.systemdefinition.location}" logError="true" failonerror="true">
           <arg value="${sf.common.config.dir}/tools/csvToSysDef.pl"/>
           <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
