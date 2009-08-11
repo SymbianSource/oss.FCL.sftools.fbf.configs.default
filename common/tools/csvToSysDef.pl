@@ -64,6 +64,7 @@ foreach my $package (@packages)
 	}
 	die "Unable to locate any package_definition at all for $package->{dst}" unless -f $pkgDef;
 
+	warn "Including $pkgDef for $package->{dst}\n";
 	my $pkgTree = eval { $parser->parsefile($pkgDef) } or die "Failed to parse $pkgDef : $@";
 	if (!$outTree)
 	{
