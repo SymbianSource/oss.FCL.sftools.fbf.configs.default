@@ -99,7 +99,7 @@ copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/1mb",                          
 copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/any.txt",                                          "temp/basesvs/base/t_sfsrv/general/any.txt";
 copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/big_line.txt",                                     "temp/basesvs/base/t_sfsrv/general/big_line.txt";
 copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/filetext_eof.txt",                                 "temp/basesvs/base/t_sfsrv/general/filetext_eof.txt";
-copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/filetext_read.txt",                                "temp/basesvs/base/t_sfsrv/filetext_read.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/filetext_read.txt",                                "temp/basesvs/base/t_sfsrv/general/filetext_read.txt";
 copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/multiline.txt",                                    "temp/basesvs/base/t_sfsrv/general/multiline.txt";
 copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/new_file.txt",                                     "temp/basesvs/base/t_sfsrv/general/new_file.txt";
 copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/oneliner.txt",                                     "temp/basesvs/base/t_sfsrv/general/oneliner.txt";
