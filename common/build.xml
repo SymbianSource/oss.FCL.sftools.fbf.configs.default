@@ -453,14 +453,16 @@
     <target name="sf-list-dir">
         <property name="sf.currentlist.name"   value="${sf.list.name}"/> 
         <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+        <property name="sf.dir.exclude" value="${build.drive}/epoc32/build"/> 
     
         <if>
             <istrue value="${sf.spec.dirlist.enable}"/>
             <then>
-                <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location}"/>
-                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
-                    <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
+                <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location} excluding ${sf.dir.exclude}"/>
+                <exec executable="python" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
+                    <arg value="${sf.common.config.dir}/tools/listdir.py"/>
                     <arg value="${sf.dir.location}"/>
+                    <arg value="${sf.dir.exclude}"/>
                 </exec>
             </then>
         </if>
