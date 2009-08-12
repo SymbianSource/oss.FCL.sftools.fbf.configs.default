@@ -377,6 +377,9 @@
                 <runtarget target="sf-package-validate"/>
             </then>
         </if>
+        <!-- run build analysis tools -->
+        <runtarget target="sf-run-analysis"/>
+        
         </parallel>
         
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
@@ -386,8 +389,6 @@
             </then>
         </if>
 
-        <!-- run build analysis tools -->
-        <runtarget target="sf-run-analysis"/>
 
         <runtarget target="sf-zip-logs"/>
 
