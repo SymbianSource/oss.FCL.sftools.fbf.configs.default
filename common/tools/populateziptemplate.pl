@@ -26,7 +26,11 @@ my $sourcesCSV = shift or die "First arg must be source csv file";
 my $template = shift or die "Second arg must be template file";
 my $ftl = shift or die "Third arg must be output file";
 my $rndExcludes = shift or die "Fourth arg must be rnd-excludes file";
-shift and die "No more than four arguments please";
+my $nosource = shift;
+if(defined $nosource && $nosource !~ m/--nosource/i)
+{
+  die "fifth argument can only be \'--nosource\'";
+}
 
 # Load CSV
 open my $csvText, "<", $sourcesCSV or die;
@@ -73,21 +77,24 @@ foreach my $package (@packages)
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	$package->{dst} =~ s{^/}{}g;
 	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/sf/([^/]+)/([^/]+)})
-	{	    
-		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
-		{
-			set =>
-			[
-				{
-					name => "name",
-					value=> "src_$1_$3_$4",
-				},
-				{
-					name => "include",
-					value => "$package->{dst}/**",
-				},
-			]
-		};
+	{
+		if(!defined $nosource)
+  	{
+  		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
+  		{
+  			set =>
+  			[
+  				{
+  					name => "name",
+  					value=> "src_$1_$3_$4",
+  				},
+  				{
+  					name => "include",
+  					value => "$package->{dst}/**",
+  				},
+  			]
+  		};
+  	}	
 	}
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{

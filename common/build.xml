@@ -98,6 +98,7 @@
         <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
         for multiple package builds, this needs to be linked with package name. -->
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
+        <delete file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
         
         <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
               outputFile="${sf.common.config.dir}/generated/source-spec.ant.xml">
@@ -329,15 +330,8 @@
         <if>
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
-                <runtarget target="sf-get-source"/>
-                
-                <if><istrue value="${sf.spec.package.src.enable}"/>
-                <then>
-                    <echo message="INFO Packaging Source"/>
-                    <runtarget target="sf-package-source"/>
-                </then>
-                </if>
-                
+                <runtarget target="sf-get-source"/>                
+                <runtarget target="sf-package-source"/>                
                 <runtarget target="sf-unpack-rnd"/>
             </then>
             <else>
@@ -409,9 +403,15 @@
             <istrue value="${sf.spec.publish.enable}" />
             <then>
                 <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
-                <runtarget target="publish"/>
+                <runtarget target="sf-publish"/>
             </then>
         </if>
+    </target>
+
+    <target name="sf-publish" depends="prep-publish">
+        <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">
+           <fileset dir="${build.log.dir}"><include name="*.zip"/></fileset>
+        </copy>
     </target>
 
     <target name="sf-getenv-tools">
@@ -591,12 +591,24 @@
 
     <target name="sf-preprocess-package-config">
         <mkdir dir="${sf.common.config.dir}/generated"/>
+            <if><istrue value="${sf.spec.package.src.enable}"/>
+            <then>
+                <echo message="INFO Packaging Source Repos"/>
+                <property name="sf-preprocess-package-config.arg" value=""/>
+            </then>
+            <else>
+                <echo message="INFO Packaging: Ignoring Source Repos"/>
+                <property name="sf-preprocess-package-config.arg" value="--nosource"/>
+            </else>
+            </if>
+
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
+            <arg value="${sf-preprocess-package-config.arg}"/>
         </exec>
     </target>
     
@@ -774,7 +786,12 @@
           <runtarget target="sf-run-analysis-yarp"/>
           <runtarget target="sf-run-analysis-whatlog-summary"/>
         </parallel>
-        <runtarget target="sf-run-analysis-diamonds"/>
+        <if>
+          <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+            <runtarget target="sf-run-analysis-diamonds"/>
+            </then>
+        </if>    
     </target>
 
     <target name="sf-run-analysis-ant">    
@@ -1078,6 +1095,6 @@
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
         <move file="${temp.md5.zip}" todir="${build.log.dir}" failonerror="false"/>
-    </target>
+    </target>    
 </project>
 
