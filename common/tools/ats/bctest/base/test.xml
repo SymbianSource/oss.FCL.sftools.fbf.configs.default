@@ -1,0 +1,1451 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+    <build></build>
+    <buildid></buildid>
+	<name>Base SVS Tests</name>
+	<target>
+		<device alias="emulator_udeb" rank="master">
+			<property name="harness" value="GENERIC" />
+			<property name="name" value="emulator_udeb" />
+		</device>
+	</target>
+	<plan id="" name="Base SVS Plan" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+        <session id="" name="Base SVS Session" harness="GENERIC" enabled="true" passrate="100">
+            <set id="" name="fat32" harness="GENERIC" enabled="true" passrate="100">
+                <case id="" name="Install Common Files for FAT32" harness="GENERIC" enabled="true" passrate="100">
+					<step name="test.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="test.txt"/>
+							<param dst="C:\base\t_sfsrv\test.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="USBLOAD.ZIP (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="USBLOAD.ZIP"/>
+							<param dst="C:\base\t_sfsrv\USBLOAD.ZIP"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="test_rom.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="test_rom.txt"/>
+							<param dst="z:\base\t_sfsrv\test_rom.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="Test1.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="Test1.txt"/>
+							<param dst="C:\base\t_sfsrv\Test1.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="Test2.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="Test2.txt"/>
+							<param dst="C:\base\t_sfsrv\Test2.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="Test3.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="Test3.txt"/>
+							<param dst="C:\base\t_sfsrv\Test3.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="1mb (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="1mb"/>
+							<param dst="C:\base\t_sfsrv\1mb"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="any.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="any.txt"/>
+							<param dst="C:\base\t_sfsrv\any.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="big_line.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="big_line.txt"/>
+							<param dst="C:\base\t_sfsrv\big_line.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="filetext_eof.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="filetext_eof.txt"/>
+							<param dst="C:\base\t_sfsrv\filetext_eof.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="filetext_read.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="filetext_read.txt"/>
+							<param dst="C:\base\t_sfsrv\filetext_read.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="multiline.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="multiline.txt"/>
+							<param dst="C:\base\t_sfsrv\multiline.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="new_file.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="new_file.txt"/>
+							<param dst="C:\base\t_sfsrv\new_file.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="oneliner.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="oneliner.txt"/>
+							<param dst="C:\base\t_sfsrv\oneliner.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="big.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="big.txt"/>
+							<param dst="C:\base\t_sfsrv\big.txt"/>
+							<param component-path="basesvs\base\t_sfsrv"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="base_f32_env.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="base_f32_env.ini"/>
+							<param dst="C:\base\base_f32_env.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="t_base.tcs (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="t_base.tcs"/>
+							<param dst="C:\base\t_base.tcs"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="T_SFSRV.EXE (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="binary"/>
+							<param src="T_SFSRV.EXE"/>
+							<param dst="C:\sys\bin\T_SFSRV.EXE"/>
+							<param component-path="basesvs"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="T_PERF.EXE (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="binary"/>
+							<param src="T_PERF.EXE"/>
+							<param dst="C:\sys\bin\T_PERF.EXE"/>
+							<param component-path="basesvs"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="T_PROMPT.EXE (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="binary"/>
+							<param src="T_PROMPT.EXE"/>
+							<param dst="C:\sys\bin\T_PROMPT.EXE"/>
+							<param component-path="basesvs"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="T_FAT32SERVER.EXE (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="binary"/>
+							<param src="T_FAT32SERVER.EXE"/>
+							<param dst="C:\sys\bin\T_FAT32SERVER.EXE"/>
+							<param component-path="basesvs"/>
+						</params>
+						<command>install</command>
+					</step>
+                </case>
+                <case id="" name="Drive Unit (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-driveunit-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-driveunit-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-driveunit-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-driveunit-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-driveunit-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-driveunit-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-driveunit-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-driveunit-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-driveunit-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Format (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-format-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-format-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-format-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-format-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-format-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-format-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-format-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-format-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-format-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Format (Removable Drive)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-format-publicapi-rem.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-format-publicapi-rem.script"/>
+							<param dst="c:\base\pbase-f32-format-publicapi-rem.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-format-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-format-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-format-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-format-publicapi-rem.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-format-publicapi-rem.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-format-publicapi-rem.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Format (ROM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-format-publicapi-rom.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-format-publicapi-rom.script"/>
+							<param dst="c:\base\pbase-f32-format-publicapi-rom.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-format-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-format-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-format-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-format-publicapi-rom.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-format-publicapi-rom.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-format-publicapi-rom.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Raw Disk (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rawdisk-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rawdisk-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-rawdisk-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rawdisk-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rawdisk-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-rawdisk-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rawdisk-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rawdisk-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rawdisk-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Raw Disk (Removable Drive)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rawdisk-publicapi-rem.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rawdisk-publicapi-rem.script"/>
+							<param dst="c:\base\pbase-f32-rawdisk-publicapi-rem.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rawdisk-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rawdisk-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-rawdisk-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rawdisk-publicapi-rem.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rawdisk-publicapi-rem.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rawdisk-publicapi-rem.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Directories (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-dir-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-dir-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-dir-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-dir-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-dir-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-dir-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-dir-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-dir-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-dir-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="teftestresultparser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Directory Scan (RAM)" harness="GENERIC" enabled="true" passrate="100">
+                    <step name="pbase-f32-dirscan-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-dirscan-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-dirscan-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-dirscan-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-dirscan-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-dirscan-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-dirscan-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-dirscan-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-dirscan-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Files (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-file-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-file-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-file-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-file-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-file-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-file-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-file-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-file-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-file-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="File Manager (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-fileman-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-fileman-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-fileman-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-fileman-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-fileman-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-fileman-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-fileman-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-fileman-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-fileman-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="File Manager (OS)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-fileman-publicapi-os.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-fileman-publicapi-os.script"/>
+							<param dst="c:\base\pbase-f32-fileman-publicapi-os.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-fileman-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-fileman-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-fileman-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-fileman-publicapi-os.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-fileman-publicapi-os.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-fileman-publicapi-os.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Identical File Names (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-filenamesidentical-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-filenamesidentical-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-filenamesidentical-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-filenamesidentical-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-filenamesidentical-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-filenamesidentical-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-filenamesidentical-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-filenamesidentical-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-filenamesidentical-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RDir (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rdir-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rdir-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-rdir-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rdir-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rdir-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-rdir-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rdir-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rdir-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rdir-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Entries (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-entry-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-entry-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-entry-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-entry-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-entry-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-entry-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-entry-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-entry-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-entry-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="File Text (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-filetext-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-filetext-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-filetext-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-filetext-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-filetext-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-filetext-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-filetext-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-filetext-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-filetext-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Volume Info (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-volumeinfo-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-volumeinfo-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-volumeinfo-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-volumeinfo-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-volumeinfo-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-volumeinfo-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-volumeinfo-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-volumeinfo-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-volumeinfo-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Parse (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-parse-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parse-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-parse-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parse-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parse-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-parse-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parse-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-parse-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-parse-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Parse Ptr (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-parseptr-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parseptr-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-parseptr-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parseptr-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parseptr-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-parseptr-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parseptr-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-parseptr-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-parseptr-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Parse PtrC (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-parseptrc-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parseptrc-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-parseptrc-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parseptrc-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parseptrc-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-parseptrc-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parseptrc-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-parseptrc-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-parseptrc-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case><case id="" name="Parse Inherited (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-parse-inherited-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parse-inherited-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-parse-inherited-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parsebase-inherited-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parsebase-inherited-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-parsebase-inherited-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parse-inherited-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-parse-inherited-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-parse-inherited-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Parse Ptr Inherited (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-parseptr-inherited-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parseptr-inherited-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-parseptr-inherited-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parsebase-inherited-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parsebase-inherited-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-parsebase-inherited-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parseptr-inherited-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-parseptr-inherited-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-parseptr-inherited-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Parse PtrC Inherited (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-parseptrc-inherited-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parseptrc-inherited-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-parseptrc-inherited-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parsebase-inherited-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-parsebase-inherited-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-parsebase-inherited-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-parseptrc-inherited-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-parseptrc-inherited-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-parseptrc-inherited-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Entry Array (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-entryarray-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-entryarray-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-entryarray-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-entryarray-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-entryarray-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-entryarray-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-entryarray-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-entryarray-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-entryarray-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Find File (OS)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-findfile-publicapi-os.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-findfile-publicapi-os.script"/>
+							<param dst="c:\base\pbase-f32-findfile-publicapi-os.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-findfile-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-findfile-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-findfile-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-findfile-publicapi-os.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-findfile-publicapi-os.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-findfile-publicapi-os.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Find File (Removable Drive)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-findfile-publicapi-rem.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-findfile-publicapi-rem.script"/>
+							<param dst="c:\base\pbase-f32-findfile-publicapi-rem.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-findfile-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-findfile-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-findfile-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-findfile-publicapi-rem.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-findfile-publicapi-rem.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-findfile-publicapi-rem.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="Open File Scan (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-openfilescan-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-openfilescan-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-openfilescan-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-openfilescan-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-openfilescan-publicapi.ini"/>
+							<param dst="c:\base\pbase-f32-openfilescan-publicapi.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-openfilescan-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-openfilescan-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-openfilescan-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Drive Functions (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-drives-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-drives-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-rfs-drives-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-drives-publicapi-any.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-drives-publicapi-any.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-drives-publicapi-any.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-drives-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-drives-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-drives-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Drive Functions (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-drives-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-drives-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-rfs-drives-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-drives-publicapi-ram.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-drives-publicapi-ram.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-drives-publicapi-ram.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-drives-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-drives-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-drives-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Drive Functions (Removable Drive)" harness="GENERIC" enabled="true" passrate="100">
+                	<step name="pbase-f32-rfs-drives-publicapi-rem.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-drives-publicapi-rem.script"/>
+							<param dst="c:\base\pbase-f32-rfs-drives-publicapi-rem.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-drives-publicapi-rem.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-drives-publicapi-rem.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-drives-publicapi-rem.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-drives-publicapi-rem.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-drives-publicapi-rem.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-drives-publicapi-rem.htm"/>
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs File Functions (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-files-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-files-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-rfs-files-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-files-publicapi-any.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-files-publicapi-any.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-files-publicapi-any.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-files-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-files-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-files-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs File Functions (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-files-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-files-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-rfs-files-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-files-publicapi-ram.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-files-publicapi-ram.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-files-publicapi-ram.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-files-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-files-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-files-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Miscellaneous Functions (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-misc-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-misc-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-rfs-misc-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-misc-publicapi-any.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-misc-publicapi-any.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-misc-publicapi-any.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-misc-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-misc-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-misc-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Miscellaneous Functions (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-misc-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-misc-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-rfs-misc-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-misc-publicapi-ram.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-misc-publicapi-ram.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-misc-publicapi-ram.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-misc-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-misc-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-misc-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Drive Mounting Functions (Any)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-mounts-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-mounts-publicapi-any.script"/>
+							<param dst="c:\base\pbase-f32-rfs-mounts-publicapi-any.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-mounts-publicapi-any.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-mounts-publicapi-any.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-mounts-publicapi-any.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-mounts-publicapi-any.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-mounts-publicapi-any.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-mounts-publicapi-any.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Drive Mounting Functions (RAM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-mounts-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-mounts-publicapi-ram.script"/>
+							<param dst="c:\base\pbase-f32-rfs-mounts-publicapi-ram.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-mounts-publicapi-ram.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-mounts-publicapi-ram.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-mounts-publicapi-ram.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-mounts-publicapi-ram.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-mounts-publicapi-ram.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-mounts-publicapi-ram.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Functions (OS)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-publicapi-os.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-publicapi-os.script"/>
+							<param dst="c:\base\pbase-f32-rfs-publicapi-os.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-publicapi-os.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-publicapi-os.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-publicapi-os.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-publicapi-os.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-publicapi-os.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-publicapi-os.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+                <case id="" name="RFs Functions (ROM)" harness="GENERIC" enabled="true" passrate="100">
+					<step name="pbase-f32-rfs-publicapi-rom.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-publicapi-rom.script"/>
+							<param dst="c:\base\pbase-f32-rfs-publicapi-rom.script"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-publicapi-rom.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="data"/>
+							<param src="pbase-f32-rfs-publicapi-rom.ini"/>
+							<param dst="c:\base\pbase-f32-rfs-publicapi-rom.ini"/>
+							<param component-path="basesvs\base"/>
+						</params>
+						<command>install</command>
+					</step>
+					<step name="pbase-f32-rfs-publicapi-rom.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\base\pbase-f32-rfs-publicapi-rom.script"/>
+							<param result-file="c:\logs\testexecute\pbase-f32-rfs-publicapi-rom.htm"/> 
+                            <param timeout="1200" />
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+						<command>execute</command>
+					</step>
+                </case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>basesvs\base\general\pbase-f32-driveunit-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-format-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-format-publicapi-rem.script</file>
+		<file>basesvs\base\general\pbase-f32-format-publicapi-rom.script</file>
+		<file>basesvs\base\general\pbase-f32-rawdisk-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rawdisk-publicapi-rem.script</file>
+		<file>basesvs\base\general\pbase-f32-dir-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-dirscan-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-file-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-fileman-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-fileman-publicapi-os.script</file>
+		<file>basesvs\base\general\pbase-f32-filenamesidentical-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rdir-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-entry-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-filetext-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-volumeinfo-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-parse-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-parseptr-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-parseptrc-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-parse-inherited-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-parseptr-inherited-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-parseptrc-inherited-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-entryarray-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-findfile-publicapi-os.script</file>
+		<file>basesvs\base\general\pbase-f32-findfile-publicapi-rem.script</file>
+		<file>basesvs\base\general\pbase-f32-openfilescan-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-drives-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-files-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-misc-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-mounts-publicapi-any.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-publicapi-os.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-drives-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-files-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-misc-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-mounts-publicapi-ram.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-publicapi-rom.script</file>
+		<file>basesvs\base\general\pbase-f32-rfs-drives-publicapi-rem.script</file>
+		<file>basesvs\base\general\pbase-f32-driveunit-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-format-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-rawdisk-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-dir-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-dirscan-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-file-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-fileman-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-filenamesidentical-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-rdir-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-entry-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-filetext-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-volumeinfo-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-parse-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-parseptr-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-parseptrc-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-parsebase-inherited-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-entryarray-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-findfile-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-openfilescan-publicapi.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-drives-publicapi-any.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-files-publicapi-any.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-misc-publicapi-any.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-mounts-publicapi-any.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-publicapi-os.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-drives-publicapi-ram.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-files-publicapi-ram.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-misc-publicapi-ram.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-mounts-publicapi-ram.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-publicapi-rom.ini</file>
+		<file>basesvs\base\general\pbase-f32-rfs-drives-publicapi-rem.ini</file>
+        <file>basesvs\base\general\base_f32_env.ini</file>
+		<file>basesvs\base\t_sfsrv\general\test.txt</file>
+        <file>basesvs\base\t_sfsrv\general\test_rom.txt</file>
+		<file>basesvs\base\t_sfsrv\general\usbload.zip</file>
+		<file>basesvs\base\t_sfsrv\general\test1.txt</file>
+		<file>basesvs\base\t_sfsrv\general\test2.txt</file>
+		<file>basesvs\base\t_sfsrv\general\test3.txt</file>
+		<file>basesvs\base\t_sfsrv\general\1mb</file>
+		<file>basesvs\base\t_sfsrv\general\any.txt</file>
+		<file>basesvs\base\t_sfsrv\general\big_line.txt</file>
+		<file>basesvs\base\t_sfsrv\general\filetext_eof.txt</file>
+		<file>basesvs\base\t_sfsrv\general\filetext_read.txt</file>
+		<file>basesvs\base\t_sfsrv\general\multiline.txt</file>
+		<file>basesvs\base\t_sfsrv\general\new_file.txt</file>
+		<file>basesvs\base\t_sfsrv\general\oneliner.txt</file>
+		<file>basesvs\base\t_sfsrv\general\big.txt</file>
+		<file>basesvs\base\general\t_base.tcs</file>
+		<file>epoc32\winscw_udeb\t_sfsrv.exe</file>
+		<file>epoc32\winscw_udeb\t_perf.exe</file>
+		<file>epoc32\winscw_udeb\t_prompt.exe</file>
+		<file>epoc32\winscw_udeb\t_fat32server.exe</file>
+	</files>
+</test>

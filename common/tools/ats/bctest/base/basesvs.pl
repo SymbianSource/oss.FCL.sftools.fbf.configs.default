@@ -1,0 +1,108 @@
+#!/usr/bin/perl
+
+use strict;
+use File::Copy;
+use File::Path;
+
+unlink "basesvs.zip";
+rmtree "temp";
+mkpath "temp/basesvs/base/general";
+mkpath "temp/basesvs/winscw_udeb";
+mkpath "temp/basesvs/base/t_sfsrv/general";
+
+my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
+copy("test.xml",                                                          "temp/test.xml");
+
+copy $epoc . "release/winscw/udeb/t_fat32server.exe",                                               "temp/basesvs/winscw_udeb/t_fat32server.exe";
+copy $epoc . "release/winscw/udeb/t_perf.exe",                                                      "temp/basesvs/winscw_udeb/t_perf.exe";
+copy $epoc . "release/winscw/udeb/t_prompt.exe",                                                    "temp/basesvs/winscw_udeb/t_prompt.exe";
+copy $epoc . "release/winscw/udeb/t_sfsrv.exe",                                                     "temp/basesvs/winscw_udeb/t_sfsrv.exe";
+
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-driveunit-publicapi-any.script",                 "temp/basesvs/base/general/pbase-f32-driveunit-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-ram.script",                    "temp/basesvs/base/general/pbase-f32-format-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-rem.script",                    "temp/basesvs/base/general/pbase-f32-format-publicapi-rem.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-rom.script",                    "temp/basesvs/base/general/pbase-f32-format-publicapi-rom.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rawdisk-publicapi-ram.script",                   "temp/basesvs/base/general/pbase-f32-rawdisk-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rawdisk-publicapi-rem.script",                   "temp/basesvs/base/general/pbase-f32-rawdisk-publicapi-rem.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-dir-publicapi-ram.script",                       "temp/basesvs/base/general/pbase-f32-dir-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-dirscan-publicapi-ram.script",                   "temp/basesvs/base/general/pbase-f32-dirscan-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-file-publicapi-ram.script",                      "temp/basesvs/base/general/pbase-f32-file-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-fileman-publicapi-ram.script",                   "temp/basesvs/base/general/pbase-f32-fileman-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-fileman-publicapi-os.script",                    "temp/basesvs/base/general/pbase-f32-fileman-publicapi-os.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-filenamesidentical-publicapi-ram.script",        "temp/basesvs/base/general/pbase-f32-filenamesidentical-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rdir-publicapi-ram.script",                      "temp/basesvs/base/general/pbase-f32-rdir-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-entry-publicapi-ram.script",                     "temp/basesvs/base/general/pbase-f32-entry-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-filetext-publicapi-ram.script",                  "temp/basesvs/base/general/pbase-f32-filetext-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-volumeinfo-publicapi-any.script",                "temp/basesvs/base/general/pbase-f32-volumeinfo-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parse-publicapi-any.script",                     "temp/basesvs/base/general/pbase-f32-parse-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parseptr-publicapi-any.script",                  "temp/basesvs/base/general/pbase-f32-parseptr-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parseptrc-publicapi-any.script",                 "temp/basesvs/base/general/pbase-f32-parseptrc-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parse-inherited-publicapi-any.script",           "temp/basesvs/base/general/pbase-f32-parse-inherited-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parseptr-inherited-publicapi-any.script",        "temp/basesvs/base/general/pbase-f32-parseptr-inherited-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parseptrc-inherited-publicapi-any.script",       "temp/basesvs/base/general/pbase-f32-parseptrc-inherited-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-entryarray-publicapi-ram.script",                "temp/basesvs/base/general/pbase-f32-entryarray-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-findfile-publicapi-os.script",                   "temp/basesvs/base/general/pbase-f32-findfile-publicapi-os.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-findfile-publicapi-rem.script",                  "temp/basesvs/base/general/pbase-f32-findfile-publicapi-rem.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-openfilescan-publicapi-ram.script",              "temp/basesvs/base/general/pbase-f32-openfilescan-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-drives-publicapi-any.script",                "temp/basesvs/base/general/pbase-f32-rfs-drives-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-files-publicapi-any.script",                 "temp/basesvs/base/general/pbase-f32-rfs-files-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-misc-publicapi-any.script",                  "temp/basesvs/base/general/pbase-f32-rfs-misc-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-mounts-publicapi-any.script",                "temp/basesvs/base/general/pbase-f32-rfs-mounts-publicapi-any.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-publicapi-os.script",                        "temp/basesvs/base/general/pbase-f32-rfs-publicapi-os.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-drives-publicapi-ram.script",                "temp/basesvs/base/general/pbase-f32-rfs-drives-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-files-publicapi-ram.script",                 "temp/basesvs/base/general/pbase-f32-rfs-files-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-misc-publicapi-ram.script",                  "temp/basesvs/base/general/pbase-f32-rfs-misc-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-mounts-publicapi-ram.script",                "temp/basesvs/base/general/pbase-f32-rfs-mounts-publicapi-ram.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-publicapi-rom.script",                       "temp/basesvs/base/general/pbase-f32-rfs-publicapi-rom.script";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-drives-publicapi-rem.script",                "temp/basesvs/base/general/pbase-f32-rfs-drives-publicapi-rem.script";
+
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-driveunit-publicapi.ini",                        "temp/basesvs/base/general/pbase-f32-driveunit-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi.ini",                           "temp/basesvs/base/general/pbase-f32-format-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rawdisk-publicapi.ini",                          "temp/basesvs/base/general/pbase-f32-rawdisk-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-dir-publicapi.ini",                              "temp/basesvs/base/general/pbase-f32-dir-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-dirscan-publicapi.ini",                          "temp/basesvs/base/general/pbase-f32-dirscan-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-file-publicapi.ini",                             "temp/basesvs/base/general/pbase-f32-file-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-fileman-publicapi.ini",                          "temp/basesvs/base/general/pbase-f32-fileman-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-filenamesidentical-publicapi.ini",               "temp/basesvs/base/general/pbase-f32-filenamesidentical-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rdir-publicapi.ini",                             "temp/basesvs/base/general/pbase-f32-rdir-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-entry-publicapi.ini",                            "temp/basesvs/base/general/pbase-f32-entry-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-filetext-publicapi.ini",                         "temp/basesvs/base/general/pbase-f32-filetext-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-volumeinfo-publicapi.ini",                       "temp/basesvs/base/general/pbase-f32-volumeinfo-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parse-publicapi.ini",                            "temp/basesvs/base/general/pbase-f32-parse-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parseptr-publicapi.ini",                         "temp/basesvs/base/general/pbase-f32-parseptr-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parseptrc-publicapi.ini",                        "temp/basesvs/base/general/pbase-f32-parseptrc-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-parsebase-inherited-publicapi.ini",              "temp/basesvs/base/general/pbase-f32-parsebase-inherited-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-entryarray-publicapi.ini",                       "temp/basesvs/base/general/pbase-f32-entryarray-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-findfile-publicapi.ini",                         "temp/basesvs/base/general/pbase-f32-findfile-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-openfilescan-publicapi.ini",                     "temp/basesvs/base/general/pbase-f32-openfilescan-publicapi.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-drives-publicapi-any.ini",                   "temp/basesvs/base/general/pbase-f32-rfs-drives-publicapi-any.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-files-publicapi-any.ini",                    "temp/basesvs/base/general/pbase-f32-rfs-files-publicapi-any.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-misc-publicapi-any.ini",                     "temp/basesvs/base/general/pbase-f32-rfs-misc-publicapi-any.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-mounts-publicapi-any.ini",                   "temp/basesvs/base/general/pbase-f32-rfs-mounts-publicapi-any.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-publicapi-os.ini",                           "temp/basesvs/base/general/pbase-f32-rfs-publicapi-os.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-drives-publicapi-ram.ini",                   "temp/basesvs/base/general/pbase-f32-rfs-drives-publicapi-ram.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-files-publicapi-ram.ini",                    "temp/basesvs/base/general/pbase-f32-rfs-files-publicapi-ram.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-misc-publicapi-ram.ini",                     "temp/basesvs/base/general/pbase-f32-rfs-misc-publicapi-ram.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-mounts-publicapi-ram.ini",                   "temp/basesvs/base/general/pbase-f32-rfs-mounts-publicapi-ram.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-publicapi-rom.ini",                          "temp/basesvs/base/general/pbase-f32-rfs-publicapi-rom.ini";
+copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rfs-drives-publicapi-rem.ini",                   "temp/basesvs/base/general/pbase-f32-rfs-drives-publicapi-rem.ini";
+copy $epoc . "release/winscw/udeb/z/base/base_f32_env.ini",                                         "temp/basesvs/base/general/base_f32_env.ini";
+copy $epoc . "release/winscw/udeb/z/base/t_base.tcs",                                               "temp/basesvs/base/general/t_base.tcs";
+
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/test.txt",                                         "temp/basesvs/base/t_sfsrv/general/test.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/test_rom.txt",                                     "temp/basesvs/base/t_sfsrv/general/test_rom.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/usbload.zip",                                      "temp/basesvs/base/t_sfsrv/general/usbload.zip";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/test1.txt",                                        "temp/basesvs/base/t_sfsrv/general/test1.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/test2.txt",                                        "temp/basesvs/base/t_sfsrv/general/test2.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/test3.txt",                                        "temp/basesvs/base/t_sfsrv/general/test3.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/1mb",                                              "temp/basesvs/base/t_sfsrv/general/1mb";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/any.txt",                                          "temp/basesvs/base/t_sfsrv/general/any.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/big_line.txt",                                     "temp/basesvs/base/t_sfsrv/general/big_line.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/filetext_eof.txt",                                 "temp/basesvs/base/t_sfsrv/general/filetext_eof.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/filetext_read.txt",                                "temp/basesvs/base/t_sfsrv/filetext_read.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/multiline.txt",                                    "temp/basesvs/base/t_sfsrv/general/multiline.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/new_file.txt",                                     "temp/basesvs/base/t_sfsrv/general/new_file.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/oneliner.txt",                                     "temp/basesvs/base/t_sfsrv/general/oneliner.txt";
+copy $epoc . "release/winscw/udeb/z/base/t_sfsrv/big.txt",                                          "temp/basesvs/base/t_sfsrv/general/big.txt";
+
+system("7z a -tzip basesvs.zip ./temp/*");
