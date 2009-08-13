@@ -517,17 +517,7 @@
     </target>
     
     <target name="create-canonical-sysdef-file">
-        <if>
-            <istrue value="${sf.spec.systemdefinition.assemble}"/>
-            <then>
-                <echo message="Calling Helium create-canonical-sysdef-file target to assemble sysdef fragments."/>
-                <runtarget target="compile.create-canonical-sysdef-file"/>
-            </then>
-            <else>
-                <echo message="Will use ${build.drive}/${sf.spec.systemdefinition.location} as is as sysdef file"/>
-                <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${build.drive}/output/build/canonical_system_definition.xml" failonerror="true" verbose="true"/>
-            </else>
-        </if>
+      <copy file="${build.drive}/${sf.spec.systemdefinition.location}" tofile="${canonical.sysdef.file}" failonerror="true" verbose="true"/>
     </target>
     
   <target name="sf-truclean">
