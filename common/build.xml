@@ -259,19 +259,19 @@
             <arg value="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
         </exec>
         <delete file="${build.drive}/output/logs/BOM/project.csv" quiet="true"/>
-        <exec executable="hg" dir="${sf.config.dir}/../build/config" outputproperty="sf.job.bom.project.repo">
+        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.repo">
             <arg value="showconfig"/>
             <arg value="paths.default"/>
         </exec>
-        <exec executable="hg" dir="${sf.config.dir}/../build/config" outputproperty="sf.job.bom.project.rev">
+        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.rev">
             <arg value="identify"/>
             <arg value="-n"/>
         </exec>
-        <exec executable="hg" dir="${sf.config.dir}/../build/config" outputproperty="sf.job.bom.project.checksum">
+        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.checksum">
             <arg value="identify"/>
             <arg value="-i"/>
         </exec>
-        <echo message="dir ${sf.config.dir}/../build/config : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
+        <echo message="dir ${sf.project.location} : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
         <exec executable="cmd" output="${build.drive}/output/logs/BOM/project.csv" append="true">
             <arg value="/c"/>
             <arg value="echo"/>
