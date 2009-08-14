@@ -883,6 +883,15 @@
 							<param component-path="graphicssvs\graphics\bitgdi" />
 						</params>
 					</step>
+                    <step id="" name="testfontws.gdr (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testfontws.gdr"/>
+							<param dst="c:\graphics\bitgdi"/>
+							<param component-path="graphicssvs\graphics\bitgdi" />
+						</params>
+					</step>
                     <step id="" name="test_bitmap_rom.rbm (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -891,7 +900,7 @@
 							<param dst="z:\graphics\t_fbservapi\test_bitmap_rom.rbm"/>
 							<param component-path="graphicssvs\graphics\t_fbservapi" />
 						</params>
-					</step>
+					</step>                  
                 </case>
                 <case id="" name="Bit Graphics Context" harness="GENERIC" enabled="true" passrate="100">
                     <step id="" name="graphics-bitgdi-fbsbitgc-publicapi.script (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
@@ -1593,6 +1602,7 @@
         <file>graphicssvs/graphics/general/graphics-wserv-wssprite-publicapi.ini</file>
         <file>graphicssvs/winscw_udeb/t_graphicsbitgdiapi.exe</file>
         <file>graphicssvs/graphics/bitgdi/general/test_rwssprite_bitmap.mbm</file>
+        <file>graphicssvs/graphics/bitgdi/testfontws.gdr</file>
         <file>graphicssvs/graphics/t_fbservapi/test_bitmap_rom.rbm</file>
         <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi.script</file>
         <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi.ini</file>

@@ -109,6 +109,7 @@ copy $epoc . "release/winscw/udeb/z/graphics/t_graphics.tcs",                   
 copy $epoc . "release/winscw/udeb/z/graphics/t_graphics_panic.tcs",                                         "temp/graphicssvs/graphics/general/t_graphics_panic.tcs";
 
 copy $epoc . "release/winscw/udeb/z/graphics/bitgdi/test_rwssprite_bitmap.mbm",                             "temp/graphicssvs/graphics/bitgdi/general/test_rwssprite_bitmap.mbm";
+copy $epoc . "release/winscw/udeb/z/graphics/bitgdi/testfontws.gdr",                                        "temp/graphicssvs/graphics/bitgdi/general/testfontws.gdr";
 copy $epoc . "release/winscw/udeb/z/graphics/fntstore/bad_entrysel",                                        "temp/graphicssvs/graphics/fntstore/general/bad_entrysel";
 copy $epoc . "release/winscw/udeb/z/graphics/fntstore/dummy",                                               "temp/graphicssvs/graphics/fntstore/general/dummy";
 copy $epoc . "release/winscw/udeb/z/graphics/fntstore/dummy",                                               "temp/graphicssvs/graphics/fntstore/general/dummy_2";
