@@ -114,7 +114,7 @@ else {
 
 # Parse the input XML into hashref.
 my $test_drop = XMLin("./$xml_in", keeproot => 1,
-    forcearray => [ 'name', 'id','owner','priority','buildid','target','device', 'property', 'command', 'param'],#
+    forcearray => [ 'name', 'id','owner','priority','buildid','postaction','type','target','device', 'property', 'command', 'param'],#
         keyattr => [] );
     
         
