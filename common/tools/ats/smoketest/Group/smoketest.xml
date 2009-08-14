@@ -4,6 +4,9 @@
 	<owner>admin</owner>
 	<priority>10</priority>
 	<buildid></buildid>
+	<postAction>
+        <type>DiamondsAction</type>
+    </postAction>
 	<name>smoketest</name>
 	<target>
         <device rank="master" alias="emulator_udeb">
