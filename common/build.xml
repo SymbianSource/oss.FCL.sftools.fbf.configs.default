@@ -387,6 +387,9 @@
                 <runtarget target="sf-package-validate"/>
             </then>
         </if>
+        <!-- run build analysis tools -->
+        <runtarget target="sf-run-analysis"/>
+        
         </parallel>
         
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
@@ -396,8 +399,6 @@
             </then>
         </if>
 
-        <!-- run build analysis tools -->
-        <runtarget target="sf-run-analysis"/>
 
         <runtarget target="sf-zip-logs"/>
 
@@ -462,14 +463,16 @@
     <target name="sf-list-dir">
         <property name="sf.currentlist.name"   value="${sf.list.name}"/> 
         <property name="sf.dir.location" value="${build.drive}/epoc32"/> 
+        <property name="sf.dir.exclude" value="${build.drive}/epoc32/build"/> 
     
         <if>
             <istrue value="${sf.spec.dirlist.enable}"/>
             <then>
-                <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location}"/>
-                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
-                    <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
+                <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location} excluding ${sf.dir.exclude}"/>
+                <exec executable="python" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
+                    <arg value="${sf.common.config.dir}/tools/listdir.py"/>
                     <arg value="${sf.dir.location}"/>
+                    <arg value="${sf.dir.exclude}"/>
                 </exec>
             </then>
         </if>
@@ -712,27 +715,37 @@
         <arg value="${build.drive}/output/zips/bin*.zip"/>
         </exec>
     </target>
+
+    <target name="sf-find-ATS-worker-root">
+      <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/devices" failonerror="false" outputproperty="sf.spec.test.workerroot">
+        <arg value="-pe"/>
+        <arg value="&quot;m/TEMPDIR=(\S+)/;print $1;s/.*\n//g&quot;"/>
+        <arg value="${env.COMPUTERNAME}\EMULATOR_GENERIC_${env.COMPUTERNAME}.properties" /> 
+      </exec>
+      <echo message="ATS Worker Root = ${sf.spec.test.workerroot}"/> 
+    </target>
     
-    <target name ="sf-make-junction">
-        <mkdir dir="${sf.spec.test.epocroot}"/>
+    <target name ="sf-make-junction" depends="sf-find-ATS-worker-root">
+        
+        <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}"/>
 
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_make_junction.log">
         <arg value="make_junction.pl"/>
-        <arg value="--link=${sf.spec.test.epocroot}/epoc32"/>
+        <arg value="--link=${sf.spec.test.workerroot}/${sf.spec.test.epocroot}/epoc32"/>
         <arg value="--target=${build.drive}/epoc32"/>
         <arg value="--force"/>
       </exec>
     </target>
 
-    <target name ="sf-delete-junction">
-        <exec executable="junction.exe" dir="${sf.spec.test.epocroot}" failonerror="false" output="${build.log.dir}/ATS_${build.id}_delete_junction.log">
+    <target name ="sf-delete-junction" depends="sf-find-ATS-worker-root">
+        <exec executable="junction.exe" dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}" failonerror="false" output="${build.log.dir}/ATS_${build.id}_delete_junction.log">
         <arg value="-d"/>
         <arg value="epoc32"/>
       </exec>
     </target>  
-    
-    <target name="sf-send-testpkg" depends="sf-make-junction">
-        <mkdir dir="${sf.spec.test.package.droppath}"/>
+        
+    <target name="sf-send-testpkg" depends="sf-find-ATS-worker-root,sf-make-junction">
+        <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
         <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
             <arg value="ats3_testdrop.pl"/>
@@ -740,7 +753,7 @@
             <arg value="--username=${sf.spec.test.host.username}"/>
             <arg value="--password=${sf.spec.test.host.password}"/>
             <arg value="--local-test-pkg=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
-            <arg value="--local-drop-path=${sf.spec.test.package.droppath}"/>
+            <arg value="--local-drop-path=${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
             <arg value="--host-drop-path=${sf.spec.test.host.droppath}"/>
         </exec>
     </target>
