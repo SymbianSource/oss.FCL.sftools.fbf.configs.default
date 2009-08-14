@@ -13,6 +13,15 @@
   <import file="${sf.package.config.dir}/package_refs.ant.xml" />
   
   <target name="sf-compile">
+  
+    <!-- Check that package_definition is not in v 3.0.0 otherwise transforms it to 2.0.1 -->
+    <echo message="Check that model file is in a version usable by Raptor"/>
+    <exec executable="perl" dir="${sf.common.config.dir}/sysdefdowngrade" failonerror="false" output="${build.log.dir}/sysdefdowngrade.log">
+      <arg value="sysdefdowngrade.pl"/>
+      <arg value="--model=${build.drive}/${sf.spec.systemdefinition.location}"/>
+      <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+    </exec>
+    
     <runtarget target="sf-package-compile"/>
   </target>
   
@@ -21,72 +30,127 @@
     <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options"/>
     <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options"/>
     
-    <!-- CLEAN -->
-    <hlm:argSet id="sbs.main.clean.sbs.var">
-      <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN" />
+    <!-- BUILD tools2_rel CLEAN -->
+    <!--
+    <hlm:argSet id="sbs.tools2_rel.clean.var">
+      <hlm:arg name="config" value="tools2_rel" />
+      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}"/>
+      <hlm:arg name="command" value="CLEAN"/>
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
-      <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
       <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
-      <reference refid="sbs.main.clean.sbs.var" torefid="sbs.var" />
-      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+      <reference refid="sbs.tools2_rel.clean.var" torefid="sbs.var" />
+      <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
-    <!-- BUILD tools2 -->
-    <hlm:argSet id="sbs.tools2.var">
-      <hlm:arg name="config" value="tools2_rel" />
-      <hlm:arg name="singlejob" value="false" />
+    <!-- BUILD tools2_rel -->
+    <hlm:argSet id="sbs.tools2_rel.var">
+      <hlm:arg name="config" value="tools2_rel.whatlog" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
-      <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
       <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
-      <reference refid="sbs.tools2.var" torefid="sbs.var" />
+      <reference refid="sbs.tools2_rel.var" torefid="sbs.var" />
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
     
+    <!-- BUILD tools CLEAN -->
+    <!-- 
+    <hlm:argSet id="sbs.tools.clean.var">
+      <hlm:arg name="config" value="tools"/>
+      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+      <hlm:arg name="command" value="CLEAN"/>
+    </hlm:argSet>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+      <param name="build.system" value="${sf.spec.build.system}" />
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+      <reference refid="sbs.tools.clean.var" torefid="sbs.var" />
+      <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
+      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+    </antcall>
+    -->
+    
     <!-- BUILD tools -->
+    <!-- 
     <hlm:argSet id="sbs.tools.var">
-      <hlm:arg name="config" value="tools_rel" />
-      <hlm:arg name="singlejob" value="true" />
+      <hlm:arg name="config" value="tools.whatlog"/>
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
-      <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
       <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
       <reference refid="sbs.tools.var" torefid="sbs.var" />
       <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
+    -->
     
-    <!-- BUILD -->
-    <hlm:argSet id="sbs.main.sbs.var">
-      <hlm:arg name="config" value="${sf.spec.sbs.config}.whatlog" />
+    <!-- BUILD winscw CLEAN -->
+    <!--
+    <hlm:argSet id="sbs.winscw.clean.var">
+      <hlm:arg name="config" value="winscw" />
+      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+      <hlm:arg name="command" value="CLEAN"/>
+    </hlm:argSet>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+      <param name="build.system" value="${sf.spec.build.system}" />
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+      <reference refid="sbs.winscw.clean.var" torefid="sbs.var" />
+      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+    </antcall>
+    -->
+    
+    <!-- BUILD winscw -->
+    <hlm:argSet id="sbs.winscw.var">
+      <hlm:arg name="config" value="winscw.whatlog" />
       <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
     </hlm:argSet>
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
       <param name="build.system" value="${sf.spec.build.system}" />
-      <!-- param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" / -->
       <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <!-- param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/ -->
-      <reference refid="sbs.main.sbs.var" torefid="sbs.var" />
+      <reference refid="sbs.winscw.var" torefid="sbs.var" />
+      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+    </antcall>
+    
+    <!-- BUILD armv5 CLEAN -->
+    <!--
+    <hlm:argSet id="sbs.armv5.clean.var">
+      <hlm:arg name="config" value="armv5" />
+      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+      <hlm:arg name="command" value="CLEAN"/>
+    </hlm:argSet>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+      <param name="build.system" value="${sf.spec.build.system}" />
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+      <reference refid="sbs.armv5.clean.var" torefid="sbs.var" />
+      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+    </antcall>
+    -->
+    
+    <!-- BUILD armv5 -->
+    <hlm:argSet id="sbs.armv5.var">
+      <hlm:arg name="config" value="armv5.whatlog" />
+      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+    </hlm:argSet>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+      <param name="build.system" value="${sf.spec.build.system}" />
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+      <reference refid="sbs.armv5.var" torefid="sbs.var" />
       <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
       <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
     </antcall>
     
     <!-- CHECK -->
     <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">
-      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c ${sf.spec.sbs.config} -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
+      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools2_rel -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
       <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
     </exec>
     

@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SF-CONFIG">
+<project name="SF-CONFIG" xmlns:hlm="http://www.nokia.com/helium">
   <!-- location of this config -->
   <dirname property="sf.config.dir" file="${ant.file.SF-CONFIG}"/>
-  <property name="sf.project.location" value="${sf.config.dir}/../build/config"/>
+  
+  <property name="sf.subproject.path" value=""/>
+  <property name="sf.project.location" value="${sf.config.dir}/../build/config/${sf.subproject.path}"/>
   <property name="sf.project.name" value="job"/>
      
   <!-- import job properties -->
-  <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" />
+  <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" optional="yes"/>
+  
+  <!-- set sf.spec.job.name and sf.spec.job.codeline if they are not specified in the project's job_props.ant.xml -->
+  <path id="lib.path">
+    <fileset dir="${helium.dir}/external/antlibs" includes="**/*.jar"/>
+  </path>
+  <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="lib.path"/>
+  <propertyregex override="yes" property="jobname" input="${sf.subproject.path}" regexp=".*[\\/]([^\\^/]+)" replace="\1"/>
+  <property name="jobname" value="${sf.subproject.path}"/>
+  <propertyregex override="yes" property="codeline" input="${sf.subproject.path}" regexp="^([^\\^/]+)[\\/].*" replace="\1"/>
+  <property name="codeline" value="default"/>
+  <property name="sf.spec.job.name" value="${jobname}"/>
+  <property name="sf.spec.job.codeline" value="${codeline}"/>
   
   <!-- import project properties/targets/references -->
   <import file="sf-${sf.project.type}/build.xml" />
   
   <!-- import job references -->
-  <import file="${sf.project.location}/${sf.project.name}_refs.ant.xml" />
+  <import file="${sf.project.location}/${sf.project.name}_refs.ant.xml" optional="yes"/>
   
 </project>

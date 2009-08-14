@@ -4,8 +4,8 @@
 
   <path id="sf.spec.system.definition.files">
     <fileset dir="${sf.spec.job.drive}/" casesensitive="false">
-      <include name="${sf.spec.systemdefinition.location}" />
+      <include name="${sf.spec.systemdefinition.location}"/>
     </fileset>
   </path>
-
-  </project>
+  
+</project>

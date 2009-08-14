@@ -232,6 +232,7 @@
             <istrue value="${sf.spec.publish.enable}"/>
             <then>
                 <runtarget target="diamonds"/>
+                <runtarget target="sf-tag-build"/>
             </then>
         </if>
         
@@ -345,6 +346,15 @@
           <runtarget target="sf-diamondize-bom"/>
         </then>
       </if>
+    </target>
+    
+    <target name="sf-tag-build">
+      <echo>[SF-TAG-BUILD]</echo>
+      <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
+        <data expandProperties="yes">
+          ant: antProperties()
+        </data>
+      </fmpp>
     </target>
     
     <target name="sf-postbuild">
@@ -502,7 +512,7 @@
         </if>
     </target>
 
-    <target name="sf-build-noprep" depends="sf-truclean,sf-compile,sf-postbuild">
+    <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile,sf-postbuild">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
@@ -539,23 +549,26 @@
       </else>
     </if>
   </target>
-    
-    <target name="sf-compile">
-        <!-- TODO: add here assigments to raptor-related ant references -->
-    
-        <!-- hlm:argSet id="sbs.tools.var">
-            <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-            <hlm:arg name="singlejob" value="..." />
-            <hlm:arg name="enable-filter" value="..." />
-        </hlm:argSet -->
-        
-        <!-- target name="compile-main-prebuild" -->
-        <antcall target="compile-main" inheritAll="false">
-            <param name="build.system" value="${sf.spec.build.system}"/>
-            <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-            <!--<reference refid="sf.system.definition.files" torefid="system.definition.files" />-->
-        </antcall>    
-    </target>
+  
+  <target name="sf-model-from-project">
+    <if>
+      <isset property="sf.spec.systemdefinition.source"/>
+      <then>
+        <echo message="Using ${sf.spec.systemdefinition.source} as model file"/>
+        <echo message="Copying to ${build.drive}/definition.xml"/>
+        <copy file="${sf.project.location}/${sf.spec.systemdefinition.source}" tofile="${build.drive}${sf.spec.systemdefinition.location}"/>
+      </then>
+      <else>
+        <!-- Collate the system definition from the packages listed in sources.csv -->
+        <echo message="Building system model from ${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+        <exec executable="perl" dir="${build.drive}/" output="${build.drive}${sf.spec.systemdefinition.location}" logError="true" failonerror="true">
+          <arg value="${sf.common.config.dir}/tools/csvToSysDef.pl"/>
+          <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+          <arg value="${sf.config.dir}/../build/config/3k"/>
+        </exec>
+      </else>
+    </if>
+  </target>
     
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
@@ -711,7 +724,6 @@
     </target>
     
     <target name ="sf-make-junction">
-        
         <mkdir dir="${sf.spec.test.epocroot}"/>
 
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_make_junction.log">
@@ -869,7 +881,7 @@
           </fileset>
         </path>
         <sequential>
-          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\|\/].*\.\d+_+(.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\|\/].*\.T?\d+_+(.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
 	        <echo message="Preprocessing @{logfile}..."/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
