@@ -14,6 +14,14 @@
 
     However, in our builds, we know that there will only be one sysdef peice passed in, so that makes things a lot simpler
   -->
+  
+  <!-- MattD - workaround until generating a model from package definitions works-->
+
+    <target name="sf-build-noprep" depends="sf-compile,sf-postbuild">
+        <echo>[SF-BUILD-NOPREP] (platform)</echo>
+        <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
+    </target>
+
   <target name="create-canonical-sysdef-file">
     <fail message="Symbian builds create a canonical system definition from exactly one peice">
       <condition>
