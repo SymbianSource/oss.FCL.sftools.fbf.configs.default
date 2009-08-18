@@ -5,7 +5,7 @@
     
     <dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
     
-    <!-- import common properties -->
+    <!-- Import common properties -->
     <import file="${sf.common.config.dir}/common_props.ant.xml" />
     
     <!-- setup Helium internal properties from their equivalent in the project spec -->
@@ -31,11 +31,14 @@
     <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
     <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>
     
-    <!-- import all core HELIUM targets -->
+    <!-- Import all core HELIUM targets -->
     <import file="${helium.dir}/helium.ant.xml" />
     
-    <!-- import common references -->
+    <!-- Import common references -->
     <import file="${sf.common.config.dir}/common_refs.ant.xml" />
+             
+    <!-- Import functionality distributed into other file(s) -->
+    <import file="${sf.common.config.dir}/build.postbuild.xml"/>
              
     <!-- setup conditional Helium internal properties -->
     <if><istrue value="${sf.spec.sourcesync.usecache}"/>
