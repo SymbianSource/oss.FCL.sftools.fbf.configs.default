@@ -23,7 +23,7 @@ copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-ram.script",
 #copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-rem.script",                    "temp/basesvs/base/general/pbase-f32-format-publicapi-rem.script";
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-rom.script",                    "temp/basesvs/base/general/pbase-f32-format-publicapi-rom.script";
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rawdisk-publicapi-ram.script",                   "temp/basesvs/base/general/pbase-f32-rawdisk-publicapi-ram.script";
-copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rawdisk-publicapi-rem.script",                   "temp/basesvs/base/general/pbase-f32-rawdisk-publicapi-rem.script";
+#copy $epoc . "release/winscw/udeb/z/base/pbase-f32-rawdisk-publicapi-rem.script",                   "temp/basesvs/base/general/pbase-f32-rawdisk-publicapi-rem.script";
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-dir-publicapi-ram.script",                       "temp/basesvs/base/general/pbase-f32-dir-publicapi-ram.script";
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-dirscan-publicapi-ram.script",                   "temp/basesvs/base/general/pbase-f32-dirscan-publicapi-ram.script";
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-file-publicapi-ram.script",                      "temp/basesvs/base/general/pbase-f32-file-publicapi-ram.script";

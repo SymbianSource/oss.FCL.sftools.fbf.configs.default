@@ -333,37 +333,6 @@
 						<command>execute</command>
 					</step>
                 </case>
-                <case id="" name="Raw Disk (Removable Drive)" harness="GENERIC" enabled="true" passrate="100">
-					<step name="pbase-f32-rawdisk-publicapi-rem.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
-						<params>
-							<param type="data"/>
-							<param src="pbase-f32-rawdisk-publicapi-rem.script"/>
-							<param dst="c:\base\pbase-f32-rawdisk-publicapi-rem.script"/>
-							<param component-path="basesvs\base"/>
-						</params>
-						<command>install</command>
-					</step>
-					<step name="pbase-f32-rawdisk-publicapi.ini (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
-						<params>
-							<param type="data"/>
-							<param src="pbase-f32-rawdisk-publicapi.ini"/>
-							<param dst="c:\base\pbase-f32-rawdisk-publicapi.ini"/>
-							<param component-path="basesvs\base"/>
-						</params>
-						<command>install</command>
-					</step>
-					<step name="pbase-f32-rawdisk-publicapi-rem.script (execute)" passrate="100" id="" enabled="true" significant="true" harness="GENERIC">
-						<params>
-							<param file="testexecute.exe"/>
-							<param parameters="c:\base\pbase-f32-rawdisk-publicapi-rem.script"/>
-							<param result-file="c:\logs\testexecute\pbase-f32-rawdisk-publicapi-rem.htm"/> 
-                            <param timeout="1200" />
-							<param parser="TEFTestResultParser"/>
-							<param leave-old-result="true"/>
-						</params>
-						<command>execute</command>
-					</step>
-                </case>
                 <case id="" name="Directories (RAM)" harness="GENERIC" enabled="true" passrate="100">
 					<step name="pbase-f32-dir-publicapi-ram.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
 						<params>
