@@ -17,6 +17,7 @@ copy $epoc . "release/winscw/udeb/t_fat32server.exe",                           
 copy $epoc . "release/winscw/udeb/t_perf.exe",                                                      "temp/basesvs/winscw_udeb/t_perf.exe";
 copy $epoc . "release/winscw/udeb/t_prompt.exe",                                                    "temp/basesvs/winscw_udeb/t_prompt.exe";
 copy $epoc . "release/winscw/udeb/t_sfsrv.exe",                                                     "temp/basesvs/winscw_udeb/t_sfsrv.exe";
+copy $epoc . "release/winscw/udeb/t_testfsy1.fsy",                                                  "temp/basesvs/winscw_udeb/t_testfsy1.fsy";
 
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-driveunit-publicapi-any.script",                 "temp/basesvs/base/general/pbase-f32-driveunit-publicapi-any.script";
 copy $epoc . "release/winscw/udeb/z/base/pbase-f32-format-publicapi-ram.script",                    "temp/basesvs/base/general/pbase-f32-format-publicapi-ram.script";
