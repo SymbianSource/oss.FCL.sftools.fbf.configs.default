@@ -17,7 +17,7 @@
 			<device rank="master" alias="emulator_udeb"/>
 		</target>
         <session id="" name="Base SVS Session" harness="GENERIC" enabled="true" passrate="100">
-            <set id="" name="fat32" harness="GENERIC" enabled="true" passrate="100">
+            <set id="" name="FAT32" harness="GENERIC" enabled="true" passrate="100">
                 <case id="" name="Install Common Files for FAT32" harness="GENERIC" enabled="true" passrate="100">
 					<step name="test.txt (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
 						<params>
