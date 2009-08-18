@@ -23,6 +23,9 @@ our $CATEGORY_RAPTORERROR_CANTFINDMMPFILE = 'cant_find_mmp_file';
 our $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS = 'make_exited_with_errors';
 our $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION = 'tool_didnot_return_version';
 
+our $CATEGORY_RAPTORWARNING = 'raptor_warning';
+our $CATEGORY_RAPTORWARNING_MISSINGFLAGABIV2 = 'missing_enable_abiv2_mode';
+
 our $SEVERITY_UNKNOWN = 'unknown';
 our $SEVERITY_CRITICAL = 'critical';
 our $SEVERITY_MAJOR = 'major';

@@ -910,6 +910,7 @@
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--error"/>
+            <arg value="--warning"/>
             <arg value="--log=@{raptorlogfile}"/>
             <arg value="--basedir=${build.log.dir}/raptorbits"/>
             <arg value="--append"/>

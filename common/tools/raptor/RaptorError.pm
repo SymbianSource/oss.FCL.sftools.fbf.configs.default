@@ -92,7 +92,7 @@ sub on_start_buildlog
 	$filename = "$::basedir/errors.txt";
 	if (!-f$filename)
 	{
-		print "Writing error file $filename\n";
+		print "Writing errors file $filename\n";
 		open(FILE, ">$filename");
 		close(FILE);
 	}
