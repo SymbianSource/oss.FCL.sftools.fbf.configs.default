@@ -216,7 +216,16 @@
 							<param component-path="basesvs"/>
 						</params>
 						<command>install</command>
-					</step>                    
+					</step>
+					<step name="T_TESTFXT.FXT (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
+						<params>
+							<param type="binary"/>
+							<param src="T_TESTFXT.FXT"/>
+							<param dst="C:\sys\bin\T_TESTFXT.FXT"/>
+							<param component-path="basesvs"/>
+						</params>
+						<command>install</command>
+					</step> 
                 </case>
                 <case id="" name="Drive Unit (Any)" harness="GENERIC" enabled="true" passrate="100">
 					<step name="pbase-f32-driveunit-publicapi-any.script (install)" passrate="100" id="" enabled="true" significant="false" harness="GENERIC">
@@ -1395,5 +1404,6 @@
 		<file>basesvs\winscw_udeb\t_prompt.exe</file>
 		<file>basesvs\winscw_udeb\t_fat32server.exe</file>
         <file>basesvs\winscw_udeb\t_testfsy1.fsy</file>
+        <file>basesvs\winscw_udeb\t_testfxt.fxt</file>
 	</files>
 </test>
