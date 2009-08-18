@@ -1390,9 +1390,10 @@
 		<file>basesvs\base\t_sfsrv\general\oneliner.txt</file>
 		<file>basesvs\base\t_sfsrv\general\big.txt</file>
 		<file>basesvs\base\general\t_base.tcs</file>
-		<file>epoc32\winscw_udeb\t_sfsrv.exe</file>
-		<file>epoc32\winscw_udeb\t_perf.exe</file>
-		<file>epoc32\winscw_udeb\t_prompt.exe</file>
-		<file>epoc32\winscw_udeb\t_fat32server.exe</file>
+		<file>basesvs\winscw_udeb\t_sfsrv.exe</file>
+		<file>basesvs\winscw_udeb\t_perf.exe</file>
+		<file>basesvs\winscw_udeb\t_prompt.exe</file>
+		<file>basesvs\winscw_udeb\t_fat32server.exe</file>
+        <file>basesvs\winscw_udeb\t_testfsy1.fsy</file>
 	</files>
 </test>
