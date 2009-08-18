@@ -7,6 +7,12 @@
   * Property defaults
    -->
 
+  <!-- MattD - workaround until generating a model from package definitions works-->
+  <target name="sf-build-noprep" depends="sf-compile,sf-postbuild">
+    <echo>[SF-BUILD-NOPREP] (platform)</echo>
+    <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
+  </target>
+
   <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <!--
     This target is effectively a callback, called from compile-main.
