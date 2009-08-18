@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE BuildEnv [
+
+        
+<!ELEMENT BuildEnv (context*)>
+    <!ATTLIST BuildEnv name CDATA #REQUIRED
+			revision CDATA #REQUIRED>
+
+<!ELEMENT context (context*, tool+)>
+    <!ATTLIST context id (system|p4|cbr) "system">
+
+<!ELEMENT tool (location?, verify*)>
+	<!ATTLIST tool name CDATA #REQUIRED>
+	<!ELEMENT location EMPTY>
+	<!ATTLIST location strict (true|false) "true" value CDATA #REQUIRED>
+	<!ELEMENT verify (check+)>
+	<!ATTLIST verify version CDATA #REQUIRED showstopper (true|false) "false">
+	<!ELEMENT check EMPTY>
+	<!ATTLIST check exclusive (false|true) "false"
+			 values  CDATA #REQUIRED
+			 locator CDATA #IMPLIED
+			 var     CDATA #IMPLIED
+			 execute CDATA #IMPLIED
+			 name    CDATA #IMPLIED
+			 silent	 (false|true) "false"
+			 log	 (false|true) "false">
+
+	]>
+
+
+<BuildEnv name="BuildEnv" revision="1">
+
+<!-- OS-dependant contexts -->
+<context id="Common">
+	<tool name="Perl">
+		<location strict="false" value="C:\apps\perl\bin\perl.exe"/>
+		<verify version="5.6.1" showstopper="true" >
+			<check name="version" execute="%location% -v" values="v5\.6\.1" locator="This is perl, (.*) built"/>
+			<check name="build" execute="%location% -v" values="build 633|build 635|build 638" locator="Binary (.*) provided by ActiveState" log="true"/>
+			<check name="module SAX version" execute="ppm query sax" values="0\.15" locator="XML-SAX \[(.*)\] Simple API" />
+        </verify>
+    </tool>
+    <tool name="Mercurial">
+		<location strict="false" value="C:\Apps\mercurial\hg.exe"/>
+		<verify version="1.2" showstopper="false">
+			<check name="version" execute="%location% version" values="1\.2\.[1-9]" locator="Mercurial Distributed SCM \(version ([0-9\.]*)\)"/>
+        </verify>
+    </tool>
+    <tool name="Python">
+		<location strict="false" value="c:\apps\python25\python.exe"/>
+		<verify version="2.5" showstopper="false">
+			<check name="version" execute="%location% -V" values="2\.5\.[0-9]" locator="Python (.*)"/>
+        </verify>
+    </tool>
+    <tool name="Java Compiler">
+		<location strict="false" value="C:\apps\jdk1.6.0_14\bin\javac"/>
+		<verify version="1.6" showstopper="true">
+			<check var="JAVA_6_HOME" values="jdk1\.6"/>
+			<check name="version" execute="%JAVA_6_HOME%\bin\javac -version" values="1\.6\.[0-9]_[0-9]+" locator="javac (.*)"/>
+		</verify>
+		<verify version="default" showstopper="false">
+			<check var="JAVA_HOME" values="jdk1\.6"/>
+		</verify>
+    </tool>
+	<tool name="7-Zip">
+		<location strict="false" value="C:\apps\7-zip\7z.exe"/>
+		<verify version="4.65" showstopper="false">
+			<check name="version" execute="%location% -h" values="4\.65" locator="7-Zip (.*)  Copyright"/>
+		</verify>
+    </tool>
+	<tool name="PDT Home">
+		<location strict="false" value="C:\Symbian\Tools\PDT_1.0\helium\hlm.bat"/>
+		<verify version="1.0 [beta]" showstopper="false">
+			<check var="PDT_HOME" values="\\Tools\\PDT_\d"/>
+		</verify>
+    </tool>
+	<tool name="EPOC">
+		<verify version="Environment Vars" showstopper="true">
+			<check var="EPOCROOT" values="^\\$"/>
+			<check var="PATH" values=";\\epoc32\\tools;" silent="true"/>
+		</verify>
+    </tool>
+	<tool name="Helium">
+		<location strict="false" value="C:\Symbian\Tools\PDT_1.0\helium\hlm.bat"/>
+		<verify version="4.0 [patched]" showstopper="true">
+			<check var="HELIUM_HOME" values="[CD]:\\Symbian\\Tools\\PDT_1.0\\helium"/>
+			<check name="version" execute="%HELIUM_HOME%\hlm.bat -f %HELIUM_HOME%\build.xml version" values="4\.0" locator="Helium version: ([\d\.]+)"/>
+		</verify>
+    </tool>
+	<tool name="Raptor">
+		<location strict="false" value="C:\apps\raptor2.7.2\bin\sbs.bat"/>
+		<verify version="2.7.2 [patched]" showstopper="true">
+			<check var="SBS_HOME" values="apps\\raptor"/>
+			<check name="version" execute="%SBS_HOME%\bin\sbs.bat -version" values="2\.7\.2" locator="sbs version (.*) \["/>
+			<check name="patch" execute="%SBS_HOME%\win32\python252\python.exe -V" values="2\.5\.4"/>
+		</verify>
+    </tool>
+</context>
+
+<context id="ARMv5">
+    <tool name="RVCT ARM Compiler">
+		<location strict="false" value="C:\apps\arm\RVCT2.2[616]\RVCT\Programs\2.2\349\win_32-pentium\armcc.exe"/>
+		<verify version="2.2" showstopper="true">
+			<check name="version" execute="%location% --help" values="RVCT2\.2\ \[Build 616\]" log="false" locator="ARM\/Thumb C\/C\+\+ Compiler, (.*)Usage"/>
+			<!-- <check execute="%RVCT22BIN%\armcc.exe" values="616" log="false"/> -->
+			<check var="RVCT22BIN" values="RVCT\\Programs\\2\.2\\349\\win_32-pentium" silent="true"/>
+			<check var="RVCT22INC" values="RVCT\\Data\\2\.2\\349\\include\\windows" silent="true"/>
+			<check var="RVCT22LIB" values="RVCT\\Data\\2\.2\\349\\lib" silent="true"/>
+			<check var="ARMLMD_LICENSE_FILE" values="8224@LON-ENGBUILD8[79]|8224@C10072[56]"/>
+		</verify>
+		<verify version="2.2 [options]" showstopper="false">
+			<check var="RVCT22_ASMOPT" values="--licretry" silent="true"/>
+			<check var="RVCT22_CCOPT" values="--licretry" silent="true"/>
+			<check var="RVCT22_LINKOPT" values="--licretry" silent="true"/>
+		</verify>
+    </tool>
+</context>
+
+<context id="Test">
+	<tool name="cURL">
+		<location strict="false" value="C:\apps\curl_7.18.2\curl.exe"/>
+		<verify version="7.18.2" showstopper="false">
+			<check name="version" execute="%location% -V" values="7\.18\.2" locator="curl (.*) \(i386-pc-win32\)"/>
+		</verify>
+    </tool>
+	<tool name="Junction">
+		<location strict="true" value="C:\Bin\junction.exe"/>
+		<verify version="1.0.5" showstopper="true">
+			<check name="version - local" execute="%location%" values="v1\.05" locator="Junction (.*) - Windows junction creator"/>
+			<check execute="junction - system" values="v1\.05" locator="Junction (.*) - Windows junction creator"/>
+		</verify>
+    </tool>
+	<tool name="ATS3 Worker">
+		<location strict="true" value="C:\apps\ats3\bin\STAFEnv.bat"/>
+		<verify version="7.18.2" showstopper="false">
+			<check execute="%location%" values=".*"/>
+			<check var="ATS3_HOME" values="\w:\\\w+"/>
+		</verify>
+    </tool>
+</context>
+
+<context id="Tools">
+    <tool name="Microsoft Visual C++ compiler">
+		<location strict="false" value="C:\apps\MSVC6\VC98\bin\vcvars32.bat"/>
+		<verify version="6.00" showstopper="false">
+			<check var="PATH" values="MSVC6\\Common\\MSDev98\\bin" silent="true"/>
+			<check var="PATH" values="MSVC6\\Common\\Tools\\WinNT" silent="true"/>
+			<check var="PATH" values="MSVC6\\Common\\Tools" silent="true"/>
+			<check var="PATH" values="MSVC6\\VC98\\bin" silent="true"/>
+			<check var="INCLUDE" values="MSVC6\\VC98\\atl\\include" silent="true"/>
+			<check var="INCLUDE" values="MSVC6\\VC98\\mfc\\include" silent="true"/>
+			<check var="INCLUDE" values="MSVC6\\VC98\\include" silent="true"/>
+			<check var="LIB" values="MSVC6\\VC98\\mfc\\lib" silent="true"/>
+			<check var="LIB" values="MSVC6\\VC98\\lib" silent="true"/>
+			<check var="MSDEVDIR" values="msvc6\\Common\\MSDev98" silent="true"/>
+		</verify>
+    </tool>
+</context>
+
+</BuildEnv>

@@ -59,6 +59,15 @@
     <target name="sf-prep" depends="prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
+		<echo message="Checking build Environment"/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
+            <arg value="CheckBuildEnv.pl"/>
+            <arg value="--xml=BuildEnv.xml"/>
+            <arg value="--dbg=${build.log.dir}/BuildEnvironmentCheck.log"/>
+			<arg value="--sbs='${sf.spec.sbs.config}'"/>
+			<arg value="--tools='${sf.spec.sbs.tools.config}'"/>
+			<arg value="Common"/>
+          </exec>
     </target>
         
     <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
