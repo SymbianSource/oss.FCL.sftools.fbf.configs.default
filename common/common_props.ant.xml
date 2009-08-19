@@ -4,8 +4,6 @@
 
     <property name="sf.drive.space.needed" value="0"/>
 
-    <property name="sf.project.type" value="package"/>
-	
     <property name="sf.spec.job.name" value="myproduct"/>
     <property name="sf.spec.job.codeline" value="MCL"/>
     <property name="sf.spec.job.number" value="001"/> <!-- this is always overriden from the commandline -->
