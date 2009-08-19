@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<project name="SF-PLATFORM-PROPS">
+  
+  <property name="sf.drive.space.needed" value="150G"/>
+
+</project>
+
