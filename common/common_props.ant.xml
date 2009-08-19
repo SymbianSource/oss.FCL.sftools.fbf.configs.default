@@ -2,6 +2,8 @@
 
 <project name="SF-COMMON-PROPS" >
 
+    <property name="sf.drive.space.needed" value="0"/>
+
     <property name="sf.project.type" value="package"/>
 	
     <property name="sf.spec.job.name" value="myproduct"/>
@@ -13,7 +15,6 @@
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
     <property name="sf.spec.systemdefinition.assemble" value="true"/>
-    <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
 
     <property name="sf.spec.pdt.root" value="${env.PDT_HOME}"/> <!-- e.g. C:\Symbian\Tools\PDT_1.0\ -->
 
@@ -28,8 +29,6 @@
     <property name="sf.spec.build.productioncode.enable" value="true"/>
     <property name="sf.spec.build.testcode.enable" value="false"/>
     <property name="sf.spec.build.system" value="sbs"/> <!-- sbs|ebs|ec -->
-    <!-- property name="sf.spec.build.sbsv2.config" value=""/ -->
-    <!-- property name="sf.spec.build.sbsv2.options" value="-k"/ -->
     <property name="sf.spec.build.clean.enable" value="false"/>
     <property name="sf.spec.sysdef.configurations.list" value="s60_build,s60_bldmelast"/>
     

@@ -63,24 +63,46 @@
             <import file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
         </then>
     </if>
-     
     
     <target name="sf-prep" depends="prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
+        <!-- Test for the disk space we would like for this build -->
+	<fail>
+            <condition>
+                <not>
+                    <or>
+                        <isset property="sf.suppress.drive.space.check"/>
+                        <hasfreespace partition="${build.drive}" needed="${sf.drive.space.needed}"/>
+                    </or>
+                </not>
+            </condition>
+Insufficient space to run this build to completion. (Was looking for ${sf.drive.space.needed}.) To suppress this check, set the property sf.suppress.drive.space.check to any value.
+        </fail>
+
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
-		<echo message="Checking build Environment"/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
+        <echo message="Checking build Environment"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
             <arg value="CheckBuildEnv.pl"/>
             <arg value="--xml=BuildEnv.xml"/>
             <arg value="--dbg=${build.log.dir}/BuildEnvironmentCheck.log"/>
-			<arg value="--sbs='${sf.spec.sbs.config}'"/>
-			<arg value="--tools='${sf.spec.sbs.tools.config}'"/>
-			<arg value="Common"/>
-          </exec>
+            <arg value="--sbs='${sf.spec.sbs.config}'"/>
+            <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
+            <arg value="Common"/>
+        </exec>
     </target>
         
     <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-ALL]</echo>
+    </target>
+    
+    <target name="sf-summary" depends="">
+        <echo>[SF-SUMMARY]</echo>
+        <echo message="Generating build summary"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/summary" failonerror="true">
+          <arg value="brag_script.pl"/>
+          <arg value="--buildid=${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
+          <arg value="--basedir=${sf.spec.job.rootdir}"/>
+        </exec>
     </target>
     
     <target name="sf-build-and-pack" depends="sf-build-noprep,sf-postbuild">
