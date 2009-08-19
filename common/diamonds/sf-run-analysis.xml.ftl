@@ -32,6 +32,11 @@
       <name>Raptor summary</name>
       <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\logs\raptorbits\summary.csv</url>
     </file>
+    <file>
+      <type>log</type>
+      <name>Build Summary</name>
+      <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\build_summary.html</url>
+    </file>
   </files>
   
 </diamonds-build>

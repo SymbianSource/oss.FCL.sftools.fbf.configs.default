@@ -77,6 +77,16 @@
         <echo>[SF-BUILD-ALL]</echo>
     </target>
     
+    <target name="sf-summary" depends="">
+        <echo>[SF-SUMMARY]</echo>
+        <echo message="Generating build summary"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/summary" failonerror="true">
+          <arg value="brag_script.pl"/>
+          <arg value="--buildid=${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
+          <arg value="--basedir=${sf.spec.job.rootdir}"/>
+        </exec>
+    </target>
+    
     <target name="sf-build-and-pack" depends="sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-AND-PACK]</echo>
     </target>
