@@ -17,10 +17,47 @@
    -->
 
   <!-- MattD - workaround until generating a model from package definitions works-->
-  <target name="sf-build-noprep" depends="sf-compile,sf-postbuild">
+  <target name="sf-build-noprep" depends="sf-platform-bootstrap,sf-compile,sf-postbuild">
     <echo>[SF-BUILD-NOPREP] (platform)</echo>
     <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
   </target>
+
+  <target name="sf-platform-bootstrap" depends="sf-platform-bootstrap-gt,sf-platform-bootstrap-s60"/>
+
+  <target name="sf-platform-bootstrap-gt" >
+    <echo>[SF-platform-bootstrap-gt] Warning: hard-coded to tb91!</echo>
+    <!-- do initial stuff to get raptor working -->
+    <copy file="${build.drive}/sf/os/deviceplatformrelease/symbianosbld/cedarutils/Symbian_OS.hrh" tofile="${build.drive}/epoc32/include/variant/Symbian_OS.hrh" failonerror="true" verbose="true" />
+    <copy file="${build.drive}/sf/os/deviceplatformrelease/symbianosbld/cedarutils/Symbian_OS_vtb91sf.cfg" tofile="${build.drive}/epoc32/tools/variant/variant.cfg" failonerror="true" verbose="true" preservelastmodified="true" />
+  </target>
+
+  <target name="sf-platform-bootstrap-s60" >    
+    <!-- Do touch on S60 variant.cfg to force raptor to export -->
+    <touch file="${build.drive}/${sf.spec.bldmefirst.s60.sbs.variant.cfg}" />
+    <delete file="${build.log.dir}/${build.id}_bldmefirst-s60.log"/>
+
+    <property name="sf.compile.bldmefirst.command.sbsexport" value="sbs EXPORT --ignore-os-detection --export-only"/>
+    <!-- do bldmefirst stage 1-->
+    <for list="${sf.spec.bldmefirst.s60.exports}" delimiter="," param="sf.spec.bldmefirst.s60.export">
+      <sequential>
+          <echo message="Performing bldmefirst export on @{sf.spec.bldmefirst.s60.export}"/>
+          <exec executable="cmd" dir="${build.drive}" failonerror="true" append="true" output="${build.log.dir}/${build.id}_bldmefirst-s60.log">
+            <arg value="/c"/>
+            <arg value="${sf.compile.bldmefirst.command.sbsexport}" />
+            <arg value="-b"/>
+            <arg value="${build.drive}/@{sf.spec.bldmefirst.s60.export}/bld.inf"/>
+          </exec>  
+      </sequential>
+    </for>  
+    <copy todir="${build.drive}/epoc32/tools/makefile_templates/s60">
+        <fileset dir="${build.drive}/sf/tools/makefile_templates">
+          <exclude name=".hg*"/>
+          <exclude name=".hg/**"/>
+          <exclude name="layers.sysdef.xml"/>
+        </fileset>
+    </copy>
+  </target>
+            
 
   <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <!--
