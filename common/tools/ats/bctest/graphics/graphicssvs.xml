@@ -3,7 +3,7 @@
     <id>1</id>
     <owner>admin</owner>
     <priority>10</priority>
-    <buildid>256</buildid>
+    <buildid></buildid>
     <name>Graphics SVS Tests</name>
     <target>
         <device rank="master" alias="emulator_udeb">
