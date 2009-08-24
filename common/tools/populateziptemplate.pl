@@ -68,7 +68,7 @@ close $csvText;
 my $keyAttr = { config => "name", name => "set"};
 # Load template
 my $xml = XML::Simple->new();
-my $zipConfig = $xml->XMLin($template, KeyAttr => $keyAttr);
+my $zipConfig = $xml->XMLin($template, keyattr => $keyAttr);
 my @allRndFiles;
 
 # For each package in CSV...
@@ -148,7 +148,7 @@ foreach my $package (@packages)
 my @excludes = map { {name => "exclude", value => "$_"} } @allRndFiles;
 push @{$zipConfig->{config}->{config}->{bin}->{config}->{set}}, @excludes;
 
-$xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', KeyAttr => $keyAttr);
+$xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', keyattr => $keyAttr);
 
 # Output all rnd files into exclude list for later
 open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
