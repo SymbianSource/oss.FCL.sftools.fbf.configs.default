@@ -7,6 +7,16 @@
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
+<#if ("${ant['sf.spec.sourcesync.archive']}")??>
+  <#if "${ant['sf.spec.sourcesync.archive']}" == "true">
+    <#assign fast_sync = true />
+  <#else>
+    <#assign fast_sync = false />
+  </#if>
+<#else>
+  <#assign fast_sync = false />
+</#if>
+
     <!-- remove previous version of BOM file (if exists)  -->
     <target name="reset-bom-sources-csv">
         <delete file="${ant['build.drive']}/output/logs/BOM/sources.csv" quiet="true"/>
@@ -19,17 +29,32 @@
         </#if>
         <sequential>
             <!-- create sf\layer dir  -->
-            <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false"/>
             <mkdir dir="${ant['build.drive']}${pkg_detail.dst}"/>
-            <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false"/>
-
+            <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false" />
+            <!-- Don't use hg archive with tags, as we can have wildcards in the tags... -->
+            <#if fast_sync && ("${pkg_detail.type}"!="tag") > 
+              <!-- Identify the version on the cache first -->
+              <exec executable="hg" dir="${pkg_detail.source}" outputproperty="sf.sourcesync.${count}.checksum">
+                  <arg value="identify"/>
+                  <arg value="-i"/>
+                  <arg value="-r"/>
+                  <arg value="${pkg_detail.pattern}"/>
+              </exec>
+              <!-- hg archive on the version we found -->
+              <exec executable="hg" dir="${pkg_detail.source}">
+                  <arg value="archive"/>
+                  <arg value="-r"/>
+                  <arg value="${dollar}{sf.sourcesync.${count}.checksum}"/>
+                  <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+              </exec>
+            <#else>
             <exec executable="hg" dir="${ant['build.drive']}">
                 <arg value="clone"/>
                 <arg value="-U"/>
                 <arg value="${pkg_detail.source}"/>
                 <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
             </exec>
-
+            
             <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
                 <!--hlm:checkout basedir="${ant['build.drive']}${pkg_detail.dst}"/-->
                 <#if "${pkg_detail.type}"=="tag" >
@@ -46,18 +71,18 @@
                 </hlm:update>
                 </#if>
             </hlm:scm>
+                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                <arg value="identify"/>
+                <arg value="-i"/>
+            </exec>
+          </#if>  
         </sequential>
     </target>
 
     <target name="sf-bom-info-${count}">
 
         <sequential>
-            
             <!-- record info on source code repo/rev in BOM file  -->
-            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                <arg value="identify"/>
-                <arg value="-i"/>
-            </exec>
             <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : ${dollar}{sf.sourcesync.${count}.checksum}"/>
             <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
                 <arg value="/c"/>

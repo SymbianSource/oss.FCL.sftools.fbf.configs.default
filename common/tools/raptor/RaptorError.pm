@@ -27,6 +27,7 @@ $reset_status->{next_status} = {buildlog=>$buildlog_status};
 
 $buildlog_status->{name} = 'buildlog_status';
 $buildlog_status->{next_status} = {error=>$buildlog_error_status};
+$buildlog_status->{on_start} = 'RaptorError::on_start_buildlog';
 
 $buildlog_error_status->{name} = 'buildlog_error_status';
 $buildlog_error_status->{next_status} = {};
@@ -54,22 +55,51 @@ sub process
 	}
 	elsif ($text =~ m,No bld\.inf found at,)
 	{
-		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_NOBLDINFFOUND;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,Can't find mmp file,)
+	{
+		$severity = $RaptorCommon::SEVERITY_NORMAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_CANTFINDMMPFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,The make-engine exited with errors,)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,tool .* from config .* did not return version .* as required,)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
 	{
-		$severity = $RaptorCommon::SEVERITY_UNKNOWN;
+		$severity = $RaptorCommon::SEVERITY_NORMAL;
 		my $subcategory = '';
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 }
 
+sub on_start_buildlog
+{
+	RaptorCommon::init();
+	
+	$filename = "$::basedir/errors.txt";
+	if (!-f$filename)
+	{
+		print "Writing errors file $filename\n";
+		open(FILE, ">$filename");
+		close(FILE);
+	}
+}
+
 sub on_start_buildlog_error
 {
-	$filename = "$::basedir/errors.txt";
-	print "Writing error file $filename\n" if (!-f$filename);
 	open(FILE, ">>$filename");
 }
 

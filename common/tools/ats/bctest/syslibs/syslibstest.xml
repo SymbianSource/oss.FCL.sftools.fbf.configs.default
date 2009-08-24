@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>multimediaSVStest</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="GENERIC" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="0.54" name="SyslibsSVSTests WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="SyslibsSVS" harness="GENERIC" enabled="true" passrate="100">
+			<set id="" name="ECOM" harness="GENERIC" enabled="true" passrate="100">
+				<case id="" name="t_ecom" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_ecom.exe"/>
+							<param dst="c:\sys\bin\t_ecom.exe"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tpcopyfileutility.exe"/>
+							<param dst="c:\sys\bin\tpcopyfileutility.exe"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tpdeletefileutility.exe"/>
+							<param dst="c:\sys\bin\tpdeletefileutility.exe"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="syslibs/t_syslibs.tcs"/>
+							<param dst="c:\syslibs\t_syslibs.tcs"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="syslibs/t_syslibs.ini"/>
+							<param dst="c:\syslibs\t_syslibs.ini"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="ecom/syslib-ecom-publicapi.script"/>
+							<param dst="c:\ecom\syslib-ecom-publicapi.script"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="ecom/syslib-ecom-publicapi.ini"/>
+							<param dst="c:\ecom\syslib-ecom-publicapi.ini"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param no-epoc-mapping="true"/>
+							<param src="ecom/testproduct_plugin.rsc"/>
+							<param dst="c:\ecom\testproduct_plugin.rsc"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param no-epoc-mapping="true"/>
+							<param src="ecom/testproduct_plugin.dll"/>
+							<param dst="c:\ecom\testproduct_plugin.dll"/>
+							<param component-path="syslibstest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\ecom\syslib-ecom-publicapi.script -tcs \syslibs\t_syslibs.tcs"/>
+							<param result-file="c:\logs\testexecute\syslib-ecom-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>syslibstest/general/syslibs/t_syslibs.tcs</file>
+		<file>syslibstest/general/syslibs/t_syslibs.ini</file>
+		<file>syslibstest/general/ecom/syslib-ecom-publicapi.script</file>
+		<file>syslibstest/general/ecom/syslib-ecom-publicapi.ini</file>
+		<file>syslibstest/general/ecom/testproduct_plugin.rsc</file>
+		<file>syslibstest/general/ecom/testproduct_plugin.dll</file>
+		<file>syslibstest/winscw_udeb/t_ecom.exe</file>
+		<file>syslibstest/winscw_udeb/tpcopyfileutility.exe</file>
+		<file>syslibstest/winscw_udeb/tpdeletefileutility.exe</file>
+	</files>
+</test>

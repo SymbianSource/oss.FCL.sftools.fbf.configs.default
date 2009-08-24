@@ -2,19 +2,28 @@
 
 <project name="SF-PACKAGE-PROPS">
   
+  <property name="sf.drive.space.needed" value="10G"/>
+
   <property name="sf.spec.baseline.enable" value="true"/>
   <property name="sf.spec.baseline.select" value="location"/>
-  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_candidate_2.0.c_flat"/>
+  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_candidate_2.0.d_flat"/>
   <property name="sf.spec.baseline.getenv_options" value="-i emu -i rnd -i tools -i info"/>
   
   <property name="sf.spec.toolsbaseline.enable" value="false"/>
   
+  <property name="sf.spec.package.src.enable" value="true"/>
+  
   <property name="sf.spec.build.clean.enable" value="true"/>
   
   <property name="sf.spec.systemdefinition.assemble" value="false"/>
+  <!-- if this is defined then the model is taken from this location (relative to the project dir) and copied to BUILDDRIVE\definition.xml -->
+<!--  <property name="sf.spec.systemdefinition.source" value="package_definition.xml"/> -->
+  <!-- location of the model (related to the build drive) -->
+  <property name="sf.spec.systemdefinition.location" value="\definition.xml"/>
   <property name="sf.spec.sysdef.configurations.list" value="SF"/>
   
   <property name="sf.spec.sbs.config" value="winscw"/>
+  <property name="sf.spec.sbs.numberofjobs" value="2"/>
   
   <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
 

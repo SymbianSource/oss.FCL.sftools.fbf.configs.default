@@ -3,86 +3,67 @@
   <!-- location of this config -->
   <dirname property="sf.platform.config.dir" file="${ant.file.SF-PLATFORM-CONFIG}"/>
 
+  <!-- import package properties -->
+  <import file="${sf.platform.config.dir}/platform_props.ant.xml" optional="true"/>
+  
+  <!-- import common properties/targets/references -->
+  <import file="../common/build.xml" />
+  
+  <!-- import package references -->
+  <import file="${sf.platform.config.dir}/platform_refs.ant.xml"  optional="true"/>
+  
   <!--
   * Property defaults
    -->
 
-  <!-- workaround until GenXML can merge v2.0.0 fragments -->
-  <target name="create-canonical-sysdef-file">
-
-    <runtarget target="preprocess-sysdef-files"/>
-    <echo message="Exporting preprocessed System Definition"/>
-    <if><istrue value="${sf.spec.splitbuild}"/>
-       <then>
-       <if><istrue value="${sf.spec.os.skipbuild}" />
-            <then><echo message="Skipping OS sysdef creation"/></then>
-       <else>
-            <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\0000000000000001_system_model_os.xml"
-            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
-       </else>
-       </if>
-
-       <if><istrue value="${sf.spec.s60.skipbuild}" />
-            <then><echo message="Skipping S60 sysdef creation"/></then>
-       <else>
-            <!-- TODO use better method to export or wait for GenXML fix?-->
-            <copy file="${build.output.dir}\build\input\0000000000000001_system_model_s60.xml"
-            tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
-	   </else>
-	   </if>
-	   </then>
-	
-	<else>
-	    <!-- TODO use better method to export or wait for GenXML fix?-->
-        <copy file="${build.output.dir}\build\input\0000000000000001_system_model.xml"
-        tofile="${canonical.sysdef.file}" failonerror="false" verbose="true"/>
-
-	</else>
-        </if>
-
+  <!-- MattD - workaround until generating a model from package definitions works-->
+  <target name="sf-build-noprep" depends="sf-compile,sf-postbuild">
+    <echo>[SF-BUILD-NOPREP] (platform)</echo>
+    <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
   </target>
 
+  <!-- workaround until GenXML can merge v2.0.0 fragments -->
   <!--
-    == Name: PREPROCESS-SYSDEF-FILES
-    ==
-    == Desc: Override of default target in order to deal with symbian os
-    ==       system_definition.xml that does not have /sf source prefix
-    ==
-    ==       TODO get this moved as a Helium core target?
-    -->
-  <target name="preprocess-sysdef-files">
-        <mkdir dir="${build.output.dir}/build/input"/>
-        <delete verbose="true">
-            <fileset dir="${build.output.dir}/build/input/" includes="**"/>
-        </delete>
+    This target is effectively a callback, called from compile-main.
+    Its responsibility is to convert the set of peices in ref "system.definition.files" into one sys def with absolute paths
 
-        <for param="file">
-            <resources refid="system.definition.files"/>
-            <sequential>
-                <copy todir="${build.output.dir}/build/input" verbose="true">
-                    <fileset file="@{file}"/>
-                    <filterchain>
-                        <replaceregex pattern="bldFile=&quot;os" replace="bldFile=&quot;sf\\\\os" flags="gi"/>
-                        <replaceregex pattern="mrp=&quot;os" replace="mrp=&quot;sf\\\\os" flags="gi"/>
-                        <replaceregex pattern="bldFile=&quot;mw" replace="bldFile=&quot;sf\\\\mw" flags="gi"/>
-                        <replaceregex pattern="mrp=&quot;mw" replace="mrp=&quot;sf\\\\mw" flags="gi"/>
-                        <replaceregex pattern="bldFile=&quot;app" replace="bldFile=&quot;sf\\\\app" flags="gi"/>
-                        <replaceregex pattern="mrp=&quot;app" replace="mrp=&quot;sf\\\\app" flags="gi"/>
-                        <replaceregex pattern="bldFile=&quot;tools" replace="bldFile=&quot;sf\\\\tools" flags="gi"/>
-                        <replaceregex pattern="mrp=&quot;tools" replace="mrp=&quot;sf\\\\tools" flags="gi"/>
-                        <replaceregex pattern="bldFile=&quot;adaptation" replace="bldFile=&quot;sf\\\\adaptation" flags="gi"/>
-                        <replaceregex pattern="mrp=&quot;adaptation" replace="mrp=&quot;sf\\\\adaptation" flags="gi"/>
-                        
-                        <expandproperties/>
-                    </filterchain>
-                    <mapper>
-                        <scriptmapper language="jep" src="${helium.dir}/tools/common/jep/unique_filename.jep"/>
-                    </mapper>
-                </copy>
-            </sequential>
-        </for>
-    </target>
+    However, in our builds, we know that there will only be one sysdef peice passed in, so that makes things a lot simpler
+  -->
+  <target name="create-canonical-sysdef-file">
+    <fail message="Symbian builds create a canonical system definition from exactly one peice">
+      <condition>
+        <resourcecount refid="system.definition.files" when="ne" count="1"/>
+      </condition>
+    </fail>
+
+    <!-- Locate the first/only item referenced -->
+    <for param="file">
+      <resources refid="system.definition.files"/>
+      <sequential>
+        <echo message="@{file}"/>
+        <!-- Once a property is set, it stays set - bingo! -->
+        <property name="sf.first.system.definition" value="@{file}"/>
+      </sequential>
+    </for>
+
+    <!-- Having located the file, copy it to the final desired location, absoluting tha paths as we go -->
+    <copy tofile="${canonical.sysdef.file}" file="${sf.first.system.definition}" overwrite="true" verbose="true">
+      <filterchain>
+        <replaceregex pattern="bldFile=&quot;os" replace="bldFile=&quot;/sf/os" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;os" replace="mrp=&quot;/sf/os" flags="gi"/>
+        <replaceregex pattern="bldFile=&quot;mw" replace="bldFile=&quot;/sf/mw" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;mw" replace="mrp=&quot;/sf/mw" flags="gi"/>
+        <replaceregex pattern="bldFile=&quot;app" replace="bldFile=&quot;/sf/app" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;app" replace="mrp=&quot;/sf/app" flags="gi"/>
+        <replaceregex pattern="bldFile=&quot;tools" replace="bldFile=&quot;/sf/tools" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;tools" replace="mrp=&quot;/sf/tools" flags="gi"/>
+        <replaceregex pattern="bldFile=&quot;adaptation" replace="bldFile=&quot;/sf/adaptation" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;adaptation" replace="mrp=&quot;/sf/adaptation" flags="gi"/>
+        <expandproperties/>
+      </filterchain>
+    </copy>
+
+ </target>
 
   <!--
     == Name: SF-COMPILE
@@ -267,7 +248,29 @@
 				</antcall>
 			</else>
 		</if>
-		
+		<if><isset property="sf.os.compile.iterate"/>
+      <then>
+        <for list="${sf.spec.sbs.config}" delimiter="," param="sf.spec.sbs.splitconfig">
+          <sequential>
+  				<echo message="INFO [Iterative compile] @{sf.spec.sbs.splitconfig}"/>
+  
+          <hlm:argSet id="sbs.main.iterate.sbs.var">
+                  <hlm:arg name="config" value="@{sf.spec.sbs.splitconfig}" />
+                  <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          </hlm:argSet>
+          <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+                  <param name="build.system" value="${sf.spec.build.system}" />
+                  <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
+                  <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+                  <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
+                  <reference refid="sbs.main.iterate.sbs.var" torefid="sbs.var" />
+                  <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+                  <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
+          </antcall>                
+          </sequential>
+        </for>        
+      </then>
+		  <else>
         <!-- OS main build -->
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                 <param name="build.system" value="${sf.spec.build.system}" />
@@ -278,7 +281,8 @@
                 <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                 <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
         </antcall>
-		
+		  </else>
+    </if>		
 		<if><isset property="sf.os.compile.fast"/>
 			<then>
 				<echo message="INFO [FAST COMPILE] Skipping delta and intersect list generation"/>
@@ -452,9 +456,6 @@
 		</if>
 		
 	</target>
-
-  <!-- import sf-common-config -->
-  <import file="../common/build.xml" />
 
 </project>
 

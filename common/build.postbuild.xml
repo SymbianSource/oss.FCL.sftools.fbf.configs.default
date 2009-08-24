@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-POSTBUILD" xmlns:hlm="http://www.nokia.com/helium">
+    <target name="sf-postbuild">
+        <echo>[SF-POSTBUILD]</echo>
+        <parallel>                
+        <!-- TAG SOURCE CODE -->
+        <if>
+            <istrue value="${sf.spec.tagafterbuild.enable}" />
+            <then>
+                <echo message="Apply tag to the source code used in this build"/>
+                <runtarget target="sf-tag-hg-code"/>
+            </then>
+        </if>
+        
+        <if>
+            <istrue value="${sf.spec.md5.enable}"/>
+            <then>
+                <echo message="INFO Creating MD5s"/>
+                <runtarget target="sf-run-evalid"/>
+            </then>
+        </if>
+        <if>
+            <istrue value="${sf.spec.package.bin.enable}"/>
+            <then>
+                <echo message="INFO Packaging Binaries"/>
+                <runtarget target="sf-package-binary"/>
+                <runtarget target="sf-package-tools"/>
+
+                <echo message="INFO Validate Zip files"/>
+                <runtarget target="sf-package-validate"/>
+            </then>
+        </if>
+        <!-- run build analysis tools -->
+        <runtarget target="sf-run-analysis"/>
+        
+        </parallel>
+        
+        <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
+            <then>
+                <runtarget target="sf-build-smoketestpkg"/>
+                <runtarget target="sf-send-testpkg"/>
+            </then>
+        </if>
+
+
+        <runtarget target="sf-zip-logs"/>
+
+        <!-- Do BC check -->
+        <if><istrue value="${sf.spec.bccheck.enable}"/>
+            <then>
+                <runtarget target="sf-bc-check"/>
+            </then>
+        </if>
+
+        <!-- PUBLISH LOGS/REPORTS -->
+        <if>
+            <istrue value="${sf.spec.publish.enable}" />
+            <then>
+                <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
+                <runtarget target="sf-publish"/>
+            </then>
+        </if>
+    </target>
+
+    <target name="sf-tag-hg-code">
+        <property name="sf.tagafterbuild.tag" value="${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/tag-hg-code.ant.xml.ftl"
+              outputFile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml">
+            <data expandProperties="yes">
+                ant: antProperties()
+                data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+            </data>
+        </fmpp>
+        <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
+    </target>
+
+    <target name="sf-run-evalid">
+        <delete dir="${build.drive}/output/md5"/>
+        <mkdir  dir="${build.drive}/output/md5"/>
+
+        <parallel>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/include output/md5/epoc32_include.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/s60 output/md5/epoc32_s60.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/localisation output/md5/epoc32_localisation.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -x ^armv5/udeb -x ^armv5/urel -x ^winscw/udeb -x ^winscw/urel -g epoc32/release output/md5/epoc32_release.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/armv5/udeb output/md5/epoc32_release_armv5_udeb.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/armv5/urel output/md5/epoc32_release_armv5_urel.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/udeb output/md5/epoc32_release_winscw_udeb.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -x \.sym$ -g epoc32/release/winscw/urel output/md5/epoc32_release_winscw_urel.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/cshlpcmp_template 	output/md5/epoc32_cshlpcmp_template.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/data output/md5/epoc32_data.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/engdoc output/md5/epoc32_engdoc.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/engineeringtools output/md5/epoc32_engineeringtools.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/gcc output/md5/epoc32_gcc.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/gcc_mingw output/md5/epoc32_gcc_mingw.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/ksa output/md5/epoc32_ksa.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/rom output/md5/epoc32_rom.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/rombuild output/md5/epoc32_rombuild.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/sbs_config output/md5/epoc32_sbs_config.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/sdk_special output/md5/epoc32_sdk_special.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/stdapis output/md5/epoc32_stdapis.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/stubs output/md5/epoc32_stubs.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/tools output/md5/epoc32_tools.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/wins output/md5/epoc32_wins.md5"/>
+        </exec>
+        <exec executable="cmd" dir="${build.drive}">
+            <arg value="/c"/>
+            <arg value="evalid -g epoc32/winscw output/md5/epoc32_winscw.md5"/>
+        </exec>
+        </parallel>
+        
+        <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
+        <property name="temp.md5.zip" value="${env.TEMP}/MD5_${sf.spec.job.name}_${build.number}.zip"/>
+        <echo message="INFO Packaging MD5s"/>
+        <zip destfile="${temp.md5.zip}">
+            <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
+        </zip>
+        <move file="${temp.md5.zip}" todir="${build.log.dir}" failonerror="false"/>
+    </target>    
+    
+    <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
+        <!-- Warning: Reverting to using the He zipper will also revert to a single zip for the binaries:
+             would need to update the template and possibly the script that populates it -->
+        <!--antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="bin" />
+        </antcall-->
+        <parallel>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x!epoc32\tools"/>
+                <arg value="-x!epoc32\build"/>
+                <arg value="-x!epoc32\release\armv5"/>
+                <arg value="-x!epoc32\release\winscw"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_epoc.zip"/>
+                <arg value="epoc32\"/>
+            </exec>
+            
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_winscw.zip"/>
+                <arg value="epoc32\release\winscw\"/>
+            </exec>
+            
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5.zip"/>
+                <arg value="epoc32\release\armv5\"/>
+            </exec>
+        </parallel>
+    </target>
+
+    <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
+
+        <!-- zip any RnD _includefile.txt files generated during source packaging -->
+        <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zip_postbuild.log">
+            <arg value="${sf.common.config.dir}/tools/zip_includefiles.pl"/>
+        </exec>
+        <!-- cleanup my moving includefiles to logs and zips to zips\release -->
+        <move todir="${build.log.dir}">
+            <fileset dir="${build.drive}"><include name="*_includefile.txt"/></fileset>
+        </move>
+        <move todir="${build.drive}/output/zips/release">
+            <fileset dir="${build.drive}"><include name="bin*.zip"/></fileset>
+        </move>
+        <!-- TODO: merge with release_metadata.xml ? -->
+    </target>
+
+    <target name="sf-package-tools" depends="sf-preprocess-package-config">
+        <echo message="Packaging epoc32 tools - Temporary method"/>
+        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
+            <arg value="a"/>
+            <arg value="-tzip"/>
+            <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+<!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
+            <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
+            <arg value="epoc32/tools"/>
+        </exec>
+    </target>
+    
+    <target name="sf-package-validate">
+        <exec executable="7z" dir="${build.drive}/output/zips" failonerror="false" output="${build.drive}/output/zips/validate.log">
+            <arg value="t"/>
+            <arg value="*.zip"/>
+        </exec>  
+        <exec executable="7z" dir="${build.drive}/output/zips/release" failonerror="false" output="${build.drive}/output/zips/release/validate.log">
+            <arg value="t"/>
+            <arg value="*.zip"/>
+        </exec>  
+    </target>
+
+    <!-- runs analysis of missing bins and source -->
+    <target name="sf-run-analysis">
+        <mkdir dir="${build.log.dir}/analysis"/>
+        <parallel>
+          <runtarget target="sf-run-analysis-ant"/>
+          <runtarget target="sf-run-analysis-raptor"/>
+          <runtarget target="sf-run-analysis-yarp"/>
+          <runtarget target="sf-run-analysis-whatlog-summary"/>
+        </parallel>
+        <if>
+          <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+            <runtarget target="sf-run-analysis-diamonds"/>
+            </then>
+        </if>    
+    </target>
+
+    <target name="sf-run-analysis-ant">    
+        <echo message="Running source analysis of ANT output"/>
+        <exec executable="perl" dir="${build.log.dir}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_scan_ant.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/scan_antlogs.pl"/>
+            <arg value="*ant*"/>
+        </exec>
+    </target>
+
+    <target name="sf-run-analysis-raptor">            
+      <echo message="Preprocessing *_compile.log files"/>
+      <for param="logfile">
+        <path>
+          <fileset dir="${build.log.dir}">
+            <include name="*_compile.log"/>
+            <exclude name="*build_check_compile.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\|\/].*\.T?\d+_+(.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+	        <echo message="Preprocessing @{logfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
+          </exec>
+        </sequential>
+      </for>
+      
+      <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
+      <for param="whatlogfile">
+        <path>
+          <fileset dir="${build.log.dir}/analysis">
+            <include name="*whatlog*_compile_preprocessed.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <echo message="Extracting whatlog info from @{whatlogfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
+            <arg value="--releaseable"/>
+            <arg value="--log=@{whatlogfile}"/>
+            <arg value="--basedir=${build.log.dir}"/>
+            <arg value="--append"/>
+          </exec>
+        </sequential>
+      </for>
+      
+      <echo message="Extracting error information from *_compile_preprocessed.log files"/>
+      <for param="raptorlogfile">
+        <path>
+          <fileset dir="${build.log.dir}/analysis">
+            <include name="*_compile_preprocessed.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <echo message="Extracting error info from @{raptorlogfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
+            <arg value="--error"/>
+            <arg value="--warning"/>
+            <arg value="--log=@{raptorlogfile}"/>
+            <arg value="--basedir=${build.log.dir}/raptorbits"/>
+            <arg value="--append"/>
+          </exec>
+        </sequential>
+      </for>
+            <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
+      <for param="tsv">
+        <path>
+          <fileset dir="${build.log.dir}">
+            <include name="releaseables/**/*.tsv"/>
+          </fileset>
+        </path>
+        <sequential>
+          <exec executable="perl" input="@{tsv}" output="@{tsv}">
+            <arg value="${sf.common.config.dir}/tools/sortUnique.pl"/>
+          </exec>
+        </sequential>
+      </for>
+    </target>
+
+    <target name="sf-run-analysis-yarp">          
+      <echo message="Running yarp over *_compile.log files"/>
+      <for param="logfile">
+        <path>
+          <fileset dir="${build.log.dir}">
+            <include name="*_compile.log"/>
+            <exclude name="*build_check_compile.log"/>
+          </fileset>
+        </path>
+        <sequential>
+          <propertyregex override="yes" property="yarpfile"  input="@{logfile}" regexp=".*[\\|\/](.*)_compile\.log" replace="\1_yarp.csv"/>
+          <propertyregex override="yes" property="yarpfile_short"  input="${yarpfile}" regexp="[^_]*_[^_]*_[^_]*_(.+)_[^_]*_yarp\.csv" replace="YARP_\1"/>
+          <echo message="Yarping @{logfile}..."/>
+          <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${yarpfile}.log" append="true">
+            <arg value="${sf.common.config.dir}/tools/analysis/yarp.pl"/>
+            <arg value="@{logfile}"/>
+            <arg value="${build.log.dir}/analysis/${yarpfile}"/>
+          </exec>
+          <exec executable="cmd" output="${build.drive}/output/logs/analysis/tmp_yarp_files.csv" append="true">
+            <arg value="/c"/>
+            <arg value="echo"/>
+            <arg value="${yarpfile_short},${sf.spec.publish.networkdrive}\${sf.spec.job.name}\builds\${sf.spec.job.codeline}\${build.id}\logs\analysis\${yarpfile},${build.drive}\output\logs\analysis\${yarpfile}"/>
+          </exec>
+        </sequential>
+      </for>
+      
+      <exec executable="perl" dir="${build.drive}" failonerror="false" outputproperty="sf.job.totalyarperrors">
+        <arg value="${sf.common.config.dir}/tools/analysis/parse_yarp_files.pl"/>
+        <arg value="${build.drive}/output/logs/analysis/tmp_yarp_files.csv"/>
+      </exec>
+      <echo message="Total yarp errors: ${sf.job.totalyarperrors}"/>
+    </target>
+    
+    <target name="sf-run-analysis-whatlog-summary" >
+        <sequential>
+          <parallel>
+            <runtarget target="sf-run-analysis-list"/>
+            <runtarget target="sf-run-analysis-whatlog"/>
+          </parallel>
+          <runtarget target="sf-run-analysis-whatlog-merge" />
+          <parallel>
+            <runtarget target="sf-run-analysis-whatlog-package"/>
+            <runtarget target="sf-run-analysis-whatlog-collisons"/>
+          </parallel>
+        </sequential>
+    </target>
+    
+    <target name="sf-run-analysis-list">    
+        <echo message="Running list analysis"/>
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_list_results.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/parselistdirs.pl"/>
+            <arg value="..\"/>
+        </exec>
+    </target>
+
+    <target name="sf-run-analysis-whatlog">    
+        <echo message="Running whatlog analysis"/>
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_what_results.csv">
+            <arg value="${sf.common.config.dir}/tools/analysis/parsewhatlog.pl"/>
+            <arg value="..\"/>
+        </exec>
+    </target>
+
+    <target name="sf-run-analysis-whatlog-merge" >        
+        <echo message="Running summary analysis"/>
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_summary.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/merge_csv.pl"/>
+            <arg value="${build.id}_what_results.csv"/>
+            <arg value="${build.id}_list_results.log"/>
+            <arg value="${build.drive}/output/zips/release/binaries_epoc_additional.zip"/>
+        </exec>
+    </target>
+    
+    <target name="sf-run-analysis-whatlog-package" >        
+        <exec executable="perl" dir="${build.log.dir}/analysis" failonerror="false" output="${build.log.dir}/analysis/${build.id}_analysecomponents.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/analyse_components.pl"/>
+            <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+            <arg value="${build.id}_what_results.csv_results.csv"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_os.xml"/>
+        </exec>
+    </target>
+    
+    <target name="sf-run-analysis-whatlog-collisons" >        
+        <echo message="Running collision analysis"/>
+        <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_collisions.log">
+            <arg value="${sf.common.config.dir}/tools/analysis/find_collisions.pl"/>
+            <arg value="${build.log.dir}/analysis/${build.id}_what_results.csv"/>
+        </exec>
+    </target>
+
+    <target name="sf-run-analysis-diamonds">      
+      <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis.xml">
+        <data expandProperties="yes">
+          ant: antProperties()
+          raptor_summary: csv(${build.log.dir}/raptorbits/summary.csv,{separator:',',headers:[category,subcategory,severity,component,phase,recipe,file,line]})
+          files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
+        </data>
+      </fmpp>
+    </target>
+
+    <target name="sf-build-smoketestpkg" depends="sf-getenv-tools">
+        <delete dir  ="${build.drive}/smoketest"/>
+        <delete file ="${build.log.dir}/ATS_${build.id}_smoketest.log"/>
+        
+        <echo message="INFO Copy smoketest source to EPOCROOT"/>
+        
+        <copy todir="${build.drive}/smoketest">
+            <fileset dir="${sf.common.config.dir}/tools/ats/smoketest"/>
+        </copy>
+        
+        <echo message="INFO Building smoketest"/>
+        <exec executable="cmd" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+            <arg value="/c"/>
+            <arg value="sbs -b bld.inf -c winscw_udeb.test"/>
+        </exec>
+
+        <echo message="INFO Creating smoketest testpackage"/>
+        <exec executable="perl" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+            <arg value="smoketest.pl"/>
+        </exec>
+        <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"/>
+        
+        <echo message="INFO Updating smoketest package with test info"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+            <arg value="ats_specialise_test_drop.pl"/>
+            <arg value="--test-drop-name=Smoketest-${build.id}"/> 
+            <arg value="--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}"/>
+            <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
+            <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
+            <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>			
+        </exec>
+        <!-- Now ready to send to ATS3 -->
+    </target>   
+
+    <target name="sf-send-testpkg" depends="sf-find-ATS-worker-root,sf-make-junction">
+        <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
+        <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
+            <arg value="ats3_testdrop.pl"/>
+            <arg value="--host=${sf.spec.test.host.name}"/>
+            <arg value="--username=${sf.spec.test.host.username}"/>
+            <arg value="--password=${sf.spec.test.host.password}"/>
+            <arg value="--local-test-pkg=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
+            <arg value="--local-drop-path=${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
+            <arg value="--host-drop-path=${sf.spec.test.host.droppath}"/>
+        </exec>
+    </target>
+
+    <!-- package all logs into zipfile before publish -->
+    <target name="sf-zip-logs">
+        <if>
+            <istrue value="${sf.spec.logs.zip.enable}"/>
+            <then>
+                <property name="temp.log.dir" value="${env.TEMP}/${build.id}_output_logs"/>
+                <echo message="Zip log requested, zipping logs..."/>
+                <mkdir dir="${temp.log.dir}"/>
+                <zip destfile="${temp.log.dir}/build_logs.zip" basedir="${build.drive}"> 
+                    <include name="output/logs/**"/>
+                    <exclude name="output/logs/BOM/**"/>
+                    <exclude name="output/logs/deliverables/**"/>
+                    <exclude name="output/logs/releaseables/**"/>
+                </zip>
+                <zip destfile="${temp.log.dir}/build_BOM.zip">
+                    <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
+                    <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
+                </zip>
+                <move todir="${build.log.dir}">
+                    <fileset dir="${temp.log.dir}"/>
+                </move>
+            </then>
+        </if>
+    </target>
+
+    <target name="sf-bc-check">
+
+        <if><isset property="env.PDT_HOME"/>
+        <then>
+            <!-- create BC dir -->
+            <mkdir dir="${build.log.dir}/BC"/>
+
+            <delete file="${build.log.dir}/BC/bc.config" quiet="true"/>
+            <delete file="${build.log.dir}/BC/BBCResults.xsl" quiet="true"/>
+            <delete file="${build.log.dir}/BC/libraries.txt" quiet="true"/>
+            <delete file="${build.log.dir}/BC/libraries_report.xml" quiet="true"/>
+            <delete file="${build.log.dir}/BC/headers.txt" quiet="true"/>
+            <delete file="${build.log.dir}/BC/headers_report.xml" quiet="true"/>
+
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="BASELINE_NAME=${sf.spec.bccheck.baseline.name}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="BASELINE_SDK_DIR=${sf.spec.bccheck.baseline.skd.dir}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="BASELINE_SDK_S60_VERSION=${sf.spec.bccheck.baseline.s60.version}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="CURRENT_NAME=${build.id}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="CURRENT_SDK_DIR=${build.drive}"/>
+            </exec>
+            <exec executable="cmd" output="${build.log.dir}/BC/bc.config" append="true">
+                <arg value="/c"/>
+                <arg value="echo"/>
+                <arg value="CURRENT_SDK_S60_VERSION=${sf.spec.bccheck.current.s60.version}"/>
+            </exec>
+
+            <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/BBCResults.xsl" tofile="${build.log.dir}/BC/BBCResults.xsl" failonerror="false" verbose="true"/>
+
+            <if><istrue value="${sf.spec.bccheck.enable.la}"/>
+                <then>
+                    <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/libraries.txt">
+                        <arg value="CheckBC.py"/>
+                        <arg value="${build.log.dir}/BC/bc.config"/>
+                        <arg value="-la"/>
+                        <arg value="-f"/>
+                        <arg value="${sf.spec.bccheck.reportid}"/>
+                    </exec>
+                    <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}.xml" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="false" verbose="true"/>
+                </then>
+            </if>
+
+            <if><istrue value="${sf.spec.bccheck.enable.ha}"/>
+                <then>
+                    <exec executable="python" dir="${sf.spec.pdt.root}/fts/compatibilityanalyser" output="${build.log.dir}/BC/headers.txt">
+                        <arg value="CheckBC.py"/>
+                        <arg value="${build.log.dir}/BC/bc.config"/>
+                        <arg value="-ha"/>
+                        <arg value="-f"/>
+                        <arg value="${sf.spec.bccheck.reportid}"/>
+                    </exec>
+                    <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="false" verbose="true"/>
+                </then>
+            </if>
+
+            <if><istrue value="${sf.spec.bccheck.enable.dynamic}"/>
+                <then>
+                    <echo message="INFO Updating bctest package with test info"/>
+                    <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_dynamicbc.log">
+                        <arg value="ats_specialise_test_drop.pl"/>
+                        <arg value="--test-drop-name=bctest-${build.id}"/> 
+                        <arg value="--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}"/>
+                        <arg value="--src=${sf.spec.test.package.location}\..\bctest\bctest.zip"/>
+                        <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.bccheck.package.name}"/>
+                    </exec>
+                    <!-- Now ready to send to ATS3 -->
+
+                    <antcall target="sf-send-testpkg" inheritAll="false">
+                        <param name="sf.spec.test.package.name" value="${sf.spec.bccheck.package.name}"/>
+                    </antcall>    
+                </then>
+            </if>
+        </then>
+        <else>
+            <echo message="WARNING: PDT_HOME not set, I dont know where the BC tools are installed so cannot continue"/>
+        </else>
+        </if>
+    </target>
+    
+    <target name="sf-publish" depends="prep-publish">
+        <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">
+           <fileset dir="${build.log.dir}"><include name="*.zip"/></fileset>
+        </copy>
+    </target>
+
+</project>

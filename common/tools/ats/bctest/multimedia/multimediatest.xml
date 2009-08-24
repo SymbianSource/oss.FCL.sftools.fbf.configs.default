@@ -1,0 +1,1256 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>multimediaSVStest</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="GENERIC" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="0.54" name="MultimediaSVSTests WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="MultimediaSVS" harness="GENERIC" enabled="true" passrate="100">
+			<set id="" name="ECAM" harness="GENERIC" enabled="true" passrate="100">
+				<case id="" name="T_Camera" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_camera.exe"/>
+							<param dst="c:\sys\bin\t_camera.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/ecamtestplugin.rsc"/>
+							<param dst="z:\resource\plugins\ecamtestplugin.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ecamtestplugin.dll"/>
+							<param dst="c:\sys\bin\ecamtestplugin.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="102070CC.txt"/>
+							<param dst="c:\102070CC.txt"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-ecm-publicapi.script"/>
+							<param dst="c:\multimedia\mm-ecm-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-ecm-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-ecm-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-ecm-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-ecm-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="ICL" harness="GENERIC" enabled="true" passrate="100">
+				<case id="" name="T_ImageDecoder" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_imagedecoder.exe"/>
+							<param dst="c:\sys\bin\t_imagedecoder.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_imagedecoder/*"/>
+							<param dst="c:\multimedia\t_imagedecoder\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-icl-decde-publicapi.script"/>
+							<param dst="c:\multimedia\mm-icl-decde-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-icl-decde-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-icl-decde-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-icl-decde-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-icl-decde-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_ImageEncoder" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_imageencoder.exe"/>
+							<param dst="c:\sys\bin\t_imageencoder.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_imageencoder/*"/>
+							<param dst="c:\multimedia\t_imageencoder\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-icl-encde-publicapi.script"/>
+							<param dst="c:\multimedia\mm-icl-encde-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-icl-encde-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-icl-encde-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-icl-encde-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-icl-encde-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="MMF" harness="GENERIC" enabled="true" passrate="100">
+				<case id="" name="T_MdaAudioConvertUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_mdaaudioconvertutility.exe"/>
+							<param dst="c:\sys\bin\t_mdaaudioconvertutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_mdaaudioconvertutility/*"/>
+							<param dst="c:\multimedia\t_mdaaudioconvertutility\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-cnvrt-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-cnvrt-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-cnvrt-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-cnvrt-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-cnvrt-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-cnvrt-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_MdaAudioInputStream" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_mdaaudioinputstream.exe"/>
+							<param dst="c:\sys\bin\t_mdaaudioinputstream.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-inpt-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-inpt-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-inpt-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-inpt-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-inpt-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-inpt-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_MdaAudioOutputStream" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_mdaaudiooutputstream.exe"/>
+							<param dst="c:\sys\bin\t_mdaaudiooutputstream.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_mdaaudiooutputstream/mm-mmf-aclnt-outpt-publicapi.raw"/>
+							<param dst="c:\multimedia\t_mdaaudiooutputstream\mm-mmf-aclnt-outpt-publicapi.raw"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-outpt-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-outpt-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-outpt-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-outpt-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-outpt-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-outpt-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_MdaAudioPlayerUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_mdaaudioplayerutility.exe"/>
+							<param dst="c:\sys\bin\t_mdaaudioplayerutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_mdaaudioplayerutility/*"/>
+							<param dst="c:\multimedia\t_mdaaudioplayerutility\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-plyr-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-plyr-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-plyr-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-plyr-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-plyr-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-plyr-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_MdaAudioRecorderUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_mdaaudiorecorderutility.exe"/>
+							<param dst="c:\sys\bin\t_mdaaudiorecorderutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_mdaaudiorecorderutility/*"/>
+							<param dst="c:\multimedia\t_mdaaudiorecorderutility\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-rcrdr-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-rcrdr-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-rcrdr-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-rcrdr-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-rcrdr-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-rcrdr-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_MdaAudioToneUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_mdaaudiotoneutility.exe"/>
+							<param dst="c:\sys\bin\t_mdaaudiotoneutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_audiotoneutility/*"/>
+							<param dst="c:\multimedia\t_audiotoneutility\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-tone-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-tone-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-aclnt-tone-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-aclnt-tone-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-tone-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-tone-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_MidiClientUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_midiclientutility.exe"/>
+							<param dst="c:\sys\bin\t_midiclientutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testframeworkserver.exe"/>
+							<param dst="c:\sys\bin\testframeworkserver.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testframeworkclient.dll"/>
+							<param dst="c:\sys\bin\testframeworkclient.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/ts_miditstcntrl.rsc"/>
+							<param dst="z:\resource\plugins\ts_miditstcntrl.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ts_miditstcntrl.dll"/>
+							<param dst="c:\sys\bin\ts_miditstcntrl.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_midiclientutility/*"/>
+							<param dst="c:\multimedia\t_midiclientutility\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-midi-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-midi-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-midi-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-midi-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-midi-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-midi-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_VideoPlayerUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_videoplayerutility.exe"/>
+							<param dst="c:\sys\bin\t_videoplayerutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/xvidencoderdevice.rsc"/>
+							<param dst="z:\resource\plugins\xvidencoderdevice.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/xviddecoderdevice.rsc"/>
+							<param dst="z:\resource\plugins\xviddecoderdevice.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="xvidencoderdevice.dll"/>
+							<param dst="c:\sys\bin\xvidencoderdevice.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="xviddecoderdevice.dll"/>
+							<param dst="c:\sys\bin\xviddecoderdevice.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/xvidhwdeviceplugins.rsc"/>
+							<param dst="z:\resource\plugins\xvidhwdeviceplugins.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="xvidhwdeviceplugins.dll"/>
+							<param dst="c:\sys\bin\xvidhwdeviceplugins.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testframeworkserver.exe"/>
+							<param dst="c:\sys\bin\testframeworkserver.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testframeworkclient.dll"/>
+							<param dst="c:\sys\bin\testframeworkclient.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_videoplayerutility/*"/>
+							<param dst="c:\multimedia\t_videoplayerutility\"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-vclnt-plyr-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-vclnt-plyr-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-vclnt-plyr-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-vclnt-plyr-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-vclnt-plyr-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-vclnt-plyr-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+				<case id="" name="T_VideoRecorderUtility" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_videorecorderutility.exe"/>
+							<param dst="c:\sys\bin\t_videorecorderutility.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/ecamtestplugin.rsc"/>
+							<param dst="z:\resource\plugins\ecamtestplugin.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ecamtestplugin.dll"/>
+							<param dst="c:\sys\bin\ecamtestplugin.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="102070CC.txt"/>
+							<param dst="c:\102070CC.txt"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/xvidencoderdevice.rsc"/>
+							<param dst="z:\resource\plugins\xvidencoderdevice.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/xviddecoderdevice.rsc"/>
+							<param dst="z:\resource\plugins\xviddecoderdevice.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="xvidencoderdevice.dll"/>
+							<param dst="c:\sys\bin\xvidencoderdevice.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="xviddecoderdevice.dll"/>
+							<param dst="c:\sys\bin\xviddecoderdevice.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="z/resource/plugins/xvidhwdeviceplugins.rsc"/>
+							<param dst="z:\resource\plugins\xvidhwdeviceplugins.rsc"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="xvidhwdeviceplugins.dll"/>
+							<param dst="c:\sys\bin\xvidhwdeviceplugins.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testframeworkserver.exe"/>
+							<param dst="c:\sys\bin\testframeworkserver.exe"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testframeworkclient.dll"/>
+							<param dst="c:\sys\bin\testframeworkclient.dll"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.tcs"/>
+							<param dst="c:\multimedia\t_multimedia.tcs"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia.ini"/>
+							<param dst="c:\multimedia\t_multimedia.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/t_multimedia_location.ini"/>
+							<param dst="c:\multimedia\t_multimedia_location.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-vclnt-rcrdr-publicapi.script"/>
+							<param dst="c:\multimedia\mm-mmf-vclnt-rcrdr-publicapi.script"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 3 (case data)" harness="GENERIC" enabled="true" passrate="100">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="multimedia/mm-mmf-vclnt-rcrdr-publicapi.ini"/>
+							<param dst="c:\multimedia\mm-mmf-vclnt-rcrdr-publicapi.ini"/>
+							<param component-path="multimediatest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 4 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="\multimedia\mm-mmf-vclnt-rcrdr-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param result-file="c:\logs\testexecute\mm-mmf-vclnt-rcrdr-publicapi.htm"/>
+							<param parser="TEFTestResultParser"/>
+							<param timeout="1000"/>
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>multimediatest/winscw_udeb/z/resource/plugins/ecamtestplugin.rsc</file>
+		<file>multimediatest/winscw_udeb/ecamtestplugin.dll</file>
+		<file>multimediatest/winscw_udeb/z/resource/plugins/xvidencoderdevice.rsc</file>
+		<file>multimediatest/winscw_udeb/z/resource/plugins/xviddecoderdevice.rsc</file>
+		<file>multimediatest/winscw_udeb/xvidencoderdevice.dll</file>
+		<file>multimediatest/winscw_udeb/xviddecoderdevice.dll</file>
+		<file>multimediatest/winscw_udeb/z/resource/plugins/xvidhwdeviceplugins.rsc</file>
+		<file>multimediatest/winscw_udeb/xvidhwdeviceplugins.dll</file>
+		<file>multimediatest/winscw_udeb/testframeworkserver.exe</file>
+		<file>multimediatest/winscw_udeb/testframeworkclient.dll</file>
+		<file>multimediatest/winscw_udeb/z/resource/plugins/ts_miditstcntrl.rsc</file>
+		<file>multimediatest/winscw_udeb/ts_miditstcntrl.dll</file>
+		<file>multimediatest/general/102070CC.txt</file>
+		<file>multimediatest/general/multimedia/t_multimedia.tcs</file>
+		<file>multimediatest/general/multimedia/t_multimedia.ini</file>
+		<file>multimediatest/general/multimedia/t_multimedia_location.ini</file>
+		<file>multimediatest/general/multimedia/mm-ecm-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-ecm-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/mm-icl-decde-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-icl-decde-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.apm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bit.bmp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/4bit.bmp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/8bit.bmp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.bmp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.clp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bit.gif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/2bit.gif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/4bit.gif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/6bit.gif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/8bit.gif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/commented.gif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/4bit.ico</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/8bit.ico</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/8bit.jpg</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.jpg</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/thumbnail.jpg</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/commented.jpg</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/dec1bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/dec2bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/dec4bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/dec8bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/dec16bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/dec24bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.mng</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bit.ota</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bit.png</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/4bit.png</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/8bit.png</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.png</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bitg3.tif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bitg4.tif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bit.tif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/4bit.tif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/8bit.tif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.tif</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/1bit.wbmp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/24bit.wmf</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/corrupted.bmp</file>
+		<file>multimediatest/general/multimedia/t_imagedecoder/partial.bmp</file>
+		<file>multimediatest/general/multimedia/mm-icl-encde-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-icl-encde-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_imageencoder/enc1bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imageencoder/enc2bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imageencoder/enc4bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imageencoder/enc8bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imageencoder/enc16bit.mbm</file>
+		<file>multimediatest/general/multimedia/t_imageencoder/enc24bit.mbm</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-cnvrt-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-cnvrt-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioconvertutility/note.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioconvertutility/note.raw</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioconvertutility/corrupted.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioconvertutility/explode.wav</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-inpt-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-inpt-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-outpt-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-outpt-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_mdaaudiooutputstream/mm-mmf-aclnt-outpt-publicapi.raw</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-plyr-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-plyr-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/test.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/test.bad</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/test_err.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/empty.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/answeringmachine.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/explode.au</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-rcrdr-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-rcrdr-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/pcm16stereo8khz.wav</file>
+		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/corrupted.wav</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-tone-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-aclnt-tone-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_audiotoneutility/sequence1.sqn</file>
+		<file>multimediatest/general/multimedia/t_audiotoneutility/sequence2.sqn</file>
+		<file>multimediatest/general/multimedia/t_audiotoneutility/badsequence.sqn</file>
+		<file>multimediatest/general/multimedia/mm-mmf-midi-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-midi-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_midiclientutility/midi.mid</file>
+		<file>multimediatest/general/multimedia/t_midiclientutility/textmidi.mid</file>
+		<file>multimediatest/general/multimedia/t_midiclientutility/midiclienttest.gm</file>
+		<file>multimediatest/general/multimedia/mm-mmf-vclnt-plyr-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-vclnt-plyr-publicapi.ini</file>
+		<file>multimediatest/general/multimedia/t_videoplayerutility/alter.mp4</file>
+		<file>multimediatest/general/multimedia/t_videoplayerutility/xvid_clock.avi</file>
+		<file>multimediatest/general/multimedia/t_videoplayerutility/corrupted.avi</file>
+		<file>multimediatest/general/multimedia/mm-mmf-vclnt-rcrdr-publicapi.script</file>
+		<file>multimediatest/general/multimedia/mm-mmf-vclnt-rcrdr-publicapi.ini</file>
+		<file>multimediatest/winscw_udeb/t_camera.exe</file>
+		<file>multimediatest/winscw_udeb/t_imagedecoder.exe</file>
+		<file>multimediatest/winscw_udeb/t_imageencoder.exe</file>
+		<file>multimediatest/winscw_udeb/t_mdaaudioconvertutility.exe</file>
+		<file>multimediatest/winscw_udeb/t_mdaaudioinputstream.exe</file>
+		<file>multimediatest/winscw_udeb/t_mdaaudiooutputstream.exe</file>
+		<file>multimediatest/winscw_udeb/t_mdaaudioplayerutility.exe</file>
+		<file>multimediatest/winscw_udeb/t_mdaaudiorecorderutility.exe</file>
+		<file>multimediatest/winscw_udeb/t_mdaaudiotoneutility.exe</file>
+		<file>multimediatest/winscw_udeb/t_midiclientutility.exe</file>
+		<file>multimediatest/winscw_udeb/t_videoplayerutility.exe</file>
+		<file>multimediatest/winscw_udeb/t_videorecorderutility.exe</file>
+	</files>
+</test>

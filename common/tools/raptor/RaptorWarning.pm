@@ -27,6 +27,7 @@ $reset_status->{next_status} = {buildlog=>$buildlog_status};
 
 $buildlog_status->{name} = 'buildlog_status';
 $buildlog_status->{next_status} = {warning=>$buildlog_warning_status};
+$buildlog_status->{on_start} = 'RaptorWarning::on_start_buildlog';
 
 $buildlog_warning_status->{name} = 'buildlog_warning_status';
 $buildlog_warning_status->{next_status} = {};
@@ -34,29 +35,46 @@ $buildlog_warning_status->{on_start} = 'RaptorWarning::on_start_buildlog_warning
 $buildlog_warning_status->{on_end} = 'RaptorWarning::on_end_buildlog_warning';
 $buildlog_warning_status->{on_chars} = 'RaptorWarning::on_chars_buildlog_warning';
 
+my $filename = '';
+
 my $characters = '';
 
 my $category = $RaptorCommon::CATEGORY_RAPTORWARNING;
 
 sub process
 {
-	my ($text) = @_;
+	my ($text, $component, $phase, $recipe, $file, $line) = @_;
 	
 	my $severity = $RaptorCommon::SEVERITY_UNKNOWN;
 	
-	if ($text =~ m,unmatchable,)
+	if ($text =~ m,missing flag ENABLE_ABIV2_MODE,)
 	{
-		$severity = $RaptorCommon::SEVERITY_CRITICAL;
-		
-		#dump_error($category, $severity, $text);
-		print "$category, $severity, $text\n";
+		$severity = $RaptorCommon::SEVERITY_NORMAL;
+		my $subcategory = $RaptorCommon::CATEGORY_RAPTORWARNING_MISSINGFLAGABIV2;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	else # log everything by default
+	{
+		$severity = $RaptorCommon::SEVERITY_NORMAL;
+		my $subcategory = '';
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 }
 
+sub on_start_buildlog
+{
+	RaptorCommon::init();
+	
+	$filename = "$::basedir/warnings.txt";
+	if (!-f$filename)
+	{
+		print "Writing warnings file $filename\n";
+		open(FILE, ">$filename");
+		close(FILE);
+	}
+}
 sub on_start_buildlog_warning
 {
-	my $filename = "$::basedir/warnings.txt";
-	print "Writing warning file $filename\n" if (!-f$filename);
 	open(FILE, ">>$filename");
 }
 
@@ -75,14 +93,19 @@ sub on_end_buildlog_warning
 {
 	#print "on_end_buildlog_warning\n";
 	
-	process($characters);
-	
 	print FILE $characters if ($characters =~ m,[^\s^\r^\n],);
 	print FILE "\n" if ($characters !~ m,[\r\n]$, );
+	close(FILE);
+	
+	# get the line number - not really optimized
+	my $linecount = 0;
+	open(FILE, "$filename");
+	for ($linecount = 0; <FILE>; $linecount++) { }
+	close(FILE);
+	
+	process($characters, '', '', '', "warnings.txt", $linecount);
 	
 	$characters = '';
-	
-	close(FILE);
 }
 
 

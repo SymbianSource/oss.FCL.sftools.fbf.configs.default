@@ -6,6 +6,8 @@
 <#assign dollar="$"/>
 
 <#list data as pkg_detail>
+  <#if pkg_detail.sysdef != "">
+  
 <target name="sf-truclean-${count}">
   <sequential>
     <propertyregex override="yes" property="package"  input="${pkg_detail.dst}" regexp=".*sf[\\\/]([^\\^\/]+)[\\\/]([^\\^\/]+)" replace="\1/\2"/>
@@ -25,6 +27,8 @@
     <#assign target_depends="${target_depends}"+","+"sf-truclean-${count}"/>
   </#if>
   <#assign count=count+1/>
+
+  </#if>
 </#list>
 
 <target name="all" depends="${target_depends}"/>

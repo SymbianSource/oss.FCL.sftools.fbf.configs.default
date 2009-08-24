@@ -2,6 +2,8 @@
 
 <project name="SF-COMMON-PROPS" >
 
+    <property name="sf.drive.space.needed" value="0"/>
+
     <property name="sf.project.type" value="package"/>
 	
     <property name="sf.spec.job.name" value="myproduct"/>
@@ -13,19 +15,20 @@
     <property name="sf.spec.email.from" value="fbf@symbian.org"/> <!-- needs to be defined for S60 platform builds -->
     
     <property name="sf.spec.systemdefinition.assemble" value="true"/>
-    <!-- property name="sf.spec.systemdefinition.file" value=""/ -->
 
     <property name="sf.spec.pdt.root" value="${env.PDT_HOME}"/> <!-- e.g. C:\Symbian\Tools\PDT_1.0\ -->
 
     <property name="sf.spec.sbs.config" value="armv5"/>
+    
+    <!-- When not set -j option is to: 2 X NUMBER_OF_PROCESSORS
+    <property name="sf.spec.sbs.numberofjobs" value="2"/>
+    -->
     
     <property name="sf.spec.build.target" value="all"/>
     <property name="sf.spec.build.variant" value=""/>
     <property name="sf.spec.build.productioncode.enable" value="true"/>
     <property name="sf.spec.build.testcode.enable" value="false"/>
     <property name="sf.spec.build.system" value="sbs"/> <!-- sbs|ebs|ec -->
-    <!-- property name="sf.spec.build.sbsv2.config" value=""/ -->
-    <!-- property name="sf.spec.build.sbsv2.options" value="-k"/ -->
     <property name="sf.spec.build.clean.enable" value="false"/>
     <property name="sf.spec.sysdef.configurations.list" value="s60_build,s60_bldmelast"/>
     
@@ -54,6 +57,7 @@
     <property name="sf.spec.publish.diamonds.server" value="v800002.ad-sfpd.intra"/>
     <property name="sf.spec.publish.diamonds.port" value="80"/>
     <property name="sf.spec.publish.diamonds.path" value="/diamonds/builds/"/>
+    <property name="sf.spec.publish.diamonds.tag" value="test"/>
     
     <property name="sf.spec.tagafterbuild.enable" value="false"/>
 
@@ -82,12 +86,12 @@
     <property name="sf.spec.test.host.username"  value="admin"/>
     <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="D:\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
-    <property name="sf.spec.test.epocroot"       value="D:\ATS3\winscw_smoketest"/>
+    <property name="sf.spec.test.epocroot"       value="winscw_smoketest"/>
 
     <!-- ATS properties -->
     <property name="sf.spec.test.package.location"  value="\\${sf.spec.test.host.name}\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
     <property name="sf.spec.test.package.name"      value="${env.COMPUTERNAME}-Smoketest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/> <!-- build.id not available at this point, so construct it from component parts -->
-    <property name="sf.spec.test.package.droppath"  value="D:\ATS3\TestDrops"/>
+    <property name="sf.spec.test.package.droppath"  value="TestDrops"/>
 
     <!-- BC check properties -->
     <property name="sf.spec.bccheck.enable" value="false"/>
