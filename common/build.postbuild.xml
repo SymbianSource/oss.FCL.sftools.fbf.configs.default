@@ -301,7 +301,7 @@
           </fileset>
         </path>
         <sequential>
-          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\|\/].*\.T?\d+_+(.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+		<propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
 	        <echo message="Preprocessing @{logfile}..."/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
