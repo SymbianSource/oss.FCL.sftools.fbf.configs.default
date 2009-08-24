@@ -14,7 +14,7 @@ mkpath "temp/graphicssvs/graphics/t_fbservapi/general";
 mkpath "temp/graphicssvs/graphics/wserv/general";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
-copy("test.xml",                                                          "temp/test.xml");
+copy("graphicssvs.xml",                                                          "temp/test.xml");
 
 copy $epoc . "release/winscw/udeb/twsgraphicshare.exe",                                                     "temp/graphicssvs/winscw_udeb/twsgraphicshare.exe";
 copy $epoc . "release/winscw/udeb/twsgraphicunshare.exe",                                                   "temp/graphicssvs/winscw_udeb/twsgraphicunshare.exe";
