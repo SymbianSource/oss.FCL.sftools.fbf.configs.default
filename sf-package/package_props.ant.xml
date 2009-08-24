@@ -25,6 +25,7 @@
   <property name="sf.spec.sysdef.configurations.list" value="SF"/>
   
   <property name="sf.spec.sbs.config" value="winscw"/>
+  <property name="sf.spec.sbs.numberofjobs" value="2"/>
   
   <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
 

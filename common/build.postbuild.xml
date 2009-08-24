@@ -350,8 +350,8 @@
             <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
       <for param="tsv">
         <path>
-          <fileset dir="${build.log.dir}/releaseables">
-            <include name="**/*.tsv"/>
+          <fileset dir="${build.log.dir}">
+            <include name="releaseables/**/*.tsv"/>
           </fileset>
         </path>
         <sequential>

@@ -27,6 +27,12 @@
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
+    <if>
+      <isset property="sf.spec.sbs.numberofjobs"/>
+      <then>
+        <property name="number.of.threads" value="${sf.spec.sbs.numberofjobs}"/>
+      </then>
+    </if>
     
     <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
     <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>

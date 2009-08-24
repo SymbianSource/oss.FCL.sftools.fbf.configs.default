@@ -18,6 +18,10 @@
 
     <property name="sf.spec.sbs.config" value="armv5"/>
     
+    <!-- When not set -j option is to: 2 X NUMBER_OF_PROCESSORS
+    <property name="sf.spec.sbs.numberofjobs" value="2"/>
+    -->
+    
     <property name="sf.spec.build.target" value="all"/>
     <property name="sf.spec.build.variant" value=""/>
     <property name="sf.spec.build.productioncode.enable" value="true"/>
