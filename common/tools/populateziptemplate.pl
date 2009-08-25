@@ -33,7 +33,7 @@ if(defined $nosource && $nosource !~ m/--nosource/i)
 }
 
 # Load CSV
-open my $csvText, "<", $sourcesCSV or die;
+open my $csvText, "<", $sourcesCSV or die "Unable to open sources.csv from $sourcesCSV";
 my $csv = Text::CSV->new();
 my @keys;
 my @packages;
@@ -70,6 +70,8 @@ my $keyAttr = { config => "name", name => "set"};
 my $xml = XML::Simple->new();
 my $zipConfig = $xml->XMLin($template, keyattr => $keyAttr);
 my @allRndFiles;
+
+my $failures = 0;
 
 # For each package in CSV...
 foreach my $package (@packages)
@@ -140,7 +142,8 @@ foreach my $package (@packages)
 	}
 	else
 	{
-		die "Cannot determine license for '$package->{source}'";
+		warn "Cannot determine license for '$package->{source}'\n";
+		$failures++;
 	}
 }
 
@@ -154,3 +157,5 @@ $xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', 
 open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
 print $fh @allRndFiles;
 close $fh;
+
+exit($failures);
