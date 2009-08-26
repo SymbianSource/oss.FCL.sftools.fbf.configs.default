@@ -583,12 +583,45 @@ else
 
 # End - Check all the intermediate steps of the build process
 
+# Copy Raptor summarise by DarioS
+{
+local $/=undef; # indicates that the file will be put in one variable as one string
+open(RAPTORSUMINDEX, "<$logdir\\html\\index.html");
+
+my $filecontent = <RAPTORSUMINDEX>;
+
+
+# Like index.html will be called from the build_summary.html file, this means that is not calling the sub html file from the same directory \html.
+# When copy index.html in the file build_summary.html, we need to include the path to \html directory
+# We have:
+# file:///F:/fbf_job/serviceapi_3k.T014/output/logs/raptor_unreciped.html
+# We need:
+# file:///F:/fbf_job/serviceapi_3k.T014/output/logs/html/raptor_unreciped.html
+# This means we need to go from:
+# <tr><td><a href='raptor_unreciped.html'>raptor_unreciped</a></td><td>0</td><td>0</td><td>190</td><td>0</td></tr>
+# To:
+# <tr><td><a href='html\raptor_unreciped.html'>raptor_unreciped</a></td><td>0</td><td>0</td><td>190</td><td>0</td></tr>
+$filecontent =~ s/href=\'/href=\'html\\/ig;
+
+print BUILDSUMMARYHTML "<br/>$filecontent<br/>"; # copy the content of the index.html file into the build_summary.html file.
+
+close (RAPTORSUMINDEX);
+}
+
+# Copy html files for raptor summarise to bishare
+# options used for xcopy
+# /E -> Copies directories and subdirectories, including empty ones.
+# /F -> Displays full source and destination file names while copying.
+# /I -> If destination does not exist and copying more than one file, assumes that destination must be a directory.
+my $copy_html = "xcopy $logdir\\html \\\\bishare\\sf_builds\\$project\\builds\\$codeline\\$buildid\\html \/E \/F \/I";
+print "Exec: $copy_html\n";
+system($copy_html);
+
 
 # Indicates end of the SUMMARISE section in the file
 print BUILDSUMMARYHTML "<br/>#********** SUMMARISE ends here **********#<br/><br/>";
 
 close(BUILDSUMMARYHTML); # Close build_summary.html
-
 
 # End - Build info - Describe the completion of the diffrent steps in the build process
 
