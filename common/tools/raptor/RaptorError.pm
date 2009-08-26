@@ -36,51 +36,57 @@ $buildlog_error_status->{on_end} = 'RaptorError::on_end_buildlog_error';
 $buildlog_error_status->{on_chars} = 'RaptorError::on_chars_buildlog_error';
 
 my $filename = '';
+my $failure_item = 0;
 
 my $characters = '';
 
-my $category = $RaptorCommon::CATEGORY_RAPTORERROR;
+my $CATEGORY_RAPTORERROR = 'raptor_error';
+my $CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION = 'cannot_process_schema_version';
+my $CATEGORY_RAPTORERROR_NOBLDINFFOUND = 'no_bld_inf_found';
+my $CATEGORY_RAPTORERROR_CANTFINDMMPFILE = 'cant_find_mmp_file';
+my $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS = 'make_exited_with_errors';
+my $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION = 'tool_didnot_return_version';
 
 sub process
 {
 	my ($text, $component, $phase, $recipe, $file, $line) = @_;
 	
-	my $severity = $RaptorCommon::SEVERITY_UNKNOWN;
+	my $category = $CATEGORY_RAPTORERROR;
+	my $severity = '';
+	my $subcategory = '';
 	
 	if ($text =~ m,Cannot process schema version .* of file,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
-		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION;
+		$subcategory = $CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,No bld\.inf found at,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
-		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_NOBLDINFFOUND;
+		$subcategory = $CATEGORY_RAPTORERROR_NOBLDINFFOUND;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,Can't find mmp file,)
 	{
-		$severity = $RaptorCommon::SEVERITY_NORMAL;
-		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_CANTFINDMMPFILE;
+		$severity = $RaptorCommon::SEVERITY_MINOR;
+		$subcategory = $CATEGORY_RAPTORERROR_CANTFINDMMPFILE;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,The make-engine exited with errors,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
-		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS;
+		$subcategory = $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,tool .* from config .* did not return version .* as required,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
-		my $subcategory = $RaptorCommon::CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION;
+		$subcategory = $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
 	{
-		$severity = $RaptorCommon::SEVERITY_NORMAL;
-		my $subcategory = '';
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 }
@@ -89,7 +95,7 @@ sub on_start_buildlog
 {
 	RaptorCommon::init();
 	
-	$filename = "$::basedir/errors.txt";
+	$filename = "$::basedir/raptor_error.txt";
 	if (!-f$filename)
 	{
 		print "Writing errors file $filename\n";
@@ -100,7 +106,6 @@ sub on_start_buildlog
 
 sub on_start_buildlog_error
 {
-	open(FILE, ">>$filename");
 }
 
 sub on_chars_buildlog_error
@@ -118,17 +123,31 @@ sub on_end_buildlog_error
 {
 	#print "on_end_buildlog_error\n";
 	
-	print FILE $characters if ($characters =~ m,[^\s^\r^\n],);
-	print FILE "\n" if ($characters !~ m,[\r\n]$, );
-	close(FILE);
+	$characters =~ s,^[\r\n]*,,;
+	$characters =~ s,[\r\n]*$,,;
 	
-	# get the line number - not really optimized
-	my $linecount = 0;
-	open(FILE, "$filename");
-	for ($linecount = 0; <FILE>; $linecount++) { }
-	close(FILE);
+	if ($characters =~ m,[^\s^\r^\n],)
+	{	
+		if ($failure_item == 0 and -f "$filename")
+		{
+			open(FILE, "$filename");
+			{
+				local $/ = undef;
+				my $filecontent = <FILE>;
+				$failure_item = $1 if ($filecontent =~ m/.*---failure_item_(\d+)/s);
+			}
+			close(FILE);
+		}
+		
+		$failure_item++;
 	
-	process($characters, '', '', '', "errors.txt", $linecount);
+		open(FILE, ">>$filename");
+		print FILE "---failure_item_$failure_item\---\n";
+		print FILE "$characters\n\n";
+		close(FILE);
+		
+		process($characters, '', '', '', "raptor_error.txt", $failure_item);
+	}
 	
 	$characters = '';
 }

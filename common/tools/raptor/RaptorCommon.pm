@@ -14,22 +14,8 @@
 
 package RaptorCommon;
 
-our $CATEGORY_GENERAL = 'general';
-
-our $CATEGORY_RAPTORERROR = 'raptor_error';
-our $CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION = 'cannot_process_schema_version';
-our $CATEGORY_RAPTORERROR_NOBLDINFFOUND = 'no_bld_inf_found';
-our $CATEGORY_RAPTORERROR_CANTFINDMMPFILE = 'cant_find_mmp_file';
-our $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS = 'make_exited_with_errors';
-our $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION = 'tool_didnot_return_version';
-
-our $CATEGORY_RAPTORWARNING = 'raptor_warning';
-our $CATEGORY_RAPTORWARNING_MISSINGFLAGABIV2 = 'missing_enable_abiv2_mode';
-
-our $SEVERITY_UNKNOWN = 'unknown';
 our $SEVERITY_CRITICAL = 'critical';
 our $SEVERITY_MAJOR = 'major';
-our $SEVERITY_NORMAL = 'normal';
 our $SEVERITY_MINOR = 'minor';
 
 sub init
@@ -48,7 +34,7 @@ sub dump_fault
 	my ($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line) = @_;
 	
 	open(SUMMARY, ">>$::basedir/summary.csv");
-	print SUMMARY "$category,$subcategory,$severity,$component,$phase,$recipe,$file,$line\n";
+	print SUMMARY "$category,$subcategory,$severity,$::raptor_config,$component,$phase,$recipe,$file,$line\n";
 	close(SUMMARY);
 }
 
