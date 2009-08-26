@@ -3,6 +3,15 @@
   <!-- location of this config -->
   <dirname property="sf.platform.config.dir" file="${ant.file.SF-PLATFORM-CONFIG}"/>
 
+  <!-- import package properties -->
+  <import file="${sf.platform.config.dir}/platform_props.ant.xml" optional="true"/>
+  
+  <!-- import common properties/targets/references -->
+  <import file="../common/build.xml" />
+  
+  <!-- import package references -->
+  <import file="${sf.platform.config.dir}/platform_refs.ant.xml"  optional="true"/>
+  
   <!--
   * Property defaults
    -->
@@ -447,9 +456,6 @@
 		</if>
 		
 	</target>
-
-  <!-- import sf-common-config -->
-  <import file="../common/build.xml" />
 
 </project>
 

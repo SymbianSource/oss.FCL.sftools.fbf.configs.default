@@ -21,70 +21,92 @@ use RaptorCommon;
 our $reset_status = {};
 my $buildlog_status = {};
 my $buildlog_recipe_status = {};
+my $buildlog_recipe_status_status = {};
 
 $reset_status->{name} = 'reset_status';
 $reset_status->{next_status} = {buildlog=>$buildlog_status};
 
 $buildlog_status->{name} = 'buildlog_status';
 $buildlog_status->{next_status} = {recipe=>$buildlog_recipe_status};
+$buildlog_status->{on_start} = 'RaptorRecipe::on_start_buildlog';
+$buildlog_status->{on_end} = 'RaptorRecipe::on_end_buildlog';
 
 $buildlog_recipe_status->{name} = 'buildlog_recipe_status';
-$buildlog_recipe_status->{next_status} = {};
+$buildlog_recipe_status->{next_status} = {status=>$buildlog_recipe_status_status};
 $buildlog_recipe_status->{on_start} = 'RaptorRecipe::on_start_buildlog_recipe';
 $buildlog_recipe_status->{on_end} = 'RaptorRecipe::on_end_buildlog_recipe';
 $buildlog_recipe_status->{on_chars} = 'RaptorRecipe::on_chars_buildlog_recipe';
 
-my $characters = '';
+$buildlog_recipe_status_status->{name} = 'buildlog_recipe_status_status';
+$buildlog_recipe_status_status->{next_status} = {};
+$buildlog_recipe_status_status->{on_start} = 'RaptorRecipe::on_start_buildlog_recipe_status';
+
+
+my $filename = '';
+my $failure_item = 0;
+
 my $recipe_info = {};
 
-my $category = $RaptorCommon::CATEGORY_RAPTORRECIPE;
+my $characters = '';
+
+my $CATEGORY_RECIPEFAILURE = 'recipe_failure';
+my $CATEGORY_RECIPEFAILURE_ARMCC_CANNOTOPENSOURCEINPUTFILE = 'armcc_cannot_open_source_input_file';
+my $CATEGORY_RECIPEFAILURE_ARMLINK_COULDNOTOPENFILE = 'armlink_could_not_open_file';
+my $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE = 'elf2e32_could_not_open_file';
 
 sub process
 {
-	my ($text) = @_;
+	my ($text, $component, $phase, $recipe, $file, $line) = @_;
 	
-	my $severity = $RaptorCommon::SEVERITY_UNKNOWN;
+	my $category = $CATEGORY_RECIPEFAILURE;
+	my $severity = '';
+	my $subcategory = '';
 	
-	if ($text =~ m,Cannot process schema version .* of file,)
+	if ($text =~ m,Error:  #5: cannot open source input file .*: No such file or directory,)
 	{
-		$severity = $RaptorCommon::SEVERITY_CRITICAL;
-		
-		#dump_recipe($category, $severity, $text);
-		print "$category, $severity, $text\n";
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_CANNOTOPENSOURCEINPUTFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
+	elsif ($text =~ m,Fatal error: L6002U: Could not open file .*: No such file or directory,)
+	{
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMLINK_COULDNOTOPENFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,elf2e32 : Error: E1001: Could not open file : .*.,)
+	{
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	else # log everything by default
+	{
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+}
+
+sub on_start_buildlog
+{
+	#print FILE "line,layer,component,name,armlicence,platform,phase,code,bldinf,mmp,target,source,\n";
+	
+	RaptorCommon::init();
 }
 
 sub on_start_buildlog_recipe
 {
 	my ($el) = @_;
 	
-	$recipe_info = {};
-	$characters = '';
+	#print "on_start_buildlog_recipe\n";
 	
-	my $attrstring = '';
-	my $bldinf = '';
+	$recipe_info = {};
 	
 	my $attributes = $el->{Attributes};
 	for (keys %{$attributes})
 	{
-		if ($attributes->{$_}->{'LocalName'} eq 'bldinf')
-		{
-			$bldinf = $attributes->{$_}->{'Value'};
-		}
-		
-		$attrstring .= "$attributes->{$_}->{'LocalName'}}='$attributes->{$_}->{'Value'}' ";
-		
+		$recipe_info->{$attributes->{$_}->{'LocalName'}} = $attributes->{$_}->{'Value'};
+		#print "$_ -> $attributes->{$_}->{'Value'}\n";
 	}
-	
-	if ($bldinf eq '')
-	{
-		print "WARNING: recipe tag with no bldinf attribute. Associating to package unknown/unknown\n";
-		$bldinf = "/sf/unknown/unknown/group/bld.inf";
-	}
-	
-	$recipe_info->{bldinf} = $bldinf;
-	
-	$characters = "<recipe $attrstring>\n";
 }
 
 sub on_chars_buildlog_recipe
@@ -98,30 +120,88 @@ sub on_chars_buildlog_recipe
 	#print "characters is now -->$characters<--\n";
 }
 
+sub on_start_buildlog_recipe_status
+{
+	my ($el) = @_;
+	
+	my $attributes = $el->{Attributes};
+	for (keys %{$attributes})
+	{
+		if ($attributes->{$_}->{'LocalName'} eq 'code')
+		{
+			$recipe_info->{$attributes->{$_}->{'LocalName'}} = $attributes->{$_}->{'Value'};
+		}
+		elsif ($attributes->{$_}->{'LocalName'} eq 'exit')
+		{
+			$recipe_info->{$attributes->{$_}->{'LocalName'}} = $attributes->{$_}->{'Value'};
+		}
+		elsif ($attributes->{$_}->{'LocalName'} eq 'attempt')
+		{
+			$recipe_info->{$attributes->{$_}->{'LocalName'}} = $attributes->{$_}->{'Value'};
+		}
+	}
+}
+
 sub on_end_buildlog_recipe
 {
-	#print "on_end_buildlog_recipe\n";
-	
-	$characters .= "\n</recipe>\n";
-	
-	my $normalized = lc($recipe_info->{bldinf});
-	$normalized =~ s,^[A-Za-z]:,,;
-	$normalized =~ s,[\\],/,g;
-	
-	$normalized =~ m,^/sf/([^/]+)/([^/]+)/,;
-	my $layer = $1;
-	my $package = $2;
-	
-	mkdir("$::basedir/recipes");
-	mkdir("$::basedir/recipes/$layer");
-	mkdir("$::basedir/recipes/$layer/$package");
-	
-	my $filename = "$::basedir/recipes/$layer/$package/recipes.txt";
-	
-	print "Writing recipes file $filename\n" if (!-f$filename);
-	open(FILE, ">>$filename");
-	print FILE $characters;
-	close(FILE);
+	if ($recipe_info->{exit} =~ /failed/)
+	{
+		# normalize bldinf path
+		$recipe_info->{bldinf} = lc($recipe_info->{bldinf});
+		$recipe_info->{bldinf} =~ s,^[A-Za-z]:,,;
+		$recipe_info->{bldinf} =~ s,[\\],/,g;
+		
+		my $package = '';
+		if ($recipe_info->{bldinf} =~ m,/((os|mw|app|tools|ostools|adaptation)/[^/]*),)
+		{
+			$package = $1;
+			$package =~ s,/,_,;
+		}
+		else
+		{
+			print "WARNING: can't understand bldinf attribute of recipe: $recipe_info->{bldinf}. Won't dump to failed recipes file.\n";
+		}
+		
+		$characters =~ s,^[\r\n]*,,;
+		$characters =~ s,[\r\n]*$,,;
+		
+		if ($package)
+		{
+			$filename = "$::basedir/$package.txt";
+			if (!-f$filename)
+			{
+				print "Writing recipe file $filename\n";
+				open(FILE, ">$filename");
+				close(FILE);
+			}
+			
+			if ($failure_item == 0 and -f "$filename")
+			{
+				open(FILE, "$filename");
+				{
+					local $/ = undef;
+					my $filecontent = <FILE>;
+					$failure_item = $1 if ($filecontent =~ m/.*---failure_item_(\d+)/s);
+				}
+				close(FILE);
+			}
+			
+			$failure_item++;
+			
+			open(FILE, ">>$filename");
+			print FILE "---failure_item_$failure_item\---\n";
+			print FILE "$characters\n\n";
+			close(FILE);
+		}
+		
+		process($characters, $recipe_info->{bldinf}, $recipe_info->{phase}, $recipe_info->{name}, "$package.txt", $failure_item);
+	}
+
+	$characters = '';
+}
+
+sub on_end_buildlog
+{
 }
 
 
