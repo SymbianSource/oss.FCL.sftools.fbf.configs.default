@@ -175,7 +175,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <istrue value="${sf.spec.publish.enable}"/>
             <then>
                 <runtarget target="diamonds"/>
-                <runtarget target="sf-tag-build"/>
+                <runtarget target="sf-diamonds-tag-build"/>
             </then>
         </if>
         
@@ -291,8 +291,8 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
       </if>
     </target>
     
-    <target name="sf-tag-build">
-      <echo>[SF-TAG-BUILD]</echo>
+    <target name="sf-diamonds-tag-build">
+      <echo>[SF-DIAMONDS-TAG-BUILD]</echo>
       <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
         <data expandProperties="yes">
           ant: antProperties()

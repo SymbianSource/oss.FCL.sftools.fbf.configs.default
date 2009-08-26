@@ -33,7 +33,7 @@ if(defined $nosource && $nosource !~ m/--nosource/i)
 }
 
 # Load CSV
-open my $csvText, "<", $sourcesCSV or die;
+open my $csvText, "<", $sourcesCSV or die "Unable to open sources.csv from $sourcesCSV";
 my $csv = Text::CSV->new();
 my @keys;
 my @packages;
@@ -68,8 +68,10 @@ close $csvText;
 my $keyAttr = { config => "name", name => "set"};
 # Load template
 my $xml = XML::Simple->new();
-my $zipConfig = $xml->XMLin($template, KeyAttr => $keyAttr);
+my $zipConfig = $xml->XMLin($template, keyattr => $keyAttr);
 my @allRndFiles;
+
+my $failures = 0;
 
 # For each package in CSV...
 foreach my $package (@packages)
@@ -140,7 +142,8 @@ foreach my $package (@packages)
 	}
 	else
 	{
-		die "Cannot determine license for '$package->{source}'";
+		warn "Cannot determine license for '$package->{source}'\n";
+		$failures++;
 	}
 }
 
@@ -148,9 +151,11 @@ foreach my $package (@packages)
 my @excludes = map { {name => "exclude", value => "$_"} } @allRndFiles;
 push @{$zipConfig->{config}->{config}->{bin}->{config}->{set}}, @excludes;
 
-$xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', KeyAttr => $keyAttr);
+$xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', keyattr => $keyAttr);
 
 # Output all rnd files into exclude list for later
 open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
 print $fh @allRndFiles;
 close $fh;
+
+exit($failures);
