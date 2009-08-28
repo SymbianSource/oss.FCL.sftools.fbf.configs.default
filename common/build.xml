@@ -45,6 +45,9 @@
              
     <!-- Import functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.postbuild.xml"/>
+	
+	<!-- Import test functionality distributed into other file(s) -->
+    <import file="${sf.common.config.dir}/build.test.xml"/>
              
     <!-- setup conditional Helium internal properties -->
     <if><istrue value="${sf.spec.sourcesync.usecache}"/>
