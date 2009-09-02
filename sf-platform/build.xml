@@ -25,10 +25,10 @@
   <target name="sf-platform-bootstrap" depends="sf-platform-bootstrap-gt,sf-platform-bootstrap-s60"/>
 
   <target name="sf-platform-bootstrap-gt" >
-    <echo>[SF-platform-bootstrap-gt] Warning: hard-coded to tb91!</echo>
+    <echo>[SF-platform-bootstrap-gt]</echo>
     <!-- do initial stuff to get raptor working -->
-    <copy file="${build.drive}/sf/os/deviceplatformrelease/symbianosbld/cedarutils/Symbian_OS.hrh" tofile="${build.drive}/epoc32/include/variant/Symbian_OS.hrh" failonerror="true" verbose="true" />
-    <copy file="${build.drive}/sf/os/deviceplatformrelease/symbianosbld/cedarutils/Symbian_OS_vtb91sf.cfg" tofile="${build.drive}/epoc32/tools/variant/variant.cfg" failonerror="true" verbose="true" preservelastmodified="true" />
+    <copy file="${build.drive}/${sf.spec.bldmefirst.gt.hrh}" tofile="${build.drive}/epoc32/include/variant/Symbian_OS.hrh" failonerror="true" verbose="true" />
+    <copy file="${build.drive}/${sf.spec.bldmefirst.gt.variant}" tofile="${build.drive}/epoc32/tools/variant/variant.cfg" failonerror="true" verbose="true" preservelastmodified="true" />
   </target>
 
   <target name="sf-platform-bootstrap-s60" >    
