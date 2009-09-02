@@ -42,7 +42,7 @@ sub process
 {
 	my ($text) = @_;
 	
-	my $severity = $RaptorCommon::SEVERITY_UNKNOWN;
+	my $severity = '';
 	
 	if ($text =~ m,unmatchable,)
 	{

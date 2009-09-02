@@ -301,8 +301,8 @@
           </fileset>
         </path>
         <sequential>
-		<propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
-	        <echo message="Preprocessing @{logfile}..."/>
+		  <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+	      <echo message="Preprocessing @{logfile}..."/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
           </exec>
@@ -318,6 +318,7 @@
         </path>
         <sequential>
           <echo message="Extracting whatlog info from @{whatlogfile}..."/>
+          <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --releaseable --log=@{whatlogfile} --basedir=${build.log.dir} --append"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--releaseable"/>
@@ -337,17 +338,30 @@
         </path>
         <sequential>
           <echo message="Extracting error info from @{raptorlogfile}..."/>
+          <propertyregex override="yes" property="raptorconfig" input="@{raptorlogfile}" regexp=".*[\\/].*__(.*)\.whatlog_(single|multiple)_thread.*" replace="\1" casesensitive="false" defaultValue="noconfig"/>
+          <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --error --warning --unreciped --recipe --config=${raptorconfig} --log=@{raptorlogfile} --basedir=${build.log.dir}/raptorbits --append"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--error"/>
             <arg value="--warning"/>
+            <arg value="--unreciped"/>
+            <arg value="--recipe"/>
+            <arg value="--config=${raptorconfig}"/>
             <arg value="--log=@{raptorlogfile}"/>
             <arg value="--basedir=${build.log.dir}/raptorbits"/>
             <arg value="--append"/>
           </exec>
         </sequential>
       </for>
-            <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
+      
+      <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/summarize.pl --raptorbitsdir=${build.log.dir}/raptorbits --outputdir=${build.log.dir}"/>
+      <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
+        <arg value="${sf.common.config.dir}/tools/raptor/summarize.pl"/>
+        <arg value="--raptorbitsdir=${build.log.dir}/raptorbits"/>
+        <arg value="--outputdir=${build.log.dir}"/>
+      </exec>
+          
+      <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
       <for param="tsv">
         <path>
           <fileset dir="${build.log.dir}">
@@ -456,7 +470,7 @@
       <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis.xml">
         <data expandProperties="yes">
           ant: antProperties()
-          raptor_summary: csv(${build.log.dir}/raptorbits/summary.csv,{separator:',',headers:[category,subcategory,severity,component,phase,recipe,file,line]})
+          raptor_summary: csv(${build.log.dir}/raptorbits/summary.csv,{separator:',',headers:[category,subcategory,severity,config,component,phase,recipe,file,line]})
           files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
         </data>
       </fmpp>
