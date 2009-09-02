@@ -37,6 +37,9 @@
 			<config name="rnd" abstract="true">
 				<set name="grace.filters" value="rnd" />
 			</config>
+			<config name="misc" abstract="true">
+				<set name="grace.filters" value="misc" />
+			</config>
 		</config>
 		<config name="src-by-layer" abstract="true">
 			<set name="grace.metadata" value="false" />
