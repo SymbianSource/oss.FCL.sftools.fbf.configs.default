@@ -13,6 +13,8 @@
 # Run the raptor parsers
 
 use strict;
+use FindBin;
+use lib $FindBin::Bin;
 use RaptorReleaseable;
 use RaptorError;
 use RaptorWarning;
@@ -32,6 +34,7 @@ my $info_module = 0;
 my $unreciped_module = 0;
 my $recipe_module = 0;
 our $basedir = '';
+our $raptor_config = '';
 my $append = 0;
 my $help = 0;
 GetOptions((
@@ -42,7 +45,8 @@ GetOptions((
 	'info!' => \$info_module,
 	'unreciped!' => \$unreciped_module,
 	'recipe!' => \$recipe_module,
-	'basedir:s' => \$basedir,
+	'basedir=s' => \$basedir,
+	'config=s' => \$raptor_config,
 	'append!' => \$append,
 	'help!' => \$help
 ));

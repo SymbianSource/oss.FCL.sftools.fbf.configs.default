@@ -27,6 +27,8 @@
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
+    <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
+    
     <if>
       <isset property="sf.spec.sbs.numberofjobs"/>
       <then>
@@ -58,7 +60,7 @@
             <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
         </else>
     </if>
-
+    
     <!-- conditional import of generated source spec if available -->
     <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
         <then>
@@ -83,17 +85,40 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         </fail>
 
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
-        <echo message="Checking build Environment"/>
+
+        <if>          
+            <not><isset property="sf.suppress.buildenv.check"/></not>
+            <then>
+                <echo message="Checking build Environment. To suppress this check set property sf.suppress.buildenv.check to any value"/>
+                <runtarget target="sf-check-env"/>
+            </then>
+        </if>
+        
+    </target>
+        
+    <target name="sf-check-env">
+
+        <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
+        <if><available file="${sf.project.location}/BuildEnv.xml"/>        
+            <then>
+                <property name="sf.buildenv.location" value="${sf.project.location}"/>
+            </then>
+            <else>
+                <property name="sf.buildenv.location" value="${sf.common.config.dir}/tools"/>
+            </else>
+        </if>
+        
+        <echo message="Build Env against ${sf.buildenv.location}/BuildEnv.xml"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
             <arg value="CheckBuildEnv.pl"/>
-            <arg value="--xml=BuildEnv.xml"/>
+            <arg value="--xml=${sf.buildenv.location}/BuildEnv.xml"/>
             <arg value="--dbg=${build.log.dir}/BuildEnvironmentCheck.log"/>
             <arg value="--sbs='${sf.spec.sbs.config}'"/>
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
     </target>
-        
+    
     <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-ALL]</echo>
     </target>
@@ -171,7 +196,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
     </target>
 
-    <target name="sf-prebuild">
+    <target name="sf-prebuild" depends="sf-prep">
         <echo>[SF-PREBUILD]</echo>
         
         <if>
