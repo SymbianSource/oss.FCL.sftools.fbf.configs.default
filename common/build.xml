@@ -196,7 +196,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
     </target>
 
-    <target name="sf-prebuild">
+    <target name="sf-prebuild" depends="sf-prep">
         <echo>[SF-PREBUILD]</echo>
         
         <if>
