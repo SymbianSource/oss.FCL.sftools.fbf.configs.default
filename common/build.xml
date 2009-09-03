@@ -511,35 +511,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <arg value="-y"/> <!-- Need to unpack in overwrite mode, due to TEF -->
         <arg value="${build.drive}/output/zips/bin*.zip"/>
         </exec>
-    </target>
-
-    <target name="sf-find-ATS-worker-root">
-      <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/devices" failonerror="false" outputproperty="sf.spec.test.workerroot">
-        <arg value="-pe"/>
-        <arg value="&quot;m/TEMPDIR=(\S+)/;print $1;s/.*\n//g&quot;"/>
-        <arg value="${env.COMPUTERNAME}\EMULATOR_GENERIC_${env.COMPUTERNAME}.properties" /> 
-      </exec>
-      <echo message="ATS Worker Root = ${sf.spec.test.workerroot}"/> 
-    </target>
-    
-    <target name ="sf-make-junction" depends="sf-find-ATS-worker-root">
-        
-        <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}"/>
-
-        <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_make_junction.log">
-        <arg value="make_junction.pl"/>
-        <arg value="--link=${sf.spec.test.workerroot}/${sf.spec.test.epocroot}/epoc32"/>
-        <arg value="--target=${build.drive}/epoc32"/>
-        <arg value="--force"/>
-      </exec>
-    </target>
-
-    <target name ="sf-delete-junction" depends="sf-find-ATS-worker-root">
-        <exec executable="junction.exe" dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}" failonerror="false" output="${build.log.dir}/ATS_${build.id}_delete_junction.log">
-        <arg value="-d"/>
-        <arg value="epoc32"/>
-      </exec>
-    </target>  
+    </target>    
         
 </project>
 

@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SF-COMMON-BCTEST" xmlns:hlm="http://www.nokia.com/helium">
+<project name="SF-COMMON-TEST" xmlns:hlm="http://www.nokia.com/helium">
+
+    <target name="sf-find-ATS-worker-root">
+      <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/devices" failonerror="false" outputproperty="sf.spec.test.workerroot">
+        <arg value="-pe"/>
+        <arg value="&quot;m/TEMPDIR=(\S+)/;print $1;s/.*\n//g&quot;"/>
+        <arg value="${env.COMPUTERNAME}\EMULATOR_GENERIC_${env.COMPUTERNAME}.properties" /> 
+      </exec>
+      <echo message="ATS Worker Root = ${sf.spec.test.workerroot}"/> 
+    </target>
+    
+    <target name ="sf-make-junction" depends="sf-find-ATS-worker-root">        
+        <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}"/>
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_make_junction.log">
+        <arg value="make_junction.pl"/>
+        <arg value="--link=${sf.spec.test.workerroot}/${sf.spec.test.epocroot}/epoc32"/>
+        <arg value="--target=${build.drive}/epoc32"/>
+        <arg value="--force"/>
+      </exec>
+    </target>
+
+    <target name ="sf-delete-junction" depends="sf-find-ATS-worker-root">
+        <exec executable="junction.exe" dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}" failonerror="false" output="${build.log.dir}/ATS_${build.id}_delete_junction.log">
+        <arg value="-d"/>
+        <arg value="epoc32"/>
+      </exec>
+    </target>  
 
 <!-- static and dynamic BC Test target -->
     <target name="sf-bc-check">
@@ -146,8 +172,8 @@
 
 	<!-- Sending testdrop to ATS3 -->
 	
-    <target name="sf-send-testpkg" depends="sf-make-junction">
-        <mkdir dir="${sf.spec.test.package.droppath}"/>
+    <target name="sf-send-testpkg" depends="sf-find-ATS-worker-root,sf-make-junction">
+        <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
         <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
             <arg value="ats3_testdrop.pl"/>
@@ -155,8 +181,8 @@
             <arg value="--username=${sf.spec.test.host.username}"/>
             <arg value="--password=${sf.spec.test.host.password}"/>
             <arg value="--local-test-pkg=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
-            <arg value="--local-drop-path=${sf.spec.test.package.droppath}"/>
+            <arg value="--local-drop-path=${sf.spec.test.workerroot}\${sf.spec.test.package.droppath}"/>
             <arg value="--host-drop-path=${sf.spec.test.host.droppath}"/>
         </exec>
-    </target>    
+    </target>
 </project>
