@@ -196,75 +196,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
     </target>
 
-    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom">
-        <!-- tools baseline must come before epoc baseline to allow clean listing -->
-        <if>
-            <istrue value="${sf.spec.toolsbaseline.enable}" />
-            <then>
-
-                <!-- record toolsbaseline information in BOM file -->
-                <delete file="${build.drive}/output/logs/BOM/toolsbaseline.txt" quiet="true"/>
-                <exec executable="cmd" output="${build.drive}/output/logs/BOM/toolsbaseline.txt">
-                    <arg value="/c"/>
-                    <arg value="echo"/>
-                    <arg value="${sf.spec.toolsbaseline.location}"/>
-                </exec>
-
-                <!-- wrapper around preparation-getenv but with diff params -->
-                <runtarget target="sf-getenv-tools"/>
-                
-                <echo message="INFO Getting tools environment listing"/>
-                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_toolsbaseline.log">
-                    <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
-                    <arg value="${build.drive}/epoc32"/>
-                </exec>
-            </then>
-            <else>
-                <!-- record fact that no tools baseline used. required by diamondize-bom  -->
-                <touch file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
-            </else>
-        </if>        
-        <if>
-            <istrue value="${sf.spec.baseline.enable}" />
-            <then>
-            
-                <!-- record baseline information in BOM file -->
-                <delete file="${build.drive}/output/logs/BOM/baseline.txt" quiet="true"/>
-                <exec executable="cmd" output="${build.drive}/output/logs/BOM/baseline.txt">
-                    <arg value="/c"/>
-                    <arg value="echo"/>
-                    <arg value="${sf.spec.baseline.location}"/>
-                </exec>
-                
-                <!-- run internal target preparation-getenv -->
-                <runtarget target="preparation-getenv"/>
-                
-            </then>
-            <else>
-                <!-- record fact that no baseline used. required by diamondize-bom  -->
-                <touch file="${build.drive}/output/logs/BOM/baseline.txt"/>
-            </else>
-        </if>
-
-        <if>
-            <istrue value="${sf.spec.sourcesync.enable}" />
-            <then>
-                <runtarget target="sf-get-source"/>                
-                <runtarget target="sf-package-source"/>                
-                <runtarget target="sf-unpack-rnd"/>
-            </then>
-            <else>
-                <!-- record fact that no sources.csv used. required by diamondize-bom  -->
-                <touch file="${build.log.dir}/BOM/sources.csv"/> 
-            </else>
-        </if>        
-      <if>
-        <istrue value="${sf.spec.publish.enable}"/>
-        <then>
-          <runtarget target="sf-diamondize-bom"/>
-        </then>
-      </if>
-    </target>
+    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
     
     <target name="sf-prebuild-announce">
         <echo>[SF-PREBUILD]</echo>
@@ -321,11 +253,57 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 	<echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
     </target>
 
+    <target name="sf-getenvs">
+        <!-- tools baseline must come before epoc baseline to allow clean listing -->
+        <touch file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
+        <if>
+            <istrue value="${sf.spec.toolsbaseline.enable}" />
+            <then>
+
+                <!-- record toolsbaseline information in BOM file -->
+                <echo message="${sf.spec.toolsbaseline.location}" file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
+
+                <!-- wrapper around preparation-getenv but with diff params -->
+                <runtarget target="sf-getenv-tools"/>
+                
+                <echo message="INFO Getting tools environment listing"/>
+                <exec executable="perl" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_toolsbaseline.log">
+                    <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
+                    <arg value="${build.drive}/epoc32"/>
+                </exec>
+            </then>
+        </if>        
+
+        <touch file="${build.drive}/output/logs/BOM/baseline.txt"/>
+        <if>
+            <istrue value="${sf.spec.baseline.enable}" />
+            <then>
+                <!-- record baseline information in BOM file -->
+                <echo message="${sf.spec.baseline.location}" file="${build.drive}/output/logs/BOM/baseline.txt"/>
+                
+                <!-- run internal target preparation-getenv -->
+                <runtarget target="preparation-getenv"/>
+            </then>
+        </if>
+    </target>
+
     <target name="sf-getenv-tools">
         <antcall target="preparation-getenv" inheritAll="false">
             <param name="base_release.path"           value="${sf.spec.toolsbaseline.location}"/>
             <param name="base_release.getenv_options" value="${sf.spec.toolsbaseline.getenv_options}"/>
         </antcall>
+    </target>
+
+    <target name="sf-syncsource">
+        <touch file="${build.log.dir}/BOM/sources.csv"/> 
+        <if>
+            <istrue value="${sf.spec.sourcesync.enable}" />
+            <then>
+                <runtarget target="sf-get-source"/>                
+                <runtarget target="sf-package-source"/>                
+                <runtarget target="sf-unpack-rnd"/>
+            </then>
+        </if>        
     </target>
 
     <!-- generate dir list using passed location and name 
@@ -439,19 +417,24 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
     
     <target name="sf-diamondize-bom">
-        <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
-              outputFile="${build.drive}/output/logs/sf-diamondize-bom.xml">
-            <data expandProperties="yes">
-                ant: antProperties()
-                config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
-                project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
-                baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
-                toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
-                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
-            </data>
-        </fmpp>
-        <!-- Make a copy in BOM dir -->
-        <copy file="${build.drive}/output/logs/sf-diamondize-bom.xml" tofile="${build.log.dir}/BOM/build-info.xml"/>
+        <if>
+            <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+                <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
+                      outputFile="${build.drive}/output/logs/sf-diamondize-bom.xml">
+                    <data expandProperties="yes">
+                        ant: antProperties()
+                        config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
+                        project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
+                        baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
+                        toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
+                        sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
+                    </data>
+                </fmpp>
+                <!-- Make a copy in BOM dir -->
+                <copy file="${build.drive}/output/logs/sf-diamondize-bom.xml" tofile="${build.log.dir}/BOM/build-info.xml"/>
+            </then>
+        </if>
     </target>
 
     <target name="sf-preprocess-package-config">
