@@ -196,50 +196,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
     </target>
 
-    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-announce,sf-diamonds-tag-build">
-        <!-- create BOM dir -->
-        <mkdir dir="${build.drive}/output/logs/BOM"/>
-        
-        <!-- record project and config information in BOM files -->
-        <delete file="${build.drive}/output/logs/BOM/config.csv" quiet="true"/>
-        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.repo">
-            <arg value="showconfig"/>
-            <arg value="paths.default"/>
-        </exec>
-        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.rev">
-            <arg value="identify"/>
-            <arg value="-n"/>
-        </exec>
-        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.checksum">
-            <arg value="identify"/>
-            <arg value="-i"/>
-        </exec>
-        <echo message="dir ${sf.config.dir} : revision ${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
-        <exec executable="cmd" output="${build.drive}/output/logs/BOM/config.csv" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
-        </exec>
-        <delete file="${build.drive}/output/logs/BOM/project.csv" quiet="true"/>
-        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.repo">
-            <arg value="showconfig"/>
-            <arg value="paths.default"/>
-        </exec>
-        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.rev">
-            <arg value="identify"/>
-            <arg value="-n"/>
-        </exec>
-        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.checksum">
-            <arg value="identify"/>
-            <arg value="-i"/>
-        </exec>
-        <echo message="dir ${sf.project.location} : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
-        <exec executable="cmd" output="${build.drive}/output/logs/BOM/project.csv" append="true">
-            <arg value="/c"/>
-            <arg value="echo"/>
-            <arg value="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
-        </exec>
-
+    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom">
         <!-- tools baseline must come before epoc baseline to allow clean listing -->
         <if>
             <istrue value="${sf.spec.toolsbaseline.enable}" />
@@ -328,6 +285,42 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
       </if>
     </target>
     
+    <target name="sf-record-proj-conf-bom">
+        <!-- create BOM dir -->
+        <mkdir dir="${build.drive}/output/logs/BOM"/>
+        
+        <!-- record config and project information in BOM files -->
+        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.repo">
+            <arg value="showconfig"/>
+            <arg value="paths.default"/>
+        </exec>
+        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.rev">
+            <arg value="identify"/>
+            <arg value="-n"/>
+        </exec>
+        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.checksum">
+            <arg value="identify"/>
+            <arg value="-i"/>
+        </exec>
+        <echo message="dir ${sf.config.dir} : revision ${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
+        <echo message="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}" file="${build.drive}/output/logs/BOM/config.csv"/>
+
+        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.repo">
+            <arg value="showconfig"/>
+            <arg value="paths.default"/>
+        </exec>
+        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.rev">
+            <arg value="identify"/>
+            <arg value="-n"/>
+        </exec>
+        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.checksum">
+            <arg value="identify"/>
+            <arg value="-i"/>
+        </exec>
+        <echo message="dir ${sf.project.location} : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
+	<echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
+    </target>
+
     <target name="sf-getenv-tools">
         <antcall target="preparation-getenv" inheritAll="false">
             <param name="base_release.path"           value="${sf.spec.toolsbaseline.location}"/>
