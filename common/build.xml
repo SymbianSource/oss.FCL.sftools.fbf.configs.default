@@ -196,17 +196,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
     </target>
 
-    <target name="sf-prebuild" depends="sf-prep">
-        <echo>[SF-PREBUILD]</echo>
-        
-        <if>
-            <istrue value="${sf.spec.publish.enable}"/>
-            <then>
-                <runtarget target="diamonds"/>
-                <runtarget target="sf-diamonds-tag-build"/>
-            </then>
-        </if>
-        
+    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-announce,sf-diamonds-tag-build">
         <!-- create BOM dir -->
         <mkdir dir="${build.drive}/output/logs/BOM"/>
         
@@ -319,13 +309,23 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
       </if>
     </target>
     
+    <target name="sf-prebuild-announce">
+        <echo>[SF-PREBUILD]</echo>
+    </target>
+
     <target name="sf-diamonds-tag-build">
-      <echo>[SF-DIAMONDS-TAG-BUILD]</echo>
-      <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
-        <data expandProperties="yes">
-          ant: antProperties()
-        </data>
-      </fmpp>
+      <if>
+        <istrue value="${sf.spec.publish.enable}"/>
+        <then>
+          <echo>[SF-DIAMONDS-TAG-BUILD]</echo>
+          <runtarget target="diamonds"/>
+          <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
+            <data expandProperties="yes">
+              ant: antProperties()
+            </data>
+          </fmpp>
+        </then>
+      </if>
     </target>
     
     <target name="sf-getenv-tools">
