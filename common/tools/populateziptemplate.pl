@@ -70,8 +70,7 @@ my $keyAttr = { config => "name", name => "set"};
 my $xml = XML::Simple->new();
 my $zipConfig = $xml->XMLin($template, keyattr => $keyAttr);
 my @allRndFiles;
-
-my $failures = 0;
+my $miscCount = 0;
 
 # For each package in CSV...
 foreach my $package (@packages)
@@ -142,8 +141,23 @@ foreach my $package (@packages)
 	}
 	else
 	{
-		warn "Cannot determine license for '$package->{source}'\n";
-		$failures++;
+		(my $dest2 = $package->{dst}) =~ s{[\\/]}{_slash_}g;
+		push @{$zipConfig->{config}->{config}->{src}->{config}->{misc}->{config}},
+		{
+			set =>
+			[
+				{
+					name => "name",
+					value=> "src_misc_$dest2"."_$miscCount",
+				},
+				{
+					name => "include",
+					value => "$package->{dst}/**",
+				},
+			]
+		};
+		$miscCount++;
+		warn "Warning: Cannot determine license for '$package->{source}' - it will be packaged as 'src_misc_$dest2"."_$miscCount'\n";
 	}
 }
 
@@ -158,4 +172,3 @@ open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
 print $fh @allRndFiles;
 close $fh;
 
-exit($failures);
