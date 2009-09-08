@@ -119,7 +119,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         </exec>
     </target>
     
-    <target name="sf-build-all" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
+    <target name="sf-build-all" depends="sf-prebuild-noprep,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-ALL]</echo>
     </target>
     
@@ -137,7 +137,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <echo>[SF-BUILD-AND-PACK]</echo>
     </target>
 
-    <target name="sf-build" depends="sf-prep,sf-prebuild,sf-build-noprep,sf-postbuild">
+    <target name="sf-build" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD]</echo>
     </target>
     
@@ -196,7 +196,8 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
     </target>
 
-    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
+    <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
     
     <target name="sf-prebuild-announce">
         <echo>[SF-PREBUILD]</echo>
