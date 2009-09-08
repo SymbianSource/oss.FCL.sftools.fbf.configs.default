@@ -93,11 +93,9 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
                 <runtarget target="sf-check-env"/>
             </then>
         </if>
-        
     </target>
         
     <target name="sf-check-env">
-
         <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
         <if><available file="${sf.project.location}/BuildEnv.xml"/>        
             <then>
@@ -119,10 +117,6 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         </exec>
     </target>
     
-    <target name="sf-build-all" depends="sf-prebuild-noprep,sf-build-noprep,sf-postbuild">
-        <echo>[SF-BUILD-ALL]</echo>
-    </target>
-    
     <target name="sf-summary" depends="">
         <echo>[SF-SUMMARY]</echo>
         <echo message="Generating build summary"/>
@@ -133,6 +127,10 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         </exec>
     </target>
     
+    <target name="sf-build-all" depends="sf-prebuild-noprep,sf-build-noprep,sf-postbuild">
+        <echo>[SF-BUILD-ALL]</echo>
+    </target>
+    
     <target name="sf-build-and-pack" depends="sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD-AND-PACK]</echo>
     </target>
@@ -141,14 +139,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <echo>[SF-BUILD]</echo>
     </target>
     
-    <target name="sf-parse-project-config">
-    <!-- TODO: Parse the project config and generate properties and csv file to be
-    used by the builds. -->
-        <echo message="Parse the project configuration" />
-    </target>
-    
-    <target name="sf-generate-source-spec" depends="sf-parse-project-config">
-
+    <target name="sf-generate-source-spec">
         <!-- Generate the sources.csv if hg cache is activated -->
         <if><istrue value="${sf.spec.sourcesync.usecache}"/>
             <then>
