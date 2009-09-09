@@ -25,7 +25,7 @@ mkpath "temp/phonebooktest/general/testframework";
 mkpath "temp/phonebooktest/winscw_udeb";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
-copy("contacts.xml",	"temp/test.xml");
+copy("phonebook.xml",	"temp/test.xml");
 
 copy($epoc . "release/winscw/udeb/bctestpbkdataaddedit.dll",			"temp/phonebooktest/winscw_udeb/bctestpbkdataaddedit.dll");
 copy($epoc . "winscw/c/testframework/testframework_pbkdataaddedit.ini",	"temp/phonebooktest/general/testframework/testframework_pbkdataaddedit.ini");
