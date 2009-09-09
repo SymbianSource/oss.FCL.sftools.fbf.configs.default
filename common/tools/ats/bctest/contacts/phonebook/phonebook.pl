@@ -97,4 +97,9 @@ copy($epoc . "winscw/c/testframework/testframework_pbkuiutil.ini",      "temp/ph
 copy($epoc . "winscw/c/testframework/tcbctestpbkuiutil.cfg",            "temp/phonebooktest/general/testframework/tcbctestpbkuiutil.cfg");
 copy($epoc . "winscw/c/testframework/ui_bctestpbkuiutil.cfg",           "temp/phonebooktest/general/testframework/ui_bctestpbkuiutil.cfg");
 
+copy($epoc . "release/winscw/udeb/bctestpbkvcardimportexport.dll",              "temp/phonebooktest/winscw_udeb/bctestpbkvcardimportexport.dll");
+copy($epoc . "winscw/c/testframework/testframework_pbkvcardimportexport.ini",   "temp/phonebooktest/general/testframework/testframework_pbkvcardimportexport.ini");
+copy($epoc . "winscw/c/testframework/tcbctestpbkvcardimportexport.cfg",         "temp/phonebooktest/general/testframework/tcbctestpbkvcardimportexport.cfg");
+copy($epoc . "winscw/c/testframework/ui_bctestpbkvcardimportexport.cfg",        "temp/phonebooktest/general/testframework/ui_bctestpbkvcardimportexport.cfg");
+
 system("7z a -tzip phonebooktest.zip ./temp/*");
