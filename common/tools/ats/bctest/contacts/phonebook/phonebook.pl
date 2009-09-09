@@ -92,4 +92,9 @@ copy($epoc . "winscw/c/testframework/testframework_pbknotifier.ini",	"temp/phone
 copy($epoc . "winscw/c/testframework/tcbctestpbknotifier.cfg",			"temp/phonebooktest/general/testframework/tcbctestpbknotifier.cfg");
 copy($epoc . "winscw/c/testframework/ui_bctestpbkpbknotifier.cfg",		"temp/phonebooktest/general/testframework/ui_bctestpbkpbknotifier.cfg");
 
+copy($epoc . "release/winscw/udeb/bctestpbkuiutil.dll",                 "temp/phonebooktest/winscw_udeb/bctestpbkuiutil.dll");
+copy($epoc . "winscw/c/testframework/testframework_pbkuiutil.ini",      "temp/phonebooktest/general/testframework/testframework_pbkuiutil.ini");
+copy($epoc . "winscw/c/testframework/tcbctestpbkuiutil.cfg",            "temp/phonebooktest/general/testframework/tcbctestpbkuiutil.cfg");
+copy($epoc . "winscw/c/testframework/ui_bctestpbkuiutil.cfg",           "temp/phonebooktest/general/testframework/ui_bctestpbkuiutil.cfg");
+
 system("7z a -tzip phonebooktest.zip ./temp/*");
