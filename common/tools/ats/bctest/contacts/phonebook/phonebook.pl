@@ -98,6 +98,15 @@ copy($epoc . "winscw/c/testframework/tcbctestpbkuiutil.cfg",            "temp/ph
 copy($epoc . "winscw/c/testframework/ui_bctestpbkuiutil.cfg",           "temp/phonebooktest/general/testframework/ui_bctestpbkuiutil.cfg");
 
 copy($epoc . "release/winscw/udeb/bctestpbkvcardimportexport.dll",              "temp/phonebooktest/winscw_udeb/bctestpbkvcardimportexport.dll");
+copy($epoc . "winscw/c/bcardtest2/basic02.src",                                 "temp/phonebooktest/general/bcardtest2/basic02.src");
+copy($epoc . "winscw/c/bcardtest2/basic03.vcs",                                 "temp/phonebooktest/general/bcardtest2/basic03.vcs");
+copy($epoc . "winscw/c/bcardtest2/basiccc01.ccf",                               "temp/phonebooktest/general/bcardtest2/basiccc01.ccf");
+copy($epoc . "winscw/c/bcardtest2/basiccc02.ccf",                               "temp/phonebooktest/general/bcardtest2/basiccc02.ccf");
+copy($epoc . "winscw/c/bcardtest2/basiccompactmaxsize.ccf",                     "temp/phonebooktest/general/bcardtest2/basiccompactmaxsize.ccf");
+copy($epoc . "winscw/c/bcardtest2/basiccompactnobusiness.ccf",                  "temp/phonebooktest/general/bcardtest2/basiccompactnobusiness.ccf");
+copy($epoc . "winscw/c/bcardtest2/dummy.vcf",                                   "temp/phonebooktest/general/bcardtest2/dummy.vcf");
+copy($epoc . "winscw/c/bcardtest2/johnpic.gif",                                 "temp/phonebooktest/general/bcardtest2/johnpic.gif");
+copy($epoc . "winscw/c/bcardtest2/picture2.vcf",                                "temp/phonebooktest/general/bcardtest2/picture2.vcf");
 copy($epoc . "winscw/c/testframework/testframework_pbkvcardimportexport.ini",   "temp/phonebooktest/general/testframework/testframework_pbkvcardimportexport.ini");
 copy($epoc . "winscw/c/testframework/tcbctestpbkvcardimportexport.cfg",         "temp/phonebooktest/general/testframework/tcbctestpbkvcardimportexport.cfg");
 copy($epoc . "winscw/c/testframework/ui_bctestpbkvcardimportexport.cfg",        "temp/phonebooktest/general/testframework/ui_bctestpbkvcardimportexport.cfg");
