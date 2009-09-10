@@ -22,6 +22,7 @@ use File::Path;
 unlink "phonebooktest.zip";
 ##rmtree "temp";
 mkpath "temp/phonebooktest/general/testframework";
+mkpath "temp/phonebooktest/general/bcardtest2";
 mkpath "temp/phonebooktest/winscw_udeb";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
@@ -99,7 +100,7 @@ copy($epoc . "winscw/c/testframework/ui_bctestpbkuiutil.cfg",           "temp/ph
 
 copy($epoc . "release/winscw/udeb/bctestpbkvcardimportexport.dll",              "temp/phonebooktest/winscw_udeb/bctestpbkvcardimportexport.dll");
 copy($epoc . "winscw/c/bcardtest2/basic02.src",                                 "temp/phonebooktest/general/bcardtest2/basic02.src");
-copy($epoc . "winscw/c/bcardtest2/basic03.vcs",                                 "temp/phonebooktest/general/bcardtest2/basic03.vcs");
+copy($epoc . "winscw/c/bcardtest2/basic03.vcf",                                 "temp/phonebooktest/general/bcardtest2/basic03.vcf");
 copy($epoc . "winscw/c/bcardtest2/basiccc01.ccf",                               "temp/phonebooktest/general/bcardtest2/basiccc01.ccf");
 copy($epoc . "winscw/c/bcardtest2/basiccc02.ccf",                               "temp/phonebooktest/general/bcardtest2/basiccc02.ccf");
 copy($epoc . "winscw/c/bcardtest2/basiccompactmaxsize.ccf",                     "temp/phonebooktest/general/bcardtest2/basiccompactmaxsize.ccf");

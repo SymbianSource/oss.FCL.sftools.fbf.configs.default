@@ -871,34 +871,34 @@
 							<param type="data"/>
 							<param src="bcardtest2\basic02.src"/>
 							<param dst="c:\bcardtest2\basic02.src"/>
-							<param component-path="bcardtest2" />
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="basic03.vcs (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+					<step id="" name="basic03.vcf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="bcardtest2\basic03.vcs"/>
-							<param dst="c:\bcardtest2\basic03.vcs"/>
-							<param component-path="bcardtest2" />
+							<param src="bcardtest2\basic03.vcf"/>
+							<param dst="c:\bcardtest2\basic03.vcf"/>
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="basicc01.ccf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+					<step id="" name="basiccc01.ccf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="bcardtest2\basicc01.ccf"/>
-							<param dst="c:\bcardtest2\basicc01.ccf"/>
-							<param component-path="bcardtest2" />
+							<param src="bcardtest2\basiccc01.ccf"/>
+							<param dst="c:\bcardtest2\basiccc01.ccf"/>
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="basicc02.ccf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+					<step id="" name="basiccc02.ccf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="bcardtest2\basicc02.ccf"/>
-							<param dst="c:\bcardtest2\basicc02.ccf"/>
-							<param component-path="bcardtest2" />
+							<param src="bcardtest2\basiccc02.ccf"/>
+							<param dst="c:\bcardtest2\basiccc02.ccf"/>
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
 					<step id="" name="basiccompactmaxsize.ccf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -907,7 +907,7 @@
 							<param type="data"/>
 							<param src="bcardtest2\basiccompactmaxsize.ccf"/>
 							<param dst="c:\bcardtest2\basiccompactmaxsize.ccf"/>
-							<param component-path="bcardtest2" />
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
 					<step id="" name="basiccompactnobusiness.ccf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -916,7 +916,7 @@
 							<param type="data"/>
 							<param src="bcardtest2\basiccompactnobusiness.ccf"/>
 							<param dst="c:\bcardtest2\basiccompactnobusiness.ccf"/>
-							<param component-path="bcardtest2" />
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
 					<step id="" name="dummy.vcf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -925,7 +925,7 @@
 							<param type="data"/>
 							<param src="bcardtest2\dummy.vcf"/>
 							<param dst="c:\bcardtest2\dummy.vcf"/>
-							<param component-path="bcardtest2" />
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
 					<step id="" name="johnpic.gif (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -934,7 +934,7 @@
 							<param type="data"/>
 							<param src="bcardtest2\johnpic.gif"/>
 							<param dst="c:\bcardtest2\johnpic.gif"/>
-							<param component-path="bcardtest2" />
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
 					<step id="" name="picture2.vcf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -943,7 +943,7 @@
 							<param type="data"/>
 							<param src="bcardtest2\picture2.vcf"/>
 							<param dst="c:\bcardtest2\picture2.vcf"/>
-							<param component-path="bcardtest2" />
+							<param component-path="phonebooktest" />
 						</params>
 					</step>
 					<step id="" name="testframework_pbkvcardimportexport.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -1065,9 +1065,9 @@
         
 		<file>phonebooktest/winscw_udeb/bctestpbkvcardimportexport.dll</file>
 		<file>phonebooktest/general/bcardtest2/basic02.src</file>
-		<file>phonebooktest/general/bcardtest2/basic03.vcs</file>
-		<file>phonebooktest/general/bcardtest2/basicc01.ccf</file>
-		<file>phonebooktest/general/bcardtest2/basicc02.ccf</file>
+		<file>phonebooktest/general/bcardtest2/basic03.vcf</file>
+		<file>phonebooktest/general/bcardtest2/basiccc01.ccf</file>
+		<file>phonebooktest/general/bcardtest2/basiccc02.ccf</file>
         <file>phonebooktest/general/bcardtest2/basiccompactmaxsize.ccf</file>
         <file>phonebooktest/general/bcardtest2/basiccompactnobusiness.ccf</file>
         <file>phonebooktest/general/bcardtest2/dummy.vcf</file>
