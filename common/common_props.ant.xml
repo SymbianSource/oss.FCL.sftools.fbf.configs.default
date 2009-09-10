@@ -83,7 +83,7 @@
 
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
-    <property name="sf.spec.test.host.name"      value="v800005"/>
+    <property name="sf.spec.test.host.name"      value="v800026"/>
     <property name="sf.spec.test.host.username"  value="admin"/>
     <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="D:\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
