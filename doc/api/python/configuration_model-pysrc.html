@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>configuration_model</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;configuration_model
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="configuration_model-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="configuration_model-module.html">Module configuration_model</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : configuration_model.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">amara</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">amara</tt> <tt class="py-keyword">import</tt> <tt class="py-name">bindery</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">types</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Method ccm.Folder.copy()=ccm.Folder-class.html#copy"><a title="ccm.Folder.copy" class="py-name" href="#" onclick="return doclink('link-0', 'copy', 'link-0');">copy</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable archive.builders._logger=archive.builders-module.html#_logger,Variable archive.mappers._logger=archive.mappers-module.html#_logger,Variable archive.tools._logger=archive.tools-module.html#_logger,Variable ats3._logger=ats3-module.html#_logger,Variable ats3.aste._logger=ats3.aste-module.html#_logger,Variable ats3.dropgenerator._logger=ats3.dropgenerator-module.html#_logger,Variable ats3.parsers._logger=ats3.parsers-module.html#_logger,Variable ats3.testconfigurator._logger=ats3.testconfigurator-module.html#_logger,Variable build.io._logger=build.io-module.html#_logger,Variable build.model._logger=build.model-module.html#_logger,Variable ccm._logger=ccm-module.html#_logger,Variable ccm.extra._logger=ccm.extra-module.html#_logger,Variable comments._logger=comments-module.html#_logger,Variable configuration._logger=configuration-module.html#_logger,Variable configuration_model._logger=configuration_model-module.html#_logger,Variable delta_zip._logger=delta_zip-module.html#_logger,Variable integration.quality._logger=integration.quality-module.html#_logger,Variable nokia.gscm._logger=nokia.gscm-module.html#_logger,Variable nokia.nokiaccm._logger=nokia.nokiaccm-module.html#_logger,Variable pathaddition.match._logger=pathaddition.match-module.html#_logger,Variable preparation._logger=preparation-module.html#_logger,Variable symbian.log._logger=symbian.log-module.html#_logger,Variable sysdef.api._logger=sysdef.api-module.html#_logger"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-1', '_logger', 'link-1');">_logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'configurationmodel'</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment">#logging.basicConfig(level=logging.DEBUG)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt id="link-2" class="py-name" targets="Variable configuration_model._handler=configuration_model-module.html#_handler"><a title="configuration_model._handler" class="py-name" href="#" onclick="return doclink('link-2', '_handler', 'link-2');">_handler</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">StreamHandler</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt id="link-3" class="py-name"><a title="configuration_model._handler" class="py-name" href="#" onclick="return doclink('link-3', '_handler', 'link-2');">_handler</a></tt><tt class="py-op">.</tt><tt class="py-name">setFormatter</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">Formatter</tt><tt class="py-op">(</tt><tt class="py-string">'%(levelname)s: %(message)s'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt id="link-4" class="py-name"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-4', '_logger', 'link-1');">_logger</a></tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt id="link-5" class="py-name"><a title="configuration_model._handler" class="py-name" href="#" onclick="return doclink('link-5', '_handler', 'link-2');">_handler</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="PropertyDef"></a><div id="PropertyDef-def"><a name="L33"></a><tt class="py-lineno"> 33</tt> <a class="py-toggle" href="#" id="PropertyDef-toggle" onclick="return toggle('PropertyDef');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.PropertyDef-class.html">PropertyDef</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PropertyDef-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PropertyDef-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-docstring">""" The model definition of a property. """</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">     </tt>
+<a name="PropertyDef.__init__"></a><div id="PropertyDef.__init__-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="PropertyDef.__init__-toggle" onclick="return toggle('PropertyDef.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.PropertyDef-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">property_node</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PropertyDef.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PropertyDef.__init__-expanded"><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-docstring">""" Initialization. """</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">,</tt> <tt class="py-string">'name'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Name is not defined for '"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">"'"</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">,</tt> <tt class="py-string">'type'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Type is not defined for '"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method buildtools.Command.name()=buildtools.Command-class.html#name,Method ccm.FourPartName.name()=ccm.FourPartName-class.html#name,Method symrec.ServicePack.name()=symrec.ServicePack-class.html#name,Method sysdef.api.Configuration.name()=sysdef.api.Configuration-class.html#name,Method sysdef.api.Option.name()=sysdef.api.Option-class.html#name,Method sysdef.api.SpecialInstruction.name()=sysdef.api.SpecialInstruction-class.html#name,Method sysdef.api.Target.name()=sysdef.api.Target-class.html#name,Method sysdef.api.TargetList.name()=sysdef.api.TargetList-class.html#name,Method sysdef.api.Unit.name()=sysdef.api.Unit-class.html#name,Method sysdef.api._UnitGroup.name()=sysdef.api._UnitGroup-class.html#name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-6', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">"'"</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">,</tt> <tt class="py-string">'description'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Description is not defined for '"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-7', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">"'"</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">             </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-8', 'name', 'link-6');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-9', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">editStatus</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt class="py-name">editStatus</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method ccm.FourPartName.type()=ccm.FourPartName-class.html#type"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-10', 'type', 'link-10');">type</a></tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-11', 'type', 'link-10');">type</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method ccm.Folder.description()=ccm.Folder-class.html#description"><a title="ccm.Folder.description" class="py-name" href="#" onclick="return doclink('link-12', 'description', 'link-12');">description</a></tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="ccm.Folder.description" class="py-name" href="#" onclick="return doclink('link-13', 'description', 'link-12');">description</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">strip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">         </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="ccm.Folder.description" class="py-name" href="#" onclick="return doclink('link-14', 'description', 'link-12');">description</a></tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt id="link-15" class="py-name"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-15', '_logger', 'link-1');">_logger</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method configuration_model.Item.log()=configuration_model.Item-class.html#log,Module symbian.log=symbian.log-module.html"><a title="configuration_model.Item.log
+symbian.log" class="py-name" href="#" onclick="return doclink('link-16', 'log', 'link-16');">log</a></tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">ERROR</tt><tt class="py-op">,</tt> <tt class="py-string">"Description has no content for '"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-17', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">"'"</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">         </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">,</tt> <tt class="py-string">'deprecated'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">deprecated</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_node</tt><tt class="py-op">.</tt><tt class="py-name">deprecated</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                         </tt>
+<a name="PropertyDef.__repr__"></a><div id="PropertyDef.__repr__-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="PropertyDef.__repr__-toggle" onclick="return toggle('PropertyDef.__repr__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.PropertyDef-class.html#__repr__">__repr__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PropertyDef.__repr__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PropertyDef.__repr__-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-18', 'name', 'link-6');">name</a></tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">         </tt>
+<a name="PropertyDef.__str__"></a><div id="PropertyDef.__str__-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="PropertyDef.__str__-toggle" onclick="return toggle('PropertyDef.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.PropertyDef-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PropertyDef.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PropertyDef.__str__-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-19', 'name', 'link-6');">name</a></tt> </tt>
+</div></div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">     </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">     </tt>
+<a name="GroupDef"></a><div id="GroupDef-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="GroupDef-toggle" onclick="return toggle('GroupDef');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.GroupDef-class.html">GroupDef</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GroupDef-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="GroupDef-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-docstring">""" The model definition of a group of properties. """</tt> </tt>
+<a name="GroupDef.__init__"></a><div id="GroupDef.__init__-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="GroupDef.__init__-toggle" onclick="return toggle('GroupDef.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.GroupDef-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">group_node</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GroupDef.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GroupDef.__init__-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-docstring">""" Initialization. """</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-20', 'name', 'link-6');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">group_node</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-21', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="ccm.Folder.description" class="py-name" href="#" onclick="return doclink('link-22', 'description', 'link-12');">description</a></tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">group_node</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="ccm.Folder.description" class="py-name" href="#" onclick="return doclink('link-23', 'description', 'link-12');">description</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Method ats3.atsconfigparser.ATSConfigParser.properties()=ats3.atsconfigparser.ATSConfigParser-class.html#properties"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-24', 'properties', 'link-24');">properties</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">propref</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">property_</tt> <tt class="py-keyword">in</tt> <tt class="py-name">group_node</tt><tt class="py-op">.</tt><tt class="py-name">propertyRef</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-25', 'properties', 'link-24');">properties</a></tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">property_</tt><tt class="py-op">.</tt><tt class="py-name">usage</tt> </tt>
+</div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">             </tt>
+<a name="GroupDef.check_config"></a><div id="GroupDef.check_config-def"><a name="L74"></a><tt class="py-lineno"> 74</tt> <a class="py-toggle" href="#" id="GroupDef.check_config-toggle" onclick="return toggle('GroupDef.check_config');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.GroupDef-class.html#check_config">check_config</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">items</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GroupDef.check_config-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GroupDef.check_config-expanded"><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-docstring">""" Checks that the set of properties in a group are properly defined. """</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">defined_props</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-26', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method ccm.CCMObject.keys()=ccm.CCMObject-class.html#keys,Method configuration.Configuration.keys()=configuration.Configuration-class.html#keys,Method configuration.NestedConfiguration.keys()=configuration.NestedConfiguration-class.html#keys,Method symrec.ReleaseMetadata.keys()=symrec.ReleaseMetadata-class.html#keys"><a title="ccm.CCMObject.keys
+configuration.Configuration.keys
+configuration.NestedConfiguration.keys
+symrec.ReleaseMetadata.keys" class="py-name" href="#" onclick="return doclink('link-27', 'keys', 'link-27');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">defined_props</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-name">required_props</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-28', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="ccm.CCMObject.keys
+configuration.Configuration.keys
+configuration.NestedConfiguration.keys
+symrec.ReleaseMetadata.keys" class="py-name" href="#" onclick="return doclink('link-29', 'keys', 'link-27');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-30', 'properties', 'link-24');">properties</a></tt><tt class="py-op">[</tt><tt class="py-name">p</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-string">'required'</tt><tt class="py-op">]</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt class="py-name">required_not_defined_props</tt> <tt class="py-op">=</tt> <tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-name">required_props</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">difference</tt><tt class="py-op">(</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-name">defined_props</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">undefined_property</tt> <tt class="py-keyword">in</tt> <tt class="py-name">required_not_defined_props</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                <tt class="py-name">items</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method ccm.Folder.append()=ccm.Folder-class.html#append,Method ccm.Task.append()=ccm.Task-class.html#append"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-31', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt id="link-32" class="py-name" targets="Class configuration_model.UndefinedRequiredInGroupItem=configuration_model.UndefinedRequiredInGroupItem-class.html"><a title="configuration_model.UndefinedRequiredInGroupItem" class="py-name" href="#" onclick="return doclink('link-32', 'UndefinedRequiredInGroupItem', 'link-32');">UndefinedRequiredInGroupItem</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-33', 'name', 'link-6');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">undefined_property</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">         </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">         </tt>
+<a name="DataModel"></a><div id="DataModel-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="DataModel-toggle" onclick="return toggle('DataModel');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html">DataModel</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DataModel-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-docstring">""" A model of the configuration properties. """</tt> </tt>
+<a name="DataModel.__init__"></a><div id="DataModel.__init__-def"><a name="L86"></a><tt class="py-lineno"> 86</tt> <a class="py-toggle" href="#" id="DataModel.__init__-toggle" onclick="return toggle('DataModel.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">modelpath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel.__init__-expanded"><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-docstring">""" Initialization. """</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">doc</tt> <tt class="py-op">=</tt> <tt class="py-name">amara</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Method bsf.BSF.parse()=bsf.BSF-class.html#parse,Method symbian.log.Parser.parse()=symbian.log.Parser-class.html#parse"><a title="bsf.BSF.parse
+symbian.log.Parser.parse" class="py-name" href="#" onclick="return doclink('link-34', 'parse', 'link-34');">parse</a></tt><tt class="py-op">(</tt><tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">modelpath</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">         </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-35', 'properties', 'link-24');">properties</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">required_props</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">property_</tt> <tt class="py-keyword">in</tt> <tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">heliumDataModel</tt><tt class="py-op">.</tt><tt class="py-name">property</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-36', 'properties', 'link-24');">properties</a></tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">property_</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-37', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-38" class="py-name" targets="Class configuration_model.PropertyDef=configuration_model.PropertyDef-class.html"><a title="configuration_model.PropertyDef" class="py-name" href="#" onclick="return doclink('link-38', 'PropertyDef', 'link-38');">PropertyDef</a></tt><tt class="py-op">(</tt><tt class="py-name">property_</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                    </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nongroupedproperties</tt> <tt class="py-op">=</tt> <tt id="link-39" class="py-name"><a title="ccm.Folder.copy" class="py-name" href="#" onclick="return doclink('link-39', 'copy', 'link-0');">copy</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="ccm.Folder.copy" class="py-name" href="#" onclick="return doclink('link-40', 'copy', 'link-0');">copy</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-41', 'properties', 'link-24');">properties</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">groups</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">group</tt> <tt class="py-keyword">in</tt> <tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">heliumDataModel</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-name">groupobj</tt> <tt class="py-op">=</tt> <tt id="link-42" class="py-name" targets="Class configuration_model.GroupDef=configuration_model.GroupDef-class.html"><a title="configuration_model.GroupDef" class="py-name" href="#" onclick="return doclink('link-42', 'GroupDef', 'link-42');">GroupDef</a></tt><tt class="py-op">(</tt><tt class="py-name">group</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">groups</tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">group</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-43', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">groupobj</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">             </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">groupobj</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-44', 'properties', 'link-24');">properties</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                <tt class="py-name">groupobj</tt><tt class="py-op">.</tt><tt class="py-name">propref</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-45', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-46', 'properties', 'link-24');">properties</a></tt><tt class="py-op">[</tt><tt class="py-name">prop</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nongroupedproperties</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">                    <tt class="py-keyword">del</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nongroupedproperties</tt><tt class="py-op">[</tt><tt class="py-name">prop</tt><tt class="py-op">]</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                     </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-name">groupobj</tt><tt class="py-op">.</tt><tt class="py-name">propref</tt><tt class="py-op">.</tt><tt class="py-name">sort</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">             </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-name">required_props_in_group</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">group</tt><tt class="py-op">.</tt><tt class="py-name">propertyRef</tt> <tt class="py-keyword">if</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">usage</tt> <tt class="py-op">==</tt> <tt class="py-string">'required'</tt><tt class="py-op">]</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">             </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">required_prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">required_props_in_group</tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">required_props</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-47', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">required_prop</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-48', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">required_prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">                    <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Required property "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">required_prop</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" is not defined!"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">         </tt>
+<a name="DataModel.validate_config"></a><div id="DataModel.validate_config-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="DataModel.validate_config-toggle" onclick="return toggle('DataModel.validate_config');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#validate_config">validate_config</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel.validate_config-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel.validate_config-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-docstring">""" Validate the Ant configuration against the model. """</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-name">items</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method configuration_model.DataModel._check_deprecated_properties()=configuration_model.DataModel-class.html#_check_deprecated_properties"><a title="configuration_model.DataModel._check_deprecated_properties" class="py-name" href="#" onclick="return doclink('link-49', '_check_deprecated_properties', 'link-49');">_check_deprecated_properties</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">items</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method configuration_model.DataModel._check_undefined_properties()=configuration_model.DataModel-class.html#_check_undefined_properties"><a title="configuration_model.DataModel._check_undefined_properties" class="py-name" href="#" onclick="return doclink('link-50', '_check_undefined_properties', 'link-50');">_check_undefined_properties</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">items</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Method configuration_model.DataModel._check_undefined_properties_in_groups()=configuration_model.DataModel-class.html#_check_undefined_properties_in_groups"><a title="configuration_model.DataModel._check_undefined_properties_in_groups" class="py-name" href="#" onclick="return doclink('link-51', '_check_undefined_properties_in_groups', 'link-51');">_check_undefined_properties_in_groups</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">items</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name" targets="Method configuration_model.DataModel._check_type_validation()=configuration_model.DataModel-class.html#_check_type_validation"><a title="configuration_model.DataModel._check_type_validation" class="py-name" href="#" onclick="return doclink('link-52', '_check_type_validation', 'link-52');">_check_type_validation</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">items</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method configuration_model.DataModel._check_defined_properties_not_in_groups()=configuration_model.DataModel-class.html#_check_defined_properties_not_in_groups"><a title="configuration_model.DataModel._check_defined_properties_not_in_groups" class="py-name" href="#" onclick="return doclink('link-53', '_check_defined_properties_not_in_groups', 'link-53');">_check_defined_properties_not_in_groups</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">items</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">items</tt> </tt>
+</div><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">     </tt>
+<a name="DataModel.validate_config_at_startup"></a><div id="DataModel.validate_config_at_startup-def"><a name="L125"></a><tt class="py-lineno">125</tt> <a class="py-toggle" href="#" id="DataModel.validate_config_at_startup-toggle" onclick="return toggle('DataModel.validate_config_at_startup');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#validate_config_at_startup">validate_config_at_startup</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel.validate_config_at_startup-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel.validate_config_at_startup-expanded"><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-docstring">""" Validate the Ant configuration against the model at build startup. """</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">items</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">         </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">required_props</tt><tt class="py-op">:</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"Required property "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" is not defined!"</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">         </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">items</tt> </tt>
+</div><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">     </tt>
+<a name="DataModel._check_deprecated_properties"></a><div id="DataModel._check_deprecated_properties-def"><a name="L135"></a><tt class="py-lineno">135</tt> <a class="py-toggle" href="#" id="DataModel._check_deprecated_properties-toggle" onclick="return toggle('DataModel._check_deprecated_properties');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#_check_deprecated_properties">_check_deprecated_properties</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">items</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel._check_deprecated_properties-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel._check_deprecated_properties-expanded"><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-docstring">""" Check that deprecated properties not being used. """</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">deprecated_props</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-54', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">,</tt> <tt class="py-string">'deprecated'</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">deprecated_prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">deprecated_props</tt><tt class="py-op">:</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">            <tt id="link-55" class="py-name"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-55', '_logger', 'link-1');">_logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Checking deprecated property: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">deprecated_prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">deprecated_prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                <tt class="py-name">items</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-56', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt id="link-57" class="py-name" targets="Class configuration_model.UsingDeprecatedItem=configuration_model.UsingDeprecatedItem-class.html"><a title="configuration_model.UsingDeprecatedItem" class="py-name" href="#" onclick="return doclink('link-57', 'UsingDeprecatedItem', 'link-57');">UsingDeprecatedItem</a></tt><tt class="py-op">(</tt><tt class="py-name">deprecated_prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">     </tt>
+<a name="DataModel._check_undefined_properties"></a><div id="DataModel._check_undefined_properties-def"><a name="L143"></a><tt class="py-lineno">143</tt> <a class="py-toggle" href="#" id="DataModel._check_undefined_properties-toggle" onclick="return toggle('DataModel._check_undefined_properties');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#_check_undefined_properties">_check_undefined_properties</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">items</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel._check_undefined_properties-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel._check_undefined_properties-expanded"><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-docstring">""" Check for any defined properties that are not in the model. """</tt>  </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-name">undefined_properties</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="ccm.CCMObject.keys
+configuration.Configuration.keys
+configuration.NestedConfiguration.keys
+symrec.ReleaseMetadata.keys" class="py-name" href="#" onclick="return doclink('link-58', 'keys', 'link-27');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">p</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-59', 'properties', 'link-24');">properties</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">undefined_properties</tt><tt class="py-op">.</tt><tt class="py-name">sort</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">undefined_property</tt> <tt class="py-keyword">in</tt> <tt class="py-name">undefined_properties</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-name">items</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-60', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt id="link-61" class="py-name" targets="Class configuration_model.MissingFromDataModelItem=configuration_model.MissingFromDataModelItem-class.html"><a title="configuration_model.MissingFromDataModelItem" class="py-name" href="#" onclick="return doclink('link-61', 'MissingFromDataModelItem', 'link-61');">MissingFromDataModelItem</a></tt><tt class="py-op">(</tt><tt class="py-name">undefined_property</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="DataModel._check_undefined_properties_in_groups"></a><div id="DataModel._check_undefined_properties_in_groups-def"><a name="L150"></a><tt class="py-lineno">150</tt> <a class="py-toggle" href="#" id="DataModel._check_undefined_properties_in_groups-toggle" onclick="return toggle('DataModel._check_undefined_properties_in_groups');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#_check_undefined_properties_in_groups">_check_undefined_properties_in_groups</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">items</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel._check_undefined_properties_in_groups-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel._check_undefined_properties_in_groups-expanded"><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">group</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">groups</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt id="link-62" class="py-name"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-62', '_logger', 'link-1');">_logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Checking group: %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">group</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-63', 'name', 'link-6');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-name">group</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name" targets="Method configuration_model.GroupDef.check_config()=configuration_model.GroupDef-class.html#check_config"><a title="configuration_model.GroupDef.check_config" class="py-name" href="#" onclick="return doclink('link-64', 'check_config', 'link-64');">check_config</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">items</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">     </tt>
+<a name="DataModel._check_defined_properties_not_in_groups"></a><div id="DataModel._check_defined_properties_not_in_groups-def"><a name="L155"></a><tt class="py-lineno">155</tt> <a class="py-toggle" href="#" id="DataModel._check_defined_properties_not_in_groups-toggle" onclick="return toggle('DataModel._check_defined_properties_not_in_groups');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#_check_defined_properties_not_in_groups">_check_defined_properties_not_in_groups</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">items</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel._check_defined_properties_not_in_groups-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel._check_defined_properties_not_in_groups-expanded"><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">gp</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">group</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">groups</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">            <tt class="py-name">gp</tt> <tt class="py-op">=</tt> <tt class="py-name">gp</tt> <tt class="py-op">+</tt> <tt class="py-name">group</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-65', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="ccm.CCMObject.keys
+configuration.Configuration.keys
+configuration.NestedConfiguration.keys
+symrec.ReleaseMetadata.keys" class="py-name" href="#" onclick="return doclink('link-66', 'keys', 'link-27');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-67', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">)</tt> <tt class="py-keyword">in</tt> <tt class="py-name">gp</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">' not in a group'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">     </tt>
+<a name="DataModel._check_type_validation"></a><div id="DataModel._check_type_validation-def"><a name="L163"></a><tt class="py-lineno">163</tt> <a class="py-toggle" href="#" id="DataModel._check_type_validation-toggle" onclick="return toggle('DataModel._check_type_validation');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.DataModel-class.html#_check_type_validation">_check_type_validation</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">items</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataModel._check_type_validation-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataModel._check_type_validation-expanded"><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-name">prop_string</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-68', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-69', 'type', 'link-10');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'string'</tt><tt class="py-op">]</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-name">prop_integer</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-70', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-71', 'type', 'link-10');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'integer'</tt><tt class="py-op">]</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-name">prop_boolean</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-72', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-73', 'type', 'link-10');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'boolean'</tt><tt class="py-op">]</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-name">prop_flag</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.properties" class="py-name" href="#" onclick="return doclink('link-74', 'properties', 'link-24');">properties</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-75" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-75', 'type', 'link-10');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'flag'</tt><tt class="py-op">]</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">         </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">prop_integer</tt><tt class="py-op">:</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">isdigit</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">                    <tt class="py-name">items</tt><tt class="py-op">.</tt><tt id="link-76" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-76', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt id="link-77" class="py-name" targets="Class configuration_model.WrongTypeItem=configuration_model.WrongTypeItem-class.html"><a title="configuration_model.WrongTypeItem" class="py-name" href="#" onclick="return doclink('link-77', 'WrongTypeItem', 'link-77');">WrongTypeItem</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-string">"integer"</tt><tt class="py-op">,</tt> <tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt>             </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">                </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">prop_boolean</tt><tt class="py-op">:</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">:</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-string">'false'</tt> <tt class="py-keyword">or</tt> <tt class="py-string">'true'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">                    <tt class="py-name">items</tt><tt class="py-op">.</tt><tt id="link-78" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-78', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt id="link-79" class="py-name"><a title="configuration_model.WrongTypeItem" class="py-name" href="#" onclick="return doclink('link-79', 'WrongTypeItem', 'link-77');">WrongTypeItem</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-string">"boolean"</tt><tt class="py-op">,</tt> <tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">                     </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">prop</tt> <tt class="py-keyword">in</tt> <tt class="py-name">prop_string</tt><tt class="py-op">:</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">                    <tt class="py-name">items</tt><tt class="py-op">.</tt><tt id="link-80" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-80', 'append', 'link-31');">append</a></tt><tt class="py-op">(</tt><tt id="link-81" class="py-name"><a title="configuration_model.WrongTypeItem" class="py-name" href="#" onclick="return doclink('link-81', 'WrongTypeItem', 'link-77');">WrongTypeItem</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-string">"string"</tt><tt class="py-op">,</tt> <tt class="py-name">prop</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">         </tt>
+<a name="Item"></a><div id="Item-def"><a name="L185"></a><tt class="py-lineno">185</tt> <a class="py-toggle" href="#" id="Item-toggle" onclick="return toggle('Item');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.Item-class.html">Item</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Item-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Item-expanded"><a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">    <tt id="link-82" class="py-name" targets="Variable configuration_model.Item.level=configuration_model.Item-class.html#level,Variable configuration_model.MissingFromDataModelItem.level=configuration_model.MissingFromDataModelItem-class.html#level,Variable configuration_model.UndefinedRequiredInGroupItem.level=configuration_model.UndefinedRequiredInGroupItem-class.html#level,Variable configuration_model.UsingDeprecatedItem.level=configuration_model.UsingDeprecatedItem-class.html#level,Variable configuration_model.WrongTypeItem.level=configuration_model.WrongTypeItem-class.html#level"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-82', 'level', 'link-82');">level</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">INFO</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">    <tt id="link-83" class="py-name" targets="Variable configuration_model.Item.message=configuration_model.Item-class.html#message,Variable configuration_model.MissingFromDataModelItem.message=configuration_model.MissingFromDataModelItem-class.html#message,Variable configuration_model.UndefinedRequiredInGroupItem.message=configuration_model.UndefinedRequiredInGroupItem-class.html#message,Variable configuration_model.UsingDeprecatedItem.message=configuration_model.UsingDeprecatedItem-class.html#message,Variable configuration_model.WrongTypeItem.message=configuration_model.WrongTypeItem-class.html#message,Method log2xml.LogWriter.message()=log2xml.LogWriter-class.html#message"><a title="configuration_model.Item.message
+configuration_model.MissingFromDataModelItem.message
+configuration_model.UndefinedRequiredInGroupItem.message
+configuration_model.UsingDeprecatedItem.message
+configuration_model.WrongTypeItem.message
+log2xml.LogWriter.message" class="py-name" href="#" onclick="return doclink('link-83', 'message', 'link-83');">message</a></tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"> </tt>
+<a name="Item.__init__"></a><div id="Item.__init__-def"><a name="L189"></a><tt class="py-lineno">189</tt> <a class="py-toggle" href="#" id="Item.__init__-toggle" onclick="return toggle('Item.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.Item-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Item.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Item.__init__-expanded"><a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt class="py-docstring">""" Initialization. """</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt> <tt class="py-op">=</tt> <tt class="py-name">values</tt> </tt>
+</div><a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">     </tt>
+<a name="Item.log"></a><div id="Item.log-def"><a name="L193"></a><tt class="py-lineno">193</tt> <a class="py-toggle" href="#" id="Item.log-toggle" onclick="return toggle('Item.log');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.Item-class.html#log">log</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">logger</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Item.log-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Item.log-expanded"><a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt id="link-84" class="py-name" targets="Variable archive.scanners.logger=archive.scanners-module.html#logger,Variable archive.selectors.logger=archive.selectors-module.html#logger,Variable buildmanagement.logger=buildmanagement-module.html#logger,Variable flash_config.logger=flash_config-module.html#logger,Module helium.logger=helium.logger-module.html,Variable imaker.iqrf.logger=imaker.iqrf-module.html#logger,Variable integration.templatebuilder.logger=integration.templatebuilder-module.html#logger,Variable rom.logger=rom-module.html#logger"><a title="archive.scanners.logger
+archive.selectors.logger
+buildmanagement.logger
+flash_config.logger
+helium.logger
+imaker.iqrf.logger
+integration.templatebuilder.logger
+rom.logger" class="py-name" href="#" onclick="return doclink('link-84', 'logger', 'link-84');">logger</a></tt><tt class="py-op">.</tt><tt id="link-85" class="py-name"><a title="configuration_model.Item.log
+symbian.log" class="py-name" href="#" onclick="return doclink('link-85', 'log', 'link-16');">log</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-86" class="py-name"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-86', 'level', 'link-82');">level</a></tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">         </tt>
+<a name="Item.__str__"></a><div id="Item.__str__-def"><a name="L196"></a><tt class="py-lineno">196</tt> <a class="py-toggle" href="#" id="Item.__str__-toggle" onclick="return toggle('Item.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="configuration_model.Item-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Item.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Item.__str__-expanded"><a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-87" class="py-name"><a title="configuration_model.Item.message
+configuration_model.MissingFromDataModelItem.message
+configuration_model.UndefinedRequiredInGroupItem.message
+configuration_model.UsingDeprecatedItem.message
+configuration_model.WrongTypeItem.message
+log2xml.LogWriter.message" class="py-name" href="#" onclick="return doclink('link-87', 'message', 'link-83');">message</a></tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt> </tt>
+</div></div><a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"> </tt>
+<a name="MissingFromDataModelItem"></a><div id="MissingFromDataModelItem-def"><a name="L200"></a><tt class="py-lineno">200</tt> <a class="py-toggle" href="#" id="MissingFromDataModelItem-toggle" onclick="return toggle('MissingFromDataModelItem');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.MissingFromDataModelItem-class.html">MissingFromDataModelItem</a><tt class="py-op">(</tt><tt class="py-base-class">Item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MissingFromDataModelItem-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MissingFromDataModelItem-expanded"><a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">    <tt id="link-88" class="py-name"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-88', 'level', 'link-82');">level</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">INFO</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">    <tt id="link-89" class="py-name"><a title="configuration_model.Item.message
+configuration_model.MissingFromDataModelItem.message
+configuration_model.UndefinedRequiredInGroupItem.message
+configuration_model.UsingDeprecatedItem.message
+configuration_model.WrongTypeItem.message
+log2xml.LogWriter.message" class="py-name" href="#" onclick="return doclink('link-89', 'message', 'link-83');">message</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'Property not in data model: %s'</tt> </tt>
+</div><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line"> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">     </tt>
+<a name="UsingDeprecatedItem"></a><div id="UsingDeprecatedItem-def"><a name="L205"></a><tt class="py-lineno">205</tt> <a class="py-toggle" href="#" id="UsingDeprecatedItem-toggle" onclick="return toggle('UsingDeprecatedItem');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.UsingDeprecatedItem-class.html">UsingDeprecatedItem</a><tt class="py-op">(</tt><tt class="py-base-class">Item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UsingDeprecatedItem-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="UsingDeprecatedItem-expanded"><a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">    <tt id="link-90" class="py-name"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-90', 'level', 'link-82');">level</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">WARNING</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">    <tt id="link-91" class="py-name"><a title="configuration_model.Item.message
+configuration_model.MissingFromDataModelItem.message
+configuration_model.UndefinedRequiredInGroupItem.message
+configuration_model.UsingDeprecatedItem.message
+configuration_model.WrongTypeItem.message
+log2xml.LogWriter.message" class="py-name" href="#" onclick="return doclink('link-91', 'message', 'link-83');">message</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'Deprecated property used: %s'</tt> </tt>
+</div><a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"> </tt>
+<a name="UndefinedRequiredInGroupItem"></a><div id="UndefinedRequiredInGroupItem-def"><a name="L210"></a><tt class="py-lineno">210</tt> <a class="py-toggle" href="#" id="UndefinedRequiredInGroupItem-toggle" onclick="return toggle('UndefinedRequiredInGroupItem');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.UndefinedRequiredInGroupItem-class.html">UndefinedRequiredInGroupItem</a><tt class="py-op">(</tt><tt class="py-base-class">Item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UndefinedRequiredInGroupItem-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="UndefinedRequiredInGroupItem-expanded"><a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">    <tt id="link-92" class="py-name"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-92', 'level', 'link-82');">level</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">WARNING</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">    <tt id="link-93" class="py-name"><a title="configuration_model.Item.message
+configuration_model.MissingFromDataModelItem.message
+configuration_model.UndefinedRequiredInGroupItem.message
+configuration_model.UsingDeprecatedItem.message
+configuration_model.WrongTypeItem.message
+log2xml.LogWriter.message" class="py-name" href="#" onclick="return doclink('link-93', 'message', 'link-83');">message</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'Required property in %s group is not defined: %s'</tt> </tt>
+</div><a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">     </tt>
+<a name="WrongTypeItem"></a><div id="WrongTypeItem-def"><a name="L215"></a><tt class="py-lineno">215</tt> <a class="py-toggle" href="#" id="WrongTypeItem-toggle" onclick="return toggle('WrongTypeItem');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="configuration_model.WrongTypeItem-class.html">WrongTypeItem</a><tt class="py-op">(</tt><tt class="py-base-class">Item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WrongTypeItem-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WrongTypeItem-expanded"><a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">    <tt id="link-94" class="py-name"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-94', 'level', 'link-82');">level</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">WARNING</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">    <tt id="link-95" class="py-name"><a title="configuration_model.Item.message
+configuration_model.MissingFromDataModelItem.message
+configuration_model.UndefinedRequiredInGroupItem.message
+configuration_model.UsingDeprecatedItem.message
+configuration_model.WrongTypeItem.message
+log2xml.LogWriter.message" class="py-name" href="#" onclick="return doclink('link-95', 'message', 'link-83');">message</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'Invalid %s value: %s'</tt> </tt>
+</div><a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:23 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

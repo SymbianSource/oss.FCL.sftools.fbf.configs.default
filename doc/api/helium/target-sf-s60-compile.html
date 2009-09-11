@@ -1,0 +1,315 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd xhtml 1.0 strict//en"
+      "http://www.w3.org/tr/xhtml1/dtd/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta name="keywords" content="helium"/>
+    <meta http-equiv="content-type" content="text/html+xml; charset=iso-8859-1"/>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:   '',
+        VERSION:    '0'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+
+    <script type="text/javascript" src="../_static/interface.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <title>Target sf-s60-compile</title>
+</head>
+
+
+<body>
+<!-- ========= start of top navbar ======= -->
+<a name="navbar_top"><!-- --></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0" summary="">
+<tr>
+<td colspan="2" bgcolor="#eeeeff" class="navbarcell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3" summary="">
+  <tr align="center" valign="top">
+  <td bgcolor="#ffffff" class="navbarcell1"> &#160;<a href="overview-summary.html"><font class="navbarfont1"><b>overview</b></font>&#160;</a></td>
+
+  <td bgcolor="#ffffff" class="navbarcell1">    <a href="deprecated-list.html"><font class="navbarfont1"><b>deprecated</b></font></a>&#160;</td>
+    
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="properties-table.html"><font class="navbarfont1"><b>properties-table</b></font></a>&#160;</td>  
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="index-1.html"><font class="navbarfont1"><b>index</b></font></a>&#160;</td>
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="help.html"><font class="navbarfont1"><b>help</b></font></a>&#160;</td>
+  </tr>
+</table>
+</td>
+<td align="right" valign="top" rowspan="3"><em>
+<b>Helium API</b></em>
+
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+&#160;prev&#160;
+&#160;next</font></td>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>frames</b></a>  &#160;
+&#160;<a href="overview-summary.html" target="_top"><b>no frames</b></a>  &#160;
+
+&#160;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<a href="allclasses-noframe.html"><b>all classes</b></a>');
+  }
+  //-->
+</script>
+<noscript>
+  <a href="allclasses-noframe.html"><b>all classes</b></a>
+</noscript>
+
+
+</font></td>
+</tr>
+</table>
+<a name="skip-navbar_top"></a>
+<!-- ========= end of top navbar ========= -->
+    <hr/>
+
+
+    
+<h2>Target sf-s60-compile</h2>
+
+<p><b>Location</b></p>
+<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/sf-platform/build.xml#L363">D:\maintools\sf-config\sf-platform\build.xml:363:</a></tt>  
+</p>
+
+<p><b>Conditional execution</b></p>        
+<p>No conditions on target execution.</p>
+<hr/>
+
+<h3>Description</h3>
+<p>
+<p>Name: SF-S60-COMPILE</p><p>Desc: Compile S60 part of build using the spec defined in:</p>- job_props.ant.xml - job_refs.ant.xml</p>
+<p/>
+<hr/>
+
+
+
+
+<h3>Property dependencies</h3>
+
+
+<p> 
+<table class="docutils" width="50%">
+    <tr>
+        <th class="head">Name</th><th class="head">Edit status</th>
+    </tr>
+    <tr>
+        <td colspan="2">User editable properties</td>
+    </tr>
+    <tr>
+        <td colspan="2">Internal properties</td>
+    </tr>
+</table>
+</p>
+
+<hr/>
+
+
+<h3>Target dependencies</h3>
+<p align="center">
+<img src="target-sf-s60-compile.dot.png" alt="sf-s60-compile dependencies" usemap="#dependencies"
+     style="border-style: none"/>
+<map name="dependencies" id="dependencies">
+<area shape="rect" id="node1" href="target-sf-s60-compile.html" title="sf&#45;s60&#45;compile" alt="" coords="151,113,273,161">
+<area shape="rect" id="node5" href="target-sf-list-dir.html" title="sf&#45;list&#45;dir" alt="" coords="395,5,475,53">
+<area shape="rect" id="node10" href="target-sf-delta-dir.html" title="sf&#45;delta&#45;dir" alt="" coords="387,149,483,197">
+<area shape="rect" id="node17" href="target-sf-intersect-dir.html" title="sf&#45;intersect&#45;dir" alt="" coords="375,221,495,269">
+<area shape="rect" id="node2" href="target-sf-compile.html" title="sf&#45;compile" alt="" coords="5,113,99,161">
+</map>
+</p>
+<hr/>
+
+
+<h3>Source code</h3>
+<pre>
+    &lt;target name=&quot;sf-s60-compile&quot;&gt;
+
+        &lt;hlm:argSet xmlns:hlm=&quot;http://www.nokia.com/helium&quot; id=&quot;sbs.tools.var&quot;&gt;
+          			&lt;hlm:arg name=&quot;config&quot; value=&quot;${sf.spec.sbs.tools.config}&quot;/&gt;
+          			&lt;hlm:arg name=&quot;singlejob&quot; value=&quot;true&quot;/&gt;
+          			&lt;hlm:arg name=&quot;enable-filter&quot; value=&quot;${sf.spec.logs.raptorfilter.enable}&quot;/&gt;
+                                &lt;hlm:arg name=&quot;retry-limit&quot; value=&quot;${sf.spec.sbs.retry.limit}&quot;/&gt;
+    		&lt;/hlm:argSet&gt;
+
+			&lt;hlm:argSet xmlns:hlm=&quot;http://www.nokia.com/helium&quot; id=&quot;sbs.tools.clean.var&quot;&gt;
+          			&lt;hlm:arg name=&quot;config&quot; value=&quot;${sf.spec.sbs.tools.config}&quot;/&gt;
+          			&lt;hlm:arg name=&quot;singlejob&quot; value=&quot;true&quot;/&gt;
+          			&lt;hlm:arg name=&quot;enable-filter&quot; value=&quot;${sf.spec.logs.raptorfilter.enable}&quot;/&gt;
+    		&lt;/hlm:argSet&gt;
+
+    		&lt;hlm:argSet xmlns:hlm=&quot;http://www.nokia.com/helium&quot; id=&quot;sbs.main.sbs.var&quot;&gt;
+          			&lt;hlm:arg name=&quot;config&quot; value=&quot;${sf.spec.sbs.config}&quot;/&gt;
+          			&lt;hlm:arg name=&quot;enable-filter&quot; value=&quot;${sf.spec.logs.raptorfilter.enable}&quot;/&gt;
+                                &lt;hlm:arg name=&quot;retry-limit&quot; value=&quot;${sf.spec.sbs.retry.limit}&quot;/&gt;
+    		&lt;/hlm:argSet&gt;
+
+			&lt;hlm:argSet xmlns:hlm=&quot;http://www.nokia.com/helium&quot; id=&quot;sbs.main.clean.sbs.var&quot;&gt;
+          			&lt;hlm:arg name=&quot;config&quot; value=&quot;${sf.spec.sbs.config}&quot;/&gt;
+          			&lt;hlm:arg name=&quot;enable-filter&quot; value=&quot;${sf.spec.logs.raptorfilter.enable}&quot;/&gt;
+				&lt;hlm:arg name=&quot;command&quot; value=&quot;CLEAN --check&quot;/&gt;
+    		&lt;/hlm:argSet&gt;
+			
+          			&lt;hlm:argSet xmlns:hlm=&quot;http://www.nokia.com/helium&quot; id=&quot;sbs.main.what.sbs.var&quot;&gt;
+          			&lt;hlm:arg name=&quot;config&quot; value=&quot;${sf.spec.sbs.config}&quot;/&gt;
+          			&lt;hlm:arg name=&quot;enable-filter&quot; value=&quot;${sf.spec.logs.raptorfilter.enable}&quot;/&gt;
+				&lt;hlm:arg name=&quot;command&quot; value=&quot;WHAT&quot;/&gt;
+    		&lt;/hlm:argSet&gt;
+
+    		&lt;hlm:sbsMakeOptions xmlns:hlm=&quot;http://www.nokia.com/helium&quot; engine=&quot;gmake&quot; id=&quot;sbs.toolsbuild.options&quot;/&gt;
+    		&lt;hlm:sbsMakeOptions xmlns:hlm=&quot;http://www.nokia.com/helium&quot; engine=&quot;gmake&quot; id=&quot;sbs.fullbuild.options&quot;/&gt;
+
+		&lt;antcall target=&quot;sf-list-dir&quot; inheritAll=&quot;false&quot;&gt;
+			&lt;param name=&quot;sf.list.name&quot; value=&quot;s60-baseline&quot;/&gt;
+		&lt;/antcall&gt;
+		
+			&lt;!-- s60 what  --&gt;
+			&lt;!--
+    		&lt;antcall target=&quot;compile-main&quot; inheritAll=&quot;false&quot; inheritRefs=&quot;true&quot;&gt;
+          			&lt;param name=&quot;build.system&quot; value=&quot;${sf.spec.build.system}&quot; /&gt;
+          			&lt;param name=&quot;sysdef.configurations.list&quot; value=&quot;${sf.spec.s60.sysdef.clean.configurations.list}&quot; /&gt;
+                    &lt;param name=&quot;sf.spec.sysdef.version&quot; value=&quot;${sf.spec.s60.sysdef.version}&quot;/&gt;
+          			&lt;reference refid=&quot;sbs.main.what.sbs.var&quot; torefid=&quot;sbs.var&quot; /&gt;
+          			&lt;reference refid=&quot;sbs.fullbuild.options&quot; torefid=&quot;sbs.make.options&quot; /&gt;
+          			&lt;reference refid=&quot;sf.spec.s60.system.definition.files&quot; torefid=&quot;system.definition.files&quot; /&gt;
+    		&lt;/antcall&gt;
+			--&gt;
+			&lt;!-- s60 clean main build --&gt;
+			&lt;if&gt;&lt;istrue value=&quot;${sf.spec.baseline.clean}&quot;/&gt;
+				&lt;then&gt;
+					&lt;antcall target=&quot;compile-main&quot; inheritAll=&quot;false&quot; inheritRefs=&quot;true&quot;&gt;
+							&lt;param name=&quot;build.system&quot; value=&quot;${sf.spec.build.system}&quot;/&gt;
+							&lt;param name=&quot;sysdef.configurations.list&quot; value=&quot;${sf.spec.s60.sysdef.clean.configurations.list}&quot;/&gt;
+							&lt;param name=&quot;sf.spec.sysdef.version&quot; value=&quot;${sf.spec.s60.sysdef.version}&quot;/&gt;
+							&lt;reference refid=&quot;sbs.main.clean.sbs.var&quot; torefid=&quot;sbs.var&quot;/&gt;
+							&lt;reference refid=&quot;sbs.fullbuild.options&quot; torefid=&quot;sbs.make.options&quot;/&gt;
+							&lt;reference refid=&quot;sf.spec.s60.system.definition.files&quot; torefid=&quot;system.definition.files&quot;/&gt;
+					&lt;/antcall&gt;
+				&lt;/then&gt;
+			&lt;/if&gt;
+
+			&lt;antcall target=&quot;sf-list-dir&quot; inheritAll=&quot;false&quot;&gt;
+				&lt;param name=&quot;sf.list.name&quot; value=&quot;post-s60-clean&quot;/&gt;
+			&lt;/antcall&gt;
+			
+			&lt;!-- what has been cleaned from baseline PDK by s60 model --&gt;
+			&lt;antcall target=&quot;sf-delta-dir&quot; inheritAll=&quot;false&quot;&gt;
+				&lt;param name=&quot;sf.list_a.name&quot; value=&quot;s60-baseline&quot;/&gt;
+				&lt;param name=&quot;sf.list_b.name&quot; value=&quot;post-s60-clean&quot;/&gt;
+			&lt;/antcall&gt;		
+			
+
+            &lt;!-- s60  tools build --&gt;
+    		&lt;antcall target=&quot;compile-main&quot; inheritAll=&quot;false&quot; inheritRefs=&quot;true&quot;&gt;
+          			&lt;param name=&quot;build.system&quot; value=&quot;${sf.spec.build.system}&quot;/&gt;
+          			&lt;param name=&quot;sysdef.configurations.list&quot; value=&quot;${sf.spec.s60.sysdef.clean.configurations.list}&quot;/&gt;
+					&lt;param name=&quot;sf.spec.sysdef.version&quot; value=&quot;${sf.spec.s60.sysdef.version}&quot;/&gt;
+          			&lt;reference refid=&quot;sbs.tools.var&quot; torefid=&quot;sbs.var&quot;/&gt;
+          			&lt;reference refid=&quot;sbs.toolsbuild.options&quot; torefid=&quot;sbs.make.options&quot;/&gt;
+          			&lt;reference refid=&quot;sf.spec.s60.system.definition.files&quot; torefid=&quot;system.definition.files&quot;/&gt;
+    		&lt;/antcall&gt;
+
+			&lt;antcall target=&quot;sf-list-dir&quot; inheritAll=&quot;false&quot;&gt;
+				&lt;param name=&quot;sf.list.name&quot; value=&quot;post-s60-build-tools&quot;/&gt;
+			&lt;/antcall&gt;
+
+    		&lt;!-- s60 main build --&gt;
+    		&lt;antcall target=&quot;compile-main&quot; inheritAll=&quot;false&quot; inheritRefs=&quot;true&quot;&gt;
+          			&lt;param name=&quot;build.system&quot; value=&quot;${sf.spec.build.system}&quot;/&gt;
+          			&lt;param name=&quot;sysdef.configurations.list&quot; value=&quot;${sf.spec.s60.sysdef.clean.configurations.list}&quot;/&gt;
+                                &lt;param name=&quot;sf.spec.sysdef.version&quot; value=&quot;${sf.spec.s60.sysdef.version}&quot;/&gt;
+          			&lt;reference refid=&quot;sbs.main.sbs.var&quot; torefid=&quot;sbs.var&quot;/&gt;
+          			&lt;reference refid=&quot;sbs.fullbuild.options&quot; torefid=&quot;sbs.make.options&quot;/&gt;
+          			&lt;reference refid=&quot;sf.spec.s60.system.definition.files&quot; torefid=&quot;system.definition.files&quot;/&gt;
+    		&lt;/antcall&gt;
+			
+			
+			&lt;antcall target=&quot;sf-list-dir&quot; inheritAll=&quot;false&quot;&gt;
+				&lt;param name=&quot;sf.list.name&quot; value=&quot;post-s60-build-main&quot;/&gt;
+			&lt;/antcall&gt;
+
+			&lt;!-- what has been built by tools+2+main --&gt;
+			&lt;antcall target=&quot;sf-delta-dir&quot; inheritAll=&quot;false&quot;&gt;
+				&lt;param name=&quot;sf.list_a.name&quot; value=&quot;s60-baseline&quot;/&gt;
+				&lt;param name=&quot;sf.list_b.name&quot; value=&quot;post-s60-build-main&quot;/&gt;
+			&lt;/antcall&gt;		
+			
+			&lt;!-- what has been cleaned and rebuilt --&gt;
+			&lt;antcall target=&quot;sf-intersect-dir&quot; inheritAll=&quot;false&quot;&gt;
+				&lt;param name=&quot;sf.list_a.name&quot; value=&quot;post-s60-clean_delta&quot;/&gt;       &lt;!-- clean list --&gt;
+				&lt;param name=&quot;sf.list_b.name&quot; value=&quot;post-s60-build-main_delta&quot;/&gt;  &lt;!-- built list --&gt;
+			&lt;/antcall&gt;
+		
+	&lt;/target&gt;
+</pre>
+
+
+    <hr/>
+<!-- ========= start of top navbar ======= -->
+<a name="navbar_top"><!-- --></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0" summary="">
+<tr>
+<td colspan="2" bgcolor="#eeeeff" class="navbarcell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3" summary="">
+  <tr align="center" valign="top">
+  <td bgcolor="#ffffff" class="navbarcell1"> &#160;<a href="overview-summary.html"><font class="navbarfont1"><b>overview</b></font>&#160;</a></td>
+
+  <td bgcolor="#ffffff" class="navbarcell1">    <a href="deprecated-list.html"><font class="navbarfont1"><b>deprecated</b></font></a>&#160;</td>
+    
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="properties-table.html"><font class="navbarfont1"><b>properties-table</b></font></a>&#160;</td>  
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="index-1.html"><font class="navbarfont1"><b>index</b></font></a>&#160;</td>
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="help.html"><font class="navbarfont1"><b>help</b></font></a>&#160;</td>
+  </tr>
+</table>
+</td>
+<td align="right" valign="top" rowspan="3"><em>
+<b>Helium API</b></em>
+
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+&#160;prev&#160;
+&#160;next</font></td>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>frames</b></a>  &#160;
+&#160;<a href="overview-summary.html" target="_top"><b>no frames</b></a>  &#160;
+
+&#160;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<a href="allclasses-noframe.html"><b>all classes</b></a>');
+  }
+  //-->
+</script>
+<noscript>
+  <a href="allclasses-noframe.html"><b>all classes</b></a>
+</noscript>
+
+
+</font></td>
+</tr>
+</table>
+<a name="skip-navbar_top"></a>
+<!-- ========= end of top navbar ========= -->
+    <font size="-2">Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. License: http://www.eclipse.org/legal/epl-v10.html</font>
+ </body>
+
+</html>
+
+
