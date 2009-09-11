@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>CreateZipInput</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;CreateZipInput
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="CreateZipInput-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="CreateZipInput-module.html">Module CreateZipInput</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : CreateZipInput.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring">""" Script that generate makefile for single archiving configuration. """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"># setting the egg cache directory to a pid specific location.</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># this should prevent issues with concurrent threads.</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'PYTHON_EGG_CACHE'</tt><tt class="py-op">)</tt> <tt class="py-keyword">or</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'PYTHON_EGG_CACHE'</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt>  </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">    <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'PYTHON_EGG_CACHE'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'TEMP'</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-string">"/"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">getpid</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module configuration=configuration-module.html"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-0', 'configuration', 'link-0');">configuration</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package archive=archive-module.html"><a title="archive" class="py-name" href="#" onclick="return doclink('link-1', 'archive', 'link-1');">archive</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">optparse</tt> <tt class="py-keyword">import</tt> <tt class="py-name">OptionParser</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"> </tt>
+<a name="main"></a><div id="main-def"><a name="L32"></a><tt class="py-lineno">32</tt> <a class="py-toggle" href="#" id="main-toggle" onclick="return toggle('main');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="CreateZipInput-module.html#main">main</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="main-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="main-expanded"><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">    <tt class="py-docstring">""" The application main. """</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">    <tt class="py-name">cli</tt> <tt class="py-op">=</tt> <tt class="py-name">OptionParser</tt><tt class="py-op">(</tt><tt class="py-name">usage</tt><tt class="py-op">=</tt><tt class="py-string">"%prog [options]"</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">    <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt><tt class="py-op">(</tt><tt class="py-string">"--filename"</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">"Configuration file"</tt><tt class="py-op">)</tt>  </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt><tt class="py-op">(</tt><tt class="py-string">"--config"</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">"Config to load (spec name)."</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt><tt class="py-op">(</tt><tt class="py-string">"--id"</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">"Config number to execute"</tt><tt class="py-op">,</tt> <tt id="link-2" class="py-name" targets="Method ccm.FourPartName.type()=ccm.FourPartName-class.html#type"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-2', 'type', 'link-2');">type</a></tt><tt class="py-op">=</tt><tt class="py-string">"int"</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">    <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt><tt class="py-op">(</tt><tt class="py-string">"--output"</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">"Output file"</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">    <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt><tt class="py-op">(</tt><tt class="py-string">"--writertype"</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">"Writer Type"</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">                    </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">    <tt class="py-name">opts</tt><tt class="py-op">,</tt> <tt class="py-name">dummy_args</tt> <tt class="py-op">=</tt> <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Variable symrec.ReleaseMetadata.filename=symrec.ReleaseMetadata-class.html#filename"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-3', 'filename', 'link-3');">filename</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method sysdef.api.Unit.id()=sysdef.api.Unit-class.html#id"><a title="sysdef.api.Unit.id" class="py-name" href="#" onclick="return doclink('link-4', 'id', 'link-4');">id</a></tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">3</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable ccm.Result.output=ccm.Result-class.html#output,Package helium.output=helium.output-module.html"><a title="ccm.Result.output
+helium.output" class="py-name" href="#" onclick="return doclink('link-5', 'output', 'link-5');">output</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">4</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">writertype</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-name">cli</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">5</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">"Loading %s..."</tt> <tt class="py-op">%</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-6', 'filename', 'link-3');">filename</a></tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">    <tt class="py-name">builder</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-7', 'configuration', 'link-0');">configuration</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Class configuration.NestedConfigurationBuilder=configuration.NestedConfigurationBuilder-class.html"><a title="configuration.NestedConfigurationBuilder" class="py-name" href="#" onclick="return doclink('link-8', 'NestedConfigurationBuilder', 'link-8');">NestedConfigurationBuilder</a></tt><tt class="py-op">(</tt><tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-9', 'filename', 'link-3');">filename</a></tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">    <tt class="py-name">configset</tt> <tt class="py-op">=</tt> <tt class="py-name">builder</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method configuration.ConfigurationBuilder.getConfiguration()=configuration.ConfigurationBuilder-class.html#getConfiguration,Method configuration.NestedConfigurationBuilder.getConfiguration()=configuration.NestedConfigurationBuilder-class.html#getConfiguration"><a title="configuration.ConfigurationBuilder.getConfiguration
+configuration.NestedConfigurationBuilder.getConfiguration" class="py-name" href="#" onclick="return doclink('link-10', 'getConfiguration', 'link-10');">getConfiguration</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">"Getting %s..."</tt> <tt class="py-op">%</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">config</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">    <tt class="py-name">configs</tt> <tt class="py-op">=</tt> <tt class="py-name">configset</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method configuration.ConfigurationSet.getConfigurations()=configuration.ConfigurationSet-class.html#getConfigurations,Method configuration.NestedConfigurationBuilder.getConfigurations()=configuration.NestedConfigurationBuilder-class.html#getConfigurations"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-11', 'getConfigurations', 'link-11');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">configs</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="sysdef.api.Unit.id" class="py-name" href="#" onclick="return doclink('link-12', 'id', 'link-4');">id</a></tt><tt class="py-op">)</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="sysdef.api.Unit.id" class="py-name" href="#" onclick="return doclink('link-13', 'id', 'link-4');">id</a></tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">configs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"Generating %s.%s as %s..."</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="sysdef.api.Unit.id" class="py-name" href="#" onclick="return doclink('link-14', 'id', 'link-4');">id</a></tt><tt class="py-op">,</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="ccm.Result.output
+helium.output" class="py-name" href="#" onclick="return doclink('link-15', 'output', 'link-5');">output</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-name">prebuilder</tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="archive" class="py-name" href="#" onclick="return doclink('link-16', 'archive', 'link-1');">archive</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Class archive.builders.ArchivePreBuilder=archive.builders.ArchivePreBuilder-class.html"><a title="archive.builders.ArchivePreBuilder" class="py-name" href="#" onclick="return doclink('link-17', 'ArchivePreBuilder', 'link-17');">ArchivePreBuilder</a></tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-18', 'configuration', 'link-0');">configuration</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Class configuration.ConfigurationSet=configuration.ConfigurationSet-class.html"><a title="configuration.ConfigurationSet" class="py-name" href="#" onclick="return doclink('link-19', 'ConfigurationSet', 'link-19');">ConfigurationSet</a></tt><tt class="py-op">(</tt><tt class="py-name">configs</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt class="py-name">writertype</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="sysdef.api.Unit.id" class="py-name" href="#" onclick="return doclink('link-20', 'id', 'link-4');">id</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-name">prebuilder</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method archive.builders.ArchivePreBuilder.write()=archive.builders.ArchivePreBuilder-class.html#write,Method build.model.BOMDeltaXMLWriter.write()=build.model.BOMDeltaXMLWriter-class.html#write,Method build.model.BOMXMLWriter.write()=build.model.BOMXMLWriter-class.html#write,Method buildtools.AbstractOutputWriter.write()=buildtools.AbstractOutputWriter-class.html#write,Method buildtools.AntWriter.write()=buildtools.AntWriter-class.html#write,Method buildtools.EBSWriter.write()=buildtools.EBSWriter-class.html#write,Method buildtools.MakeWriter.write()=buildtools.MakeWriter-class.html#write,Method buildtools.StringWriter.write()=buildtools.StringWriter-class.html#write,Method flash_config.FlashConfigurationWriter.write()=flash_config.FlashConfigurationWriter-class.html#write,Method helium.documentation.APIDeltaWriter.write()=helium.documentation.APIDeltaWriter-class.html#write,Method sis.SisPreBuilder.write()=sis.SisPreBuilder-class.html#write,Method sysdef.io.FlashImageSizeWriter.write()=sysdef.io.FlashImageSizeWriter-class.html#write,Method sysdef.io.MakeWriter.write()=sysdef.io.MakeWriter-class.html#write,Method sysdef.io.MakeWriter2.write()=sysdef.io.MakeWriter2-class.html#write,Method sysdef.io.MakeWriter3.write()=sysdef.io.MakeWriter3-class.html#write,Method version.Version.write()=version.Version-class.html#write"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-21', 'write', 'link-21');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="ccm.Result.output
+helium.output" class="py-name" href="#" onclick="return doclink('link-22', 'output', 'link-5');">output</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">    <tt id="link-23" class="py-name" targets="Function CreateZipInput.main()=CreateZipInput-module.html#main,Function ats3.aste.main()=ats3.aste-module.html#main,Function ats3.main()=ats3-module.html#main,Function precompile.main()=precompile-module.html#main,Function validateoverlay.main()=validateoverlay-module.html#main"><a title="CreateZipInput.main
+ats3.aste.main
+ats3.main
+precompile.main
+validateoverlay.main" class="py-name" href="#" onclick="return doclink('link-23', 'main', 'link-23');">main</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:25 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

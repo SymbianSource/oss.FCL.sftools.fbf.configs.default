@@ -1,0 +1,258 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd xhtml 1.0 strict//en"
+      "http://www.w3.org/tr/xhtml1/dtd/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta name="keywords" content="helium"/>
+    <meta http-equiv="content-type" content="text/html+xml; charset=iso-8859-1"/>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:   '',
+        VERSION:    '0'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+
+    <script type="text/javascript" src="../_static/interface.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <title>Target sf-build-smoketestpkg</title>
+</head>
+
+
+<body>
+<!-- ========= start of top navbar ======= -->
+<a name="navbar_top"><!-- --></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0" summary="">
+<tr>
+<td colspan="2" bgcolor="#eeeeff" class="navbarcell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3" summary="">
+  <tr align="center" valign="top">
+  <td bgcolor="#ffffff" class="navbarcell1"> &#160;<a href="overview-summary.html"><font class="navbarfont1"><b>overview</b></font>&#160;</a></td>
+
+  <td bgcolor="#ffffff" class="navbarcell1">    <a href="deprecated-list.html"><font class="navbarfont1"><b>deprecated</b></font></a>&#160;</td>
+    
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="properties-table.html"><font class="navbarfont1"><b>properties-table</b></font></a>&#160;</td>  
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="index-1.html"><font class="navbarfont1"><b>index</b></font></a>&#160;</td>
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="help.html"><font class="navbarfont1"><b>help</b></font></a>&#160;</td>
+  </tr>
+</table>
+</td>
+<td align="right" valign="top" rowspan="3"><em>
+<b>Helium API</b></em>
+
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+&#160;prev&#160;
+&#160;next</font></td>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>frames</b></a>  &#160;
+&#160;<a href="overview-summary.html" target="_top"><b>no frames</b></a>  &#160;
+
+&#160;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<a href="allclasses-noframe.html"><b>all classes</b></a>');
+  }
+  //-->
+</script>
+<noscript>
+  <a href="allclasses-noframe.html"><b>all classes</b></a>
+</noscript>
+
+
+</font></td>
+</tr>
+</table>
+<a name="skip-navbar_top"></a>
+<!-- ========= end of top navbar ========= -->
+    <hr/>
+
+
+    
+<h2>Target sf-build-smoketestpkg</h2>
+
+<p><b>Location</b></p>
+<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.test.xml#L139">D:\maintools\sf-config\common\build.test.xml:139:</a></tt>  
+</p>
+
+<p><b>Conditional execution</b></p>        
+<p>No conditions on target execution.</p>
+<hr/>
+
+<h3>Description</h3>
+<p>
+<p>Preparing smoketest package (zip) for sending to ATS3</p></p>
+<p/>
+<hr/>
+
+
+<h3>Target external Dependency</h3>
+<p> 
+<table class="docutils" width="50%">
+    <tr>
+        <th class="head">Name</th>
+    </tr>
+        <tr>
+                    <td>cmd</td>
+            </tr>
+        <tr>
+                    <td>perl</td>
+            </tr>
+        <tr>
+                    <td>perl</td>
+            </tr>
+</table>
+</p>
+
+
+<h3>Property dependencies</h3>
+
+
+<p> 
+<table class="docutils" width="50%">
+    <tr>
+        <th class="head">Name</th><th class="head">Edit status</th>
+    </tr>
+    <tr>
+        <td colspan="2">User editable properties</td>
+    </tr>
+                    <tr>
+                        <td><a href="property-build.drive.html" title="<p>Substed drive where the build is performed. if not defined then helium should search next available build drive letter and subst autometically</p>" target="classframe"><tt class="docutils literal">build.drive</tt></a></td><td><a href="help.html" title="Help" target="classframe">recommended</a></td>
+                    </tr>
+    <tr>
+        <td colspan="2">Internal properties</td>
+    </tr>
+                    <tr>
+                        <td><a href="property-build.id.html" title="<p>A unique ID for the build.</p>" target="classframe"><tt class="docutils literal">build.id</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="property-diamonds.build.id.html" title="<p>The ID assigned to the build by the Diamonds server.</p>" target="classframe"><tt class="docutils literal">diamonds.build.id</tt></a></td><td><a href="help.html" title="Help" target="classframe">never</a></td>
+                    </tr>
+</table>
+</p>
+
+<hr/>
+
+
+<h3>Target dependencies</h3>
+<p align="center">
+<img src="target-sf-build-smoketestpkg.dot.png" alt="sf-build-smoketestpkg dependencies" usemap="#dependencies"
+     style="border-style: none"/>
+<map name="dependencies" id="dependencies">
+<area shape="rect" id="node1" href="target-sf-build-smoketestpkg.html" title="sf&#45;build&#45;smoketestpkg" alt="" coords="156,5,329,53">
+<area shape="rect" id="node4" href="target-sf-getenv-tools.html" title="sf&#45;getenv&#45;tools" alt="" coords="379,5,501,53">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+<area shape="rect" id="node6" href="target-preparation-getenv.html" title="preparation&#45;getenv" alt="" coords="549,5,701,53">
+</map>
+</p>
+<hr/>
+
+
+<h3>Source code</h3>
+<pre>
+    &lt;target name=&quot;sf-build-smoketestpkg&quot; depends=&quot;sf-getenv-tools&quot;&gt;
+        &lt;delete dir=&quot;${build.drive}/smoketest&quot;/&gt;
+        &lt;delete file=&quot;${build.log.dir}/ATS_${build.id}_smoketest.log&quot;/&gt;
+        
+        &lt;echo message=&quot;INFO Copy smoketest source to EPOCROOT&quot;/&gt;
+        
+        &lt;copy todir=&quot;${build.drive}/smoketest&quot;&gt;
+            &lt;fileset dir=&quot;${sf.common.config.dir}/tools/ats/smoketest&quot;/&gt;
+        &lt;/copy&gt;
+        
+        &lt;echo message=&quot;INFO Building smoketest&quot;/&gt;
+        &lt;exec executable=&quot;cmd&quot; dir=&quot;${build.drive}/smoketest/group&quot; failonerror=&quot;false&quot; append=&quot;true&quot; output=&quot;${build.log.dir}/ATS_${build.id}_smoketest.log&quot;&gt;
+            &lt;arg value=&quot;/c&quot;/&gt;
+            &lt;arg value=&quot;sbs -b bld.inf -c winscw_udeb.test&quot;/&gt;
+        &lt;/exec&gt;
+
+        &lt;echo message=&quot;INFO Creating smoketest testpackage&quot;/&gt;
+        &lt;exec executable=&quot;perl&quot; dir=&quot;${build.drive}/smoketest/group&quot; failonerror=&quot;false&quot; append=&quot;true&quot; output=&quot;${build.log.dir}/ATS_${build.id}_smoketest.log&quot;&gt;
+            &lt;arg value=&quot;smoketest.pl&quot;/&gt;
+        &lt;/exec&gt;
+        &lt;copy file=&quot;${build.drive}/smoketest/group/smoketest.zip&quot; todir=&quot;${sf.spec.test.package.location}&quot;/&gt;
+        
+        &lt;echo message=&quot;INFO Updating smoketest package with test info&quot;/&gt;
+        &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/ats/&quot; failonerror=&quot;false&quot; append=&quot;true&quot; output=&quot;${build.log.dir}/ATS_${build.id}_smoketest.log&quot;&gt;
+            &lt;arg value=&quot;ats_specialise_test_drop.pl&quot;/&gt;
+            &lt;arg value=&quot;--test-drop-name=Smoketest-${build.id}&quot;/&gt; 
+            &lt;arg value=&quot;--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}&quot;/&gt;
+            &lt;arg value=&quot;--src=${sf.spec.test.package.location}\smoketest.zip&quot;/&gt;
+            &lt;arg value=&quot;--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}&quot;/&gt;	
+            &lt;arg value=&quot;--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}&quot;/&gt;			
+        &lt;/exec&gt;
+        &lt;!-- Now ready to send to ATS3 --&gt;
+    &lt;/target&gt;
+</pre>
+
+
+    <hr/>
+<!-- ========= start of top navbar ======= -->
+<a name="navbar_top"><!-- --></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0" summary="">
+<tr>
+<td colspan="2" bgcolor="#eeeeff" class="navbarcell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3" summary="">
+  <tr align="center" valign="top">
+  <td bgcolor="#ffffff" class="navbarcell1"> &#160;<a href="overview-summary.html"><font class="navbarfont1"><b>overview</b></font>&#160;</a></td>
+
+  <td bgcolor="#ffffff" class="navbarcell1">    <a href="deprecated-list.html"><font class="navbarfont1"><b>deprecated</b></font></a>&#160;</td>
+    
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="properties-table.html"><font class="navbarfont1"><b>properties-table</b></font></a>&#160;</td>  
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="index-1.html"><font class="navbarfont1"><b>index</b></font></a>&#160;</td>
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="help.html"><font class="navbarfont1"><b>help</b></font></a>&#160;</td>
+  </tr>
+</table>
+</td>
+<td align="right" valign="top" rowspan="3"><em>
+<b>Helium API</b></em>
+
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+&#160;prev&#160;
+&#160;next</font></td>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>frames</b></a>  &#160;
+&#160;<a href="overview-summary.html" target="_top"><b>no frames</b></a>  &#160;
+
+&#160;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<a href="allclasses-noframe.html"><b>all classes</b></a>');
+  }
+  //-->
+</script>
+<noscript>
+  <a href="allclasses-noframe.html"><b>all classes</b></a>
+</noscript>
+
+
+</font></td>
+</tr>
+</table>
+<a name="skip-navbar_top"></a>
+<!-- ========= end of top navbar ========= -->
+    <font size="-2">Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. License: http://www.eclipse.org/legal/epl-v10.html</font>
+ </body>
+
+</html>
+
+
