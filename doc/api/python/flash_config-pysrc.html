@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>flash_config</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;flash_config
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="flash_config-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="flash_config-module.html">Module flash_config</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : flash_config.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">""" This modules implements flash configuration writer.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module rom=rom-module.html"><a title="rom" class="py-name" href="#" onclick="return doclink('link-0', 'rom', 'link-0');">rom</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">types</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package imaker=imaker-module.html"><a title="imaker" class="py-name" href="#" onclick="return doclink('link-1', 'imaker', 'link-1');">imaker</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-comment"># Uncomment this line to enable logging in this module, or configure logging elsewhere</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#logging.basicConfig(level=logging.DEBUG)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt id="link-2" class="py-name" targets="Variable archive.scanners.logger=archive.scanners-module.html#logger,Variable archive.selectors.logger=archive.selectors-module.html#logger,Variable buildmanagement.logger=buildmanagement-module.html#logger,Variable flash_config.logger=flash_config-module.html#logger,Module helium.logger=helium.logger-module.html,Variable imaker.iqrf.logger=imaker.iqrf-module.html#logger,Variable integration.templatebuilder.logger=integration.templatebuilder-module.html#logger,Variable rom.logger=rom-module.html#logger"><a title="archive.scanners.logger
+archive.selectors.logger
+buildmanagement.logger
+flash_config.logger
+helium.logger
+imaker.iqrf.logger
+integration.templatebuilder.logger
+rom.logger" class="py-name" href="#" onclick="return doclink('link-2', 'logger', 'link-2');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"flash_config"</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="ImagePack"></a><div id="ImagePack-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="ImagePack-toggle" onclick="return toggle('ImagePack');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="flash_config.ImagePack-class.html">ImagePack</a><tt class="py-op">:</tt> </tt>
+</div><div id="ImagePack-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ImagePack-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">    <tt class="py-docstring">""" Local storage of image type</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">     </tt>
+<a name="ImagePack.__init__"></a><div id="ImagePack.__init__-def"><a name="L38"></a><tt class="py-lineno"> 38</tt> <a class="py-toggle" href="#" id="ImagePack.__init__-toggle" onclick="return toggle('ImagePack.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.ImagePack-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ImagePack.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ImagePack.__init__-expanded"><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-docstring">""" init from config</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'image.type'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">'${image.type.temp}'</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_type</tt> <tt class="py-op">=</tt> <tt id="link-3" class="py-name" targets="Method ccm.FourPartName.type()=ccm.FourPartName-class.html#type"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-3', 'type', 'link-3');">type</a></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt id="link-4" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-4', 'type', 'link-3');">type</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'.id'</tt><tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_image_name</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt id="link-5" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-5', 'type', 'link-3');">type</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'.image.name'</tt><tt class="py-op">]</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_image_path</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt id="link-6" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-6', 'type', 'link-3');">type</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'.image.path'</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">         </tt>
+<a name="ImagePack.set_config"></a><div id="ImagePack.set_config-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="ImagePack.set_config-toggle" onclick="return toggle('ImagePack.set_config');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.ImagePack-class.html#set_config">set_config</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ImagePack.set_config-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ImagePack.set_config-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-docstring">""" Set the image type in a config</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_type</tt> <tt class="py-op">+</tt> <tt class="py-string">'.id'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_type</tt> <tt class="py-op">+</tt> <tt class="py-string">'.image.name'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_image_name</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_type</tt> <tt class="py-op">+</tt> <tt class="py-string">'.image.path'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_image_path</tt>  </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">         </tt>
+<a name="ImagePack.__repr__"></a><div id="ImagePack.__repr__-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="ImagePack.__repr__-toggle" onclick="return toggle('ImagePack.__repr__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.ImagePack-class.html#__repr__">__repr__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ImagePack.__repr__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ImagePack.__repr__-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-docstring">""" String representation the class</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_image_name</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_image_path</tt> </tt>
+</div></div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="FlashConfigurationWriter"></a><div id="FlashConfigurationWriter-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter-toggle" onclick="return toggle('FlashConfigurationWriter');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html">FlashConfigurationWriter</a><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="FlashConfigurationWriter-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-docstring">""" Builder that creates the flash configuration files</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="FlashConfigurationWriter.__init__"></a><div id="FlashConfigurationWriter.__init__-def"><a name="L62"></a><tt class="py-lineno"> 62</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter.__init__-toggle" onclick="return toggle('FlashConfigurationWriter.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">configs</tt><tt class="py-op">,</tt> <tt class="py-param">product</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter.__init__-expanded"><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-docstring">""" FlashConfigurationWriter init </tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_configs</tt> <tt class="py-op">=</tt> <tt class="py-name">configs</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name" targets="Variable symrec.ReleaseMetadata.product=symrec.ReleaseMetadata-class.html#product"><a title="symrec.ReleaseMetadata.product" class="py-name" href="#" onclick="return doclink('link-7', 'product', 'link-7');">product</a></tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_languagepacks</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> <tt class="py-comment"># pylint recomendation</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_udas</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mms</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mcs</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">         </tt>
+<a name="FlashConfigurationWriter._get_all_languagepacks"></a><div id="FlashConfigurationWriter._get_all_languagepacks-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_all_languagepacks-toggle" onclick="return toggle('FlashConfigurationWriter._get_all_languagepacks');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_all_languagepacks">_get_all_languagepacks</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_all_languagepacks-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_all_languagepacks-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-docstring">""" Collect all language packs and store them internally </tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_languagepacks</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_configs</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method configuration.ConfigurationSet.getConfigurations()=configuration.ConfigurationSet-class.html#getConfigurations,Method configuration.NestedConfigurationBuilder.getConfigurations()=configuration.NestedConfigurationBuilder-class.html#getConfigurations"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-8', 'getConfigurations', 'link-8');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-9', 'type', 'link-3');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"languagepack"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-name">lp</tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name" targets="Class flash_config.ImagePack=flash_config.ImagePack-class.html"><a title="flash_config.ImagePack" class="py-name" href="#" onclick="return doclink('link-10', 'ImagePack', 'link-10');">ImagePack</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-string">'languagepack'</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_languagepacks</tt><tt class="py-op">[</tt><tt class="py-name">lp</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">lp</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">     </tt>
+<a name="FlashConfigurationWriter._get_compatible_languagepacks"></a><div id="FlashConfigurationWriter._get_compatible_languagepacks-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_compatible_languagepacks-toggle" onclick="return toggle('FlashConfigurationWriter._get_compatible_languagepacks');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_compatible_languagepacks">_get_compatible_languagepacks</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_compatible_languagepacks-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_compatible_languagepacks-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-docstring">""" Get language packs compatible with a customer variant </tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">languagepack_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'compatible.languagepack'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'compatible.languagepack'</tt><tt class="py-op">]</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">lp_list</tt><tt class="py-op">,</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">ListType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">lp_list</tt><tt class="py-op">]</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">lp_id</tt> <tt class="py-keyword">in</tt> <tt class="py-name">lp_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_languagepacks</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                    <tt class="py-name">languagepack_list</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method ccm.Folder.append()=ccm.Folder-class.html#append,Method ccm.Task.append()=ccm.Task-class.html#append"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-11', 'append', 'link-11');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_languagepacks</tt><tt class="py-op">[</tt><tt class="py-name">lp_id</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Compatible languagepack "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" does not exists"</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-name">languagepack_list</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_languagepacks</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt>         </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">             </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">languagepack_list</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">         </tt>
+<a name="FlashConfigurationWriter._get_all_udas"></a><div id="FlashConfigurationWriter._get_all_udas-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_all_udas-toggle" onclick="return toggle('FlashConfigurationWriter._get_all_udas');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_all_udas">_get_all_udas</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_all_udas-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_all_udas-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-docstring">""" Collect all udas and store them internally </tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_udas</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_configs</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-12', 'getConfigurations', 'link-8');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-13', 'type', 'link-3');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"uda"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                <tt class="py-name">lp</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="flash_config.ImagePack" class="py-name" href="#" onclick="return doclink('link-14', 'ImagePack', 'link-10');">ImagePack</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-string">'uda'</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_udas</tt><tt class="py-op">[</tt><tt class="py-name">lp</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">lp</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">                 </tt>
+<a name="FlashConfigurationWriter._get_all_mms"></a><div id="FlashConfigurationWriter._get_all_mms-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_all_mms-toggle" onclick="return toggle('FlashConfigurationWriter._get_all_mms');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_all_mms">_get_all_mms</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_all_mms-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_all_mms-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-docstring">""" Collect all mm's and store them internally </tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mms</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_configs</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-15', 'getConfigurations', 'link-8');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-16', 'type', 'link-3');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"massmemory"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">                <tt class="py-name">lp</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="flash_config.ImagePack" class="py-name" href="#" onclick="return doclink('link-17', 'ImagePack', 'link-10');">ImagePack</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-string">'massmemory'</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mms</tt><tt class="py-op">[</tt><tt class="py-name">lp</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">lp</tt> </tt>
+</div><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                 </tt>
+<a name="FlashConfigurationWriter._get_all_mcs"></a><div id="FlashConfigurationWriter._get_all_mcs-def"><a name="L117"></a><tt class="py-lineno">117</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_all_mcs-toggle" onclick="return toggle('FlashConfigurationWriter._get_all_mcs');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_all_mcs">_get_all_mcs</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_all_mcs-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_all_mcs-expanded"><a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-docstring">""" Collect all mc's and store them internally </tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mcs</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_configs</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-18', 'getConfigurations', 'link-8');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-19', 'type', 'link-3');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"memorycard"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-name">lp</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="flash_config.ImagePack" class="py-name" href="#" onclick="return doclink('link-20', 'ImagePack', 'link-10');">ImagePack</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-string">'memorycard'</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mcs</tt><tt class="py-op">[</tt><tt class="py-name">lp</tt><tt class="py-op">.</tt><tt class="py-name">_id</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">lp</tt> </tt>
+</div><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">     </tt>
+<a name="FlashConfigurationWriter._get_compatible_udas"></a><div id="FlashConfigurationWriter._get_compatible_udas-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_compatible_udas-toggle" onclick="return toggle('FlashConfigurationWriter._get_compatible_udas');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_compatible_udas">_get_compatible_udas</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_compatible_udas-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_compatible_udas-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-docstring">""" Get uda's compatible with a customer variant </tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">uda_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'compatible.uda'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">            <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'compatible.uda'</tt><tt class="py-op">]</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">lp_list</tt><tt class="py-op">,</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">ListType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">                <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">lp_list</tt><tt class="py-op">]</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">lp_id</tt> <tt class="py-keyword">in</tt> <tt class="py-name">lp_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_udas</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">                    <tt class="py-name">uda_list</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-21', 'append', 'link-11');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_udas</tt><tt class="py-op">[</tt><tt class="py-name">lp_id</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Compatible uda "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" does not exists"</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">             </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">uda_list</tt> </tt>
+</div><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">         </tt>
+<a name="FlashConfigurationWriter._get_compatible_mms"></a><div id="FlashConfigurationWriter._get_compatible_mms-def"><a name="L144"></a><tt class="py-lineno">144</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_compatible_mms-toggle" onclick="return toggle('FlashConfigurationWriter._get_compatible_mms');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_compatible_mms">_get_compatible_mms</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_compatible_mms-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_compatible_mms-expanded"><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-docstring">""" Get mm's compatible with a customer variant </tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">mm_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'compatible.massmemory'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">            <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'compatible.massmemory'</tt><tt class="py-op">]</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">             </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">lp_list</tt><tt class="py-op">,</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">ListType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">lp_list</tt><tt class="py-op">]</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">lp_id</tt> <tt class="py-keyword">in</tt> <tt class="py-name">lp_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mms</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">                    <tt class="py-name">mm_list</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-22', 'append', 'link-11');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mms</tt><tt class="py-op">[</tt><tt class="py-name">lp_id</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Compatible massmemory "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" does not exists"</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">             </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">mm_list</tt> </tt>
+</div><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">         </tt>
+<a name="FlashConfigurationWriter._get_compatible_mcs"></a><div id="FlashConfigurationWriter._get_compatible_mcs-def"><a name="L163"></a><tt class="py-lineno">163</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._get_compatible_mcs-toggle" onclick="return toggle('FlashConfigurationWriter._get_compatible_mcs');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_get_compatible_mcs">_get_compatible_mcs</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._get_compatible_mcs-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._get_compatible_mcs-expanded"><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-docstring">""" Get mc's compatible with a customer variant </tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-name">mc_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'compatible.memorycard'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">            <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'compatible.memorycard'</tt><tt class="py-op">]</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">lp_list</tt><tt class="py-op">,</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">ListType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">                <tt class="py-name">lp_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">lp_list</tt><tt class="py-op">]</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">lp_id</tt> <tt class="py-keyword">in</tt> <tt class="py-name">lp_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mcs</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">                    <tt class="py-name">mc_list</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-23', 'append', 'link-11');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_all_mcs</tt><tt class="py-op">[</tt><tt class="py-name">lp_id</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Compatible memorycard "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">lp_id</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" does not exists"</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">             </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">mc_list</tt> </tt>
+</div><a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">     </tt>
+<a name="FlashConfigurationWriter._write_file"></a><div id="FlashConfigurationWriter._write_file-def"><a name="L181"></a><tt class="py-lineno">181</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._write_file-toggle" onclick="return toggle('FlashConfigurationWriter._write_file');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_write_file">_write_file</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">romtype</tt><tt class="py-op">,</tt> <tt class="py-param">uda</tt><tt class="py-op">,</tt> <tt class="py-param">mm</tt><tt class="py-op">,</tt> <tt class="py-param">mc</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._write_file-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._write_file-expanded"><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-docstring">""" Write an xml flash configuration file </tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">         </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">        <tt class="py-comment">#data = escapeddict.EscapedDict(config)</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">template</tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="rom" class="py-name" href="#" onclick="return doclink('link-24', 'rom', 'link-0');">rom</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Function rom.read_file_content()=rom-module.html#read_file_content"><a title="rom.read_file_content" class="py-name" href="#" onclick="return doclink('link-25', 'read_file_content', 'link-25');">read_file_content</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.template'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">         </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">uda</tt><tt class="py-op">:</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">            <tt class="py-comment">#templatexml = amara.parse(template)</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-comment"></tt>             </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">            <tt class="py-comment">#for image in templatexml.flash_config.image_set.image:</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-comment">#    if image.type == u'uda':</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-comment">#        templatexml.flash_config.image_set.xml_remove_child(image)</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-comment"></tt>             </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">            <tt class="py-comment">#template = templatexml.xml(indent=u"yes")</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-comment">#needed to avoid customer complaints about empty lines</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-comment">#template = template.replace('\n\t\t\n', '\n')</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt class="py-comment"></tt>             </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">            <tt class="py-comment">#workaround for makeupct, can't use real xml library</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">template</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">sub</tt><tt class="py-op">(</tt><tt class="py-string">r".*&lt;image type=\"uda\".*/&gt;\n"</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-name">template</tt><tt class="py-op">)</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">             </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">mm</tt><tt class="py-op">:</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">            <tt class="py-name">template</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">sub</tt><tt class="py-op">(</tt><tt class="py-string">r".*&lt;image type=\"massmemory\".*/&gt;\n"</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-name">template</tt><tt class="py-op">)</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">mc</tt><tt class="py-op">:</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">            <tt class="py-name">template</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">sub</tt><tt class="py-op">(</tt><tt class="py-string">r".*&lt;image type=\"memorycard\".*/&gt;\n"</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-name">template</tt><tt class="py-op">)</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">         </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method buildtools.Command.path()=buildtools.Command-class.html#path,Method sysdef.api.SpecialInstruction.path()=sysdef.api.SpecialInstruction-class.html#path,Method sysdef.api.Unit.path()=sysdef.api.Unit-class.html#path"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-26', 'path', 'link-26');">path</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method ccm.CCMObject.exists()=ccm.CCMObject-class.html#exists"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-27', 'exists', 'link-27');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.publish.dir'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">"Creating "</tt> <tt class="py-op">+</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.publish.dir'</tt><tt class="py-op">]</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">            <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">makedirs</tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.publish.dir'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">             </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">        <tt class="py-name">fp</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-28', 'path', 'link-26');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.publish.dir'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.name'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"Writing file "</tt> <tt class="py-op">+</tt> <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method buildtools.Command.name()=buildtools.Command-class.html#name,Method ccm.FourPartName.name()=ccm.FourPartName-class.html#name,Method symrec.ServicePack.name()=symrec.ServicePack-class.html#name,Method sysdef.api.Configuration.name()=sysdef.api.Configuration-class.html#name,Method sysdef.api.Option.name()=sysdef.api.Option-class.html#name,Method sysdef.api.SpecialInstruction.name()=sysdef.api.SpecialInstruction-class.html#name,Method sysdef.api.Target.name()=sysdef.api.Target-class.html#name,Method sysdef.api.TargetList.name()=sysdef.api.TargetList-class.html#name,Method sysdef.api.Unit.name()=sysdef.api.Unit-class.html#name,Method sysdef.api._UnitGroup.name()=sysdef.api._UnitGroup-class.html#name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-29', 'name', 'link-29');">name</a></tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">        <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method archive.builders.ArchivePreBuilder.write()=archive.builders.ArchivePreBuilder-class.html#write,Method build.model.BOMDeltaXMLWriter.write()=build.model.BOMDeltaXMLWriter-class.html#write,Method build.model.BOMXMLWriter.write()=build.model.BOMXMLWriter-class.html#write,Method buildtools.AbstractOutputWriter.write()=buildtools.AbstractOutputWriter-class.html#write,Method buildtools.AntWriter.write()=buildtools.AntWriter-class.html#write,Method buildtools.EBSWriter.write()=buildtools.EBSWriter-class.html#write,Method buildtools.MakeWriter.write()=buildtools.MakeWriter-class.html#write,Method buildtools.StringWriter.write()=buildtools.StringWriter-class.html#write,Method flash_config.FlashConfigurationWriter.write()=flash_config.FlashConfigurationWriter-class.html#write,Method helium.documentation.APIDeltaWriter.write()=helium.documentation.APIDeltaWriter-class.html#write,Method sis.SisPreBuilder.write()=sis.SisPreBuilder-class.html#write,Method sysdef.io.FlashImageSizeWriter.write()=sysdef.io.FlashImageSizeWriter-class.html#write,Method sysdef.io.MakeWriter.write()=sysdef.io.MakeWriter-class.html#write,Method sysdef.io.MakeWriter2.write()=sysdef.io.MakeWriter2-class.html#write,Method sysdef.io.MakeWriter3.write()=sysdef.io.MakeWriter3-class.html#write,Method version.Version.write()=version.Version-class.html#write"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-30', 'write', 'link-30');">write</a></tt><tt class="py-op">(</tt><tt id="link-31" class="py-name"><a title="rom" class="py-name" href="#" onclick="return doclink('link-31', 'rom', 'link-0');">rom</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Function rom.escape_string()=rom-module.html#escape_string"><a title="rom.escape_string" class="py-name" href="#" onclick="return doclink('link-32', 'escape_string', 'link-32');">escape_string</a></tt><tt class="py-op">(</tt><tt class="py-name">template</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">        <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method build.model.BOM.close()=build.model.BOM-class.html#close,Method build.model.SessionCreator.close()=build.model.SessionCreator-class.html#close,Method buildtools.AbstractOutputWriter.close()=buildtools.AbstractOutputWriter-class.html#close,Method ccm.AbstractSession.close()=ccm.AbstractSession-class.html#close,Method ccm.Session.close()=ccm.Session-class.html#close,Method ccm.SessionPool.close()=ccm.SessionPool-class.html#close,Method ccm.extra.CachedSessionProvider.close()=ccm.extra.CachedSessionProvider-class.html#close,Method ccm.extra.SessionProvider.close()=ccm.extra.SessionProvider-class.html#close,Method log2xml.LogWriter.close()=log2xml.LogWriter-class.html#close,Method preparation.PreparationBuilder.close()=preparation.PreparationBuilder-class.html#close,Method sysdef.io.FlashImageSizeWriter.close()=sysdef.io.FlashImageSizeWriter-class.html#close"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-33', 'close', 'link-33');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt>         </tt>
+</div><a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">         </tt>
+<a name="FlashConfigurationWriter._append_to_makefile"></a><div id="FlashConfigurationWriter._append_to_makefile-def"><a name="L216"></a><tt class="py-lineno">216</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter._append_to_makefile-toggle" onclick="return toggle('FlashConfigurationWriter._append_to_makefile');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#_append_to_makefile">_append_to_makefile</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">config</tt><tt class="py-op">,</tt> <tt class="py-param">romtype</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter._append_to_makefile-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter._append_to_makefile-expanded"><a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">        <tt class="py-name">template</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="rom" class="py-name" href="#" onclick="return doclink('link-34', 'rom', 'link-0');">rom</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="rom.read_file_content" class="py-name" href="#" onclick="return doclink('link-35', 'read_file_content', 'link-25');">read_file_content</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'flash.config.makefile.template'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt class="py-name">out</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Method configuration.Configuration.interpolate()=configuration.Configuration-class.html#interpolate"><a title="configuration.Configuration.interpolate" class="py-name" href="#" onclick="return doclink('link-36', 'interpolate', 'link-36');">interpolate</a></tt><tt class="py-op">(</tt><tt class="py-name">template</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_makefile_content</tt> <tt class="py-op">+=</tt> <tt class="py-name">out</tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_targets</tt> <tt class="py-op">+=</tt> <tt id="link-37" class="py-name"><a title="rom" class="py-name" href="#" onclick="return doclink('link-37', 'rom', 'link-0');">rom</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Function rom.get_makefile_target()=rom-module.html#get_makefile_target"><a title="rom.get_makefile_target" class="py-name" href="#" onclick="return doclink('link-38', 'get_makefile_target', 'link-38');">get_makefile_target</a></tt><tt class="py-op">(</tt><tt class="py-name">out</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> </tt>
+</div><a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line"> </tt>
+<a name="FlashConfigurationWriter.write"></a><div id="FlashConfigurationWriter.write-def"><a name="L222"></a><tt class="py-lineno">222</tt> <a class="py-toggle" href="#" id="FlashConfigurationWriter.write-toggle" onclick="return toggle('FlashConfigurationWriter.write');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="flash_config.FlashConfigurationWriter-class.html#write">write</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlashConfigurationWriter.write-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FlashConfigurationWriter.write-expanded"><a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">        <tt class="py-docstring">""" Go throught the config and creates the flash configuration files</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">         </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">        <tt class="py-comment"># Pass #1: Store all language packs</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_all_languagepacks()=flash_config.FlashConfigurationWriter-class.html#_get_all_languagepacks"><a title="flash_config.FlashConfigurationWriter._get_all_languagepacks" class="py-name" href="#" onclick="return doclink('link-39', '_get_all_languagepacks', 'link-39');">_get_all_languagepacks</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_all_udas()=flash_config.FlashConfigurationWriter-class.html#_get_all_udas"><a title="flash_config.FlashConfigurationWriter._get_all_udas" class="py-name" href="#" onclick="return doclink('link-40', '_get_all_udas', 'link-40');">_get_all_udas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_all_mcs()=flash_config.FlashConfigurationWriter-class.html#_get_all_mcs"><a title="flash_config.FlashConfigurationWriter._get_all_mcs" class="py-name" href="#" onclick="return doclink('link-41', '_get_all_mcs', 'link-41');">_get_all_mcs</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_all_mms()=flash_config.FlashConfigurationWriter-class.html#_get_all_mms"><a title="flash_config.FlashConfigurationWriter._get_all_mms" class="py-name" href="#" onclick="return doclink('link-42', '_get_all_mms', 'link-42');">_get_all_mms</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_makefile_content</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_targets</tt> <tt class="py-op">=</tt> <tt class="py-string">"flash_config: "</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">         </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-comment"># Pass #2: Create all flash config files</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_configs</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-43', 'getConfigurations', 'link-8');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-44', 'type', 'link-3');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"customer"</tt><tt class="py-op">)</tt> <tt class="py-keyword">or</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-45', 'type', 'link-3');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"operator"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">                <tt class="py-name">image_types</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'image.type'</tt><tt class="py-op">]</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'image.type'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">ListType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">                    <tt class="py-name">image_types</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'image.type'</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">                 </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">lp</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_compatible_languagepacks()=flash_config.FlashConfigurationWriter-class.html#_get_compatible_languagepacks"><a title="flash_config.FlashConfigurationWriter._get_compatible_languagepacks" class="py-name" href="#" onclick="return doclink('link-46', '_get_compatible_languagepacks', 'link-46');">_get_compatible_languagepacks</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line">                    <tt class="py-name">lp</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Method flash_config.ImagePack.set_config()=flash_config.ImagePack-class.html#set_config"><a title="flash_config.ImagePack.set_config" class="py-name" href="#" onclick="return doclink('link-47', 'set_config', 'link-47');">set_config</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">                    <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'image.type.temp'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">'${image.type}'</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">                     </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">                    <tt class="py-name">enable_uda</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">                    <tt class="py-name">enable_mm</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">                    <tt class="py-name">enable_mc</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">                    <tt class="py-name">compatible_uda</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_compatible_udas()=flash_config.FlashConfigurationWriter-class.html#_get_compatible_udas"><a title="flash_config.FlashConfigurationWriter._get_compatible_udas" class="py-name" href="#" onclick="return doclink('link-48', '_get_compatible_udas', 'link-48');">_get_compatible_udas</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">                    <tt class="py-name">compatible_mm</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_compatible_mms()=flash_config.FlashConfigurationWriter-class.html#_get_compatible_mms"><a title="flash_config.FlashConfigurationWriter._get_compatible_mms" class="py-name" href="#" onclick="return doclink('link-49', '_get_compatible_mms', 'link-49');">_get_compatible_mms</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">                    <tt class="py-name">compatible_mc</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method flash_config.FlashConfigurationWriter._get_compatible_mcs()=flash_config.FlashConfigurationWriter-class.html#_get_compatible_mcs"><a title="flash_config.FlashConfigurationWriter._get_compatible_mcs" class="py-name" href="#" onclick="return doclink('link-50', '_get_compatible_mcs', 'link-50');">_get_compatible_mcs</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">                     </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">compatible_uda</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">                        <tt class="py-name">enable_uda</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">                        <tt class="py-name">compatible_uda</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">None</tt><tt class="py-op">]</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">compatible_mm</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">                        <tt class="py-name">enable_mm</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line">                        <tt class="py-name">compatible_mm</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">None</tt><tt class="py-op">]</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">compatible_mc</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">                        <tt class="py-name">enable_mc</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">                        <tt class="py-name">compatible_mc</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">None</tt><tt class="py-op">]</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">                         </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line">                    <tt class="py-keyword">for</tt> <tt class="py-name">uda</tt> <tt class="py-keyword">in</tt> <tt class="py-name">compatible_uda</tt><tt class="py-op">:</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">uda</tt><tt class="py-op">:</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line">                            <tt class="py-name">uda</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="flash_config.ImagePack.set_config" class="py-name" href="#" onclick="return doclink('link-51', 'set_config', 'link-47');">set_config</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">                        <tt class="py-keyword">for</tt> <tt class="py-name">mm</tt> <tt class="py-keyword">in</tt> <tt class="py-name">compatible_mm</tt><tt class="py-op">:</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">                            <tt class="py-keyword">if</tt> <tt class="py-name">mm</tt><tt class="py-op">:</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">                                <tt class="py-name">mm</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="flash_config.ImagePack.set_config" class="py-name" href="#" onclick="return doclink('link-52', 'set_config', 'link-47');">set_config</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">                            <tt class="py-keyword">for</tt> <tt class="py-name">mc</tt> <tt class="py-keyword">in</tt> <tt class="py-name">compatible_mc</tt><tt class="py-op">:</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">                                <tt class="py-keyword">if</tt> <tt class="py-name">mc</tt><tt class="py-op">:</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line">                                    <tt class="py-name">mc</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="flash_config.ImagePack.set_config" class="py-name" href="#" onclick="return doclink('link-53', 'set_config', 'link-47');">set_config</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">                                <tt class="py-keyword">for</tt> <tt class="py-name">romtype</tt> <tt class="py-keyword">in</tt> <tt class="py-name">image_types</tt><tt class="py-op">:</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">                                    <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-string">'image.type'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">romtype</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">                                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Method flash_config.FlashConfigurationWriter._write_file()=flash_config.FlashConfigurationWriter-class.html#_write_file"><a title="flash_config.FlashConfigurationWriter._write_file" class="py-name" href="#" onclick="return doclink('link-54', '_write_file', 'link-54');">_write_file</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">romtype</tt><tt class="py-op">,</tt> <tt class="py-name">enable_uda</tt><tt class="py-op">,</tt> <tt class="py-name">enable_mm</tt><tt class="py-op">,</tt> <tt class="py-name">enable_mc</tt><tt class="py-op">)</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">                                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name" targets="Method flash_config.FlashConfigurationWriter._append_to_makefile()=flash_config.FlashConfigurationWriter-class.html#_append_to_makefile"><a title="flash_config.FlashConfigurationWriter._append_to_makefile" class="py-name" href="#" onclick="return doclink('link-55', '_append_to_makefile', 'link-55');">_append_to_makefile</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">,</tt> <tt class="py-name">romtype</tt><tt class="py-op">)</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">         </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_makefile_content</tt> <tt class="py-op">==</tt> <tt class="py-string">""</tt><tt class="py-op">:</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">            <tt id="link-56" class="py-name"><a title="archive.scanners.logger
+archive.selectors.logger
+buildmanagement.logger
+flash_config.logger
+helium.logger
+imaker.iqrf.logger
+integration.templatebuilder.logger
+rom.logger" class="py-name" href="#" onclick="return doclink('link-56', 'logger', 'link-2');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"No customer's or operator's found in rom config"</tt><tt class="py-op">)</tt>  </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">         </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">        <tt class="py-comment"># Write makefile</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">makefile_filename</tt> <tt class="py-op">=</tt> <tt class="py-string">"%s/mc_flash_config.mk"</tt> <tt class="py-op">%</tt> <tt id="link-57" class="py-name"><a title="imaker" class="py-name" href="#" onclick="return doclink('link-57', 'imaker', 'link-1');">imaker</a></tt><tt class="py-op">.</tt><tt id="link-58" class="py-name" targets="Function imaker.api.get_product_dir()=imaker.api-module.html#get_product_dir"><a title="imaker.api.get_product_dir" class="py-name" href="#" onclick="return doclink('link-58', 'get_product_dir', 'link-58');">get_product_dir</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_product</tt><tt class="py-op">)</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"Writing makfile "</tt> <tt class="py-op">+</tt> <tt class="py-name">makefile_filename</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">        <tt class="py-name">fp</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">makefile_filename</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">        <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-59', 'write', 'link-30');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"include $(E32ROMCFG)/helium_features.mk\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">        <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-60', 'write', 'link-30');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_makefile_content</tt><tt class="py-op">)</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">        <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-61', 'write', 'link-30');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_targets</tt><tt class="py-op">)</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">        <tt class="py-name">fp</tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-62', 'close', 'link-33');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:22 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

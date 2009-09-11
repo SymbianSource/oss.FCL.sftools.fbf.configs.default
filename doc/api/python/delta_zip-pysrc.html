@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>delta_zip</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;delta_zip
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="delta_zip-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="delta_zip-module.html">Module delta_zip</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : delta_zip.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module fileutils=fileutils-module.html"><a title="fileutils" class="py-name" href="#" onclick="return doclink('link-0', 'fileutils', 'link-0');">fileutils</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module buildtools=buildtools-module.html"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-1', 'buildtools', 'link-1');">buildtools</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable archive.builders._logger=archive.builders-module.html#_logger,Variable archive.mappers._logger=archive.mappers-module.html#_logger,Variable archive.tools._logger=archive.tools-module.html#_logger,Variable ats3._logger=ats3-module.html#_logger,Variable ats3.aste._logger=ats3.aste-module.html#_logger,Variable ats3.dropgenerator._logger=ats3.dropgenerator-module.html#_logger,Variable ats3.parsers._logger=ats3.parsers-module.html#_logger,Variable ats3.testconfigurator._logger=ats3.testconfigurator-module.html#_logger,Variable build.io._logger=build.io-module.html#_logger,Variable build.model._logger=build.model-module.html#_logger,Variable ccm._logger=ccm-module.html#_logger,Variable ccm.extra._logger=ccm.extra-module.html#_logger,Variable comments._logger=comments-module.html#_logger,Variable configuration._logger=configuration-module.html#_logger,Variable configuration_model._logger=configuration_model-module.html#_logger,Variable delta_zip._logger=delta_zip-module.html#_logger,Variable integration.quality._logger=integration.quality-module.html#_logger,Variable nokia.gscm._logger=nokia.gscm-module.html#_logger,Variable nokia.nokiaccm._logger=nokia.nokiaccm-module.html#_logger,Variable pathaddition.match._logger=pathaddition.match-module.html#_logger,Variable preparation._logger=preparation-module.html#_logger,Variable symbian.log._logger=symbian.log-module.html#_logger,Variable sysdef.api._logger=sysdef.api-module.html#_logger"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-2', '_logger', 'link-2');">_logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'delta_zip'</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">basicConfig</tt><tt class="py-op">(</tt><tt id="link-3" class="py-name" targets="Variable configuration_model.Item.level=configuration_model.Item-class.html#level,Variable configuration_model.MissingFromDataModelItem.level=configuration_model.MissingFromDataModelItem-class.html#level,Variable configuration_model.UndefinedRequiredInGroupItem.level=configuration_model.UndefinedRequiredInGroupItem-class.html#level,Variable configuration_model.UsingDeprecatedItem.level=configuration_model.UsingDeprecatedItem-class.html#level,Variable configuration_model.WrongTypeItem.level=configuration_model.WrongTypeItem-class.html#level"><a title="configuration_model.Item.level
+configuration_model.MissingFromDataModelItem.level
+configuration_model.UndefinedRequiredInGroupItem.level
+configuration_model.UsingDeprecatedItem.level
+configuration_model.WrongTypeItem.level" class="py-name" href="#" onclick="return doclink('link-3', 'level', 'link-3');">level</a></tt><tt class="py-op">=</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">INFO</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="MD5SignatureBuilder"></a><div id="MD5SignatureBuilder-def"><a name="L29"></a><tt class="py-lineno"> 29</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder-toggle" onclick="return toggle('MD5SignatureBuilder');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html">MD5SignatureBuilder</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MD5SignatureBuilder-expanded"><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-docstring">""" MD5 CRC creation base class"""</tt> </tt>
+<a name="MD5SignatureBuilder.__init__"></a><div id="MD5SignatureBuilder.__init__-def"><a name="L31"></a><tt class="py-lineno"> 31</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.__init__-toggle" onclick="return toggle('MD5SignatureBuilder.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-param">nb_split</tt><tt class="py-op">,</tt> <tt class="py-param">temp_dir</tt><tt class="py-op">,</tt> <tt class="py-param">exclude_dirs</tt><tt class="py-op">,</tt> <tt class="py-param">list_of_files</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.__init__-expanded"><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-docstring">"""constructor"""</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">build_area_root</tt><tt class="py-op">.</tt><tt class="py-name">endswith</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">sep</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt> <tt class="py-op">=</tt> <tt class="py-name">build_area_root</tt> <tt class="py-op">+</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">sep</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nb_split</tt> <tt class="py-op">=</tt> <tt class="py-name">nb_split</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_dir</tt> <tt class="py-op">=</tt> <tt class="py-name">temp_dir</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">exclude_dirs</tt> <tt class="py-op">=</tt> <tt class="py-name">exclude_dirs</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">list_of_files</tt> <tt class="py-op">=</tt> <tt class="py-name">list_of_files</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">         </tt>
+<a name="MD5SignatureBuilder.create_file_list"></a><div id="MD5SignatureBuilder.create_file_list-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.create_file_list-toggle" onclick="return toggle('MD5SignatureBuilder.create_file_list');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#create_file_list">create_file_list</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.create_file_list-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.create_file_list-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-docstring">"""Create list of files (was list_files.pl)"""</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-comment">#list_of_files_symbol = os.path.join(self.temp_dir, "list_files_sym.txt")</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-comment"></tt>         </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method buildtools.Command.path()=buildtools.Command-class.html#path,Method sysdef.api.SpecialInstruction.path()=sysdef.api.SpecialInstruction-class.html#path,Method sysdef.api.Unit.path()=sysdef.api.Unit-class.html#path"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-4', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method ccm.CCMObject.exists()=ccm.CCMObject-class.html#exists"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-5', 'exists', 'link-5');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_dir</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">            <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_dir</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">       </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">fp_filelist</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">list_of_files</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-comment">#fp_filelist_sym = open(list_of_files_symbol, 'w')</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-comment"></tt>                         </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">scanner</tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="fileutils" class="py-name" href="#" onclick="return doclink('link-6', 'fileutils', 'link-0');">fileutils</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Class fileutils.FileScanner=fileutils.FileScanner-class.html"><a title="fileutils.FileScanner" class="py-name" href="#" onclick="return doclink('link-7', 'FileScanner', 'link-7');">FileScanner</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">scanner</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method fileutils.AbstractScanner.add_include()=fileutils.AbstractScanner-class.html#add_include"><a title="fileutils.AbstractScanner.add_include" class="py-name" href="#" onclick="return doclink('link-8', 'add_include', 'link-8');">add_include</a></tt><tt class="py-op">(</tt><tt class="py-string">'**'</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">         </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">_dir</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">exclude_dirs</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">','</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">            <tt class="py-name">_dir</tt> <tt class="py-op">=</tt> <tt class="py-name">_dir</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">            <tt class="py-name">scanner</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method fileutils.AbstractScanner.add_exclude()=fileutils.AbstractScanner-class.html#add_exclude"><a title="fileutils.AbstractScanner.add_exclude" class="py-name" href="#" onclick="return doclink('link-9', 'add_exclude', 'link-9');">add_exclude</a></tt><tt class="py-op">(</tt><tt class="py-name">_dir</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-10" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-10', 'path', 'link-4');">path</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">scanner</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method archive.scanners.AbldWhatScanner.scan()=archive.scanners.AbldWhatScanner-class.html#scan,Method archive.scanners.FileSystemScanner.scan()=archive.scanners.FileSystemScanner-class.html#scan,Method archive.scanners.InputFileScanner.scan()=archive.scanners.InputFileScanner-class.html#scan,Method archive.scanners.Scanner.scan()=archive.scanners.Scanner-class.html#scan,Method comments.CommentParser.scan()=comments.CommentParser-class.html#scan,Method fileutils.AbstractScanner.scan()=fileutils.AbstractScanner-class.html#scan,Method fileutils.FileScanner.scan()=fileutils.FileScanner-class.html#scan,Method imaker.api.IMakerConfigScanner.scan()=imaker.api.IMakerConfigScanner-class.html#scan"><a title="archive.scanners.AbldWhatScanner.scan
+archive.scanners.FileSystemScanner.scan
+archive.scanners.InputFileScanner.scan
+archive.scanners.Scanner.scan
+comments.CommentParser.scan
+fileutils.AbstractScanner.scan
+fileutils.FileScanner.scan
+imaker.api.IMakerConfigScanner.scan" class="py-name" href="#" onclick="return doclink('link-11', 'scan', 'link-11');">scan</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-12', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt id="link-13" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-13', 'path', 'link-4');">path</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-keyword">or</tt> <tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-14', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt id="link-15" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-15', 'path', 'link-4');">path</a></tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">listdir</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-16', 'path', 'link-4');">path</a></tt><tt class="py-op">)</tt> <tt class="py-op">!=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>  <tt class="py-keyword">and</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">listdir</tt><tt class="py-op">(</tt><tt id="link-17" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-17', 'path', 'link-4');">path</a></tt><tt class="py-op">)</tt> <tt class="py-op">!=</tt> <tt class="py-op">[</tt><tt class="py-string">'.svn'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                <tt id="link-18" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-18', 'path', 'link-4');">path</a></tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-19', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">                <tt class="py-name">fp_filelist</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method archive.builders.ArchivePreBuilder.write()=archive.builders.ArchivePreBuilder-class.html#write,Method build.model.BOMDeltaXMLWriter.write()=build.model.BOMDeltaXMLWriter-class.html#write,Method build.model.BOMXMLWriter.write()=build.model.BOMXMLWriter-class.html#write,Method buildtools.AbstractOutputWriter.write()=buildtools.AbstractOutputWriter-class.html#write,Method buildtools.AntWriter.write()=buildtools.AntWriter-class.html#write,Method buildtools.EBSWriter.write()=buildtools.EBSWriter-class.html#write,Method buildtools.MakeWriter.write()=buildtools.MakeWriter-class.html#write,Method buildtools.StringWriter.write()=buildtools.StringWriter-class.html#write,Method flash_config.FlashConfigurationWriter.write()=flash_config.FlashConfigurationWriter-class.html#write,Method helium.documentation.APIDeltaWriter.write()=helium.documentation.APIDeltaWriter-class.html#write,Method sis.SisPreBuilder.write()=sis.SisPreBuilder-class.html#write,Method sysdef.io.FlashImageSizeWriter.write()=sysdef.io.FlashImageSizeWriter-class.html#write,Method sysdef.io.MakeWriter.write()=sysdef.io.MakeWriter-class.html#write,Method sysdef.io.MakeWriter2.write()=sysdef.io.MakeWriter2-class.html#write,Method sysdef.io.MakeWriter3.write()=sysdef.io.MakeWriter3-class.html#write,Method version.Version.write()=version.Version-class.html#write"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-20', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt id="link-21" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-21', 'path', 'link-4');">path</a></tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">             </tt>
+<a name="MD5SignatureBuilder.split_file_list"></a><div id="MD5SignatureBuilder.split_file_list-def"><a name="L62"></a><tt class="py-lineno"> 62</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.split_file_list-toggle" onclick="return toggle('MD5SignatureBuilder.split_file_list');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#split_file_list">split_file_list</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.split_file_list-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.split_file_list-expanded"><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-docstring">"""Split the list of files for parallelalisation"""</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">md5_dir</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-22', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_dir</tt><tt class="py-op">,</tt> <tt class="py-string">"md5_temp"</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-23', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">md5_dir</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nb_split</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-24', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-25', 'exists', 'link-5');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">makedirs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-name">fp_split</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-comment">#Open files</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment">#White list_of_lists.txt</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">list_of_lists</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt> <tt class="py-op">+</tt> <tt class="py-string">"/list_of_lists.txt"</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">fp_list_of_lists</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">list_of_lists</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nb_split</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">            <tt id="link-26" class="py-name" targets="Variable symrec.ReleaseMetadata.filename=symrec.ReleaseMetadata-class.html#filename"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-26', 'filename', 'link-26');">filename</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt> <tt class="py-op">+</tt> <tt class="py-string">"/"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">".txt"</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">            <tt class="py-name">_fp</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt id="link-27" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-27', 'filename', 'link-26');">filename</a></tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">            <tt class="py-name">fp_split</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method ccm.Folder.append()=ccm.Folder-class.html#append,Method ccm.Task.append()=ccm.Task-class.html#append"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-28', 'append', 'link-28');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">_fp</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">            <tt class="py-comment">#Write in list_of_lists</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">fp_list_of_lists</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-29', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt id="link-30" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-30', 'filename', 'link-26');">filename</a></tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">             </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-comment">#Write in files</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">fp_read</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">list_of_files</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt>  </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-name">fp_read</tt><tt class="py-op">.</tt><tt class="py-name">readline</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-name">line_number</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt><tt class="py-op">(</tt><tt class="py-name">line</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-name">fp_split</tt><tt class="py-op">[</tt><tt class="py-name">line_number</tt> <tt class="py-op">%</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">fp_split</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-31', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">line</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-name">fp_read</tt><tt class="py-op">.</tt><tt class="py-name">readline</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">            <tt class="py-name">line_number</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">         </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">fp_list_of_lists</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method build.model.BOM.close()=build.model.BOM-class.html#close,Method build.model.SessionCreator.close()=build.model.SessionCreator-class.html#close,Method buildtools.AbstractOutputWriter.close()=buildtools.AbstractOutputWriter-class.html#close,Method ccm.AbstractSession.close()=ccm.AbstractSession-class.html#close,Method ccm.Session.close()=ccm.Session-class.html#close,Method ccm.SessionPool.close()=ccm.SessionPool-class.html#close,Method ccm.extra.CachedSessionProvider.close()=ccm.extra.CachedSessionProvider-class.html#close,Method ccm.extra.SessionProvider.close()=ccm.extra.SessionProvider-class.html#close,Method log2xml.LogWriter.close()=log2xml.LogWriter-class.html#close,Method preparation.PreparationBuilder.close()=preparation.PreparationBuilder-class.html#close,Method sysdef.io.FlashImageSizeWriter.close()=sysdef.io.FlashImageSizeWriter-class.html#close"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-32', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt>     </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">fp_read</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-33', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">_fp</tt> <tt class="py-keyword">in</tt> <tt class="py-name">fp_split</tt><tt class="py-op">:</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">            <tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-34', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">             </tt>
+<a name="MD5SignatureBuilder.create_command_list"></a><div id="MD5SignatureBuilder.create_command_list-def"><a name="L94"></a><tt class="py-lineno"> 94</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.create_command_list-toggle" onclick="return toggle('MD5SignatureBuilder.create_command_list');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#create_command_list">create_command_list</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt>         </tt>
+</div><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-docstring">""" create the command to run evalid on each file in the list of files"""</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">liste</tt> <tt class="py-op">=</tt> <tt id="link-35" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-35', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Class buildtools.CommandList=buildtools.CommandList-class.html"><a title="buildtools.CommandList" class="py-name" href="#" onclick="return doclink('link-36', 'CommandList', 'link-36');">CommandList</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">         </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-comment">#tools_dir = os.path.join(self.build_area_root, "/epoc32/tools")</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-comment"></tt>         </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nb_split</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-comment">#liste.addCommand(buildtools.Command("perl -I"+tools_dir, tools_dir, [os.path.join(tools_dir,"evalid_multiple.pl"), "-f", self.__get_partial_input_file_name(i), "&gt; "+self.__get_partial_signature_file_name(i) ]))</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">liste</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Method buildtools.CommandList.addCommand()=buildtools.CommandList-class.html#addCommand"><a title="buildtools.CommandList.addCommand" class="py-name" href="#" onclick="return doclink('link-37', 'addCommand', 'link-37');">addCommand</a></tt><tt class="py-op">(</tt><tt id="link-38" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-38', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Class buildtools.Command=buildtools.Command-class.html"><a title="buildtools.Command" class="py-name" href="#" onclick="return doclink('link-39', 'Command', 'link-39');">Command</a></tt><tt class="py-op">(</tt><tt class="py-string">"evalid"</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">sep</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-string">""</tt><tt class="py-op">,</tt> <tt class="py-string">"-f"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.__get_partial_input_file_name()=delta_zip.MD5SignatureBuilder-class.html#__get_partial_input_file_name"><a title="delta_zip.MD5SignatureBuilder.__get_partial_input_file_name" class="py-name" href="#" onclick="return doclink('link-40', '__get_partial_input_file_name', 'link-40');">__get_partial_input_file_name</a></tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt><tt class="py-op">+</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.__get_partial_signature_file_name()=delta_zip.MD5SignatureBuilder-class.html#__get_partial_signature_file_name"><a title="delta_zip.MD5SignatureBuilder.__get_partial_signature_file_name" class="py-name" href="#" onclick="return doclink('link-41', '__get_partial_signature_file_name', 'link-41');">__get_partial_signature_file_name</a></tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> <tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">             </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">liste</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">     </tt>
+<a name="MD5SignatureBuilder.__get_partial_input_file_name"></a><div id="MD5SignatureBuilder.__get_partial_input_file_name-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.__get_partial_input_file_name-toggle" onclick="return toggle('MD5SignatureBuilder.__get_partial_input_file_name');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#__get_partial_input_file_name">__get_partial_input_file_name</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">_nb</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.__get_partial_input_file_name-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.__get_partial_input_file_name-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-docstring">""" get the input file name string as has been created so far and add .txt to it"""</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-42', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">_nb</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">".txt"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">             </tt>
+<a name="MD5SignatureBuilder.__get_partial_signature_file_name"></a><div id="MD5SignatureBuilder.__get_partial_signature_file_name-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.__get_partial_signature_file_name-toggle" onclick="return toggle('MD5SignatureBuilder.__get_partial_signature_file_name');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#__get_partial_signature_file_name">__get_partial_signature_file_name</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">_nb</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.__get_partial_signature_file_name-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.__get_partial_signature_file_name-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-docstring">""" get the signature file name string as has been created so far and add .md5 to it"""</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-43', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">_nb</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">".md5"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">         </tt>
+<a name="MD5SignatureBuilder.concatenate_signature_files"></a><div id="MD5SignatureBuilder.concatenate_signature_files-def"><a name="L114"></a><tt class="py-lineno">114</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.concatenate_signature_files-toggle" onclick="return toggle('MD5SignatureBuilder.concatenate_signature_files');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#concatenate_signature_files">concatenate_signature_files</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">signature_file</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.concatenate_signature_files-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.concatenate_signature_files-expanded"><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-docstring">""" concatenate all the files with the MD5 CRC in """</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-comment"># Get header</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">_fp</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="delta_zip.MD5SignatureBuilder.__get_partial_signature_file_name" class="py-name" href="#" onclick="return doclink('link-44', '__get_partial_signature_file_name', 'link-41');">__get_partial_signature_file_name</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">header_temp</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">header</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-op">(</tt><tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">search</tt><tt class="py-op">(</tt><tt class="py-string">r'(\S+).*MD5=(\S+)'</tt><tt class="py-op">,</tt> <tt class="py-name">line</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-name">header_temp</tt> <tt class="py-op">=</tt> <tt class="py-name">header_temp</tt> <tt class="py-op">+</tt> <tt class="py-name">line</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt class="py-name">readline</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">         </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">line</tt> <tt class="py-keyword">in</tt> <tt class="py-name">header_temp</tt><tt class="py-op">.</tt><tt class="py-name">splitlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Method fileutils.AbstractScanner.match()=fileutils.AbstractScanner-class.html#match,Module pathaddition.match=pathaddition.match-module.html"><a title="fileutils.AbstractScanner.match
+pathaddition.match" class="py-name" href="#" onclick="return doclink('link-45', 'match', 'link-45');">match</a></tt><tt class="py-op">(</tt><tt class="py-string">r'Directory:.*'</tt><tt class="py-op">,</tt> <tt class="py-name">line</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                <tt class="py-name">line</tt> <tt class="py-op">=</tt>  <tt class="py-string">"Directory:"</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="fileutils.AbstractScanner.match
+pathaddition.match" class="py-name" href="#" onclick="return doclink('link-46', 'match', 'link-45');">match</a></tt><tt class="py-op">(</tt><tt class="py-string">r'FileList:.*'</tt><tt class="py-op">,</tt> <tt class="py-name">line</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-string">"FileList:"</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">list_of_files</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">            <tt class="py-name">header</tt> <tt class="py-op">=</tt> <tt class="py-name">header</tt> <tt class="py-op">+</tt> <tt class="py-name">line</tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">         </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-comment">#re.sub(r'(Directory:).*\n', "\1"+self.build_area_root, header)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment">#re.sub(r'(FileList:).*\n', "\1"+self.list_of_files, header)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-comment"></tt>             </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-name">header_size</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">header</tt><tt class="py-op">.</tt><tt class="py-name">splitlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">         </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">fp_md5_signatures_file</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">signature_file</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-name">fp_md5_signatures_file</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-47', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">header</tt><tt class="py-op">)</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nb_split</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">            <tt class="py-name">_fp</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="delta_zip.MD5SignatureBuilder.__get_partial_signature_file_name" class="py-name" href="#" onclick="return doclink('link-48', '__get_partial_signature_file_name', 'link-41');">__get_partial_signature_file_name</a></tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">header_size</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># Skip header</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                <tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt class="py-name">readline</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">             </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">            <tt class="py-name">fp_md5_signatures_file</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-49', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">            <tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-50', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">fp_md5_signatures_file</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-51', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="MD5SignatureBuilder.write_build_file"></a><div id="MD5SignatureBuilder.write_build_file-def"><a name="L149"></a><tt class="py-lineno">149</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.write_build_file-toggle" onclick="return toggle('MD5SignatureBuilder.write_build_file');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#write_build_file">write_build_file</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.write_build_file-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.write_build_file-expanded"><a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-docstring">""" create the file of the list of files to have a CRC created"""</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.create_file_list()=delta_zip.MD5SignatureBuilder-class.html#create_file_list"><a title="delta_zip.MD5SignatureBuilder.create_file_list" class="py-name" href="#" onclick="return doclink('link-52', 'create_file_list', 'link-52');">create_file_list</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.split_file_list()=delta_zip.MD5SignatureBuilder-class.html#split_file_list"><a title="delta_zip.MD5SignatureBuilder.split_file_list" class="py-name" href="#" onclick="return doclink('link-53', 'split_file_list', 'link-53');">split_file_list</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.create_build_file()=delta_zip.MD5SignatureBuilder-class.html#create_build_file,Method delta_zip.MD5SignatureBuilderEBS.create_build_file()=delta_zip.MD5SignatureBuilderEBS-class.html#create_build_file,Method delta_zip.MD5SignatureBuilderEC.create_build_file()=delta_zip.MD5SignatureBuilderEC-class.html#create_build_file"><a title="delta_zip.MD5SignatureBuilder.create_build_file
+delta_zip.MD5SignatureBuilderEBS.create_build_file
+delta_zip.MD5SignatureBuilderEC.create_build_file" class="py-name" href="#" onclick="return doclink('link-54', 'create_build_file', 'link-54');">create_build_file</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">     </tt>
+<a name="MD5SignatureBuilder.create_build_file"></a><div id="MD5SignatureBuilder.create_build_file-def"><a name="L155"></a><tt class="py-lineno">155</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.create_build_file-toggle" onclick="return toggle('MD5SignatureBuilder.create_build_file');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#create_build_file">create_build_file</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.create_build_file-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.create_build_file-expanded"><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-docstring">""" there should always be an overloaded version of this method in sub-classes"""</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">     </tt>
+<a name="MD5SignatureBuilder.build"></a><div id="MD5SignatureBuilder.build-def"><a name="L159"></a><tt class="py-lineno">159</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.build-toggle" onclick="return toggle('MD5SignatureBuilder.build');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#build">build</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">signature_file</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.build-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.build-expanded"><a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-docstring">"""create the list of files generate the MD5 CRC and create the final file with CRCs in"""</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.write_build_file()=delta_zip.MD5SignatureBuilder-class.html#write_build_file"><a title="delta_zip.MD5SignatureBuilder.write_build_file" class="py-name" href="#" onclick="return doclink('link-55', 'write_build_file', 'link-55');">write_build_file</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.compute_evalid_MD5()=delta_zip.MD5SignatureBuilder-class.html#compute_evalid_MD5,Method delta_zip.MD5SignatureBuilderEBS.compute_evalid_MD5()=delta_zip.MD5SignatureBuilderEBS-class.html#compute_evalid_MD5,Method delta_zip.MD5SignatureBuilderEC.compute_evalid_MD5()=delta_zip.MD5SignatureBuilderEC-class.html#compute_evalid_MD5"><a title="delta_zip.MD5SignatureBuilder.compute_evalid_MD5
+delta_zip.MD5SignatureBuilderEBS.compute_evalid_MD5
+delta_zip.MD5SignatureBuilderEC.compute_evalid_MD5" class="py-name" href="#" onclick="return doclink('link-56', 'compute_evalid_MD5', 'link-56');">compute_evalid_MD5</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Method delta_zip.MD5SignatureBuilder.concatenate_signature_files()=delta_zip.MD5SignatureBuilder-class.html#concatenate_signature_files"><a title="delta_zip.MD5SignatureBuilder.concatenate_signature_files" class="py-name" href="#" onclick="return doclink('link-57', 'concatenate_signature_files', 'link-57');">concatenate_signature_files</a></tt><tt class="py-op">(</tt><tt class="py-name">signature_file</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">             </tt>
+<a name="MD5SignatureBuilder.compute_evalid_MD5"></a><div id="MD5SignatureBuilder.compute_evalid_MD5-def"><a name="L165"></a><tt class="py-lineno">165</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilder.compute_evalid_MD5-toggle" onclick="return toggle('MD5SignatureBuilder.compute_evalid_MD5');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilder-class.html#compute_evalid_MD5">compute_evalid_MD5</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilder.compute_evalid_MD5-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilder.compute_evalid_MD5-expanded"><a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-docstring">""" there should always be an overlaoded version in the methos sub-class"""</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">     </tt>
+<a name="MD5SignatureBuilderEBS"></a><div id="MD5SignatureBuilderEBS-def"><a name="L169"></a><tt class="py-lineno">169</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEBS-toggle" onclick="return toggle('MD5SignatureBuilderEBS');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEBS-class.html">MD5SignatureBuilderEBS</a><tt class="py-op">(</tt><tt class="py-base-class">MD5SignatureBuilder</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEBS-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MD5SignatureBuilderEBS-expanded"><a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">    <tt class="py-docstring">""" build the MD5 CRCs for all the files in the list of files"""</tt> </tt>
+<a name="MD5SignatureBuilderEBS.create_build_file"></a><div id="MD5SignatureBuilderEBS.create_build_file-def"><a name="L171"></a><tt class="py-lineno">171</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEBS.create_build_file-toggle" onclick="return toggle('MD5SignatureBuilderEBS.create_build_file');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEBS-class.html#create_build_file">create_build_file</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEBS.create_build_file-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilderEBS.create_build_file-expanded"><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">        <tt class="py-docstring">"""Create EBS XML"""</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-name">liste</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name" targets="Method archive.builders.ArchivePreBuilder.create_command_list()=archive.builders.ArchivePreBuilder-class.html#create_command_list,Method delta_zip.MD5SignatureBuilder.create_command_list()=delta_zip.MD5SignatureBuilder-class.html#create_command_list"><a title="archive.builders.ArchivePreBuilder.create_command_list
+delta_zip.MD5SignatureBuilder.create_command_list" class="py-name" href="#" onclick="return doclink('link-58', 'create_command_list', 'link-58');">create_command_list</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt> <tt class="py-op">+</tt> <tt class="py-string">"/ebs.xml"</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt id="link-59" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-59', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-60" class="py-name" targets="Function buildtools.convert()=buildtools-module.html#convert,Static Method ccm.FourPartName.convert()=ccm.FourPartName-class.html#convert,Function log2xml.convert()=log2xml-module.html#convert"><a title="buildtools.convert
+ccm.FourPartName.convert
+log2xml.convert" class="py-name" href="#" onclick="return doclink('link-60', 'convert', 'link-60');">convert</a></tt><tt class="py-op">(</tt><tt class="py-name">liste</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt><tt class="py-op">,</tt> <tt class="py-string">"ebs"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"> </tt>
+<a name="MD5SignatureBuilderEBS.compute_evalid_MD5"></a><div id="MD5SignatureBuilderEBS.compute_evalid_MD5-def"><a name="L177"></a><tt class="py-lineno">177</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEBS.compute_evalid_MD5-toggle" onclick="return toggle('MD5SignatureBuilderEBS.compute_evalid_MD5');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEBS-class.html#compute_evalid_MD5">compute_evalid_MD5</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEBS.compute_evalid_MD5-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilderEBS.compute_evalid_MD5-expanded"><a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-docstring">"""Compute MD5 using the requested parallel build system"""</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">chdir</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">system</tt><tt class="py-op">(</tt><tt class="py-string">"perl -I%HELIUM_HOME%/tools/common/packages %HELIUM_HOME%/tools/compile/buildjob.pl -d "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt> <tt class="py-op">+</tt> <tt class="py-string">" -l "</tt> <tt class="py-op">+</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-61', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt><tt class="py-op">,</tt> <tt class="py-string">"md5.log"</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" -n "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'NUMBER_OF_PROCESSORS'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-number">2</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"><tt class="py-string">Run the delta zipping over the EC build system</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="MD5SignatureBuilderEC"></a><div id="MD5SignatureBuilderEC-def"><a name="L185"></a><tt class="py-lineno">185</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEC-toggle" onclick="return toggle('MD5SignatureBuilderEC');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEC-class.html">MD5SignatureBuilderEC</a><tt class="py-op">(</tt><tt class="py-base-class">MD5SignatureBuilder</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEC-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MD5SignatureBuilderEC-expanded"><a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">    <tt class="py-docstring">""" The MD5 CRC creation for delta zippinf for use on EC machines"""</tt> </tt>
+<a name="MD5SignatureBuilderEC.__init__"></a><div id="MD5SignatureBuilderEC.__init__-def"><a name="L187"></a><tt class="py-lineno">187</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEC.__init__-toggle" onclick="return toggle('MD5SignatureBuilderEC.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEC-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-param">nb_split</tt><tt class="py-op">,</tt> <tt class="py-param">temp_dir</tt><tt class="py-op">,</tt> <tt class="py-param">exclude_dirs</tt><tt class="py-op">,</tt> <tt class="py-param">ec_cluster_manager</tt><tt class="py-op">,</tt> <tt class="py-param">ec_build_class</tt><tt class="py-op">,</tt> <tt class="py-param">list_of_files</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEC.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilderEC.__init__-expanded"><a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">        <tt id="link-62" class="py-name" targets="Class delta_zip.MD5SignatureBuilder=delta_zip.MD5SignatureBuilder-class.html"><a title="delta_zip.MD5SignatureBuilder" class="py-name" href="#" onclick="return doclink('link-62', 'MD5SignatureBuilder', 'link-62');">MD5SignatureBuilder</a></tt><tt class="py-op">.</tt><tt id="link-63" class="py-name" targets="Method ant.AntHandler.__init__()=ant.AntHandler-class.html#__init__,Method archive.builders.ArchivePreBuilder.__init__()=archive.builders.ArchivePreBuilder-class.html#__init__,Method archive.mappers.DefaultMapper.__init__()=archive.mappers.DefaultMapper-class.html#__init__,Method archive.mappers.EPLPolicyRemoverMapper.__init__()=archive.mappers.EPLPolicyRemoverMapper-class.html#__init__,Method archive.mappers.Mapper.__init__()=archive.mappers.Mapper-class.html#__init__,Method archive.mappers.PolicyMapper.__init__()=archive.mappers.PolicyMapper-class.html#__init__,Method archive.mappers.PolicyRemoverMapper.__init__()=archive.mappers.PolicyRemoverMapper-class.html#__init__,Method archive.mappers.SFPolicyRemoverMapper.__init__()=archive.mappers.SFPolicyRemoverMapper-class.html#__init__,Method archive.scanners.AbldWhatScanner.__init__()=archive.scanners.AbldWhatScanner-class.html#__init__,Method archive.scanners.FileSystemScanner.__init__()=archive.scanners.FileSystemScanner-class.html#__init__,Method archive.scanners.InputFileScanner.__init__()=archive.scanners.InputFileScanner-class.html#__init__,Method archive.scanners.Scanner.__init__()=archive.scanners.Scanner-class.html#__init__,Method archive.selectors.DistributionPolicySelector.__init__()=archive.selectors.DistributionPolicySelector-class.html#__init__,Method archive.selectors.SymbianPolicySelector.__init__()=archive.selectors.SymbianPolicySelector-class.html#__init__,Method archive.tools.Remover.__init__()=archive.tools.Remover-class.html#__init__,Method archive.tools.SevenZipArchiver.__init__()=archive.tools.SevenZipArchiver-class.html#__init__,Method archive.tools.ZipArchiver.__init__()=archive.tools.ZipArchiver-class.html#__init__,Method ats3.Ats3TestPlan.__init__()=ats3.Ats3TestPlan-class.html#__init__,Method ats3.Configuration.__init__()=ats3.Configuration-class.html#__init__,Method ats3.aste.AsteComponentParser.__init__()=ats3.aste.AsteComponentParser-class.html#__init__,Method ats3.aste.AsteTestDropGenerator.__init__()=ats3.aste.AsteTestDropGenerator-class.html#__init__,Method ats3.aste.AsteTestPlan.__init__()=ats3.aste.AsteTestPlan-class.html#__init__,Method ats3.aste.Configuration.__init__()=ats3.aste.Configuration-class.html#__init__,Method ats3.atsconfigparser.ATSConfigParser.__init__()=ats3.atsconfigparser.ATSConfigParser-class.html#__init__,Method ats3.atsconfigparser.TestXML.__init__()=ats3.atsconfigparser.TestXML-class.html#__init__,Method ats3.dropgenerator.Ats3TestDropGenerator.__init__()=ats3.dropgenerator.Ats3TestDropGenerator-class.html#__init__,Method ats3.parsers.BldFileParser.__init__()=ats3.parsers.BldFileParser-class.html#__init__,Method ats3.parsers.CppParser.__init__()=ats3.parsers.CppParser-class.html#__init__,Method ats3.parsers.MmpFileParser.__init__()=ats3.parsers.MmpFileParser-class.html#__init__,Method ats3.parsers.PkgFileParser.__init__()=ats3.parsers.PkgFileParser-class.html#__init__,Method ats3.testconfigurator.Ats3ComponentParser.__init__()=ats3.testconfigurator.Ats3ComponentParser-class.html#__init__,Method bsf.BSF.__init__()=bsf.BSF-class.html#__init__,Method build.ec.history.HistoryFileManager.__init__()=build.ec.history.HistoryFileManager-class.html#__init__,Method build.io.AbldLogWhatReader.__init__()=build.io.AbldLogWhatReader-class.html#__init__,Method build.io.RombuildLogBinarySizeReader.__init__()=build.io.RombuildLogBinarySizeReader-class.html#__init__,Method build.model.BOM.__init__()=build.model.BOM-class.html#__init__,Method build.model.BOMDeltaXMLWriter.__init__()=build.model.BOMDeltaXMLWriter-class.html#__init__,Method build.model.BOMXMLWriter.__init__()=build.model.BOMXMLWriter-class.html#__init__,Method build.model.Fix.__init__()=build.model.Fix-class.html#__init__,Method build.model.PCPError.__init__()=build.model.PCPError-class.html#__init__,Method build.model.Project.__init__()=build.model.Project-class.html#__init__,Method build.model.SessionCreator.__init__()=build.model.SessionCreator-class.html#__init__,Method build.model.TAChange.__init__()=build.model.TAChange-class.html#__init__,Method build.model.TSWError.__init__()=build.model.TSWError-class.html#__init__,Method build.model.Task.__init__()=build.model.Task-class.html#__init__,Method buildtools.AbstractOutputWriter.__init__()=buildtools.AbstractOutputWriter-class.html#__init__,Method buildtools.AntWriter.__init__()=buildtools.AntWriter-class.html#__init__,Method buildtools.Command.__init__()=buildtools.Command-class.html#__init__,Method buildtools.CommandList.__init__()=buildtools.CommandList-class.html#__init__,Method buildtools.Copy.__init__()=buildtools.Copy-class.html#__init__,Method buildtools.Delete.__init__()=buildtools.Delete-class.html#__init__,Method buildtools.EBSWriter.__init__()=buildtools.EBSWriter-class.html#__init__,Method buildtools.MakeWriter.__init__()=buildtools.MakeWriter-class.html#__init__,Method buildtools.PreBuilder.__init__()=buildtools.PreBuilder-class.html#__init__,Method buildtools.StringWriter.__init__()=buildtools.StringWriter-class.html#__init__,Method ccm.AbstractSession.__init__()=ccm.AbstractSession-class.html#__init__,Method ccm.AttributeNameListResult.__init__()=ccm.AttributeNameListResult-class.html#__init__,Method ccm.CCMException.__init__()=ccm.CCMException-class.html#__init__,Method ccm.CCMObject.__init__()=ccm.CCMObject-class.html#__init__,Method ccm.ConflictsResult.__init__()=ccm.ConflictsResult-class.html#__init__,Method ccm.CreateNewTaskResult.__init__()=ccm.CreateNewTaskResult-class.html#__init__,Method ccm.DataMapperListResult.__init__()=ccm.DataMapperListResult-class.html#__init__,Method ccm.Dir.__init__()=ccm.Dir-class.html#__init__,Method ccm.File.__init__()=ccm.File-class.html#__init__,Method ccm.FinduseResult.__init__()=ccm.FinduseResult-class.html#__init__,Method ccm.Folder.__init__()=ccm.Folder-class.html#__init__,Method ccm.FolderCopyResult.__init__()=ccm.FolderCopyResult-class.html#__init__,Method ccm.FourPartName.__init__()=ccm.FourPartName-class.html#__init__,Method ccm.InvalidFourPartNameException.__init__()=ccm.InvalidFourPartNameException-class.html#__init__,Method ccm.ObjectListResult.__init__()=ccm.ObjectListResult-class.html#__init__,Method ccm.Project.__init__()=ccm.Project-class.html#__init__,Method ccm.ProjectCheckoutResult.__init__()=ccm.ProjectCheckoutResult-class.html#__init__,Method ccm.ProjectPurposeResult.__init__()=ccm.ProjectPurposeResult-class.html#__init__,Method ccm.Query.__init__()=ccm.Query-class.html#__init__,Method ccm.Releasedef.__init__()=ccm.Releasedef-class.html#__init__,Method ccm.Result.__init__()=ccm.Result-class.html#__init__,Method ccm.Session.__init__()=ccm.Session-class.html#__init__,Method ccm.SessionPool.__init__()=ccm.SessionPool-class.html#__init__,Method ccm.Task.__init__()=ccm.Task-class.html#__init__,Method ccm.UpdatePropertiesRefreshResult.__init__()=ccm.UpdatePropertiesRefreshResult-class.html#__init__,Method ccm.UpdateResult.__init__()=ccm.UpdateResult-class.html#__init__,Method ccm.UpdateResultSimple.__init__()=ccm.UpdateResultSimple-class.html#__init__,Method ccm.UpdateTemplate.__init__()=ccm.UpdateTemplate-class.html#__init__,Method ccm.UpdateTemplateInformation.__init__()=ccm.UpdateTemplateInformation-class.html#__init__,Method ccm.WorkAreaInfoResult.__init__()=ccm.WorkAreaInfoResult-class.html#__init__,Method ccm.conflict.Conflict.__init__()=ccm.conflict.Conflict-class.html#__init__,Method ccm.conflict.MultipleObjectInBaselineConflict.__init__()=ccm.conflict.MultipleObjectInBaselineConflict-class.html#__init__,Method ccm.conflict.ObjectAndBaselineConflict.__init__()=ccm.conflict.ObjectAndBaselineConflict-class.html#__init__,Method ccm.conflict.ObjectAndTask.__init__()=ccm.conflict.ObjectAndTask-class.html#__init__,Method ccm.conflict.ObjectNotFoundInBaselineConflict.__init__()=ccm.conflict.ObjectNotFoundInBaselineConflict-class.html#__init__,Method ccm.conflict.TaskModel.__init__()=ccm.conflict.TaskModel-class.html#__init__,Method ccm.extra.CCMExtraException.__init__()=ccm.extra.CCMExtraException-class.html#__init__,Method ccm.extra.CachedProxySession.__init__()=ccm.extra.CachedProxySession-class.html#__init__,Method ccm.extra.CachedSessionProvider.__init__()=ccm.extra.CachedSessionProvider-class.html#__init__,Method ccm.extra.SessionProvider.__init__()=ccm.extra.SessionProvider-class.html#__init__,Method ccm.extra.__FileSnapshot.__init__()=ccm.extra.__FileSnapshot-class.html#__init__,Method ccm.extra.__ProjectSnapshot.__init__()=ccm.extra.__ProjectSnapshot-class.html#__init__,Method comments.CommentParser.__init__()=comments.CommentParser-class.html#__init__,Method configuration.Configuration.__init__()=configuration.Configuration-class.html#__init__,Method configuration.ConfigurationSet.__init__()=configuration.ConfigurationSet-class.html#__init__,Method configuration.HierarchicalConfiguration.__init__()=configuration.HierarchicalConfiguration-class.html#__init__,Method configuration.NestedConfiguration.__init__()=configuration.NestedConfiguration-class.html#__init__,Method configuration.NestedConfigurationBuilder.__init__()=configuration.NestedConfigurationBuilder-class.html#__init__,Method configuration.PropertiesConfiguration.__init__()=configuration.PropertiesConfiguration-class.html#__init__,Method configuration.Specification.__init__()=configuration.Specification-class.html#__init__,Method configuration.XMLConfiguration.__init__()=configuration.XMLConfiguration-class.html#__init__,Method configuration._Key.__init__()=configuration._Key-class.html#__init__,Method configuration_model.DataModel.__init__()=configuration_model.DataModel-class.html#__init__,Method configuration_model.GroupDef.__init__()=configuration_model.GroupDef-class.html#__init__,Method configuration_model.Item.__init__()=configuration_model.Item-class.html#__init__,Method configuration_model.PropertyDef.__init__()=configuration_model.PropertyDef-class.html#__init__,Method delta_zip.DeltaZipBuilder.__init__()=delta_zip.DeltaZipBuilder-class.html#__init__,Method delta_zip.MD5SignatureBuilder.__init__()=delta_zip.MD5SignatureBuilder-class.html#__init__,Method delta_zip.MD5SignatureBuilderEC.__init__()=delta_zip.MD5SignatureBuilderEC-class.html#__init__,Method delta_zip.SignaturesDict.__init__()=delta_zip.SignaturesDict-class.html#__init__,Method dependancygraph.Library.__init__()=dependancygraph.Library-class.html#__init__,Method dependancygraph.ModuleGroup.__init__()=dependancygraph.ModuleGroup-class.html#__init__,Method dependancygraph.ReadIvyConfig.__init__()=dependancygraph.ReadIvyConfig-class.html#__init__,Method escapeddict.EscapedDict.__init__()=escapeddict.EscapedDict-class.html#__init__,Method fileutils.AbstractScanner.__init__()=fileutils.AbstractScanner-class.html#__init__,Method fileutils.FileScanner.__init__()=fileutils.FileScanner-class.html#__init__,Method fileutils.Lock.__init__()=fileutils.Lock-class.html#__init__,Method flash_config.FlashConfigurationWriter.__init__()=flash_config.FlashConfigurationWriter-class.html#__init__,Method flash_config.ImagePack.__init__()=flash_config.ImagePack-class.html#__init__,Method helium.documentation.APIDeltaWriter.__init__()=helium.documentation.APIDeltaWriter-class.html#__init__,Method helium.logger.Logger.__init__()=helium.logger.Logger-class.html#__init__,Method helium.logger._CustomizePrint.__init__()=helium.logger._CustomizePrint-class.html#__init__,Method helium.output.widgets.BoldText.__init__()=helium.output.widgets.BoldText-class.html#__init__,Method helium.output.widgets.Box.__init__()=helium.output.widgets.Box-class.html#__init__,Method helium.output.widgets.Event.__init__()=helium.output.widgets.Event-class.html#__init__,Method helium.output.widgets.Footer.__init__()=helium.output.widgets.Footer-class.html#__init__,Method helium.output.widgets.Header.__init__()=helium.output.widgets.Header-class.html#__init__,Method helium.output.widgets.Summary.__init__()=helium.output.widgets.Summary-class.html#__init__,Method helium.output.widgets.Text.__init__()=helium.output.widgets.Text-class.html#__init__,Method helium.output.widgets.Widget.__init__()=helium.output.widgets.Widget-class.html#__init__,Method helium.outputer.Configuration.__init__()=helium.outputer.Configuration-class.html#__init__,Method helium.outputer.XML2XHTML.__init__()=helium.outputer.XML2XHTML-class.html#__init__,Method imaker.ecore.ContainerBase.__init__()=imaker.ecore.ContainerBase-class.html#__init__,Method imaker.ecore.Reference.__init__()=imaker.ecore.Reference-class.html#__init__,Method imaker.iqrf.Configuration.__init__()=imaker.iqrf.Configuration-class.html#__init__,Method imaker.iqrf.ConfigurationElement.__init__()=imaker.iqrf.ConfigurationElement-class.html#__init__,Method imaker.iqrf.IMaker.__init__()=imaker.iqrf.IMaker-class.html#__init__,Method imaker.iqrf.Interface.__init__()=imaker.iqrf.Interface-class.html#__init__,Method imaker.iqrf.Result.__init__()=imaker.iqrf.Result-class.html#__init__,Method imaker.iqrf.Setting.__init__()=imaker.iqrf.Setting-class.html#__init__,Method imaker.iqrf.Target.__init__()=imaker.iqrf.Target-class.html#__init__,Method integration.quality.AbldWhatParser.__init__()=integration.quality.AbldWhatParser-class.html#__init__,Method integration.quality.InternalExportParser.__init__()=integration.quality.InternalExportParser-class.html#__init__,Method integration.quality.PolicyValidator.__init__()=integration.quality.PolicyValidator-class.html#__init__,Method integration.templatebuilder.TemplateBuilder.__init__()=integration.templatebuilder.TemplateBuilder-class.html#__init__,Method localisation.Languages.__init__()=localisation.Languages-class.html#__init__,Method log2xml.AppendSummary.__init__()=log2xml.AppendSummary-class.html#__init__,Method log2xml.ContentWriter.__init__()=log2xml.ContentWriter-class.html#__init__,Method log2xml.LogWriter.__init__()=log2xml.LogWriter-class.html#__init__,Method log2xml.Stack.__init__()=log2xml.Stack-class.html#__init__,Method parsedatalistening.Build.__init__()=parsedatalistening.Build-class.html#__init__,Method parsedatalistening.Target.__init__()=parsedatalistening.Target-class.html#__init__,Method preparation.PreparationAction.__init__()=preparation.PreparationAction-class.html#__init__,Method preparation.PreparationBuilder.__init__()=preparation.PreparationBuilder-class.html#__init__,Method preparation.PreparationCheckout.__init__()=preparation.PreparationCheckout-class.html#__init__,Method preparation.PreparationSnapshot.__init__()=preparation.PreparationSnapshot-class.html#__init__,Method preparation.PreparationUpdate.__init__()=preparation.PreparationUpdate-class.html#__init__,Method rom.IMakerRomBuilder.__init__()=rom.IMakerRomBuilder-class.html#__init__,Method rom.Image.__init__()=rom.Image-class.html#__init__,Method rom.RomBuilder.__init__()=rom.RomBuilder-class.html#__init__,Method rtfutils.RTFUtils.__init__()=rtfutils.RTFUtils-class.html#__init__,Method sis.SisPreBuilder.__init__()=sis.SisPreBuilder-class.html#__init__,Method symbian.log.Parser.__init__()=symbian.log.Parser-class.html#__init__,Method symrec.MD5Updater.__init__()=symrec.MD5Updater-class.html#__init__,Method symrec.Metadata2TDD.__init__()=symrec.Metadata2TDD-class.html#__init__,Method symrec.MetadataMerger.__init__()=symrec.MetadataMerger-class.html#__init__,Method symrec.ReleaseMetadata.__init__()=symrec.ReleaseMetadata-class.html#__init__,Method symrec.ServicePack.__init__()=symrec.ServicePack-class.html#__init__,Method symrec.ValidateReleaseMetadata.__init__()=symrec.ValidateReleaseMetadata-class.html#__init__,Method symrec.ValidateReleaseMetadataCached.__init__()=symrec.ValidateReleaseMetadataCached-class.html#__init__,Method symrec.ValidateTicklerReleaseMetadata.__init__()=symrec.ValidateTicklerReleaseMetadata-class.html#__init__,Method sysdef.api.Binary.__init__()=sysdef.api.Binary-class.html#__init__,Method sysdef.api.BuildLayer.__init__()=sysdef.api.BuildLayer-class.html#__init__,Method sysdef.api.Configuration.__init__()=sysdef.api.Configuration-class.html#__init__,Method sysdef.api.Layer.__init__()=sysdef.api.Layer-class.html#__init__,Method sysdef.api.Module.__init__()=sysdef.api.Module-class.html#__init__,Method sysdef.api.Option.__init__()=sysdef.api.Option-class.html#__init__,Method sysdef.api.SpecialInstruction.__init__()=sysdef.api.SpecialInstruction-class.html#__init__,Method sysdef.api.SysDefElement.__init__()=sysdef.api.SysDefElement-class.html#__init__,Method sysdef.api.SystemDefinition.__init__()=sysdef.api.SystemDefinition-class.html#__init__,Method sysdef.api.Target.__init__()=sysdef.api.Target-class.html#__init__,Method sysdef.api.TargetList.__init__()=sysdef.api.TargetList-class.html#__init__,Method sysdef.api.Task.__init__()=sysdef.api.Task-class.html#__init__,Method sysdef.api.Unit.__init__()=sysdef.api.Unit-class.html#__init__,Method sysdef.api.UnitList.__init__()=sysdef.api.UnitList-class.html#__init__,Method sysdef.api._UnitGroup.__init__()=sysdef.api._UnitGroup-class.html#__init__,Method sysdef.io.FlashImageSizeWriter.__init__()=sysdef.io.FlashImageSizeWriter-class.html#__init__,Method sysdef.io.MakeWriter.__init__()=sysdef.io.MakeWriter-class.html#__init__,Method sysdef.io.MakeWriter2.__init__()=sysdef.io.MakeWriter2-class.html#__init__,Method sysdef.io.MakeWriter3.__init__()=sysdef.io.MakeWriter3-class.html#__init__,Method validateoverlay.ValidateOverlayInfo.__init__()=validateoverlay.ValidateOverlayInfo-class.html#__init__,Method vbaconf.AbstractConfigConverter.__init__()=vbaconf.AbstractConfigConverter-class.html#__init__,Method vbaconf.ConfigConverter.__init__()=vbaconf.ConfigConverter-class.html#__init__,Method vbaconf.ConfigConverterNewDelivery.__init__()=vbaconf.ConfigConverterNewDelivery-class.html#__init__,Method vbaconf.new_delivery.config_wrapper.__init__()=vbaconf.new_delivery.config_wrapper-class.html#__init__,Method version.Version.__init__()=version.Version-class.html#__init__,Method virtualbuildarea.VirtualDir.__init__()=virtualbuildarea.VirtualDir-class.html#__init__,Method virtualbuildarea.VirtualProject.__init__()=virtualbuildarea.VirtualProject-class.html#__init__"><a title="ant.AntHandler.__init__
+archive.builders.ArchivePreBuilder.__init__
+archive.mappers.DefaultMapper.__init__
+archive.mappers.EPLPolicyRemoverMapper.__init__
+archive.mappers.Mapper.__init__
+archive.mappers.PolicyMapper.__init__
+archive.mappers.PolicyRemoverMapper.__init__
+archive.mappers.SFPolicyRemoverMapper.__init__
+archive.scanners.AbldWhatScanner.__init__
+archive.scanners.FileSystemScanner.__init__
+archive.scanners.InputFileScanner.__init__
+archive.scanners.Scanner.__init__
+archive.selectors.DistributionPolicySelector.__init__
+archive.selectors.SymbianPolicySelector.__init__
+archive.tools.Remover.__init__
+archive.tools.SevenZipArchiver.__init__
+archive.tools.ZipArchiver.__init__
+ats3.Ats3TestPlan.__init__
+ats3.Configuration.__init__
+ats3.aste.AsteComponentParser.__init__
+ats3.aste.AsteTestDropGenerator.__init__
+ats3.aste.AsteTestPlan.__init__
+ats3.aste.Configuration.__init__
+ats3.atsconfigparser.ATSConfigParser.__init__
+ats3.atsconfigparser.TestXML.__init__
+ats3.dropgenerator.Ats3TestDropGenerator.__init__
+ats3.parsers.BldFileParser.__init__
+ats3.parsers.CppParser.__init__
+ats3.parsers.MmpFileParser.__init__
+ats3.parsers.PkgFileParser.__init__
+ats3.testconfigurator.Ats3ComponentParser.__init__
+bsf.BSF.__init__
+build.ec.history.HistoryFileManager.__init__
+build.io.AbldLogWhatReader.__init__
+build.io.RombuildLogBinarySizeReader.__init__
+build.model.BOM.__init__
+build.model.BOMDeltaXMLWriter.__init__
+build.model.BOMXMLWriter.__init__
+build.model.Fix.__init__
+build.model.PCPError.__init__
+build.model.Project.__init__
+build.model.SessionCreator.__init__
+build.model.TAChange.__init__
+build.model.TSWError.__init__
+build.model.Task.__init__
+buildtools.AbstractOutputWriter.__init__
+buildtools.AntWriter.__init__
+buildtools.Command.__init__
+buildtools.CommandList.__init__
+buildtools.Copy.__init__
+buildtools.Delete.__init__
+buildtools.EBSWriter.__init__
+buildtools.MakeWriter.__init__
+buildtools.PreBuilder.__init__
+buildtools.StringWriter.__init__
+ccm.AbstractSession.__init__
+ccm.AttributeNameListResult.__init__
+ccm.CCMException.__init__
+ccm.CCMObject.__init__
+ccm.ConflictsResult.__init__
+ccm.CreateNewTaskResult.__init__
+ccm.DataMapperListResult.__init__
+ccm.Dir.__init__
+ccm.File.__init__
+ccm.FinduseResult.__init__
+ccm.Folder.__init__
+ccm.FolderCopyResult.__init__
+ccm.FourPartName.__init__
+ccm.InvalidFourPartNameException.__init__
+ccm.ObjectListResult.__init__
+ccm.Project.__init__
+ccm.ProjectCheckoutResult.__init__
+ccm.ProjectPurposeResult.__init__
+ccm.Query.__init__
+ccm.Releasedef.__init__
+ccm.Result.__init__
+ccm.Session.__init__
+ccm.SessionPool.__init__
+ccm.Task.__init__
+ccm.UpdatePropertiesRefreshResult.__init__
+ccm.UpdateResult.__init__
+ccm.UpdateResultSimple.__init__
+ccm.UpdateTemplate.__init__
+ccm.UpdateTemplateInformation.__init__
+ccm.WorkAreaInfoResult.__init__
+ccm.conflict.Conflict.__init__
+ccm.conflict.MultipleObjectInBaselineConflict.__init__
+ccm.conflict.ObjectAndBaselineConflict.__init__
+ccm.conflict.ObjectAndTask.__init__
+ccm.conflict.ObjectNotFoundInBaselineConflict.__init__
+ccm.conflict.TaskModel.__init__
+ccm.extra.CCMExtraException.__init__
+ccm.extra.CachedProxySession.__init__
+ccm.extra.CachedSessionProvider.__init__
+ccm.extra.SessionProvider.__init__
+ccm.extra.__FileSnapshot.__init__
+ccm.extra.__ProjectSnapshot.__init__
+comments.CommentParser.__init__
+configuration.Configuration.__init__
+configuration.ConfigurationSet.__init__
+configuration.HierarchicalConfiguration.__init__
+configuration.NestedConfiguration.__init__
+configuration.NestedConfigurationBuilder.__init__
+configuration.PropertiesConfiguration.__init__
+configuration.Specification.__init__
+configuration.XMLConfiguration.__init__
+configuration._Key.__init__
+configuration_model.DataModel.__init__
+configuration_model.GroupDef.__init__
+configuration_model.Item.__init__
+configuration_model.PropertyDef.__init__
+delta_zip.DeltaZipBuilder.__init__
+delta_zip.MD5SignatureBuilder.__init__
+delta_zip.MD5SignatureBuilderEC.__init__
+delta_zip.SignaturesDict.__init__
+dependancygraph.Library.__init__
+dependancygraph.ModuleGroup.__init__
+dependancygraph.ReadIvyConfig.__init__
+escapeddict.EscapedDict.__init__
+fileutils.AbstractScanner.__init__
+fileutils.FileScanner.__init__
+fileutils.Lock.__init__
+flash_config.FlashConfigurationWriter.__init__
+flash_config.ImagePack.__init__
+helium.documentation.APIDeltaWriter.__init__
+helium.logger.Logger.__init__
+helium.logger._CustomizePrint.__init__
+helium.output.widgets.BoldText.__init__
+helium.output.widgets.Box.__init__
+helium.output.widgets.Event.__init__
+helium.output.widgets.Footer.__init__
+helium.output.widgets.Header.__init__
+helium.output.widgets.Summary.__init__
+helium.output.widgets.Text.__init__
+helium.output.widgets.Widget.__init__
+helium.outputer.Configuration.__init__
+helium.outputer.XML2XHTML.__init__
+imaker.ecore.ContainerBase.__init__
+imaker.ecore.Reference.__init__
+imaker.iqrf.Configuration.__init__
+imaker.iqrf.ConfigurationElement.__init__
+imaker.iqrf.IMaker.__init__
+imaker.iqrf.Interface.__init__
+imaker.iqrf.Result.__init__
+imaker.iqrf.Setting.__init__
+imaker.iqrf.Target.__init__
+integration.quality.AbldWhatParser.__init__
+integration.quality.InternalExportParser.__init__
+integration.quality.PolicyValidator.__init__
+integration.templatebuilder.TemplateBuilder.__init__
+localisation.Languages.__init__
+log2xml.AppendSummary.__init__
+log2xml.ContentWriter.__init__
+log2xml.LogWriter.__init__
+log2xml.Stack.__init__
+parsedatalistening.Build.__init__
+parsedatalistening.Target.__init__
+preparation.PreparationAction.__init__
+preparation.PreparationBuilder.__init__
+preparation.PreparationCheckout.__init__
+preparation.PreparationSnapshot.__init__
+preparation.PreparationUpdate.__init__
+rom.IMakerRomBuilder.__init__
+rom.Image.__init__
+rom.RomBuilder.__init__
+rtfutils.RTFUtils.__init__
+sis.SisPreBuilder.__init__
+symbian.log.Parser.__init__
+symrec.MD5Updater.__init__
+symrec.Metadata2TDD.__init__
+symrec.MetadataMerger.__init__
+symrec.ReleaseMetadata.__init__
+symrec.ServicePack.__init__
+symrec.ValidateReleaseMetadata.__init__
+symrec.ValidateReleaseMetadataCached.__init__
+symrec.ValidateTicklerReleaseMetadata.__init__
+sysdef.api.Binary.__init__
+sysdef.api.BuildLayer.__init__
+sysdef.api.Configuration.__init__
+sysdef.api.Layer.__init__
+sysdef.api.Module.__init__
+sysdef.api.Option.__init__
+sysdef.api.SpecialInstruction.__init__
+sysdef.api.SysDefElement.__init__
+sysdef.api.SystemDefinition.__init__
+sysdef.api.Target.__init__
+sysdef.api.TargetList.__init__
+sysdef.api.Task.__init__
+sysdef.api.Unit.__init__
+sysdef.api.UnitList.__init__
+sysdef.api._UnitGroup.__init__
+sysdef.io.FlashImageSizeWriter.__init__
+sysdef.io.MakeWriter.__init__
+sysdef.io.MakeWriter2.__init__
+sysdef.io.MakeWriter3.__init__
+validateoverlay.ValidateOverlayInfo.__init__
+vbaconf.AbstractConfigConverter.__init__
+vbaconf.ConfigConverter.__init__
+vbaconf.ConfigConverterNewDelivery.__init__
+vbaconf.new_delivery.config_wrapper.__init__
+version.Version.__init__
+virtualbuildarea.VirtualDir.__init__
+virtualbuildarea.VirtualProject.__init__" class="py-name" href="#" onclick="return doclink('link-63', '__init__', 'link-63');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-name">nb_split</tt><tt class="py-op">,</tt> <tt class="py-name">temp_dir</tt><tt class="py-op">,</tt> <tt class="py-name">exclude_dirs</tt><tt class="py-op">,</tt> <tt class="py-name">list_of_files</tt><tt class="py-op">)</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ec_cluster_manager</tt> <tt class="py-op">=</tt> <tt class="py-name">ec_cluster_manager</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ec_build_class</tt> <tt class="py-op">=</tt> <tt class="py-name">ec_build_class</tt> </tt>
+</div><a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">     </tt>
+<a name="MD5SignatureBuilderEC.create_build_file"></a><div id="MD5SignatureBuilderEC.create_build_file-def"><a name="L192"></a><tt class="py-lineno">192</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEC.create_build_file-toggle" onclick="return toggle('MD5SignatureBuilderEC.create_build_file');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEC-class.html#create_build_file">create_build_file</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEC.create_build_file-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilderEC.create_build_file-expanded"><a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-docstring">"""Create makefile"""</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-name">liste</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="archive.builders.ArchivePreBuilder.create_command_list
+delta_zip.MD5SignatureBuilder.create_command_list" class="py-name" href="#" onclick="return doclink('link-64', 'create_command_list', 'link-58');">create_command_list</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest_dir</tt> <tt class="py-op">+</tt> <tt class="py-string">"/Makefile"</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">        <tt id="link-65" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-65', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="buildtools.convert
+ccm.FourPartName.convert
+log2xml.convert" class="py-name" href="#" onclick="return doclink('link-66', 'convert', 'link-60');">convert</a></tt><tt class="py-op">(</tt><tt class="py-name">liste</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt><tt class="py-op">,</tt> <tt class="py-string">"make"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="MD5SignatureBuilderEC.compute_evalid_MD5"></a><div id="MD5SignatureBuilderEC.compute_evalid_MD5-def"><a name="L198"></a><tt class="py-lineno">198</tt> <a class="py-toggle" href="#" id="MD5SignatureBuilderEC.compute_evalid_MD5-toggle" onclick="return toggle('MD5SignatureBuilderEC.compute_evalid_MD5');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.MD5SignatureBuilderEC-class.html#compute_evalid_MD5">compute_evalid_MD5</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MD5SignatureBuilderEC.compute_evalid_MD5-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MD5SignatureBuilderEC.compute_evalid_MD5-expanded"><a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt class="py-docstring">"""Compute MD5 using the requested parallel build system"""</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-name">root_path</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'EMAKE_ROOT'</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt><tt class="py-string">";"</tt> <tt class="py-op">+</tt> <tt class="py-string">"c:\\apps;"</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">chdir</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">)</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">         </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"emake --emake-cm="</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ec_cluster_manager</tt> <tt class="py-op">+</tt> <tt class="py-string">" --emake-class="</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ec_build_class</tt> <tt class="py-op">+</tt> <tt class="py-string">" --emake-root="</tt><tt class="py-op">+</tt><tt class="py-name">root_path</tt><tt class="py-op">+</tt> <tt class="py-string">" --emake-emulation-table make=symbian,emake=symbian,nmake=nmake -f "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">system</tt><tt class="py-op">(</tt><tt class="py-string">"emake --emake-cm="</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ec_cluster_manager</tt> <tt class="py-op">+</tt> <tt class="py-string">" --emake-annodetail=basic,history,file,waiting --emake-annofile="</tt><tt class="py-op">+</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_dir</tt><tt class="py-op">+</tt><tt class="py-string">"\\delta_zip_anno.xml"</tt><tt class="py-op">+</tt> <tt class="py-string">" --emake-class="</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ec_build_class</tt> <tt class="py-op">+</tt> <tt class="py-string">" --emake-root="</tt><tt class="py-op">+</tt><tt class="py-name">root_path</tt><tt class="py-op">+</tt><tt class="py-string">" --emake-emulation-table make=symbian,emake=symbian,nmake=nmake -f "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">makefile</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"> </tt>
+<a name="DeltaZipBuilder"></a><div id="DeltaZipBuilder-def"><a name="L206"></a><tt class="py-lineno">206</tt> <a class="py-toggle" href="#" id="DeltaZipBuilder-toggle" onclick="return toggle('DeltaZipBuilder');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="delta_zip.DeltaZipBuilder-class.html">DeltaZipBuilder</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeltaZipBuilder-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DeltaZipBuilder-expanded"><a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">    <tt class="py-docstring">"""methods to create the delta zip after all the prep"""</tt> </tt>
+<a name="DeltaZipBuilder.__init__"></a><div id="DeltaZipBuilder.__init__-def"><a name="L208"></a><tt class="py-lineno">208</tt> <a class="py-toggle" href="#" id="DeltaZipBuilder.__init__-toggle" onclick="return toggle('DeltaZipBuilder.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.DeltaZipBuilder-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-param">temp_path</tt><tt class="py-op">,</tt> <tt class="py-param">old_md5_signature</tt><tt class="py-op">,</tt> <tt class="py-param">new_md5_signature</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeltaZipBuilder.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DeltaZipBuilder.__init__-expanded"><a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-67', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">sep</tt><tt class="py-op">)</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt> <tt class="py-op">=</tt> <tt class="py-name">temp_path</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">old_md5_signature</tt> <tt class="py-op">=</tt> <tt class="py-name">old_md5_signature</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">new_md5_signature</tt> <tt class="py-op">=</tt> <tt class="py-name">new_md5_signature</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sign_dic</tt> <tt class="py-op">=</tt> <tt id="link-68" class="py-name" targets="Class delta_zip.SignaturesDict=delta_zip.SignaturesDict-class.html"><a title="delta_zip.SignaturesDict" class="py-name" href="#" onclick="return doclink('link-68', 'SignaturesDict', 'link-68');">SignaturesDict</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">         </tt>
+<a name="DeltaZipBuilder.__fill_signature_dict"></a><div id="DeltaZipBuilder.__fill_signature_dict-def"><a name="L215"></a><tt class="py-lineno">215</tt> <a class="py-toggle" href="#" id="DeltaZipBuilder.__fill_signature_dict-toggle" onclick="return toggle('DeltaZipBuilder.__fill_signature_dict');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.DeltaZipBuilder-class.html#__fill_signature_dict">__fill_signature_dict</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">signature_file</tt><tt class="py-op">,</tt> <tt class="py-param">old_new</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeltaZipBuilder.__fill_signature_dict-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DeltaZipBuilder.__fill_signature_dict-expanded"><a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">        <tt class="py-docstring">""" read each line of signature file search for .MD5"""</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">        <tt class="py-name">_fp</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">signature_file</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt class="py-name">lines</tt> <tt class="py-op">=</tt> <tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">splitlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">        <tt class="py-name">_fp</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-69', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">line</tt> <tt class="py-keyword">in</tt> <tt class="py-name">lines</tt><tt class="py-op">:</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">            <tt class="py-name">info</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">search</tt><tt class="py-op">(</tt><tt class="py-string">r'([ \S]+) TYPE=.*MD5=(\S+)'</tt><tt class="py-op">,</tt> <tt class="py-name">line</tt><tt class="py-op">)</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">info</tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">                <tt id="link-70" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-70', 'filename', 'link-26');">filename</a></tt> <tt class="py-op">=</tt> <tt class="py-name">info</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sign_dic</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt id="link-71" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-71', 'filename', 'link-26');">filename</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sign_dic</tt><tt class="py-op">[</tt><tt id="link-72" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-72', 'filename', 'link-26');">filename</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">""</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">]</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sign_dic</tt><tt class="py-op">[</tt><tt id="link-73" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-73', 'filename', 'link-26');">filename</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">old_new</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">info</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">)</tt>                 </tt>
+</div><a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">     </tt>
+<a name="DeltaZipBuilder.create_delta_zip"></a><div id="DeltaZipBuilder.create_delta_zip-def"><a name="L228"></a><tt class="py-lineno">228</tt> <a class="py-toggle" href="#" id="DeltaZipBuilder.create_delta_zip-toggle" onclick="return toggle('DeltaZipBuilder.create_delta_zip');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.DeltaZipBuilder-class.html#create_delta_zip">create_delta_zip</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">zip_file</tt><tt class="py-op">,</tt> <tt class="py-param">delete_list_file</tt><tt class="py-op">,</tt> <tt class="py-param">no_of_zips</tt><tt class="py-op">,</tt> <tt class="py-param">ant_file</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeltaZipBuilder.create_delta_zip-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DeltaZipBuilder.create_delta_zip-expanded"><a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">        <tt class="py-docstring">"""Create Delta zip and list of file to delete."""</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">         </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name" targets="Method delta_zip.DeltaZipBuilder.__fill_signature_dict()=delta_zip.DeltaZipBuilder-class.html#__fill_signature_dict"><a title="delta_zip.DeltaZipBuilder.__fill_signature_dict" class="py-name" href="#" onclick="return doclink('link-74', '__fill_signature_dict', 'link-74');">__fill_signature_dict</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">old_md5_signature</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-75" class="py-name"><a title="delta_zip.DeltaZipBuilder.__fill_signature_dict" class="py-name" href="#" onclick="return doclink('link-75', '__fill_signature_dict', 'link-74');">__fill_signature_dict</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">new_md5_signature</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">         </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-comment">#fp_dic = open(zip_file + ".dic.txt", 'w')</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment">#fp_dic.write(str(self.sign_dic))</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment">#fp_dic.close()</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line"><tt class="py-comment"></tt>         </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-name">delete_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">         </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-76" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-76', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt id="link-77" class="py-name"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-77', 'exists', 'link-5');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-78" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-78', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">delete_list_file</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">            <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-79" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-79', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">delete_list_file</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-80" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-80', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-81', 'exists', 'link-5');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">            <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt><tt class="py-op">)</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">         </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">        <tt class="py-name">archive_txt</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-82" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-82', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt><tt class="py-op">,</tt> <tt class="py-string">'create_zips.txt'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line"> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">_file</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sign_dic</tt><tt class="py-op">.</tt><tt id="link-83" class="py-name" targets="Method ccm.CCMObject.keys()=ccm.CCMObject-class.html#keys,Method configuration.Configuration.keys()=configuration.Configuration-class.html#keys,Method configuration.NestedConfiguration.keys()=configuration.NestedConfiguration-class.html#keys,Method symrec.ReleaseMetadata.keys()=symrec.ReleaseMetadata-class.html#keys"><a title="ccm.CCMObject.keys
+configuration.Configuration.keys
+configuration.NestedConfiguration.keys
+symrec.ReleaseMetadata.keys" class="py-name" href="#" onclick="return doclink('link-83', 'keys', 'link-83');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">            <tt class="py-name">filepath</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-84" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-84', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">,</tt> <tt class="py-name">_file</tt><tt class="py-op">)</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">             </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">            <tt class="py-name">signatures</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sign_dic</tt><tt class="py-op">[</tt><tt class="py-name">_file</tt><tt class="py-op">]</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">             </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">            <tt class="py-op">(</tt> <tt class="py-name">_</tt><tt class="py-op">,</tt> <tt class="py-name">rest</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-85" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-85', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">splitdrive</tt><tt class="py-op">(</tt><tt class="py-name">filepath</tt><tt class="py-op">)</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-name">frontpath</tt><tt class="py-op">,</tt> <tt class="py-name">rest</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-86" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-86', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-name">rest</tt><tt class="py-op">)</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">             </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt>  <tt class="py-comment">#File changed between the 2 BAs</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt>  <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># File is present in both BAs and has changed</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-87" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-87', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt id="link-88" class="py-name"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-88', 'exists', 'link-5');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">filepath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># File could have been deleting after running 'build-md5':</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line">                        <tt class="py-name">archive_txt</tt><tt class="py-op">.</tt><tt id="link-89" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-89', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">_file</tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># New file</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-90" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-90', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt id="link-91" class="py-name"><a title="ccm.CCMObject.exists" class="py-name" href="#" onclick="return doclink('link-91', 'exists', 'link-5');">exists</a></tt><tt class="py-op">(</tt><tt class="py-name">filepath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line">                            <tt class="py-name">archive_txt</tt><tt class="py-op">.</tt><tt id="link-92" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-92', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">_file</tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">                    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> <tt class="py-comment"># Deleted file</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line">                        <tt class="py-name">delete_list</tt><tt class="py-op">.</tt><tt id="link-93" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-93', 'append', 'link-28');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">filepath</tt><tt class="py-op">)</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">         </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">        <tt class="py-name">archive_txt</tt><tt class="py-op">.</tt><tt id="link-94" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-94', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">         </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">        <tt class="py-name">splitter</tt> <tt class="py-op">=</tt> <tt id="link-95" class="py-name"><a title="delta_zip.MD5SignatureBuilder" class="py-name" href="#" onclick="return doclink('link-95', 'MD5SignatureBuilder', 'link-62');">MD5SignatureBuilder</a></tt><tt class="py-op">(</tt><tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-name">no_of_zips</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-96" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-96', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt><tt class="py-op">,</tt> <tt class="py-string">'create_zips.txt'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">        <tt class="py-name">splitter</tt><tt class="py-op">.</tt><tt id="link-97" class="py-name"><a title="delta_zip.MD5SignatureBuilder.split_file_list" class="py-name" href="#" onclick="return doclink('link-97', 'split_file_list', 'link-53');">split_file_list</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line">         </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">chdir</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">)</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">         </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-name">frontpath</tt><tt class="py-op">,</tt> <tt class="py-name">rest</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-98" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-98', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-name">zip_file</tt><tt class="py-op">)</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">        <tt class="py-name">stages</tt> <tt class="py-op">=</tt> <tt id="link-99" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-99', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-100" class="py-name"><a title="buildtools.CommandList" class="py-name" href="#" onclick="return doclink('link-100', 'CommandList', 'link-36');">CommandList</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">         </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">no_of_zips</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">            <tt class="py-name">md5_dir</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-101" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-101', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">temp_path</tt><tt class="py-op">,</tt> <tt class="py-string">"md5_temp"</tt><tt class="py-op">)</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">            <tt id="link-102" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-102', 'path', 'link-4');">path</a></tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-103" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-103', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">md5_dir</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-104" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-104', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">no_of_zips</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">'.txt'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">            <tt id="link-105" class="py-name" targets="Variable ccm.Result.output=ccm.Result-class.html#output,Package helium.output=helium.output-module.html"><a title="ccm.Result.output
+helium.output" class="py-name" href="#" onclick="return doclink('link-105', 'output', 'link-105');">output</a></tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-106" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-106', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">frontpath</tt><tt class="py-op">,</tt> <tt class="py-name">rest</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">".zip"</tt><tt class="py-op">,</tt> <tt class="py-string">"_part_%sof%s.zip"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">no_of_zips</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">             </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">            <tt id="link-107" class="py-name" targets="Method buildtools.Command.cmd()=buildtools.Command-class.html#cmd"><a title="buildtools.Command.cmd" class="py-name" href="#" onclick="return doclink('link-107', 'cmd', 'link-107');">cmd</a></tt> <tt class="py-op">=</tt> <tt id="link-108" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-108', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-109" class="py-name"><a title="buildtools.Command" class="py-name" href="#" onclick="return doclink('link-109', 'Command', 'link-39');">Command</a></tt><tt class="py-op">(</tt><tt class="py-string">'7za.exe'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">build_area_root</tt><tt class="py-op">)</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">            <tt id="link-110" class="py-name"><a title="buildtools.Command.cmd" class="py-name" href="#" onclick="return doclink('link-110', 'cmd', 'link-107');">cmd</a></tt><tt class="py-op">.</tt><tt id="link-111" class="py-name" targets="Method buildtools.Command.addArg()=buildtools.Command-class.html#addArg"><a title="buildtools.Command.addArg" class="py-name" href="#" onclick="return doclink('link-111', 'addArg', 'link-111');">addArg</a></tt><tt class="py-op">(</tt><tt class="py-string">'a'</tt><tt class="py-op">)</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">            <tt class="py-comment"># Set the format to be zip-compatible</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt id="link-112" class="py-name"><a title="buildtools.Command.cmd" class="py-name" href="#" onclick="return doclink('link-112', 'cmd', 'link-107');">cmd</a></tt><tt class="py-op">.</tt><tt id="link-113" class="py-name"><a title="buildtools.Command.addArg" class="py-name" href="#" onclick="return doclink('link-113', 'addArg', 'link-111');">addArg</a></tt><tt class="py-op">(</tt><tt class="py-string">'-tzip'</tt><tt class="py-op">)</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">            <tt id="link-114" class="py-name"><a title="buildtools.Command.cmd" class="py-name" href="#" onclick="return doclink('link-114', 'cmd', 'link-107');">cmd</a></tt><tt class="py-op">.</tt><tt id="link-115" class="py-name"><a title="buildtools.Command.addArg" class="py-name" href="#" onclick="return doclink('link-115', 'addArg', 'link-111');">addArg</a></tt><tt class="py-op">(</tt><tt id="link-116" class="py-name"><a title="ccm.Result.output
+helium.output" class="py-name" href="#" onclick="return doclink('link-116', 'output', 'link-105');">output</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">            <tt id="link-117" class="py-name"><a title="buildtools.Command.cmd" class="py-name" href="#" onclick="return doclink('link-117', 'cmd', 'link-107');">cmd</a></tt><tt class="py-op">.</tt><tt id="link-118" class="py-name"><a title="buildtools.Command.addArg" class="py-name" href="#" onclick="return doclink('link-118', 'addArg', 'link-111');">addArg</a></tt><tt class="py-op">(</tt><tt class="py-string">'@'</tt> <tt class="py-op">+</tt> <tt id="link-119" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-119', 'path', 'link-4');">path</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">             </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">            <tt class="py-name">stages</tt><tt class="py-op">.</tt><tt id="link-120" class="py-name"><a title="buildtools.CommandList.addCommand" class="py-name" href="#" onclick="return doclink('link-120', 'addCommand', 'link-37');">addCommand</a></tt><tt class="py-op">(</tt><tt id="link-121" class="py-name"><a title="buildtools.Command.cmd" class="py-name" href="#" onclick="return doclink('link-121', 'cmd', 'link-107');">cmd</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line"> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-name">writer</tt> <tt class="py-op">=</tt> <tt id="link-122" class="py-name"><a title="buildtools" class="py-name" href="#" onclick="return doclink('link-122', 'buildtools', 'link-1');">buildtools</a></tt><tt class="py-op">.</tt><tt id="link-123" class="py-name" targets="Class buildtools.AntWriter=buildtools.AntWriter-class.html"><a title="buildtools.AntWriter" class="py-name" href="#" onclick="return doclink('link-123', 'AntWriter', 'link-123');">AntWriter</a></tt><tt class="py-op">(</tt><tt class="py-name">ant_file</tt><tt class="py-op">)</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">        <tt class="py-name">writer</tt><tt class="py-op">.</tt><tt id="link-124" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-124', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">stages</tt><tt class="py-op">)</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line"> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">        <tt class="py-name">fp_delete</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">delete_list_file</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">        <tt class="py-name">fp_delete</tt><tt class="py-op">.</tt><tt id="link-125" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-125', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line">        <tt class="py-name">fp_delete</tt><tt class="py-op">.</tt><tt id="link-126" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-126', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"&lt;updateinstructions&gt;\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">delete_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line">            <tt class="py-name">fp_delete</tt><tt class="py-op">.</tt><tt id="link-127" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-127', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"&lt;deletefileaction target=\""</tt> <tt class="py-op">+</tt> <tt class="py-name">i</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-string">"\"/&gt;\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">        <tt class="py-name">fp_delete</tt><tt class="py-op">.</tt><tt id="link-128" class="py-name"><a title="archive.builders.ArchivePreBuilder.write
+build.model.BOMDeltaXMLWriter.write
+build.model.BOMXMLWriter.write
+buildtools.AbstractOutputWriter.write
+buildtools.AntWriter.write
+buildtools.EBSWriter.write
+buildtools.MakeWriter.write
+buildtools.StringWriter.write
+flash_config.FlashConfigurationWriter.write
+helium.documentation.APIDeltaWriter.write
+sis.SisPreBuilder.write
+sysdef.io.FlashImageSizeWriter.write
+sysdef.io.MakeWriter.write
+sysdef.io.MakeWriter2.write
+sysdef.io.MakeWriter3.write
+version.Version.write" class="py-name" href="#" onclick="return doclink('link-128', 'write', 'link-20');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"&lt;/updateinstructions&gt;\n"</tt><tt class="py-op">)</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line">        <tt class="py-name">fp_delete</tt><tt class="py-op">.</tt><tt id="link-129" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-129', 'close', 'link-32');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line">         </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">                 </tt>
+<a name="SignaturesDict"></a><div id="SignaturesDict-def"><a name="L302"></a><tt class="py-lineno">302</tt> <a class="py-toggle" href="#" id="SignaturesDict-toggle" onclick="return toggle('SignaturesDict');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="delta_zip.SignaturesDict-class.html">SignaturesDict</a><tt class="py-op">(</tt><tt class="py-base-class">dict</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SignaturesDict-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SignaturesDict-expanded"><a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">    <tt class="py-docstring">""" class to handle signature comparison"""</tt> </tt>
+<a name="SignaturesDict.__init__"></a><div id="SignaturesDict.__init__-def"><a name="L304"></a><tt class="py-lineno">304</tt> <a class="py-toggle" href="#" id="SignaturesDict.__init__-toggle" onclick="return toggle('SignaturesDict.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.SignaturesDict-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SignaturesDict.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SignaturesDict.__init__-expanded"><a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">        <tt class="py-docstring">""" constructor"""</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line">        <tt class="py-name">dict</tt><tt class="py-op">.</tt><tt id="link-130" class="py-name"><a title="ant.AntHandler.__init__
+archive.builders.ArchivePreBuilder.__init__
+archive.mappers.DefaultMapper.__init__
+archive.mappers.EPLPolicyRemoverMapper.__init__
+archive.mappers.Mapper.__init__
+archive.mappers.PolicyMapper.__init__
+archive.mappers.PolicyRemoverMapper.__init__
+archive.mappers.SFPolicyRemoverMapper.__init__
+archive.scanners.AbldWhatScanner.__init__
+archive.scanners.FileSystemScanner.__init__
+archive.scanners.InputFileScanner.__init__
+archive.scanners.Scanner.__init__
+archive.selectors.DistributionPolicySelector.__init__
+archive.selectors.SymbianPolicySelector.__init__
+archive.tools.Remover.__init__
+archive.tools.SevenZipArchiver.__init__
+archive.tools.ZipArchiver.__init__
+ats3.Ats3TestPlan.__init__
+ats3.Configuration.__init__
+ats3.aste.AsteComponentParser.__init__
+ats3.aste.AsteTestDropGenerator.__init__
+ats3.aste.AsteTestPlan.__init__
+ats3.aste.Configuration.__init__
+ats3.atsconfigparser.ATSConfigParser.__init__
+ats3.atsconfigparser.TestXML.__init__
+ats3.dropgenerator.Ats3TestDropGenerator.__init__
+ats3.parsers.BldFileParser.__init__
+ats3.parsers.CppParser.__init__
+ats3.parsers.MmpFileParser.__init__
+ats3.parsers.PkgFileParser.__init__
+ats3.testconfigurator.Ats3ComponentParser.__init__
+bsf.BSF.__init__
+build.ec.history.HistoryFileManager.__init__
+build.io.AbldLogWhatReader.__init__
+build.io.RombuildLogBinarySizeReader.__init__
+build.model.BOM.__init__
+build.model.BOMDeltaXMLWriter.__init__
+build.model.BOMXMLWriter.__init__
+build.model.Fix.__init__
+build.model.PCPError.__init__
+build.model.Project.__init__
+build.model.SessionCreator.__init__
+build.model.TAChange.__init__
+build.model.TSWError.__init__
+build.model.Task.__init__
+buildtools.AbstractOutputWriter.__init__
+buildtools.AntWriter.__init__
+buildtools.Command.__init__
+buildtools.CommandList.__init__
+buildtools.Copy.__init__
+buildtools.Delete.__init__
+buildtools.EBSWriter.__init__
+buildtools.MakeWriter.__init__
+buildtools.PreBuilder.__init__
+buildtools.StringWriter.__init__
+ccm.AbstractSession.__init__
+ccm.AttributeNameListResult.__init__
+ccm.CCMException.__init__
+ccm.CCMObject.__init__
+ccm.ConflictsResult.__init__
+ccm.CreateNewTaskResult.__init__
+ccm.DataMapperListResult.__init__
+ccm.Dir.__init__
+ccm.File.__init__
+ccm.FinduseResult.__init__
+ccm.Folder.__init__
+ccm.FolderCopyResult.__init__
+ccm.FourPartName.__init__
+ccm.InvalidFourPartNameException.__init__
+ccm.ObjectListResult.__init__
+ccm.Project.__init__
+ccm.ProjectCheckoutResult.__init__
+ccm.ProjectPurposeResult.__init__
+ccm.Query.__init__
+ccm.Releasedef.__init__
+ccm.Result.__init__
+ccm.Session.__init__
+ccm.SessionPool.__init__
+ccm.Task.__init__
+ccm.UpdatePropertiesRefreshResult.__init__
+ccm.UpdateResult.__init__
+ccm.UpdateResultSimple.__init__
+ccm.UpdateTemplate.__init__
+ccm.UpdateTemplateInformation.__init__
+ccm.WorkAreaInfoResult.__init__
+ccm.conflict.Conflict.__init__
+ccm.conflict.MultipleObjectInBaselineConflict.__init__
+ccm.conflict.ObjectAndBaselineConflict.__init__
+ccm.conflict.ObjectAndTask.__init__
+ccm.conflict.ObjectNotFoundInBaselineConflict.__init__
+ccm.conflict.TaskModel.__init__
+ccm.extra.CCMExtraException.__init__
+ccm.extra.CachedProxySession.__init__
+ccm.extra.CachedSessionProvider.__init__
+ccm.extra.SessionProvider.__init__
+ccm.extra.__FileSnapshot.__init__
+ccm.extra.__ProjectSnapshot.__init__
+comments.CommentParser.__init__
+configuration.Configuration.__init__
+configuration.ConfigurationSet.__init__
+configuration.HierarchicalConfiguration.__init__
+configuration.NestedConfiguration.__init__
+configuration.NestedConfigurationBuilder.__init__
+configuration.PropertiesConfiguration.__init__
+configuration.Specification.__init__
+configuration.XMLConfiguration.__init__
+configuration._Key.__init__
+configuration_model.DataModel.__init__
+configuration_model.GroupDef.__init__
+configuration_model.Item.__init__
+configuration_model.PropertyDef.__init__
+delta_zip.DeltaZipBuilder.__init__
+delta_zip.MD5SignatureBuilder.__init__
+delta_zip.MD5SignatureBuilderEC.__init__
+delta_zip.SignaturesDict.__init__
+dependancygraph.Library.__init__
+dependancygraph.ModuleGroup.__init__
+dependancygraph.ReadIvyConfig.__init__
+escapeddict.EscapedDict.__init__
+fileutils.AbstractScanner.__init__
+fileutils.FileScanner.__init__
+fileutils.Lock.__init__
+flash_config.FlashConfigurationWriter.__init__
+flash_config.ImagePack.__init__
+helium.documentation.APIDeltaWriter.__init__
+helium.logger.Logger.__init__
+helium.logger._CustomizePrint.__init__
+helium.output.widgets.BoldText.__init__
+helium.output.widgets.Box.__init__
+helium.output.widgets.Event.__init__
+helium.output.widgets.Footer.__init__
+helium.output.widgets.Header.__init__
+helium.output.widgets.Summary.__init__
+helium.output.widgets.Text.__init__
+helium.output.widgets.Widget.__init__
+helium.outputer.Configuration.__init__
+helium.outputer.XML2XHTML.__init__
+imaker.ecore.ContainerBase.__init__
+imaker.ecore.Reference.__init__
+imaker.iqrf.Configuration.__init__
+imaker.iqrf.ConfigurationElement.__init__
+imaker.iqrf.IMaker.__init__
+imaker.iqrf.Interface.__init__
+imaker.iqrf.Result.__init__
+imaker.iqrf.Setting.__init__
+imaker.iqrf.Target.__init__
+integration.quality.AbldWhatParser.__init__
+integration.quality.InternalExportParser.__init__
+integration.quality.PolicyValidator.__init__
+integration.templatebuilder.TemplateBuilder.__init__
+localisation.Languages.__init__
+log2xml.AppendSummary.__init__
+log2xml.ContentWriter.__init__
+log2xml.LogWriter.__init__
+log2xml.Stack.__init__
+parsedatalistening.Build.__init__
+parsedatalistening.Target.__init__
+preparation.PreparationAction.__init__
+preparation.PreparationBuilder.__init__
+preparation.PreparationCheckout.__init__
+preparation.PreparationSnapshot.__init__
+preparation.PreparationUpdate.__init__
+rom.IMakerRomBuilder.__init__
+rom.Image.__init__
+rom.RomBuilder.__init__
+rtfutils.RTFUtils.__init__
+sis.SisPreBuilder.__init__
+symbian.log.Parser.__init__
+symrec.MD5Updater.__init__
+symrec.Metadata2TDD.__init__
+symrec.MetadataMerger.__init__
+symrec.ReleaseMetadata.__init__
+symrec.ServicePack.__init__
+symrec.ValidateReleaseMetadata.__init__
+symrec.ValidateReleaseMetadataCached.__init__
+symrec.ValidateTicklerReleaseMetadata.__init__
+sysdef.api.Binary.__init__
+sysdef.api.BuildLayer.__init__
+sysdef.api.Configuration.__init__
+sysdef.api.Layer.__init__
+sysdef.api.Module.__init__
+sysdef.api.Option.__init__
+sysdef.api.SpecialInstruction.__init__
+sysdef.api.SysDefElement.__init__
+sysdef.api.SystemDefinition.__init__
+sysdef.api.Target.__init__
+sysdef.api.TargetList.__init__
+sysdef.api.Task.__init__
+sysdef.api.Unit.__init__
+sysdef.api.UnitList.__init__
+sysdef.api._UnitGroup.__init__
+sysdef.io.FlashImageSizeWriter.__init__
+sysdef.io.MakeWriter.__init__
+sysdef.io.MakeWriter2.__init__
+sysdef.io.MakeWriter3.__init__
+validateoverlay.ValidateOverlayInfo.__init__
+vbaconf.AbstractConfigConverter.__init__
+vbaconf.ConfigConverter.__init__
+vbaconf.ConfigConverterNewDelivery.__init__
+vbaconf.new_delivery.config_wrapper.__init__
+version.Version.__init__
+virtualbuildarea.VirtualDir.__init__
+virtualbuildarea.VirtualProject.__init__" class="py-name" href="#" onclick="return doclink('link-130', '__init__', 'link-63');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">     </tt>
+<a name="SignaturesDict.__str__"></a><div id="SignaturesDict.__str__-def"><a name="L308"></a><tt class="py-lineno">308</tt> <a class="py-toggle" href="#" id="SignaturesDict.__str__-toggle" onclick="return toggle('SignaturesDict.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="delta_zip.SignaturesDict-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SignaturesDict.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SignaturesDict.__str__-expanded"><a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">        <tt class="py-docstring">""" compare the tree structures"""</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line">        <tt class="py-name">string</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">        <tt class="py-comment">#o = OldNewBA()</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">both</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">        <tt class="py-name">only_old</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">        <tt class="py-name">only_new</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-131" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-131', 'filename', 'link-26');">filename</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-132" class="py-name"><a title="ccm.CCMObject.keys
+configuration.Configuration.keys
+configuration.NestedConfiguration.keys
+symrec.ReleaseMetadata.keys" class="py-name" href="#" onclick="return doclink('link-132', 'keys', 'link-83');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">            <tt class="py-name">signatures</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">[</tt><tt id="link-133" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-133', 'filename', 'link-26');">filename</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> <tt class="py-comment">#File did not change</tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line">                <tt class="py-name">both</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt>  <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># File is present in both BAs and has changed</tt> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">                <tt class="py-name">both</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">signatures</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># New file</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">                    <tt class="py-name">only_old</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> <tt class="py-comment"># Deleted file</tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">                    <tt class="py-name">only_new</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line">             </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">            <tt class="py-name">string</tt> <tt class="py-op">=</tt> <tt class="py-name">string</tt> <tt class="py-op">+</tt> <tt id="link-134" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-134', 'filename', 'link-26');">filename</a></tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">both</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">only_old</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">only_new</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">[</tt><tt id="link-135" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-135', 'filename', 'link-26');">filename</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">[</tt><tt id="link-136" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-136', 'filename', 'link-26');">filename</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-string">"\n"</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">         </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">string</tt> </tt>
+</div></div><a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:24 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
