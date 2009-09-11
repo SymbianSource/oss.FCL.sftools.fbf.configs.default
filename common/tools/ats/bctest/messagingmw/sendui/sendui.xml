@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Send UI BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="Send UI BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Send UI Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="Send UI" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="Send UI API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="senduiapitest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="senduiapitest.dll"/>
+							<param dst="c:\sys\bin\senduiapitest.dll"/>
+							<param component-path="bcsendui" />
+						</params>
+					</step>
+					<step id="" name="testframework_sendui.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_sendui.ini"/>
+							<param dst="c:\testframework\testframework_sendui.ini"/>
+							<param component-path="bcsendui" />
+						</params>
+					</step>
+					<step id="" name="ui_senduiapitest.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\ui_senduiapitest.cfg"/>
+							<param dst="c:\testframework\ui_senduiapitest.cfg"/>
+							<param component-path="bcsendui" />
+						</params>
+					</step>  
+					<step id="" name="senduiapitest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\ui_senduiapitest.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="senduiapitest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+            </set>
+		</session>
+	</plan>
+	<files>
+		<file>bcsendui/winscw_udeb/senduiapitest.dll</file>
+        <file>bcsendui/general/testframework/testframework_sendui.ini</file>
+        <file>bcsendui/general/testframework/ui_senduiapitest.cfg</file>
+	</files>
+</test>
