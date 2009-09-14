@@ -12,7 +12,7 @@
 # Louis Henry Nayegon <louisn@symbian.org>
 #
 # Description:
-# Script to build ATS test drop multimedia svs tests
+# Script to build ATS test drop DRM tests
 
 
 use strict;
