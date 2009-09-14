@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Basic Location Info Display (BLID) Application Satellite Info BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="Basic Location Info Display BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="BLID Application Satellite Info Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="BLID Application" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="BLID Application" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="BCBlidTest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="BCBlidTest.dll"/>
+							<param dst="c:\sys\bin\BCBlidTest.dll"/>
+							<param component-path="locblidtest" />
+						</params>
+					</step>
+					<step id="" name="testframework_testframework_locblid.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_locblid.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="locblidtest" />
+						</params>
+					</step>
+					<step id="" name="tcLmkBlid.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tcLmkBlid.cfg"/>
+							<param dst="c:\testframework\tcLmkBlid.cfg"/>
+							<param component-path="locblidtest" />
+						</params>
+					</step>
+					<step id="" name="UI_BCBLid.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/UI_BCBLid.cfg"/>
+							<param dst="c:\testframework\UI_BCBLid.cfg"/>
+							<param component-path="locblidtest" />
+						</params>
+					</step>						
+					<step id="" name="tcLmkBlid (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testcombiner -config C:\testframework\tcLmkBlid.cfg"/>
+							<param result-file="c:\spd_logs\xml\testcombiner.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tcLmkBlid (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>locblidtest/winscw_udeb/BCBlidTest.dll</file>
+		<file>locblidtest/general/testframework/testframework_locblid.ini</file>
+		<file>locblidtest/general/testframework/UI_BCBLid.cfg</file>
+		<file>locblidtest/general/testframework/tcLmkBlid.cfg</file>
+	</files>
+</test>
