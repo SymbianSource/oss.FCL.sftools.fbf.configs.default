@@ -27,6 +27,7 @@
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
+	<property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
     
     <if>
       <equals arg1="${sf.spec.publish.diamonds.tag}" arg2="test"/>
