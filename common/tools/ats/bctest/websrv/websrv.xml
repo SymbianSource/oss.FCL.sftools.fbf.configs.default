@@ -133,7 +133,7 @@
 						<params>
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule newsoapclassesbctest"/>
-                            <param result-file="c:\spd_logs\xml\newsoapclasses.xml"/>
+                            <param result-file="c:\spd_logs\xml\newsoapclassesbctest.xml"/>
                             <param timeout="3600"/>
 						</params>
 					</step>
