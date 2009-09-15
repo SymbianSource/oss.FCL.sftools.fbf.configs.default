@@ -1,0 +1,442 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>System Software BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="System Software BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="System Software Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="System Software Binary" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="Feature Manager" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="featuremanagertest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="featuremanagertest.dll"/>
+							<param dst="c:\sys\bin\featuremanagertest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="featuremanagertest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule featuremanagertest"/>
+                            <param result-file="c:\spd_logs\xml\featuremanagertest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="featuremanagertest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Find Item Engine" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="finditemenginetest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="finditemenginetest.dll"/>
+							<param dst="c:\sys\bin\finditemenginetest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="finditemenginetest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule finditemenginetest"/>
+                            <param result-file="c:\spd_logs\xml\finditemenginetest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="finditemenginetest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Light" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="light.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="light.dll"/>
+							<param dst="c:\sys\bin\light.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="light (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule light"/>
+                            <param result-file="c:\spd_logs\xml\light.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="light (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Network Status" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="networkstatustest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="networkstatustest.dll"/>
+							<param dst="c:\sys\bin\networkstatustest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="networkstatustest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule networkstatustest"/>
+                            <param result-file="c:\spd_logs\xml\networkstatustest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="networkstatustest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Phone Parser" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="phoneparsertest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="phoneparsertest.dll"/>
+							<param dst="c:\sys\bin\phoneparsertest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="phoneparsertest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule phoneparsertest"/>
+                            <param result-file="c:\spd_logs\xml\phoneparsertest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="phoneparsertest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Platform Environment" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="platformenvtest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="platformenvtest.dll"/>
+							<param dst="c:\sys\bin\platformenvtest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="platformenvtest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule platformenvtest"/>
+                            <param result-file="c:\spd_logs\xml\platformenvtest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="platformenvtest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Power State" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="powerstatetest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="powerstatetest.dll"/>
+							<param dst="c:\sys\bin\powerstatetest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="powerstatetest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule powerstatetest"/>
+                            <param result-file="c:\spd_logs\xml\powerstatetest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="powerstatetest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="System Utility" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="sysutiltest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="sysutiltest.dll"/>
+							<param dst="c:\sys\bin\sysutiltest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="sysutiltest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule sysutiltest"/>
+                            <param result-file="c:\spd_logs\xml\sysutiltest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="sysutiltest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="STIF Resolver" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="stiftextresolvertest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="stiftextresolvertest.dll"/>
+							<param dst="c:\sys\bin\stiftextresolvertest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="stiftextresolvertest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule stiftextresolvertest"/>
+                            <param result-file="c:\spd_logs\xml\stiftextresolvertest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="stiftextresolvertest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Hardware Resource Manager" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="hwresmantest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="hwresmantest.dll"/>
+							<param dst="c:\sys\bin\hwresmantest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="hwresmantest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule hwresmantest"/>
+                            <param result-file="c:\spd_logs\xml\hwresmantest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="hwresmantest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Vibration Control" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="vibractrltest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="vibractrltest.dll"/>
+							<param dst="c:\sys\bin\vibractrltest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="vibractrltest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule vibractrltest"/>
+                            <param result-file="c:\spd_logs\xml\vibractrltest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="vibractrltest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Platform Version" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="platformvertest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="platformvertest.dll"/>
+							<param dst="c:\sys\bin\platformvertest.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="platformvertest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule platformvertest"/>
+                            <param result-file="c:\spd_logs\xml\platformvertest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="platformvertest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+				<case id="" name="Accessory Monitoring API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="accmonapibctests.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="accmonapibctests.dll"/>
+							<param dst="c:\sys\bin\accmonapibctests.dll"/>
+							<param component-path="systemswtest" />
+						</params>
+					</step>
+					<step id="" name="accmonapibctests (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule accmonapibctests"/>
+                            <param result-file="c:\spd_logs\xml\accmonapibctests.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="accmonapibctests (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>systemswtest/winscw_udeb/featuremanagertest.dll</file>
+	</files>
+</test>

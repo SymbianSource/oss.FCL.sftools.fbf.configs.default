@@ -59,6 +59,7 @@
     <property name="sf.spec.publish.diamonds.port" value="80"/>
     <property name="sf.spec.publish.diamonds.path" value="/diamonds/builds/"/>
     <property name="sf.spec.publish.diamonds.tag" value="test"/>
+	<property name="sf.spec.ats_worker.drive" value="C:\apps\ATS3\bin"/>
     
     <property name="sf.spec.tagafterbuild.enable" value="false"/>
 
@@ -83,7 +84,7 @@
 
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>
-    <property name="sf.spec.test.host.name"      value="v800005"/>
+    <property name="sf.spec.test.host.name"      value="v800026"/>
     <property name="sf.spec.test.host.username"  value="admin"/>
     <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="D:\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>

@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ccm</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;ccm
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ccm-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package ccm</h1><span class="codelink"><a href="ccm-pysrc.html">source&nbsp;code</a></span><br /><br />
+CM/Synergy Python toolkit.<br /><br />
+
+<!-- ==================== SUBMODULES ==================== -->
+<a name="section-Submodules"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Submodules</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Submodules"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr><td class="summary">
+  <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="ccm.conflict-module.html">ccm.conflict</a></strong>: <em class="summary">CCM conflict detection module.</em>    </li>
+    <li> <strong class="uidlink"><a href="ccm.extra-module.html">ccm.extra</a></strong>: <em class="summary">Library that contains custom Synergy functionnlities: e.g
+* Snapshotter that can snapshot unfrozen baselines
+* Threaded snapshotter.</em>    </li>
+  </ul></td></tr>
+</table>
+
+<br />
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.CCMException-class.html" class="summary-name">CCMException</a><br />
+      Base exception that should be raised by methods of this framework.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Result-class.html" class="summary-name">Result</a><br />
+      Class that abstracts ccm call result handling.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.ProjectCheckoutResult-class.html" class="summary-name">ProjectCheckoutResult</a><br />
+      Project checkout output parser.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.ProjectPurposeResult-class.html" class="summary-name">ProjectPurposeResult</a><br />
+      Parses purpose query output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.ConflictsResult-class.html" class="summary-name">ConflictsResult</a><br />
+      Parses purpose query output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.FinduseResult-class.html" class="summary-name">FinduseResult</a><br />
+      Parses finduse query output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.UpdateTemplateInformation-class.html" class="summary-name">UpdateTemplateInformation</a><br />
+      Parse update template information output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.UpdatePropertiesRefreshResult-class.html" class="summary-name">UpdatePropertiesRefreshResult</a><br />
+      Parse update template refresh output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.UpdateResultSimple-class.html" class="summary-name">UpdateResultSimple</a><br />
+      Parse update output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.UpdateResult-class.html" class="summary-name">UpdateResult</a><br />
+      Parse update output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.WorkAreaInfoResult-class.html" class="summary-name">WorkAreaInfoResult</a><br />
+      Parse work area info output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.CreateNewTaskResult-class.html" class="summary-name">CreateNewTaskResult</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.AttributeNameListResult-class.html" class="summary-name">AttributeNameListResult</a><br />
+      Class that abstract ccm call result handling.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.ObjectListResult-class.html" class="summary-name">ObjectListResult</a><br />
+      Parses an object list Synergy output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.DataMapperListResult-class.html" class="summary-name">DataMapperListResult</a><br />
+      Parses an object list Synergy output.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.FolderCopyResult-class.html" class="summary-name">FolderCopyResult</a><br />
+      Parses a folder copy result
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.AbstractSession-class.html" class="summary-name">AbstractSession</a><br />
+      An abstract Synergy session.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Session-class.html" class="summary-name">Session</a><br />
+      A Synergy session.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.SessionPool-class.html" class="summary-name">SessionPool</a><br />
+      Session that transparently handled several subsession, to easily enable
+multithreaded application.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Query-class.html" class="summary-name">Query</a><br />
+      This object wrap a synergy query, it takes a query as input as well as the
+attribute you want as output, and get them translated using the model configuration.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.InvalidFourPartNameException-class.html" class="summary-name">InvalidFourPartNameException</a><br />
+      Badly formed Synergy four-part name.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.FourPartName-class.html" class="summary-name">FourPartName</a><br />
+      This class handle four part name parsing and validation.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.CCMObject-class.html" class="summary-name">CCMObject</a><br />
+      Base class for any Synergy object.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.File-class.html" class="summary-name">File</a><br />
+      Wrapper for any Synergy file object
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Project-class.html" class="summary-name">Project</a><br />
+      Wrapper class for Synergy project object.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Dir-class.html" class="summary-name">Dir</a><br />
+      Wrapper class for Synergy dir object
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Releasedef-class.html" class="summary-name">Releasedef</a><br />
+      Wrapper class for Synergy releasedef object
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Folder-class.html" class="summary-name">Folder</a><br />
+      Wrapper class for Synergy folder object
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.Task-class.html" class="summary-name">Task</a><br />
+      Wrapper class for Synergy task object
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm.UpdateTemplate-class.html" class="summary-name">UpdateTemplate</a><br />
+      Allow to access Update Template property using Release and Purpose.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_execute"></a><span class="summary-sig-name">_execute</span>(<span class="summary-sig-arg">command</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Runs a command and returns the result data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#_execute">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="log_result"></a><span class="summary-sig-name">log_result</span>(<span class="summary-sig-arg">result</span>,
+        <span class="summary-sig-arg">rules</span>,
+        <span class="summary-sig-arg">logger</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Rules it a list of tuple defining a regular expression and an log level.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#log_result">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ccm-module.html#read_ccmwaid_info" class="summary-sig-name">read_ccmwaid_info</a>(<span class="summary-sig-arg">filename</span>)</span><br />
+      Read data from a ccmwaid file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#read_ccmwaid_info">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_project_from_path"></a><span class="summary-sig-name">create_project_from_path</span>(<span class="summary-sig-arg">session</span>,
+        <span class="summary-sig-arg">path</span>)</span><br />
+      Uses the (_|.)ccmwaid.inf file to create a Project object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#create_project_from_path">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ccm-module.html#open_session" class="summary-sig-name">open_session</a>(<span class="summary-sig-arg">username</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">password</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">engine</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">dbpath</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">database</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">reuse</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Provides a Session object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#open_session">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_role_for_purpose"></a><span class="summary-sig-name">get_role_for_purpose</span>(<span class="summary-sig-arg">session</span>,
+        <span class="summary-sig-arg">purpose</span>)</span><br />
+      return role needed to modify project with checkout for purpose.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#get_role_for_purpose">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_role_for_status"></a><span class="summary-sig-name">get_role_for_status</span>(<span class="summary-sig-arg">session</span>,
+        <span class="summary-sig-arg">status</span>)</span><br />
+      return role needed to modify project with a specific status.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#get_role_for_status">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ccm-module.html#running_sessions" class="summary-sig-name">running_sessions</a>(<span class="summary-sig-arg">database</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Return the list of synergy session currently available on the local machine.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#running_sessions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="session_exists"></a><span class="summary-sig-name">session_exists</span>(<span class="summary-sig-arg">sessionid</span>,
+        <span class="summary-sig-arg">database</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ccm-pysrc.html#session_exists">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_logger"></a><span class="summary-name">_logger</span> = <code title="logging.getLogger(&quot;ccm&quot;)">logging.getLogger(&quot;ccm&quot;)</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm-module.html#VALID_OBJECT_STATES" class="summary-name">VALID_OBJECT_STATES</a> = <code title="'working', 'checkpoint', 'public', 'prep', 'integrate', 'sqa', 'test',\
+ 'released'">'working', 'checkpoint', 'public', 'prep<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="STATIC_OBJECT_STATES"></a><span class="summary-name">STATIC_OBJECT_STATES</span> = <code title="'integrate', 'sqa', 'test', 'released'">'integrate', 'sqa', 'test', 'released'</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm-module.html#CCM_SESSION_LOCK" class="summary-name">CCM_SESSION_LOCK</a> = <code title="os.path.join(os.environ ['TEMP'], &quot;ccm_session.lock&quot;)">os.path.join(os.environ ['TEMP'], &quot;ccm_sess<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm-module.html#CHECKOUT_LOG_RULES" class="summary-name">CHECKOUT_LOG_RULES</a> = <code title="[[r'^Derive failed for', logging.ERROR], [r'^Serious:', logging.ERROR]\
+, [r'^Warning: .* failed.', logging.ERROR], [r'^Warning:', logging.WAR\
+NING],]">[[r'^Derive failed for', logging.ERROR], <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm-module.html#UPDATE_LOG_RULES" class="summary-name">UPDATE_LOG_RULES</a> = <code title="[[r'^Update failed.', logging.ERROR], [r'^Serious:', logging.ERROR], [\
+r'^\s+Failed to', logging.ERROR], [r'^\d+ failures to', logging.ERROR]\
+, [r&quot;^Warning: This work area '.+' cannot be reused&quot;, logging.ERROR], \
+[r'^Rebind of .* failed', logging.ERROR], [r'^Warning: .* failed.', lo\
+gging.ERROR], [r'^Skipping \'.*\'\.  You do not have permission to mod\
+ify this project.', logging.ERROR], [r'^Work area conflict exists for \
+file', logging.ERROR], [r'^Warning:  No candidates found for directory\
+ entry', logging.ERROR], [r'^Warning:', logging.WARNING],]">[[r'^Update failed.', logging.ERROR], [r'^S<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm-module.html#CONFLICTS_LOG_RULES" class="summary-name">CONFLICTS_LOG_RULES</a> = <code title="[[r'^\w+#\d+\s+Implicit', logging.WARNING], [r'^(.*)\s+(\w+#\d+)\s+(.+\
+)', logging.ERROR],]">[[r'^\w+#\d+\s+Implicit', logging.WARNIN<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ccm-module.html#SYNC_LOG_RULES" class="summary-name">SYNC_LOG_RULES</a> = <code title="[[r'^\s+0\s+Conflict\(s\) for project', logging.INFO], [r'^\s+\d+\s+Co\
+nflict\(s\) for project', logging.ERROR], [r'^Project \'.*\' does not \
+maintain a workarea.', logging.ERROR], [r'^Work area conflict exists f\
+or file', logging.ERROR], [r'^Warning: Conflicts detected during synch\
+ronization. Check your logs.', logging.ERROR], [r'^Warning:', logging.\
+WARNING],]">[[r'^\s+0\s+Conflict\(s\) for project', loggi<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="CCM_BIN"></a><span class="summary-name">CCM_BIN</span> = <code title="fileutils.which(&quot;ccm.exe&quot;)">fileutils.which(&quot;ccm.exe&quot;)</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="read_ccmwaid_info"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">read_ccmwaid_info</span>(<span class="sig-arg">filename</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ccm-pysrc.html#read_ccmwaid_info">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Read data from a ccmwaid file. This method is an helper to retreive a project from a physical location.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="open_session"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">open_session</span>(<span class="sig-arg">username</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">password</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">engine</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">dbpath</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">database</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">reuse</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ccm-pysrc.html#open_session">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  <p>Provides a Session object.</p>
+<p>Attempts to return a Session, based either on existing Synergy
+sessions or by creating a new one.</p>
+<ul>
+<li><p class="rst-first">If a .netrc file can be found on the user's personal drive,
+that will be read to obtain Synergy login information if it
+is defined there. This will be used to fill in any missing
+parameters not passed in the call to open_session().</p>
+<p>The format of the .netrc file entries should be:</p>
+<p>machine synergy login USERNAME password foobar account <a class="rst-reference external" href="mailto:DATABASE_PATH&#64;SERVER" target="_top">DATABASE_PATH&#64;SERVER</a></p>
+<p>If the details refer to a specific database, the machine can be the database name,
+instead of &quot;synergy&quot;.</p>
+</li>
+<li><p class="rst-first">If an existing session is running that matches the supplied
+parameters, it will reuse that.</p>
+</li>
+</ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="running_sessions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">running_sessions</span>(<span class="sig-arg">database</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ccm-pysrc.html#running_sessions">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Return the list of synergy session currently available on the local machine.
+If database is given then it tries to update the router address.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="VALID_OBJECT_STATES"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">VALID_OBJECT_STATES</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'working', 'checkpoint', 'public', 'prep', 'integrate', 'sqa', 'test',<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ 'released'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="CCM_SESSION_LOCK"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CCM_SESSION_LOCK</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+os.path.join(os.environ ['TEMP'], &quot;ccm_session.lock&quot;)
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="CHECKOUT_LOG_RULES"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CHECKOUT_LOG_RULES</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+[[r'^Derive failed for', logging.ERROR], [r'^Serious:', logging.ERROR]<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+, [r'^Warning: .* failed.', logging.ERROR], [r'^Warning:', logging.WAR<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+NING],]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="UPDATE_LOG_RULES"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">UPDATE_LOG_RULES</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+[[r'^Update failed.', logging.ERROR], [r'^Serious:', logging.ERROR], [<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+r'^\s+Failed to', logging.ERROR], [r'^\d+ failures to', logging.ERROR]<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+, [r&quot;^Warning: This work area '.+' cannot be reused&quot;, logging.ERROR], <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+[r'^Rebind of .* failed', logging.ERROR], [r'^Warning: .* failed.', lo<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+gging.ERROR], [r'^Skipping \'.*\'\.  You do not have permission to mod<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ify this project.', logging.ERROR], [r'^Work area conflict exists for <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+file', logging.ERROR], [r'^Warning:  No candidates found for directory<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ entry', logging.ERROR], [r'^Warning:', logging.WARNING],]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="CONFLICTS_LOG_RULES"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CONFLICTS_LOG_RULES</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+[[r'^\w+#\d+\s+Implicit', logging.WARNING], [r'^(.*)\s+(\w+#\d+)\s+(.+<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+)', logging.ERROR],]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SYNC_LOG_RULES"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SYNC_LOG_RULES</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+[[r'^\s+0\s+Conflict\(s\) for project', logging.INFO], [r'^\s+\d+\s+Co<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+nflict\(s\) for project', logging.ERROR], [r'^Project \'.*\' does not <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+maintain a workarea.', logging.ERROR], [r'^Work area conflict exists f<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+or file', logging.ERROR], [r'^Warning: Conflicts detected during synch<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ronization. Check your logs.', logging.ERROR], [r'^Warning:', logging.<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+WARNING],]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:16 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

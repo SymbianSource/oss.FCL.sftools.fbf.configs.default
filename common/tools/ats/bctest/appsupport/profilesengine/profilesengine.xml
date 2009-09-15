@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Profiles Engine BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="Profiles Engine BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Profiles Engine Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="Profiles Engine" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="Profiles Engine Wrapper API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="proengwrapapi.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="proengwrapapi.dll"/>
+							<param dst="c:\sys\bin\proengwrapapi.dll"/>
+							<param component-path="bcprofilesengine" />
+						</params>
+					</step>
+					<step id="" name="testframework_proengwrapapi.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_proengwrapapi.ini"/>
+							<param dst="c:\testframework\testframework_proengwrapapi.ini"/>
+							<param component-path="bcprofilesengine" />
+						</params>
+					</step>
+					<step id="" name="proengwrapapi.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\proengwrapapi.cfg"/>
+							<param dst="c:\testframework\proengwrapapi.cfg"/>
+							<param component-path="bcprofilesengine" />
+						</params>
+					</step>  
+					<step id="" name="proengwrapapi (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\ProEngWrapAPI.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="proengwrapapi (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+            </set>
+		</session>
+	</plan>
+	<files>
+		<file>bcprofilesengine/winscw_udeb/proengwrapapi.dll</file>
+        <file>bcprofilesengine/general/testframework/testframework_proengwrapapi.ini</file>
+        <file>bcprofilesengine/general/testframework/proengwrapapi.cfg</file>
+	</files>
+</test>

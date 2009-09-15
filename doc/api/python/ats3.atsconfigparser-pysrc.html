@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ats3.atsconfigparser</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ats3-module.html">Package&nbsp;ats3</a> ::
+        Module&nbsp;atsconfigparser
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ats3.atsconfigparser-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ats3.atsconfigparser-module.html">Module ats3.atsconfigparser</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : atsconfigparser.py</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module configuration=configuration-module.html"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-0', 'configuration', 'link-0');">configuration</a></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">amara</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="TestXML"></a><div id="TestXML-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="TestXML-toggle" onclick="return toggle('TestXML');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html">TestXML</a><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TestXML-expanded"><a name="TestXML.__init__"></a><div id="TestXML.__init__-def"><a name="L24"></a><tt class="py-lineno"> 24</tt> <a class="py-toggle" href="#" id="TestXML.__init__-toggle" onclick="return toggle('TestXML.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">testxml</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.__init__-expanded"><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">testxml</tt> <tt class="py-op">=</tt> <tt class="py-name">testxml</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt> <tt class="py-op">=</tt> <tt class="py-name">amara</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method bsf.BSF.parse()=bsf.BSF-class.html#parse,Method symbian.log.Parser.parse()=symbian.log.Parser-class.html#parse"><a title="bsf.BSF.parse
+symbian.log.Parser.parse" class="py-name" href="#" onclick="return doclink('link-1', 'parse', 'link-1');">parse</a></tt><tt class="py-op">(</tt><tt class="py-name">testxml</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="TestXML.containsproperty"></a><div id="TestXML.containsproperty-def"><a name="L28"></a><tt class="py-lineno"> 28</tt> <a class="py-toggle" href="#" id="TestXML.containsproperty-toggle" onclick="return toggle('TestXML.containsproperty');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#containsproperty">containsproperty</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.containsproperty-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.containsproperty-expanded"><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_xpath</tt><tt class="py-op">(</tt><tt class="py-string">"//property"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method buildtools.Command.name()=buildtools.Command-class.html#name,Method ccm.FourPartName.name()=ccm.FourPartName-class.html#name,Method symrec.ServicePack.name()=symrec.ServicePack-class.html#name,Method sysdef.api.Configuration.name()=sysdef.api.Configuration-class.html#name,Method sysdef.api.Option.name()=sysdef.api.Option-class.html#name,Method sysdef.api.SpecialInstruction.name()=sysdef.api.SpecialInstruction-class.html#name,Method sysdef.api.Target.name()=sysdef.api.Target-class.html#name,Method sysdef.api.TargetList.name()=sysdef.api.TargetList-class.html#name,Method sysdef.api.Unit.name()=sysdef.api.Unit-class.html#name,Method sysdef.api._UnitGroup.name()=sysdef.api._UnitGroup-class.html#name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-2', 'name', 'link-2');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-3" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-3', 'name', 'link-2');">name</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">value</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">     </tt>
+<a name="TestXML.containssetting"></a><div id="TestXML.containssetting-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="TestXML.containssetting-toggle" onclick="return toggle('TestXML.containssetting');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#containssetting">containssetting</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.containssetting-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.containssetting-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_xpath</tt><tt class="py-op">(</tt><tt class="py-string">"//setting"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-4', 'name', 'link-2');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-5" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-5', 'name', 'link-2');">name</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">value</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">     </tt>
+<a name="TestXML.addorreplacesetting"></a><div id="TestXML.addorreplacesetting-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="TestXML.addorreplacesetting-toggle" onclick="return toggle('TestXML.addorreplacesetting');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#addorreplacesetting">addorreplacesetting</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.addorreplacesetting-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.addorreplacesetting-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">changed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_xpath</tt><tt class="py-op">(</tt><tt class="py-string">"//setting"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-6', 'name', 'link-2');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-7" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-7', 'name', 'link-2');">name</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">                <tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">                <tt class="py-name">changed</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">changed</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">device</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">test</tt><tt class="py-op">.</tt><tt class="py-name">target</tt><tt class="py-op">.</tt><tt class="py-name">device</tt><tt class="py-op">:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">                <tt class="py-name">device</tt><tt class="py-op">.</tt><tt class="py-name">xml_append</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_create_element</tt><tt class="py-op">(</tt><tt class="py-string">u"setting"</tt><tt class="py-op">,</tt> <tt class="py-name">attributes</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">u'name'</tt><tt class="py-op">:</tt> <tt class="py-name">unicode</tt><tt class="py-op">(</tt><tt id="link-8" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-8', 'name', 'link-2');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">u'value'</tt><tt class="py-op">:</tt> <tt class="py-name">unicode</tt><tt class="py-op">(</tt><tt class="py-name">value</tt><tt class="py-op">)</tt><tt class="py-op">}</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">         </tt>
+<a name="TestXML.containsattribute"></a><div id="TestXML.containsattribute-def"><a name="L50"></a><tt class="py-lineno"> 50</tt> <a class="py-toggle" href="#" id="TestXML.containsattribute-toggle" onclick="return toggle('TestXML.containsattribute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#containsattribute">containsattribute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.containsattribute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.containsattribute-expanded"><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_xpath</tt><tt class="py-op">(</tt><tt class="py-string">"//*[@"</tt> <tt class="py-op">+</tt> <tt id="link-9" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-9', 'name', 'link-2');">name</a></tt> <tt class="py-op">+</tt> <tt class="py-string">"]"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">p</tt><tt class="py-op">[</tt><tt id="link-10" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-10', 'name', 'link-2');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">value</tt><tt class="py-op">:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">         </tt>
+<a name="TestXML.replaceattribute"></a><div id="TestXML.replaceattribute-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="TestXML.replaceattribute-toggle" onclick="return toggle('TestXML.replaceattribute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#replaceattribute">replaceattribute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.replaceattribute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.replaceattribute-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_xpath</tt><tt class="py-op">(</tt><tt class="py-string">"//*[@"</tt> <tt class="py-op">+</tt> <tt id="link-11" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-11', 'name', 'link-2');">name</a></tt> <tt class="py-op">+</tt> <tt class="py-string">"]"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">            <tt class="py-name">p</tt><tt class="py-op">[</tt><tt id="link-12" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-12', 'name', 'link-2');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">             </tt>
+<a name="TestXML.addorreplaceproperty"></a><div id="TestXML.addorreplaceproperty-def"><a name="L60"></a><tt class="py-lineno"> 60</tt> <a class="py-toggle" href="#" id="TestXML.addorreplaceproperty-toggle" onclick="return toggle('TestXML.addorreplaceproperty');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.TestXML-class.html#addorreplaceproperty">addorreplaceproperty</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TestXML.addorreplaceproperty-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TestXML.addorreplaceproperty-expanded"><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">changed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_xpath</tt><tt class="py-op">(</tt><tt class="py-string">"//property"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-13', 'name', 'link-2');">name</a></tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-14" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-14', 'name', 'link-2');">name</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">                <tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">                <tt class="py-name">changed</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">changed</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">device</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">test</tt><tt class="py-op">.</tt><tt class="py-name">target</tt><tt class="py-op">.</tt><tt class="py-name">device</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt class="py-name">device</tt><tt class="py-op">.</tt><tt class="py-name">xml_append</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">xml_create_element</tt><tt class="py-op">(</tt><tt class="py-string">u"property"</tt><tt class="py-op">,</tt> <tt class="py-name">attributes</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">u'name'</tt><tt class="py-op">:</tt> <tt class="py-name">unicode</tt><tt class="py-op">(</tt><tt id="link-15" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-15', 'name', 'link-2');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">u'value'</tt><tt class="py-op">:</tt> <tt class="py-name">unicode</tt><tt class="py-op">(</tt><tt class="py-name">value</tt><tt class="py-op">)</tt><tt class="py-op">}</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="ATSConfigParser"></a><div id="ATSConfigParser-def"><a name="L71"></a><tt class="py-lineno"> 71</tt> <a class="py-toggle" href="#" id="ATSConfigParser-toggle" onclick="return toggle('ATSConfigParser');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ats3.atsconfigparser.ATSConfigParser-class.html">ATSConfigParser</a><tt class="py-op">:</tt> </tt>
+</div><div id="ATSConfigParser-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ATSConfigParser-expanded"><a name="ATSConfigParser.__init__"></a><div id="ATSConfigParser.__init__-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="ATSConfigParser.__init__-toggle" onclick="return toggle('ATSConfigParser.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.ATSConfigParser-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">specfilename</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ATSConfigParser.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ATSConfigParser.__init__-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">specfile</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">specfilename</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-name">builder</tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-16', 'configuration', 'link-0');">configuration</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Class configuration.NestedConfigurationBuilder=configuration.NestedConfigurationBuilder-class.html"><a title="configuration.NestedConfigurationBuilder" class="py-name" href="#" onclick="return doclink('link-17', 'NestedConfigurationBuilder', 'link-17');">NestedConfigurationBuilder</a></tt><tt class="py-op">(</tt><tt class="py-name">specfile</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">configs</tt> <tt class="py-op">=</tt> <tt class="py-name">builder</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method configuration.ConfigurationSet.getConfigurations()=configuration.ConfigurationSet-class.html#getConfigurations,Method configuration.NestedConfigurationBuilder.getConfigurations()=configuration.NestedConfigurationBuilder-class.html#getConfigurations"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-18', 'getConfigurations', 'link-18');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-string">"common"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">     </tt>
+<a name="ATSConfigParser.properties"></a><div id="ATSConfigParser.properties-def"><a name="L77"></a><tt class="py-lineno"> 77</tt> <a class="py-toggle" href="#" id="ATSConfigParser.properties-toggle" onclick="return toggle('ATSConfigParser.properties');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.ATSConfigParser-class.html#properties">properties</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ATSConfigParser.properties-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ATSConfigParser.properties-expanded"><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-name">props</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">configs</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method ccm.FourPartName.type()=ccm.FourPartName-class.html#type"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-19', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"properties"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                    <tt class="py-name">props</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">props</tt> </tt>
+</div><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">         </tt>
+<a name="ATSConfigParser.settings"></a><div id="ATSConfigParser.settings-def"><a name="L85"></a><tt class="py-lineno"> 85</tt> <a class="py-toggle" href="#" id="ATSConfigParser.settings-toggle" onclick="return toggle('ATSConfigParser.settings');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser.ATSConfigParser-class.html#settings">settings</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ATSConfigParser.settings-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ATSConfigParser.settings-expanded"><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt id="link-20" class="py-name" targets="Method ats3.atsconfigparser.ATSConfigParser.settings()=ats3.atsconfigparser.ATSConfigParser-class.html#settings"><a title="ats3.atsconfigparser.ATSConfigParser.settings" class="py-name" href="#" onclick="return doclink('link-20', 'settings', 'link-20');">settings</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">configs</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-21', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"settings"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                    <tt id="link-22" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.settings" class="py-name" href="#" onclick="return doclink('link-22', 'settings', 'link-20');">settings</a></tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-23" class="py-name"><a title="ats3.atsconfigparser.ATSConfigParser.settings" class="py-name" href="#" onclick="return doclink('link-23', 'settings', 'link-20');">settings</a></tt> </tt>
+</div></div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="converttestxml"></a><div id="converttestxml-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="converttestxml-toggle" onclick="return toggle('converttestxml');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ats3.atsconfigparser-module.html#converttestxml">converttestxml</a><tt class="py-op">(</tt><tt class="py-param">specfilename</tt><tt class="py-op">,</tt> <tt class="py-param">testxmldata</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="converttestxml-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="converttestxml-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-name">specfile</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">specfilename</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">     </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">    <tt class="py-name">builder</tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-24', 'configuration', 'link-0');">configuration</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="configuration.NestedConfigurationBuilder" class="py-name" href="#" onclick="return doclink('link-25', 'NestedConfigurationBuilder', 'link-17');">NestedConfigurationBuilder</a></tt><tt class="py-op">(</tt><tt class="py-name">specfile</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-name">configs</tt> <tt class="py-op">=</tt> <tt class="py-name">builder</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="configuration.ConfigurationSet.getConfigurations
+configuration.NestedConfigurationBuilder.getConfigurations" class="py-name" href="#" onclick="return doclink('link-26', 'getConfigurations', 'link-18');">getConfigurations</a></tt><tt class="py-op">(</tt><tt class="py-string">"common"</tt><tt class="py-op">)</tt><tt class="py-comment"># + builder.getConfigurations("ats3")</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">     </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">    <tt class="py-name">testxml</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name" targets="Class ats3.atsconfigparser.TestXML=ats3.atsconfigparser.TestXML-class.html"><a title="ats3.atsconfigparser.TestXML" class="py-name" href="#" onclick="return doclink('link-27', 'TestXML', 'link-27');">TestXML</a></tt><tt class="py-op">(</tt><tt class="py-name">testxmldata</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">     </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">config</tt> <tt class="py-keyword">in</tt> <tt class="py-name">configs</tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-28', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"properties"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">                <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method ats3.atsconfigparser.TestXML.addorreplaceproperty()=ats3.atsconfigparser.TestXML-class.html#addorreplaceproperty"><a title="ats3.atsconfigparser.TestXML.addorreplaceproperty" class="py-name" href="#" onclick="return doclink('link-29', 'addorreplaceproperty', 'link-29');">addorreplaceproperty</a></tt><tt class="py-op">(</tt><tt class="py-name">subconfig</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-30', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"conditional_properties"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt id="link-31" class="py-name" targets="Method preparation.PreparationAction.check()=preparation.PreparationAction-class.html#check,Method preparation.PreparationBuilder.check()=preparation.PreparationBuilder-class.html#check,Method preparation.PreparationCheckout.check()=preparation.PreparationCheckout-class.html#check,Method preparation.PreparationUpdate.check()=preparation.PreparationUpdate-class.html#check"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-31', 'check', 'link-31');">check</a></tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-32', 'name', 'link-2');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">','</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method ats3.atsconfigparser.TestXML.containsproperty()=ats3.atsconfigparser.TestXML-class.html#containsproperty"><a title="ats3.atsconfigparser.TestXML.containsproperty" class="py-name" href="#" onclick="return doclink('link-33', 'containsproperty', 'link-33');">containsproperty</a></tt><tt class="py-op">(</tt><tt id="link-34" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-34', 'check', 'link-31');">check</a></tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt id="link-35" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-35', 'check', 'link-31');">check</a></tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                    <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="ats3.atsconfigparser.TestXML.addorreplaceproperty" class="py-name" href="#" onclick="return doclink('link-36', 'addorreplaceproperty', 'link-29');">addorreplaceproperty</a></tt><tt class="py-op">(</tt><tt class="py-name">subconfig</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-37', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"settings"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Method ats3.atsconfigparser.TestXML.addorreplacesetting()=ats3.atsconfigparser.TestXML-class.html#addorreplacesetting"><a title="ats3.atsconfigparser.TestXML.addorreplacesetting" class="py-name" href="#" onclick="return doclink('link-38', 'addorreplacesetting', 'link-38');">addorreplacesetting</a></tt><tt class="py-op">(</tt><tt class="py-name">subconfig</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-39', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"conditional_settings"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">            <tt id="link-40" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-40', 'check', 'link-31');">check</a></tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-41', 'name', 'link-2');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">','</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method ats3.atsconfigparser.TestXML.containssetting()=ats3.atsconfigparser.TestXML-class.html#containssetting"><a title="ats3.atsconfigparser.TestXML.containssetting" class="py-name" href="#" onclick="return doclink('link-42', 'containssetting', 'link-42');">containssetting</a></tt><tt class="py-op">(</tt><tt id="link-43" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-43', 'check', 'link-31');">check</a></tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt id="link-44" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-44', 'check', 'link-31');">check</a></tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                    <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="ats3.atsconfigparser.TestXML.addorreplacesetting" class="py-name" href="#" onclick="return doclink('link-45', 'addorreplacesetting', 'link-38');">addorreplacesetting</a></tt><tt class="py-op">(</tt><tt class="py-name">subconfig</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-46', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"attributes"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Method ats3.atsconfigparser.TestXML.replaceattribute()=ats3.atsconfigparser.TestXML-class.html#replaceattribute"><a title="ats3.atsconfigparser.TestXML.replaceattribute" class="py-name" href="#" onclick="return doclink('link-47', 'replaceattribute', 'link-47');">replaceattribute</a></tt><tt class="py-op">(</tt><tt class="py-name">subconfig</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-48', 'type', 'link-19');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">"conditional_attributes"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt id="link-49" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-49', 'check', 'link-31');">check</a></tt> <tt class="py-op">=</tt> <tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-50', 'name', 'link-2');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">','</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Method ats3.atsconfigparser.TestXML.containsattribute()=ats3.atsconfigparser.TestXML-class.html#containsattribute"><a title="ats3.atsconfigparser.TestXML.containsattribute" class="py-name" href="#" onclick="return doclink('link-51', 'containsattribute', 'link-51');">containsattribute</a></tt><tt class="py-op">(</tt><tt id="link-52" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-52', 'check', 'link-31');">check</a></tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt id="link-53" class="py-name"><a title="preparation.PreparationAction.check
+preparation.PreparationBuilder.check
+preparation.PreparationCheckout.check
+preparation.PreparationUpdate.check" class="py-name" href="#" onclick="return doclink('link-53', 'check', 'link-31');">check</a></tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">subconfig</tt> <tt class="py-keyword">in</tt> <tt class="py-name">config</tt><tt class="py-op">:</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                    <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="ats3.atsconfigparser.TestXML.replaceattribute" class="py-name" href="#" onclick="return doclink('link-54', 'replaceattribute', 'link-47');">replaceattribute</a></tt><tt class="py-op">(</tt><tt class="py-name">subconfig</tt><tt class="py-op">,</tt> <tt class="py-name">config</tt><tt class="py-op">[</tt><tt class="py-name">subconfig</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">     </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">testxml</tt><tt class="py-op">.</tt><tt class="py-name">doc</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name" targets="Method symrec.MetadataMerger.xml()=symrec.MetadataMerger-class.html#xml,Method symrec.ReleaseMetadata.xml()=symrec.ReleaseMetadata-class.html#xml"><a title="symrec.MetadataMerger.xml
+symrec.ReleaseMetadata.xml" class="py-name" href="#" onclick="return doclink('link-55', 'xml', 'link-55');">xml</a></tt><tt class="py-op">(</tt><tt class="py-name">indent</tt><tt class="py-op">=</tt><tt class="py-string">u"yes"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:21 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

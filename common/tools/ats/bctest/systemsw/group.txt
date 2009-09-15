@@ -1,0 +1,13 @@
+sf/os/devicesrv/devicesrv_pub/feature_discovery_api/tsrc/bc/featurediscovery/group
+sf/os/devicesrv/devicesrv_pub/find_item_api/tsrc/bc/finditem/group
+sf/os/devicesrv/devicesrv_pub/light_api/tsrc/bc/light/group
+sf/mw/appsupport/appsupport_pub/network_status_api/tsrc/bc/networkstatus/group
+sf/os/devicesrv/devicesrv_pub/phone_parser_api/tsrc/bc/phoneparser/group
+sf/os/devicesrv/devicesrv_pub/platform_environment_api/tsrc/bc/platformenv/group
+sf/os/devicesrv/devicesrv_pub/hwrm_power_state_api/tsrc/bc/powerstate/group
+sf/os/devicesrv/devicesrv_pub/sysutil_api/tsrc/bc/sysutil/group
+sf/os/devicesrv/devicesrv_pub/text_resolver_api/tsrc/bc/textresolver/group
+sf/os/devicesrv/devicesrv_pub/vibra_api/tsrc/bc/vibra/group
+sf/os/devicesrv/resourcemgmt/tsrc/public/basic/group
+sf/os/devicesrv/devicesrv_pub/version_info_api/tsrc/bc/platformvertest/group
+sf/os/devicesrv/devicesrv_pub/accessory_monitoring_api/tsrc/bc/accmonapibctests/group

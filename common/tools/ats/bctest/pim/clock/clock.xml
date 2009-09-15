@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>PIM Clock BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="PIM Clock BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="PIM Clock Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="PIM Clock" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="PIM Clock" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bctestclock.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctestclock.dll"/>
+							<param dst="c:\sys\bin\bctestclock.dll"/>
+							<param component-path="clocktest" />
+						</params>
+					</step>
+					<step id="" name="testframework_pimclock.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_pimclock.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="clocktest" />
+						</params>
+					</step>
+					<step id="" name="tcbctestclock.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tcbctestclock.cfg"/>
+							<param dst="c:\testframework\tcbctestclock.cfg"/>
+							<param component-path="clocktest" />
+						</params>
+					</step>
+					<step id="" name="ui_bctestclock.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/ui_bctestclock.cfg"/>
+							<param dst="c:\testframework\ui_bctestclock.cfg"/>
+							<param component-path="clocktest" />
+						</params>
+					</step>
+					<step id="" name="bctestclock (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testcombiner -config C:\testframework\tcbctestclock.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="bctestclock (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>clocktest/winscw_udeb/bctestclock.dll</file>
+		<file>clocktest/general/testframework/testframework_pimclock.ini</file>
+        <file>clocktest/general/testframework/tcbctestclock.cfg</file>
+        <file>clocktest/general/testframework/ui_bctestclock.cfg</file>
+	</files>
+</test>

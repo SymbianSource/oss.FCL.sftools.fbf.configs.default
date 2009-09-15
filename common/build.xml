@@ -13,7 +13,6 @@
     <property name="core.build.version" value="${sf.spec.job.codeline}"/>
     <property name="build.number" value="${sf.spec.job.number}"/>
     <property name="build.drive" value="${sf.spec.job.drive}"/>
-    <property name="build.family" value="${sf.project.type}"/>
     <property name="email.from" value="${sf.spec.email.from}"/>
     <property name="local.free.space" value="${sf.spec.job.freespace}"/>
     <property name="network.free.space" value="${sf.spec.publish.network.freespace}"/>
@@ -28,6 +27,18 @@
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
+	<property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
+    
+    <if>
+      <equals arg1="${sf.spec.publish.diamonds.tag}" arg2="test"/>
+      <then>
+        <property name="sf.test.tag" value=".test"/>
+      </then>
+      <else>
+        <property name="sf.test.tag" value=""/>
+      </else>
+    </if>
+    <property name="build.family" value="${sf.spec.job.name}_${sf.spec.job.codeline}${sf.test.tag}"/>
     
     <if>
       <isset property="sf.spec.sbs.numberofjobs"/>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>comments</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;comments
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="comments-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="comments-module.html">Module comments</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : comments.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">""" Helper to parse branch information.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">amara</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">string</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable comments.COMMENT_SYMBOLS=comments-module.html#COMMENT_SYMBOLS"><a title="comments.COMMENT_SYMBOLS" class="py-name" href="#" onclick="return doclink('link-0', 'COMMENT_SYMBOLS', 'link-0');">COMMENT_SYMBOLS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-string">'.java'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">    <tt class="py-string">'.hrh'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt class="py-string">'.cpp'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">    <tt class="py-string">'.h'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-string">'.inf'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">    <tt class="py-string">'.mmp'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-string">'.iby'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-string">'.pl'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'#'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">    <tt class="py-string">'.py'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'#'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-string">'.mk'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'#'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">    <tt class="py-string">'.bat'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'REM'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt class="py-string">'.xml'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'&lt;!--'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt class="py-string">'.txt'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'//'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt class="py-string">'.cmd'</tt><tt class="py-op">:</tt><tt class="py-op">[</tt><tt class="py-string">'#'</tt><tt class="py-op">,</tt><tt class="py-string">'REM'</tt><tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt class="py-op">}</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-comment"># Uncomment this line to enable logging in this module, or configure logging elsewhere   </tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#logging.basicConfig(level=logging.DEBUG)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt id="link-1" class="py-name" targets="Variable archive.builders._logger=archive.builders-module.html#_logger,Variable archive.mappers._logger=archive.mappers-module.html#_logger,Variable archive.tools._logger=archive.tools-module.html#_logger,Variable ats3._logger=ats3-module.html#_logger,Variable ats3.aste._logger=ats3.aste-module.html#_logger,Variable ats3.dropgenerator._logger=ats3.dropgenerator-module.html#_logger,Variable ats3.parsers._logger=ats3.parsers-module.html#_logger,Variable ats3.testconfigurator._logger=ats3.testconfigurator-module.html#_logger,Variable build.io._logger=build.io-module.html#_logger,Variable build.model._logger=build.model-module.html#_logger,Variable ccm._logger=ccm-module.html#_logger,Variable ccm.extra._logger=ccm.extra-module.html#_logger,Variable comments._logger=comments-module.html#_logger,Variable configuration._logger=configuration-module.html#_logger,Variable configuration_model._logger=configuration_model-module.html#_logger,Variable delta_zip._logger=delta_zip-module.html#_logger,Variable integration.quality._logger=integration.quality-module.html#_logger,Variable nokia.gscm._logger=nokia.gscm-module.html#_logger,Variable nokia.nokiaccm._logger=nokia.nokiaccm-module.html#_logger,Variable pathaddition.match._logger=pathaddition.match-module.html#_logger,Variable preparation._logger=preparation-module.html#_logger,Variable symbian.log._logger=symbian.log-module.html#_logger,Variable sysdef.api._logger=sysdef.api-module.html#_logger"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-1', '_logger', 'link-1');">_logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"comments"</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="CommentParser"></a><div id="CommentParser-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="CommentParser-toggle" onclick="return toggle('CommentParser');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="comments.CommentParser-class.html">CommentParser</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CommentParser-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="CommentParser-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-docstring">""" Parse branch information. """</tt> </tt>
+<a name="CommentParser.__init__"></a><div id="CommentParser.__init__-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="CommentParser.__init__-toggle" onclick="return toggle('CommentParser.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="comments.CommentParser-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">files</tt><tt class="py-op">,</tt> <tt class="py-param">element_name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CommentParser.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CommentParser.__init__-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method symrec.ServicePack.files()=symrec.ServicePack-class.html#files"><a title="symrec.ServicePack.files" class="py-name" href="#" onclick="return doclink('link-2', 'files', 'link-2');">files</a></tt> <tt class="py-op">=</tt> <tt id="link-3" class="py-name"><a title="symrec.ServicePack.files" class="py-name" href="#" onclick="return doclink('link-3', 'files', 'link-2');">files</a></tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">element_name</tt> <tt class="py-op">=</tt> <tt class="py-name">element_name</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="CommentParser.scan"></a><div id="CommentParser.scan-def"><a name="L58"></a><tt class="py-lineno"> 58</tt> <a class="py-toggle" href="#" id="CommentParser.scan-toggle" onclick="return toggle('CommentParser.scan');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="comments.CommentParser-class.html#scan">scan</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CommentParser.scan-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CommentParser.scan-expanded"><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-docstring">""" This method goes processes the input files.</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        It returns an xml document.  """</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">doc</tt> <tt class="py-op">=</tt> <tt class="py-name">amara</tt><tt class="py-op">.</tt><tt class="py-name">create_document</tt><tt class="py-op">(</tt><tt class="py-string">u"commentLog"</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-4" class="py-name" targets="Method buildtools.Command.path()=buildtools.Command-class.html#path,Method sysdef.api.SpecialInstruction.path()=sysdef.api.SpecialInstruction-class.html#path,Method sysdef.api.Unit.path()=sysdef.api.Unit-class.html#path"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-4', 'path', 'link-4');">path</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="symrec.ServicePack.files" class="py-name" href="#" onclick="return doclink('link-5', 'files', 'link-2');">files</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-name">open_file</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt id="link-6" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-6', 'path', 'link-4');">path</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt id="link-7" class="py-name" targets="Class comments.CommentParser=comments.CommentParser-class.html"><a title="comments.CommentParser" class="py-name" href="#" onclick="return doclink('link-7', 'CommentParser', 'link-7');">CommentParser</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Static Method comments.CommentParser.scan_content()=comments.CommentParser-class.html#scan_content"><a title="comments.CommentParser.scan_content" class="py-name" href="#" onclick="return doclink('link-8', 'scan_content', 'link-8');">scan_content</a></tt><tt class="py-op">(</tt><tt id="link-9" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-9', 'path', 'link-4');">path</a></tt><tt class="py-op">,</tt> <tt class="py-name">open_file</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">element_name</tt><tt class="py-op">,</tt> <tt class="py-name">doc</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-name">open_file</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method build.model.BOM.close()=build.model.BOM-class.html#close,Method build.model.SessionCreator.close()=build.model.SessionCreator-class.html#close,Method buildtools.AbstractOutputWriter.close()=buildtools.AbstractOutputWriter-class.html#close,Method ccm.AbstractSession.close()=ccm.AbstractSession-class.html#close,Method ccm.Session.close()=ccm.Session-class.html#close,Method ccm.SessionPool.close()=ccm.SessionPool-class.html#close,Method ccm.extra.CachedSessionProvider.close()=ccm.extra.CachedSessionProvider-class.html#close,Method ccm.extra.SessionProvider.close()=ccm.extra.SessionProvider-class.html#close,Method log2xml.LogWriter.close()=log2xml.LogWriter-class.html#close,Method preparation.PreparationBuilder.close()=preparation.PreparationBuilder-class.html#close,Method sysdef.io.FlashImageSizeWriter.close()=sysdef.io.FlashImageSizeWriter-class.html#close"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-10', 'close', 'link-10');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-comment">#print doc.xml()</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">return</tt> <tt class="py-name">doc</tt> </tt>
+</div><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">     </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">staticmethod</tt> </tt>
+<a name="CommentParser.scan_content"></a><div id="CommentParser.scan_content-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="CommentParser.scan_content-toggle" onclick="return toggle('CommentParser.scan_content');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="comments.CommentParser-class.html#scan_content">scan_content</a><tt class="py-op">(</tt><tt class="py-param">filename</tt><tt class="py-op">,</tt> <tt class="py-param">content</tt><tt class="py-op">,</tt> <tt class="py-param">element_name</tt><tt class="py-op">,</tt> <tt class="py-param">doc</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CommentParser.scan_content-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CommentParser.scan_content-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-docstring">""" This method scan the defined content to find any custom comment tags.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        It returns an xml document.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-comment"># Creating a doc if not defined</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">doc</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt class="py-name">doc</tt> <tt class="py-op">=</tt> <tt class="py-name">amara</tt><tt class="py-op">.</tt><tt class="py-name">create_document</tt><tt class="py-op">(</tt><tt class="py-string">u"commentLog"</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">             </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-comment"># Search the file for any XML elements matching the given element name</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt id="link-11" class="py-name" targets="Variable build.model.PCPError.regex=build.model.PCPError-class.html#regex,Variable build.model.TAChange.regex=build.model.TAChange-class.html#regex,Variable build.model.TSWError.regex=build.model.TSWError-class.html#regex,Method ccm.DataMapperListResult.regex()=ccm.DataMapperListResult-class.html#regex"><a title="build.model.PCPError.regex
+build.model.TAChange.regex
+build.model.TSWError.regex
+ccm.DataMapperListResult.regex" class="py-name" href="#" onclick="return doclink('link-11', 'regex', 'link-11');">regex</a></tt> <tt class="py-op">=</tt> <tt class="py-name">string</tt><tt class="py-op">.</tt><tt class="py-name">Template</tt><tt class="py-op">(</tt><tt class="py-string">r"&lt;${element_name}.*&lt;/${element_name}&gt;"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">substitute</tt><tt class="py-op">(</tt><tt class="py-name">element_name</tt><tt class="py-op">=</tt><tt class="py-name">element_name</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-name">comment_elements</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">findall</tt><tt class="py-op">(</tt><tt id="link-12" class="py-name"><a title="build.model.PCPError.regex
+build.model.TAChange.regex
+build.model.TSWError.regex
+ccm.DataMapperListResult.regex" class="py-name" href="#" onclick="return doclink('link-12', 'regex', 'link-11');">regex</a></tt><tt class="py-op">,</tt> <tt id="link-13" class="py-name" targets="Method ccm.File.content()=ccm.File-class.html#content"><a title="ccm.File.content" class="py-name" href="#" onclick="return doclink('link-13', 'content', 'link-13');">content</a></tt><tt class="py-op">,</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">DOTALL</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-14" class="py-name" targets="Method ccm.conflict.Conflict.comment()=ccm.conflict.Conflict-class.html#comment,Method ccm.conflict.MultipleObjectInBaselineConflict.comment()=ccm.conflict.MultipleObjectInBaselineConflict-class.html#comment,Method ccm.conflict.ObjectAndBaselineConflict.comment()=ccm.conflict.ObjectAndBaselineConflict-class.html#comment,Method ccm.conflict.ObjectNotFoundInBaselineConflict.comment()=ccm.conflict.ObjectNotFoundInBaselineConflict-class.html#comment"><a title="ccm.conflict.Conflict.comment
+ccm.conflict.MultipleObjectInBaselineConflict.comment
+ccm.conflict.ObjectAndBaselineConflict.comment
+ccm.conflict.ObjectNotFoundInBaselineConflict.comment" class="py-name" href="#" onclick="return doclink('link-14', 'comment', 'link-14');">comment</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">comment_elements</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-name">_</tt><tt class="py-op">,</tt> <tt class="py-name">file_type</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="buildtools.Command.path
+sysdef.api.SpecialInstruction.path
+sysdef.api.Unit.path" class="py-name" href="#" onclick="return doclink('link-15', 'path', 'link-4');">path</a></tt><tt class="py-op">.</tt><tt class="py-name">splitext</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name" targets="Variable symrec.ReleaseMetadata.filename=symrec.ReleaseMetadata-class.html#filename"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-16', 'filename', 'link-16');">filename</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">file_type</tt> <tt class="py-op">=</tt> <tt class="py-name">file_type</tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt id="link-17" class="py-name"><a title="comments.COMMENT_SYMBOLS" class="py-name" href="#" onclick="return doclink('link-17', 'COMMENT_SYMBOLS', 'link-0');">COMMENT_SYMBOLS</a></tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">file_type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="comments.COMMENT_SYMBOLS" class="py-name" href="#" onclick="return doclink('link-18', 'COMMENT_SYMBOLS', 'link-0');">COMMENT_SYMBOLS</a></tt><tt class="py-op">[</tt><tt class="py-name">file_type</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt>  </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                    <tt id="link-19" class="py-name"><a title="ccm.conflict.Conflict.comment
+ccm.conflict.MultipleObjectInBaselineConflict.comment
+ccm.conflict.ObjectAndBaselineConflict.comment
+ccm.conflict.ObjectNotFoundInBaselineConflict.comment" class="py-name" href="#" onclick="return doclink('link-19', 'comment', 'link-14');">comment</a></tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="ccm.conflict.Conflict.comment
+ccm.conflict.MultipleObjectInBaselineConflict.comment
+ccm.conflict.ObjectAndBaselineConflict.comment
+ccm.conflict.ObjectNotFoundInBaselineConflict.comment" class="py-name" href="#" onclick="return doclink('link-20', 'comment', 'link-14');">comment</a></tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt id="link-21" class="py-name"><a title="comments.COMMENT_SYMBOLS" class="py-name" href="#" onclick="return doclink('link-21', 'COMMENT_SYMBOLS', 'link-0');">COMMENT_SYMBOLS</a></tt><tt class="py-op">[</tt><tt class="py-name">file_type</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                <tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">commentLog</tt><tt class="py-op">.</tt><tt class="py-name">xml_append_fragment</tt><tt class="py-op">(</tt><tt id="link-22" class="py-name"><a title="ccm.conflict.Conflict.comment
+ccm.conflict.MultipleObjectInBaselineConflict.comment
+ccm.conflict.ObjectAndBaselineConflict.comment
+ccm.conflict.ObjectNotFoundInBaselineConflict.comment" class="py-name" href="#" onclick="return doclink('link-22', 'comment', 'link-14');">comment</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-comment"># Add a generic file attribute to the comment to label which file it comes from</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-comment"></tt>                <tt class="py-name">doc</tt><tt class="py-op">.</tt><tt class="py-name">commentLog</tt><tt class="py-op">.</tt><tt class="py-name">xml_children</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">xml_set_attribute</tt><tt class="py-op">(</tt><tt class="py-string">u'file'</tt><tt class="py-op">,</tt> <tt class="py-name">unicode</tt><tt class="py-op">(</tt><tt id="link-23" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-23', 'filename', 'link-16');">filename</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                <tt id="link-24" class="py-name"><a title="archive.builders._logger
+archive.mappers._logger
+archive.tools._logger
+ats3._logger
+ats3.aste._logger
+ats3.dropgenerator._logger
+ats3.parsers._logger
+ats3.testconfigurator._logger
+build.io._logger
+build.model._logger
+ccm._logger
+ccm.extra._logger
+comments._logger
+configuration._logger
+configuration_model._logger
+delta_zip._logger
+integration.quality._logger
+nokia.gscm._logger
+nokia.nokiaccm._logger
+pathaddition.match._logger
+preparation._logger
+symbian.log._logger
+sysdef.api._logger" class="py-name" href="#" onclick="return doclink('link-24', '_logger', 'link-1');">_logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"A comment in '%s' is not valid XML."</tt> <tt class="py-op">%</tt> <tt id="link-25" class="py-name"><a title="symrec.ReleaseMetadata.filename" class="py-name" href="#" onclick="return doclink('link-25', 'filename', 'link-16');">filename</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-comment">#print doc.xml()</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">return</tt> <tt class="py-name">doc</tt> </tt>
+</div></div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:23 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ido</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;ido
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ido-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ido-module.html">Module ido</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : ido.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-docstring">IDO specific features</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-docstring">    * find layer_real_source_path from sysdef file.</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-docstring">    * time manipulation for robot releasing.</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">datetime</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable ido.MATCH_ENTITY=ido-module.html#MATCH_ENTITY"><a title="ido.MATCH_ENTITY" class="py-name" href="#" onclick="return doclink('link-0', 'MATCH_ENTITY', 'link-0');">MATCH_ENTITY</a></tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">compile</tt><tt class="py-op">(</tt><tt class="py-string">r".*ENTITY\s+layer_real_source_path\s+\"(.+)\"\s*&gt;?.*"</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="get_sysdef_location"></a><div id="get_sysdef_location-def"><a name="L30"></a><tt class="py-lineno">30</tt> <a class="py-toggle" href="#" id="get_sysdef_location-toggle" onclick="return toggle('get_sysdef_location');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ido-module.html#get_sysdef_location">get_sysdef_location</a><tt class="py-op">(</tt><tt class="py-param">sysdef</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="get_sysdef_location-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="get_sysdef_location-expanded"><a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">    <tt class="py-docstring">""" Search for layer_real_source_path entity inside the sysdef file. """</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">    <tt class="py-name">input</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt id="link-1" class="py-name" targets="Package sysdef=sysdef-module.html"><a title="sysdef" class="py-name" href="#" onclick="return doclink('link-1', 'sysdef', 'link-1');">sysdef</a></tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">line</tt> <tt class="py-keyword">in</tt> <tt class="py-name">input</tt><tt class="py-op">.</tt><tt class="py-name">readlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt id="link-2" class="py-name"><a title="ido.MATCH_ENTITY" class="py-name" href="#" onclick="return doclink('link-2', 'MATCH_ENTITY', 'link-0');">MATCH_ENTITY</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method fileutils.AbstractScanner.match()=fileutils.AbstractScanner-class.html#match,Module pathaddition.match=pathaddition.match-module.html"><a title="fileutils.AbstractScanner.match
+pathaddition.match" class="py-name" href="#" onclick="return doclink('link-3', 'match', 'link-3');">match</a></tt><tt class="py-op">(</tt><tt class="py-name">line</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">result</tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">            <tt class="py-name">input</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method build.model.BOM.close()=build.model.BOM-class.html#close,Method build.model.SessionCreator.close()=build.model.SessionCreator-class.html#close,Method buildtools.AbstractOutputWriter.close()=buildtools.AbstractOutputWriter-class.html#close,Method ccm.AbstractSession.close()=ccm.AbstractSession-class.html#close,Method ccm.Session.close()=ccm.Session-class.html#close,Method ccm.SessionPool.close()=ccm.SessionPool-class.html#close,Method ccm.extra.CachedSessionProvider.close()=ccm.extra.CachedSessionProvider-class.html#close,Method ccm.extra.SessionProvider.close()=ccm.extra.SessionProvider-class.html#close,Method log2xml.LogWriter.close()=log2xml.LogWriter-class.html#close,Method preparation.PreparationBuilder.close()=preparation.PreparationBuilder-class.html#close,Method sysdef.io.FlashImageSizeWriter.close()=sysdef.io.FlashImageSizeWriter-class.html#close"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-4', 'close', 'link-4');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">result</tt><tt class="py-op">.</tt><tt class="py-name">groups</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">    <tt class="py-name">input</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="build.model.BOM.close
+build.model.SessionCreator.close
+buildtools.AbstractOutputWriter.close
+ccm.AbstractSession.close
+ccm.Session.close
+ccm.SessionPool.close
+ccm.extra.CachedSessionProvider.close
+ccm.extra.SessionProvider.close
+log2xml.LogWriter.close
+preparation.PreparationBuilder.close
+sysdef.io.FlashImageSizeWriter.close" class="py-name" href="#" onclick="return doclink('link-5', 'close', 'link-4');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="get_first_day_of_cycle"></a><div id="get_first_day_of_cycle-def"><a name="L42"></a><tt class="py-lineno">42</tt> <a class="py-toggle" href="#" id="get_first_day_of_cycle-toggle" onclick="return toggle('get_first_day_of_cycle');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ido-module.html#get_first_day_of_cycle">get_first_day_of_cycle</a><tt class="py-op">(</tt><tt class="py-param">now</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="get_first_day_of_cycle-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="get_first_day_of_cycle-expanded"><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">    <tt class="py-docstring">""" This function returns a datetime object representing the monday from closest</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-docstring">        even week.</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-name">week</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">now</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%W"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt class="py-name">day</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">now</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%w"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt class="py-name">monday</tt> <tt class="py-op">=</tt> <tt class="py-name">now</tt> <tt class="py-op">-</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">timedelta</tt><tt class="py-op">(</tt><tt class="py-name">days</tt><tt class="py-op">=</tt><tt class="py-name">day</tt> <tt class="py-op">+</tt> <tt class="py-name">week</tt><tt class="py-op">.</tt><tt class="py-name">__mod__</tt><tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-number">7</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-name">monday</tt> <tt class="py-op">=</tt> <tt class="py-name">monday</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-name">hour</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">minute</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">second</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">microsecond</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">monday</tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt>
+<a name="get_absolute_date"></a><div id="get_absolute_date-def"><a name="L52"></a><tt class="py-lineno">52</tt> <a class="py-toggle" href="#" id="get_absolute_date-toggle" onclick="return toggle('get_absolute_date');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ido-module.html#get_absolute_date">get_absolute_date</a><tt class="py-op">(</tt><tt class="py-param">day</tt><tt class="py-op">,</tt> <tt class="py-param">time</tt><tt class="py-op">,</tt> <tt class="py-param">now</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="get_absolute_date-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="get_absolute_date-expanded"><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">    <tt class="py-docstring">""" Get the absolute date from the day and time. """</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt class="py-name">time</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">strptime</tt><tt class="py-op">(</tt><tt class="py-name">time</tt><tt class="py-op">,</tt> <tt class="py-string">"%H:%M"</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">    <tt class="py-name">delta</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">timedelta</tt><tt class="py-op">(</tt><tt class="py-name">days</tt> <tt class="py-op">=</tt> <tt class="py-name">day</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">hours</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">hour</tt><tt class="py-op">,</tt> <tt class="py-name">minutes</tt><tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">minute</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-6" class="py-name" targets="Function ido.get_first_day_of_cycle()=ido-module.html#get_first_day_of_cycle"><a title="ido.get_first_day_of_cycle" class="py-name" href="#" onclick="return doclink('link-6', 'get_first_day_of_cycle', 'link-6');">get_first_day_of_cycle</a></tt><tt class="py-op">(</tt><tt class="py-name">now</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">delta</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt>
+<a name="is_in_interval"></a><div id="is_in_interval-def"><a name="L59"></a><tt class="py-lineno">59</tt> <a class="py-toggle" href="#" id="is_in_interval-toggle" onclick="return toggle('is_in_interval');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ido-module.html#is_in_interval">is_in_interval</a><tt class="py-op">(</tt><tt class="py-param">day1</tt><tt class="py-op">,</tt> <tt class="py-param">time1</tt><tt class="py-op">,</tt> <tt class="py-param">day2</tt><tt class="py-op">,</tt> <tt class="py-param">time2</tt><tt class="py-op">,</tt> <tt class="py-param">now</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="is_in_interval-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="is_in_interval-expanded"><a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">    <tt class="py-docstring">""" Return True is get_absolute_date(day1, time1) &lt; now &lt; get_absolute_date(day2, time2). """</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">    <tt class="py-name">delta1</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name" targets="Function ido.get_absolute_date()=ido-module.html#get_absolute_date"><a title="ido.get_absolute_date" class="py-name" href="#" onclick="return doclink('link-7', 'get_absolute_date', 'link-7');">get_absolute_date</a></tt><tt class="py-op">(</tt><tt class="py-name">day1</tt><tt class="py-op">,</tt> <tt class="py-name">time1</tt><tt class="py-op">,</tt> <tt class="py-name">now</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">    <tt class="py-name">delta2</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="ido.get_absolute_date" class="py-name" href="#" onclick="return doclink('link-8', 'get_absolute_date', 'link-7');">get_absolute_date</a></tt><tt class="py-op">(</tt><tt class="py-name">day2</tt><tt class="py-op">,</tt> <tt class="py-name">time2</tt><tt class="py-op">,</tt> <tt class="py-name">now</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">now</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">delta1</tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">delta2</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">now</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:23 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

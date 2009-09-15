@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>virtualbuildarea</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;virtualbuildarea
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="virtualbuildarea-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="virtualbuildarea-module.html">Module virtualbuildarea</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================================================ </tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Name        : virtualbuildarea.py </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Part of     : Helium </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#All rights reserved.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#This component and the accompanying materials are made available</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#under the terms of the License "Eclipse Public License v1.0"</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#which accompanies this distribution, and is available</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#at the URL "http://www.eclipse.org/legal/epl-v10.html".</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Initial Contributors:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Nokia Corporation - initial contribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Contributors:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#Description:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#===============================================================================</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">This modules helps to recreate a fake synergy project for the </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">ccm toolkit. The fake project can be composed of any real synergy </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">objects. </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># pylint: disable-msg=E1103</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package ccm=ccm-module.html"><a title="ccm" class="py-name" href="#" onclick="return doclink('link-0', 'ccm', 'link-0');">ccm</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Method symrec.MetadataMerger.xml()=symrec.MetadataMerger-class.html#xml,Method symrec.ReleaseMetadata.xml()=symrec.ReleaseMetadata-class.html#xml"><a title="symrec.MetadataMerger.xml
+symrec.ReleaseMetadata.xml" class="py-name" href="#" onclick="return doclink('link-1', 'xml', 'link-1');">xml</a></tt><tt class="py-op">.</tt><tt class="py-name">dom</tt><tt class="py-op">.</tt><tt class="py-name">minidom</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">traceback</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable virtualbuildarea.DEBUG_VIRTUALDIR=virtualbuildarea-module.html#DEBUG_VIRTUALDIR"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-2', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="VirtualDir"></a><div id="VirtualDir-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="VirtualDir-toggle" onclick="return toggle('VirtualDir');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="virtualbuildarea.VirtualDir-class.html">VirtualDir</a><tt class="py-op">(</tt><tt class="py-base-class">ccm</tt><tt class="py-op">.</tt><tt class="py-base-class">Dir</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualDir-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="VirtualDir-expanded"><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-docstring">""" Fake directory object.</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        The four parts name will be: &lt;dirname&gt;-1:dir:fakedb#1</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="VirtualDir.__init__"></a><div id="VirtualDir.__init__-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="VirtualDir.__init__-toggle" onclick="return toggle('VirtualDir.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualDir-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">session</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">project</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualDir.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualDir.__init__-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">fpn</tt> <tt class="py-op">=</tt> <tt class="py-string">"%s-1:dir:fakedb#1"</tt> <tt class="py-op">%</tt> <tt id="link-3" class="py-name" targets="Method buildtools.Command.name()=buildtools.Command-class.html#name,Method ccm.FourPartName.name()=ccm.FourPartName-class.html#name,Method symrec.ServicePack.name()=symrec.ServicePack-class.html#name,Method sysdef.api.Configuration.name()=sysdef.api.Configuration-class.html#name,Method sysdef.api.Option.name()=sysdef.api.Option-class.html#name,Method sysdef.api.SpecialInstruction.name()=sysdef.api.SpecialInstruction-class.html#name,Method sysdef.api.Target.name()=sysdef.api.Target-class.html#name,Method sysdef.api.TargetList.name()=sysdef.api.TargetList-class.html#name,Method sysdef.api.Unit.name()=sysdef.api.Unit-class.html#name,Method sysdef.api._UnitGroup.name()=sysdef.api._UnitGroup-class.html#name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-3', 'name', 'link-3');">name</a></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt id="link-4" class="py-name"><a title="ccm" class="py-name" href="#" onclick="return doclink('link-4', 'ccm', 'link-0');">ccm</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Class ccm.Dir=ccm.Dir-class.html"><a title="ccm.Dir" class="py-name" href="#" onclick="return doclink('link-5', 'Dir', 'link-5');">Dir</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method ant.AntHandler.__init__()=ant.AntHandler-class.html#__init__,Method archive.builders.ArchivePreBuilder.__init__()=archive.builders.ArchivePreBuilder-class.html#__init__,Method archive.mappers.DefaultMapper.__init__()=archive.mappers.DefaultMapper-class.html#__init__,Method archive.mappers.EPLPolicyRemoverMapper.__init__()=archive.mappers.EPLPolicyRemoverMapper-class.html#__init__,Method archive.mappers.Mapper.__init__()=archive.mappers.Mapper-class.html#__init__,Method archive.mappers.PolicyMapper.__init__()=archive.mappers.PolicyMapper-class.html#__init__,Method archive.mappers.PolicyRemoverMapper.__init__()=archive.mappers.PolicyRemoverMapper-class.html#__init__,Method archive.mappers.SFPolicyRemoverMapper.__init__()=archive.mappers.SFPolicyRemoverMapper-class.html#__init__,Method archive.scanners.AbldWhatScanner.__init__()=archive.scanners.AbldWhatScanner-class.html#__init__,Method archive.scanners.FileSystemScanner.__init__()=archive.scanners.FileSystemScanner-class.html#__init__,Method archive.scanners.InputFileScanner.__init__()=archive.scanners.InputFileScanner-class.html#__init__,Method archive.scanners.Scanner.__init__()=archive.scanners.Scanner-class.html#__init__,Method archive.selectors.DistributionPolicySelector.__init__()=archive.selectors.DistributionPolicySelector-class.html#__init__,Method archive.selectors.SymbianPolicySelector.__init__()=archive.selectors.SymbianPolicySelector-class.html#__init__,Method archive.tools.Remover.__init__()=archive.tools.Remover-class.html#__init__,Method archive.tools.SevenZipArchiver.__init__()=archive.tools.SevenZipArchiver-class.html#__init__,Method archive.tools.ZipArchiver.__init__()=archive.tools.ZipArchiver-class.html#__init__,Method ats3.Ats3TestPlan.__init__()=ats3.Ats3TestPlan-class.html#__init__,Method ats3.Configuration.__init__()=ats3.Configuration-class.html#__init__,Method ats3.aste.AsteComponentParser.__init__()=ats3.aste.AsteComponentParser-class.html#__init__,Method ats3.aste.AsteTestDropGenerator.__init__()=ats3.aste.AsteTestDropGenerator-class.html#__init__,Method ats3.aste.AsteTestPlan.__init__()=ats3.aste.AsteTestPlan-class.html#__init__,Method ats3.aste.Configuration.__init__()=ats3.aste.Configuration-class.html#__init__,Method ats3.atsconfigparser.ATSConfigParser.__init__()=ats3.atsconfigparser.ATSConfigParser-class.html#__init__,Method ats3.atsconfigparser.TestXML.__init__()=ats3.atsconfigparser.TestXML-class.html#__init__,Method ats3.dropgenerator.Ats3TestDropGenerator.__init__()=ats3.dropgenerator.Ats3TestDropGenerator-class.html#__init__,Method ats3.parsers.BldFileParser.__init__()=ats3.parsers.BldFileParser-class.html#__init__,Method ats3.parsers.CppParser.__init__()=ats3.parsers.CppParser-class.html#__init__,Method ats3.parsers.MmpFileParser.__init__()=ats3.parsers.MmpFileParser-class.html#__init__,Method ats3.parsers.PkgFileParser.__init__()=ats3.parsers.PkgFileParser-class.html#__init__,Method ats3.testconfigurator.Ats3ComponentParser.__init__()=ats3.testconfigurator.Ats3ComponentParser-class.html#__init__,Method bsf.BSF.__init__()=bsf.BSF-class.html#__init__,Method build.ec.history.HistoryFileManager.__init__()=build.ec.history.HistoryFileManager-class.html#__init__,Method build.io.AbldLogWhatReader.__init__()=build.io.AbldLogWhatReader-class.html#__init__,Method build.io.RombuildLogBinarySizeReader.__init__()=build.io.RombuildLogBinarySizeReader-class.html#__init__,Method build.model.BOM.__init__()=build.model.BOM-class.html#__init__,Method build.model.BOMDeltaXMLWriter.__init__()=build.model.BOMDeltaXMLWriter-class.html#__init__,Method build.model.BOMXMLWriter.__init__()=build.model.BOMXMLWriter-class.html#__init__,Method build.model.Fix.__init__()=build.model.Fix-class.html#__init__,Method build.model.PCPError.__init__()=build.model.PCPError-class.html#__init__,Method build.model.Project.__init__()=build.model.Project-class.html#__init__,Method build.model.SessionCreator.__init__()=build.model.SessionCreator-class.html#__init__,Method build.model.TAChange.__init__()=build.model.TAChange-class.html#__init__,Method build.model.TSWError.__init__()=build.model.TSWError-class.html#__init__,Method build.model.Task.__init__()=build.model.Task-class.html#__init__,Method buildtools.AbstractOutputWriter.__init__()=buildtools.AbstractOutputWriter-class.html#__init__,Method buildtools.AntWriter.__init__()=buildtools.AntWriter-class.html#__init__,Method buildtools.Command.__init__()=buildtools.Command-class.html#__init__,Method buildtools.CommandList.__init__()=buildtools.CommandList-class.html#__init__,Method buildtools.Copy.__init__()=buildtools.Copy-class.html#__init__,Method buildtools.Delete.__init__()=buildtools.Delete-class.html#__init__,Method buildtools.EBSWriter.__init__()=buildtools.EBSWriter-class.html#__init__,Method buildtools.MakeWriter.__init__()=buildtools.MakeWriter-class.html#__init__,Method buildtools.PreBuilder.__init__()=buildtools.PreBuilder-class.html#__init__,Method buildtools.StringWriter.__init__()=buildtools.StringWriter-class.html#__init__,Method ccm.AbstractSession.__init__()=ccm.AbstractSession-class.html#__init__,Method ccm.AttributeNameListResult.__init__()=ccm.AttributeNameListResult-class.html#__init__,Method ccm.CCMException.__init__()=ccm.CCMException-class.html#__init__,Method ccm.CCMObject.__init__()=ccm.CCMObject-class.html#__init__,Method ccm.ConflictsResult.__init__()=ccm.ConflictsResult-class.html#__init__,Method ccm.CreateNewTaskResult.__init__()=ccm.CreateNewTaskResult-class.html#__init__,Method ccm.DataMapperListResult.__init__()=ccm.DataMapperListResult-class.html#__init__,Method ccm.Dir.__init__()=ccm.Dir-class.html#__init__,Method ccm.File.__init__()=ccm.File-class.html#__init__,Method ccm.FinduseResult.__init__()=ccm.FinduseResult-class.html#__init__,Method ccm.Folder.__init__()=ccm.Folder-class.html#__init__,Method ccm.FolderCopyResult.__init__()=ccm.FolderCopyResult-class.html#__init__,Method ccm.FourPartName.__init__()=ccm.FourPartName-class.html#__init__,Method ccm.InvalidFourPartNameException.__init__()=ccm.InvalidFourPartNameException-class.html#__init__,Method ccm.ObjectListResult.__init__()=ccm.ObjectListResult-class.html#__init__,Method ccm.Project.__init__()=ccm.Project-class.html#__init__,Method ccm.ProjectCheckoutResult.__init__()=ccm.ProjectCheckoutResult-class.html#__init__,Method ccm.ProjectPurposeResult.__init__()=ccm.ProjectPurposeResult-class.html#__init__,Method ccm.Query.__init__()=ccm.Query-class.html#__init__,Method ccm.Releasedef.__init__()=ccm.Releasedef-class.html#__init__,Method ccm.Result.__init__()=ccm.Result-class.html#__init__,Method ccm.Session.__init__()=ccm.Session-class.html#__init__,Method ccm.SessionPool.__init__()=ccm.SessionPool-class.html#__init__,Method ccm.Task.__init__()=ccm.Task-class.html#__init__,Method ccm.UpdatePropertiesRefreshResult.__init__()=ccm.UpdatePropertiesRefreshResult-class.html#__init__,Method ccm.UpdateResult.__init__()=ccm.UpdateResult-class.html#__init__,Method ccm.UpdateResultSimple.__init__()=ccm.UpdateResultSimple-class.html#__init__,Method ccm.UpdateTemplate.__init__()=ccm.UpdateTemplate-class.html#__init__,Method ccm.UpdateTemplateInformation.__init__()=ccm.UpdateTemplateInformation-class.html#__init__,Method ccm.WorkAreaInfoResult.__init__()=ccm.WorkAreaInfoResult-class.html#__init__,Method ccm.conflict.Conflict.__init__()=ccm.conflict.Conflict-class.html#__init__,Method ccm.conflict.MultipleObjectInBaselineConflict.__init__()=ccm.conflict.MultipleObjectInBaselineConflict-class.html#__init__,Method ccm.conflict.ObjectAndBaselineConflict.__init__()=ccm.conflict.ObjectAndBaselineConflict-class.html#__init__,Method ccm.conflict.ObjectAndTask.__init__()=ccm.conflict.ObjectAndTask-class.html#__init__,Method ccm.conflict.ObjectNotFoundInBaselineConflict.__init__()=ccm.conflict.ObjectNotFoundInBaselineConflict-class.html#__init__,Method ccm.conflict.TaskModel.__init__()=ccm.conflict.TaskModel-class.html#__init__,Method ccm.extra.CCMExtraException.__init__()=ccm.extra.CCMExtraException-class.html#__init__,Method ccm.extra.CachedProxySession.__init__()=ccm.extra.CachedProxySession-class.html#__init__,Method ccm.extra.CachedSessionProvider.__init__()=ccm.extra.CachedSessionProvider-class.html#__init__,Method ccm.extra.SessionProvider.__init__()=ccm.extra.SessionProvider-class.html#__init__,Method ccm.extra.__FileSnapshot.__init__()=ccm.extra.__FileSnapshot-class.html#__init__,Method ccm.extra.__ProjectSnapshot.__init__()=ccm.extra.__ProjectSnapshot-class.html#__init__,Method comments.CommentParser.__init__()=comments.CommentParser-class.html#__init__,Method configuration.Configuration.__init__()=configuration.Configuration-class.html#__init__,Method configuration.ConfigurationSet.__init__()=configuration.ConfigurationSet-class.html#__init__,Method configuration.HierarchicalConfiguration.__init__()=configuration.HierarchicalConfiguration-class.html#__init__,Method configuration.NestedConfiguration.__init__()=configuration.NestedConfiguration-class.html#__init__,Method configuration.NestedConfigurationBuilder.__init__()=configuration.NestedConfigurationBuilder-class.html#__init__,Method configuration.PropertiesConfiguration.__init__()=configuration.PropertiesConfiguration-class.html#__init__,Method configuration.Specification.__init__()=configuration.Specification-class.html#__init__,Method configuration.XMLConfiguration.__init__()=configuration.XMLConfiguration-class.html#__init__,Method configuration._Key.__init__()=configuration._Key-class.html#__init__,Method configuration_model.DataModel.__init__()=configuration_model.DataModel-class.html#__init__,Method configuration_model.GroupDef.__init__()=configuration_model.GroupDef-class.html#__init__,Method configuration_model.Item.__init__()=configuration_model.Item-class.html#__init__,Method configuration_model.PropertyDef.__init__()=configuration_model.PropertyDef-class.html#__init__,Method delta_zip.DeltaZipBuilder.__init__()=delta_zip.DeltaZipBuilder-class.html#__init__,Method delta_zip.MD5SignatureBuilder.__init__()=delta_zip.MD5SignatureBuilder-class.html#__init__,Method delta_zip.MD5SignatureBuilderEC.__init__()=delta_zip.MD5SignatureBuilderEC-class.html#__init__,Method delta_zip.SignaturesDict.__init__()=delta_zip.SignaturesDict-class.html#__init__,Method dependancygraph.Library.__init__()=dependancygraph.Library-class.html#__init__,Method dependancygraph.ModuleGroup.__init__()=dependancygraph.ModuleGroup-class.html#__init__,Method dependancygraph.ReadIvyConfig.__init__()=dependancygraph.ReadIvyConfig-class.html#__init__,Method escapeddict.EscapedDict.__init__()=escapeddict.EscapedDict-class.html#__init__,Method fileutils.AbstractScanner.__init__()=fileutils.AbstractScanner-class.html#__init__,Method fileutils.FileScanner.__init__()=fileutils.FileScanner-class.html#__init__,Method fileutils.Lock.__init__()=fileutils.Lock-class.html#__init__,Method flash_config.FlashConfigurationWriter.__init__()=flash_config.FlashConfigurationWriter-class.html#__init__,Method flash_config.ImagePack.__init__()=flash_config.ImagePack-class.html#__init__,Method helium.documentation.APIDeltaWriter.__init__()=helium.documentation.APIDeltaWriter-class.html#__init__,Method helium.logger.Logger.__init__()=helium.logger.Logger-class.html#__init__,Method helium.logger._CustomizePrint.__init__()=helium.logger._CustomizePrint-class.html#__init__,Method helium.output.widgets.BoldText.__init__()=helium.output.widgets.BoldText-class.html#__init__,Method helium.output.widgets.Box.__init__()=helium.output.widgets.Box-class.html#__init__,Method helium.output.widgets.Event.__init__()=helium.output.widgets.Event-class.html#__init__,Method helium.output.widgets.Footer.__init__()=helium.output.widgets.Footer-class.html#__init__,Method helium.output.widgets.Header.__init__()=helium.output.widgets.Header-class.html#__init__,Method helium.output.widgets.Summary.__init__()=helium.output.widgets.Summary-class.html#__init__,Method helium.output.widgets.Text.__init__()=helium.output.widgets.Text-class.html#__init__,Method helium.output.widgets.Widget.__init__()=helium.output.widgets.Widget-class.html#__init__,Method helium.outputer.Configuration.__init__()=helium.outputer.Configuration-class.html#__init__,Method helium.outputer.XML2XHTML.__init__()=helium.outputer.XML2XHTML-class.html#__init__,Method imaker.ecore.ContainerBase.__init__()=imaker.ecore.ContainerBase-class.html#__init__,Method imaker.ecore.Reference.__init__()=imaker.ecore.Reference-class.html#__init__,Method imaker.iqrf.Configuration.__init__()=imaker.iqrf.Configuration-class.html#__init__,Method imaker.iqrf.ConfigurationElement.__init__()=imaker.iqrf.ConfigurationElement-class.html#__init__,Method imaker.iqrf.IMaker.__init__()=imaker.iqrf.IMaker-class.html#__init__,Method imaker.iqrf.Interface.__init__()=imaker.iqrf.Interface-class.html#__init__,Method imaker.iqrf.Result.__init__()=imaker.iqrf.Result-class.html#__init__,Method imaker.iqrf.Setting.__init__()=imaker.iqrf.Setting-class.html#__init__,Method imaker.iqrf.Target.__init__()=imaker.iqrf.Target-class.html#__init__,Method integration.quality.AbldWhatParser.__init__()=integration.quality.AbldWhatParser-class.html#__init__,Method integration.quality.InternalExportParser.__init__()=integration.quality.InternalExportParser-class.html#__init__,Method integration.quality.PolicyValidator.__init__()=integration.quality.PolicyValidator-class.html#__init__,Method integration.templatebuilder.TemplateBuilder.__init__()=integration.templatebuilder.TemplateBuilder-class.html#__init__,Method localisation.Languages.__init__()=localisation.Languages-class.html#__init__,Method log2xml.AppendSummary.__init__()=log2xml.AppendSummary-class.html#__init__,Method log2xml.ContentWriter.__init__()=log2xml.ContentWriter-class.html#__init__,Method log2xml.LogWriter.__init__()=log2xml.LogWriter-class.html#__init__,Method log2xml.Stack.__init__()=log2xml.Stack-class.html#__init__,Method parsedatalistening.Build.__init__()=parsedatalistening.Build-class.html#__init__,Method parsedatalistening.Target.__init__()=parsedatalistening.Target-class.html#__init__,Method preparation.PreparationAction.__init__()=preparation.PreparationAction-class.html#__init__,Method preparation.PreparationBuilder.__init__()=preparation.PreparationBuilder-class.html#__init__,Method preparation.PreparationCheckout.__init__()=preparation.PreparationCheckout-class.html#__init__,Method preparation.PreparationSnapshot.__init__()=preparation.PreparationSnapshot-class.html#__init__,Method preparation.PreparationUpdate.__init__()=preparation.PreparationUpdate-class.html#__init__,Method rom.IMakerRomBuilder.__init__()=rom.IMakerRomBuilder-class.html#__init__,Method rom.Image.__init__()=rom.Image-class.html#__init__,Method rom.RomBuilder.__init__()=rom.RomBuilder-class.html#__init__,Method rtfutils.RTFUtils.__init__()=rtfutils.RTFUtils-class.html#__init__,Method sis.SisPreBuilder.__init__()=sis.SisPreBuilder-class.html#__init__,Method symbian.log.Parser.__init__()=symbian.log.Parser-class.html#__init__,Method symrec.MD5Updater.__init__()=symrec.MD5Updater-class.html#__init__,Method symrec.Metadata2TDD.__init__()=symrec.Metadata2TDD-class.html#__init__,Method symrec.MetadataMerger.__init__()=symrec.MetadataMerger-class.html#__init__,Method symrec.ReleaseMetadata.__init__()=symrec.ReleaseMetadata-class.html#__init__,Method symrec.ServicePack.__init__()=symrec.ServicePack-class.html#__init__,Method symrec.ValidateReleaseMetadata.__init__()=symrec.ValidateReleaseMetadata-class.html#__init__,Method symrec.ValidateReleaseMetadataCached.__init__()=symrec.ValidateReleaseMetadataCached-class.html#__init__,Method symrec.ValidateTicklerReleaseMetadata.__init__()=symrec.ValidateTicklerReleaseMetadata-class.html#__init__,Method sysdef.api.Binary.__init__()=sysdef.api.Binary-class.html#__init__,Method sysdef.api.BuildLayer.__init__()=sysdef.api.BuildLayer-class.html#__init__,Method sysdef.api.Configuration.__init__()=sysdef.api.Configuration-class.html#__init__,Method sysdef.api.Layer.__init__()=sysdef.api.Layer-class.html#__init__,Method sysdef.api.Module.__init__()=sysdef.api.Module-class.html#__init__,Method sysdef.api.Option.__init__()=sysdef.api.Option-class.html#__init__,Method sysdef.api.SpecialInstruction.__init__()=sysdef.api.SpecialInstruction-class.html#__init__,Method sysdef.api.SysDefElement.__init__()=sysdef.api.SysDefElement-class.html#__init__,Method sysdef.api.SystemDefinition.__init__()=sysdef.api.SystemDefinition-class.html#__init__,Method sysdef.api.Target.__init__()=sysdef.api.Target-class.html#__init__,Method sysdef.api.TargetList.__init__()=sysdef.api.TargetList-class.html#__init__,Method sysdef.api.Task.__init__()=sysdef.api.Task-class.html#__init__,Method sysdef.api.Unit.__init__()=sysdef.api.Unit-class.html#__init__,Method sysdef.api.UnitList.__init__()=sysdef.api.UnitList-class.html#__init__,Method sysdef.api._UnitGroup.__init__()=sysdef.api._UnitGroup-class.html#__init__,Method sysdef.io.FlashImageSizeWriter.__init__()=sysdef.io.FlashImageSizeWriter-class.html#__init__,Method sysdef.io.MakeWriter.__init__()=sysdef.io.MakeWriter-class.html#__init__,Method sysdef.io.MakeWriter2.__init__()=sysdef.io.MakeWriter2-class.html#__init__,Method sysdef.io.MakeWriter3.__init__()=sysdef.io.MakeWriter3-class.html#__init__,Method validateoverlay.ValidateOverlayInfo.__init__()=validateoverlay.ValidateOverlayInfo-class.html#__init__,Method vbaconf.AbstractConfigConverter.__init__()=vbaconf.AbstractConfigConverter-class.html#__init__,Method vbaconf.ConfigConverter.__init__()=vbaconf.ConfigConverter-class.html#__init__,Method vbaconf.ConfigConverterNewDelivery.__init__()=vbaconf.ConfigConverterNewDelivery-class.html#__init__,Method vbaconf.new_delivery.config_wrapper.__init__()=vbaconf.new_delivery.config_wrapper-class.html#__init__,Method version.Version.__init__()=version.Version-class.html#__init__,Method virtualbuildarea.VirtualDir.__init__()=virtualbuildarea.VirtualDir-class.html#__init__,Method virtualbuildarea.VirtualProject.__init__()=virtualbuildarea.VirtualProject-class.html#__init__"><a title="ant.AntHandler.__init__
+archive.builders.ArchivePreBuilder.__init__
+archive.mappers.DefaultMapper.__init__
+archive.mappers.EPLPolicyRemoverMapper.__init__
+archive.mappers.Mapper.__init__
+archive.mappers.PolicyMapper.__init__
+archive.mappers.PolicyRemoverMapper.__init__
+archive.mappers.SFPolicyRemoverMapper.__init__
+archive.scanners.AbldWhatScanner.__init__
+archive.scanners.FileSystemScanner.__init__
+archive.scanners.InputFileScanner.__init__
+archive.scanners.Scanner.__init__
+archive.selectors.DistributionPolicySelector.__init__
+archive.selectors.SymbianPolicySelector.__init__
+archive.tools.Remover.__init__
+archive.tools.SevenZipArchiver.__init__
+archive.tools.ZipArchiver.__init__
+ats3.Ats3TestPlan.__init__
+ats3.Configuration.__init__
+ats3.aste.AsteComponentParser.__init__
+ats3.aste.AsteTestDropGenerator.__init__
+ats3.aste.AsteTestPlan.__init__
+ats3.aste.Configuration.__init__
+ats3.atsconfigparser.ATSConfigParser.__init__
+ats3.atsconfigparser.TestXML.__init__
+ats3.dropgenerator.Ats3TestDropGenerator.__init__
+ats3.parsers.BldFileParser.__init__
+ats3.parsers.CppParser.__init__
+ats3.parsers.MmpFileParser.__init__
+ats3.parsers.PkgFileParser.__init__
+ats3.testconfigurator.Ats3ComponentParser.__init__
+bsf.BSF.__init__
+build.ec.history.HistoryFileManager.__init__
+build.io.AbldLogWhatReader.__init__
+build.io.RombuildLogBinarySizeReader.__init__
+build.model.BOM.__init__
+build.model.BOMDeltaXMLWriter.__init__
+build.model.BOMXMLWriter.__init__
+build.model.Fix.__init__
+build.model.PCPError.__init__
+build.model.Project.__init__
+build.model.SessionCreator.__init__
+build.model.TAChange.__init__
+build.model.TSWError.__init__
+build.model.Task.__init__
+buildtools.AbstractOutputWriter.__init__
+buildtools.AntWriter.__init__
+buildtools.Command.__init__
+buildtools.CommandList.__init__
+buildtools.Copy.__init__
+buildtools.Delete.__init__
+buildtools.EBSWriter.__init__
+buildtools.MakeWriter.__init__
+buildtools.PreBuilder.__init__
+buildtools.StringWriter.__init__
+ccm.AbstractSession.__init__
+ccm.AttributeNameListResult.__init__
+ccm.CCMException.__init__
+ccm.CCMObject.__init__
+ccm.ConflictsResult.__init__
+ccm.CreateNewTaskResult.__init__
+ccm.DataMapperListResult.__init__
+ccm.Dir.__init__
+ccm.File.__init__
+ccm.FinduseResult.__init__
+ccm.Folder.__init__
+ccm.FolderCopyResult.__init__
+ccm.FourPartName.__init__
+ccm.InvalidFourPartNameException.__init__
+ccm.ObjectListResult.__init__
+ccm.Project.__init__
+ccm.ProjectCheckoutResult.__init__
+ccm.ProjectPurposeResult.__init__
+ccm.Query.__init__
+ccm.Releasedef.__init__
+ccm.Result.__init__
+ccm.Session.__init__
+ccm.SessionPool.__init__
+ccm.Task.__init__
+ccm.UpdatePropertiesRefreshResult.__init__
+ccm.UpdateResult.__init__
+ccm.UpdateResultSimple.__init__
+ccm.UpdateTemplate.__init__
+ccm.UpdateTemplateInformation.__init__
+ccm.WorkAreaInfoResult.__init__
+ccm.conflict.Conflict.__init__
+ccm.conflict.MultipleObjectInBaselineConflict.__init__
+ccm.conflict.ObjectAndBaselineConflict.__init__
+ccm.conflict.ObjectAndTask.__init__
+ccm.conflict.ObjectNotFoundInBaselineConflict.__init__
+ccm.conflict.TaskModel.__init__
+ccm.extra.CCMExtraException.__init__
+ccm.extra.CachedProxySession.__init__
+ccm.extra.CachedSessionProvider.__init__
+ccm.extra.SessionProvider.__init__
+ccm.extra.__FileSnapshot.__init__
+ccm.extra.__ProjectSnapshot.__init__
+comments.CommentParser.__init__
+configuration.Configuration.__init__
+configuration.ConfigurationSet.__init__
+configuration.HierarchicalConfiguration.__init__
+configuration.NestedConfiguration.__init__
+configuration.NestedConfigurationBuilder.__init__
+configuration.PropertiesConfiguration.__init__
+configuration.Specification.__init__
+configuration.XMLConfiguration.__init__
+configuration._Key.__init__
+configuration_model.DataModel.__init__
+configuration_model.GroupDef.__init__
+configuration_model.Item.__init__
+configuration_model.PropertyDef.__init__
+delta_zip.DeltaZipBuilder.__init__
+delta_zip.MD5SignatureBuilder.__init__
+delta_zip.MD5SignatureBuilderEC.__init__
+delta_zip.SignaturesDict.__init__
+dependancygraph.Library.__init__
+dependancygraph.ModuleGroup.__init__
+dependancygraph.ReadIvyConfig.__init__
+escapeddict.EscapedDict.__init__
+fileutils.AbstractScanner.__init__
+fileutils.FileScanner.__init__
+fileutils.Lock.__init__
+flash_config.FlashConfigurationWriter.__init__
+flash_config.ImagePack.__init__
+helium.documentation.APIDeltaWriter.__init__
+helium.logger.Logger.__init__
+helium.logger._CustomizePrint.__init__
+helium.output.widgets.BoldText.__init__
+helium.output.widgets.Box.__init__
+helium.output.widgets.Event.__init__
+helium.output.widgets.Footer.__init__
+helium.output.widgets.Header.__init__
+helium.output.widgets.Summary.__init__
+helium.output.widgets.Text.__init__
+helium.output.widgets.Widget.__init__
+helium.outputer.Configuration.__init__
+helium.outputer.XML2XHTML.__init__
+imaker.ecore.ContainerBase.__init__
+imaker.ecore.Reference.__init__
+imaker.iqrf.Configuration.__init__
+imaker.iqrf.ConfigurationElement.__init__
+imaker.iqrf.IMaker.__init__
+imaker.iqrf.Interface.__init__
+imaker.iqrf.Result.__init__
+imaker.iqrf.Setting.__init__
+imaker.iqrf.Target.__init__
+integration.quality.AbldWhatParser.__init__
+integration.quality.InternalExportParser.__init__
+integration.quality.PolicyValidator.__init__
+integration.templatebuilder.TemplateBuilder.__init__
+localisation.Languages.__init__
+log2xml.AppendSummary.__init__
+log2xml.ContentWriter.__init__
+log2xml.LogWriter.__init__
+log2xml.Stack.__init__
+parsedatalistening.Build.__init__
+parsedatalistening.Target.__init__
+preparation.PreparationAction.__init__
+preparation.PreparationBuilder.__init__
+preparation.PreparationCheckout.__init__
+preparation.PreparationSnapshot.__init__
+preparation.PreparationUpdate.__init__
+rom.IMakerRomBuilder.__init__
+rom.Image.__init__
+rom.RomBuilder.__init__
+rtfutils.RTFUtils.__init__
+sis.SisPreBuilder.__init__
+symbian.log.Parser.__init__
+symrec.MD5Updater.__init__
+symrec.Metadata2TDD.__init__
+symrec.MetadataMerger.__init__
+symrec.ReleaseMetadata.__init__
+symrec.ServicePack.__init__
+symrec.ValidateReleaseMetadata.__init__
+symrec.ValidateReleaseMetadataCached.__init__
+symrec.ValidateTicklerReleaseMetadata.__init__
+sysdef.api.Binary.__init__
+sysdef.api.BuildLayer.__init__
+sysdef.api.Configuration.__init__
+sysdef.api.Layer.__init__
+sysdef.api.Module.__init__
+sysdef.api.Option.__init__
+sysdef.api.SpecialInstruction.__init__
+sysdef.api.SysDefElement.__init__
+sysdef.api.SystemDefinition.__init__
+sysdef.api.Target.__init__
+sysdef.api.TargetList.__init__
+sysdef.api.Task.__init__
+sysdef.api.Unit.__init__
+sysdef.api.UnitList.__init__
+sysdef.api._UnitGroup.__init__
+sysdef.io.FlashImageSizeWriter.__init__
+sysdef.io.MakeWriter.__init__
+sysdef.io.MakeWriter2.__init__
+sysdef.io.MakeWriter3.__init__
+validateoverlay.ValidateOverlayInfo.__init__
+vbaconf.AbstractConfigConverter.__init__
+vbaconf.ConfigConverter.__init__
+vbaconf.ConfigConverterNewDelivery.__init__
+vbaconf.new_delivery.config_wrapper.__init__
+version.Version.__init__
+virtualbuildarea.VirtualDir.__init__
+virtualbuildarea.VirtualProject.__init__" class="py-name" href="#" onclick="return doclink('link-6', '__init__', 'link-6');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Method build.model.SessionCreator.session()=build.model.SessionCreator-class.html#session,Method ccm.CCMObject.session()=ccm.CCMObject-class.html#session,Method preparation.PreparationBuilder.session()=preparation.PreparationBuilder-class.html#session"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-7', 'session', 'link-7');">session</a></tt><tt class="py-op">,</tt> <tt class="py-name">fpn</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_project</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name" targets="Method ccm.ProjectCheckoutResult.project()=ccm.ProjectCheckoutResult-class.html#project"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-8', 'project', 'link-8');">project</a></tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">         </tt>
+<a name="VirtualDir.addChild"></a><div id="VirtualDir.addChild-def"><a name="L46"></a><tt class="py-lineno"> 46</tt> <a class="py-toggle" href="#" id="VirtualDir.addChild-toggle" onclick="return toggle('VirtualDir.addChild');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualDir-class.html#addChild">addChild</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">o</tt><tt class="py-op">,</tt> <tt class="py-param">project</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualDir.addChild-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualDir.addChild-expanded"><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-docstring">""" Add an object to the directory. """</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method ccm.FourPartName.type()=ccm.FourPartName-class.html#type"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-9', 'type', 'link-9');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'dir'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt id="link-10" class="py-name"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-10', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"Dir adding %s to %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-name">vdir</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method virtualbuildarea.VirtualDir.getDirNamed()=virtualbuildarea.VirtualDir-class.html#getDirNamed"><a title="virtualbuildarea.VirtualDir.getDirNamed" class="py-name" href="#" onclick="return doclink('link-11', 'getDirNamed', 'link-11');">getDirNamed</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-12', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt>             </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">vdir</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                <tt class="py-comment"># Adding a directory, convert it into a virtual one</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-comment"></tt>                <tt class="py-keyword">if</tt> <tt id="link-13" class="py-name"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-13', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Dir not found creating a virtual one"</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                <tt class="py-name">vdir</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name" targets="Class virtualbuildarea.VirtualDir=virtualbuildarea.VirtualDir-class.html"><a title="virtualbuildarea.VirtualDir" class="py-name" href="#" onclick="return doclink('link-14', 'VirtualDir', 'link-14');">VirtualDir</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_session</tt><tt class="py-op">,</tt> <tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-15', 'name', 'link-3');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_project</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method ccm.Folder.append()=ccm.Folder-class.html#append,Method ccm.Task.append()=ccm.Task-class.html#append"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-16', 'append', 'link-16');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">vdir</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-name">vdir</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-17', 'type', 'link-9');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'project'</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                <tt class="py-comment"># this is a project, covert it into a directory</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-comment"></tt>                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method ccm.Folder.remove()=ccm.Folder-class.html#remove,Function fileutils.remove()=fileutils-module.html#remove"><a title="ccm.Folder.remove
+fileutils.remove" class="py-name" href="#" onclick="return doclink('link-18', 'remove', 'link-18');">remove</a></tt><tt class="py-op">(</tt><tt class="py-name">vdir</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method virtualbuildarea.VirtualDir.addChild()=virtualbuildarea.VirtualDir-class.html#addChild"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-19', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt class="py-name">vdir</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method ccm.Project.root_dir()=ccm.Project-class.html#root_dir,Method virtualbuildarea.VirtualProject.root_dir()=virtualbuildarea.VirtualProject-class.html#root_dir"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-20', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">vdir</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">                <tt class="py-name">vdir</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="virtualbuildarea.VirtualDir.getDirNamed" class="py-name" href="#" onclick="return doclink('link-21', 'getDirNamed', 'link-11');">getDirNamed</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-22', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                 </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-comment"># Adding content of the directory into the virtual one</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-keyword">for</tt> <tt class="py-name">child</tt> <tt class="py-keyword">in</tt> <tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method ccm.Dir.children()=ccm.Dir-class.html#children,Method virtualbuildarea.VirtualDir.children()=virtualbuildarea.VirtualDir-class.html#children"><a title="ccm.Dir.children
+virtualbuildarea.VirtualDir.children" class="py-name" href="#" onclick="return doclink('link-23', 'children', 'link-23');">children</a></tt><tt class="py-op">(</tt><tt id="link-24" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-24', 'project', 'link-8');">project</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">                <tt class="py-name">vdir</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-25', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">,</tt> <tt id="link-26" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-26', 'project', 'link-8');">project</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-27', 'type', 'link-9');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'project'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            <tt class="py-comment"># Adding a project</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-keyword">if</tt> <tt id="link-28" class="py-name"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-28', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"Project adding %s to %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">            <tt class="py-comment"># check for directory with the same name first            </tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">vdir</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="virtualbuildarea.VirtualDir.getDirNamed" class="py-name" href="#" onclick="return doclink('link-29', 'getDirNamed', 'link-11');">getDirNamed</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-30', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">vdir</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                <tt class="py-comment"># if it is new, just add it </tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-comment"></tt>                <tt class="py-keyword">if</tt> <tt id="link-31" class="py-name"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-31', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Adding project directly"</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-32', 'append', 'link-16');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">vdir</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-33', 'type', 'link-9');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'project'</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt id="link-34" class="py-name"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-34', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                        <tt class="py-keyword">print</tt> <tt class="py-string">"Replacing project by dir %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">vdir</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="ccm.Folder.remove
+fileutils.remove" class="py-name" href="#" onclick="return doclink('link-35', 'remove', 'link-18');">remove</a></tt><tt class="py-op">(</tt><tt class="py-name">vdir</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-36', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt class="py-name">vdir</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-37', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">vdir</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                    <tt class="py-name">vdir</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="virtualbuildarea.VirtualDir.getDirNamed" class="py-name" href="#" onclick="return doclink('link-38', 'getDirNamed', 'link-11');">getDirNamed</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-39', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt>                     </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                <tt class="py-comment"># if a directory already exist grab the content</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-comment"></tt>                <tt class="py-keyword">if</tt> <tt id="link-40" class="py-name"><a title="virtualbuildarea.DEBUG_VIRTUALDIR" class="py-name" href="#" onclick="return doclink('link-40', 'DEBUG_VIRTUALDIR', 'link-2');">DEBUG_VIRTUALDIR</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">"Adding childs under %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">vdir</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">child</tt> <tt class="py-keyword">in</tt> <tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-41', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="ccm.Dir.children
+virtualbuildarea.VirtualDir.children" class="py-name" href="#" onclick="return doclink('link-42', 'children', 'link-23');">children</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                    <tt class="py-name">vdir</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-43', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">,</tt> <tt class="py-name">o</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-44', 'append', 'link-16');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">             </tt>
+<a name="VirtualDir.getDirNamed"></a><div id="VirtualDir.getDirNamed-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="VirtualDir.getDirNamed-toggle" onclick="return toggle('VirtualDir.getDirNamed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualDir-class.html#getDirNamed">getDirNamed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualDir.getDirNamed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualDir.getDirNamed-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-docstring">""" Look for a subdirectory named in its children.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        The test is done in a case insensitive way.</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">o</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-45', 'name', 'link-3');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-46" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-46', 'name', 'link-3');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">o</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">     </tt>
+<a name="VirtualDir.children"></a><div id="VirtualDir.children-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="VirtualDir.children-toggle" onclick="return toggle('VirtualDir.children');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualDir-class.html#children">children</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">project</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualDir.children-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualDir.children-expanded"><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns a copy of the children list. """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__data</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">     </tt>
+<a name="VirtualDir.virtualproject"></a><div id="VirtualDir.virtualproject-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="VirtualDir.virtualproject-toggle" onclick="return toggle('VirtualDir.virtualproject');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualDir-class.html#virtualproject">virtualproject</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualDir.virtualproject-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualDir.virtualproject-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-docstring">""" Return the associated virtual project. """</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_project</tt> </tt>
+</div></div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">     </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">     </tt>
+<a name="VirtualProject"></a><div id="VirtualProject-def"><a name="L111"></a><tt class="py-lineno">111</tt> <a class="py-toggle" href="#" id="VirtualProject-toggle" onclick="return toggle('VirtualProject');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="virtualbuildarea.VirtualProject-class.html">VirtualProject</a><tt class="py-op">(</tt><tt class="py-base-class">ccm</tt><tt class="py-op">.</tt><tt class="py-base-class">Project</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualProject-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="VirtualProject-expanded"><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-docstring">""" Create a fake project containing on fake directory.</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-docstring">    The four part name will be &lt;projectname&gt;-1:project:fakedb#1.</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="VirtualProject.__init__"></a><div id="VirtualProject.__init__-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="VirtualProject.__init__-toggle" onclick="return toggle('VirtualProject.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualProject-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">session</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualProject.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualProject.__init__-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">fpn</tt> <tt class="py-op">=</tt> <tt class="py-string">"%s-1:project:fakedb#1"</tt> <tt class="py-op">%</tt> <tt id="link-47" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-47', 'name', 'link-3');">name</a></tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt id="link-48" class="py-name"><a title="ccm" class="py-name" href="#" onclick="return doclink('link-48', 'ccm', 'link-0');">ccm</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Class build.model.Project=build.model.Project-class.html,Class ccm.Project=ccm.Project-class.html"><a title="build.model.Project
+ccm.Project" class="py-name" href="#" onclick="return doclink('link-49', 'Project', 'link-49');">Project</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="ant.AntHandler.__init__
+archive.builders.ArchivePreBuilder.__init__
+archive.mappers.DefaultMapper.__init__
+archive.mappers.EPLPolicyRemoverMapper.__init__
+archive.mappers.Mapper.__init__
+archive.mappers.PolicyMapper.__init__
+archive.mappers.PolicyRemoverMapper.__init__
+archive.mappers.SFPolicyRemoverMapper.__init__
+archive.scanners.AbldWhatScanner.__init__
+archive.scanners.FileSystemScanner.__init__
+archive.scanners.InputFileScanner.__init__
+archive.scanners.Scanner.__init__
+archive.selectors.DistributionPolicySelector.__init__
+archive.selectors.SymbianPolicySelector.__init__
+archive.tools.Remover.__init__
+archive.tools.SevenZipArchiver.__init__
+archive.tools.ZipArchiver.__init__
+ats3.Ats3TestPlan.__init__
+ats3.Configuration.__init__
+ats3.aste.AsteComponentParser.__init__
+ats3.aste.AsteTestDropGenerator.__init__
+ats3.aste.AsteTestPlan.__init__
+ats3.aste.Configuration.__init__
+ats3.atsconfigparser.ATSConfigParser.__init__
+ats3.atsconfigparser.TestXML.__init__
+ats3.dropgenerator.Ats3TestDropGenerator.__init__
+ats3.parsers.BldFileParser.__init__
+ats3.parsers.CppParser.__init__
+ats3.parsers.MmpFileParser.__init__
+ats3.parsers.PkgFileParser.__init__
+ats3.testconfigurator.Ats3ComponentParser.__init__
+bsf.BSF.__init__
+build.ec.history.HistoryFileManager.__init__
+build.io.AbldLogWhatReader.__init__
+build.io.RombuildLogBinarySizeReader.__init__
+build.model.BOM.__init__
+build.model.BOMDeltaXMLWriter.__init__
+build.model.BOMXMLWriter.__init__
+build.model.Fix.__init__
+build.model.PCPError.__init__
+build.model.Project.__init__
+build.model.SessionCreator.__init__
+build.model.TAChange.__init__
+build.model.TSWError.__init__
+build.model.Task.__init__
+buildtools.AbstractOutputWriter.__init__
+buildtools.AntWriter.__init__
+buildtools.Command.__init__
+buildtools.CommandList.__init__
+buildtools.Copy.__init__
+buildtools.Delete.__init__
+buildtools.EBSWriter.__init__
+buildtools.MakeWriter.__init__
+buildtools.PreBuilder.__init__
+buildtools.StringWriter.__init__
+ccm.AbstractSession.__init__
+ccm.AttributeNameListResult.__init__
+ccm.CCMException.__init__
+ccm.CCMObject.__init__
+ccm.ConflictsResult.__init__
+ccm.CreateNewTaskResult.__init__
+ccm.DataMapperListResult.__init__
+ccm.Dir.__init__
+ccm.File.__init__
+ccm.FinduseResult.__init__
+ccm.Folder.__init__
+ccm.FolderCopyResult.__init__
+ccm.FourPartName.__init__
+ccm.InvalidFourPartNameException.__init__
+ccm.ObjectListResult.__init__
+ccm.Project.__init__
+ccm.ProjectCheckoutResult.__init__
+ccm.ProjectPurposeResult.__init__
+ccm.Query.__init__
+ccm.Releasedef.__init__
+ccm.Result.__init__
+ccm.Session.__init__
+ccm.SessionPool.__init__
+ccm.Task.__init__
+ccm.UpdatePropertiesRefreshResult.__init__
+ccm.UpdateResult.__init__
+ccm.UpdateResultSimple.__init__
+ccm.UpdateTemplate.__init__
+ccm.UpdateTemplateInformation.__init__
+ccm.WorkAreaInfoResult.__init__
+ccm.conflict.Conflict.__init__
+ccm.conflict.MultipleObjectInBaselineConflict.__init__
+ccm.conflict.ObjectAndBaselineConflict.__init__
+ccm.conflict.ObjectAndTask.__init__
+ccm.conflict.ObjectNotFoundInBaselineConflict.__init__
+ccm.conflict.TaskModel.__init__
+ccm.extra.CCMExtraException.__init__
+ccm.extra.CachedProxySession.__init__
+ccm.extra.CachedSessionProvider.__init__
+ccm.extra.SessionProvider.__init__
+ccm.extra.__FileSnapshot.__init__
+ccm.extra.__ProjectSnapshot.__init__
+comments.CommentParser.__init__
+configuration.Configuration.__init__
+configuration.ConfigurationSet.__init__
+configuration.HierarchicalConfiguration.__init__
+configuration.NestedConfiguration.__init__
+configuration.NestedConfigurationBuilder.__init__
+configuration.PropertiesConfiguration.__init__
+configuration.Specification.__init__
+configuration.XMLConfiguration.__init__
+configuration._Key.__init__
+configuration_model.DataModel.__init__
+configuration_model.GroupDef.__init__
+configuration_model.Item.__init__
+configuration_model.PropertyDef.__init__
+delta_zip.DeltaZipBuilder.__init__
+delta_zip.MD5SignatureBuilder.__init__
+delta_zip.MD5SignatureBuilderEC.__init__
+delta_zip.SignaturesDict.__init__
+dependancygraph.Library.__init__
+dependancygraph.ModuleGroup.__init__
+dependancygraph.ReadIvyConfig.__init__
+escapeddict.EscapedDict.__init__
+fileutils.AbstractScanner.__init__
+fileutils.FileScanner.__init__
+fileutils.Lock.__init__
+flash_config.FlashConfigurationWriter.__init__
+flash_config.ImagePack.__init__
+helium.documentation.APIDeltaWriter.__init__
+helium.logger.Logger.__init__
+helium.logger._CustomizePrint.__init__
+helium.output.widgets.BoldText.__init__
+helium.output.widgets.Box.__init__
+helium.output.widgets.Event.__init__
+helium.output.widgets.Footer.__init__
+helium.output.widgets.Header.__init__
+helium.output.widgets.Summary.__init__
+helium.output.widgets.Text.__init__
+helium.output.widgets.Widget.__init__
+helium.outputer.Configuration.__init__
+helium.outputer.XML2XHTML.__init__
+imaker.ecore.ContainerBase.__init__
+imaker.ecore.Reference.__init__
+imaker.iqrf.Configuration.__init__
+imaker.iqrf.ConfigurationElement.__init__
+imaker.iqrf.IMaker.__init__
+imaker.iqrf.Interface.__init__
+imaker.iqrf.Result.__init__
+imaker.iqrf.Setting.__init__
+imaker.iqrf.Target.__init__
+integration.quality.AbldWhatParser.__init__
+integration.quality.InternalExportParser.__init__
+integration.quality.PolicyValidator.__init__
+integration.templatebuilder.TemplateBuilder.__init__
+localisation.Languages.__init__
+log2xml.AppendSummary.__init__
+log2xml.ContentWriter.__init__
+log2xml.LogWriter.__init__
+log2xml.Stack.__init__
+parsedatalistening.Build.__init__
+parsedatalistening.Target.__init__
+preparation.PreparationAction.__init__
+preparation.PreparationBuilder.__init__
+preparation.PreparationCheckout.__init__
+preparation.PreparationSnapshot.__init__
+preparation.PreparationUpdate.__init__
+rom.IMakerRomBuilder.__init__
+rom.Image.__init__
+rom.RomBuilder.__init__
+rtfutils.RTFUtils.__init__
+sis.SisPreBuilder.__init__
+symbian.log.Parser.__init__
+symrec.MD5Updater.__init__
+symrec.Metadata2TDD.__init__
+symrec.MetadataMerger.__init__
+symrec.ReleaseMetadata.__init__
+symrec.ServicePack.__init__
+symrec.ValidateReleaseMetadata.__init__
+symrec.ValidateReleaseMetadataCached.__init__
+symrec.ValidateTicklerReleaseMetadata.__init__
+sysdef.api.Binary.__init__
+sysdef.api.BuildLayer.__init__
+sysdef.api.Configuration.__init__
+sysdef.api.Layer.__init__
+sysdef.api.Module.__init__
+sysdef.api.Option.__init__
+sysdef.api.SpecialInstruction.__init__
+sysdef.api.SysDefElement.__init__
+sysdef.api.SystemDefinition.__init__
+sysdef.api.Target.__init__
+sysdef.api.TargetList.__init__
+sysdef.api.Task.__init__
+sysdef.api.Unit.__init__
+sysdef.api.UnitList.__init__
+sysdef.api._UnitGroup.__init__
+sysdef.io.FlashImageSizeWriter.__init__
+sysdef.io.MakeWriter.__init__
+sysdef.io.MakeWriter2.__init__
+sysdef.io.MakeWriter3.__init__
+validateoverlay.ValidateOverlayInfo.__init__
+vbaconf.AbstractConfigConverter.__init__
+vbaconf.ConfigConverter.__init__
+vbaconf.ConfigConverterNewDelivery.__init__
+vbaconf.new_delivery.config_wrapper.__init__
+version.Version.__init__
+virtualbuildarea.VirtualDir.__init__
+virtualbuildarea.VirtualProject.__init__" class="py-name" href="#" onclick="return doclink('link-50', '__init__', 'link-6');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-51" class="py-name"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-51', 'session', 'link-7');">session</a></tt><tt class="py-op">,</tt> <tt class="py-name">fpn</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt> <tt class="py-op">=</tt> <tt id="link-52" class="py-name"><a title="virtualbuildarea.VirtualDir" class="py-name" href="#" onclick="return doclink('link-52', 'VirtualDir', 'link-14');">VirtualDir</a></tt><tt class="py-op">(</tt><tt id="link-53" class="py-name"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-53', 'session', 'link-7');">session</a></tt><tt class="py-op">,</tt> <tt id="link-54" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-54', 'name', 'link-3');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">     </tt>
+<a name="VirtualProject.root_dir"></a><div id="VirtualProject.root_dir-def"><a name="L120"></a><tt class="py-lineno">120</tt> <a class="py-toggle" href="#" id="VirtualProject.root_dir-toggle" onclick="return toggle('VirtualProject.root_dir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea.VirtualProject-class.html#root_dir">root_dir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VirtualProject.root_dir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VirtualProject.root_dir-expanded"><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns the associated virtual directory object. """</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt> </tt>
+</div></div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="__removeEmptyStrings"></a><div id="__removeEmptyStrings-def"><a name="L125"></a><tt class="py-lineno">125</tt> <a class="py-toggle" href="#" id="__removeEmptyStrings-toggle" onclick="return toggle('__removeEmptyStrings');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea-module.html#__removeEmptyStrings">__removeEmptyStrings</a><tt class="py-op">(</tt><tt class="py-param">a</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="__removeEmptyStrings-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="__removeEmptyStrings-expanded"><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-name">o</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">e</tt> <tt class="py-keyword">in</tt> <tt class="py-name">a</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">&gt;</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-name">o</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-55', 'append', 'link-16');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">o</tt> </tt>
+</div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="__createVirtualPath"></a><div id="__createVirtualPath-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="__createVirtualPath-toggle" onclick="return toggle('__createVirtualPath');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea-module.html#__createVirtualPath">__createVirtualPath</a><tt class="py-op">(</tt><tt class="py-param">vpath</tt><tt class="py-op">,</tt> <tt class="py-param">root</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="__createVirtualPath-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="__createVirtualPath-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt class="py-docstring">""" Creating a directory structure using the vpath list given as input.    </tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt class="py-name">vpath</tt> <tt class="py-op">=</tt> <tt id="link-56" class="py-name" targets="Function virtualbuildarea.__removeEmptyStrings()=virtualbuildarea-module.html#__removeEmptyStrings"><a title="virtualbuildarea.__removeEmptyStrings" class="py-name" href="#" onclick="return doclink('link-56', '__removeEmptyStrings', 'link-56');">__removeEmptyStrings</a></tt><tt class="py-op">(</tt><tt class="py-name">vpath</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-57', 'type', 'link-9');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'project'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">root</tt> <tt class="py-op">=</tt> <tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-58', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">vpath</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">root</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt id="link-59" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-59', 'name', 'link-3');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">vpath</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name" targets="Method log2xml.Stack.pop()=log2xml.Stack-class.html#pop"><a title="log2xml.Stack.pop" class="py-name" href="#" onclick="return doclink('link-60', 'pop', 'link-60');">pop</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-61', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt id="link-62" class="py-name"><a title="virtualbuildarea.VirtualDir" class="py-name" href="#" onclick="return doclink('link-62', 'VirtualDir', 'link-14');">VirtualDir</a></tt><tt class="py-op">(</tt><tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-63', 'session', 'link-7');">session</a></tt><tt class="py-op">,</tt> <tt id="link-64" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-64', 'name', 'link-3');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name" targets="Method virtualbuildarea.VirtualDir.virtualproject()=virtualbuildarea.VirtualDir-class.html#virtualproject"><a title="virtualbuildarea.VirtualDir.virtualproject" class="py-name" href="#" onclick="return doclink('link-65', 'virtualproject', 'link-65');">virtualproject</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="virtualbuildarea.VirtualDir.virtualproject" class="py-name" href="#" onclick="return doclink('link-66', 'virtualproject', 'link-65');">virtualproject</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-67" class="py-name" targets="Function virtualbuildarea.__createVirtualPath()=virtualbuildarea-module.html#__createVirtualPath"><a title="virtualbuildarea.__createVirtualPath" class="py-name" href="#" onclick="return doclink('link-67', '__createVirtualPath', 'link-67');">__createVirtualPath</a></tt><tt class="py-op">(</tt><tt class="py-name">vpath</tt><tt class="py-op">,</tt> <tt class="py-name">root</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="virtualbuildarea.VirtualDir.getDirNamed" class="py-name" href="#" onclick="return doclink('link-68', 'getDirNamed', 'link-11');">getDirNamed</a></tt><tt class="py-op">(</tt><tt id="link-69" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-69', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt>
+<a name="__getObjects"></a><div id="__getObjects-def"><a name="L145"></a><tt class="py-lineno">145</tt> <a class="py-toggle" href="#" id="__getObjects-toggle" onclick="return toggle('__getObjects');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea-module.html#__getObjects">__getObjects</a><tt class="py-op">(</tt><tt class="py-param">project</tt><tt class="py-op">,</tt> <tt class="py-param">spath</tt><tt class="py-op">,</tt> <tt class="py-param">dir</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="__getObjects-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="__getObjects-expanded"><a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">    <tt id="link-70" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-70', 'name', 'link-3');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">spath</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="log2xml.Stack.pop" class="py-name" href="#" onclick="return doclink('link-71', 'pop', 'link-60');">pop</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">spath</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-name">dir</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">o</tt> <tt class="py-keyword">in</tt> <tt id="link-72" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-72', 'project', 'link-8');">project</a></tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-73', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="ccm.Dir.children
+virtualbuildarea.VirtualDir.children" class="py-name" href="#" onclick="return doclink('link-74', 'children', 'link-23');">children</a></tt><tt class="py-op">(</tt><tt id="link-75" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-75', 'project', 'link-8');">project</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-name">result</tt><tt class="py-op">.</tt><tt id="link-76" class="py-name"><a title="ccm.Folder.append
+ccm.Task.append" class="py-name" href="#" onclick="return doclink('link-76', 'append', 'link-16');">append</a></tt><tt class="py-op">(</tt><tt class="py-op">{</tt><tt class="py-string">'project'</tt><tt class="py-op">:</tt><tt id="link-77" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-77', 'project', 'link-8');">project</a></tt><tt class="py-op">,</tt> <tt class="py-string">'object'</tt><tt class="py-op">:</tt><tt class="py-name">o</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">     </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">dir</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt id="link-78" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-78', 'root_dir', 'link-20');">root_dir</a></tt> <tt class="py-op">=</tt> <tt id="link-79" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-79', 'project', 'link-8');">project</a></tt><tt class="py-op">.</tt><tt id="link-80" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-80', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt id="link-81" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-81', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">.</tt><tt id="link-82" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-82', 'name', 'link-3');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-83" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-83', 'name', 'link-3');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt id="link-84" class="py-name" targets="Function virtualbuildarea.__getObjects()=virtualbuildarea-module.html#__getObjects"><a title="virtualbuildarea.__getObjects" class="py-name" href="#" onclick="return doclink('link-84', '__getObjects', 'link-84');">__getObjects</a></tt><tt class="py-op">(</tt><tt id="link-85" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-85', 'project', 'link-8');">project</a></tt><tt class="py-op">,</tt> <tt class="py-name">spath</tt><tt class="py-op">,</tt> <tt id="link-86" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-86', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">            <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"getObjects: root_dir.name(%s)!=name(%s)"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt id="link-87" class="py-name"><a title="ccm.Project.root_dir
+virtualbuildarea.VirtualProject.root_dir" class="py-name" href="#" onclick="return doclink('link-87', 'root_dir', 'link-20');">root_dir</a></tt><tt class="py-op">.</tt><tt id="link-88" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-88', 'name', 'link-3');">name</a></tt><tt class="py-op">,</tt> <tt id="link-89" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-89', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">d</tt> <tt class="py-keyword">in</tt> <tt class="py-name">dir</tt><tt class="py-op">.</tt><tt id="link-90" class="py-name"><a title="ccm.Dir.children
+virtualbuildarea.VirtualDir.children" class="py-name" href="#" onclick="return doclink('link-90', 'children', 'link-23');">children</a></tt><tt class="py-op">(</tt><tt id="link-91" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-91', 'project', 'link-8');">project</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">d</tt><tt class="py-op">.</tt><tt id="link-92" class="py-name"><a title="ccm.FourPartName.type" class="py-name" href="#" onclick="return doclink('link-92', 'type', 'link-9');">type</a></tt> <tt class="py-op">==</tt> <tt class="py-string">'dir'</tt> <tt class="py-keyword">and</tt> <tt class="py-name">d</tt><tt class="py-op">.</tt><tt id="link-93" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-93', 'name', 'link-3');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt id="link-94" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-94', 'name', 'link-3');">name</a></tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt id="link-95" class="py-name"><a title="virtualbuildarea.__getObjects" class="py-name" href="#" onclick="return doclink('link-95', '__getObjects', 'link-84');">__getObjects</a></tt><tt class="py-op">(</tt><tt id="link-96" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-96', 'project', 'link-8');">project</a></tt><tt class="py-op">,</tt> <tt class="py-name">spath</tt><tt class="py-op">,</tt> <tt class="py-name">d</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Could not find object %s"</tt> <tt class="py-op">%</tt> <tt id="link-97" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-97', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">                 </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="create"></a><div id="create-def"><a name="L167"></a><tt class="py-lineno">167</tt> <a class="py-toggle" href="#" id="create-toggle" onclick="return toggle('create');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="virtualbuildarea-module.html#create">create</a><tt class="py-op">(</tt><tt class="py-param">session</tt><tt class="py-op">,</tt> <tt class="py-param">file</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt> <tt class="py-op">=</tt> <tt class="py-string">"vba"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="create-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="create-expanded"><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">    <tt class="py-docstring">""" Creates a virtual toplevel project using the XML configuration. """</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">        <tt class="py-name">dom</tt> <tt class="py-op">=</tt> <tt id="link-98" class="py-name"><a title="symrec.MetadataMerger.xml
+symrec.ReleaseMetadata.xml" class="py-name" href="#" onclick="return doclink('link-98', 'xml', 'link-1');">xml</a></tt><tt class="py-op">.</tt><tt class="py-name">dom</tt><tt class="py-op">.</tt><tt class="py-name">minidom</tt><tt class="py-op">.</tt><tt id="link-99" class="py-name" targets="Method bsf.BSF.parse()=bsf.BSF-class.html#parse,Method symbian.log.Parser.parse()=symbian.log.Parser-class.html#parse"><a title="bsf.BSF.parse
+symbian.log.Parser.parse" class="py-name" href="#" onclick="return doclink('link-99', 'parse', 'link-99');">parse</a></tt><tt class="py-op">(</tt><tt class="py-name">file</tt><tt class="py-op">)</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-comment">#dom = xml.dom.minidom.parseString(input)</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-name">vba</tt> <tt class="py-op">=</tt> <tt id="link-100" class="py-name" targets="Class virtualbuildarea.VirtualProject=virtualbuildarea.VirtualProject-class.html"><a title="virtualbuildarea.VirtualProject" class="py-name" href="#" onclick="return doclink('link-100', 'VirtualProject', 'link-100');">VirtualProject</a></tt><tt class="py-op">(</tt><tt id="link-101" class="py-name"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-101', 'session', 'link-7');">session</a></tt><tt class="py-op">,</tt> <tt id="link-102" class="py-name"><a title="buildtools.Command.name
+ccm.FourPartName.name
+symrec.ServicePack.name
+sysdef.api.Configuration.name
+sysdef.api.Option.name
+sysdef.api.SpecialInstruction.name
+sysdef.api.Target.name
+sysdef.api.TargetList.name
+sysdef.api.Unit.name
+sysdef.api._UnitGroup.name" class="py-name" href="#" onclick="return doclink('link-102', 'name', 'link-3');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-name">virtualBA</tt> <tt class="py-op">=</tt> <tt class="py-name">dom</tt><tt class="py-op">.</tt><tt class="py-name">documentElement</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">child</tt> <tt class="py-keyword">in</tt> <tt class="py-name">virtualBA</tt><tt class="py-op">.</tt><tt class="py-name">childNodes</tt><tt class="py-op">:</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">nodeType</tt> <tt class="py-op">==</tt> <tt id="link-103" class="py-name"><a title="symrec.MetadataMerger.xml
+symrec.ReleaseMetadata.xml" class="py-name" href="#" onclick="return doclink('link-103', 'xml', 'link-1');">xml</a></tt><tt class="py-op">.</tt><tt class="py-name">dom</tt><tt class="py-op">.</tt><tt class="py-name">Node</tt><tt class="py-op">.</tt><tt class="py-name">ELEMENT_NODE</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">nodeName</tt> <tt class="py-op">==</tt> <tt class="py-string">'add'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"add node :%s (%d)"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">getAttribute</tt><tt class="py-op">(</tt><tt class="py-string">'project'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">childNodes</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">                <tt class="py-name">pathobject</tt> <tt class="py-op">=</tt> <tt id="link-104" class="py-name"><a title="virtualbuildarea.__createVirtualPath" class="py-name" href="#" onclick="return doclink('link-104', '__createVirtualPath', 'link-67');">__createVirtualPath</a></tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">getAttribute</tt><tt class="py-op">(</tt><tt class="py-string">'to'</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">'/'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">vba</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">childNodes</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">                    <tt class="py-name">p</tt> <tt class="py-op">=</tt> <tt id="link-105" class="py-name"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-105', 'session', 'link-7');">session</a></tt><tt class="py-op">.</tt><tt id="link-106" class="py-name" targets="Method ccm.AbstractSession.create()=ccm.AbstractSession-class.html#create,Static Method ccm.Task.create()=ccm.Task-class.html#create,Function virtualbuildarea.create()=virtualbuildarea-module.html#create"><a title="ccm.AbstractSession.create
+ccm.Task.create
+virtualbuildarea.create" class="py-name" href="#" onclick="return doclink('link-106', 'create', 'link-106');">create</a></tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">getAttribute</tt><tt class="py-op">(</tt><tt class="py-string">'project'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">                    <tt class="py-name">pathobject</tt><tt class="py-op">.</tt><tt id="link-107" class="py-name"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-107', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">,</tt> <tt class="py-name">p</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">                    <tt id="link-108" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-108', 'project', 'link-8');">project</a></tt> <tt class="py-op">=</tt> <tt id="link-109" class="py-name"><a title="build.model.SessionCreator.session
+ccm.CCMObject.session
+preparation.PreparationBuilder.session" class="py-name" href="#" onclick="return doclink('link-109', 'session', 'link-7');">session</a></tt><tt class="py-op">.</tt><tt id="link-110" class="py-name"><a title="ccm.AbstractSession.create
+ccm.Task.create
+virtualbuildarea.create" class="py-name" href="#" onclick="return doclink('link-110', 'create', 'link-106');">create</a></tt><tt class="py-op">(</tt><tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">getAttribute</tt><tt class="py-op">(</tt><tt class="py-string">'project'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">                    <tt class="py-keyword">for</tt> <tt class="py-name">subChild</tt> <tt class="py-keyword">in</tt> <tt class="py-name">child</tt><tt class="py-op">.</tt><tt class="py-name">childNodes</tt><tt class="py-op">:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">subChild</tt><tt class="py-op">.</tt><tt class="py-name">nodeType</tt> <tt class="py-op">==</tt> <tt id="link-111" class="py-name"><a title="symrec.MetadataMerger.xml
+symrec.ReleaseMetadata.xml" class="py-name" href="#" onclick="return doclink('link-111', 'xml', 'link-1');">xml</a></tt><tt class="py-op">.</tt><tt class="py-name">dom</tt><tt class="py-op">.</tt><tt class="py-name">Node</tt><tt class="py-op">.</tt><tt class="py-name">ELEMENT_NODE</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-op">(</tt><tt class="py-name">subChild</tt><tt class="py-op">.</tt><tt class="py-name">nodeName</tt> <tt class="py-op">==</tt> <tt class="py-string">'objects'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">                            <tt class="py-name">spath</tt> <tt class="py-op">=</tt> <tt id="link-112" class="py-name"><a title="virtualbuildarea.__removeEmptyStrings" class="py-name" href="#" onclick="return doclink('link-112', '__removeEmptyStrings', 'link-56');">__removeEmptyStrings</a></tt><tt class="py-op">(</tt><tt class="py-name">subChild</tt><tt class="py-op">.</tt><tt class="py-name">getAttribute</tt><tt class="py-op">(</tt><tt class="py-string">'from'</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">'/'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">                            <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt id="link-113" class="py-name"><a title="virtualbuildarea.__getObjects" class="py-name" href="#" onclick="return doclink('link-113', '__getObjects', 'link-84');">__getObjects</a></tt><tt class="py-op">(</tt><tt id="link-114" class="py-name"><a title="ccm.ProjectCheckoutResult.project" class="py-name" href="#" onclick="return doclink('link-114', 'project', 'link-8');">project</a></tt><tt class="py-op">,</tt> <tt class="py-name">spath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">                                <tt class="py-name">pathobject</tt><tt class="py-op">.</tt><tt id="link-115" class="py-name"><a title="virtualbuildarea.VirtualDir.addChild" class="py-name" href="#" onclick="return doclink('link-115', 'addChild', 'link-19');">addChild</a></tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">[</tt><tt class="py-string">'object'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">t</tt><tt class="py-op">[</tt><tt class="py-string">'project'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-name">virtualBA</tt><tt class="py-op">.</tt><tt class="py-name">unlink</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">vba</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt class="py-name">traceback</tt><tt class="py-op">.</tt><tt class="py-name">print_exc</tt><tt class="py-op">(</tt><tt class="py-name">file</tt> <tt class="py-op">=</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">)</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"XML cannot be parsed properly %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Wed Sep 09 13:44:22 2009
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

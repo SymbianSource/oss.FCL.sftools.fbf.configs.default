@@ -1,0 +1,226 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd xhtml 1.0 strict//en"
+      "http://www.w3.org/tr/xhtml1/dtd/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta name="keywords" content="helium"/>
+    <meta http-equiv="content-type" content="text/html+xml; charset=iso-8859-1"/>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:   '',
+        VERSION:    '0'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+
+    <script type="text/javascript" src="../_static/interface.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <title>Target sf-zip-logs</title>
+</head>
+
+
+<body>
+<!-- ========= start of top navbar ======= -->
+<a name="navbar_top"><!-- --></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0" summary="">
+<tr>
+<td colspan="2" bgcolor="#eeeeff" class="navbarcell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3" summary="">
+  <tr align="center" valign="top">
+  <td bgcolor="#ffffff" class="navbarcell1"> &#160;<a href="overview-summary.html"><font class="navbarfont1"><b>overview</b></font>&#160;</a></td>
+
+  <td bgcolor="#ffffff" class="navbarcell1">    <a href="deprecated-list.html"><font class="navbarfont1"><b>deprecated</b></font></a>&#160;</td>
+    
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="properties-table.html"><font class="navbarfont1"><b>properties-table</b></font></a>&#160;</td>  
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="index-1.html"><font class="navbarfont1"><b>index</b></font></a>&#160;</td>
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="help.html"><font class="navbarfont1"><b>help</b></font></a>&#160;</td>
+  </tr>
+</table>
+</td>
+<td align="right" valign="top" rowspan="3"><em>
+<b>Helium API</b></em>
+
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+&#160;prev&#160;
+&#160;next</font></td>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>frames</b></a>  &#160;
+&#160;<a href="overview-summary.html" target="_top"><b>no frames</b></a>  &#160;
+
+&#160;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<a href="allclasses-noframe.html"><b>all classes</b></a>');
+  }
+  //-->
+</script>
+<noscript>
+  <a href="allclasses-noframe.html"><b>all classes</b></a>
+</noscript>
+
+
+</font></td>
+</tr>
+</table>
+<a name="skip-navbar_top"></a>
+<!-- ========= end of top navbar ========= -->
+    <hr/>
+
+
+    
+<h2>Target sf-zip-logs</h2>
+
+<p><b>Location</b></p>
+<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L480">D:\maintools\sf-config\common\build.postbuild.xml:480:</a></tt>  
+</p>
+
+<p><b>Conditional execution</b></p>        
+<p>No conditions on target execution.</p>
+<hr/>
+
+<h3>Description</h3>
+<p>
+<p>package all logs into zipfile before publish</p></p>
+<p/>
+<hr/>
+
+
+
+
+<h3>Property dependencies</h3>
+
+
+<p> 
+<table class="docutils" width="50%">
+    <tr>
+        <th class="head">Name</th><th class="head">Edit status</th>
+    </tr>
+    <tr>
+        <td colspan="2">User editable properties</td>
+    </tr>
+                    <tr>
+                        <td><a href="property-build.drive.html" title="<p>Substed drive where the build is performed. if not defined then helium should search next available build drive letter and subst autometically</p>" target="classframe"><tt class="docutils literal">build.drive</tt></a></td><td><a href="help.html" title="Help" target="classframe">recommended</a></td>
+                    </tr>
+    <tr>
+        <td colspan="2">Internal properties</td>
+    </tr>
+                    <tr>
+                        <td><a href="property-build.id.html" title="<p>A unique ID for the build.</p>" target="classframe"><tt class="docutils literal">build.id</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                    </tr>
+</table>
+</p>
+
+<hr/>
+
+
+<h3>Target dependencies</h3>
+<p align="center">
+<img src="target-sf-zip-logs.dot.png" alt="sf-zip-logs dependencies" usemap="#dependencies"
+     style="border-style: none"/>
+<map name="dependencies" id="dependencies">
+<area shape="rect" id="node1" href="target-sf-zip-logs.html" title="sf&#45;zip&#45;logs" alt="" coords="156,5,247,53">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+</map>
+</p>
+<hr/>
+
+
+<h3>Source code</h3>
+<pre>
+    &lt;target name=&quot;sf-zip-logs&quot;&gt;
+        &lt;if&gt;
+            &lt;istrue value=&quot;${sf.spec.logs.zip.enable}&quot;/&gt;
+            &lt;then&gt;
+                &lt;property name=&quot;temp.log.dir&quot; value=&quot;${env.TEMP}/${build.id}_output_logs&quot;/&gt;
+                &lt;echo message=&quot;Zip log requested, zipping logs...&quot;/&gt;
+                &lt;mkdir dir=&quot;${temp.log.dir}&quot;/&gt;
+                &lt;zip destfile=&quot;${temp.log.dir}/build_logs.zip&quot; basedir=&quot;${build.drive}&quot;&gt; 
+                    &lt;include name=&quot;output/logs/**&quot;/&gt;
+                    &lt;exclude name=&quot;output/logs/BOM/**&quot;/&gt;
+                    &lt;exclude name=&quot;output/logs/deliverables/**&quot;/&gt;
+                    &lt;exclude name=&quot;output/logs/releaseables/**&quot;/&gt;
+                &lt;/zip&gt;
+                &lt;zip destfile=&quot;${temp.log.dir}/build_BOM.zip&quot;&gt;
+                    &lt;zipfileset dir=&quot;${build.drive}/output/logs/BOM&quot; prefix=&quot;build_info/logs/BOM&quot;/&gt;
+                    &lt;zipfileset dir=&quot;${build.drive}/output/logs/releaseables&quot; prefix=&quot;build_info/logs/releaseables&quot;/&gt;
+                &lt;/zip&gt;
+                &lt;move todir=&quot;${build.log.dir}&quot;&gt;
+                    &lt;fileset dir=&quot;${temp.log.dir}&quot;/&gt;
+                &lt;/move&gt;
+            &lt;/then&gt;
+        &lt;/if&gt;
+    &lt;/target&gt;
+</pre>
+
+
+    <hr/>
+<!-- ========= start of top navbar ======= -->
+<a name="navbar_top"><!-- --></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0" summary="">
+<tr>
+<td colspan="2" bgcolor="#eeeeff" class="navbarcell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3" summary="">
+  <tr align="center" valign="top">
+  <td bgcolor="#ffffff" class="navbarcell1"> &#160;<a href="overview-summary.html"><font class="navbarfont1"><b>overview</b></font>&#160;</a></td>
+
+  <td bgcolor="#ffffff" class="navbarcell1">    <a href="deprecated-list.html"><font class="navbarfont1"><b>deprecated</b></font></a>&#160;</td>
+    
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="properties-table.html"><font class="navbarfont1"><b>properties-table</b></font></a>&#160;</td>  
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="index-1.html"><font class="navbarfont1"><b>index</b></font></a>&#160;</td>
+  <td bgcolor="#eeeeff" class="navbarcell1">    <a href="help.html"><font class="navbarfont1"><b>help</b></font></a>&#160;</td>
+  </tr>
+</table>
+</td>
+<td align="right" valign="top" rowspan="3"><em>
+<b>Helium API</b></em>
+
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+&#160;prev&#160;
+&#160;next</font></td>
+<td bgcolor="white" class="navbarcell2"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>frames</b></a>  &#160;
+&#160;<a href="overview-summary.html" target="_top"><b>no frames</b></a>  &#160;
+
+&#160;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<a href="allclasses-noframe.html"><b>all classes</b></a>');
+  }
+  //-->
+</script>
+<noscript>
+  <a href="allclasses-noframe.html"><b>all classes</b></a>
+</noscript>
+
+
+</font></td>
+</tr>
+</table>
+<a name="skip-navbar_top"></a>
+<!-- ========= end of top navbar ========= -->
+    <font size="-2">Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. License: http://www.eclipse.org/legal/epl-v10.html</font>
+ </body>
+
+</html>
+
+
