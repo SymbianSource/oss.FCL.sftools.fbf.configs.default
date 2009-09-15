@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Landmarks API BCTests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="Landmarks API BCTests WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Landmarks API BCTests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="Landmarks" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="Landmarks" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="testlandmarksapi.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testlandmarksapi.dll"/>
+							<param dst="c:\sys\bin\testlandmarksapi.dll"/>
+							<param component-path="landmarks" />
+						</params>
+					</step>
+                    <step id="" name="testframework_Landmarks.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_Landmarks.ini"/>
+							<param dst="C:\TestFramework\TestFramework.ini"/>
+							<param component-path="landmarks" />
+						</params>
+					</step>
+					<step id="" name="testlandmarksapi.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testlandmarksapi.cfg"/>
+							<param dst="C:\testframework\testlandmarksapi.cfg"/>
+							<param component-path="landmarks" />
+						</params>
+					</step>
+					<step id="" name="smiltemplate.mif (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="smiltemplate.mif"/>
+							<param dst="C:\testing\data\smiltemplate.mif"/>
+							<param component-path="landmarks" />
+						</params>
+					</step>
+					<step id="" name="testEposLmImport.lmx (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testEposLmImport.lmx"/>
+							<param dst="C:\testing\data\testEposLmImport.lmx"/>
+							<param component-path="landmarks" />
+						</params>
+					</step>
+					<step id="" name="testEposLmImportCollection.lmx (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testEposLmImportCollection.lmx"/>
+							<param dst="C:\testing\data\testEposLmImportCollection.lmx"/>
+							<param component-path="landmarks" />
+						</params>
+					</step>
+					<step id="" name="landmarks (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\testframework\testlandmarksapi.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="Landmarks_log (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>landmarks/winscw_udeb/testlandmarksapi.dll</file>
+		<file>landmarks/general/testframework/TestFramework_Landmarks.ini</file>
+		<file>landmarks/general/testframework/testlandmarksapi.cfg</file>
+        <file>landmarks/general/smiltemplate.mif</file>
+        <file>landmarks/general/testEposLmImport.lmx</file>
+        <file>landmarks/general/testEposLmImportCollection.lmx</file>
+    </files>
+</test>
