@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Messaging BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="NAME" value="emulator_udeb" />
+        </device>
+	</target>
+	<plan id="" name="Messaging BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Messaging Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="Messaging" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="MMS Client MTM" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="MMSClientMTMBCTester.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="MMSClientMTMBCTester.dll"/>
+							<param dst="c:\sys\bin\MMSClientMTMBCTester.dll"/>
+							<param component-path="bcmessaging" />
+						</params>
+					</step>
+					<step id="" name="MMSClientMTMBCTester.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="MMSClientMTMBCTester.ini"/>
+							<param dst="c:\testframework\MMSClientMTMBCTester.ini"/>
+							<param component-path="bcmessaging\testframework" />
+						</params>
+					</step>
+					<step id="" name="MMSClientMTMBCTester_TestImage.jpg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="MMSClientMTMBCTester_TestImage.jpg"/>
+							<param dst="c:\testframework\MMSClientMTMBCTester_TestImage.jpg"/>
+							<param component-path="bcmessaging\testframework" />
+						</params>
+					</step>
+					<step id="" name="MMSClientMTMBCTester (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule MMSClientMTMBCTester -moduleini C:\TestFramework\MMSClientMTMBCTester.ini"/>
+                            <param result-file="c:\spd_logs\xml\MMSClientMTMBCTester.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="MMSClientMTMBCTester (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+                <case id="" name="Messaging Plugin Bio" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="PluginBioControlAPITest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="PluginBioControlAPITest.dll"/>
+							<param dst="c:\sys\bin\PluginBioControlAPITest.dll"/>
+							<param component-path="bcmessaging" />
+						</params>
+					</step>
+					<step id="" name="tcTestUIBioCombiner.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tcTestUIBioCombiner.cfg"/>
+							<param dst="c:\testframework\tcTestUIBioCombiner.cfg"/>
+							<param component-path="bcmessaging\testframework" />
+						</params>
+					</step>
+					<step id="" name="ui_PluginBioControlAPITest.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="ui_PluginBioControlAPITest.cfg"/>
+							<param dst="c:\testframework\ui_PluginBioControlAPITest.cfg"/>
+							<param component-path="bcmessaging\testframework" />
+						</params>
+					</step>
+					<step id="" name="test.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="test.txt"/>
+							<param dst="c:\testframework\test.txt"/>
+							<param component-path="bcmessaging\testframework" />
+						</params>
+					</step>
+					<step id="" name="PluginBioControlAPITest.rsc on C (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="PluginBioControlAPITest.rsc"/>
+							<param dst="c:\testframework\PluginBioControlAPITest.rsc"/>
+							<param component-path="bcmessaging\testframework" />
+						</params>
+					</step>
+					<step id="" name="PluginBioControlAPITest.rsc on Z (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="pluginbiocontrolapitest.rsc"/>
+							<param dst="z:\resource\pluginbiocontrolapitest.rsc"/>
+							<param component-path="bcmessaging\resource" />
+						</params>
+					</step>
+					<step id="" name="PluginBioControlAPITest.r01 on Z (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="pluginbiocontrolapitest.r01"/>
+							<param dst="z:\resource\pluginbiocontrolapitest.r01"/>
+							<param component-path="bcmessaging\resource" />
+						</params>
+					</step>  
+					<step id="" name="PluginBioControlAPITest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcTestUIBioCombiner.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="PluginBioControlAPITest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+            </set>
+		</session>
+	</plan>
+	<files>
+		<file>bcmessaging/winscw_udeb/MMSClientMTMBCTester.dll</file>
+        <file>bcmessaging/testframework/general/MMSClientMTMBCTester.ini</file>
+        <file>bcmessaging/testframework/general/MMSClientMTMBCTester_TestImage.jpg</file>
+        <file>bcmessaging/winscw_udeb/PluginBioControlAPITest.dll</file>
+        <file>bcmessaging/testframework/general/tcTestUIBioCombiner.cfg</file>
+        <file>bcmessaging/testframework/general/ui_PluginBioControlAPITest.cfg</file>
+        <file>bcmessaging/testframework/general/test.txt</file>
+        <file>bcmessaging/testframework/general/PluginBioControlAPITest.rsc</file>
+        <file>bcmessaging/resource/general/pluginbiocontrolapitest.rsc</file>
+        <file>bcmessaging/resource/general/pluginbiocontrolapitest.r01</file>
+	</files>
+</test>
