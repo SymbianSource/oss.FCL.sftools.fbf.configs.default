@@ -96,7 +96,7 @@
     <files>
         <file>bcbrowser/winscw_udeb/favouritesbctest.dll</file>
 
-        <file>bcwebsrv/winscw_udeb/downloadmgrbctest.dll</file>
-		<file>bcwebsrv/general/testframework/testframework_dwmgr.ini</file>
+        <file>bcbrowser/winscw_udeb/downloadmgrbctest.dll</file>
+		<file>bcbrowser/general/testframework/testframework_dwmgr.ini</file>
     </files>
 </test>
