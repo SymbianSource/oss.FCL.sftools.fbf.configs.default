@@ -19,14 +19,14 @@
 		<set name="grace.product" value="${grace.product.name}" />
 		<set name="grace.release" value="${grace.release.name}" />
 		
+		<!-- Options that apply to all configs - don't put in any hg internals! -->
+		<set name="exclude" value="**/.hg/**"/>
+		<set name="exclude" value="**/.hgtags"/>
+		<set name="exclude" value="**/.hgignore"/>
+		<set name="exclude" value="**/.hg_archival.txt"/>
+		
 		<!-- Specify this config to package all src inputs to the build -->
 		<config name="src" abstract="true">
-			<!-- Options that apply to all src configs -->
-			<set name="exclude" value="**/.hg/**"/>
-			<set name="exclude" value="**/.hgtags"/>
-			<set name="exclude" value="**/.hgignore"/>
-			<set name="exclude" value="**/.hg_archival.txt"/>
-			
 			<!-- These configs will be populated with tags for the source -->
 			<config name="sfl" abstract="true">
 				<set name="grace.filters" value="src" />
