@@ -442,25 +442,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
     <target name="sf-preprocess-package-config">
         <mkdir dir="${sf.common.config.dir}/generated"/>
-        <if>
-            <istrue value="${sf.spec.package.src.enable}"/>
-            <then>
-                <echo message="INFO Packaging Source Repos"/>
-                <property name="sf-preprocess-package-config.arg" value=""/>
-            </then>
-            <else>
-                <echo message="INFO Packaging: Ignoring Source Repos"/>
-                <property name="sf-preprocess-package-config.arg" value="--nosource"/>
-            </else>
-        </if>
-
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
-            <arg value="${sf-preprocess-package-config.arg}"/>
         </exec>
     </target>
     
@@ -471,11 +458,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
     
     <target name="sf-package-source" depends="sf-preprocess-package-config">
-        <!-- Firstly zip up src & rnd by package -->
-        <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
-            <param name="zip.target.name" value="src" />
-        </antcall>
+        <!-- Firstly zip up rnd by package -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="rnd" />
@@ -484,22 +467,40 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="rnd-internal" />
         </antcall>
-        <!-- Then zip up src zips by layer -->
-        <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
-            <param name="zip.target.name" value="src-by-layer" />
-        </antcall>
+        <if>
+            <istrue value="${sf.spec.package.src.enable}"/>
+            <then>
+                <echo message="INFO Packaging Source Repos"/>
+                <antcall target="sf-zip-content">
+                    <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+                    <param name="zip.target.name" value="src" />
+                </antcall>
+                <!-- Then zip up src zips by layer -->
+                <antcall target="sf-zip-content">
+                    <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+                    <param name="zip.target.name" value="src-by-layer" />
+                </antcall>
+            </then>
+        </if>
     </target>
     
-    <!-- unpack rnd zips if available -->
+    <!-- Unpack the rnd zips ready to be used in the build -->
     <target name="sf-unpack-rnd">
         <echo message="Unpacking any available RnD binaries"/>
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log">
-        <arg value="x"/>
-        <arg value="-y"/> <!-- Need to unpack in overwrite mode, due to TEF -->
-        <arg value="${build.drive}/output/zips/bin*.zip"/>
-        </exec>
-    </target>    
-        
+        <for param="rndZip">
+            <fileset dir="${build.drive}/output/zips/">
+                <include name="binaries_*.zip"/> <!-- Internal rnd bins -->
+                <include name="release/bin_*.zip"/> <!-- Releaseable rnd bins -->
+            </fileset>
+            <sequential>
+                <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log" append="true">
+                    <arg value="x"/>
+                    <arg value="-y"/> <!-- Need to unpack in overwrite mode, due to TEF -->
+                    <arg value="@{rndZip}"/>
+                </exec>
+            </sequential>
+	</for>
+    </target>
+    
 </project>
 
