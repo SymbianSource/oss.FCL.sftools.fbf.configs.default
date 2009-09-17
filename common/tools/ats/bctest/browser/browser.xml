@@ -53,6 +53,6 @@
         </session>
     </plan>
     <files>
-        <file>bcwebsrv/winscw_udeb/favouritesbctest.dll</file>
+        <file>bcbrowser/winscw_udeb/favouritesbctest.dll</file>
     </files>
 </test>

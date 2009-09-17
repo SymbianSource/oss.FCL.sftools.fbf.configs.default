@@ -228,19 +228,10 @@
     </target>
 
     <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
-
-        <!-- zip any RnD _includefile.txt files generated during source packaging -->
-        <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zip_postbuild.log">
-            <arg value="${sf.common.config.dir}/tools/zip_includefiles.pl"/>
-        </exec>
-        <!-- cleanup my moving includefiles to logs and zips to zips\release -->
-        <move todir="${build.log.dir}">
-            <fileset dir="${build.drive}"><include name="*_includefile.txt"/></fileset>
-        </move>
-        <move todir="${build.drive}/output/zips/release">
-            <fileset dir="${build.drive}"><include name="bin*.zip"/></fileset>
-        </move>
-        <!-- TODO: merge with release_metadata.xml ? -->
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="rnd-postbuild" />
+        </antcall>
     </target>
 
     <target name="sf-package-tools" depends="sf-preprocess-package-config">
@@ -249,7 +240,6 @@
             <arg value="a"/>
             <arg value="-tzip"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-<!--            <arg value="-x@${build.log.dir}/*_includefile.txt"/> -->
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
             <arg value="epoc32/tools"/>
         </exec>

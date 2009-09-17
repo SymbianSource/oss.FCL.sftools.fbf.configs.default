@@ -27,7 +27,9 @@
   <target name="sf-platform-bootstrap-gt" >
     <echo>[SF-platform-bootstrap-gt]</echo>
     <!-- do initial stuff to get raptor working -->
-    <copy file="${build.drive}/${sf.spec.bldmefirst.gt.hrh}" tofile="${build.drive}/epoc32/include/variant/Symbian_OS.hrh" failonerror="true" verbose="true" />
+    <copy todir="${build.drive}/epoc32/include/variant/" failonerror="true" verbose="true">
+        <fileset dir="${build.drive}/${sf.spec.bldmefirst.gt.hrh}" includes="*.hrh"/>
+    </copy>
     <copy file="${build.drive}/${sf.spec.bldmefirst.gt.variant}" tofile="${build.drive}/epoc32/tools/variant/variant.cfg" failonerror="true" verbose="true" preservelastmodified="true" />
   </target>
 

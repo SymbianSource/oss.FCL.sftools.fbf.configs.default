@@ -442,7 +442,8 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
     <target name="sf-preprocess-package-config">
         <mkdir dir="${sf.common.config.dir}/generated"/>
-            <if><istrue value="${sf.spec.package.src.enable}"/>
+        <if>
+            <istrue value="${sf.spec.package.src.enable}"/>
             <then>
                 <echo message="INFO Packaging Source Repos"/>
                 <property name="sf-preprocess-package-config.arg" value=""/>
@@ -451,7 +452,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
                 <echo message="INFO Packaging: Ignoring Source Repos"/>
                 <property name="sf-preprocess-package-config.arg" value="--nosource"/>
             </else>
-            </if>
+        </if>
 
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
@@ -474,6 +475,14 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="src" />
+        </antcall>
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="rnd" />
+        </antcall>
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="rnd-internal" />
         </antcall>
         <!-- Then zip up src zips by layer -->
         <antcall target="sf-zip-content">
