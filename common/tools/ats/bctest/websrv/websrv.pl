@@ -30,7 +30,9 @@ copy("websrv.xml",	"temp/test.xml");
 
 copy($epoc . "release/winscw/udeb/CSenServiceConnectionBCTest.dll",     "temp/bcwebsrv/winscw_udeb/CSenServiceConnectionBCTest.dll");
 copy($epoc . "winscw/c/testframework/testframework_connection.ini",     "temp/bcwebsrv/general/testframework/testframework_connection.ini");
-copy($epoc . "release/winscw/udeb/HostletConnectionBCTest.dll",			"temp/bcwebsrv/winscw_udeb/HostletConnectionBCTest.dll");
-copy($epoc . "winscw/c/testframework/TestFramework_hostlet.ini",		"temp/bcwebsrv/general/testframework/TestFramework_hostlet.ini");
+copy($epoc . "release/winscw/udeb/HostletConnectionBCTest.dll",         "temp/bcwebsrv/winscw_udeb/HostletConnectionBCTest.dll");
+copy($epoc . "winscw/c/testframework/TestFramework_hostlet.ini",        "temp/bcwebsrv/general/testframework/TestFramework_hostlet.ini");
+copy($epoc . "release/winscw/udeb/newsoapclassesbctest.dll",            "temp/bcwebsrv/winscw_udeb/newsoapclassesbctest.dll");
+copy($epoc . "winscw/c/testframework/testframework_newsoapclasses.ini", "temp/bcwebsrv/general/testframework/testframework_newsoapclasses.ini");
 
 system("7z a -tzip websrv.zip ./temp/*");

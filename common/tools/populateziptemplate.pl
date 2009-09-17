@@ -100,11 +100,18 @@ foreach my $package (@packages)
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{
 		# RnD repository
-		my $name = "binaries_$2";
-		if ($1 eq "rndonly") { $name="bin_$1_$2";}
+		my $licenseType = $1;
+		my $name="bin_$1_$2";
+		my $postbuildName = "binaries_$2";
+		my $config = "rnd";
+		if ($licenseType eq "internal")
+		{
+			$name = "binaries_$2_prebuild";
+			$config = "rnd-internal";
+		}
 		
 		# Create a zip object
-		push @{$zipConfig->{config}->{config}->{src}->{config}->{rnd}->{config}},
+		push @{$zipConfig->{config}->{config}->{$config}->{config}},
 		{
 			set =>
 			[
@@ -125,19 +132,33 @@ foreach my $package (@packages)
 		# Enumerate all the files on the local disk that are in this repository
 		(my $dosCompatibleDst = $package->{dst}) =~ s{/}{\\}g;
 		my @files = `dir /b/s/a-d $dosCompatibleDst 2> nul:`;
-		#print "@files\n";
 		next unless @files;
-		# Add the files to this zip object
+		# Add the files to the global list of items to be excluded in the binary zips
 		@files = grep {
+			chomp;
 			s{\\}{/}g;
 			s!^[A-Z]:/$package->{dst}/!!i;
 			m{^epoc32/}i;
 		} @files;
 		push @allRndFiles, @files;
-		
-		open FILE, ">", $name ."_includefile.txt" or die "Cannot write includefile!";
-		print FILE @files;
-		close FILE;
+
+		if ($licenseType eq "internal")
+		{
+			# Add a zip object to zip this package from the epoc tree in the postbuild phase
+			push @{$zipConfig->{config}->{config}->{"rnd-postbuild"}->{config}},
+			{
+				name => $postbuildName,
+				set =>
+				[
+					{
+						name => "name",
+						value=> $postbuildName,
+					},
+					# Turn the array of files into an array of inclusion hashes
+					(map { {name => "include", value => $_ } } @files),
+				]
+			};
+		}
 	}
 	else
 	{

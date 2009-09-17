@@ -19,7 +19,7 @@
 		<set name="grace.product" value="${grace.product.name}" />
 		<set name="grace.release" value="${grace.release.name}" />
 		
-		<!-- Specify this config to package all inputs to the build -->
+		<!-- Specify this config to package all src inputs to the build -->
 		<config name="src" abstract="true">
 			<!-- Options that apply to all src configs -->
 			<set name="exclude" value="**/.hg/**"/>
@@ -34,17 +34,16 @@
 			<config name="oss" abstract="true">
 				<set name="grace.filters" value="src" />
 			</config>
-			<config name="rnd" abstract="true">
-				<set name="grace.filters" value="rnd" />
-			</config>
 			<config name="misc" abstract="true">
 				<set name="grace.filters" value="misc" />
 			</config>
 		</config>
+		<!-- Specify this config to double-package all src inputs to the build -->
 		<config name="src-by-layer" abstract="true">
-			<set name="grace.metadata" value="false" />
 			<set name="root.dir" value="${build.output.dir}/zips"/>
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+			<set name="grace.filters" value="src" />
+			<set name="grace.extract" value="double" />
 			<!-- Zips of zips for SFL code -->
 			<config name="sfl-adaptation">
 				<set name="name" value="src_sfl_adaptation"/>
@@ -96,6 +95,15 @@
 				<set name="include" value="src_oss_tools_*.zip"/>
 			</config>
 		</config>
+		<!-- Specify this config to package all rnd inputs to the build that should be released -->
+		<config name="rnd" abstract="true">
+			<set name="grace.filters" value="rnd" />
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+		</config>
+		<!-- Specify this config to package all rnd inputs to the build that should be released -->
+		<config name="rnd-internal" abstract="true">
+			<set name="grace.filters" value="emu" />
+		</config>
 		<!-- Specify this config to package all outputs from the build -->
 		<config name="bin" abstract="true">
 			<!-- This config will be populated with exclusions for the rnd bins -->
@@ -105,6 +113,11 @@
 				<set name="include" value="epoc32/**"/>
 				<set name="exclude" value="epoc32/build/**"/>
 			</config>
+		</config>
+		<!-- Specify this config to re-package the internal rnd bins after the build has updates some of the files -->
+		<config name="rnd-postbuild" abstract="true">
+			<set name="grace.filters" value="emu"/>
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
 		</config>
 	</config>
 </build>
