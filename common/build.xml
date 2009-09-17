@@ -496,6 +496,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
                 <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log" append="true">
                     <arg value="x"/>
                     <arg value="-y"/> <!-- Need to unpack in overwrite mode, due to TEF -->
+                    <arg value="-i!epoc32\*"/> <!-- Only unzip items into the epoc32 tree -->
                     <arg value="@{rndZip}"/>
                 </exec>
             </sequential>
