@@ -26,11 +26,6 @@ my $sourcesCSV = shift or die "First arg must be source csv file";
 my $template = shift or die "Second arg must be template file";
 my $ftl = shift or die "Third arg must be output file";
 my $rndExcludes = shift or die "Fourth arg must be rnd-excludes file";
-my $nosource = shift;
-if(defined $nosource && $nosource !~ m/--nosource/i)
-{
-  die "fifth argument can only be \'--nosource\'";
-}
 
 # Load CSV
 open my $csvText, "<", $sourcesCSV or die "Unable to open sources.csv from $sourcesCSV";
@@ -79,8 +74,6 @@ foreach my $package (@packages)
 	$package->{dst} =~ s{^/}{}g;
 	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/sf/([^/]+)/([^/]+)})
 	{
-		if(!defined $nosource)
-  	{
   		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
   		{
   			set =>
@@ -95,7 +88,6 @@ foreach my $package (@packages)
   				},
   			]
   		};
-  	}	
 	}
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{
