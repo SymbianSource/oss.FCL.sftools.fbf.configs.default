@@ -3,38 +3,45 @@
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
         <parallel>                
-        <!-- TAG SOURCE CODE -->
-        <if>
-            <istrue value="${sf.spec.tagafterbuild.enable}" />
-            <then>
-                <echo message="Apply tag to the source code used in this build"/>
-                <runtarget target="sf-tag-hg-code"/>
-            </then>
-        </if>
-        
-        <if>
-            <istrue value="${sf.spec.md5.enable}"/>
-            <then>
-                <echo message="INFO Creating MD5s"/>
-                <runtarget target="sf-run-evalid"/>
-            </then>
-        </if>
-        <if>
-            <istrue value="${sf.spec.package.bin.enable}"/>
-            <then>
-                <echo message="INFO Packaging Binaries"/>
-                <runtarget target="sf-package-binary"/>
-                <runtarget target="sf-package-tools"/>
-
-                <echo message="INFO Validate Zip files"/>
-                <runtarget target="sf-package-validate"/>
-            </then>
-        </if>
-        <!-- run build analysis tools -->
-        <runtarget target="sf-run-analysis"/>
-        
+            <!-- TAG SOURCE CODE -->
+            <if>
+                <istrue value="${sf.spec.tagafterbuild.enable}" />
+                <then>
+                    <echo message="Apply tag to the source code used in this build"/>
+                    <runtarget target="sf-tag-hg-code"/>
+                </then>
+            </if>
+            
+            <!-- Create MD5s -->
+            <if>
+                <istrue value="${sf.spec.md5.enable}"/>
+                <then>
+                    <echo message="INFO Creating MD5s"/>
+                    <runtarget target="sf-run-evalid"/>
+                </then>
+            </if>
+            
+            <!-- Package up the binaries we built -->
+            <if>
+                <istrue value="${sf.spec.package.bin.enable}"/>
+                <then>
+                    <echo message="INFO Packaging Binaries"/>
+                    <runtarget target="sf-package-binary"/>
+                    <runtarget target="sf-package-tools"/>
+    
+                    <echo message="INFO Validate Zip files"/>
+                    <runtarget target="sf-package-validate"/>
+                </then>
+            </if>
+            
+            <!-- run build analysis tools -->
+            <runtarget target="sf-run-analysis"/>
+            
+	    <!-- Generate reports to compare this build to a previous one -->
+            <runtarget target="sf-compare-to-baseline"/>
         </parallel>
         
+        <!-- Launch smoketest -->
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
             <then>
                 <runtarget target="sf-build-smoketestpkg"/>
@@ -42,17 +49,17 @@
             </then>
         </if>
 
-
-        <runtarget target="sf-zip-logs"/>
-
-        <!-- Do BC check -->
+        <!-- Launch BC check -->
         <if><istrue value="${sf.spec.bccheck.enable}"/>
             <then>
                 <runtarget target="sf-bc-check"/>
             </then>
         </if>
 
-        <!-- PUBLISH LOGS/REPORTS -->
+        <!-- Zip up all the logs -->
+        <runtarget target="sf-zip-logs"/>
+
+        <!-- Publish logs/reports -->
         <if>
             <istrue value="${sf.spec.publish.enable}" />
             <then>
@@ -465,6 +472,58 @@
         </data>
       </fmpp>
     </target>    
+
+    <target name="sf-check-utilities-dir">
+        <available property="sf-utilities-available" file="${build.drive}/utilities" type="dir"/>
+    </target>
+
+    <target name="sf-compare-to-baseline" depends="sf-diamondize-bom,sf-check-utilities-dir" if="sf-utilities-available">
+        <property name="sf.releasenotes.wiki.txt" value="${build.log.dir}/releaseNotes.wiki.txt"/>
+        <delete file="${sf.releasenotes.wiki.txt}"/>
+        <!-- FCL usage -->
+        <!-- TODO -->
+        <!-- Mercurial comparison -->
+        <echo file="${sf.releasenotes.wiki.txt}" append="true">== Mercurial Comparison ==
+
+</echo>
+        <if>
+            <isset property="sf.previous.pdk.tag"/>
+            <then>
+                <echo file="${sf.releasenotes.wiki.txt}" append="true">The Mercurial changes from Nokia were delivered as a bulk update based on '''XXXXXXXXXXXXXXXXXXXXXX'''.
+
+List of the Mercurial changes (files added/removed/modified) between ${sf.previous.pdk.tag} and PDK '''XXXXX''' - [[Media:XXXX.txt]].
+
+A short study of the results concentrating on the added and removed files has identified these significant package changes:
+
+</echo>
+                <if>
+                    <istrue value="${sf.spec.sourcesync.archive}"/>
+                    <then>
+                        <echo file="${sf.releasenotes.wiki.txt}" append="true">'''Information cannot be derived as source was synced with archive option'''"
+
+</echo>
+                    </then>
+                    <else>
+                        <exec executable="perl" dir="${build.drive}/" output="${sf.releasenotes.wiki.txt}" append="true">
+                            <arg value="${build.drive}/utilities/releaseAutomation/mercurialComparison.pl"/>
+                            <arg value="${build.log.dir}/BOM/build-info.xml"/>
+			    <arg value="${sf.previous.pdk.tag}"/>
+                            <arg value="${build.log.dir}/mercurialComparison.tsv"/>
+                        </exec>
+                    </else>
+                </if>
+            </then>
+            <else>
+                <echo file="${sf.releasenotes.wiki.txt}" append="true">'''Information cannot be provided as the tag for the previous PDK was not provided to the build'''"
+
+</echo>
+            </else>
+        </if>
+        
+        <!-- Code churn -->
+        <!-- TODO? -->
+        <fixcrlf file="${sf.releasenotes.wiki.txt}"/>
+    </target>
 
     <!-- package all logs into zipfile before publish -->
     <target name="sf-zip-logs">
