@@ -8,7 +8,7 @@
 	
   <property name="sf.spec.baseline.enable" value="true"/>
   <property name="sf.spec.baseline.select" value="location"/>
-  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_candidate_2.0.d_flat"/>
+  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_2.0.e"/>
   <property name="sf.spec.baseline.getenv_options" value="-i emu -i rnd -i tools -i info"/>
   
   <property name="sf.spec.toolsbaseline.enable" value="false"/>
