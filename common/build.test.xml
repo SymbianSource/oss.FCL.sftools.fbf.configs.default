@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SF-COMMON-TEST" xmlns:hlm="http://www.nokia.com/helium">
 
+    <target name="sf-test-smoketest" depends="sf-prebuild,sf-build-smoketestpkg,sf-send-testpkg,sf-zip-logs,sf-publish" />
+    <target name="sf-test-bc-check" depends="sf-prebuild,sf-bc-check,sf-zip-logs,sf-publish" />
+
     <target name="sf-find-ATS-worker-root">
       <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/devices" failonerror="false" outputproperty="sf.spec.test.workerroot">
         <arg value="-pe"/>

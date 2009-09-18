@@ -480,6 +480,8 @@
                     <exclude name="output/logs/deliverables/**"/>
                     <exclude name="output/logs/releaseables/**"/>
                 </zip>
+                <!-- workaround for the time when when 'sf-run-analysis-raptor' has not been run -->
+                <mkdir dir="${build.drive}/output/logs/releaseables"/> 
                 <zip destfile="${temp.log.dir}/build_BOM.zip">
                     <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
                     <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
