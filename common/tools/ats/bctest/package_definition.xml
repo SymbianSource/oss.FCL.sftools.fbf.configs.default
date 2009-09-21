@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition name="Foundation" schema="2.0.1">
+ <systemModel>
+  <layer name="bc" long-name="Binary Compatability" levels="generic specific">
+   <block long-name="Dynamic BC Tests" level="specific" name="dynamicbctest" levels="fts">
+    <collection name="dynamicbc" long-name="Dynamic BC Test Harnesses">
+      <component id="aspconnection" name="ASP Connection Test">
+        <unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
+      </component>
+      <component id="hostconn" name="Hostlet Connection Test">
+        <unit bldFile="sf/mw/websrv/websrv_pub/hostlet_connection_api/tsrc/bc/hostconn/group"/>
+      </component>
+      <component id="newsoapclasses" name="New SOAP Classes Test">
+        <unit bldFile="sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/group"/>
+      </component>
+      <component id="favouritesbctest" name="Browser Favourites BC Test">
+        <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/FavouritesBCTest/group"/>
+      </component>
+      <component id="downloadmgrbctest" name="Download Manager BC Test">
+        <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/group"/>
+      </component>	  
+      <component id="lmksearch" name="Landmark Search Test">
+        <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group"/>
+      </component>
+      <component id="lmkdbmgmt" name="Landmark Database Management Test">
+        <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_database_management_api/group"/>
+      </component>
+      <component id="landmarks" name="Landmarks API Test">
+        <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/group"/>
+      </component>
+      <component id="mmsclientmtm" name="Messaging MMS Client MTM BC Test">
+        <unit bldFile="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/group"/>
+      </component>
+      <component id="pluginbio" name="Messaging Plugin BIO BC Test">
+        <unit bldFile="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/group"/>
+      </component>
+      <component id="drmcaf" name="DRM CAF BC Test">
+        <unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group"/>
+      </component>
+      <component id="pbkdataaddedit" name="Phonebook Data Add Edit BC Test">
+        <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/group"/>
+      </component>
+      <component id="pbkdatamgmt" name="Phonebook Data Management BC Test">
+        <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/group"/>
+      </component>
+      <component id="pbkfetchui" name="Phonebook Fetch UI BC Test">
+        <unit bldFile="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/group"/>
+      </component>
+      <component id="pbkuiutil" name="Phonebook UI Utils BC Test">
+        <unit bldFile="sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/group"/>
+      </component>
+      <component id="pbkvcard" name="Phonebook vCard Import Export BC Test">
+        <unit bldFile="sf/app/contacts/contacts_pub/phonebook_vcard_importexport_api/tsrc/bc/group"/>
+      </component>
+      <component id="pbkspeeddial" name="Phonebook Speed Dial BC Test">
+        <unit bldFile="sf/app/contacts/contacts_pub/speed_dial_utility_control_api/tsrc/bc/group"/>
+      </component>
+      <component id="proengwrap" name="Profiles Engine Wrapper Test">
+        <unit bldFile="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/BC/ProfilesEngineWrapperAPI/group"/>
+      </component>
+	  
+      <component id="basesvs" name="SVS Base API Tests" class="test">
+        <unit bldFile="sf/os/kernelhwsrv/baseapitest/basesvs/group"/>
+      </component>
+	  
+    </collection>
+   </block>
+  </layer>
+ </systemModel>
+</SystemDefinition>
