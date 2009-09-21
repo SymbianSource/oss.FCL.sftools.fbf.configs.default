@@ -229,31 +229,21 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="showconfig"/>
             <arg value="paths.default"/>
         </exec>
-        <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.rev">
-            <arg value="identify"/>
-            <arg value="-n"/>
-        </exec>
         <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.checksum">
             <arg value="identify"/>
             <arg value="-i"/>
         </exec>
-        <echo message="dir ${sf.config.dir} : revision ${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}"/>
-        <echo message="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}" file="${build.drive}/output/logs/BOM/config.csv"/>
+        <echo message="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.checksum}" file="${build.drive}/output/logs/BOM/config.csv"/>
 
         <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.repo">
             <arg value="showconfig"/>
             <arg value="paths.default"/>
         </exec>
-        <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.rev">
-            <arg value="identify"/>
-            <arg value="-n"/>
-        </exec>
         <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.checksum">
             <arg value="identify"/>
             <arg value="-i"/>
         </exec>
-        <echo message="dir ${sf.project.location} : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}"/>
-	<echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
+	<echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
     </target>
 
     <target name="sf-getenvs">
@@ -419,7 +409,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
     </target>
     
-    <target name="sf-diamondize-bom">
+    <target name="sf-diamondize-bom" depends="sf-record-proj-conf-bom">
         <if>
             <istrue value="${sf.spec.publish.enable}"/>
             <then>
