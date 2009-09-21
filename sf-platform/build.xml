@@ -22,7 +22,15 @@
     <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
   </target>
 
-  <target name="sf-platform-bootstrap" depends="sf-platform-bootstrap-gt,sf-platform-bootstrap-s60"/>
+  <target name="sf-platform-bootstrap" depends="sf-gen-buildinfo-txt,sf-platform-bootstrap-gt,sf-platform-bootstrap-s60"/>
+
+  <target name="sf-gen-buildinfo-txt">
+    <mkdir dir="${build.drive}/epoc32/data/"/> 
+    <delete file="${build.drive}/epoc32/data/BuildInfo.txt"/>
+    <echo file="${build.drive}/epoc32/data/BuildInfo.txt" append="true" message="DeviceFamily               100 ${line.separator}"/>
+    <echo file="${build.drive}/epoc32/data/BuildInfo.txt" append="true" message="DeviceFamilyRev            0x900 ${line.separator}"/>
+    <echo file="${build.drive}/epoc32/data/BuildInfo.txt" append="true" message="ManufacturerSoftwareBuild  ${build.id}_Symbian_OS_v${sf.spec.sbs.variant} ${line.separator}"/>
+  </target>
 
   <target name="sf-platform-bootstrap-gt" >
     <echo>[SF-platform-bootstrap-gt]</echo>
