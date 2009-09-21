@@ -410,24 +410,19 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
     
     <target name="sf-diamondize-bom" depends="sf-record-proj-conf-bom">
-        <if>
-            <istrue value="${sf.spec.publish.enable}"/>
-            <then>
-                <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
-                      outputFile="${build.drive}/output/logs/sf-diamondize-bom.xml">
-                    <data expandProperties="yes">
-                        ant: antProperties()
-                        config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
-                        project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
-                        baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
-                        toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
-                        sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
-                    </data>
-                </fmpp>
-                <!-- Make a copy in BOM dir -->
-                <copy file="${build.drive}/output/logs/sf-diamondize-bom.xml" tofile="${build.log.dir}/BOM/build-info.xml"/>
-            </then>
-        </if>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
+              outputFile="${build.drive}/output/logs/sf-diamondize-bom.xml">
+            <data expandProperties="yes">
+                ant: antProperties()
+                config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
+                project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
+                baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
+                toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
+                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
+            </data>
+        </fmpp>
+        <!-- Make a copy in BOM dir -->
+        <copy file="${build.drive}/output/logs/sf-diamondize-bom.xml" tofile="${build.log.dir}/BOM/build-info.xml"/>
     </target>
 
     <target name="sf-preprocess-package-config">
