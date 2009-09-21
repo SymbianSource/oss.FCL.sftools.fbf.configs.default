@@ -229,6 +229,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="showconfig"/>
             <arg value="paths.default"/>
         </exec>
+        <propertyregex input="${sf.job.bom.config.repo}" regexp="\\" replace="/" global="true" property="sf.job.bom.config.repo" override="true"/>
         <exec executable="hg" dir="${sf.config.dir}" outputproperty="sf.job.bom.config.checksum">
             <arg value="identify"/>
             <arg value="-i"/>
@@ -239,6 +240,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="showconfig"/>
             <arg value="paths.default"/>
         </exec>
+        <propertyregex input="${sf.job.bom.project.repo}" regexp="\\" replace="/" global="true" property="sf.job.bom.project.repo" override="true"/>
         <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.checksum">
             <arg value="identify"/>
             <arg value="-i"/>
