@@ -452,6 +452,7 @@
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${build.id}_what_results.csv_results.csv"/>
             <arg value="${sf.project.location}/sysdefs/system_model_os.xml"/>
+            <arg value="${sf.project.location}/sysdefs/system_model_s60.xml"/>
         </exec>
     </target>
     
