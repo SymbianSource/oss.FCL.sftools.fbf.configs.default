@@ -30,6 +30,7 @@ mkpath "temp/multimediatest/general/multimedia/t_mdaaudioplayerutility";
 mkpath "temp/multimediatest/general/multimedia/t_audiotoneutility";
 mkpath "temp/multimediatest/general/multimedia/t_midiclientutility";
 mkpath "temp/multimediatest/general/multimedia/t_videoplayerutility";
+mkpath "temp/multimediatest/general/multimedia/t_mdaaudiorecorderutility";
 mkpath "temp/multimediatest/winscw_udeb/z/resource/plugins";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
