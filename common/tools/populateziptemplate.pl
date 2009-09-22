@@ -72,15 +72,32 @@ foreach my $package (@packages)
 {
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	$package->{dst} =~ s{^/}{}g;
-	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/sf/([^/]+)/([^/]+)})
+	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/(sf|utilities)/(([^/]+)/([^/]+))?})
 	{
-  		push @{$zipConfig->{config}->{config}->{src}->{config}->{$1}->{config}},
+		my ($license, $codeline, $thingy, $layer, $packageName) = ($1, $2, $3, $5, $6);
+		# $thingy is the part of the path after the codeline. For
+		# platform packages, it's "sf". For the utilities package, it's
+		# "utilities" (the name of the package) and there's no more
+		# path.
+		#
+		# I can't think of anything to describe this item, hence $thingy
+		if ($thingy eq "utilities")
+		{
+			$layer = "tools";
+			$packageName = "utilities";
+		}
+		elsif (!defined $packageName)
+		{
+			goto MISC_PACKAGE;
+		}
+		
+  		push @{$zipConfig->{config}->{config}->{src}->{config}->{$license}->{config}},
   		{
   			set =>
   			[
   				{
   					name => "name",
-  					value=> "src_$1_$3_$4",
+  					value=> join "_", "src", $license, $layer, $packageName,
   				},
   				{
   					name => "include",
@@ -154,6 +171,7 @@ foreach my $package (@packages)
 	}
 	else
 	{
+MISC_PACKAGE:
 		(my $dest2 = $package->{dst}) =~ s{[\\/]}{_slash_}g;
 		push @{$zipConfig->{config}->{config}->{src}->{config}->{misc}->{config}},
 		{
