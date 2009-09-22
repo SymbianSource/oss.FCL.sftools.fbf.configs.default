@@ -1,0 +1,147 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+&EN
+
+; Installation header
+; Only one component name as we only support English
+; UID is the main app's UID
+
+#{"MTPbkFetch"},(0x20015A4A),1,0,0,TYPE=SA
+[0x101F7961],3,*,*,{"Series60ProductID"}
+
+; Non-localised vendor name
+:"Nokia Corporation"
+
+; Localised vendor names
+%{"Nokia Corporation"}
+
+; Files to install and to where
+
+"\Epoc32\winscw\c\testframework\TestFramework_PBKFetch.ini"-"!:\TestFramework\TestFramework_PBKFetch.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkfetch.cfg"-"!:\TestFramework\tcBCTestPbkfetch.cfg"
+"\epoc32\winscw\c\PBKFetch_c.bat"-"!:\PBKFetch.bat"
+
+
+
+
+
+;MTPbkSmsAddressSelect
+"\Epoc32\Release\armv5\urel\MTPbkSmsAddressSelect.dll"-"!:\sys\bin\MTPbkSmsAddressSelect.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_SMSAddSel.ini"-"!:\TestFramework\TestFramework_SMSAddSel.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestSMSAddSel.cfg"-"!:\TestFramework\tcBCTestSMSAddSel.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestSMSAddSel.cfg"-"!:\TestFramework\UI_BCTestSMSAddSel.cfg"
+"\epoc32\winscw\c\SMSAddSel_c.bat"-"!:\SMSAddSel_c.bat"
+
+;MTPbkSingleEntryFetchDlg
+"\Epoc32\Release\armv5\urel\MTPbkSingleEntryFetchDlg.dll"-"!:\sys\bin\MTPbkSingleEntryFetchDlg.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_SEFieldDlg.ini"-"!:\TestFramework\TestFramework_SEFieldDlg.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestSEFieldDlg.cfg"-"!:\TestFramework\tcBCTestSEFieldDlg.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestSEFieldDlg.cfg"-"!:\TestFramework\UI_BCTestSEFieldDlg.cfg"
+"\epoc32\winscw\c\SEFieldDlg_c.bat"-"!:\SEFieldDlg_c.bat"
+
+;MTPbkPocAddressSelect
+"\Epoc32\Release\armv5\urel\MTPbkPocAddressSelect.dll"-"!:\sys\bin\MTPbkPocAddressSelect.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PocAdd.ini"-"!:\TestFramework\TestFramework_PocAdd.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPocAdd.cfg"-"!:\TestFramework\tcBCTestPocAdd.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPocAdd.cfg"-"!:\TestFramework\UI_BCTestPocAdd.cfg"
+"\epoc32\winscw\c\PocAdd_c.bat"-"!:\PocAdd_c.bat"
+
+;MTPbkPhoneNumberSelect
+"\Epoc32\Release\armv5\urel\MTPbkPhoneNumberSelect.dll"-"!:\sys\bin\MTPbkPhoneNumberSelect.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PhoneNumber.ini"-"!:\TestFramework\TestFramework_PhoneNumber.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPhoneNumber.cfg"-"!:\TestFramework\tcBCTestPhoneNumber.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPhoneNumber.cfg"-"!:\TestFramework\UI_BCTestPhoneNumber.cfg"
+"\epoc32\winscw\c\PhoneNumber_c.bat"-"!:\PhoneNumber_c.bat"
+
+;MTPbkMultipleEntryFetchDlg
+"\Epoc32\Release\armv5\urel\MTPbkMultipleEntryFetchDlg.dll"-"!:\sys\bin\MTPbkMultipleEntryFetchDlg.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_FetchDlg.ini"-"!:\TestFramework\TestFramework_FetchDlg.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestFetchDlg.cfg"-"!:\TestFramework\tcBCTestFetchDlg.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestFetchDlg.cfg"-"!:\TestFramework\UI_BCTestFetchDlg.cfg"
+"\epoc32\winscw\c\FetchDlg_C.bat"-"!:\FetchDlg_C.bat"
+
+;MTPbkMmsAddressSelect
+"\Epoc32\Release\armv5\urel\MTPbkMmsAddressSelect.dll"-"!:\sys\bin\MTPbkMmsAddressSelect.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_MMSAddSel.ini"-"!:\TestFramework\TestFramework_MMSAddSel.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestMMSAddSel.cfg"-"!:\TestFramework\tcBCTestMMSAddSel.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestMMSAddSel.cfg"-"!:\TestFramework\UI_BCTestMMSAddSel.cfg"
+"\epoc32\winscw\c\MMSAddSel_c.bat"-"!:\MMSAddSel_c.bat"
+
+;MTPbkMemoryEntryAddItemDlg
+"\Epoc32\Release\armv5\urel\MTPbkMemoryEntryAddItemDlg.dll"-"!:\sys\bin\MTPbkMemoryEntryAddItemDlg.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkAddItemDlg.ini"-"!:\TestFramework\TestFramework_PbkAddItemDlg.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkAddItemDlg.cfg"-"!:\TestFramework\tcBCTestPbkAddItemDlg.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkAddItemDlg.cfg"-"!:\TestFramework\UI_BCTestPbkAddItemDlg.cfg"
+"\epoc32\winscw\c\PbkAddItemDlg_c.bat"-"!:\PbkAddItemDlg_c.bat"
+
+;MTPbkFetchDlgSelection
+"\Epoc32\Release\armv5\urel\MTPbkFetchDlgSelection.dll"-"!:\sys\bin\MTPbkFetchDlgSelection.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_FetchSel.ini"-"!:\TestFramework\TestFramework_FetchSel.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestFetchSel.cfg"-"!:\TestFramework\tcBCTestFetchSel.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestFetchSel.cfg"-"!:\TestFramework\UI_BCTestFetchSel.cfg"
+"\epoc32\winscw\c\FetchSel_c.bat"-"!:\FetchSel_c.bat"
+
+;MTPbkFetchCallbacks
+"\Epoc32\Release\armv5\urel\MTPbkFetchCallbacks.dll"-"!:\sys\bin\MTPbkFetchCallbacks.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_FCallback.ini"-"!:\TestFramework\TestFramework_FCallback.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestFCallback.cfg"-"!:\TestFramework\tcBCTestFCallback.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestFCallback.cfg"-"!:\TestFramework\UI_BCTestFCallback.cfg"
+"\epoc32\winscw\c\FCallback_c.bat"-"!:\FCallback_c.bat"
+
+;MTPbkEmailOverSms
+"\Epoc32\Release\armv5\urel\MTPbkEmailOverSms.dll"-"!:\sys\bin\MTPbkEmailOverSms.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_EmailOverSMS.ini"-"!:\TestFramework\TestFramework_EmailOverSMS.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestEmaiOVerSMS.cfg"-"!:\TestFramework\tcBCTestEmaiOVerSMS.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestEmaiOVerSMS.cfg"-"!:\TestFramework\UI_BCTestEmaiOVerSMS.cfg"
+"\epoc32\winscw\c\EmailOVerSMS_c.bat"-"!:\EmailOVerSMS_c.bat"
+
+;MTPbkEmailAddressSelect
+"\Epoc32\Release\armv5\urel\MTPbkEmailAddressSelect.dll"-"!:\sys\bin\MTPbkEmailAddressSelect.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_AddEmailSel.ini"-"!:\TestFramework\TestFramework_AddEmailSel.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestEmailAddSel.cfg"-"!:\TestFramework\tcBCTestEmailAddSel.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestEmailAddSel.cfg"-"!:\TestFramework\UI_BCTestEmailAddSel.cfg"
+"\epoc32\winscw\c\EmailSel_c.bat"-"!:\EmailSel_c.bat"
+
+;MTPbkAddressSelect
+"\Epoc32\Release\armv5\urel\MTPbkAddressSelect.dll"-"!:\sys\bin\MTPbkAddressSelect.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkAddSel.ini"-"!:\TestFramework\TestFramework_PbkAddSel.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkAddSel.cfg"-"!:\TestFramework\tcBCTestPbkAddSel.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkAddSel.cfg"-"!:\TestFramework\UI_BCTestPbkAddSel.cfg"
+"\epoc32\data\z\resource\PbkAddressSelect.rsc"-"!:\resource\PbkAddressSelect.rsc"
+"\epoc32\winscw\c\PbkAddSel_c.bat"-"!:\PbkAddSel_c.bat"
+
+
+;MTPbkPhoneNumberSelectBase
+"\Epoc32\Release\armv5\urel\MTPbkPhoneNumberSelectBase.dll"-"!:\sys\bin\MTPbkPhoneNumberSelectBase.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_NumSel.ini"-"!:\TestFramework\TestFramework_NumSel.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestNumSel.cfg"-"!:\TestFramework\tcBCTestNumSel.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestNumSel.cfg"-"!:\TestFramework\UI_BCTestNumSel.cfg"
+"\epoc32\data\z\resource\MT_CPbkPhoneNumberSelectBase.rsc"-"!:\resource\MT_CPbkPhoneNumberSelectBase.rsc"
+"\epoc32\winscw\c\NumSel_c.bat"-"!:\NumSel_c.bat"
+
+;MTPbkSelectFieldDlg
+"\Epoc32\Release\armv5\urel\MTPbkSelectFieldDlg.dll"-"!:\sys\bin\MTPbkSelectFieldDlg.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_FieldDlg.ini"-"!:\TestFramework\TestFramework_FieldDlg.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestFieldDlg.cfg"-"!:\TestFramework\tcBCTestFieldDlg.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestFieldDlg.cfg"-"!:\TestFramework\UI_BCTestFieldDlg.cfg"
+"\epoc32\winscw\c\FieldDlg_c.bat"-"!:\FieldDlg_c.bat"
+
+;MTPbkSingleItemFetchDlg
+"\Epoc32\Release\armv5\urel\MTPbkSingleItemFetchDlg.dll"-"!:\sys\bin\MTPbkSingleItemFetchDlg.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_SIFieldDlg.ini"-"!:\TestFramework\TestFramework_SIFieldDlg.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestSIFieldDlg.cfg"-"!:\TestFramework\tcBCTestSIFieldDlg.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestSIFieldDlg.cfg"-"!:\TestFramework\UI_BCTestSIFieldDlg.cfg"
+"\epoc32\winscw\c\SIFieldDlg_c.bat"-"!:\SIFieldDlg_c.bat"

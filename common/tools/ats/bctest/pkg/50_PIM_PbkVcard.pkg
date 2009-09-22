@@ -1,0 +1,45 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+&EN
+
+; Installation header
+; Only one component name as we only support English
+; UID is the main app's UID
+
+#{"PIM_VCardImportExport"},(0x20015B12),1,0,0,TYPE=SA
+[0x101F7961],3,*,*,{"Series60ProductID"}
+
+; Non-localised vendor name
+:"Nokia Corporation"
+
+; Localised vendor names
+%{"Nokia Corporation"}
+
+; Files to install and to where
+"\Epoc32\Release\armv5\urel\BCTestPbkVcardImportExport.dll"-"!:\sys\bin\BCTestPbkVcardImportExport.dll"
+"\epoc32\data\C\bcardtest2\Basic02.src"				-"!:\bcardtest2\Basic02.src"
+"\epoc32\data\C\bcardtest2\basic03.vcf"				-"!:\bcardtest2\basic03.vcf"
+"\epoc32\data\C\bcardtest2\BasicCC01.ccf"				-"!:\bcardtest2\BasicCC01.ccf"
+"\epoc32\data\C\bcardtest2\BasicCC02.ccf"				-"!:\bcardtest2\BasicCC02.ccf"
+"\epoc32\data\C\bcardtest2\BasicCompactMaxSize.ccf"		-"!:\bcardtest2\BasicCompactMaxSize.ccf"
+"\epoc32\data\C\bcardtest2\BasicCompactNoBusiness.ccf"		-"!:\bcardtest2\BasicCompactNoBusiness.ccf"
+"\epoc32\data\C\bcardtest2\dummy.vcf"				-"!:\bcardtest2\dummy.vcf"
+"\epoc32\data\C\bcardtest2\JohnPic.GIF"				-"!:\bcardtest2\JohnPic.GIF"
+"\epoc32\data\C\bcardtest2\Picture2.vcf"				-"!:\bcardtest2\Picture2.vcf"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkVcardImportExport.ini"-"!:\TestFramework\TestFramework_PbkVcardImportExport.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkVcardImportExport.cfg"-"!:\TestFramework\tcBCTestPbkVcardImportExport.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkVcardImportExport.cfg"-"!:\TestFramework\UI_BCTestPbkVcardImportExport.cfg"
+"\epoc32\winscw\c\pbkvcard_c.bat"-"!:\pbkvcard.bat"

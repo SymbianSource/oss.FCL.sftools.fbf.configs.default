@@ -1,0 +1,119 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+&EN
+
+; Installation header
+; Only one component name as we only support English
+; UID is the main app's UID
+
+#{"MTPbkDataManagement"},(0x20025A32),1,0,0,TYPE=SA
+[0x101F7961],3,*,*,{"Series60ProductID"}
+
+; Non-localised vendor name
+:"Nokia Corporation"
+
+; Localised vendor names
+%{"Nokia Corporation"}
+
+; Files to install and to where
+
+"\Epoc32\winscw\c\testframework\TestFramework_PBKDMngt.ini"-"!:\TestFramework\TestFramework_PBKDMngt.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkDataMngt.cfg"-"!:\TestFramework\tcBCTestPbkDataMngt.cfg"
+"\epoc32\winscw\c\PBKDMngt_c.bat"-"!:\PBKDMngt.bat"
+
+;MTRPbkViewResourceFile
+"\Epoc32\Release\armv5\urel\MTRPbkViewResourceFile.dll"-"!:\sys\bin\MTRPbkViewResourceFile.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_Pbkvrsc.ini"-"!:\TestFramework\TestFramework_Pbkvrsc.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkvrsc.cfg"-"!:\TestFramework\tcBCTestPbkvrsc.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkvrsc.cfg"-"!:\TestFramework\UI_BCTestPbkvrsc.cfg"
+"\epoc32\winscw\c\Pbkvrsc_c.bat"-"!:\Pbkvrsc.bat"
+
+;MTPbkIdleFinder
+"\Epoc32\Release\armv5\urel\MTPbkIdleFinder.dll"-"!:\sys\bin\MTPbkIdleFinder.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkIFinder.ini"-"!:\TestFramework\TestFramework_PbkIFinder.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkIFinder.cfg"-"!:\TestFramework\tcBCTestPbkIFinder.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkIFinder.cfg"-"!:\TestFramework\UI_BCTestPbkIFinder.cfg"
+"\epoc32\winscw\c\PbkIFinder_c.bat"-"!:\PbkIFinder.bat"
+
+;MTPbkIconInfo
+"\Epoc32\Release\armv5\urel\MTPbkIconInfo.dll"-"!:\sys\bin\MTPbkIconInfo.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkInfo.ini"-"!:\TestFramework\TestFramework_PbkInfo.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkInfo.cfg"-"!:\TestFramework\tcBCTestPbkInfo.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkInfo.cfg"-"!:\TestFramework\UI_BCTestPbkInfo.cfg"
+"\epoc32\winscw\c\PbkInfo_c.bat"-"!:\PbkInfo.bat"
+
+;MTPbkIconId
+"\Epoc32\Release\armv5\urel\MTPbkIconId.dll"-"!:\sys\bin\MTPbkIconId.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkIcon.ini"-"!:\TestFramework\TestFramework_PbkIcon.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkIcon.cfg"-"!:\TestFramework\tcBCTestPbkIcon.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkIcon.cfg"-"!:\TestFramework\UI_BCTestPbkIcon.cfg"
+"\epoc32\winscw\c\PbkIcon_c.bat"-"!:\PbkIcon.bat"
+
+;MTPbkFields
+"\Epoc32\Release\armv5\urel\MTPbkFields.dll"-"!:\sys\bin\MTPbkFields.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkFeilds.ini"-"!:\TestFramework\TestFramework_PbkFeilds.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkFeilds.cfg"-"!:\TestFramework\tcBCTestPbkFeilds.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkFeilds.cfg"-"!:\TestFramework\UI_BCTestPbkFeilds.cfg"
+"\epoc32\winscw\c\PbkFeilds_c.bat"-"!:\PbkFeilds.bat"
+
+;MTPbkFieldData
+"\Epoc32\Release\armv5\urel\MTPbkFieldData.dll"-"!:\sys\bin\MTPbkFieldData.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkFData.ini"-"!:\TestFramework\TestFramework_PbkFData.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkFData.cfg"-"!:\TestFramework\tcBCTestPbkFData.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkFData.cfg"-"!:\TestFramework\UI_BCTestPbkFData.cfg"
+"\epoc32\winscw\c\PbkFData_c.bat"-"!:\PbkFData.bat"
+
+;MTPbkContactIter
+"\Epoc32\Release\armv5\urel\MTPbkContactIter.dll"-"!:\sys\bin\MTPbkContactIter.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkIter.ini"-"!:\TestFramework\TestFramework_PbkIter.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkIter.cfg"-"!:\TestFramework\tcBCTestPbkIter.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkIter.cfg"-"!:\TestFramework\UI_BCTestPbkIter.cfg"
+"\epoc32\winscw\c\PbkIter_c.bat"-"!:\PbkIter.bat"
+
+;MTPbkContactItemField
+"\Epoc32\Release\armv5\urel\MTPbkContactItemField.dll"-"!:\sys\bin\MTPbkContactItemField.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkCIF.ini"-"!:\TestFramework\TestFramework_PbkCIF.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkCIF.cfg"-"!:\TestFramework\tcBCTestPbkCIF.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkCIF.cfg"-"!:\TestFramework\UI_BCTestPbkCIF.cfg"
+"\epoc32\winscw\c\PbkCIF_c.bat"-"!:\PbkCIF.bat"
+
+;MTPbkContactEngine
+"\Epoc32\Release\armv5\urel\MTPbkContactEngine.dll"-"!:\sys\bin\MTPbkContactEngine.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_CEngine.ini"-"!:\TestFramework\TestFramework_CEngine.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestCEngine.cfg"-"!:\TestFramework\tcBCTestCEngine.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestCEngine.cfg"-"!:\TestFramework\UI_BCTestCEngine.cfg"
+"\epoc32\winscw\c\CEngine_c.bat"-"!:\CEngine.bat"
+
+;MTPbkFieldsInfo
+"\Epoc32\Release\armv5\urel\MTPbkFieldsInfo.dll"-"!:\sys\bin\MTPbkFieldsInfo.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkFInfo.ini"-"!:\TestFramework\TestFramework_PbkFInfo.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkFInfo.cfg"-"!:\TestFramework\tcBCTestPbkFInfo.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkFInfo.cfg"-"!:\TestFramework\UI_BCTestPbkFInfo.cfg"
+"\epoc32\winscw\c\PbkFInfo_c.bat"-"!:\PbkFInfo.bat"
+
+;MTPbkContactItem
+"\Epoc32\Release\armv5\urel\MTPbkContactItem.dll"-"!:\sys\bin\MTPbkContactItem.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkCItem.ini"-"!:\TestFramework\TestFramework_PbkCItem.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkCItem.cfg"-"!:\TestFramework\tcBCTestPbkCItem.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkCItem.cfg"-"!:\TestFramework\UI_BCTestPbkCItem.cfg"
+"\epoc32\winscw\c\PbkCItem_c.bat"-"!:\PbkCItem.bat"
+
+;MTPbkContactChangeNotifier
+"\Epoc32\Release\armv5\urel\MTPbkContactChangeNotifier.dll"-"!:\sys\bin\MTPbkContactChangeNotifier.dll"
+"\Epoc32\winscw\c\testframework\TestFramework_PbkNotifier.ini"-"!:\TestFramework\TestFramework_PbkNotifier.ini"
+"\Epoc32\winscw\c\testframework\tcBCTestPbkNotifier.cfg"-"!:\TestFramework\tcBCTestPbkNotifier.cfg"
+"\Epoc32\winscw\c\testframework\UI_BCTestPbkPbkNotifier.cfg"-"!:\TestFramework\UI_BCTestPbkPbkNotifier.cfg"
+"\epoc32\winscw\c\PbkNotifier_c.bat"-"!:\PbkNotifier.bat"
