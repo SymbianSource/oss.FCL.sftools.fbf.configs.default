@@ -1542,16 +1542,45 @@
         </session>
 	</plan>
 	<files>
-        <file>graphicssvs/winscw_udeb/t_graphicswservapi.exe</file>
-        <file>graphicssvs/winscw_udeb/t_animplugin.dll</file>
+		<file>graphicssvs/winscw_udeb/twsgraphicshare.exe</file>
         <file>graphicssvs/winscw_udeb/twsgraphicunshare.exe</file>
-        <file>graphicssvs/graphics/wserv/general/test_rwssprite_bitmap.mbm</file>
-        <file>graphicssvs/graphics/wserv/general/test_alpha.mbm</file>
-        <file>graphicssvs/graphics/wserv/general/test_board.mbm</file>
-        <file>graphicssvs/graphics/wserv/general/test_mask.mbm</file>
-        <file>graphicssvs/graphics/wserv/general/wsgraphicbitmapanimation.mbm</file>
-        <file>graphicssvs/graphics/wserv/general/testfontws.gdr</file>
-        <file>graphicssvs/graphics/general/t_graphics.ini</file>
+        <file>graphicssvs/winscw_udeb/t_animplugin.dll</file>
+        <file>graphicssvs/winscw_udeb/t_fbservapi.exe</file>
+        <file>graphicssvs/winscw_udeb/t_graphicsbitgdiapi.exe</file>
+        <file>graphicssvs/winscw_udeb/t_graphicsfntstoreapi.exe</file>
+		<file>graphicssvs/winscw_udeb/t_graphicswservapi.exe</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi-2.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi-3.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgcfont-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgcfont-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitmapdevice-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitmapdevice-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsdevice-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsdevice-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsscreendevice-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsscreendevice-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-polygonfiller-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-bitgdi-polygonfiller-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-bitmaputil-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-bitmaputil-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbsbitmap-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbsbitmap-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbscolor256bitmaputil-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbscolor256bitmaputil-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbsfont-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbsfont-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbssession-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbssession-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-bitmapfont-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-bitmapfont-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-fntstore-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-fntstore-publicapi.ini</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-openfontrasterizercontext-publicapi.script</file>
+        <file>graphicssvs/graphics/general/graphics-fntstore-openfontrasterizercontext-publicapi.ini</file>
         <file>graphicssvs/graphics/general/graphics-wserv-anim-publicapi.script</file>
         <file>graphicssvs/graphics/general/graphics-wserv-anim-publicapi.ini</file>
         <file>graphicssvs/graphics/general/graphics-wserv-animdll-publicapi.script</file>
@@ -1600,25 +1629,16 @@
         <file>graphicssvs/graphics/general/graphics-wserv-wsscreendevice-publicapi.ini</file>        
         <file>graphicssvs/graphics/general/graphics-wserv-wssprite-publicapi.script</file>
         <file>graphicssvs/graphics/general/graphics-wserv-wssprite-publicapi.ini</file>
-        <file>graphicssvs/winscw_udeb/t_graphicsbitgdiapi.exe</file>
+        <file>graphicssvs/graphics/general/t_graphics.ini</file>
+        <file>graphicssvs/graphics/general/t_graphics.tcs</file>
+        <file>graphicssvs/graphics/general/t_graphics_panic.tcs</file>
         <file>graphicssvs/graphics/bitgdi/general/test_rwssprite_bitmap.mbm</file>
         <file>graphicssvs/graphics/bitgdi/general/testfontws.gdr</file>
+        <file>graphicssvs/graphics/fntstore/general/bad_entrysel</file>
+        <file>graphicssvs/graphics/fntstore/general/dummy</file>
+        <file>graphicssvs/graphics/fntstore/general/dummy_2</file>
+        <file>graphicssvs/graphics/fntstore/general/testfontws.gdr</file>
         <file>graphicssvs/graphics/t_fbservapi/general/test_bitmap_rom.rbm</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi-2.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgc-publicapi-3.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgcfont-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitgcfont-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitmapdevice-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsbitmapdevice-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsdevice-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsdevice-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsscreendevice-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-fbsscreendevice-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-polygonfiller-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-bitgdi-polygonfiller-publicapi.ini</file>
-        <file>graphicssvs/winscw_udeb/t_fbservapi.exe</file>
         <file>graphicssvs/graphics/t_fbservapi/general/empty_file.txt</file>
         <file>graphicssvs/graphics/t_fbservapi/general/scaniline_10bytes.txt</file>
         <file>graphicssvs/graphics/t_fbservapi/general/testfontfb.gdr</file>
@@ -1626,28 +1646,11 @@
         <file>graphicssvs/graphics/t_fbservapi/general/test_bitmap_24bit_400x300.mbm</file>
         <file>graphicssvs/graphics/t_fbservapi/general/test_bitmap_32x8.mbm</file>
         <file>graphicssvs/graphics/t_fbservapi/general/test_bitmap_offset8.mbm</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-bitmaputil-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-bitmaputil-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbsbitmap-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbsbitmap-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbscolor256bitmaputil-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbscolor256bitmaputil-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbsfont-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbsfont-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbssession-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbssession-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fbserv-fbstypefacestore-publicapi.ini</file>
-        <file>graphicssvs/winscw_udeb/t_graphicsfntstoreapi.exe</file>
-        <file>graphicssvs/graphics/fntstore/general/bad_entrysel</file>
-        <file>graphicssvs/graphics/fntstore/general/dummy</file>
-        <file>graphicssvs/graphics/fntstore/general/dummy_2</file>
-        <file>graphicssvs/graphics/fntstore/general/testfontws.gdr</file>
-        <file>graphicssvs/graphics/general/graphics-fntstore-bitmapfont-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fntstore-bitmapfont-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fntstore-fntstore-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fntstore-fntstore-publicapi.ini</file>
-        <file>graphicssvs/graphics/general/graphics-fntstore-openfontrasterizercontext-publicapi.script</file>
-        <file>graphicssvs/graphics/general/graphics-fntstore-openfontrasterizercontext-publicapi.ini</file>
+        <file>graphicssvs/graphics/wserv/general/test_rwssprite_bitmap.mbm</file>
+        <file>graphicssvs/graphics/wserv/general/test_alpha.mbm</file>
+        <file>graphicssvs/graphics/wserv/general/test_board.mbm</file>
+        <file>graphicssvs/graphics/wserv/general/test_mask.mbm</file>
+        <file>graphicssvs/graphics/wserv/general/wsgraphicbitmapanimation.mbm</file>
+        <file>graphicssvs/graphics/wserv/general/testfontws.gdr</file>
     </files>
 </test>
