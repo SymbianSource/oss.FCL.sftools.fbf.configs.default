@@ -119,5 +119,29 @@
 			<set name="grace.filters" value="emu"/>
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />
 		</config>
+		<!-- "Null" tools entry, which matches no files, but does populate the release_metadata.xml -->
+		<config name="tools">
+			<set name="name" value="tools_epoc"/>
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+			<set name="grace.filters" value="tools"/>
+			<set name="include" value="*"/>
+			<set name="exclude" value="**"/>
+		</config>
+		<!-- "Null" binaries entries, which match no files, but do populate the release_metadata.xml -->
+		<config name="bin-just-metadata" abstract="true">
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+			<set name="grace.filters" value="emu"/>
+			<set name="include" value="*"/>
+			<set name="exclude" value="**"/>
+			<config name="core">
+				<set name="name" value="binaries_epoc"/>
+			</config>
+			<config name="armv5">
+				<set name="name" value="binaries_armv5"/>
+			</config>
+			<config name="winscw">
+				<set name="name" value="binaries_winscw"/>
+			</config>
+		</config>
 	</config>
 </build>

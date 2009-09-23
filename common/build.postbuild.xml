@@ -229,6 +229,11 @@
                 <arg value="epoc32\release\armv5\"/>
             </exec>
         </parallel>
+        <!-- Generate release_metadata entries for the above zips -->
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="bin-just-metadata" />
+        </antcall>
     </target>
 
     <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
@@ -239,7 +244,6 @@
     </target>
 
     <target name="sf-package-tools" depends="sf-preprocess-package-config">
-        <echo message="Packaging epoc32 tools - Temporary method"/>
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
@@ -247,6 +251,10 @@
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
             <arg value="epoc32/tools"/>
         </exec>
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="tools" />
+        </antcall>
     </target>
     
     <target name="sf-package-validate">
