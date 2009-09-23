@@ -493,13 +493,11 @@
             <arg value="--pdkloc2=${build.log.dir}"/>
         </exec>
         <!-- Mercurial comparison -->
-        <echo file="${sf.releasenotes.wiki.txt}" append="true">== Mercurial Comparison ==
-
-</echo>
+        <echo file="${sf.releasenotes.wiki.txt}" append="true">== Mercurial Comparison ==${line.separator}${line.separator}</echo>
         <if>
             <isset property="sf.previous.pdk.tag"/>
             <then>
-		    <echo file="${sf.releasenotes.wiki.txt}" append="true">The Mercurial changes from Nokia were delivered as a bulk update based on '''XXXXXXXXXXXXXXXXXXXXXX'''.${line.separator}${line.separator}List of the Mercurial changes (files added/removed/modified) between ${sf.previous.pdk.tag} and PDK '''XXXXX''' - [[Media:XXXX.txt]].${line.separator}${line.separator}A short study of the results concentrating on the added and removed files has identified these significant package changes:${line.separator}${line.separator}</echo>
+                <echo file="${sf.releasenotes.wiki.txt}" append="true">The Mercurial changes from Nokia were delivered as a bulk update based on '''XXXXXXXXXXXXXXXXXXXXXX'''.${line.separator}${line.separator}List of the Mercurial changes (files added/removed/modified) between ${sf.previous.pdk.tag} and PDK '''XXXXX''' - [[Media:XXXX.txt]].${line.separator}${line.separator}A short study of the results concentrating on the added and removed files has identified these significant package changes:${line.separator}${line.separator}</echo>
                 <if>
                     <istrue value="${sf.spec.sourcesync.archive}"/>
                     <then>
