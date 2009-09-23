@@ -487,7 +487,11 @@
         <property name="sf.releasenotes.wiki.txt" value="${build.log.dir}/releaseNotes.wiki.txt"/>
         <delete file="${sf.releasenotes.wiki.txt}"/>
         <!-- FCL usage -->
-        <!-- TODO -->
+        <exec executable="perl" dir="${build.drive}/utilities/releaseAutomation/" output="${build.log.dir}/fcls4releasenotes.log">
+            <arg value="${build.drive}/utilities/releaseAutomation/fcls4releasenotes.pl"/>
+            <arg value="--pdkname1=${sf.previous.pdk.tag}"/>
+            <arg value="--pdkloc2=${build.log.dir}"/>
+        </exec>
         <!-- Mercurial comparison -->
         <echo file="${sf.releasenotes.wiki.txt}" append="true">== Mercurial Comparison ==
 
@@ -513,7 +517,7 @@ A short study of the results concentrating on the added and removed files has id
                         <exec executable="perl" dir="${build.drive}/" output="${sf.releasenotes.wiki.txt}" append="true">
                             <arg value="${build.drive}/utilities/releaseAutomation/mercurialComparison.pl"/>
                             <arg value="${build.log.dir}/BOM/build-info.xml"/>
-			    <arg value="${sf.previous.pdk.tag}"/>
+                            <arg value="${sf.previous.pdk.tag}"/>
                             <arg value="${build.log.dir}/mercurialComparison.tsv"/>
                         </exec>
                     </else>
