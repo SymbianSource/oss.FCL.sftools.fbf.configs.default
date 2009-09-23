@@ -1,0 +1,25 @@
+//! @file
+//! @SYMTestSuiteName		PBASE-F32-RFS-PublicApi
+//! @SYMScriptTestEnvironment	This test script requires a basic ROM.
+/////////////////////////////////////////////////////////////////////
+// PBASE-F32-RFS-PublicApi.script
+//
+// Tests all public elements of the RFs class
+// as a means of confidence that the APIs work as expected.
+// 
+// The purpose is to provide a regression test suite of PublishedAll APIs for RFs.
+// Negative testing is performed to confirm that correct errors are returned when incorrect parameters are given.
+// The tests are fully automated.
+/////////////////////////////////////////////////////////////////////
+
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-mounts-publicapi-any.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-drives-publicapi-any.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-files-publicapi-any.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-misc-publicapi-any.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-publicapi-os.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-publicapi-rom.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-drives-publicapi-ram.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-files-publicapi-ram.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-misc-publicapi-ram.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-mounts-publicapi-ram.script
+RUN_SCRIPT	${SYSDRIVE}\base\pbase-f32-rfs-drives-publicapi-rem.script
