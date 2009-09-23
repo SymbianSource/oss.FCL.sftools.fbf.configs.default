@@ -185,12 +185,9 @@
         </parallel>
         
         <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
-        <property name="temp.md5.zip" value="${env.TEMP}/MD5_${sf.spec.job.name}_${build.number}.zip"/>
-        <echo message="INFO Packaging MD5s"/>
-        <zip destfile="${temp.md5.zip}">
+        <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
-        <move file="${temp.md5.zip}" todir="${build.log.dir}" failonerror="false"/>
     </target>    
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
