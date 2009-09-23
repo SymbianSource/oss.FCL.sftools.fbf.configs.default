@@ -624,7 +624,7 @@
         </antcall> 
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
             <param name="build.system" value="${sf.spec.build.system}" />
-            <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+            <param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
             <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
             <param name="build.id" value ="sbs_check"/>
             <reference refid="sbs.check.main.var" torefid="sbs.var" />
