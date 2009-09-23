@@ -1,0 +1,76 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+
+; Languages - 
+&EN
+
+; Installation header
+; UID is the app's UID
+#{"symbian_graphics"},(0x20003720),1,0,0
+
+;%{"Vendor-EN"}
+;:"Symbian"
+
+; Localised Vendor name
+%{"Nokia"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports S60 3rd Edition
+[0x101F7961], 3, *, *, {"Series60ProductID"}
+
+"\Epoc32\release\armv5\urel\T_FBServAPI.exe"-"!:\sys\bin\T_FBServAPI.exe"
+"\Epoc32\data\z\graphics\t_graphics.ini"-"!:\graphics\t_graphics.ini"
+"\Epoc32\data\z\graphics\graphics.bat"-"!:\graphics\graphics.bat"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-BitmapUtil-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-BitmapUtil-PublicApi.script"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsBitmap-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-FbsBitmap-PublicApi.script"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsColor256BitmapUtil-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-FbsColor256BitmapUtil-PublicApi.script"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsFont-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-FbsFont-PublicApi.script"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsSession-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-FbsSession-PublicApi.script"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsTypefaceStore-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-FbsTypefaceStore-PublicApi.script"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-PublicApi.script"-"!:\graphics\GRAPHICS-FBSERV-PublicApi.script"
+
+;"\Epoc32\data\z\graphics\GRAPHICS-fbserv-bitmaputil-publicapi.tcs"-"!:\graphics\graphics-fbserv-bitmaputil-publicapi.tcs"
+;"\Epoc32\data\z\graphics\GRAPHICS-fbserv-fbsbitmap-publicapi.tcs"-"!:\graphics\graphics-fbserv-fbsbitmap-publicapi.tcs"
+;"\Epoc32\data\z\graphics\GRAPHICS-fbserv-fbscolor256bitmaputil-publicapi.tcs"-"!:\graphics\graphics-fbserv-fbscolor256bitmaputil-publicapi.tcs"
+;"\Epoc32\data\z\graphics\GRAPHICS-fbserv-fbsfont-publicapi.tcs"-"!:\graphics\graphics-fbserv-fbsfont-publicapi.tcs"
+;"\Epoc32\data\z\graphics\GRAPHICS-fbserv-fbssession-publicapi.tcs"-"!:\graphics\graphics-fbserv-fbssession-publicapi.tcs"
+;"\Epoc32\data\z\graphics\GRAPHICS-fbserv-fbstypefacestore-publicapi.tcs"-"!:\graphics\graphics-fbserv-fbstypefacestore-publicapi.tcs"
+"\Epoc32\data\z\graphics\GRAPHICS-fbserv-publicapi.tcs"-"!:\graphics\graphics-fbserv-publicapi.tcs"
+
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-BitmapUtil-PublicApi.ini"-"!:\graphics\GRAPHICS-FBSERV-BitmapUtil-PublicApi.ini"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsBitmap-PublicApi.ini"-"!:\graphics\GRAPHICS-FBSERV-FbsBitmap-PublicApi.ini"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsColor256BitmapUtil-PublicApi.ini"-"!:\graphics\GRAPHICS-FBSERV-FbsColor256BitmapUtil-PublicApi.ini"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsFont-PublicApi.ini"-"!:\graphics\GRAPHICS-FBSERV-FbsFont-PublicApi.ini"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsSession-PublicApi.ini"-"!:\graphics\GRAPHICS-FBSERV-FbsSession-PublicApi.ini"
+"\Epoc32\data\z\graphics\GRAPHICS-FBSERV-FbsTypefaceStore-PublicApi.ini"-"!:\graphics\GRAPHICS-FBSERV-FbsTypefaceStore-PublicApi.ini"
+
+"\Epoc32\data\z\graphics\t_fbservapi\empty_file.txt"-"!:\graphics\t_fbservapi\empty_file.txt"
+"\Epoc32\data\z\graphics\t_fbservapi\testfontfb.gdr"-"!:\graphics\t_fbservapi\testfontfb.gdr"
+"\Epoc32\data\z\graphics\t_fbservapi\test_bitmap.mbm"-"!:\graphics\t_fbservapi\test_bitmap.mbm"
+"\Epoc32\data\z\graphics\t_fbservapi\test_bitmap_offset8.mbm"-"!:\graphics\t_fbservapi\test_bitmap_offset8.mbm"
+"\Epoc32\data\z\graphics\t_fbservapi\scaniline_10bytes.txt"-"!:\graphics\t_fbservapi\scaniline_10bytes.txt"
+"\Epoc32\data\z\graphics\t_fbservapi\test_bitmap_24bit_400x300.mbm"-"!:\graphics\t_fbservapi\test_bitmap_24bit_400x300.mbm"
+"\Epoc32\data\z\graphics\t_fbservapi\test_bitmap_32x8.mbm"-"!:\graphics\t_fbservapi\test_bitmap_32x8.mbm"
+"\Epoc32\data\z\graphics\t_fbservapi\test_bitmap_rom.rbm"-"!:\graphics\t_fbservapi\test_bitmap_rom.rbm"
+
+
+; Required files
+; None
+
+; Component .sis files
+; None
