@@ -21,7 +21,8 @@ use File::Copy;
 use File::Path;
 
 unlink "multimediatest.zip";
-##rmtree "temp";
+rmtree "temp" or die "failed : $!";
+
 mkpath "temp/multimediatest/general/multimedia/t_imagedecoder";
 mkpath "temp/multimediatest/general/multimedia/t_imageencoder";
 mkpath "temp/multimediatest/general/multimedia/t_mdaaudioconvertutility";

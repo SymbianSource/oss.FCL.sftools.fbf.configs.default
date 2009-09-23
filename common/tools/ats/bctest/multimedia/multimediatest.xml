@@ -8,7 +8,6 @@
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="GENERIC" />
-            <property name="NAME" value="emulator_udeb" />
         </device>
 	</target>
 	<plan id="0.54" name="MultimediaSVSTests WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
@@ -1221,8 +1220,6 @@
 		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/explode.au</file>
 		<file>multimediatest/general/multimedia/mm-mmf-aclnt-rcrdr-publicapi.script</file>
 		<file>multimediatest/general/multimedia/mm-mmf-aclnt-rcrdr-publicapi.ini</file>
-		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/pcm16stereo8khz.wav</file>
-		<file>multimediatest/general/multimedia/t_mdaaudioplayerutility/corrupted.wav</file>
 		<file>multimediatest/general/multimedia/mm-mmf-aclnt-tone-publicapi.script</file>
 		<file>multimediatest/general/multimedia/mm-mmf-aclnt-tone-publicapi.ini</file>
 		<file>multimediatest/general/multimedia/t_audiotoneutility/sequence1.sqn</file>
