@@ -44,7 +44,6 @@
 ;"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi.tcs"-"!:\base\PBASE-F32-RFS-PublicApi.tcs"
 
 "\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-ANY.script"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-ANY.script"
-"\Epoc32\data\z\base\t_base.tcs"-"!:\base\t_base.tcs"
 ;"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-ANY.tcs"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-ANY.tcs"
 "\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.script"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.script"
 ;"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.tcs"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.tcs"
