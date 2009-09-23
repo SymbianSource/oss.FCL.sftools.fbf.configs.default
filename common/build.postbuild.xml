@@ -526,15 +526,12 @@ A short study of the results concentrating on the added and removed files has id
         <fixcrlf file="${sf.releasenotes.wiki.txt}"/>
     </target>
 
-    <!-- package all logs into zipfile before publish -->
+    <!-- package all logs into zipfile for publishing -->
     <target name="sf-zip-logs">
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>
-                <property name="temp.log.dir" value="${env.TEMP}/${build.id}_output_logs"/>
-                <echo message="Zip log requested, zipping logs..."/>
-                <mkdir dir="${temp.log.dir}"/>
-                <zip destfile="${temp.log.dir}/build_logs.zip" basedir="${build.drive}"> 
+                <zip destfile="${build.output.dir}/zips/release/build_logs.zip" basedir="${build.drive}"> 
                     <include name="output/logs/**"/>
                     <exclude name="output/logs/BOM/**"/>
                     <exclude name="output/logs/deliverables/**"/>
@@ -542,16 +539,13 @@ A short study of the results concentrating on the added and removed files has id
                 </zip>
                 <!-- workaround for the time when when 'sf-run-analysis-raptor' has not been run -->
                 <mkdir dir="${build.drive}/output/logs/releaseables"/> 
-                <zip destfile="${temp.log.dir}/build_BOM.zip">
+                <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
                     <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
                     <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
                 </zip>
-                <move todir="${build.log.dir}">
-                    <fileset dir="${temp.log.dir}"/>
-                </move>
             </then>
         </if>
-    </target>    
+    </target>
     
     <target name="sf-publish" depends="prep-publish">
         <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">
