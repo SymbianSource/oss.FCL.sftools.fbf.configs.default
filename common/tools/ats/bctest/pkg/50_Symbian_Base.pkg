@@ -1,0 +1,103 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+
+; Languages -
+&EN
+
+; Installation header
+; UID is the app's UID
+#{"Symbian_Base"},(0x20000F7D),1,0,0
+
+;%{"Vendor-EN"}
+;:"Symbian"
+
+; Localised Vendor name
+%{"Nokia"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports S60 3rd Edition
+[0x101F7961], 3, *, *, {"Series60ProductID"}
+
+"\Epoc32\release\armv5\urel\t_sfsrv.exe"-"!:\sys\bin\t_sfsrv.exe"
+"\Epoc32\release\armv5\urel\t_prompt.exe"-"!:\sys\bin\t_prompt.exe"
+"\Epoc32\data\z\base\base.bat"-"!:\base\base.bat"
+"\Epoc32\release\armv5\urel\T_TESTFSY1.fsy"-"!:\sys\bin\T_TESTFSY1.fsy"
+"\Epoc32\release\armv5\urel\T_TestFXT.fxt"-"!:\sys\bin\T_TestFXT.fxt"
+
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi.script"-"!:\base\PBASE-F32-RFS-PublicApi.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi.tcs"-"!:\base\PBASE-F32-RFS-PublicApi.tcs"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-ANY.script"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-ANY.script"
+"\Epoc32\data\z\base\t_base.tcs"-"!:\base\t_base.tcs"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-ANY.tcs"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-ANY.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.script"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.tcs"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Files-PublicApi-ANY.script"-"!:\base\PBASE-F32-RFS-Files-PublicApi-ANY.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Files-PublicApi-ANY.tcs"-"!:\base\PBASE-F32-RFS-Files-PublicApi-ANY.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Misc-PublicApi-ANY.script"-"!:\base\PBASE-F32-RFS-Misc-PublicApi-ANY.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Misc-PublicApi-ANY.tcs"-"!:\base\PBASE-F32-RFS-Misc-PublicApi-ANY.tcs"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi-OS.script"-"!:\base\PBASE-F32-RFS-PublicApi-OS.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi-OS.tcs"-"!:\base\PBASE-F32-RFS-PublicApi-OS.tcs"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-RAM.script"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-RAM.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-RAM.tcs"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-RAM.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Files-PublicApi-RAM.script"-"!:\base\PBASE-F32-RFS-Files-PublicApi-RAM.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Files-PublicApi-RAM.tcs"-"!:\base\PBASE-F32-RFS-Files-PublicApi-RAM.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Misc-PublicApi-RAM.script"-"!:\base\PBASE-F32-RFS-Misc-PublicApi-RAM.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Misc-PublicApi-RAM.tcs"-"!:\base\PBASE-F32-RFS-Misc-PublicApi-RAM.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-RAM.script"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-RAM.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-RAM.tcs"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-RAM.tcs"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi-ROM.script"-"!:\base\PBASE-F32-RFS-PublicApi-ROM.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi-ROM.tcs"-"!:\base\PBASE-F32-RFS-PublicApi-ROM.tcs"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-REM.script"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-REM.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-REM.tcs"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-REM.tcs"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-REM-manual.script"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-REM-manual.script"
+;"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-REM-manual.tcs"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-REM-manual.tcs"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-ANY.ini"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-ANY.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.ini"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-ANY.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Files-PublicApi-ANY.ini"-"!:\base\PBASE-F32-RFS-Files-PublicApi-ANY.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Misc-PublicApi-ANY.ini"-"!:\base\PBASE-F32-RFS-Misc-PublicApi-ANY.ini"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi-OS.ini"-"!:\base\PBASE-F32-RFS-PublicApi-OS.ini"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-RAM.ini"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-RAM.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Files-PublicApi-RAM.ini"-"!:\base\PBASE-F32-RFS-Files-PublicApi-RAM.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Misc-PublicApi-RAM.ini"-"!:\base\PBASE-F32-RFS-Misc-PublicApi-RAM.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Mounts-PublicApi-RAM.ini"-"!:\base\PBASE-F32-RFS-Mounts-PublicApi-RAM.ini"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-PublicApi-ROM.ini"-"!:\base\PBASE-F32-RFS-PublicApi-ROM.ini"
+
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-REM.ini"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-REM.ini"
+"\Epoc32\data\z\base\PBASE-F32-RFS-Drives-PublicApi-REM-manual.ini"-"!:\base\PBASE-F32-RFS-Drives-PublicApi-REM-manual.ini"
+
+"\Epoc32\data\z\base\armv5\base_f32_env.ini"-"!:\base\base_f32_env.ini"
+
+"\Epoc32\data\z\base\t_sfsrv\test.txt"-"!:\base\t_sfsrv\test.txt"
+"\Epoc32\data\z\base\t_sfsrv\USBLOAD.ZIP"-"!:\base\t_sfsrv\USBLOAD.ZIP"
+
+
+; Required files
+; None
+
+; Component .sis files
+; None
