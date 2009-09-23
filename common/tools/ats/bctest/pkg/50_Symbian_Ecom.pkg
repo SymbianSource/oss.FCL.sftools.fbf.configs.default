@@ -1,0 +1,52 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+
+; Languages - 
+&EN
+
+; Installation header
+; UID is the app's UID
+#{"T_ECOM"},(0x2000371C),1,0,0
+
+;%{"Vendor-EN"}
+;:"Symbian"
+
+; Localised Vendor name
+%{"Nokia"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports S60 3rd Edition
+[0x101F7961], 3, *, *, {"Series60ProductID"}
+
+"\epoc32\RELEASE\armv5\urel\T_ECOM.exe"-"!:\sys\bin\T_ECOM.exe"
+"\epoc32\data\z\syslibs\t_syslibs.ini"-"!:\syslibs\t_syslibs.ini"
+"\epoc32\data\z\ecom.bat"-"!:\ecom\ecom.bat"
+"\epoc32\data\z\ecom\SYSLIB-ECOM-PublicAPI.script"-"!:\ecom\SYSLIB-ECOM-PublicAPI.script"
+"\epoc32\data\z\ecom\SYSLIB-ECOM-PublicAPI.tcs"-"!:\ecom\SYSLIB-ECOM-PublicAPI.tcs"
+"\epoc32\data\z\ecom\SYSLIB-ECOM-PublicAPI.ini"-"!:\ecom\SYSLIB-ECOM-PublicAPI.ini"
+"\epoc32\RELEASE\armv5\urel\TPCopyFileUtility.exe"-"!:\sys\bin\TPCopyFileUtility.exe"
+"\epoc32\RELEASE\armv5\urel\TPDeleteFileUtility.exe"-"!:\sys\bin\TPDeleteFileUtility.exe"
+"\epoc32\RELEASE\armv5\urel\TestProduct_PlugIn.dll"-"!:\ecom\TestProduct_PlugIn.dll"
+"\epoc32\data\z\ecom\TestProduct_PlugIn.rsc"-"!:\ecom\TestProduct_PlugIn.rsc"
+
+
+; Required files
+; None
+
+; Component .sis files
+; None
