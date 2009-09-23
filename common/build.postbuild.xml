@@ -499,19 +499,11 @@
         <if>
             <isset property="sf.previous.pdk.tag"/>
             <then>
-                <echo file="${sf.releasenotes.wiki.txt}" append="true">The Mercurial changes from Nokia were delivered as a bulk update based on '''XXXXXXXXXXXXXXXXXXXXXX'''.
-
-List of the Mercurial changes (files added/removed/modified) between ${sf.previous.pdk.tag} and PDK '''XXXXX''' - [[Media:XXXX.txt]].
-
-A short study of the results concentrating on the added and removed files has identified these significant package changes:
-
-</echo>
+		    <echo file="${sf.releasenotes.wiki.txt}" append="true">The Mercurial changes from Nokia were delivered as a bulk update based on '''XXXXXXXXXXXXXXXXXXXXXX'''.${line.separator}${line.separator}List of the Mercurial changes (files added/removed/modified) between ${sf.previous.pdk.tag} and PDK '''XXXXX''' - [[Media:XXXX.txt]].${line.separator}${line.separator}A short study of the results concentrating on the added and removed files has identified these significant package changes:${line.separator}${line.separator}</echo>
                 <if>
                     <istrue value="${sf.spec.sourcesync.archive}"/>
                     <then>
-                        <echo file="${sf.releasenotes.wiki.txt}" append="true">'''Information cannot be derived as source was synced with archive option'''"
-
-</echo>
+                        <echo file="${sf.releasenotes.wiki.txt}" append="true">'''Information cannot be derived as source was synced with archive option'''"${line.separator}${line.separator}</echo>
                     </then>
                     <else>
                         <exec executable="perl" dir="${build.drive}/" output="${sf.releasenotes.wiki.txt}" append="true">
@@ -524,9 +516,7 @@ A short study of the results concentrating on the added and removed files has id
                 </if>
             </then>
             <else>
-                <echo file="${sf.releasenotes.wiki.txt}" append="true">'''Information cannot be provided as the tag for the previous PDK was not provided to the build'''"
-
-</echo>
+                <echo file="${sf.releasenotes.wiki.txt}" append="true">'''Information cannot be provided as the tag for the previous PDK was not provided to the build'''"${line.separator}${line.separator}</echo>
             </else>
         </if>
         
