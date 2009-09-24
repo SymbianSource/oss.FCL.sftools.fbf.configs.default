@@ -1,0 +1,50 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+
+; Languages - 
+&EN
+
+; Installation header
+; UID is the app's UID
+#{"T_MdaAudioConvertUtility"},(0x20000F74),1,0,0
+
+;%{"Vendor-EN"}
+;:"Symbian"
+
+; Localised Vendor name
+%{"Nokia"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports S60 3rd Edition
+[0x101F7961], 3, *, *, {"Series60ProductID"}
+
+"\Epoc32\release\armv5\urel\T_MdaAudioConvertUtility.exe"-"!:\sys\bin\T_MdaAudioConvertUtility.exe"
+"\Epoc32\data\z\multimedia\tacu.bat"-"!:\multimedia\tacu.bat"
+"\Epoc32\data\z\multimedia\MM-MMF-ACLNT-CNVRT-PublicAPI.script"-"!:\multimedia\MM-MMF-ACLNT-CNVRT-PublicAPI.script"
+"\Epoc32\data\z\multimedia\MM-MMF-ACLNT-CNVRT-PublicAPI.tcs"-"!:\multimedia\MM-MMF-ACLNT-CNVRT-PublicAPI.tcs"
+"\Epoc32\data\z\multimedia\MM-MMF-ACLNT-CNVRT-PublicAPI.ini"-"!:\multimedia\MM-MMF-ACLNT-CNVRT-PublicAPI.ini"
+"\Epoc32\data\z\multimedia\t_mdaaudioconvertutility\note.wav"-"!:\multimedia\t_mdaaudioconvertutility\note.wav"
+"\Epoc32\data\z\multimedia\t_mdaaudioconvertutility\corrupted.wav"-"!:\multimedia\t_mdaaudioconvertutility\corrupted.wav"
+"\Epoc32\data\z\multimedia\t_mdaaudioconvertutility\note.raw"-"!:\multimedia\t_mdaaudioconvertutility\note.raw"
+"\Epoc32\release\armv5\urel\z\multimedia\t_mdaaudioconvertutility\explode.wav"-"!:\multimedia\t_mdaaudioconvertutility\explode.wav"
+
+; Required files
+; None
+
+; Component .sis files
+; None
