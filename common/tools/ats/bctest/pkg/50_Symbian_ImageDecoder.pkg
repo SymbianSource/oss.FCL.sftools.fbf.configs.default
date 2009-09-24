@@ -1,0 +1,86 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+
+; Languages -
+&EN
+
+; Installation header
+; UID is the app's UID
+#{"T_ImageDecoder"},(0x20000F72),1,0,0
+
+;%{"Vendor-EN"}
+;:"Symbian"
+
+; Localised Vendor name
+%{"Nokia"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports S60 3rd Edition
+[0x101F7961], 3, *, *, {"Series60ProductID"}
+
+"\Epoc32\release\armv5\urel\T_ImageDecoder.exe"-"!:\sys\bin\T_ImageDecoder.exe"
+"\Epoc32\data\z\multimedia\dec.bat"-"!:\multimedia\dec.bat"
+"\Epoc32\data\z\multimedia\MM-ICL-DECDE-PublicApi.script"-"!:\multimedia\MM-ICL-DECDE-PublicApi.script"
+"\Epoc32\data\z\multimedia\MM-ICL-DECDE-PublicApi.tcs"-"!:\multimedia\MM-ICL-DECDE-PublicApi.tcs"
+"\Epoc32\data\z\multimedia\MM-ICL-DECDE-PublicApi.ini"-"!:\multimedia\MM-ICL-DECDE-PublicApi.ini"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.apm"-"!:\multimedia\t_imagedecoder\24bit.apm"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bit.bmp"-"!:\multimedia\t_imagedecoder\1bit.bmp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\4bit.bmp"-"!:\multimedia\t_imagedecoder\4bit.bmp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\8bit.bmp"-"!:\multimedia\t_imagedecoder\8bit.bmp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.bmp"-"!:\multimedia\t_imagedecoder\24bit.bmp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.clp"-"!:\multimedia\t_imagedecoder\24bit.clp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bit.gif"-"!:\multimedia\t_imagedecoder\1bit.gif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\2bit.gif"-"!:\multimedia\t_imagedecoder\2bit.gif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\4bit.gif"-"!:\multimedia\t_imagedecoder\4bit.gif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\6bit.gif"-"!:\multimedia\t_imagedecoder\6bit.gif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\8bit.gif"-"!:\multimedia\t_imagedecoder\8bit.gif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\commented.gif"-"!:\multimedia\t_imagedecoder\commented.gif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\4bit.ico"-"!:\multimedia\t_imagedecoder\4bit.ico"
+"\Epoc32\data\z\multimedia\t_imagedecoder\8bit.ico"-"!:\multimedia\t_imagedecoder\8bit.ico"
+"\Epoc32\data\z\multimedia\t_imagedecoder\8bit.jpg"-"!:\multimedia\t_imagedecoder\8bit.jpg"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.jpg"-"!:\multimedia\t_imagedecoder\24bit.jpg"
+"\Epoc32\data\z\multimedia\t_imagedecoder\thumbnail.jpg"-"!:\multimedia\t_imagedecoder\thumbnail.jpg"
+"\Epoc32\data\z\multimedia\t_imagedecoder\commented.jpg"-"!:\multimedia\t_imagedecoder\commented.jpg"
+"\Epoc32\Data\z\multimedia\t_imagedecoder\dec1bit.mbm"-"!:\multimedia\t_imagedecoder\dec1bit.mbm"
+"\Epoc32\Data\z\multimedia\t_imagedecoder\dec2bit.mbm"-"!:\multimedia\t_imagedecoder\dec2bit.mbm"
+"\Epoc32\Data\z\multimedia\t_imagedecoder\dec4bit.mbm"-"!:\multimedia\t_imagedecoder\dec4bit.mbm"
+"\Epoc32\Data\z\multimedia\t_imagedecoder\dec8bit.mbm"-"!:\multimedia\t_imagedecoder\dec8bit.mbm"
+"\Epoc32\Data\z\multimedia\t_imagedecoder\dec16bit.mbm"-"!:\multimedia\t_imagedecoder\dec16bit.mbm"
+"\Epoc32\Data\z\multimedia\t_imagedecoder\dec24bit.mbm"-"!:\multimedia\t_imagedecoder\dec24bit.mbm"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.mng"-"!:\multimedia\t_imagedecoder\24bit.mng"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bit.ota"-"!:\multimedia\t_imagedecoder\1bit.ota"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bit.png"-"!:\multimedia\t_imagedecoder\1bit.png"
+"\Epoc32\data\z\multimedia\t_imagedecoder\4bit.png"-"!:\multimedia\t_imagedecoder\4bit.png"
+"\Epoc32\data\z\multimedia\t_imagedecoder\8bit.png"-"!:\multimedia\t_imagedecoder\8bit.png"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.png"-"!:\multimedia\t_imagedecoder\24bit.png"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bitG3.tif"-"!:\multimedia\t_imagedecoder\1bitG3.tif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bitG4.tif"-"!:\multimedia\t_imagedecoder\1bitG4.tif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bit.tif"-"!:\multimedia\t_imagedecoder\1bit.tif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\4bit.tif"-"!:\multimedia\t_imagedecoder\4bit.tif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\8bit.tif"-"!:\multimedia\t_imagedecoder\8bit.tif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.tif"-"!:\multimedia\t_imagedecoder\24bit.tif"
+"\Epoc32\data\z\multimedia\t_imagedecoder\1bit.wbmp"-"!:\multimedia\t_imagedecoder\1bit.wbmp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\24bit.wmf"-"!:\multimedia\t_imagedecoder\24bit.wmf"
+"\Epoc32\data\z\multimedia\t_imagedecoder\corrupted.bmp"-"!:\multimedia\t_imagedecoder\corrupted.bmp"
+"\Epoc32\data\z\multimedia\t_imagedecoder\partial.bmp"-"!:\multimedia\t_imagedecoder\partial.bmp"
+
+; Required files
+; None
+
+; Component .sis files
+; None
