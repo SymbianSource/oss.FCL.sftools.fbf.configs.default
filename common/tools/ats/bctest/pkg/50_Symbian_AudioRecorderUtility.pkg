@@ -1,0 +1,49 @@
+;
+; Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of the License "Symbian Foundation License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:      
+;
+
+; Languages - 
+&EN
+
+; Installation header
+; UID is the app's UID
+#{"T_MdaAudioRecorderUtility"},(0x20000F78),1,0,0
+
+;%{"Vendor-EN"}
+;:"Symbian"
+
+; Localised Vendor name
+%{"Nokia"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports S60 3rd Edition
+[0x101F7961], 3, *, *, {"Series60ProductID"}
+
+"\Epoc32\release\armv5\urel\T_MdaAudioRecorderUtility.exe"-"!:\sys\bin\T_MdaAudioRecorderUtility.exe"
+"\Epoc32\data\z\multimedia\taru.bat"-"!:\multimedia\taru.bat"
+"\Epoc32\data\z\multimedia\MM-MMF-ACLNT-RCRDR-PublicAPI.script"-"!:\multimedia\MM-MMF-ACLNT-RCRDR-PublicAPI.script"
+"\Epoc32\data\z\multimedia\MM-MMF-ACLNT-RCRDR-PublicAPI.tcs"-"!:\multimedia\MM-MMF-ACLNT-RCRDR-PublicAPI.tcs"
+"\Epoc32\data\z\multimedia\MM-MMF-ACLNT-RCRDR-PublicAPI.ini"-"!:\multimedia\MM-MMF-ACLNT-RCRDR-PublicAPI.ini"
+"\Epoc32\data\z\multimedia\T_MdaAudioRecorderUtility\pcm16stereo8khz.wav"-"!:\multimedia\T_MdaAudioRecorderUtility\pcm16stereo8khz.wav"
+"\Epoc32\data\z\multimedia\T_MdaAudioRecorderUtility\corrupted.wav"-"!:\multimedia\T_MdaAudioRecorderUtility\corrupted.wav"
+
+
+; Required files
+; None
+
+; Component .sis files
+; None
