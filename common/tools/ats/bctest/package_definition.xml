@@ -18,13 +18,16 @@
 					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/group"/>
 				  </component>
 				</collection>
-				
-				<component id="favouritesbctest" name="Browser Favourites BC Test">
-				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/FavouritesBCTest/group"/>
-				</component>
-				<component id="downloadmgrbctest" name="Download Manager BC Test">
-				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/group"/>
-				</component>	  
+				<collection name="favouritesbctestsis" long-name="50_Browser_Favourites.SIS">
+				  <component id="favouritesbctest" name="Browser Favourites BC Test">
+				    <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/FavouritesBCTest/group"/>
+				  </component>
+				</collection>
+				<collection name="downloadmgrbctestsis" long-name="50_Browser_DownloadMgr.SIS">
+				  <component id="downloadmgrbctest" name="Download Manager BC Test">
+					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/group"/>
+				  </component>	
+				</collection>  
 				<component id="lmksearch" name="Landmark Search Test">
 				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group"/>
 				</component>
@@ -43,12 +46,19 @@
 				<component id="drmcaf" name="DRM CAF BC Test">
 				  <unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group"/>
 				</component>
-				<component id="pbkdataaddedit" name="Phonebook Data Add Edit BC Test">
-				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/group"/>
-				</component>
-				<component id="pbkdatamgmt" name="Phonebook Data Management BC Test">
-				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/group"/>
-				</component>
+				
+				<collection name="pbkdataaddeditsis" long-name="50_PIM_PbkDataAddEdit.SIS">
+				  <component id="pbkdataaddedit" name="Phonebook Data Add Edit BC Test">
+				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				<collection name="pbkdatamanagementsis" long-name="50_PIM_PbkDataMgmt.SIS">
+				  <component id="pbkdatamgmt" name="Phonebook Data Management BC Test">
+				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				
+				<collection name
 				<component id="pbkfetchui" name="Phonebook Fetch UI BC Test">
 				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/group"/>
 				</component>
@@ -96,6 +106,9 @@
 				</collection>
 				
 				<collection name="systemswsis" long-name="50_systemsw.sis">
+				  <component id="systemsw" name="System Software">
+					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/systemsw/group"/>
+				  </component>
 				  <component id="featurediscovery" name="Feature Discovery API">
 					<unit bldFile="sf/os/devicesrv/devicesrv_pub/feature_discovery_api/tsrc/bc/featurediscovery/group"/>
 				  </component>
@@ -128,6 +141,9 @@
 				  </component>
 				  <component id="accmonapibctests" name="Accessory Monitoring API BC Test">
 					<unit bldFile="sf/os/devicesrv/devicesrv_pub/accessory_monitoring_api/tsrc/bc/accmonapibctests/group"/>
+				  </component>
+				  <component id="networkstatus" name="Network Status API">
+					<unit bldFile="sf/mw/appsupport/appsupport_pub/network_status_api/tsrc/bc/networkstatus/group"/>
 				  </component>
 				</collection>
 			</block>
