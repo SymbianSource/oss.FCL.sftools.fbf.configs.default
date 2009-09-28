@@ -27,7 +27,8 @@
 				  <component id="downloadmgrbctest" name="Download Manager BC Test">
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/group"/>
 				  </component>	
-				</collection>  
+				</collection>
+				
 				<component id="lmksearch" name="Landmark Search Test">
 				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group"/>
 				</component>
@@ -37,12 +38,21 @@
 				<component id="landmarks" name="Landmarks API Test">
 				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/group"/>
 				</component>
-				<component id="mmsclientmtm" name="Messaging MMS Client MTM BC Test">
-				  <unit bldFile="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/group"/>
-				</component>
-				<component id="pluginbio" name="Messaging Plugin BIO BC Test">
-				  <unit bldFile="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/group"/>
-				</component>
+				
+				<collection name="mmsclientmtmsis" long-name="50_Messaging_MMSClientMTM.SIS">
+				  <component id="mmsclientmtm" name="Messaging MMS Client MTM BC Test">
+				    <unit bldFile="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+
+				<!-- SendUI -->
+				
+				<collection name="pluginbiosis" long-name="50_Messaging_PluginBio.sis">
+				  <component id="pluginbio" name="Messaging Plugin BIO BC Test">
+				    <unit bldFile="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				
 				<component id="drmcaf" name="DRM CAF BC Test">
 				  <unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group"/>
 				</component>
@@ -81,6 +91,8 @@
 				<component id="graphicssvs" name="SVS Graphics API Tests" class="test">
 				  <unit bldFile="sf/os/graphics/graphicsapitest/graphicssvs/group"/>
 				</component>
+				
+				<!-- OS Services SVS -->
 				  
 				<collection name="multimediasvs" long-name="SVS Multimedia API Tests">
 				  <component id="mmsvs" name="Multimedia SVS Suite" class="test">
