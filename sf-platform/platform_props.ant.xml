@@ -5,5 +5,36 @@
     
   <property name="sf.drive.space.needed" value="150G"/>
 
+  <property name="sf.spec.bldmefirst.s60.variant" value="western" /> <!-- western|apac|japan -->
+
+  <property name="sf.spec.baseline.getenv_options" value="-I tools"/> <!-- Sync the tools... -->
+  <property name="sf.spec.baseline.clean"          value="false"/>
+  <property name="sf.spec.baseline.select"         value="location" />
+
+  <property name="sf.spec.toolsbaseline.getenv_options" value="-i emu"/>
+  <property name="sf.spec.toolsbaseline.select"         value="location" />
+  <property name="sf.spec.toolsbaseline.location"       value="\\v800008\Builds01\PDT\PDT_b50" /> <!-- for TEF etc -->
+
+  <!-- generate dir list(s) of epoc32 tree -->
+  <property name="sf.spec.dirlist.enable"  value="true"/>
+ 
+  <!-- generate delta of two epoc32 trees. note: this takes a while! -->
+  <property name="sf.spec.dirdelta.enable" value="true"/>
+
+  <!-- prefilter raptor logs -->
+  <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
+ 
+  <!-- zip all logs before publish -->
+  <property name="sf.spec.logs.zip.enable"  value="true"/>
+
+  <!-- zip all logs before publish -->
+  <property name="sf.spec.logs.zip.enable"  value="true"/>
+
+  <!-- packaging options for bin/src-->
+  <property name="sf.spec.package.bin.enable"  value="true"/>
+  <property name="sf.spec.package.src.enable"  value="true"/>
+ 
+  <property name="sf.spec.md5.enable"          value="true"/>
+
 </project>
 

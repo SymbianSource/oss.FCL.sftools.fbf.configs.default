@@ -5,7 +5,7 @@
 			<block long-name="Dynamic BC Tests" level="specific" name="dynamicbctest" levels="fts">
 				<collection name="aspconnectionsis" long-name="50_asp_connection.sis">
 					<component id="aspconnection" name="ASP Connection Test">
-						<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
+					  <unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
 					</component>
 				</collection>
 				<collection name="hostconnsis" long-name="50_asp_hostconn.sis">
@@ -62,16 +62,19 @@
 				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/group"/>
 				  </component>
 				</collection>
+				
 				<collection name="pbkdatamanagementsis" long-name="50_PIM_PbkDataMgmt.SIS">
 				  <component id="pbkdatamgmt" name="Phonebook Data Management BC Test">
 				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/group"/>
 				  </component>
 				</collection>
 				
-				<collection name
-				<component id="pbkfetchui" name="Phonebook Fetch UI BC Test">
-				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/group"/>
-				</component>
+				<collection name="pbkfetchuisis" long-name="50_PIM_PbkFetchAPI.SIS">
+				  <component id="pbkfetchui" name="Phonebook Fetch UI BC Test">
+				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				
 				<component id="pbkuiutil" name="Phonebook UI Utils BC Test">
 				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/group"/>
 				</component>
