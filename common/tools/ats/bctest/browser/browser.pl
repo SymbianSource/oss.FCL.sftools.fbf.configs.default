@@ -20,7 +20,7 @@ use File::Copy;
 use File::Path;
 
 unlink "browser.zip";
-##rmtree "temp";
+rmtree "temp";
 mkpath "temp/bcbrowser/winscw_udeb";
 mkpath "temp/bcbrowser/general/testframework";
 
