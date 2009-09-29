@@ -547,7 +547,7 @@
     
     <target name="sf-publish" depends="prep-publish">
         <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">
-           <fileset dir="${build.log.dir}"><include name="*.zip"/></fileset>
+           <fileset dir="${build.output.dir}/zips/release/"><include name="build_*.zip"/></fileset>
         </copy>
     </target>
 
