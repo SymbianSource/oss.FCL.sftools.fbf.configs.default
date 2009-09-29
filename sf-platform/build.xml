@@ -303,7 +303,7 @@
 				</antcall>
 			</else>
 		</if>
-		<if><isset property="sf.os.compile.iterate"/>
+		<if><istrue value="${sf.os.compile.iterate}"/>
       <then>
         <for list="${sf.spec.sbs.config}" delimiter="," param="sf.spec.sbs.splitconfig">
           <sequential>
