@@ -45,7 +45,11 @@
 				  </component>
 				</collection>
 
-				<!-- SendUI -->
+				<collection name="senduiapisis" long-name="50_msg_sendui.sis">
+				  <component id="sendui" name="Messaging Send UI API BC Test">
+				    <unit bldFile="sf/mw/messagingmw/msgfw_pub/send_ui_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
 				
 				<collection name="pluginbiosis" long-name="50_Messaging_PluginBio.sis">
 				  <component id="pluginbio" name="Messaging Plugin BIO BC Test">
