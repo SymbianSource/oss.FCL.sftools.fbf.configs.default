@@ -5,7 +5,7 @@
 			<block long-name="Dynamic BC Tests" level="specific" name="dynamicbctest" levels="fts">
 				<collection name="aspconnectionsis" long-name="50_asp_connection.sis">
 					<component id="aspconnection" name="ASP Connection Test">
-						<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
+					  <unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
 					</component>
 				</collection>
 				<collection name="hostconnsis" long-name="50_asp_hostconn.sis">
@@ -27,7 +27,8 @@
 				  <component id="downloadmgrbctest" name="Download Manager BC Test">
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/group"/>
 				  </component>	
-				</collection>  
+				</collection>
+				
 				<component id="lmksearch" name="Landmark Search Test">
 				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group"/>
 				</component>
@@ -37,12 +38,25 @@
 				<component id="landmarks" name="Landmarks API Test">
 				  <unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/group"/>
 				</component>
-				<component id="mmsclientmtm" name="Messaging MMS Client MTM BC Test">
-				  <unit bldFile="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/group"/>
-				</component>
-				<component id="pluginbio" name="Messaging Plugin BIO BC Test">
-				  <unit bldFile="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/group"/>
-				</component>
+				
+				<collection name="mmsclientmtmsis" long-name="50_Messaging_MMSClientMTM.SIS">
+				  <component id="mmsclientmtm" name="Messaging MMS Client MTM BC Test">
+				    <unit bldFile="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+
+				<collection name="senduiapisis" long-name="50_msg_sendui.sis">
+				  <component id="sendui" name="Messaging Send UI API BC Test">
+				    <unit bldFile="sf/mw/messagingmw/msgfw_pub/send_ui_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				
+				<collection name="pluginbiosis" long-name="50_Messaging_PluginBio.sis">
+				  <component id="pluginbio" name="Messaging Plugin BIO BC Test">
+				    <unit bldFile="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				
 				<component id="drmcaf" name="DRM CAF BC Test">
 				  <unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group"/>
 				</component>
@@ -52,16 +66,19 @@
 				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/group"/>
 				  </component>
 				</collection>
+				
 				<collection name="pbkdatamanagementsis" long-name="50_PIM_PbkDataMgmt.SIS">
 				  <component id="pbkdatamgmt" name="Phonebook Data Management BC Test">
 				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/group"/>
 				  </component>
 				</collection>
 				
-				<collection name
-				<component id="pbkfetchui" name="Phonebook Fetch UI BC Test">
-				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/group"/>
-				</component>
+				<collection name="pbkfetchuisis" long-name="50_PIM_PbkFetchAPI.SIS">
+				  <component id="pbkfetchui" name="Phonebook Fetch UI BC Test">
+				    <unit bldFile="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/group"/>
+				  </component>
+				</collection>
+				
 				<component id="pbkuiutil" name="Phonebook UI Utils BC Test">
 				  <unit bldFile="sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/group"/>
 				</component>
@@ -78,31 +95,25 @@
 				<component id="basesvs" name="SVS Base API Tests" class="test">
 				  <unit bldFile="sf/os/kernelhwsrv/baseapitest/basesvs/group"/>
 				</component>
+				
 				<component id="graphicssvs" name="SVS Graphics API Tests" class="test">
 				  <unit bldFile="sf/os/graphics/graphicsapitest/graphicssvs/group"/>
 				</component>
+				
+				<!-- OS Services SVS -->
+				<collection name="systemlibrariessvs" long-name="SVS System Libraries API Tests">
+				  <component id="syslibssvs" name="SysLibs SVS Suite" class="test">
+				    <unit bldFile="sf/os/ossrv/syslibsapitest/syslibssvs/group"/>
+				  </component>
+				</collection>
 				  
 				<collection name="multimediasvs" long-name="SVS Multimedia API Tests">
 				  <component id="mmsvs" name="Multimedia SVS Suite" class="test">
 					<unit bldFile="sf/os/mm/mmapitest/mmsvs/suite/group"/>
 				  </component>
-				  <component id="ecamplugin" name="ECam Test Plugin" class="plugin">
-					<unit bldFile="sf/os/mm/mmplugins/cameraplugins/group"/>
-				  </component>
 				  <component id="testfwsrv" name="Multimedia Test Framework Server">
 					<unit bldFile="sf/os/mm/mmtestenv/mmtestfw/group"/>
 				  </component>
-				  <component id="ts_tmiditstcntrl" name="MIDI Test Controller">
-					<unit bldFile="sf/mw/mmmw/mmfwtest/mmfunittest/midiclnt/miditestcntrl/group"/>
-				  </component>
-				  <!-- Commented out these because they need to be built beforehand for now
-				  <component id="xvidpu" name="XVid PU">
-					<unit bldFile="xvid\xvidpu\group"/>
-				  </component>
-				  <component id="xvidhwdevice" name="XVid Hardware Device">
-					<unit bldFile="xvid\xvidhwdevice\group"/>
-				  </component>
-				  -->
 				</collection>
 				
 				<collection name="systemswsis" long-name="50_systemsw.sis">
@@ -145,6 +156,12 @@
 				  <component id="networkstatus" name="Network Status API">
 					<unit bldFile="sf/mw/appsupport/appsupport_pub/network_status_api/tsrc/bc/networkstatus/group"/>
 				  </component>
+				</collection>
+				
+				<collection name="proengwrapsis" long-name="50_SP_PROENG.SIS">
+				  <component id="proeng" name="Profile Engine Wrapper">
+				    <unit bldFile="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/bc/profilesenginewrapperapi/group"/>
+				  </collection>
 				</collection>
 			</block>
 		</layer>

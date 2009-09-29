@@ -20,7 +20,8 @@ use File::Copy;
 use File::Path;
 
 unlink "messaging.zip";
-##rmtree "temp";
+rmtree "temp";
+
 mkpath "temp/bcmessaging/testframework/general";
 mkpath "temp/bcmessaging/resource/general";
 mkpath "temp/bcmessaging/winscw_udeb";
@@ -28,15 +29,15 @@ mkpath "temp/bcmessaging/winscw_udeb";
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("messaging.xml",       "temp/test.xml");
 
-copy($epoc . "release/winscw/udeb/MMSClientMTMBCTester.dll",                "temp/bcmessaging/winscw_udeb/MMSClientMTMBCTester.dll");
-copy($epoc . "winscw/c/testframework/MMSClientMTMBCTester.ini",             "temp/bcmessaging/testframework/general/MMSClientMTMBCTester.ini");
-copy($epoc . "winscw/c/testframework/MMSClientMTMBCTester_TestImage.jpg",   "temp/bcmessaging/testframework/general/MMSClientMTMBCTester_TestImage.jpg");
-copy($epoc . "release/winscw/udeb/PluginBioControlAPITest.dll",             "temp/bcmessaging/winscw_udeb/PluginBioControlAPITest.dll");
-copy($epoc . "winscw/c/testframework/tcTestUIBioCombiner.cfg",              "temp/bcmessaging/testframework/general/tcTestUIBioCombiner.cfg");
-copy($epoc . "winscw/c/testframework/ui_PluginBioControlAPITest.cfg",       "temp/bcmessaging/testframework/general/ui_PluginBioControlAPITest.cfg");
-copy($epoc . "winscw/c/testframework/test.txt",                             "temp/bcmessaging/testframework/general/test.txt");
-copy($epoc . "winscw/c/testframework/PluginBioControlAPITest.rsc",          "temp/bcmessaging/testframework/general/PluginBioControlAPITest.rsc");
-copy($epoc . "data/z/resource/pluginbiocontrolapitest.rsc",                 "temp/bcmessaging/resource/general/pluginbiocontrolapitest.rsc");
-copy($epoc . "data/z/resource/pluginbiocontrolapitest.r01",                 "temp/bcmessaging/resource/general/pluginbiocontrolapitest.r01");
+copy($epoc . "release/winscw/udeb/MMSClientMTMBCTester.dll",                "temp/bcmessaging/winscw_udeb/MMSClientMTMBCTester.dll") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/MMSClientMTMBCTester.ini",             "temp/bcmessaging/testframework/general/MMSClientMTMBCTester.ini") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/MMSClientMTMBCTester_TestImage.jpg",   "temp/bcmessaging/testframework/general/MMSClientMTMBCTester_TestImage.jpg") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/PluginBioControlAPITest.dll",             "temp/bcmessaging/winscw_udeb/PluginBioControlAPITest.dll") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/tcTestUIBioCombiner.cfg",              "temp/bcmessaging/testframework/general/tcTestUIBioCombiner.cfg") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/ui_PluginBioControlAPITest.cfg",       "temp/bcmessaging/testframework/general/ui_PluginBioControlAPITest.cfg") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/test.txt",                             "temp/bcmessaging/testframework/general/test.txt") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/PluginBioControlAPITest.rsc",          "temp/bcmessaging/testframework/general/PluginBioControlAPITest.rsc") or die "failed : $!";
+copy($epoc . "data/z/resource/pluginbiocontrolapitest.rsc",                 "temp/bcmessaging/resource/general/pluginbiocontrolapitest.rsc") or die "failed : $!";
+copy($epoc . "data/z/resource/pluginbiocontrolapitest.r01",                 "temp/bcmessaging/resource/general/pluginbiocontrolapitest.r01") or die "failed : $!";
 
 system("7z a -tzip messaging.zip ./temp/*");
