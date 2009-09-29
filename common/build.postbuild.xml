@@ -529,6 +529,7 @@
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>
+                <mkdir dir="${build.output.dir}/zips/release"/> <!-- workaround for when there's no other releaseables, just the logs -->
                 <zip destfile="${build.output.dir}/zips/release/build_logs.zip" basedir="${build.drive}"> 
                     <include name="output/logs/**"/>
                     <exclude name="output/logs/BOM/**"/>
