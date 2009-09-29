@@ -95,33 +95,25 @@
 				<component id="basesvs" name="SVS Base API Tests" class="test">
 				  <unit bldFile="sf/os/kernelhwsrv/baseapitest/basesvs/group"/>
 				</component>
+				
 				<component id="graphicssvs" name="SVS Graphics API Tests" class="test">
 				  <unit bldFile="sf/os/graphics/graphicsapitest/graphicssvs/group"/>
 				</component>
 				
 				<!-- OS Services SVS -->
+				<collection name="systemlibrariessvs" long-name="SVS System Libraries API Tests">
+				  <component id="syslibssvs" name="SysLibs SVS Suite" class="test">
+				    <unit bldFile="sf/os/ossrv/syslibsapitest/syslibssvs/group"/>
+				  </component>
+				</collection>
 				  
 				<collection name="multimediasvs" long-name="SVS Multimedia API Tests">
 				  <component id="mmsvs" name="Multimedia SVS Suite" class="test">
 					<unit bldFile="sf/os/mm/mmapitest/mmsvs/suite/group"/>
 				  </component>
-				  <component id="ecamplugin" name="ECam Test Plugin" class="plugin">
-					<unit bldFile="sf/os/mm/mmplugins/cameraplugins/group"/>
-				  </component>
 				  <component id="testfwsrv" name="Multimedia Test Framework Server">
 					<unit bldFile="sf/os/mm/mmtestenv/mmtestfw/group"/>
 				  </component>
-				  <component id="ts_tmiditstcntrl" name="MIDI Test Controller">
-					<unit bldFile="sf/mw/mmmw/mmfwtest/mmfunittest/midiclnt/miditestcntrl/group"/>
-				  </component>
-				  <!-- Commented out these because they need to be built beforehand for now
-				  <component id="xvidpu" name="XVid PU">
-					<unit bldFile="xvid\xvidpu\group"/>
-				  </component>
-				  <component id="xvidhwdevice" name="XVid Hardware Device">
-					<unit bldFile="xvid\xvidhwdevice\group"/>
-				  </component>
-				  -->
 				</collection>
 				
 				<collection name="systemswsis" long-name="50_systemsw.sis">
