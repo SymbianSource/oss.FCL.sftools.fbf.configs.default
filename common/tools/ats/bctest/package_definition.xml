@@ -157,6 +157,12 @@
 					<unit bldFile="sf/mw/appsupport/appsupport_pub/network_status_api/tsrc/bc/networkstatus/group"/>
 				  </component>
 				</collection>
+				
+				<collection name="proengwrapsis" long-name="50_SP_PROENG.SIS">
+				  <component id="proeng" name="Profile Engine Wrapper">
+				    <unit bldFile="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/bc/profilesenginewrapperapi/group"/>
+				  </collection>
+				</collection>
 			</block>
 		</layer>
 	</systemModel>
