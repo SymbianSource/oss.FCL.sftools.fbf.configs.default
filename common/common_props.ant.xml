@@ -96,7 +96,7 @@
     <property name="sf.spec.test.package.droppath"  value="TestDrops"/>
 
     <!-- BC check properties -->
-    <property name="sf.spec.bccheck.enable" value="true"/>
+    <property name="sf.spec.bccheck.enable" value="false"/>
     <property name="sf.spec.bccheck.enable.la" value="true"/>
     <property name="sf.spec.bccheck.enable.ha" value="true"/>
     <property name="sf.spec.bccheck.enable.dynamic" value="true"/>
