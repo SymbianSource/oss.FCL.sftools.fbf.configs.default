@@ -304,8 +304,8 @@
           </fileset>
         </path>
         <sequential>
-		  <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
-	      <echo message="Preprocessing @{logfile}..."/>
+          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+          <echo message="Preprocessing @{logfile}..."/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
           </exec>
@@ -321,7 +321,6 @@
         </path>
         <sequential>
           <echo message="Extracting whatlog info from @{whatlogfile}..."/>
-          <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --releaseable --log=@{whatlogfile} --basedir=${build.log.dir} --append"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--releaseable"/>
@@ -342,7 +341,6 @@
         <sequential>
           <echo message="Extracting error info from @{raptorlogfile}..."/>
           <propertyregex override="yes" property="raptorconfig" input="@{raptorlogfile}" regexp=".*[\\/].*__(.*)\.whatlog_(single|multiple)_thread.*" replace="\1" casesensitive="false" defaultValue="noconfig"/>
-          <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --error --warning --unreciped --recipe --config=${raptorconfig} --log=@{raptorlogfile} --basedir=${build.log.dir}/raptorbits --append"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--error"/>
@@ -352,12 +350,11 @@
             <arg value="--config=${raptorconfig}"/>
             <arg value="--log=@{raptorlogfile}"/>
             <arg value="--basedir=${build.log.dir}/raptorbits"/>
-            <arg value="--append"/>
           </exec>
         </sequential>
       </for>
       
-      <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/summarize.pl --raptorbitsdir=${build.log.dir}/raptorbits --outputdir=${build.log.dir}"/>
+      <echo message="Summarizing Raptor data"/>
       <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
         <arg value="${sf.common.config.dir}/tools/raptor/summarize.pl"/>
         <arg value="--raptorbitsdir=${build.log.dir}/raptorbits"/>
@@ -377,6 +374,15 @@
           </exec>
         </sequential>
       </for>
+
+      <!-- Cook the raptor analysis further to produce something in the right format for the BRAG system -->
+      <exec executable="perl" output="${build.log.dir}/summary/Raptor_BRAG.xml" logError="yes">
+        <arg value="${sf.common.config.dir}/tools/brag/raptorToBRAG.pl"/>
+        <arg value="--raptorsummary"/>
+        <arg value="${build.log.dir}/raptorbits/summary.csv"/>
+      </exec>
+      <!-- And copy the XSL so the output can be transformed by a browser -->
+      <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
     </target>
 
     <target name="sf-run-analysis-yarp">          
