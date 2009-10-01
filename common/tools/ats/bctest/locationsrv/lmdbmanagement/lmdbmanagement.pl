@@ -20,15 +20,15 @@ use File::Copy;
 use File::Path;
 
 unlink "lmdbmanagementtest.zip";
-##rmtree "temp";
+rmtree "temp";
 mkpath "temp/lmdbmanagementtest/general/testframework";
 mkpath "temp/lmdbmanagementtest/winscw_udeb";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("lmdbmanagement.xml",	"temp/test.xml");
 
-copy($epoc . "release/winscw/udeb/testdbmanagementapi.dll",			"temp/lmdbmanagementtest/winscw_udeb/testdbmanagementapi.dll");
-copy($epoc . "winscw/c/testframework/testframework_lmdbmanagement.ini",	"temp/lmdbmanagementtest/general/testframework/testframework_lmdbmanagement.ini");
-copy($epoc . "winscw/c/testframework/testdbmanagementapi.cfg",				"temp/lmdbmanagementtest/general/testframework/testdbmanagementapi.cfg");
+copy($epoc . "release/winscw/udeb/testdbmanagementapi.dll",			"temp/lmdbmanagementtest/winscw_udeb/testdbmanagementapi.dll") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/testframework_lmdbmanagement.ini",	"temp/lmdbmanagementtest/general/testframework/testframework_lmdbmanagement.ini") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/testdbmanagementapi.cfg",				"temp/lmdbmanagementtest/general/testframework/testdbmanagementapi.cfg") or die "failed : $!";
 
 system("7z a -tzip lmdbmanagementtest.zip ./temp/*");

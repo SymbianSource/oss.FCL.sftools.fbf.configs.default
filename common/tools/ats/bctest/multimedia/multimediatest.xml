@@ -8,7 +8,6 @@
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="GENERIC" />
-			<property name="NAME" value="emulator_udeb" />
         </device>
 	</target>
 	<plan id="0.54" name="MultimediaSVSTests WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">

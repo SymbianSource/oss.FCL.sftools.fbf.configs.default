@@ -9,7 +9,6 @@
 	<target>
 		<device alias="emulator_udeb" rank="master">
 			<property name="harness" value="GENERIC" />
-			<property name="name" value="emulator_udeb" />
 		</device>
 	</target>
 	<plan id="" name="Base SVS Plan" harness="GENERIC" enabled="true" passrate="100">

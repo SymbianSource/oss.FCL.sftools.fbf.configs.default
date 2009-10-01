@@ -8,7 +8,6 @@
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="ATSINTERFACE" />
-            <property name="NAME" value="emulator_udeb" />
         </device>
 	</target>
 	<plan id="" name="Messaging BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
