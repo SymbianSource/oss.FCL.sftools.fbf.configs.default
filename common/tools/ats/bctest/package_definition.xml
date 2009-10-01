@@ -3,13 +3,14 @@
 <!ENTITY codeline_oss_fcl	"//v800008/builds01/mercurial_development/oss/FCL" >
 <!ENTITY codeline_sfl_fcl	"//v800008/builds01/mercurial_development/sfl/FCL" >
 <!ENTITY codeline_sfl_mcl	"//v800008/builds01/Mercurial_master_prod/sfl/MCL" >
+<!ENTITY cmd_updatebranch	"RCL_1" >
 <!ENTITY cmd_clone			"hg clone" >
 <!ENTITY cmd_cwdir			"python metacmd.py cwdir" >
 <!ENTITY cmd_makedirs		"python metacmd.py makedirs" >
 <!ENTITY cmd_perl			"perl" >
 <!ENTITY cmd_sisbld			"makesis" >
 <!ENTITY cmd_unzip			"7z -y x" >
-<!ENTITY cmd_update			"hg update" >
+<!ENTITY cmd_update			"hg update &cmd_updatebranch;" >
 <!ENTITY cmd_wget			"wget" >
 
 <!ELEMENT SystemDefinition ( systemModel | layer | package | collection | component)>
@@ -123,17 +124,25 @@
 				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/app/messaging				sf/app/messaging" />
 				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/mw/appsupport				sf/mw/appsupport" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/drm					sf/mw/drm" />
+				<command cmd="&cmd_update;" dir="sf/mw/drm" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/locationsrv			sf/mw/locationsrv" />
+				<command cmd="&cmd_update;" dir="sf/mw/locationsrv" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/messagingmw			sf/mw/messagingmw" />
+				<command cmd="&cmd_update;" dir="sf/mw/messagingmw" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/mmmw					sf/mw/mmmw" />
+				<command cmd="&cmd_update;" dir="sf/mw/mmmw" />
 				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/mw/websrv					sf/mw/websrv" />
 				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/os/devicesrv				sf/os/devicesrv" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/graphics				sf/os/graphics" />
-				<command cmd="&cmd_update;		-r 9" dir="sf/os/graphics" />
+				<command cmd="&cmd_update;" dir="sf/os/graphics" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/kernelhwsrv			sf/os/kernelhwsrv" />
+				<command cmd="&cmd_update;" dir="sf/os/kernelhwsrv" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/mm						sf/os/mm" />
+				<command cmd="&cmd_update;" dir="sf/os/mm" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/ossrv					sf/os/ossrv" />
+				<command cmd="&cmd_update;" dir="sf/os/ossrv" />
 				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/shortlinksrv			sf/os/shortlinksrv" />
+				<command cmd="&cmd_update;" dir="sf/os/shortlinksrv" />
 				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sftools/ana/compatanamdw		sftools/ana/compatanamdw" />
 				<command cmd="&cmd_wget;		http://developer.symbian.org/wiki/images/e/e7/Xvid.zip" />
 				<command cmd="&cmd_unzip;		xvid.zip" />
