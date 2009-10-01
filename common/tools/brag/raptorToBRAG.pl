@@ -63,6 +63,7 @@ while (my $line = <CSV>)
 		next;
 	}
 	
+	# Populate the hash using a hash slice
 	my $failure = {};
 	@{$failure}{@keys} = @values;
 	
@@ -96,6 +97,12 @@ while (my $line = <CSV>)
 		# First item found in this step - create step entry
 		$step = bless { name => $failure->{config}, Kids => [ $xmlNewline ] }, "step";
 		push @{$buildStage->{Kids}}, $step, $xmlNewline;
+		# Also create empty <failures> tags with severities in a sensible order
+		foreach my $severity (qw{critical major minor})
+		{
+			my $failureSet = bless { level => $severity, Kids => [ $xmlNewline ] }, "failures";
+			push @{$step->{Kids}}, $failureSet, $xmlNewline;
+		}
 	}
 	
 	# Look through the sets of failures in this step to see if we hve one which matches this severity
@@ -117,7 +124,15 @@ while (my $line = <CSV>)
 	}
 
 	# Now create the failure itself, and add it to this failure set
-	my $failureItem = bless { href => "", Kids => [ bless { Text => $failure->{subcategory} }, "Characters" ] }, "failure";
+	my $failureItem = bless {
+#		href => "",
+		Kids => [ bless { Text => $failure->{subcategory} }, "Characters" ]
+	}, "failure";
+	if ($failure->{component})
+	{
+		$failure->{component} =~ s{^(/sf/.*?/.*?)/.*$}{$1};
+		$failureItem->{package} = $failure->{component};
+	}
 	push @{$failureSet->{Kids}}, $failureItem, $xmlNewline;
 }
 close(CSV);
