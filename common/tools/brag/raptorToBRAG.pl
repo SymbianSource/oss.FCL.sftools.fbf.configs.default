@@ -37,9 +37,23 @@ if ($help)
 
 # Start to build structure to be output as XML (same format as XML::Parser would create for us)
 my $xmlNewline = bless { Text => "\n" }, "Characters";
-my $data = [bless {name => "build", Kids => [ $xmlNewline ] }, "stage"];
+my $buildStatus =
+[
+	bless
+	{
+		Kids =>
+		[
+			$xmlNewline,
+			bless
+			{
+				name => "build",
+				Kids => [ $xmlNewline ]
+			}, "phase",
+		]
+	}, "buildStatus"
+];
 # Get a shortcut reference to the bit we will use a lot
-my $buildStage = $data->[0];
+my $buildPhase = $buildStatus->[0]->{Kids}->[-1];
 
 # READ SUMMARY.CSV FILE
 open(CSV, $raptorSummary);
@@ -83,7 +97,7 @@ while (my $line = <CSV>)
 	
 	# Look through the steps to see if we already have one to match this config
 	my $step;
-	foreach (@{$buildStage->{Kids}})
+	foreach (@{$buildPhase->{Kids}})
 	{
 		next unless ref $_ eq "step";
 		if ($_->{name} eq $failure->{config})
@@ -96,7 +110,7 @@ while (my $line = <CSV>)
 	{
 		# First item found in this step - create step entry
 		$step = bless { name => $failure->{config}, Kids => [ $xmlNewline ] }, "step";
-		push @{$buildStage->{Kids}}, $step, $xmlNewline;
+		push @{$buildPhase->{Kids}}, $step, $xmlNewline;
 		# Also create empty <failures> tags with severities in a sensible order
 		foreach my $severity (qw{critical major minor})
 		{
@@ -140,7 +154,7 @@ close(CSV);
 # Print XML
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 print "<?xml-stylesheet type='text/xsl' href='brag.xsl'?>\n";
-printTree($data->[0]);
+printTree($buildStatus->[0]);
 print "\n";
 
 exit(0);
