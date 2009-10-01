@@ -5,8 +5,8 @@
 <!ENTITY codeline_sfl_mcl	"//v800008/builds01/Mercurial_master_prod/sfl/MCL" >
 <!ENTITY cmd_updatebranch	"RCL_1" >
 <!ENTITY cmd_clone			"hg clone" >
-<!ENTITY cmd_cwdir			"python metacmd.py cwdir" >
-<!ENTITY cmd_makedirs		"python metacmd.py makedirs" >
+<!ENTITY cmd_cwdir			"metacmd.py cwdir" >
+<!ENTITY cmd_makedirs		"metacmd.py makedirs" >
 <!ENTITY cmd_perl			"perl" >
 <!ENTITY cmd_sisbld			"makesis" >
 <!ENTITY cmd_unzip			"7z -y x" >
