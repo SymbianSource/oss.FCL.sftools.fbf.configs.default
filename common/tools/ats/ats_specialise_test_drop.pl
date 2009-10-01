@@ -11,6 +11,7 @@
 #   Mike Kinghan, mikek@symbian.org
 #
 # Contributors:
+#	Brendan Donegan, brendand@symbian.org
 #
 # Description:
 #   This is a tool for setting the name of an ATS test drop, and/or the build id
@@ -24,13 +25,13 @@ use File::Copy;
 use Data::Dumper;
 
 my $test_drop_name;	# Test drop name to be embedded in output XML
-my $build_id;    # Build ID to be embedded in output XML 
-my $device_name; # Device name to be embedded in output XML
+my $build_id;   # Build ID to be embedded in output XML 
+my $host_name;  # Host name to be embedded in output XML
 my $srcfile;	# Input test drop file, either .xml or .zip
 my $destfile;	# Leafname for output file. Extension will be .xml or .zip as input.
 				# If unspecified then the input file is updated. 
 my $help;		# Do help?
-my $srctype;	# Type of inpout file, .xml or .zip
+my $srctype;	# Type of input file, .xml or .zip
 my $dev_null = $^O =~ /^MSWin/ ? "nul" : "/dev/null";	# OS-dependent nul device.
 my $zipper;		# Zip command, depending on whether zip or 7z is available.
 my $unzipper;	# Unzip command, depending on whether [unzip or 7z is available.
@@ -43,7 +44,7 @@ sub usage_error();
 sub silent_command($);
 
 my %optmap = (  'test-drop-name' => \$test_drop_name,
-			    'device-name' => \$device_name,
+			    'host-name' => \$host_name,
 			    'build-id' => \$build_id,
 			    'src' => \$srcfile,
 			    'dest' => \$destfile,
@@ -51,7 +52,7 @@ my %optmap = (  'test-drop-name' => \$test_drop_name,
 
 GetOptions(\%optmap,
           'test-drop-name=s',
-          'device-name=s',
+          'host-name=s',
           'build-id=s',
           'src=s',
           'dest=s',
@@ -123,11 +124,11 @@ $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 # Insert the specified build id, if any.
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
 
-if ($device_name) { # Also insert sepcified device name.
+if ($host_name) { # Also insert specified host name
 	
 	my $device_properties = $test_drop->{'test'}->{'target'}->[0]->{'device'}->[0]->{'property'};
 	my $num_properties = @{$device_properties};
-	$device_properties->[$num_properties]= { 'name' => "NAME", 'value' => "$device_name" };
+	$device_properties->[$num_properties]= { 'name' => "HOST", 'value' => "$host_name" };
 	$test_drop->{'test'}->{'target'}->[0]->{'device'}->[0]->{'property'} = $device_properties;
     #print Dumper($device_properties);
     #exit(0);		
@@ -169,12 +170,12 @@ sub usage($)
             "Specify the name, build id and target device in an ATS XML test drop\n" .
             "synopsis:\n" .
             "  ats_specialise_test_drop.pl --help\n" .
-            "  ats_specialise_test_drop.pl [--test-drop-name=TESTNAME] [--build-id=BUILDID] [--device-name=DEVICENAME] [--dest=FILE] --src=FILE \n" .
+            "  ats_specialise_test_drop.pl [--test-drop-name=TESTNAME] [--build-id=BUILDID] [--host-name=HOSTNAME] [--dest=FILE] --src=FILE \n" .
             "options:\n" .
             "  --help                        Display this help and exit\n" .
             "  --test-drop-name=TESTNAME     TESTNAME is the desired name of the test drop. If not specified then the test drop name is not modified.\n" .
             "  --build-id=BUILDID            BUILDID is id of the build being tested. If not specified then the build id is not modified.\n" .            
-            "  --device-name=DEVICENAME      DEVICENAME  is the name of the device on which the test should be run. " .
+            "  --device-name=HOSTNAME        HOSTNAME  is the name of the ATS worker on which the test should be run. " .
             "If not specified then the test device name is not modified.\n" .
             "  --src=INFILE                  INFILE is the file containing the test drop XML to be modified, or else a zip file " .
             "                                containing the test drop XML in the file 'test.xml'. INFILE must have extension .xml or.zip\n" .
