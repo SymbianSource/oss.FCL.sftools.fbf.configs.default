@@ -88,7 +88,7 @@ while (my $line = <TSV>)
 }	
 
 # Iterate through all the lines of all the files in @ARGV
-foreach my $line (<>)
+while (my $line = <>)
 {
 	chomp $line;
 	foreach my $rule (@rules)
