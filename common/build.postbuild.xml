@@ -296,6 +296,7 @@
 
     <target name="sf-run-analysis-raptor">            
       <echo message="Preprocessing *_compile.log files"/>
+      <delete file="${build.log.dir}/analysis/${build.id}_preprocess.log"/>
       <for param="logfile">
         <path>
           <fileset dir="${build.log.dir}">
@@ -306,9 +307,10 @@
         <sequential>
           <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
           <echo message="Preprocessing @{logfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" errorProperty="@{logfile}" >
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
           </exec>
+	  <echo file="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true" message="${@{logfile}}${line.separator}"/>
         </sequential>
       </for>
       
