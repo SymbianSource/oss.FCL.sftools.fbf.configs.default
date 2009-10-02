@@ -638,6 +638,14 @@
             <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
             <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
         </antcall>
+        
+    </target>
+    
+    <target name="sf-run-sfl-licence-munging" depends="sf-check-utilities-dir" if="sf-utilities-available">    
+        <echo message="Running SFL Licence Munging writing log to ${build.log.dir}"/>
+        <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/postbuild_sfl-licence_munging_results.log">
+          <arg value="${build.drive}/utilities/williamr/convert_to_eula.pl"/>
+        </exec>
     </target>
 
 </project>
