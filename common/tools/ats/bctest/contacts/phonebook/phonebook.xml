@@ -1976,12 +1976,12 @@
 		<file>phonebooktest/winscw_udeb/mtpbkiconinfo.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkinfo.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkinfo.cfg</file>
-        <file>phonebooktest/general/testframework/ui_tcbctestpbkinfo.cfg</file>
+        <file>phonebooktest/general/testframework/ui_bctestpbkinfo.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkiconid.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkicon.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkicon.cfg</file>
-        <file>phonebooktest/general/testframework/ui_tcbctestpbkicon.cfg</file>
+        <file>phonebooktest/general/testframework/ui_bctestpbkicon.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkfields.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkfeilds.ini</file>
@@ -1991,7 +1991,7 @@
 		<file>phonebooktest/winscw_udeb/mtpbkfielddata.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkfdata.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkfdata.cfg</file>
-        <file>phonebooktest/general/testframework/ui_tcbctestpbkfdata.cfg</file>
+        <file>phonebooktest/general/testframework/ui_bctestpbkfdata.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactiter.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkiter.ini</file>
