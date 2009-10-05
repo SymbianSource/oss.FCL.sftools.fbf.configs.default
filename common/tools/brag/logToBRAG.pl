@@ -133,7 +133,7 @@ sub printTree
 	$tagName =~ s{^main::}{};
 	if ($tagName eq "Characters")
 	{
-		print $tree->{Text};
+		print escapeForXML($tree->{Text});
 		return;
 	}
 	
@@ -173,3 +173,11 @@ sub printTree
 	print ">";
 }
 
+sub escapeForXML
+{
+	$_ = shift;
+	s{&}{&amp;}g;
+	s{<}{&lt;}g;
+	s{>}{&gt;}g;
+	return $_;
+}
