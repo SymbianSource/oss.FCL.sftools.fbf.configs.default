@@ -38,7 +38,7 @@ if ($help || $wrongArgs)
 {
 	print <<"EOT";
 
-mergeXML.pl --xsl=brag.xsl --merge=SystemDefinition,systemModel,layer(name),block(name),package(name) sysModel1.xml [model2.xml ...] > output.xml
+mergeXML.pl --xsl=brag.xsl --merge=SystemDefinition,systemModel,layer(name),block(name),package(name) sysModel1.xml [model*.xml ...] > output.xml
 EOT
 	exit(0 + !$help);
 }
@@ -51,6 +51,9 @@ foreach my $term (split m{\s*,\s*}, $howtoString)
 	$tag ||= $term;
 	$mergeTags->{$tag} = $attribute;
 }
+
+# Expand wildcards
+@ARGV = map { glob $_ } @ARGV;
 
 # Merge all the trees together
 my $outTree = mergeMultipleTrees($mergeTags, @ARGV);
