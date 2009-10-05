@@ -23,6 +23,7 @@
     <property name="diamonds.host" value="${sf.spec.publish.diamonds.server}"/>
     <property name="diamonds.port" value="${sf.spec.publish.diamonds.port}"/>
     <property name="diamonds.path" value="${sf.spec.publish.diamonds.path}"/>
+    <property name="build.family" value="${sf.spec.job.name}"/>
     <property name="build.system" value="${sf.spec.build.system}"/>
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
@@ -30,22 +31,13 @@
 	<property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
     
     <if>
-      <equals arg1="${sf.spec.publish.diamonds.tag}" arg2="test"/>
-      <then>
-        <property name="sf.test.tag" value=".test"/>
-      </then>
-      <else>
-        <property name="sf.test.tag" value=""/>
-      </else>
-    </if>
-    <property name="build.family" value="${sf.spec.job.name}_${sf.spec.job.codeline}${sf.test.tag}"/>
-    
-    <if>
       <isset property="sf.spec.sbs.numberofjobs"/>
       <then>
         <property name="number.of.threads" value="${sf.spec.sbs.numberofjobs}"/>
       </then>
     </if>
+    
+    <property name="sf.diamonds.tags" value="${sf.spec.job.codeline},${sf.spec.publish.diamonds.tag}"/>
     
     <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
     <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>
