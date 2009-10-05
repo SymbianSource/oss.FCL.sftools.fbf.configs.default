@@ -84,7 +84,7 @@ while (my $line = <TSV>)
 	next unless $line;
 	my @terms = split m{\t+}, $line;
 	die "Rules file not formatted as expected at line $.\n" unless scalar @terms == 2;
-	push @rules, { regexp => $terms[0], severity => $terms[1] };
+	push @rules, { regexp => qr{$terms[0]}, severity => $terms[1] };
 }	
 
 # Iterate through all the lines of all the files in @ARGV
@@ -95,6 +95,7 @@ while (my $line = <>)
 	{
 		if ($line =~ m[$rule->{regexp}])
 		{
+			last if $rule->{severity} eq "ignore";
 			# We found a match
 			my $failure = bless{ Kids => [ bless { Text => $line }, "Characters" ] }, "failure";
 			# Ensure we have a <failures> tag for this severity
