@@ -296,6 +296,7 @@
 
     <target name="sf-run-analysis-raptor">            
       <echo message="Preprocessing *_compile.log files"/>
+      <delete file="${build.log.dir}/analysis/${build.id}_preprocess.log"/>
       <for param="logfile">
         <path>
           <fileset dir="${build.log.dir}">
@@ -304,11 +305,12 @@
           </fileset>
         </path>
         <sequential>
-		  <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
-	      <echo message="Preprocessing @{logfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
+          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
+          <echo message="Preprocessing @{logfile}..."/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" errorProperty="@{logfile}" >
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
           </exec>
+	  <echo file="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true" message="${@{logfile}}${line.separator}"/>
         </sequential>
       </for>
       
@@ -321,7 +323,6 @@
         </path>
         <sequential>
           <echo message="Extracting whatlog info from @{whatlogfile}..."/>
-          <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --releaseable --log=@{whatlogfile} --basedir=${build.log.dir} --append"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--releaseable"/>
@@ -342,7 +343,6 @@
         <sequential>
           <echo message="Extracting error info from @{raptorlogfile}..."/>
           <propertyregex override="yes" property="raptorconfig" input="@{raptorlogfile}" regexp=".*[\\/].*__(.*)\.whatlog_(single|multiple)_thread.*" replace="\1" casesensitive="false" defaultValue="noconfig"/>
-          <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --error --warning --unreciped --recipe --config=${raptorconfig} --log=@{raptorlogfile} --basedir=${build.log.dir}/raptorbits --append"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--error"/>
@@ -352,12 +352,11 @@
             <arg value="--config=${raptorconfig}"/>
             <arg value="--log=@{raptorlogfile}"/>
             <arg value="--basedir=${build.log.dir}/raptorbits"/>
-            <arg value="--append"/>
           </exec>
         </sequential>
       </for>
       
-      <echo message="Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/summarize.pl --raptorbitsdir=${build.log.dir}/raptorbits --outputdir=${build.log.dir}"/>
+      <echo message="Summarizing Raptor data"/>
       <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
         <arg value="${sf.common.config.dir}/tools/raptor/summarize.pl"/>
         <arg value="--raptorbitsdir=${build.log.dir}/raptorbits"/>
@@ -377,6 +376,15 @@
           </exec>
         </sequential>
       </for>
+
+      <!-- Cook the raptor analysis further to produce something in the right format for the BRAG system -->
+      <exec executable="perl" output="${build.log.dir}/summary/Raptor_BRAG.xml" logError="yes">
+        <arg value="${sf.common.config.dir}/tools/brag/raptorToBRAG.pl"/>
+        <arg value="--raptorsummary"/>
+        <arg value="${build.log.dir}/raptorbits/summary.csv"/>
+      </exec>
+      <!-- And copy the XSL so the output can be transformed by a browser -->
+      <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
     </target>
 
     <target name="sf-run-analysis-yarp">          
@@ -632,6 +640,46 @@
             <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
             <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
         </antcall>
+        
+    </target>
+    
+    <target name="sf-create-public-PDK" depends="sf-prebuild,sf-run-sfl-licence-munging" >
+        <if>
+            <istrue value="${sf.spec.md5.enable}"/>
+            <then>
+                <echo message="INFO Creating MD5s"/>
+                <runtarget target="sf-run-evalid"/>
+            </then>
+        </if>
+        
+        <!-- Package up the binaries we built -->
+        <if>
+            <istrue value="${sf.spec.package.bin.enable}"/>
+            <then>
+                <echo message="INFO Packaging Binaries"/>
+                <runtarget target="sf-package-binary"/>
+                <runtarget target="sf-package-tools"/>
+
+                <echo message="INFO Validate Zip files"/>
+                <runtarget target="sf-package-validate"/>
+            </then>
+        </if>
+        <runtarget target="sf-zip-logs"/>
+        <if>
+            <istrue value="${sf.spec.publish.enable}" />
+            <then>
+                <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
+                <runtarget target="sf-publish"/>
+            </then>
+        </if>
+    </target>
+
+
+    <target name="sf-run-sfl-licence-munging" depends="sf-check-utilities-dir" if="sf-utilities-available">    
+        <echo message="Running SFL Licence Munging writing log to ${build.log.dir}"/>
+        <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/postbuild_sfl-licence_munging_results.log">
+          <arg value="${build.drive}/utilities/williamr/convert_to_eula.pl"/>
+        </exec>
     </target>
 
 </project>

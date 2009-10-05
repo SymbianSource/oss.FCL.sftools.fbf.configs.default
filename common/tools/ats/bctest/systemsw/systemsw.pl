@@ -36,7 +36,7 @@ copy($epoc . "release/winscw/udeb/powerstatetest.dll",			"temp/systemswtest/wins
 copy($epoc . "release/winscw/udeb/sysutiltest.dll",				"temp/systemswtest/winscw_udeb/sysutiltest.dll") or die "failed : $!";
 copy($epoc . "release/winscw/udeb/stiftextresolvertest.dll",	"temp/systemswtest/winscw_udeb/stiftextresolvertest.dll") or die "failed : $!";
 copy($epoc . "release/winscw/udeb/hwresmantest.dll",			"temp/systemswtest/winscw_udeb/hwresmantest.dll") or die "failed : $!";
-copy($epoc . "release/winscw/udeb/vibractrltest.dll",			"temp/systemswtest/winscw_udeb/vibractrltest.dll") or die "failed : $!";
+##copy($epoc . "release/winscw/udeb/vibractrltest.dll",			"temp/systemswtest/winscw_udeb/vibractrltest.dll") or die "failed : $!";
 copy($epoc . "release/winscw/udeb/platformvertest.dll",			"temp/systemswtest/winscw_udeb/platformvertest.dll") or die "failed : $!";
 copy($epoc . "release/winscw/udeb/accmonapibctests.dll",		"temp/systemswtest/winscw_udeb/accmonapibctests.dll") or die "failed : $!";
 

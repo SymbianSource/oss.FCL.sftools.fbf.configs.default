@@ -20,16 +20,16 @@ use File::Copy;
 use File::Path;
 
 unlink "locblidtest.zip";
-##rmtree "temp";
+rmtree "temp";
 mkpath "temp/locblidtest/general/testframework";
 mkpath "temp/locblidtest/winscw_udeb";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("locblid.xml",	"temp/test.xml");
 
-copy($epoc . "release/winscw/udeb/BCBlidTest.dll",					"temp/locblidtest/winscw_udeb/BCBlidTest.dll");
-copy($epoc . "winscw/c/testframework/testframework_locblid.ini",	"temp/locblidtest/general/testframework/testframework_locblid.ini");
-copy($epoc . "winscw/c/testframework/tcLmkBlid.cfg",				"temp/locblidtest/general/testframework/tcLmkBlid.cfg");
-copy($epoc . "winscw/c/testframework/UI_BCBLid.cfg",				"temp/locblidtest/general/testframework/UI_BCBLid.cfg");
+copy($epoc . "release/winscw/udeb/BCBlidTest.dll",					"temp/locblidtest/winscw_udeb/BCBlidTest.dll") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/testframework_locblid.ini",	"temp/locblidtest/general/testframework/testframework_locblid.ini") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/tcLmkBlid.cfg",				"temp/locblidtest/general/testframework/tcLmkBlid.cfg") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/UI_BCBLid.cfg",				"temp/locblidtest/general/testframework/UI_BCBLid.cfg") or die "failed : $!";
 
 system("7z a -tzip locblidtest.zip ./temp/*");

@@ -41,6 +41,7 @@
     <property name="sf.spec.sourcesync.usecache" value="false"/>
     <property name="sf.spec.sourcesync.sourcespecfile" value="sources.csv"/>
     <property name="sf.spec.sourcesync.cachelocation" value="${sf.spec.job.rootdir}/hgcache"/>
+    <property name="sf.spec.sourcesync.bug419" value="true"/> <!--Temporary workaround for bug 419 - Does source sync manually -->
     
     <property name="sf.spec.baseline.enable" value="true"/>
     <property name="sf.spec.baseline.select" value="auto"/> <!-- auto|explicit|location -->

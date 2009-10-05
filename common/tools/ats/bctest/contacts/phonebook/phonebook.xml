@@ -8,7 +8,6 @@
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="ATSINTERFACE" />
-            <property name="NAME" value="emulator_udeb" />
         </device>
 	</target>
 	<plan id="" name="Contacts Phonebook BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -66,7 +65,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\testframework\tcbctestpbkdataaddedit.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="bctestpbkdataaddedit (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -837,7 +836,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestsmsaddsel.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="mtpbksmsaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1014,7 +1013,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestphonenumber.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="mtpbkphonenumberselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1132,7 +1131,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestmmsaddsel.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="mtpbkmmsaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1368,7 +1367,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestemaioversms.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="mtpbkemailoversms (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1622,7 +1621,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestfielddlg.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="mtpbkselectfielddlg (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1945,7 +1944,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcspeeddial.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="300"/>
 						</params>
 					</step>
 					<step id="" name="bctestspeeddial (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1977,12 +1976,12 @@
 		<file>phonebooktest/winscw_udeb/mtpbkiconinfo.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkinfo.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkinfo.cfg</file>
-        <file>phonebooktest/general/testframework/ui_tcbctestpbkinfo.cfg</file>
+        <file>phonebooktest/general/testframework/ui_bctestpbkinfo.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkiconid.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkicon.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkicon.cfg</file>
-        <file>phonebooktest/general/testframework/ui_tcbctestpbkicon.cfg</file>
+        <file>phonebooktest/general/testframework/ui_bctestpbkicon.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkfields.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkfeilds.ini</file>
@@ -1992,7 +1991,7 @@
 		<file>phonebooktest/winscw_udeb/mtpbkfielddata.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkfdata.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkfdata.cfg</file>
-        <file>phonebooktest/general/testframework/ui_tcbctestpbkfdata.cfg</file>
+        <file>phonebooktest/general/testframework/ui_bctestpbkfdata.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactiter.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkiter.ini</file>

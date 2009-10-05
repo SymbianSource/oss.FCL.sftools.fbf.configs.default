@@ -17,6 +17,17 @@
   <#assign fast_sync = false />
 </#if>
 
+<#if ("${ant['sf.spec.sourcesync.bug419']}")??>
+  <#if "${ant['sf.spec.sourcesync.bug419']}" == "true">
+    <#assign bug419 = true />
+  <#else>
+    <#assign bug419 = false />
+  </#if>
+<#else>
+  <#assign bug419 = false />
+</#if>
+
+
     <!-- remove previous version of BOM file (if exists)  -->
     <target name="reset-bom-sources-csv">
         <delete file="${ant['build.drive']}/output/logs/BOM/sources.csv" quiet="true"/>
@@ -55,6 +66,19 @@
                 <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
             </exec>
             
+            <#if bug419 >
+              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                  <arg value="identify"/>
+                  <arg value="-i"/>
+                  <arg value="-r"/>
+                  <arg value="${pkg_detail.pattern}"/>
+              </exec>
+              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}">
+                  <arg value="update"/>
+                  <arg value="-r"/>
+                  <arg value="${dollar}{sf.sourcesync.${count}.checksum}"/>
+              </exec>            
+            <#else>
             <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
                 <!--hlm:checkout basedir="${ant['build.drive']}${pkg_detail.dst}"/-->
                 <#if "${pkg_detail.type}"=="tag" >
@@ -71,6 +95,7 @@
                 </hlm:update>
                 </#if>
             </hlm:scm>
+            </#if>
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
                 <arg value="identify"/>
                 <arg value="-i"/>
