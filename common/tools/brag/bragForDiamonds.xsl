@@ -8,6 +8,7 @@
 	<xsl:variable name="unknownCount" select="count(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/failure)"/>
 
 	<diamonds-build>
+	<schema>13</schema>
 	<build>
 	<status>
 	<xsl:choose>
