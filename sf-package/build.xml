@@ -3,6 +3,9 @@
   <!-- location of this config -->
   <dirname property="sf.package.config.dir" file="${ant.file.SF-PACKAGE-CONFIG}"/>
   
+  <!-- import codeline-specific properties -->
+  <import file="${sf.package.config.dir}/${sf.spec.job.codeline}_props.ant.xml" optional="yes"/>
+  
   <!-- import package properties -->
   <import file="${sf.package.config.dir}/package_props.ant.xml" />
   
