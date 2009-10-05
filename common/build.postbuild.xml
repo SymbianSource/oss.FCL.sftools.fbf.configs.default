@@ -283,7 +283,8 @@
             <then>
             <runtarget target="sf-run-analysis-diamonds"/>
             </then>
-        </if>    
+        </if>
+	<runtarget target="sf-brag-to-diamonds"/>
     </target>
 
     <target name="sf-run-analysis-ant">    
@@ -487,6 +488,55 @@
         </data>
       </fmpp>
     </target>    
+
+    <target name="sf-brag-to-diamonds">
+        <!-- Merge all our bits of XML together -->
+        <exec executable="perl" output="${build.log.dir}/summary/_BRAG.xml">
+            <arg value="${sf.common.config.dir}/tools/mergeXML.pl"/>
+            <arg value="--xsl=brag.xsl"/>
+            <arg value="--merge=buildStatus,phase(name),step(name),failures(level)"/>
+            <arg value="${build.log.dir}/summary/*?_BRAG.xml"/>
+        </exec>
+        <!-- Run XSL transform to create file to send to diamonds -->
+        <java jar="${sf.common.config.dir}/sysdefdowngrade/xalan-j_2_7_1/xalan.jar" fork="true">
+            <arg value="-IN"/>
+            <arg value="${build.log.dir}/summary/_BRAG.xml"/>
+            <arg value="-XSL"/>
+            <arg value="${sf.common.config.dir}/tools/brag/bragForDiamonds.xsl"/>
+            <arg value="-OUT"/>
+            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+        </java>
+        <if>
+            <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+                <!-- Try to obtain the diamonds ID for this build -->
+                <if>
+                    <isset property="diamonds.build.id"/>
+                    <else>
+                        <property file="${build.log.dir}/diamonds.build.id.properties"/> <!-- This will fail silently -->
+                    </else>
+                </if>
+                <if>
+                    <isset property="diamonds.build.id"/>
+                    <then>
+                        <!-- Send the data to the server -->
+                        <exec executable="python">
+                            <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+                            <arg value="-s"/>
+                            <arg value="${diamonds.host}"/>
+                            <arg value="-u"/>
+                            <arg value="/diamonds/builds/${diamonds.build.id}"/>
+                            <arg value="-f"/>
+                            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+                        </exec>
+                    </then>
+                    <else>
+                        <echo message="diamonds.build.id is not known - unable to push any build specific information to diamonds server"/>
+                    </else>
+                </if>
+            </then>
+        </if>
+    </target>
 
     <target name="sf-check-utilities-dir">
         <available property="sf-utilities-available" file="${build.drive}/utilities" type="dir"/>
