@@ -46,6 +46,9 @@ EOT
 	exit(0 + !$help);
 }
 
+# Do the wild-carding thing
+@ARGV = map { glob $_ } @ARGV;
+
 # Start to build structure to be output as XML (same format as XML::Parser would create for us)
 my $xmlNewline = bless { Text => "\n" }, "Characters";
 my $step = bless {
