@@ -4,6 +4,7 @@
 <#assign fileset = "" />
 <#assign sync_list = "" />
 <#assign bom_list  = "" />
+<#assign change_list  = "" />
 <#assign dollar = "$"/>
 <#assign count = 0 />
 
@@ -117,10 +118,30 @@
         </sequential>
     </target>
 
+    <target name="sf-bom-change-info-${count}">
+        <sequential>
+      		<if><not><isset property="sf.sourcesync.${count}.checksum"/></not>
+      			<then>
+              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                <arg value="identify"/>
+                <arg value="-i"/>
+              </exec>
+      			</then>
+      		</if>
+      		  <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
+      		  <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
+            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
+                <arg value="log"/>
+                <arg value="-r"/>
+                <arg value="${dollar}{sf.sourcesync.${count}.checksum}:${dollar}{sf.previous.pdk.tag}"/>
+            </exec>
+          </sequential>
+    </target>
 
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.sysdef}\"/>" />       
-    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n"/>       
-    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\n"/>    
+    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n\t\t"/>       
+    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\n\t"/>
+    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\n\t"/>        
     <#assign count = count + 1 />
 
 </#list>
@@ -145,6 +166,14 @@
   </exec>
   
   ${bom_list}
+  <runtarget target="sf-bom-change-info" />
+</target>
+
+<target name="sf-bom-change-info">
+  
+  <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
+  <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/> 
+  ${change_list}
 
 </target>
 </project>
