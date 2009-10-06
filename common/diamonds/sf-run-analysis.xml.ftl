@@ -34,9 +34,9 @@
     </file>
     <file>
       <type>log</type>
-      <name>Build Summary</name>
-      <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\build_summary.html</url>
+      <name>BRAG Summary</name>
+      <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\summary\_brag.xml</url>
     </file>
-  </files>
+   </files>
   
 </diamonds-build>

@@ -487,6 +487,16 @@
           files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
         </data>
       </fmpp>
+      <!-- Send the data to the server -->
+	  <exec executable="python">
+		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+		    <arg value="-s"/>
+		    <arg value="${diamonds.host}"/>
+		    <arg value="-u"/>
+		    <arg value="${diamonds.build.id}"/>
+		    <arg value="-f"/>
+		    <arg value="${build.log.dir}/sf-run-analysis.xml"/>
+	  </exec>
     </target>    
 
     <target name="sf-brag-to-diamonds">
