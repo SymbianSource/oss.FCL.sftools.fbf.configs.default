@@ -89,7 +89,13 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
 
-        <runtarget target="sf-check-env"/>
+        <if>          
+            <not><isset property="sf.suppress.buildenv.check"/></not>
+            <then>
+                <echo message="Checking build Environment. To suppress this check set property sf.suppress.buildenv.check to any value"/>
+                <runtarget target="sf-check-env"/>
+            </then>
+        </if>
     </target>
         
     <target name="sf-check-env">
