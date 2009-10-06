@@ -459,6 +459,7 @@ Build Environment Check failed. To stop this failure aborting the build set prop
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
+        <mkdir dir="${build.log.dir}/summary" />
         <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/PreprocessPackageConfig_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
             <arg value="--phase=Prebuild"/>
