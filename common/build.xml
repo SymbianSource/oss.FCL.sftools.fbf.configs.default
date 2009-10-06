@@ -191,10 +191,22 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
     
     <target name="sf-prebuild-announce">
         <echo>[SF-PREBUILD]</echo>
+    </target>
+    
+    <target name="sf-diamonds-connect">
+      <if>
+        <istrue value="${sf.spec.publish.enable}"/>
+        <then>
+          <echo>[SF-DIAMONDS-CONNECT]</echo>
+          <runtarget target="diamonds"/>
+          <echo message="Save Diamonds build id value in a file"/>
+          <echo message="diamonds.build.id=${diamonds.build.id}" file="${build.log.dir}/diamonds_build_id.txt"/>
+        </then>
+      </if>
     </target>
 
     <target name="sf-diamonds-tag-build">
@@ -202,14 +214,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <istrue value="${sf.spec.publish.enable}"/>
         <then>
           <echo>[SF-DIAMONDS-TAG-BUILD]</echo>
-          <runtarget target="diamonds"/>
-          <echo message="Save Diamonds build id value in a file"/>
-          <echo message="diamonds.build.id=${diamonds.build.id}" file="${build.log.dir}/diamonds_build_id.txt"/>
-          <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
-            <data expandProperties="yes">
-              ant: antProperties()
-            </data>
-          </fmpp>
+          <echo message="Generate ${build.drive}/output/logs/sf-diamonds-tag-build.xml with Diamonds tags for this build"/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
+            <arg value="${sf.common.config.dir}/tools/generate_diamonds_tags_xml.pl"/>
+            <arg value="--tags=${sf.diamonds.tags}"/>
+            <arg value="--output=${build.drive}/output/logs/sf-diamonds-tag-build.xml"/>
+          </exec>
         </then>
       </if>
     </target>
