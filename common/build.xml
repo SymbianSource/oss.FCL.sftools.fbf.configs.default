@@ -118,6 +118,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
+        <mkdir dir="${build.log.dir}/summary" />
         <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/BuildEnvironmentCheck_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
             <arg value="--phase=Prebuild"/>
