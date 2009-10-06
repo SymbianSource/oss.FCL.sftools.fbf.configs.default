@@ -511,10 +511,10 @@
             <then>
                 <!-- Try to obtain the diamonds ID for this build -->
                 <if>
-                    <isset property="diamonds.build.id"/>
-                    <else>
-                        <property file="${build.log.dir}/diamonds.build.id.properties"/> <!-- This will fail silently -->
-                    </else>
+                    <not><isset property="diamonds.build.id"/></not>
+                    <then>
+                        <property file="${build.log.dir}/diamonds_build_id.properties"/> <!-- This will fail silently -->
+                    </then>
                 </if>
                 <if>
                     <isset property="diamonds.build.id"/>
@@ -525,7 +525,7 @@
                             <arg value="-s"/>
                             <arg value="${diamonds.host}"/>
                             <arg value="-u"/>
-                            <arg value="/diamonds/builds/${diamonds.build.id}"/>
+                            <arg value="${diamonds.build.id}"/>
                             <arg value="-f"/>
                             <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
                         </exec>
