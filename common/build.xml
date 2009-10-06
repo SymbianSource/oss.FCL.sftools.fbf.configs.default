@@ -89,13 +89,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
 
-        <if>          
-            <not><isset property="sf.suppress.buildenv.check"/></not>
-            <then>
-                <echo message="Checking build Environment. To suppress this check set property sf.suppress.buildenv.check to any value"/>
-                <runtarget target="sf-check-env"/>
-            </then>
-        </if>
+        <runtarget target="sf-check-env"/>
     </target>
         
     <target name="sf-check-env">
@@ -110,7 +104,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         </if>
         
         <echo message="Build Env against ${sf.buildenv.location}/BuildEnv.xml"/>
-        <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
+        <exec executable="perl" dir="${sf.common.config.dir}/tools" resultproperty="sf.checkenv.exit">
             <arg value="CheckBuildEnv.pl"/>
             <arg value="--xml=${sf.buildenv.location}/BuildEnv.xml"/>
             <arg value="--dbg=${build.log.dir}/BuildEnvironmentCheck.log"/>
@@ -118,6 +112,24 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
+        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/BuildEnvironmentCheck_BRAG.xml" logError="true">
+            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
+            <arg value="--phase=Prebuild"/>
+            <arg value="--step=Build Environment Check"/>
+            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.BuildEnvironmentCheck.tsv"/>
+            <arg value="${build.log.dir}/BuildEnvironmentCheck.log"/>
+        </exec>
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="sf.checkenv.exit" arg2="0"/>
+                        <isset property="sf.suppress.buildenv.check"/>
+                    </or>
+                </not>
+            </condition>
+Build Environment Check failed. To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
+        </fail>
     </target>
     
     <target name="sf-summary" depends="">
