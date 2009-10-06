@@ -46,7 +46,7 @@ my $buildStatus =
 			$xmlNewline,
 			bless
 			{
-				name => "build",
+				name => "Build",
 				Kids => [ $xmlNewline ]
 			}, "phase",
 		]
