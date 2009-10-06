@@ -440,6 +440,13 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
+        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/PreprocessPackageConfig_BRAG.xml" logError="true">
+            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
+            <arg value="--phase=Prebuild"/>
+            <arg value="--step=Preprocess package config"/>
+            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.PreprocessPackageConfig.tsv"/>
+            <arg value="${build.log.dir}/zipconfig.log"/>
+        </exec>
     </target>
     
     <target name="sf-zip-content" depends="preprocess-zip-config">
