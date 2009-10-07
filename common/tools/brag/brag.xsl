@@ -18,7 +18,7 @@
 	<xsl:variable name="unknownCount" select="count(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/failure)"/>
 
 	<h2>
-	Overall BRAG staus: 
+	Overall BRAGG staus: 
 	<xsl:choose>
 		<xsl:when test="$criticalCount != 0">BLACK</xsl:when>
 		<xsl:when test="$majorCount != 0">RED</xsl:when>

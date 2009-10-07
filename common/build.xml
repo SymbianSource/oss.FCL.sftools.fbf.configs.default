@@ -110,7 +110,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         </if>
         
         <echo message="Build Env against ${sf.buildenv.location}/BuildEnv.xml"/>
-        <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
+        <exec executable="perl" dir="${sf.common.config.dir}/tools" resultproperty="sf.checkenv.exit">
             <arg value="CheckBuildEnv.pl"/>
             <arg value="--xml=${sf.buildenv.location}/BuildEnv.xml"/>
             <arg value="--dbg=${build.log.dir}/BuildEnvironmentCheck.log"/>
@@ -118,6 +118,25 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
+        <mkdir dir="${build.log.dir}/summary" />
+        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/BuildEnvironmentCheck_BRAG.xml" logError="true">
+            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
+            <arg value="--phase=Prebuild"/>
+            <arg value="--step=Build Environment Check"/>
+            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.BuildEnvironmentCheck.tsv"/>
+            <arg value="${build.log.dir}/BuildEnvironmentCheck.log"/>
+        </exec>
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="sf.checkenv.exit" arg2="0"/>
+                        <isset property="sf.suppress.buildenv.check"/>
+                    </or>
+                </not>
+            </condition>
+Build Environment Check failed. To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
+        </fail>
     </target>
     
     <target name="sf-summary" depends="">
@@ -191,10 +210,22 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
     
     <target name="sf-prebuild-announce">
         <echo>[SF-PREBUILD]</echo>
+    </target>
+    
+    <target name="sf-diamonds-connect">
+      <if>
+        <istrue value="${sf.spec.publish.enable}"/>
+        <then>
+          <echo>[SF-DIAMONDS-CONNECT]</echo>
+          <runtarget target="diamonds"/>
+          <echo message="Save Diamonds build id value (${diamonds.build.id}) in a file"/>
+          <echo message="diamonds.build.id=${diamonds.build.id}" file="${build.log.dir}/diamonds_build_id.properties"/>
+        </then>
+      </if>
     </target>
 
     <target name="sf-diamonds-tag-build">
@@ -202,14 +233,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <istrue value="${sf.spec.publish.enable}"/>
         <then>
           <echo>[SF-DIAMONDS-TAG-BUILD]</echo>
-          <runtarget target="diamonds"/>
-          <echo message="Save Diamonds build id value (${diamonds.build.id}) in a file"/>
-          <echo message="diamonds.build.id=${diamonds.build.id}" file="${build.log.dir}/diamonds_build_id.properties"/>
-          <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl" outputFile="${build.drive}/output/logs/sf-tag-build.xml">
-            <data expandProperties="yes">
-              ant: antProperties()
-            </data>
-          </fmpp>
+          <echo message="Generate ${build.drive}/output/logs/sf-diamonds-tag-build.xml with Diamonds tags for this build"/>
+          <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="true">
+            <arg value="${sf.common.config.dir}/tools/generate_diamonds_tags_xml.pl"/>
+            <arg value="--tags=${sf.diamonds.tags}"/>
+            <arg value="--output=${build.drive}/output/logs/sf-diamonds-tag-build.xml"/>
+          </exec>
         </then>
       </if>
     </target>
@@ -429,6 +458,14 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
+        </exec>
+        <mkdir dir="${build.log.dir}/summary" />
+        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/PreprocessPackageConfig_BRAG.xml" logError="true">
+            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
+            <arg value="--phase=Prebuild"/>
+            <arg value="--step=Preprocess package config"/>
+            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.PreprocessPackageConfig.tsv"/>
+            <arg value="${build.log.dir}/zipconfig.log"/>
         </exec>
     </target>
     
