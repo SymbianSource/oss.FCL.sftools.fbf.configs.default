@@ -394,7 +394,7 @@
       <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
     </target>
 
-    <target name="sf-run-analysis-yarp">          
+    <target name="sf-run-analysis-yarp">
       <echo message="Running yarp over *_compile.log files"/>
       <for param="logfile">
         <path>
@@ -419,6 +419,13 @@
           </exec>
         </sequential>
       </for>
+      
+      <!-- Cook the yarp analysis further to produce something in the right format for the BRAG system -->
+      <mkdir dir="${build.log.dir}/summary/"/>
+      <exec executable="perl" output="${build.log.dir}/summary/Yarp_BRAG.xml" logError="yes">
+        <arg value="${sf.common.config.dir}/tools/brag/yarpToBRAG.pl"/>
+        <arg value="${build.log.dir}/analysis/*_yarp.csv"/>
+      </exec>
       
       <exec executable="perl" dir="${build.drive}" failonerror="false" outputproperty="sf.job.totalyarperrors">
         <arg value="${sf.common.config.dir}/tools/analysis/parse_yarp_files.pl"/>
