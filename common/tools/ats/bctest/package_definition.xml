@@ -189,7 +189,7 @@
 				<command cmd="&cmd.perl;		sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/group/SetEnv.pl" />
 			</meta>
 		</layer>
-		<layer name="bld_production" long-name="Binary Compatability Production code build" levels="generic specific">
+		<layer name="bld-production" long-name="Binary Compatability Production code build" levels="generic specific">
 			<collection name="aspconnectionsis" long-name="50_asp_connection.sis">
 				<component id="aspconnection" name="ASP Connection Test">
 					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
@@ -216,37 +216,35 @@
 				</component>	
 			</collection>
 
-					<component id="lmksearch" name="Landmark Search Test">
-						<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group"/>
-					</component>
-					<component id="lmkdbmgmt" name="Landmark Database Management Test">
-						<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_database_management_api/group"/>
-					</component>
-					<component id="landmarks" name="Landmarks API Test">
-						<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/group"/>
-					</component>
+			<component id="lmksearch" name="Landmark Search Test">
+				<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group"/>
+			</component>
+			<component id="lmkdbmgmt" name="Landmark Database Management Test">
+				<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_database_management_api/group"/>
+			</component>
+			<component id="landmarks" name="Landmarks API Test">
+				<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/group"/>
+			</component>
 
 			<collection name="mmsclientmtmsis" long-name="50_Messaging_MMSClientMTM.SIS">
 				<component id="mmsclientmtm" name="Messaging MMS Client MTM BC Test">
 					<unit bldFile="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/group"/>
 				</component>
 			</collection>
-
 			<collection name="senduiapisis" long-name="50_msg_sendui.sis">
 				<component id="sendui" name="Messaging Send UI API BC Test">
 					<unit bldFile="sf/mw/messagingmw/msgfw_pub/send_ui_api/tsrc/bc/group"/>
 				</component>
 			</collection>
-
 			<collection name="pluginbiosis" long-name="50_Messaging_PluginBio.sis">
 				<component id="pluginbio" name="Messaging Plugin BIO BC Test">
 					<unit bldFile="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/group"/>
 				</component>
 			</collection>
 
-					<component id="drmcaf" name="DRM CAF BC Test">
-						<unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group"/>
-					</component>
+			<component id="drmcaf" name="DRM CAF BC Test">
+				<unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group"/>
+			</component>
 
 			<collection name="pbkdataaddeditsis" long-name="50_PIM_PbkDataAddEdit.SIS">
 				<component id="pbkdataaddedit" name="Phonebook Data Add Edit BC Test">
@@ -266,64 +264,22 @@
 				</component>
 			</collection>
 
-					<component id="pbkuiutil" name="Phonebook UI Utils BC Test">
-						<unit bldFile="sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/group"/>
-					</component>
-					<component id="pbkvcard" name="Phonebook vCard Import Export BC Test">
-						<unit bldFile="sf/app/contacts/contacts_pub/phonebook_vcard_importexport_api/tsrc/bc/group"/>
-					</component>
-					<component id="pbkspeeddial" name="Phonebook Speed Dial BC Test">
-						<unit bldFile="sf/app/contacts/contacts_pub/speed_dial_utility_control_api/tsrc/bc/group"/>
-					</component>
-					<component id="proengwrap" name="Profiles Engine Wrapper Test">
-						<unit bldFile="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/BC/ProfilesEngineWrapperAPI/group"/>
-					</component>
+			<component id="pbkuiutil" name="Phonebook UI Utils BC Test">
+				<unit bldFile="sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/group"/>
+			</component>
+			<component id="pbkvcard" name="Phonebook vCard Import Export BC Test">
+				<unit bldFile="sf/app/contacts/contacts_pub/phonebook_vcard_importexport_api/tsrc/bc/group"/>
+			</component>
+			<component id="pbkspeeddial" name="Phonebook Speed Dial BC Test">
+				<unit bldFile="sf/app/contacts/contacts_pub/speed_dial_utility_control_api/tsrc/bc/group"/>
+			</component>
+			<component id="proengwrap" name="Profiles Engine Wrapper Test">
+				<unit bldFile="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/BC/ProfilesEngineWrapperAPI/group"/>
+			</component>
 
 			<collection name="multimediasvs" long-name="SVS Multimedia API Tests">
 				<component id="testfwsrv" name="Multimedia Test Framework Server">
 					<unit bldFile="sf/os/mm/mmtestenv/mmtestfw/group"/>
-				</component>
-			</collection>
-
-			<collection name="systemswsis" long-name="50_systemsw.sis">
-				<component id="systemsw" name="System Software">
-					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/systemsw/group"/>
-				</component>
-				<component id="featurediscovery" name="Feature Discovery API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/feature_discovery_api/tsrc/bc/featurediscovery/group"/>
-				</component>
-				<component id="finditem" name="Find Item API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/find_item_api/tsrc/bc/finditem/group"/>
-				</component>
-				<component id="light" name="Light API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/light_api/tsrc/bc/light/group"/>
-				</component>
-				<component id="phoneparser" name="Phone Parser API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/phone_parser_api/tsrc/bc/phoneparser/group"/>
-				</component>
-				<component id="platformenv" name="Platform Environment API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/platform_environment_api/tsrc/bc/platformenv/group"/>
-				</component>
-				<component id="powerstate" name="HW Resource Management Power State API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/hwrm_power_state_api/tsrc/bc/powerstate/group"/>
-				</component>
-				<component id="sysutil" name="System Utilities API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/sysutil_api/tsrc/bc/sysutil/group"/>
-				</component>
-				<component id="textresolver" name="Text Resolver API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/text_resolver_api/tsrc/bc/textresolver/group"/>
-				</component>
-				<component id="vibra" name="Vibra API">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/vibra_api/tsrc/bc/vibra/group"/>
-				</component>
-				<component id="platformvertest" name="Platform Version Test">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/version_info_api/tsrc/bc/platformvertest/group"/>
-				</component>
-				<component id="accmonapibctests" name="Accessory Monitoring API BC Test">
-					<unit bldFile="sf/os/devicesrv/devicesrv_pub/accessory_monitoring_api/tsrc/bc/accmonapibctests/group"/>
-				</component>
-				<component id="networkstatus" name="Network Status API">
-					<unit bldFile="sf/mw/appsupport/appsupport_pub/network_status_api/tsrc/bc/networkstatus/group"/>
 				</component>
 			</collection>
 
@@ -333,7 +289,7 @@
 				</component>
 			</collection>
 		</layer>
-		<layer name="bld_test" long-name="Binary Compatability Test code build" levels="generic specific">
+		<layer name="bld-test" long-name="Binary Compatability Test code build" levels="generic specific">
 			<collection name="basesvs" long-name="SVS Base API Tests">
 				<component id="basesvs" name="SVS Base API Tests" class="test">
 					<unit bldFile="sf/os/kernelhwsrv/baseapitest/basesvs/group"/>

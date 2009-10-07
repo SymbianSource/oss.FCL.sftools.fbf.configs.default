@@ -452,6 +452,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
 
     <target name="sf-preprocess-package-config">
         <mkdir dir="${sf.common.config.dir}/generated"/>
+	<echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
