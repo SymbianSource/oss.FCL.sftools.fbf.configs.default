@@ -130,12 +130,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <condition>
                 <not>
                     <or>
-                        <equals arg1="sf.checkenv.exit" arg2="0"/>
+                        <equals arg1="${sf.checkenv.exit}" arg2="0"/>
                         <isset property="sf.suppress.buildenv.check"/>
                     </or>
                 </not>
             </condition>
-Build Environment Check failed. To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
+Build Environment Check failed (${sf.checkenv.exit}). To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
         </fail>
     </target>
     
