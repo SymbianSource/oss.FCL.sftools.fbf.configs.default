@@ -534,6 +534,8 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.${sf.brag.id}.tsv"/>
             <arg value="${sf.brag.log}"/>
         </exec>
+        <!-- And copy the XSL so the output can be transformed by a browser -->
+        <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
     </target>
 
 </project>
