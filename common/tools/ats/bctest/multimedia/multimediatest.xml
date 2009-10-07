@@ -62,15 +62,6 @@
 							<param component-path="multimediatest" />
 						</params>
 					</step>
-					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="multimedia/t_multimedia.ini"/>
-							<param dst="c:\multimedia\t_multimedia.ini"/>
-							<param component-path="multimediatest" />
-						</params>
-					</step>
 					<step id="" name="Test Step 2 (location)" harness="GENERIC" enabled="true" passrate="100">
 						<command>install</command>
 						<params>
@@ -102,7 +93,7 @@
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
-							<param parameters="\multimedia\mm-ecm-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param parameters="\multimedia\mm-ecm-publicapi.script"/>
 							<param result-file="c:\logs\testexecute\mm-ecm-publicapi.htm"/>
 							<param parser="TEFTestResultParser"/>
 							<param timeout="1000"/>
@@ -118,15 +109,6 @@
 							<param type="binary"/>
 							<param src="t_imagedecoder.exe"/>
 							<param dst="c:\sys\bin\t_imagedecoder.exe"/>
-							<param component-path="multimediatest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="multimedia/t_multimedia.tcs"/>
-							<param dst="c:\multimedia\t_multimedia.tcs"/>
 							<param component-path="multimediatest" />
 						</params>
 					</step>
@@ -277,15 +259,6 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="multimedia/t_multimedia.tcs"/>
-							<param dst="c:\multimedia\t_multimedia.tcs"/>
-							<param component-path="multimediatest" />
-						</params>
-					</step>
-					<step id="" name="Test Step 1 (device)" harness="GENERIC" enabled="true" passrate="100">
-						<command>install</command>
-						<params>
-							<param type="data"/>
 							<param src="multimedia/t_multimedia.ini"/>
 							<param dst="c:\multimedia\t_multimedia.ini"/>
 							<param component-path="multimediatest" />
@@ -331,7 +304,7 @@
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
-							<param parameters="\multimedia\mm-mmf-aclnt-cnvrt-publicapi.script -tcs \multimedia\t_multimedia.tcs"/>
+							<param parameters="\multimedia\mm-mmf-aclnt-cnvrt-publicapi.script"/>
 							<param result-file="c:\logs\testexecute\mm-mmf-aclnt-cnvrt-publicapi.htm"/>
 							<param parser="TEFTestResultParser"/>
 							<param timeout="1000"/>
