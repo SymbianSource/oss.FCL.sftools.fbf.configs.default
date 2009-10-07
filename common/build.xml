@@ -118,14 +118,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
-        <mkdir dir="${build.log.dir}/summary" />
-        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/BuildEnvironmentCheck_BRAG.xml" logError="true">
-            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
-            <arg value="--phase=Prebuild"/>
-            <arg value="--step=Build Environment Check"/>
-            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.BuildEnvironmentCheck.tsv"/>
-            <arg value="${build.log.dir}/BuildEnvironmentCheck.log"/>
-        </exec>
+        <antcall target="sf-log-to-brag">
+            <param name="sf.brag.phase" value="Prebuild"/>
+            <param name="sf.brag.step" value="Build Environment Check"/>
+            <param name="sf.brag.log" value="${build.log.dir}/BuildEnvironmentCheck.log"/>
+            <param name="sf.brag.id" value="BuildEnvironmentCheck"/>
+        </antcall>
         <fail>
             <condition>
                 <not>
@@ -138,7 +136,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 Build Environment Check failed (${sf.checkenv.exit}). To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
         </fail>
     </target>
-    
+
     <target name="sf-summary" depends="">
         <echo>[SF-SUMMARY]</echo>
         <echo message="Generating build summary"/>
@@ -460,14 +458,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
-        <mkdir dir="${build.log.dir}/summary" />
-        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/PreprocessPackageConfig_BRAG.xml" logError="true">
-            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
-            <arg value="--phase=Prebuild"/>
-            <arg value="--step=Preprocess package config"/>
-            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.PreprocessPackageConfig.tsv"/>
-            <arg value="${build.log.dir}/zipconfig.log"/>
-        </exec>
+        <antcall target="sf-log-to-brag">
+            <param name="sf.brag.phase" value="Prebuild"/>
+            <param name="sf.brag.step" value="Preprocess package config"/>
+            <param name="sf.brag.log" value="${build.log.dir}/zipconfig.log"/>
+            <param name="sf.brag.id" value="PreprocessPackageConfig"/>
+        </antcall>
     </target>
     
     <target name="sf-zip-content" depends="preprocess-zip-config">
@@ -527,5 +523,18 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options"/>
   </target>
     
+    <!-- Turn a log file into a BRAG XML file - parameters to be passed are sf.brag.* -->
+    <target name="sf-log-to-brag">
+        <mkdir dir="${build.log.dir}/summary"/>
+        <echo message="Generating ${sf.brag.id}_BRAG.xml from ${sf.brag.log}"/>
+        <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/${sf.brag.id}_BRAG.xml" logError="true">
+            <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
+	    <arg value="--phase=${sf.brag.phase}"/>
+            <arg value="--step=${sf.brag.step}"/>
+            <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.${sf.brag.id}.tsv"/>
+            <arg value="${sf.brag.log}"/>
+        </exec>
+    </target>
+
 </project>
 
