@@ -159,7 +159,7 @@
         <exec executable="perl" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="smoketest.pl"/>
         </exec>
-        <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"/>
+        <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"  failonerror="false"/>
         
         <echo message="INFO Updating smoketest package with test info"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">

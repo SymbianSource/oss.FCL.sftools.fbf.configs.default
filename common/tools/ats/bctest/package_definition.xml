@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE SystemDefinition [
-<!ENTITY codeline_oss_fcl	"//v800008/builds01/mercurial_development/oss/FCL" >
-<!ENTITY codeline_sfl_fcl	"//v800008/builds01/mercurial_development/sfl/FCL" >
-<!ENTITY codeline_sfl_mcl	"//v800008/builds01/Mercurial_master_prod/sfl/MCL" >
-<!ENTITY cmd_updatebranch	"RCL_1" >
-<!ENTITY cmd_clone			"hg clone" >
-<!ENTITY cmd_cwdir			"metacmd.py cwdir" >
-<!ENTITY cmd_makedirs		"metacmd.py makedirs" >
-<!ENTITY cmd_perl			"perl" >
-<!ENTITY cmd_sisbld			"makesis" >
-<!ENTITY cmd_unzip			"7z -y x" >
-<!ENTITY cmd_update			"hg update &cmd_updatebranch;" >
-<!ENTITY cmd_wget			"wget" >
+<!ENTITY codeline.oss.fcl						"//v800008/builds01/mercurial_development/oss/FCL" >
+<!ENTITY codeline.sfl.fcl						"//v800008/builds01/mercurial_development/sfl/FCL" >
+<!ENTITY codeline.sfl.mcl						"//v800008/builds01/Mercurial_master_prod/sfl/MCL" >
+<!ENTITY param.updatebranch						"RCL_1" >
+<!ENTITY cmd.clone								"metacmd.py mcclone" >
+<!ENTITY cmd.copy								"metacmd.py mccopy" >
+<!ENTITY cmd.makedirs							"metacmd.py mcmakedirs" >
+<!ENTITY cmd.perl								"perl" >
+<!ENTITY cmd.sisbld								"makesis" >
+<!ENTITY cmd.unzip								"7z -y x" >
+<!ENTITY cmd.update								"hg update &param.updatebranch;" >
+<!ENTITY cmd.wget								"wget" >
+<!ENTITY dir.50_asp_connection					"sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/sis" >
+<!ENTITY dir.50_asp_hostconn					"sf/mw/websrv/websrv_pub/hostlet_connection_api/tsrc/bc/hostconn/sis" >
+<!ENTITY dir.50_asp_newsoapclasses				"sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/sis" >
+<!ENTITY dir.50_Browser_DownloadMgr				"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/sis" >
+<!ENTITY dir.50_Browser_Favourites				"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/FavouritesBCTest/sis" >
+<!ENTITY dir.50_loc_landmarks					"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/sis" >
+<!ENTITY dir.50_loc_LmkDBMgmt					"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_database_management_api/sis" >
+<!ENTITY dir.50_loc_LmkSearch					"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/sis" >
+<!ENTITY dir.50_Messaging_MMSClientMTM			"sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/sis" >
+<!ENTITY dir.50_Messaging_PluginBio				"sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/sis" >
+<!ENTITY dir.50_MM_DRMCAF						"sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/sis" >
+<!ENTITY dir.50_PIM_PbkDataAddEdit				"sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/sis" >
+<!ENTITY dir.50_PIM_PbkDataMgmt					"sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/sis" >
+<!ENTITY dir.50_PIM_PbkFetchAPI					"sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/sis" >
+<!ENTITY dir.50_PIM_PbkUIUtil					"sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/sis" >
+<!ENTITY dir.50_PIM_PbkVcard					"sf/app/contacts/contacts_pub/phonebook_vcard_importexport_api/tsrc/bc/sis" >
+<!ENTITY dir.50_PIM_Spdial						"sf/app/contacts/contacts_pub/speed_dial_utility_control_api/tsrc/bc/sis" >
+<!ENTITY dir.50_SP_PROENG						"sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/BC/ProfilesEngineWrapperAPI/sis" >
+<!ENTITY dir.50_Symbian_AudioConvertUtility		"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioConvertUtility/sis" >
+<!ENTITY dir.50_Symbian_AudioInputStream		"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioInputStream/sis" >
+<!ENTITY dir.50_Symbian_AudioOutputStream		"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioOutputStream/sis" >
+<!ENTITY dir.50_Symbian_AudioPlayerUtility		"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioPlayerUtility/sis" >
+<!ENTITY dir.50_Symbian_AudioRecorderUtility	"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioRecorderUtility/sis" >
+<!ENTITY dir.50_Symbian_Base					"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/base/sis" >
+<!ENTITY dir.50_Symbian_Ecom					"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/SysLibs/ecom/sis" >
+<!ENTITY dir.50_symbian_graphics				"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/graphics/sis" >
+<!ENTITY dir.50_Symbian_ImageDecoder			"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/icl/T_ImageDecoder/sis" >
+<!ENTITY dir.50_Symbian_ImageEncoder			"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/icl/T_ImageEncoder/sis" >
+<!ENTITY dir.50_Symbian_T_Camera				"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/ecam/T_Camera/sis" >
+<!ENTITY dir.50_Symbian_T_MdaAudioToneUtility	"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioToneUtility/sis" >
+<!ENTITY dir.50_Symbian_T_MidiClientUtility		"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MidiClientUtility/sis" >
+<!ENTITY dir.50_systemsw						"sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/systemsw/sis" >
+
 
 <!ELEMENT SystemDefinition ( systemModel | layer | package | collection | component)>
 <!ATTLIST SystemDefinition
@@ -112,42 +145,48 @@
 ]>
 <SystemDefinition name="Foundation" schema="2.0.1">
 	<systemModel>
-		<layer name="pre-bld" long-name="Binary Compatability Sync" levels="generic specific">
+		<layer name="pre_bld" long-name="Binary Compatability Sync" levels="generic specific">
 			<meta type="commands">
-				<command cmd="&cmd_makedirs;	interim/fbf/configs" />
-				<command cmd="&cmd_makedirs;	sf/app" />
-				<command cmd="&cmd_makedirs;	sf/mw" />
-				<command cmd="&cmd_makedirs;	sf/os" />
-				<command cmd="&cmd_makedirs;	sftools/ana" />
-				<command cmd="&cmd_clone;		&codeline_oss_fcl;/interim/fbf/configs/default	interim/fbf/configs/default" />
-				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/app/contacts				sf/app/contacts" />
-				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/app/messaging				sf/app/messaging" />
-				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/mw/appsupport				sf/mw/appsupport" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/drm					sf/mw/drm" />
-				<command cmd="&cmd_update;" dir="sf/mw/drm" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/locationsrv			sf/mw/locationsrv" />
-				<command cmd="&cmd_update;" dir="sf/mw/locationsrv" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/messagingmw			sf/mw/messagingmw" />
-				<command cmd="&cmd_update;" dir="sf/mw/messagingmw" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/mw/mmmw					sf/mw/mmmw" />
-				<command cmd="&cmd_update;" dir="sf/mw/mmmw" />
-				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/mw/websrv					sf/mw/websrv" />
-				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sf/os/devicesrv				sf/os/devicesrv" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/graphics				sf/os/graphics" />
-				<command cmd="&cmd_update;" dir="sf/os/graphics" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/kernelhwsrv			sf/os/kernelhwsrv" />
-				<command cmd="&cmd_update;" dir="sf/os/kernelhwsrv" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/mm						sf/os/mm" />
-				<command cmd="&cmd_update;" dir="sf/os/mm" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/ossrv					sf/os/ossrv" />
-				<command cmd="&cmd_update;" dir="sf/os/ossrv" />
-				<command cmd="&cmd_clone;		&codeline_sfl_mcl;/sf/os/shortlinksrv			sf/os/shortlinksrv" />
-				<command cmd="&cmd_update;" dir="sf/os/shortlinksrv" />
-				<command cmd="&cmd_clone;		&codeline_sfl_fcl;/sftools/ana/compatanamdw		sftools/ana/compatanamdw" />
-				<command cmd="&cmd_wget;		http://developer.symbian.org/wiki/images/e/e7/Xvid.zip" />
-				<command cmd="&cmd_makedirs;	xvid" />
-				<command cmd="&cmd_unzip;		xvid.zip xvid/" />
-				<command cmd="&cmd_perl;		sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/group/SetEnv.pl" />
+				<command cmd="&cmd.makedirs;	interim/fbf/configs" />
+				<command cmd="&cmd.makedirs;	sf/app" />
+				<command cmd="&cmd.makedirs;	sf/mw" />
+				<command cmd="&cmd.makedirs;	sf/os" />
+				<command cmd="&cmd.makedirs;	sftools/ana" />
+				<command cmd="&cmd.clone;		&codeline.oss.fcl;/interim/fbf/configs/default	interim/fbf/configs/default" />
+				<command cmd="&cmd.update;"		dir="interim/fbf/configs/default" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/app/contacts				sf/app/contacts" />
+				<command cmd="&cmd.update;"		dir="sf/app/contacts" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/app/messaging				sf/app/messaging" />
+				<command cmd="&cmd.update;"		dir="sf/app/messaging" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/mw/appsupport				sf/mw/appsupport" />
+				<command cmd="&cmd.update;"		dir="sf/mw/appsupport" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/mw/drm					sf/mw/drm" />
+				<command cmd="&cmd.update;"		dir="sf/mw/drm" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/mw/locationsrv			sf/mw/locationsrv" />
+				<command cmd="&cmd.update;"		dir="sf/mw/locationsrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/mw/messagingmw			sf/mw/messagingmw" />
+				<command cmd="&cmd.update;"		dir="sf/mw/messagingmw" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/mw/mmmw					sf/mw/mmmw" />
+				<command cmd="&cmd.update;"		dir="sf/mw/mmmw" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/mw/websrv					sf/mw/websrv" />
+				<command cmd="&cmd.update;"		dir="sf/mw/websrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/os/devicesrv				sf/os/devicesrv" />
+				<command cmd="&cmd.update;"		dir="sf/os/devicesrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/graphics				sf/os/graphics" />
+				<command cmd="&cmd.update;"		dir="sf/os/graphics" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/kernelhwsrv			sf/os/kernelhwsrv" />
+				<command cmd="&cmd.update;"		dir="sf/os/kernelhwsrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/mm						sf/os/mm" />
+				<command cmd="&cmd.update;"		dir="sf/os/mm" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/ossrv					sf/os/ossrv" />
+				<command cmd="&cmd.update;"		dir="sf/os/ossrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/shortlinksrv			sf/os/shortlinksrv" />
+				<command cmd="&cmd.update;"		dir="sf/os/shortlinksrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sftools/ana/compatanamdw		sftools/ana/compatanamdw" />
+				<command cmd="&cmd.update;"		dir="sftools/ana/compatanamdw" />
+				<command cmd="&cmd.wget;		http://developer.symbian.org/wiki/images/e/e7/Xvid.zip" />
+				<command cmd="&cmd.unzip;		xvid.zip" />
+				<command cmd="&cmd.perl;		sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/group/SetEnv.pl" />
 			</meta>
 		</layer>
 		<layer name="bld-production" long-name="Binary Compatability Production code build" levels="generic specific">
@@ -276,40 +315,41 @@
 				</component>
 			</collection>
 		</layer>
-		<layer name="post-bld" long-name="Binary Compatability SIS build" levels="generic specific">
+		<layer name="post_bld" long-name="Binary Compatability SIS build" levels="generic specific">
 			<meta type="commands">
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_asp_connection.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_asp_hostconn.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_asp_newsoapclasses.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Browser_DownloadMgr.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Browser_Favourites.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_loc_landmarks.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_loc_LmkDBMgmt.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_loc_LmkSearch.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Messaging_MMSClientMTM.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Messaging_PluginBio.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_MM_DRMCAF.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_PIM_PbkDataAddEdit.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_PIM_PbkDataMgmt.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_PIM_PbkFetchAPI.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_PIM_PbkUIUtil.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_PIM_PbkVcard.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_PIM_Spdial.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_SP_PROENG.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_AudioConvertUtility.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_AudioInputStream.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_AudioOutputStream.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_AudioPlayerUtility.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_AudioRecorderUtility.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_Base.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_Ecom.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_symbian_graphics.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_ImageDecoder.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_ImageEncoder.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_T_Camera.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_T_MdaAudioToneUtility.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_Symbian_T_MidiClientUtility.pkg" />
-				<command cmd="&cmd_sisbld; interim/fbf/configs/default/common/tools/ats/bctest/pkg/50_systemsw.pkg" />
+				<command cmd="&cmd.makedirs;	sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_connection;					&dir.50_asp_connection;/50_asp_connection.pkg								sis/50_asp_connection.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_hostconn; 					&dir.50_asp_hostconn;/50_asp_hostconn.pkg									sis/50_asp_hostconn.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_newsoapclasses;		 		&dir.50_asp_newsoapclasses;/50_asp_newsoapclasses.pkg						sis/50_asp_newsoapclasses.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_DownloadMgr; 				&dir.50_Browser_DownloadMgr;/50_Browser_DownloadMgr.pkg						sis/50_Browser_DownloadMgr.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_Favourites; 				&dir.50_Browser_Favourites;/50_Browser_Favourites.pkg						sis/50_Browser_Favourites.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_loc_landmarks; 					&dir.50_loc_landmarks;/50_loc_landmarks.pkg									sis/50_loc_landmarks.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_loc_LmkDBMgmt;		 			&dir.50_loc_LmkDBMgmt;/50_loc_LmkDBMgmt.pkg									sis/50_loc_LmkDBMgmt.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_loc_LmkSearch;		 			&dir.50_loc_LmkSearch;/50_loc_LmkSearch.pkg									sis/50_loc_LmkSearch.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Messaging_MMSClientMTM;	 		&dir.50_Messaging_MMSClientMTM;/50_Messaging_MMSClientMTM.pkg				sis/50_Messaging_MMSClientMTM.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Messaging_PluginBio; 				&dir.50_Messaging_PluginBio;/50_Messaging_PluginBio.pkg						sis/50_Messaging_PluginBio.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_MM_DRMCAF; 						&dir.50_MM_DRMCAF;/50_MM_DRMCAF.pkg											sis/50_MM_DRMCAF.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkDataAddEdit;		 		&dir.50_PIM_PbkDataAddEdit;/50_PIM_PbkDataAddEdit.pkg						sis/50_PIM_PbkDataAddEdit.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkDataMgmt; 					&dir.50_PIM_PbkDataMgmt;/50_PIM_PbkDataMgmt.pkg								sis/50_PIM_PbkDataMgmt.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkFetchAPI; 					&dir.50_PIM_PbkFetchAPI;/50_PIM_PbkFetchAPI.pkg								sis/50_PIM_PbkFetchAPI.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkUIUtil; 					&dir.50_PIM_PbkUIUtil;/50_PIM_PbkUIUtil.pkg									sis/50_PIM_PbkUIUtil.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkVcard; 					&dir.50_PIM_PbkVcard;/50_PIM_PbkVcard.pkg									sis/50_PIM_PbkVcard.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_Spdial; 						&dir.50_PIM_Spdial;/50_PIM_Spdial.pkg										sis/50_PIM_Spdial.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_SP_PROENG;	 					&dir.50_SP_PROENG;/50_SP_PROENG.pkg											sis/50_SP_PROENG.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioConvertUtility; 		&dir.50_Symbian_AudioConvertUtility;/50_Symbian_AudioConvertUtility.pkg		sis/50_Symbian_AudioConvertUtility.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioInputStream; 		&dir.50_Symbian_AudioInputStream;/50_Symbian_AudioInputStream.pkg			sis/50_Symbian_AudioInputStream.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioOutputStream; 		&dir.50_Symbian_AudioOutputStream;/50_Symbian_AudioOutputStream.pkg			sis/50_Symbian_AudioOutputStream.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioPlayerUtility;	 	&dir.50_Symbian_AudioPlayerUtility;/50_Symbian_AudioPlayerUtility.pkg		sis/50_Symbian_AudioPlayerUtility.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioRecorderUtility; 	&dir.50_Symbian_AudioRecorderUtility;/50_Symbian_AudioRecorderUtility.pkg	sis/50_Symbian_AudioRecorderUtility.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_Base; 					&dir.50_Symbian_Base;/50_Symbian_Base.pkg									sis/50_Symbian_Base.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_Ecom; 					&dir.50_Symbian_Ecom;/50_Symbian_Ecom.pkg									sis/50_Symbian_Ecom.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_symbian_graphics; 				&dir.50_symbian_graphics;/50_symbian_graphics.pkg							sis/50_symbian_graphics.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_ImageDecoder; 			&dir.50_Symbian_ImageDecoder;/50_Symbian_ImageDecoder.pkg					sis/50_Symbian_ImageDecoder.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_ImageEncoder; 			&dir.50_Symbian_ImageEncoder;/50_Symbian_ImageEncoder.pkg					sis/50_Symbian_ImageEncoder.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_Camera;	 				&dir.50_Symbian_T_Camera;/50_Symbian_T_Camera.pkg							sis/50_Symbian_T_Camera.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_MdaAudioToneUtility;	&dir.50_Symbian_T_MdaAudioToneUtility;/50_Symbian_T_MdaAudioToneUtility.pkg	sis/50_Symbian_T_MdaAudioToneUtility.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_MidiClientUtility;		&dir.50_Symbian_T_MidiClientUtility;/50_Symbian_T_MidiClientUtility.pkg		sis/50_Symbian_T_MidiClientUtility.sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_systemsw;							&dir.50_systemsw;/50_systemsw.pkg											sis/50_systemsw.sis" />
 			</meta>
 		</layer>
 	</systemModel>

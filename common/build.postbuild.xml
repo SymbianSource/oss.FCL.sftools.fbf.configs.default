@@ -283,7 +283,8 @@
             <then>
             <runtarget target="sf-run-analysis-diamonds"/>
             </then>
-        </if>    
+        </if>
+	<runtarget target="sf-brag-to-diamonds"/>
     </target>
 
     <target name="sf-run-analysis-ant">    
@@ -296,6 +297,7 @@
 
     <target name="sf-run-analysis-raptor">            
       <echo message="Preprocessing *_compile.log files"/>
+      <delete file="${build.log.dir}/analysis/${build.id}_preprocess.log"/>
       <for param="logfile">
         <path>
           <fileset dir="${build.log.dir}">
@@ -306,9 +308,10 @@
         <sequential>
           <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
           <echo message="Preprocessing @{logfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" error="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true">
+          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" errorProperty="@{logfile}" >
             <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
           </exec>
+	  <echo file="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true" message="${@{logfile}}${line.separator}"/>
         </sequential>
       </for>
       
@@ -484,7 +487,66 @@
           files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
         </data>
       </fmpp>
+      <!-- Send the data to the server -->
+	  <exec executable="python">
+		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+		    <arg value="-s"/>
+		    <arg value="${diamonds.host}"/>
+		    <arg value="-u"/>
+		    <arg value="${diamonds.build.id}"/>
+		    <arg value="-f"/>
+		    <arg value="${build.log.dir}/sf-run-analysis.xml"/>
+	  </exec>
     </target>    
+
+    <target name="sf-brag-to-diamonds">
+        <!-- Merge all our bits of XML together -->
+        <exec executable="perl" output="${build.log.dir}/summary/_BRAG.xml">
+            <arg value="${sf.common.config.dir}/tools/mergeXML.pl"/>
+            <arg value="--xsl=brag.xsl"/>
+            <arg value="--merge=buildStatus,phase(name),step(name),failures(level)"/>
+            <arg value="${build.log.dir}/summary/*?_BRAG.xml"/>
+        </exec>
+        <!-- Run XSL transform to create file to send to diamonds -->
+        <java jar="${sf.common.config.dir}/sysdefdowngrade/xalan-j_2_7_1/xalan.jar" fork="true">
+            <arg value="-IN"/>
+            <arg value="${build.log.dir}/summary/_BRAG.xml"/>
+            <arg value="-XSL"/>
+            <arg value="${sf.common.config.dir}/tools/brag/bragForDiamonds.xsl"/>
+            <arg value="-OUT"/>
+            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+        </java>
+        <if>
+            <istrue value="${sf.spec.publish.enable}"/>
+            <then>
+                <!-- Try to obtain the diamonds ID for this build -->
+                <if>
+                    <not><isset property="diamonds.build.id"/></not>
+                    <then>
+                        <property file="${build.log.dir}/diamonds_build_id.properties"/> <!-- This will fail silently -->
+                    </then>
+                </if>
+                <if>
+                    <isset property="diamonds.build.id"/>
+                    <then>
+                        <!-- Send the data to the server -->
+                        <exec executable="python">
+                            <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+                            <arg value="-s"/>
+                            <arg value="${diamonds.host}"/>
+                            <arg value="-u"/>
+                            <arg value="${diamonds.build.id}"/>
+                            <arg value="-f"/>
+                            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+                        </exec>
+                    </then>
+                    <else>
+                        <echo message="diamonds.build.id is not known - unable to push any build specific information to diamonds server"/>
+                    </else>
+                </if>
+            </then>
+        </if>
+    </target>
 
     <target name="sf-check-utilities-dir">
         <available property="sf-utilities-available" file="${build.drive}/utilities" type="dir"/>
@@ -638,6 +700,46 @@
             <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
             <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
         </antcall>
+        
+    </target>
+    
+    <target name="sf-create-public-PDK" depends="sf-prebuild,sf-run-sfl-licence-munging" >
+        <if>
+            <istrue value="${sf.spec.md5.enable}"/>
+            <then>
+                <echo message="INFO Creating MD5s"/>
+                <runtarget target="sf-run-evalid"/>
+            </then>
+        </if>
+        
+        <!-- Package up the binaries we built -->
+        <if>
+            <istrue value="${sf.spec.package.bin.enable}"/>
+            <then>
+                <echo message="INFO Packaging Binaries"/>
+                <runtarget target="sf-package-binary"/>
+                <runtarget target="sf-package-tools"/>
+
+                <echo message="INFO Validate Zip files"/>
+                <runtarget target="sf-package-validate"/>
+            </then>
+        </if>
+        <runtarget target="sf-zip-logs"/>
+        <if>
+            <istrue value="${sf.spec.publish.enable}" />
+            <then>
+                <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
+                <runtarget target="sf-publish"/>
+            </then>
+        </if>
+    </target>
+
+
+    <target name="sf-run-sfl-licence-munging" depends="sf-check-utilities-dir" if="sf-utilities-available">    
+        <echo message="Running SFL Licence Munging writing log to ${build.log.dir}"/>
+        <exec executable="perl" dir="${build.drive}" failonerror="false" output="${build.log.dir}/postbuild_sfl-licence_munging_results.log">
+          <arg value="${build.drive}/utilities/williamr/convert_to_eula.pl"/>
+        </exec>
     </target>
 
 </project>

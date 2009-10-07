@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<project name="SYMBIAN2-PROPS">
+  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_2.0.e"/>
+</project>
+
