@@ -189,7 +189,7 @@
 				<command cmd="&cmd.perl;		sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/group/SetEnv.pl" />
 			</meta>
 		</layer>
-		<layer name="bld-production" long-name="Binary Compatability Production code build" levels="generic specific">
+		<layer name="bld_production" long-name="Binary Compatability Production code build" levels="generic specific">
 			<collection name="aspconnectionsis" long-name="50_asp_connection.sis">
 				<component id="aspconnection" name="ASP Connection Test">
 					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group"/>
@@ -289,7 +289,7 @@
 				</component>
 			</collection>
 		</layer>
-		<layer name="bld-test" long-name="Binary Compatability Test code build" levels="generic specific">
+		<layer name="bld_test" long-name="Binary Compatability Test code build" levels="generic specific">
 			<collection name="basesvs" long-name="SVS Base API Tests">
 				<component id="basesvs" name="SVS Base API Tests" class="test">
 					<unit bldFile="sf/os/kernelhwsrv/baseapitest/basesvs/group"/>
