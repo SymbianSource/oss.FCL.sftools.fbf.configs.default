@@ -517,6 +517,10 @@
             <arg value="-OUT"/>
             <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
         </java>
+        <!-- Make sure that the summary directory is available to display the BRAG link -->
+        <mkdir  dir="${publish.dir}/summary/"/>
+        <copy file="${build.log.dir}/summary/_brag.xml" toDir="${publish.dir}/summary/"/>
+        <copy file="${build.log.dir}/summary/brag.xsl" toDir="${publish.dir}/summary/"/>
         <if>
             <istrue value="${sf.spec.publish.enable}"/>
             <then>
@@ -613,7 +617,7 @@
                 </zip>
             </then>
         </if>
-    </target>
+     </target>
     
     <target name="sf-publish" depends="prep-publish">
         <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">
