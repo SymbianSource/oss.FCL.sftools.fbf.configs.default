@@ -72,7 +72,7 @@ foreach my $package (@packages)
 {
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	$package->{dst} =~ s{^/}{}g;
-	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/(sf|utilities)/(([^/]+)/([^/]+))?})
+	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/(sf|utilities|interim)/(([^/]+)/)?([^/]+)?})
 	{
 		my ($license, $codeline, $thingy, $layer, $packageName) = ($1, $2, $3, $5, $6);
 		# $thingy is the part of the path after the codeline. For
@@ -85,6 +85,19 @@ foreach my $package (@packages)
 		{
 			$layer = "tools";
 			$packageName = "utilities";
+		}
+		elsif ($thingy eq "interim")
+		{
+			if ($layer eq "QEMU")
+			{
+				$packageName = $layer;
+				$layer = "os";
+			}
+			else
+			{
+				warn "ERROR: Don't know how to deal with interim package $layer\n";
+				goto MISC_PACKAGE;
+			}
 		}
 		elsif (!defined $packageName)
 		{

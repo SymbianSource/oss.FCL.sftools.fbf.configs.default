@@ -190,6 +190,7 @@
         </parallel>
         
         <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
+		<mkdir dir="${build.output.dir}/zips/release"/> <!-- Hack to prevent non-existing release dir -->
         <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
@@ -287,9 +288,9 @@
           <istrue value="${sf.spec.publish.enable}"/>
             <then>
             <runtarget target="sf-run-analysis-diamonds"/>
+          	<runtarget target="sf-brag-to-diamonds"/>
             </then>
         </if>
-	<runtarget target="sf-brag-to-diamonds"/>
     </target>
 
     <target name="sf-run-analysis-ant">    
@@ -521,6 +522,10 @@
             <arg value="-OUT"/>
             <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
         </java>
+        <!-- Make sure that the summary directory is available to display the BRAG link -->
+        <mkdir  dir="${publish.dir}/summary/"/>
+        <copy file="${build.log.dir}/summary/_brag.xml" toDir="${publish.dir}/summary/"/>
+        <copy file="${build.log.dir}/summary/brag.xsl" toDir="${publish.dir}/summary/"/>
         <if>
             <istrue value="${sf.spec.publish.enable}"/>
             <then>
@@ -617,7 +622,7 @@
                 </zip>
             </then>
         </if>
-    </target>
+     </target>
     
     <target name="sf-publish" depends="prep-publish">
         <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">

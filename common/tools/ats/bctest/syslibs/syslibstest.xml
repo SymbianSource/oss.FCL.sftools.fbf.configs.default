@@ -4,13 +4,13 @@
 	<owner>admin</owner>
 	<priority>10</priority>
 	<buildid></buildid>
-	<name>multimediaSVStest</name>
+	<name>OS Services SVS Tests</name>
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="GENERIC" />
         </device>
 	</target>
-	<plan id="0.54" name="SyslibsSVSTests WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
+	<plan id="" name="OS Services SVS Tests WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
 		<target>
 			<device rank="master" alias="emulator_udeb"/>
 		</target>

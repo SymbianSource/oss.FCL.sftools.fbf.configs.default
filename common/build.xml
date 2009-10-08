@@ -37,7 +37,7 @@
       </then>
     </if>
     
-    <property name="sf.diamonds.tags" value="${sf.spec.job.codeline},${sf.spec.publish.diamonds.tag}"/>
+    <property name="sf.diamonds.tags" value="_${sf.spec.job.codeline},${sf.spec.publish.diamonds.tag}"/>
     
     <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
     <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>
@@ -89,7 +89,13 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
 
-        <runtarget target="sf-check-env"/>
+        <if>          
+            <not><isset property="sf.suppress.buildenv.check"/></not>
+            <then>
+                <echo message="Checking build Environment. To suppress this check set property sf.suppress.buildenv.check to any value"/>
+                <runtarget target="sf-check-env"/>
+            </then>
+        </if>
     </target>
         
     <target name="sf-check-env">
@@ -112,6 +118,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
+        <mkdir dir="${build.log.dir}/summary" />
         <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/BuildEnvironmentCheck_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
             <arg value="--phase=Prebuild"/>
@@ -123,12 +130,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <condition>
                 <not>
                     <or>
-                        <equals arg1="sf.checkenv.exit" arg2="0"/>
+                        <equals arg1="${sf.checkenv.exit}" arg2="0"/>
                         <isset property="sf.suppress.buildenv.check"/>
                     </or>
                 </not>
             </condition>
-Build Environment Check failed. To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
+Build Environment Check failed (${sf.checkenv.exit}). To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
         </fail>
     </target>
     
@@ -445,6 +452,7 @@ Build Environment Check failed. To stop this failure aborting the build set prop
 
     <target name="sf-preprocess-package-config">
         <mkdir dir="${sf.common.config.dir}/generated"/>
+	<echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
@@ -452,6 +460,7 @@ Build Environment Check failed. To stop this failure aborting the build set prop
             <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
+        <mkdir dir="${build.log.dir}/summary" />
         <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/PreprocessPackageConfig_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
             <arg value="--phase=Prebuild"/>
