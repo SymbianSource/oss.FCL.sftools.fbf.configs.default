@@ -283,9 +283,9 @@
           <istrue value="${sf.spec.publish.enable}"/>
             <then>
             <runtarget target="sf-run-analysis-diamonds"/>
+          	<runtarget target="sf-brag-to-diamonds"/>
             </then>
         </if>
-	<runtarget target="sf-brag-to-diamonds"/>
     </target>
 
     <target name="sf-run-analysis-ant">    
