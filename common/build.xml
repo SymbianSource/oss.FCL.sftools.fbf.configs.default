@@ -37,7 +37,7 @@
       </then>
     </if>
     
-    <property name="sf.diamonds.tags" value="${sf.spec.job.codeline},${sf.spec.publish.diamonds.tag}"/>
+    <property name="sf.diamonds.tags" value="_${sf.spec.job.codeline},${sf.spec.publish.diamonds.tag}"/>
     
     <!-- SF-specific Helium properties not meant to be exposed in the project spec -->
     <property name="diamonds.listener.configuration.file" location="${sf.common.config.dir}/diamonds/config.xml.ftl"/>
