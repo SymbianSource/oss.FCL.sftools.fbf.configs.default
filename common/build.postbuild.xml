@@ -185,6 +185,7 @@
         </parallel>
         
         <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
+		<mkdir dir="${build.output.dir}/zips/release"/> <!-- Hack to prevent non-existing release dir -->
         <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
@@ -282,9 +283,9 @@
           <istrue value="${sf.spec.publish.enable}"/>
             <then>
             <runtarget target="sf-run-analysis-diamonds"/>
+          	<runtarget target="sf-brag-to-diamonds"/>
             </then>
         </if>
-	<runtarget target="sf-brag-to-diamonds"/>
     </target>
 
     <target name="sf-run-analysis-ant">    
