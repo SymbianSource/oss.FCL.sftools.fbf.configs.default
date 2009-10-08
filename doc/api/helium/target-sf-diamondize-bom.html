@@ -82,7 +82,7 @@
 <h2>Target sf-diamondize-bom</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L420">D:\maintools\sf-config\common\build.xml:420:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L430">d:\maintools\sf-config\common\build.xml:430:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -129,8 +129,10 @@
 <img src="target-sf-diamondize-bom.dot.png" alt="sf-diamondize-bom dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-diamondize-bom.html" title="sf&#45;diamondize&#45;bom" alt="" coords="204,5,359,53">
-<area shape="rect" id="node2" href="target-sf-prebuild-noprep.html" title="sf&#45;prebuild&#45;noprep" alt="" coords="7,5,153,53">
+<area shape="rect" id="node1" href="target-sf-diamondize-bom.html" title="sf&#45;diamondize&#45;bom" alt="" coords="239,41,393,89">
+<area shape="rect" id="node6" href="target-sf-record-proj-conf-bom.html" title="sf&#45;record&#45;proj&#45;conf&#45;bom" alt="" coords="443,41,627,89">
+<area shape="rect" id="node2" href="target-sf-prebuild-noprep.html" title="sf&#45;prebuild&#45;noprep" alt="" coords="24,5,171,53">
+<area shape="rect" id="node4" href="target-sf-compare-to-baseline.html" title="sf&#45;compare&#45;to&#45;baseline" alt="" coords="7,77,188,125">
 </map>
 </p>
 <hr/>
@@ -138,24 +140,19 @@
 
 <h3>Source code</h3>
 <pre>
-    &lt;target name=&quot;sf-diamondize-bom&quot;&gt;
-        &lt;if&gt;
-            &lt;istrue value=&quot;${sf.spec.publish.enable}&quot;/&gt;
-            &lt;then&gt;
-                &lt;fmpp sourceFile=&quot;${sf.common.config.dir}/templates/build-info.xml.ftl&quot; outputFile=&quot;${build.drive}/output/logs/sf-diamondize-bom.xml&quot;&gt;
-                    &lt;data expandProperties=&quot;yes&quot;&gt;
-                        ant: antProperties()
-                        config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
-                        project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
-                        baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
-                        toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
-                        sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
-                    &lt;/data&gt;
-                &lt;/fmpp&gt;
-                &lt;!-- Make a copy in BOM dir --&gt;
-                &lt;copy file=&quot;${build.drive}/output/logs/sf-diamondize-bom.xml&quot; tofile=&quot;${build.log.dir}/BOM/build-info.xml&quot;/&gt;
-            &lt;/then&gt;
-        &lt;/if&gt;
+    &lt;target name=&quot;sf-diamondize-bom&quot; depends=&quot;sf-record-proj-conf-bom&quot;&gt;
+        &lt;fmpp sourceFile=&quot;${sf.common.config.dir}/templates/build-info.xml.ftl&quot; outputFile=&quot;${build.drive}/output/logs/sf-diamondize-bom.xml&quot;&gt;
+            &lt;data expandProperties=&quot;yes&quot;&gt;
+                ant: antProperties()
+                config: csv(${build.drive}/output/logs/BOM/config.csv,{separator:',',headers:[loc,dst,rev]})
+                project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
+                baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
+                toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
+                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
+            &lt;/data&gt;
+        &lt;/fmpp&gt;
+        &lt;!-- Make a copy in BOM dir --&gt;
+        &lt;copy file=&quot;${build.drive}/output/logs/sf-diamondize-bom.xml&quot; tofile=&quot;${build.log.dir}/BOM/build-info.xml&quot;/&gt;
     &lt;/target&gt;
 </pre>
 

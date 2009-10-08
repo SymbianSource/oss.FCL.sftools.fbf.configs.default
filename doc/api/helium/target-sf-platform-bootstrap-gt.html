@@ -82,7 +82,7 @@
 <h2>Target sf-platform-bootstrap-gt</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/sf-platform/build.xml#L27">D:\maintools\sf-config\sf-platform\build.xml:27:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/sf-platform/build.xml#L35">d:\maintools\sf-config\sf-platform\build.xml:35:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -138,8 +138,15 @@
     &lt;target name=&quot;sf-platform-bootstrap-gt&quot;&gt;
     &lt;echo&gt;[SF-platform-bootstrap-gt]&lt;/echo&gt;
     &lt;!-- do initial stuff to get raptor working --&gt;
-    &lt;copy file=&quot;${build.drive}/${sf.spec.bldmefirst.gt.hrh}&quot; tofile=&quot;${build.drive}/epoc32/include/variant/Symbian_OS.hrh&quot; failonerror=&quot;true&quot; verbose=&quot;true&quot;/&gt;
+    &lt;copy todir=&quot;${build.drive}/epoc32/include/variant/&quot; failonerror=&quot;true&quot; verbose=&quot;true&quot;&gt;
+        &lt;fileset dir=&quot;${build.drive}/${sf.spec.bldmefirst.gt.hrh}&quot; includes=&quot;*.hrh&quot;/&gt;
+    &lt;/copy&gt;
     &lt;copy file=&quot;${build.drive}/${sf.spec.bldmefirst.gt.variant}&quot; tofile=&quot;${build.drive}/epoc32/tools/variant/variant.cfg&quot; failonerror=&quot;true&quot; verbose=&quot;true&quot; preservelastmodified=&quot;true&quot;/&gt;
+	&lt;if&gt;&lt;isset property=&quot;sf.spec.bldmefirst.gt.hrh.os&quot;/&gt;
+	 &lt;then&gt;
+	  &lt;copy file=&quot;${build.drive}/${sf.spec.bldmefirst.gt.hrh.os}&quot; tofile=&quot;${build.drive}/epoc32/include/variant/Symbian_OS.hrh&quot; failonerror=&quot;false&quot; overwrite=&quot;true&quot; verbose=&quot;true&quot; preservelastmodified=&quot;true&quot;/&gt;
+	 &lt;/then&gt;
+	&lt;/if&gt;
   &lt;/target&gt;
 </pre>
 

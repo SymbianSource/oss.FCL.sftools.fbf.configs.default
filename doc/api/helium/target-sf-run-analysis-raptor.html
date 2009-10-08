@@ -82,7 +82,7 @@
 <h2>Target sf-run-analysis-raptor</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L294">D:\maintools\sf-config\common\build.postbuild.xml:294:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L303">d:\maintools\sf-config\common\build.postbuild.xml:303:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -102,6 +102,9 @@
     <tr>
         <th class="head">Name</th>
     </tr>
+        <tr>
+                    <td>perl</td>
+            </tr>
         <tr>
                     <td>perl</td>
             </tr>
@@ -163,6 +166,7 @@
 <pre>
     &lt;target name=&quot;sf-run-analysis-raptor&quot;&gt;            
       &lt;echo message=&quot;Preprocessing *_compile.log files&quot;/&gt;
+      &lt;delete file=&quot;${build.log.dir}/analysis/${build.id}_preprocess.log&quot;/&gt;
       &lt;for param=&quot;logfile&quot;&gt;
         &lt;path&gt;
           &lt;fileset dir=&quot;${build.log.dir}&quot;&gt;
@@ -171,11 +175,12 @@
           &lt;/fileset&gt;
         &lt;/path&gt;
         &lt;sequential&gt;
-		  &lt;propertyregex override=&quot;yes&quot; property=&quot;preprocessedlogfile&quot; input=&quot;@{logfile}&quot; regexp=&quot;.*[\\/](.*)_compile\.log&quot; replace=&quot;\1_compile_preprocessed.log&quot;/&gt;
-	      &lt;echo message=&quot;Preprocessing @{logfile}...&quot;/&gt;
-          &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/raptor&quot; failonerror=&quot;false&quot; input=&quot;@{logfile}&quot; output=&quot;${build.log.dir}/analysis/${preprocessedlogfile}&quot; error=&quot;${build.log.dir}/analysis/${build.id}_preprocess.log&quot; append=&quot;true&quot;&gt;
+          &lt;propertyregex override=&quot;yes&quot; property=&quot;preprocessedlogfile&quot; input=&quot;@{logfile}&quot; regexp=&quot;.*[\\/](.*)_compile\.log&quot; replace=&quot;\1_compile_preprocessed.log&quot;/&gt;
+          &lt;echo message=&quot;Preprocessing @{logfile}...&quot;/&gt;
+          &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/raptor&quot; failonerror=&quot;false&quot; input=&quot;@{logfile}&quot; output=&quot;${build.log.dir}/analysis/${preprocessedlogfile}&quot; errorProperty=&quot;@{logfile}&quot;&gt;
             &lt;arg value=&quot;${sf.common.config.dir}/tools/raptor/preprocess_log.pl&quot;/&gt;
           &lt;/exec&gt;
+	  &lt;echo file=&quot;${build.log.dir}/analysis/${build.id}_preprocess.log&quot; append=&quot;true&quot; message=&quot;${@{logfile}}${line.separator}&quot;/&gt;
         &lt;/sequential&gt;
       &lt;/for&gt;
       
@@ -188,7 +193,6 @@
         &lt;/path&gt;
         &lt;sequential&gt;
           &lt;echo message=&quot;Extracting whatlog info from @{whatlogfile}...&quot;/&gt;
-          &lt;echo message=&quot;Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --releaseable --log=@{whatlogfile} --basedir=${build.log.dir} --append&quot;/&gt;
           &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/raptor&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/analysis/${build.id}_whatlog.log&quot; append=&quot;true&quot;&gt;
             &lt;arg value=&quot;${sf.common.config.dir}/tools/raptor/parse.pl&quot;/&gt;
             &lt;arg value=&quot;--releaseable&quot;/&gt;
@@ -209,7 +213,6 @@
         &lt;sequential&gt;
           &lt;echo message=&quot;Extracting error info from @{raptorlogfile}...&quot;/&gt;
           &lt;propertyregex override=&quot;yes&quot; property=&quot;raptorconfig&quot; input=&quot;@{raptorlogfile}&quot; regexp=&quot;.*[\\/].*__(.*)\.whatlog_(single|multiple)_thread.*&quot; replace=&quot;\1&quot; casesensitive=&quot;false&quot; defaultValue=&quot;noconfig&quot;/&gt;
-          &lt;echo message=&quot;Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/parse.pl --error --warning --unreciped --recipe --config=${raptorconfig} --log=@{raptorlogfile} --basedir=${build.log.dir}/raptorbits --append&quot;/&gt;
           &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/raptor&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/analysis/${build.id}_raptorparse.log&quot; append=&quot;true&quot;&gt;
             &lt;arg value=&quot;${sf.common.config.dir}/tools/raptor/parse.pl&quot;/&gt;
             &lt;arg value=&quot;--error&quot;/&gt;
@@ -219,12 +222,11 @@
             &lt;arg value=&quot;--config=${raptorconfig}&quot;/&gt;
             &lt;arg value=&quot;--log=@{raptorlogfile}&quot;/&gt;
             &lt;arg value=&quot;--basedir=${build.log.dir}/raptorbits&quot;/&gt;
-            &lt;arg value=&quot;--append&quot;/&gt;
           &lt;/exec&gt;
         &lt;/sequential&gt;
       &lt;/for&gt;
       
-      &lt;echo message=&quot;Exec: [${sf.common.config.dir}/tools/raptor] perl ${sf.common.config.dir}/tools/raptor/summarize.pl --raptorbitsdir=${build.log.dir}/raptorbits --outputdir=${build.log.dir}&quot;/&gt;
+      &lt;echo message=&quot;Summarizing Raptor data&quot;/&gt;
       &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/raptor&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/analysis/${build.id}_raptorparse.log&quot; append=&quot;true&quot;&gt;
         &lt;arg value=&quot;${sf.common.config.dir}/tools/raptor/summarize.pl&quot;/&gt;
         &lt;arg value=&quot;--raptorbitsdir=${build.log.dir}/raptorbits&quot;/&gt;
@@ -244,6 +246,15 @@
           &lt;/exec&gt;
         &lt;/sequential&gt;
       &lt;/for&gt;
+
+      &lt;!-- Cook the raptor analysis further to produce something in the right format for the BRAG system --&gt;
+      &lt;exec executable=&quot;perl&quot; output=&quot;${build.log.dir}/summary/Raptor_BRAG.xml&quot; logError=&quot;yes&quot;&gt;
+        &lt;arg value=&quot;${sf.common.config.dir}/tools/brag/raptorToBRAG.pl&quot;/&gt;
+        &lt;arg value=&quot;--raptorsummary&quot;/&gt;
+        &lt;arg value=&quot;${build.log.dir}/raptorbits/summary.csv&quot;/&gt;
+      &lt;/exec&gt;
+      &lt;!-- And copy the XSL so the output can be transformed by a browser --&gt;
+      &lt;copy file=&quot;${sf.common.config.dir}/tools/brag/brag.xsl&quot; toDir=&quot;${build.log.dir}/summary/&quot;/&gt;
     &lt;/target&gt;
 </pre>
 

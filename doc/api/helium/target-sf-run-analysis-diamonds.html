@@ -82,7 +82,7 @@
 <h2>Target sf-run-analysis-diamonds</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L469">D:\maintools\sf-config\common\build.postbuild.xml:469:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L487">d:\maintools\sf-config\common\build.postbuild.xml:487:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -96,6 +96,17 @@
 <hr/>
 
 
+<h3>Target external Dependency</h3>
+<p> 
+<table class="docutils" width="50%">
+    <tr>
+        <th class="head">Name</th>
+    </tr>
+        <tr>
+                    <td>python</td>
+            </tr>
+</table>
+</p>
 
 
 <h3>Property dependencies</h3>
@@ -117,6 +128,12 @@
     </tr>
                     <tr>
                         <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="property-diamonds.build.id.html" title="<p>The ID assigned to the build by the Diamonds server.</p>" target="classframe"><tt class="docutils literal">diamonds.build.id</tt></a></td><td><a href="help.html" title="Help" target="classframe">never</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="property-diamonds.host.html" title="<p>Diamonds server&#39;s host address.</p>" target="classframe"><tt class="docutils literal">diamonds.host</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
                     </tr>
 </table>
 </p>
@@ -146,6 +163,16 @@
           files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
         &lt;/data&gt;
       &lt;/fmpp&gt;
+      &lt;!-- Send the data to the server --&gt;
+	  &lt;exec executable=&quot;python&quot;&gt;
+		    &lt;arg value=&quot;${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py&quot;/&gt;
+		    &lt;arg value=&quot;-s&quot;/&gt;
+		    &lt;arg value=&quot;${diamonds.host}&quot;/&gt;
+		    &lt;arg value=&quot;-u&quot;/&gt;
+		    &lt;arg value=&quot;${diamonds.build.id}&quot;/&gt;
+		    &lt;arg value=&quot;-f&quot;/&gt;
+		    &lt;arg value=&quot;${build.log.dir}/sf-run-analysis.xml&quot;/&gt;
+	  &lt;/exec&gt;
     &lt;/target&gt;
 </pre>
 

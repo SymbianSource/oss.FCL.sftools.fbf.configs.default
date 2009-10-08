@@ -82,7 +82,7 @@
 <h2>Target sf-prep</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L72">D:\maintools\sf-config\common\build.xml:72:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L75">d:\maintools\sf-config\common\build.xml:75:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -131,9 +131,8 @@
 <map name="dependencies" id="dependencies">
 <area shape="rect" id="node1" href="target-sf-prep.html" title="sf&#45;prep" alt="" coords="152,221,224,269">
 <area shape="rect" id="node9" href="target-sf-generate-source-spec.html" title="sf&#45;generate&#45;source&#45;spec" alt="" coords="351,149,543,197">
-<area shape="rect" id="node19" href="target-sf-check-env.html" title="sf&#45;check&#45;env" alt="" coords="393,437,500,485">
+<area shape="rect" id="node17" href="target-sf-check-env.html" title="sf&#45;check&#45;env" alt="" coords="393,437,500,485">
 <area shape="rect" id="node2" href="target-sf-prebuild.html" title="sf&#45;prebuild" alt="" coords="7,221,100,269">
-<area shape="rect" id="node10" href="target-sf-parse-project-config.html" title="sf&#45;parse&#45;project&#45;config" alt="" coords="663,149,839,197">
 </map>
 </p>
 <hr/>
@@ -158,14 +157,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
         &lt;tempfile property=&quot;prep.dynamic.config&quot; suffix=&quot;ant.xml&quot; destdir=&quot;${temp.build.dir}&quot;/&gt;
 
-        &lt;if&gt;          
-            &lt;not&gt;&lt;isset property=&quot;sf.suppress.buildenv.check&quot;/&gt;&lt;/not&gt;
-            &lt;then&gt;
-                &lt;echo message=&quot;Checking build Environment. To suppress this check set property sf.suppress.buildenv.check to any value&quot;/&gt;
-                &lt;runtarget target=&quot;sf-check-env&quot;/&gt;
-            &lt;/then&gt;
-        &lt;/if&gt;
-        
+        &lt;runtarget target=&quot;sf-check-env&quot;/&gt;
     &lt;/target&gt;
 </pre>
 

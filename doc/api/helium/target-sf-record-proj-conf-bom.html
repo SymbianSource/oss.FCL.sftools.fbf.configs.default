@@ -82,7 +82,7 @@
 <h2>Target sf-record-proj-conf-bom</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L221">D:\maintools\sf-config\common\build.xml:221:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L239">d:\maintools\sf-config\common\build.xml:239:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -102,12 +102,6 @@
     <tr>
         <th class="head">Name</th>
     </tr>
-        <tr>
-                    <td>hg</td>
-            </tr>
-        <tr>
-                    <td>hg</td>
-            </tr>
         <tr>
                     <td>hg</td>
             </tr>
@@ -152,8 +146,9 @@
 <img src="target-sf-record-proj-conf-bom.dot.png" alt="sf-record-proj-conf-bom dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-record-proj-conf-bom.html" title="sf&#45;record&#45;proj&#45;conf&#45;bom" alt="" coords="203,5,387,53">
-<area shape="rect" id="node2" href="target-sf-prebuild-noprep.html" title="sf&#45;prebuild&#45;noprep" alt="" coords="7,5,153,53">
+<area shape="rect" id="node1" href="target-sf-record-proj-conf-bom.html" title="sf&#45;record&#45;proj&#45;conf&#45;bom" alt="" coords="211,41,395,89">
+<area shape="rect" id="node2" href="target-sf-prebuild-noprep.html" title="sf&#45;prebuild&#45;noprep" alt="" coords="11,5,157,53">
+<area shape="rect" id="node4" href="target-sf-diamondize-bom.html" title="sf&#45;diamondize&#45;bom" alt="" coords="7,77,161,125">
 </map>
 </p>
 <hr/>
@@ -170,31 +165,23 @@
             &lt;arg value=&quot;showconfig&quot;/&gt;
             &lt;arg value=&quot;paths.default&quot;/&gt;
         &lt;/exec&gt;
-        &lt;exec executable=&quot;hg&quot; dir=&quot;${sf.config.dir}&quot; outputproperty=&quot;sf.job.bom.config.rev&quot;&gt;
-            &lt;arg value=&quot;identify&quot;/&gt;
-            &lt;arg value=&quot;-n&quot;/&gt;
-        &lt;/exec&gt;
+        &lt;propertyregex input=&quot;${sf.job.bom.config.repo}&quot; regexp=&quot;\\&quot; replace=&quot;/&quot; global=&quot;true&quot; property=&quot;sf.job.bom.config.repo&quot; override=&quot;true&quot;/&gt;
         &lt;exec executable=&quot;hg&quot; dir=&quot;${sf.config.dir}&quot; outputproperty=&quot;sf.job.bom.config.checksum&quot;&gt;
             &lt;arg value=&quot;identify&quot;/&gt;
             &lt;arg value=&quot;-i&quot;/&gt;
         &lt;/exec&gt;
-        &lt;echo message=&quot;dir ${sf.config.dir} : revision ${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}&quot;/&gt;
-        &lt;echo message=&quot;${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.rev}:${sf.job.bom.config.checksum}&quot; file=&quot;${build.drive}/output/logs/BOM/config.csv&quot;/&gt;
+        &lt;echo message=&quot;${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.checksum}&quot; file=&quot;${build.drive}/output/logs/BOM/config.csv&quot;/&gt;
 
         &lt;exec executable=&quot;hg&quot; dir=&quot;${sf.project.location}&quot; outputproperty=&quot;sf.job.bom.project.repo&quot;&gt;
             &lt;arg value=&quot;showconfig&quot;/&gt;
             &lt;arg value=&quot;paths.default&quot;/&gt;
         &lt;/exec&gt;
-        &lt;exec executable=&quot;hg&quot; dir=&quot;${sf.project.location}&quot; outputproperty=&quot;sf.job.bom.project.rev&quot;&gt;
-            &lt;arg value=&quot;identify&quot;/&gt;
-            &lt;arg value=&quot;-n&quot;/&gt;
-        &lt;/exec&gt;
+        &lt;propertyregex input=&quot;${sf.job.bom.project.repo}&quot; regexp=&quot;\\&quot; replace=&quot;/&quot; global=&quot;true&quot; property=&quot;sf.job.bom.project.repo&quot; override=&quot;true&quot;/&gt;
         &lt;exec executable=&quot;hg&quot; dir=&quot;${sf.project.location}&quot; outputproperty=&quot;sf.job.bom.project.checksum&quot;&gt;
             &lt;arg value=&quot;identify&quot;/&gt;
             &lt;arg value=&quot;-i&quot;/&gt;
         &lt;/exec&gt;
-        &lt;echo message=&quot;dir ${sf.project.location} : revision ${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}&quot;/&gt;
-	&lt;echo message=&quot;${sf.job.bom.project.repo},build/config,${sf.job.bom.project.rev}:${sf.job.bom.project.checksum}&quot; file=&quot;${build.drive}/output/logs/BOM/project.csv&quot;/&gt;
+	&lt;echo message=&quot;${sf.job.bom.project.repo},build/config,${sf.job.bom.project.checksum}&quot; file=&quot;${build.drive}/output/logs/BOM/project.csv&quot;/&gt;
     &lt;/target&gt;
 </pre>
 

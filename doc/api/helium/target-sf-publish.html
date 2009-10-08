@@ -82,7 +82,7 @@
 <h2>Target sf-publish</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L504">D:\maintools\sf-config\common\build.postbuild.xml:504:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L622">d:\maintools\sf-config\common\build.postbuild.xml:622:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -116,7 +116,7 @@
         <td colspan="2">Internal properties</td>
     </tr>
                     <tr>
-                        <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                        <td><a href="property-build.output.dir.html" title="<p>This is the directory where build output is placed.</p>" target="classframe"><tt class="docutils literal">build.output.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">never</a></td>
                     </tr>
 </table>
 </p>
@@ -129,9 +129,12 @@
 <img src="target-sf-publish.dot.png" alt="sf-publish dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-publish.html" title="sf&#45;publish" alt="" coords="155,5,243,53">
-<area shape="rect" id="node4" href="target-prep-publish.html" title="prep&#45;publish" alt="" coords="292,5,399,53">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+<area shape="rect" id="node1" href="target-sf-publish.html" title="sf&#45;publish" alt="" coords="221,113,309,161">
+<area shape="rect" id="node10" href="target-prep-publish.html" title="prep&#45;publish" alt="" coords="359,113,465,161">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="39,5,140,53">
+<area shape="rect" id="node4" href="target-sf-create-public-PDK.html" title="sf&#45;create&#45;public&#45;PDK" alt="" coords="5,77,173,125">
+<area shape="rect" id="node6" href="target-sf-test-smoketest.html" title="sf&#45;test&#45;smoketest" alt="" coords="20,149,159,197">
+<area shape="rect" id="node8" href="target-sf-test-bc-check.html" title="sf&#45;test&#45;bc&#45;check" alt="" coords="24,221,155,269">
 </map>
 </p>
 <hr/>
@@ -141,7 +144,7 @@
 <pre>
     &lt;target name=&quot;sf-publish&quot; depends=&quot;prep-publish&quot;&gt;
         &lt;copy todir=&quot;${publish.dir}&quot; preservelastmodified=&quot;true&quot; failonerror=&quot;false&quot;&gt;
-           &lt;fileset dir=&quot;${build.log.dir}&quot;&gt;&lt;include name=&quot;*.zip&quot;/&gt;&lt;/fileset&gt;
+           &lt;fileset dir=&quot;${build.output.dir}/zips/release/&quot;&gt;&lt;include name=&quot;build_*.zip&quot;/&gt;&lt;/fileset&gt;
         &lt;/copy&gt;
     &lt;/target&gt;
 </pre>

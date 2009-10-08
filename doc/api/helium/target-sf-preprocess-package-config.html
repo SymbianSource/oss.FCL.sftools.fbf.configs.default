@@ -82,7 +82,7 @@
 <h2>Target sf-preprocess-package-config</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L441">D:\maintools\sf-config\common\build.xml:441:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L446">d:\maintools\sf-config\common\build.xml:446:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -102,6 +102,9 @@
     <tr>
         <th class="head">Name</th>
     </tr>
+        <tr>
+                    <td>perl</td>
+            </tr>
         <tr>
                     <td>perl</td>
             </tr>
@@ -154,24 +157,19 @@
 <pre>
     &lt;target name=&quot;sf-preprocess-package-config&quot;&gt;
         &lt;mkdir dir=&quot;${sf.common.config.dir}/generated&quot;/&gt;
-            &lt;if&gt;&lt;istrue value=&quot;${sf.spec.package.src.enable}&quot;/&gt;
-            &lt;then&gt;
-                &lt;echo message=&quot;INFO Packaging Source Repos&quot;/&gt;
-                &lt;property name=&quot;sf-preprocess-package-config.arg&quot; value=&quot;&quot;/&gt;
-            &lt;/then&gt;
-            &lt;else&gt;
-                &lt;echo message=&quot;INFO Packaging: Ignoring Source Repos&quot;/&gt;
-                &lt;property name=&quot;sf-preprocess-package-config.arg&quot; value=&quot;--nosource&quot;/&gt;
-            &lt;/else&gt;
-            &lt;/if&gt;
-
         &lt;exec executable=&quot;perl&quot; dir=&quot;${build.drive}/&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/zipconfig.log&quot;&gt;
             &lt;arg value=&quot;${sf.common.config.dir}/tools/populateziptemplate.pl&quot;/&gt;
             &lt;arg value=&quot;${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}&quot;/&gt;
             &lt;arg value=&quot;${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template&quot;/&gt;
             &lt;arg value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
             &lt;arg value=&quot;${build.log.dir}/rnd_excludefile.txt&quot;/&gt;
-            &lt;arg value=&quot;${sf-preprocess-package-config.arg}&quot;/&gt;
+        &lt;/exec&gt;
+        &lt;exec executable=&quot;perl&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/summary/PreprocessPackageConfig_BRAG.xml&quot; logError=&quot;true&quot;&gt;
+            &lt;arg value=&quot;${sf.common.config.dir}/tools/brag/logToBRAG.pl&quot;/&gt;
+            &lt;arg value=&quot;--phase=Prebuild&quot;/&gt;
+            &lt;arg value=&quot;--step=Preprocess package config&quot;/&gt;
+            &lt;arg value=&quot;--rules=${sf.common.config.dir}/tools/brag/rules.PreprocessPackageConfig.tsv&quot;/&gt;
+            &lt;arg value=&quot;${build.log.dir}/zipconfig.log&quot;/&gt;
         &lt;/exec&gt;
     &lt;/target&gt;
 </pre>

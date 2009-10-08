@@ -82,7 +82,7 @@
 <h2>Target sf-package-tools</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L246">D:\maintools\sf-config\common\build.postbuild.xml:246:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L251">d:\maintools\sf-config\common\build.postbuild.xml:251:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -143,9 +143,12 @@
 <img src="target-sf-package-tools.dot.png" alt="sf-package-tools dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-package-tools.html" title="sf&#45;package&#45;tools" alt="" coords="156,5,292,53">
-<area shape="rect" id="node4" href="target-sf-preprocess-package-config.html" title="sf&#45;preprocess&#45;package&#45;config" alt="" coords="343,5,572,53">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+<area shape="rect" id="node1" href="target-sf-package-tools.html" title="sf&#45;package&#45;tools" alt="" coords="225,41,361,89">
+<area shape="rect" id="node7" href="target-sf-preprocess-package-config.html" title="sf&#45;preprocess&#45;package&#45;config" alt="" coords="423,16,652,64">
+<area shape="rect" id="node9" href="target-sf-zip-content.html" title="sf&#45;zip&#45;content" alt="" coords="481,88,593,136">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="39,5,140,53">
+<area shape="rect" id="node4" href="target-sf-create-public-PDK.html" title="sf&#45;create&#45;public&#45;PDK" alt="" coords="5,77,173,125">
+<area shape="rect" id="node10" href="target-preprocess-zip-config.html" title="preprocess&#45;zip&#45;config" alt="" coords="705,88,876,136">
 </map>
 </p>
 <hr/>
@@ -154,15 +157,17 @@
 <h3>Source code</h3>
 <pre>
     &lt;target name=&quot;sf-package-tools&quot; depends=&quot;sf-preprocess-package-config&quot;&gt;
-        &lt;echo message=&quot;Packaging epoc32 tools - Temporary method&quot;/&gt;
         &lt;exec executable=&quot;7za&quot; dir=&quot;${build.drive}&quot; output=&quot;${build.log.dir}/zip_${build.id}_tools_epoc32.log&quot;&gt;
             &lt;arg value=&quot;a&quot;/&gt;
             &lt;arg value=&quot;-tzip&quot;/&gt;
             &lt;arg value=&quot;-x@${build.log.dir}/rnd_excludefile.txt&quot;/&gt;
-&lt;!--            &lt;arg value=&quot;-x@${build.log.dir}/*_includefile.txt&quot;/&gt; --&gt;
             &lt;arg value=&quot;${build.drive}/output/zips/release/tools_epoc.zip&quot;/&gt; 
             &lt;arg value=&quot;epoc32/tools&quot;/&gt;
         &lt;/exec&gt;
+        &lt;antcall target=&quot;sf-zip-content&quot;&gt;
+            &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
+            &lt;param name=&quot;zip.target.name&quot; value=&quot;tools&quot;/&gt;
+        &lt;/antcall&gt;
     &lt;/target&gt;
 </pre>
 

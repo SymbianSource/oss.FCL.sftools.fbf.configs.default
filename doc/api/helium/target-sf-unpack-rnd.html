@@ -82,7 +82,7 @@
 <h2>Target sf-unpack-rnd</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L484">D:\maintools\sf-config\common\build.xml:484:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L498">d:\maintools\sf-config\common\build.xml:498:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -91,7 +91,7 @@
 
 <h3>Description</h3>
 <p>
-<p>unpack rnd zips if available</p></p>
+<p>Unpack the rnd zips ready to be used in the build</p></p>
 <p/>
 <hr/>
 
@@ -154,11 +154,20 @@
 <pre>
     &lt;target name=&quot;sf-unpack-rnd&quot;&gt;
         &lt;echo message=&quot;Unpacking any available RnD binaries&quot;/&gt;
-        &lt;exec executable=&quot;7za&quot; dir=&quot;${build.drive}&quot; output=&quot;${build.log.dir}/unzip_${build.id}_binaries_rnd.log&quot;&gt;
-        &lt;arg value=&quot;x&quot;/&gt;
-        &lt;arg value=&quot;-y&quot;/&gt; &lt;!-- Need to unpack in overwrite mode, due to TEF --&gt;
-        &lt;arg value=&quot;${build.drive}/output/zips/bin*.zip&quot;/&gt;
-        &lt;/exec&gt;
+        &lt;for param=&quot;rndZip&quot;&gt;
+            &lt;fileset dir=&quot;${build.drive}/output/zips/&quot;&gt;
+                &lt;include name=&quot;binaries_*.zip&quot;/&gt; &lt;!-- Internal rnd bins --&gt;
+                &lt;include name=&quot;release/bin_*.zip&quot;/&gt; &lt;!-- Releaseable rnd bins --&gt;
+            &lt;/fileset&gt;
+            &lt;sequential&gt;
+                &lt;exec executable=&quot;7za&quot; dir=&quot;${build.drive}&quot; output=&quot;${build.log.dir}/unzip_${build.id}_binaries_rnd.log&quot; append=&quot;true&quot;&gt;
+                    &lt;arg value=&quot;x&quot;/&gt;
+                    &lt;arg value=&quot;-y&quot;/&gt; &lt;!-- Need to unpack in overwrite mode, due to TEF --&gt;
+                    &lt;arg value=&quot;-i!epoc32\*&quot;/&gt; &lt;!-- Only unzip items into the epoc32 tree --&gt;
+                    &lt;arg value=&quot;@{rndZip}&quot;/&gt;
+                &lt;/exec&gt;
+            &lt;/sequential&gt;
+	&lt;/for&gt;
     &lt;/target&gt;
 </pre>
 

@@ -82,7 +82,7 @@
 <h2>Target sf-bc-check</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.test.xml#L31">D:\maintools\sf-config\common\build.test.xml:31:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.test.xml#L34">d:\maintools\sf-config\common\build.test.xml:34:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -167,11 +167,13 @@
 <img src="target-sf-bc-check.dot.png" alt="sf-bc-check dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-bc-check.html" title="sf&#45;bc&#45;check" alt="" coords="157,5,259,53">
-<area shape="rect" id="node4" href="target-sf-send-testpkg.html" title="sf&#45;send&#45;testpkg" alt="" coords="309,5,437,53">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
-<area shape="rect" id="node7" href="target-sf-find-ATS-worker-root.html" title="sf&#45;find&#45;ATS&#45;worker&#45;root" alt="" coords="683,12,867,60">
-<area shape="rect" id="node9" href="target-sf-make-junction.html" title="sf&#45;make&#45;junction" alt="" coords="497,57,631,105">
+<area shape="rect" id="node1" href="target-sf-bc-check.html" title="sf&#45;bc&#45;check" alt="" coords="189,72,291,120">
+<area shape="rect" id="node6" href="target-sf-send-testpkg.html" title="sf&#45;send&#45;testpkg" alt="" coords="341,72,469,120">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="21,36,123,84">
+<area shape="rect" id="node4" href="target-sf-test-bc-check.html" title="sf&#45;test&#45;bc&#45;check" alt="" coords="7,108,137,156">
+<area shape="rect" id="node9" href="target-sf-start-ats.html" title="sf&#45;start&#45;ats" alt="" coords="549,5,643,53">
+<area shape="rect" id="node11" href="target-sf-find-ATS-worker-root.html" title="sf&#45;find&#45;ATS&#45;worker&#45;root" alt="" coords="715,99,899,147">
+<area shape="rect" id="node13" href="target-sf-make-junction.html" title="sf&#45;make&#45;junction" alt="" coords="529,144,663,192">
 </map>
 </p>
 <hr/>
@@ -263,7 +265,7 @@
                             &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/ats/&quot; failonerror=&quot;false&quot; append=&quot;true&quot; output=&quot;${build.log.dir}/ATS_${build.id}_dynamicbc.log&quot;&gt;
                               &lt;arg value=&quot;ats_specialise_test_drop.pl&quot;/&gt;
                               &lt;arg value=&quot;--test-drop-name=${env.COMPUTERNAME}-bctest-${build.id}_${program}&quot;/&gt; 
-                              &lt;arg value=&quot;--device-name=GENERIC EMULATOR on ${env.COMPUTERNAME}&quot;/&gt;
+                              &lt;arg value=&quot;--host-name=${env.COMPUTERNAME}.ad-sfpd.intra&quot;/&gt;
                               &lt;arg value=&quot;--src=${sf.spec.test.package.location}/../bctest/${program}&quot;/&gt;
                               &lt;arg value=&quot;--dest=${sf.spec.test.package.location}\${env.COMPUTERNAME}-bctest-${build.id}_${program}&quot;/&gt;						 
                             &lt;/exec&gt;

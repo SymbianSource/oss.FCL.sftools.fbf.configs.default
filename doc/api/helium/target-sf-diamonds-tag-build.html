@@ -82,7 +82,7 @@
 <h2>Target sf-diamonds-tag-build</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L206">D:\maintools\sf-config\common\build.xml:206:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L224">d:\maintools\sf-config\common\build.xml:224:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -96,6 +96,17 @@
 <hr/>
 
 
+<h3>Target external Dependency</h3>
+<p> 
+<table class="docutils" width="50%">
+    <tr>
+        <th class="head">Name</th>
+    </tr>
+        <tr>
+                    <td>perl</td>
+            </tr>
+</table>
+</p>
 
 
 <h3>Property dependencies</h3>
@@ -127,7 +138,6 @@
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
 <area shape="rect" id="node1" href="target-sf-diamonds-tag-build.html" title="sf&#45;diamonds&#45;tag&#45;build" alt="" coords="204,5,375,53">
-<area shape="rect" id="node4" href="target-diamonds.html" title="diamonds" alt="" coords="424,5,515,53">
 <area shape="rect" id="node2" href="target-sf-prebuild-noprep.html" title="sf&#45;prebuild&#45;noprep" alt="" coords="7,5,153,53">
 </map>
 </p>
@@ -141,12 +151,12 @@
         &lt;istrue value=&quot;${sf.spec.publish.enable}&quot;/&gt;
         &lt;then&gt;
           &lt;echo&gt;[SF-DIAMONDS-TAG-BUILD]&lt;/echo&gt;
-          &lt;runtarget target=&quot;diamonds&quot;/&gt;
-          &lt;fmpp sourceFile=&quot;${sf.common.config.dir}/diamonds/sf-tag-build.xml.ftl&quot; outputFile=&quot;${build.drive}/output/logs/sf-tag-build.xml&quot;&gt;
-            &lt;data expandProperties=&quot;yes&quot;&gt;
-              ant: antProperties()
-            &lt;/data&gt;
-          &lt;/fmpp&gt;
+          &lt;echo message=&quot;Generate ${build.drive}/output/logs/sf-diamonds-tag-build.xml with Diamonds tags for this build&quot;/&gt;
+          &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools&quot; failonerror=&quot;true&quot;&gt;
+            &lt;arg value=&quot;${sf.common.config.dir}/tools/generate_diamonds_tags_xml.pl&quot;/&gt;
+            &lt;arg value=&quot;--tags=${sf.diamonds.tags}&quot;/&gt;
+            &lt;arg value=&quot;--output=${build.drive}/output/logs/sf-diamonds-tag-build.xml&quot;/&gt;
+          &lt;/exec&gt;
         &lt;/then&gt;
       &lt;/if&gt;
     &lt;/target&gt;

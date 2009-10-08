@@ -82,7 +82,7 @@
 <h2>Project SF-COMMON-CONFIG</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml">D:/maintools/sf-config/common/build.xml</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml">d:/maintools/sf-config/common/build.xml</a></tt>  
 </p>
 <h3>Description</h3>
 <p>
@@ -124,6 +124,9 @@
             <td><a href="target-sf-diamondize-bom.html" target="classframe">sf-diamondize-bom</a></td><td></td>
         </tr>
         <tr>
+            <td><a href="target-sf-diamonds-connect.html" target="classframe">sf-diamonds-connect</a></td><td></td>
+        </tr>
+        <tr>
             <td><a href="target-sf-diamonds-tag-build.html" target="classframe">sf-diamonds-tag-build</a></td><td></td>
         </tr>
         <tr>
@@ -149,9 +152,6 @@
         </tr>
         <tr>
             <td><a href="target-sf-package-source.html" target="classframe">sf-package-source</a></td><td></td>
-        </tr>
-        <tr>
-            <td><a href="target-sf-parse-project-config.html" target="classframe">sf-parse-project-config</a></td><td></td>
         </tr>
         <tr>
             <td><a href="target-sf-prebuild.html" target="classframe">sf-prebuild</a></td><td></td>
@@ -181,7 +181,7 @@
             <td><a href="target-sf-truclean.html" target="classframe">sf-truclean</a></td><td></td>
         </tr>
         <tr>
-            <td><a href="target-sf-unpack-rnd.html" target="classframe">sf-unpack-rnd</a></td><td><p>unpack rnd zips if available</p></td>
+            <td><a href="target-sf-unpack-rnd.html" target="classframe">sf-unpack-rnd</a></td><td><p>Unpack the rnd zips ready to be used in the build</p></td>
         </tr>
         <tr>
             <td><a href="target-sf-zip-content.html" target="classframe">sf-zip-content</a></td><td></td>
@@ -285,11 +285,23 @@ CheckBuildEnv.pl
 </font>
 <br/>
 <font class="frameitemfont">
+${sf.common.config.dir}/tools/brag/logToBRAG.pl
+</font>
+<br/>
+<font class="frameitemfont">
 brag_script.pl
 </font>
 <br/>
 <font class="frameitemfont">
 ${sf.common.config.dir}/tools/cachefiles.pl
+</font>
+<br/>
+<font class="frameitemfont">
+${sf.common.config.dir}/tools/generate_diamonds_tags_xml.pl
+</font>
+<br/>
+<font class="frameitemfont">
+--output=${build.drive}/output/logs/sf-diamonds-tag-build.xml
 </font>
 <br/>
 <font class="frameitemfont">
@@ -326,6 +338,10 @@ ${sf.common.config.dir}/generated/zip.cfg.xml.ftl
 <br/>
 <font class="frameitemfont">
 ${build.log.dir}/rnd_excludefile.txt
+</font>
+<br/>
+<font class="frameitemfont">
+${sf.common.config.dir}/tools/brag/logToBRAG.pl
 </font>
 <br/>
 

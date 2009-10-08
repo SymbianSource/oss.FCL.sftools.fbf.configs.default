@@ -82,7 +82,7 @@
 <h2>Target sf-zip-logs</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L480">D:\maintools\sf-config\common\build.postbuild.xml:480:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L601">d:\maintools\sf-config\common\build.postbuild.xml:601:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -91,7 +91,7 @@
 
 <h3>Description</h3>
 <p>
-<p>package all logs into zipfile before publish</p></p>
+<p>package all logs into zipfile for publishing</p></p>
 <p/>
 <hr/>
 
@@ -116,10 +116,7 @@
         <td colspan="2">Internal properties</td>
     </tr>
                     <tr>
-                        <td><a href="property-build.id.html" title="<p>A unique ID for the build.</p>" target="classframe"><tt class="docutils literal">build.id</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                        <td><a href="property-build.output.dir.html" title="<p>This is the directory where build output is placed.</p>" target="classframe"><tt class="docutils literal">build.output.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">never</a></td>
                     </tr>
 </table>
 </p>
@@ -132,8 +129,11 @@
 <img src="target-sf-zip-logs.dot.png" alt="sf-zip-logs dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-zip-logs.html" title="sf&#45;zip&#45;logs" alt="" coords="156,5,247,53">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+<area shape="rect" id="node1" href="target-sf-zip-logs.html" title="sf&#45;zip&#45;logs" alt="" coords="223,113,313,161">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="39,5,140,53">
+<area shape="rect" id="node4" href="target-sf-create-public-PDK.html" title="sf&#45;create&#45;public&#45;PDK" alt="" coords="5,77,173,125">
+<area shape="rect" id="node6" href="target-sf-test-smoketest.html" title="sf&#45;test&#45;smoketest" alt="" coords="20,149,159,197">
+<area shape="rect" id="node8" href="target-sf-test-bc-check.html" title="sf&#45;test&#45;bc&#45;check" alt="" coords="24,221,155,269">
 </map>
 </p>
 <hr/>
@@ -145,22 +145,19 @@
         &lt;if&gt;
             &lt;istrue value=&quot;${sf.spec.logs.zip.enable}&quot;/&gt;
             &lt;then&gt;
-                &lt;property name=&quot;temp.log.dir&quot; value=&quot;${env.TEMP}/${build.id}_output_logs&quot;/&gt;
-                &lt;echo message=&quot;Zip log requested, zipping logs...&quot;/&gt;
-                &lt;mkdir dir=&quot;${temp.log.dir}&quot;/&gt;
-                &lt;zip destfile=&quot;${temp.log.dir}/build_logs.zip&quot; basedir=&quot;${build.drive}&quot;&gt; 
+                &lt;mkdir dir=&quot;${build.output.dir}/zips/release&quot;/&gt; &lt;!-- workaround for when there's no other releaseables, just the logs --&gt;
+                &lt;zip destfile=&quot;${build.output.dir}/zips/release/build_logs.zip&quot; basedir=&quot;${build.drive}&quot;&gt; 
                     &lt;include name=&quot;output/logs/**&quot;/&gt;
                     &lt;exclude name=&quot;output/logs/BOM/**&quot;/&gt;
                     &lt;exclude name=&quot;output/logs/deliverables/**&quot;/&gt;
                     &lt;exclude name=&quot;output/logs/releaseables/**&quot;/&gt;
                 &lt;/zip&gt;
-                &lt;zip destfile=&quot;${temp.log.dir}/build_BOM.zip&quot;&gt;
+                &lt;!-- workaround for the time when when 'sf-run-analysis-raptor' has not been run --&gt;
+                &lt;mkdir dir=&quot;${build.drive}/output/logs/releaseables&quot;/&gt; 
+                &lt;zip destfile=&quot;${build.output.dir}/zips/release/build_BOM.zip&quot;&gt;
                     &lt;zipfileset dir=&quot;${build.drive}/output/logs/BOM&quot; prefix=&quot;build_info/logs/BOM&quot;/&gt;
                     &lt;zipfileset dir=&quot;${build.drive}/output/logs/releaseables&quot; prefix=&quot;build_info/logs/releaseables&quot;/&gt;
                 &lt;/zip&gt;
-                &lt;move todir=&quot;${build.log.dir}&quot;&gt;
-                    &lt;fileset dir=&quot;${temp.log.dir}&quot;/&gt;
-                &lt;/move&gt;
             &lt;/then&gt;
         &lt;/if&gt;
     &lt;/target&gt;

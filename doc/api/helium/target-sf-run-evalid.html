@@ -82,7 +82,7 @@
 <h2>Target sf-run-evalid</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L77">D:\maintools\sf-config\common\build.postbuild.xml:77:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L89">d:\maintools\sf-config\common\build.postbuild.xml:89:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -196,7 +196,7 @@
         <td colspan="2">Internal properties</td>
     </tr>
                     <tr>
-                        <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
+                        <td><a href="property-build.output.dir.html" title="<p>This is the directory where build output is placed.</p>" target="classframe"><tt class="docutils literal">build.output.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">never</a></td>
                     </tr>
 </table>
 </p>
@@ -209,8 +209,9 @@
 <img src="target-sf-run-evalid.dot.png" alt="sf-run-evalid dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-run-evalid.html" title="sf&#45;run&#45;evalid" alt="" coords="156,5,260,53">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+<area shape="rect" id="node1" href="target-sf-run-evalid.html" title="sf&#45;run&#45;evalid" alt="" coords="223,41,327,89">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="39,5,140,53">
+<area shape="rect" id="node4" href="target-sf-create-public-PDK.html" title="sf&#45;create&#45;public&#45;PDK" alt="" coords="5,77,173,125">
 </map>
 </p>
 <hr/>
@@ -322,12 +323,9 @@
         &lt;/parallel&gt;
         
         &lt;!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box --&gt;
-        &lt;property name=&quot;temp.md5.zip&quot; value=&quot;${env.TEMP}/MD5_${sf.spec.job.name}_${build.number}.zip&quot;/&gt;
-        &lt;echo message=&quot;INFO Packaging MD5s&quot;/&gt;
-        &lt;zip destfile=&quot;${temp.md5.zip}&quot;&gt;
+        &lt;zip destfile=&quot;${build.output.dir}/zips/release/build_md5.zip&quot;&gt;
             &lt;zipfileset dir=&quot;${build.drive}/output/md5/&quot; prefix=&quot;epoc32/relinfo&quot;/&gt;
         &lt;/zip&gt;
-        &lt;move file=&quot;${temp.md5.zip}&quot; todir=&quot;${build.log.dir}&quot; failonerror=&quot;false&quot;/&gt;
     &lt;/target&gt;
 </pre>
 

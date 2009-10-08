@@ -82,7 +82,7 @@
 <h2>Target sf-run-analysis</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L270">D:\maintools\sf-config\common\build.postbuild.xml:270:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L277">d:\maintools\sf-config\common\build.postbuild.xml:277:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -126,18 +126,22 @@
 <img src="target-sf-run-analysis.dot.png" alt="sf-run-analysis dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-run-analysis.html" title="sf&#45;run&#45;analysis" alt="" coords="157,149,277,197">
+<area shape="rect" id="node1" href="target-sf-run-analysis.html" title="sf&#45;run&#45;analysis" alt="" coords="157,221,277,269">
 <area shape="rect" id="node5" href="target-sf-run-analysis-ant.html" title="sf&#45;run&#45;analysis&#45;ant" alt="" coords="387,5,533,53">
 <area shape="rect" id="node7" href="target-sf-run-analysis-raptor.html" title="sf&#45;run&#45;analysis&#45;raptor" alt="" coords="377,77,543,125">
 <area shape="rect" id="node9" href="target-sf-run-analysis-yarp.html" title="sf&#45;run&#45;analysis&#45;yarp" alt="" coords="383,149,537,197">
 <area shape="rect" id="node11" href="target-sf-run-analysis-whatlog-summary.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;summary" alt="" coords="337,221,583,269">
-<area shape="rect" id="node23" href="target-sf-run-analysis-diamonds.html" title="sf&#45;run&#45;analysis&#45;diamonds" alt="" coords="363,293,557,341">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,149,107,197">
-<area shape="rect" id="node13" href="target-sf-run-analysis-list.html" title="sf&#45;run&#45;analysis&#45;list" alt="" coords="693,77,837,125">
-<area shape="rect" id="node15" href="target-sf-run-analysis-whatlog.html" title="sf&#45;run&#45;analysis&#45;whatlog" alt="" coords="676,149,855,197">
-<area shape="rect" id="node17" href="target-sf-run-analysis-whatlog-merge.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;merge" alt="" coords="652,221,879,269">
-<area shape="rect" id="node19" href="target-sf-run-analysis-whatlog-package.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;package" alt="" coords="644,293,887,341">
-<area shape="rect" id="node21" href="target-sf-run-analysis-whatlog-collisons.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;collisons" alt="" coords="644,365,887,413">
+<area shape="rect" id="node23" href="target-sf-run-analysis-missing-files.html" title="sf&#45;run&#45;analysis&#45;missing&#45;files" alt="" coords="355,293,565,341">
+<area shape="rect" id="node37" href="target-sf-run-analysis-diamonds.html" title="sf&#45;run&#45;analysis&#45;diamonds" alt="" coords="363,365,557,413">
+<area shape="rect" id="node39" href="target-sf-brag-to-diamonds.html" title="sf&#45;brag&#45;to&#45;diamonds" alt="" coords="379,437,541,485">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,221,107,269">
+<area shape="rect" id="node13" href="target-sf-run-analysis-list.html" title="sf&#45;run&#45;analysis&#45;list" alt="" coords="693,5,837,53">
+<area shape="rect" id="node15" href="target-sf-run-analysis-whatlog.html" title="sf&#45;run&#45;analysis&#45;whatlog" alt="" coords="676,77,855,125">
+<area shape="rect" id="node17" href="target-sf-run-analysis-whatlog-merge.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;merge" alt="" coords="652,149,879,197">
+<area shape="rect" id="node19" href="target-sf-run-analysis-whatlog-package.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;package" alt="" coords="644,221,887,269">
+<area shape="rect" id="node21" href="target-sf-run-analysis-whatlog-collisons.html" title="sf&#45;run&#45;analysis&#45;whatlog&#45;collisons" alt="" coords="644,293,887,341">
+<area shape="rect" id="node25" href="target-sf-check-missing-os-files.html" title="sf&#45;check&#45;missing&#45;os&#45;files" alt="" coords="669,365,861,413">
+<area shape="rect" id="node30" href="target-sf-check-missing-s60-files.html" title="sf&#45;check&#45;missing&#45;s60&#45;files" alt="" coords="664,437,867,485">
 </map>
 </p>
 <hr/>
@@ -152,13 +156,15 @@
           &lt;runtarget target=&quot;sf-run-analysis-raptor&quot;/&gt;
           &lt;runtarget target=&quot;sf-run-analysis-yarp&quot;/&gt;
           &lt;runtarget target=&quot;sf-run-analysis-whatlog-summary&quot;/&gt;
+          &lt;runtarget target=&quot;sf-run-analysis-missing-files&quot;/&gt;
         &lt;/parallel&gt;
         &lt;if&gt;
           &lt;istrue value=&quot;${sf.spec.publish.enable}&quot;/&gt;
             &lt;then&gt;
             &lt;runtarget target=&quot;sf-run-analysis-diamonds&quot;/&gt;
             &lt;/then&gt;
-        &lt;/if&gt;    
+        &lt;/if&gt;
+	&lt;runtarget target=&quot;sf-brag-to-diamonds&quot;/&gt;
     &lt;/target&gt;
 </pre>
 

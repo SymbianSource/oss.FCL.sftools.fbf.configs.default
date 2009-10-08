@@ -36,9 +36,14 @@
             
             <!-- run build analysis tools -->
             <runtarget target="sf-run-analysis"/>
-            
-	    <!-- Generate reports to compare this build to a previous one -->
-            <runtarget target="sf-compare-to-baseline"/>
+        
+            <if>
+              <istrue value="${sf.spec.publish.enable}"/>
+              <then>
+                <!-- Generate reports to compare this build to a previous one -->
+                <runtarget target="sf-compare-to-baseline"/>
+              </then>
+            </if>
         </parallel>
         
         <!-- Launch smoketest -->

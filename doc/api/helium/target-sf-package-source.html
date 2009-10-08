@@ -82,7 +82,7 @@
 <h2>Target sf-package-source</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L470">D:\maintools\sf-config\common\build.xml:470:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L470">d:\maintools\sf-config\common\build.xml:470:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -136,16 +136,30 @@
 <h3>Source code</h3>
 <pre>
     &lt;target name=&quot;sf-package-source&quot; depends=&quot;sf-preprocess-package-config&quot;&gt;
-        &lt;!-- Firstly zip up src &amp; rnd by package --&gt;
+        &lt;!-- Firstly zip up rnd by package --&gt;
         &lt;antcall target=&quot;sf-zip-content&quot;&gt;
             &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
-            &lt;param name=&quot;zip.target.name&quot; value=&quot;src&quot;/&gt;
+            &lt;param name=&quot;zip.target.name&quot; value=&quot;rnd&quot;/&gt;
         &lt;/antcall&gt;
-        &lt;!-- Then zip up src zips by layer --&gt;
         &lt;antcall target=&quot;sf-zip-content&quot;&gt;
             &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
-            &lt;param name=&quot;zip.target.name&quot; value=&quot;src-by-layer&quot;/&gt;
+            &lt;param name=&quot;zip.target.name&quot; value=&quot;rnd-internal&quot;/&gt;
         &lt;/antcall&gt;
+        &lt;if&gt;
+            &lt;istrue value=&quot;${sf.spec.package.src.enable}&quot;/&gt;
+            &lt;then&gt;
+                &lt;echo message=&quot;INFO Packaging Source Repos&quot;/&gt;
+                &lt;antcall target=&quot;sf-zip-content&quot;&gt;
+                    &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
+                    &lt;param name=&quot;zip.target.name&quot; value=&quot;src&quot;/&gt;
+                &lt;/antcall&gt;
+                &lt;!-- Then zip up src zips by layer --&gt;
+                &lt;antcall target=&quot;sf-zip-content&quot;&gt;
+                    &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
+                    &lt;param name=&quot;zip.target.name&quot; value=&quot;src-by-layer&quot;/&gt;
+                &lt;/antcall&gt;
+            &lt;/then&gt;
+        &lt;/if&gt;
     &lt;/target&gt;
 </pre>
 

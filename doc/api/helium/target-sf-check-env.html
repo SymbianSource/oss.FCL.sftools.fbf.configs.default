@@ -82,7 +82,7 @@
 <h2>Target sf-check-env</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L99">D:\maintools\sf-config\common\build.xml:99:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L95">d:\maintools\sf-config\common\build.xml:95:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -102,6 +102,9 @@
     <tr>
         <th class="head">Name</th>
     </tr>
+        <tr>
+                    <td>perl</td>
+            </tr>
         <tr>
                     <td>perl</td>
             </tr>
@@ -147,7 +150,6 @@
 <h3>Source code</h3>
 <pre>
     &lt;target name=&quot;sf-check-env&quot;&gt;
-
         &lt;!-- Conditional location of BuildEnv.xml. Project always preferred to default --&gt;
         &lt;if&gt;&lt;available file=&quot;${sf.project.location}/BuildEnv.xml&quot;/&gt;        
             &lt;then&gt;
@@ -159,7 +161,7 @@
         &lt;/if&gt;
         
         &lt;echo message=&quot;Build Env against ${sf.buildenv.location}/BuildEnv.xml&quot;/&gt;
-        &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools&quot; failonerror=&quot;true&quot;&gt;
+        &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools&quot; resultproperty=&quot;sf.checkenv.exit&quot;&gt;
             &lt;arg value=&quot;CheckBuildEnv.pl&quot;/&gt;
             &lt;arg value=&quot;--xml=${sf.buildenv.location}/BuildEnv.xml&quot;/&gt;
             &lt;arg value=&quot;--dbg=${build.log.dir}/BuildEnvironmentCheck.log&quot;/&gt;
@@ -167,6 +169,24 @@
             &lt;arg value=&quot;--tools='${sf.spec.sbs.tools.config}'&quot;/&gt;
             &lt;arg value=&quot;Common&quot;/&gt;
         &lt;/exec&gt;
+        &lt;exec executable=&quot;perl&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/summary/BuildEnvironmentCheck_BRAG.xml&quot; logError=&quot;true&quot;&gt;
+            &lt;arg value=&quot;${sf.common.config.dir}/tools/brag/logToBRAG.pl&quot;/&gt;
+            &lt;arg value=&quot;--phase=Prebuild&quot;/&gt;
+            &lt;arg value=&quot;--step=Build Environment Check&quot;/&gt;
+            &lt;arg value=&quot;--rules=${sf.common.config.dir}/tools/brag/rules.BuildEnvironmentCheck.tsv&quot;/&gt;
+            &lt;arg value=&quot;${build.log.dir}/BuildEnvironmentCheck.log&quot;/&gt;
+        &lt;/exec&gt;
+        &lt;fail&gt;
+            &lt;condition&gt;
+                &lt;not&gt;
+                    &lt;or&gt;
+                        &lt;equals arg1=&quot;sf.checkenv.exit&quot; arg2=&quot;0&quot;/&gt;
+                        &lt;isset property=&quot;sf.suppress.buildenv.check&quot;/&gt;
+                    &lt;/or&gt;
+                &lt;/not&gt;
+            &lt;/condition&gt;
+Build Environment Check failed. To stop this failure aborting the build set property sf.suppress.buildenv.check to any value.
+        &lt;/fail&gt;
     &lt;/target&gt;
 </pre>
 

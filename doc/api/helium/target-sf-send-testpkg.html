@@ -82,7 +82,7 @@
 <h2>Target sf-send-testpkg</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.test.xml#L175">D:\maintools\sf-config\common\build.test.xml:175:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.test.xml#L178">d:\maintools\sf-config\common\build.test.xml:178:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -140,11 +140,13 @@
 <img src="target-sf-send-testpkg.dot.png" alt="sf-send-testpkg dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-send-testpkg.html" title="sf&#45;send&#45;testpkg" alt="" coords="157,41,285,89">
-<area shape="rect" id="node7" href="target-sf-find-ATS-worker-root.html" title="sf&#45;find&#45;ATS&#45;worker&#45;root" alt="" coords="531,48,715,96">
-<area shape="rect" id="node9" href="target-sf-make-junction.html" title="sf&#45;make&#45;junction" alt="" coords="345,93,479,141">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
-<area shape="rect" id="node4" href="target-sf-bc-check.html" title="sf&#45;bc&#45;check" alt="" coords="5,77,107,125">
+<area shape="rect" id="node1" href="target-sf-send-testpkg.html" title="sf&#45;send&#45;testpkg" alt="" coords="197,77,325,125">
+<area shape="rect" id="node9" href="target-sf-start-ats.html" title="sf&#45;start&#45;ats" alt="" coords="405,11,499,59">
+<area shape="rect" id="node11" href="target-sf-find-ATS-worker-root.html" title="sf&#45;find&#45;ATS&#45;worker&#45;root" alt="" coords="571,104,755,152">
+<area shape="rect" id="node13" href="target-sf-make-junction.html" title="sf&#45;make&#45;junction" alt="" coords="385,149,519,197">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="25,5,127,53">
+<area shape="rect" id="node4" href="target-sf-test-smoketest.html" title="sf&#45;test&#45;smoketest" alt="" coords="7,77,145,125">
+<area shape="rect" id="node6" href="target-sf-bc-check.html" title="sf&#45;bc&#45;check" alt="" coords="25,149,127,197">
 </map>
 </p>
 <hr/>
@@ -152,7 +154,7 @@
 
 <h3>Source code</h3>
 <pre>
-    &lt;target name=&quot;sf-send-testpkg&quot; depends=&quot;sf-find-ATS-worker-root,sf-make-junction&quot;&gt;
+    &lt;target name=&quot;sf-send-testpkg&quot; depends=&quot;sf-start-ats,sf-find-ATS-worker-root,sf-make-junction&quot;&gt;
         &lt;mkdir dir=&quot;${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}&quot;/&gt;
         &lt;echo message=&quot;Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}&quot;/&gt;
         &lt;exec executable=&quot;perl&quot; dir=&quot;${sf.common.config.dir}/tools/ats&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/ATS_${build.id}_testdrop.log&quot;&gt;
@@ -223,7 +225,5 @@
  </body>
 
 </html>
-
-
 
 

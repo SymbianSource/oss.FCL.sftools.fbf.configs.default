@@ -82,7 +82,7 @@
 <h2>Target sf-os-compile</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/sf-platform/build.xml#L147">D:\maintools\sf-config\sf-platform\build.xml:147:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/sf-platform/build.xml#L162">d:\maintools\sf-config\sf-platform\build.xml:162:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -279,7 +279,7 @@
 				&lt;/antcall&gt;
 			&lt;/else&gt;
 		&lt;/if&gt;
-		&lt;if&gt;&lt;isset property=&quot;sf.os.compile.iterate&quot;/&gt;
+		&lt;if&gt;&lt;istrue value=&quot;${sf.os.compile.iterate}&quot;/&gt;
       &lt;then&gt;
         &lt;for list=&quot;${sf.spec.sbs.config}&quot; delimiter=&quot;,&quot; param=&quot;sf.spec.sbs.splitconfig&quot;&gt;
           &lt;sequential&gt;

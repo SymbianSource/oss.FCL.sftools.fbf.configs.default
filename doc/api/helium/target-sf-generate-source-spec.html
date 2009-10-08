@@ -82,7 +82,7 @@
 <h2>Target sf-generate-source-spec</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.xml#L150">D:\maintools\sf-config\common\build.xml:150:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.xml#L157">d:\maintools\sf-config\common\build.xml:157:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -141,7 +141,6 @@
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
 <area shape="rect" id="node1" href="target-sf-generate-source-spec.html" title="sf&#45;generate&#45;source&#45;spec" alt="" coords="165,41,357,89">
-<area shape="rect" id="node6" href="target-sf-parse-project-config.html" title="sf&#45;parse&#45;project&#45;config" alt="" coords="407,41,583,89">
 <area shape="rect" id="node2" href="target-sf-prep.html" title="sf&#45;prep" alt="" coords="25,5,97,53">
 <area shape="rect" id="node4" href="target-sf-get-source.html" title="sf&#45;get&#45;source" alt="" coords="5,77,117,125">
 </map>
@@ -151,8 +150,7 @@
 
 <h3>Source code</h3>
 <pre>
-    &lt;target name=&quot;sf-generate-source-spec&quot; depends=&quot;sf-parse-project-config&quot;&gt;
-
+    &lt;target name=&quot;sf-generate-source-spec&quot;&gt;
         &lt;!-- Generate the sources.csv if hg cache is activated --&gt;
         &lt;if&gt;&lt;istrue value=&quot;${sf.spec.sourcesync.usecache}&quot;/&gt;
             &lt;then&gt;

@@ -82,7 +82,7 @@
 <h2>Target sf-package-binary</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L189">D:\maintools\sf-config\common\build.postbuild.xml:189:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L198">d:\maintools\sf-config\common\build.postbuild.xml:198:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -149,10 +149,13 @@
 <img src="target-sf-package-binary.dot.png" alt="sf-package-binary dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-package-binary.html" title="sf&#45;package&#45;binary" alt="" coords="157,5,304,53">
-<area shape="rect" id="node5" href="target-sf-preprocess-package-config.html" title="sf&#45;preprocess&#45;package&#45;config" alt="" coords="609,12,839,60">
-<area shape="rect" id="node7" href="target-sf-package-postbuild-rnd.html" title="sf&#45;package&#45;postbuild&#45;rnd" alt="" coords="363,57,557,105">
-<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="5,5,107,53">
+<area shape="rect" id="node1" href="target-sf-package-binary.html" title="sf&#45;package&#45;binary" alt="" coords="224,52,371,100">
+<area shape="rect" id="node7" href="target-sf-preprocess-package-config.html" title="sf&#45;preprocess&#45;package&#45;config" alt="" coords="684,5,913,53">
+<area shape="rect" id="node9" href="target-sf-package-postbuild-rnd.html" title="sf&#45;package&#45;postbuild&#45;rnd" alt="" coords="429,52,624,100">
+<area shape="rect" id="node12" href="target-sf-zip-content.html" title="sf&#45;zip&#45;content" alt="" coords="743,89,855,137">
+<area shape="rect" id="node2" href="target-sf-postbuild.html" title="sf&#45;postbuild" alt="" coords="39,16,140,64">
+<area shape="rect" id="node4" href="target-sf-create-public-PDK.html" title="sf&#45;create&#45;public&#45;PDK" alt="" coords="5,88,173,136">
+<area shape="rect" id="node13" href="target-preprocess-zip-config.html" title="preprocess&#45;zip&#45;config" alt="" coords="967,89,1137,137">
 </map>
 </p>
 <hr/>
@@ -199,6 +202,11 @@
                 &lt;arg value=&quot;epoc32\release\armv5\&quot;/&gt;
             &lt;/exec&gt;
         &lt;/parallel&gt;
+        &lt;!-- Generate release_metadata entries for the above zips --&gt;
+        &lt;antcall target=&quot;sf-zip-content&quot;&gt;
+            &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
+            &lt;param name=&quot;zip.target.name&quot; value=&quot;bin-just-metadata&quot;/&gt;
+        &lt;/antcall&gt;
     &lt;/target&gt;
 </pre>
 

@@ -82,7 +82,7 @@
 <h2>Target sf-package-postbuild-rnd</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml#L230">D:\maintools\sf-config\common\build.postbuild.xml:230:</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml#L244">d:\maintools\sf-config\common\build.postbuild.xml:244:</a></tt>  
 </p>
 
 <p><b>Conditional execution</b></p>        
@@ -96,17 +96,6 @@
 <hr/>
 
 
-<h3>Target external Dependency</h3>
-<p> 
-<table class="docutils" width="50%">
-    <tr>
-        <th class="head">Name</th>
-    </tr>
-        <tr>
-                    <td>perl</td>
-            </tr>
-</table>
-</p>
 
 
 <h3>Property dependencies</h3>
@@ -120,15 +109,9 @@
     <tr>
         <td colspan="2">User editable properties</td>
     </tr>
-                    <tr>
-                        <td><a href="property-build.drive.html" title="<p>Substed drive where the build is performed. if not defined then helium should search next available build drive letter and subst autometically</p>" target="classframe"><tt class="docutils literal">build.drive</tt></a></td><td><a href="help.html" title="Help" target="classframe">recommended</a></td>
-                    </tr>
     <tr>
         <td colspan="2">Internal properties</td>
     </tr>
-                    <tr>
-                        <td><a href="property-build.log.dir.html" title="<p>This is where the build logs are stored.</p>" target="classframe"><tt class="docutils literal">build.log.dir</tt></a></td><td><a href="help.html" title="Help" target="classframe">discouraged</a></td>
-                    </tr>
 </table>
 </p>
 
@@ -140,9 +123,11 @@
 <img src="target-sf-package-postbuild-rnd.dot.png" alt="sf-package-postbuild-rnd dependencies" usemap="#dependencies"
      style="border-style: none"/>
 <map name="dependencies" id="dependencies">
-<area shape="rect" id="node1" href="target-sf-package-postbuild-rnd.html" title="sf&#45;package&#45;postbuild&#45;rnd" alt="" coords="200,5,395,53">
-<area shape="rect" id="node4" href="target-sf-preprocess-package-config.html" title="sf&#45;preprocess&#45;package&#45;config" alt="" coords="444,5,673,53">
-<area shape="rect" id="node2" href="target-sf-package-binary.html" title="sf&#45;package&#45;binary" alt="" coords="5,5,152,53">
+<area shape="rect" id="node1" href="target-sf-package-postbuild-rnd.html" title="sf&#45;package&#45;postbuild&#45;rnd" alt="" coords="203,31,397,79">
+<area shape="rect" id="node5" href="target-sf-preprocess-package-config.html" title="sf&#45;preprocess&#45;package&#45;config" alt="" coords="457,5,687,53">
+<area shape="rect" id="node7" href="target-sf-zip-content.html" title="sf&#45;zip&#45;content" alt="" coords="516,77,628,125">
+<area shape="rect" id="node2" href="target-sf-package-binary.html" title="sf&#45;package&#45;binary" alt="" coords="5,31,152,79">
+<area shape="rect" id="node8" href="target-preprocess-zip-config.html" title="preprocess&#45;zip&#45;config" alt="" coords="740,77,911,125">
 </map>
 </p>
 <hr/>
@@ -151,19 +136,10 @@
 <h3>Source code</h3>
 <pre>
     &lt;target name=&quot;sf-package-postbuild-rnd&quot; depends=&quot;sf-preprocess-package-config&quot;&gt;
-
-        &lt;!-- zip any RnD _includefile.txt files generated during source packaging --&gt;
-        &lt;exec executable=&quot;perl&quot; dir=&quot;${build.drive}/&quot; failonerror=&quot;false&quot; output=&quot;${build.log.dir}/zip_postbuild.log&quot;&gt;
-            &lt;arg value=&quot;${sf.common.config.dir}/tools/zip_includefiles.pl&quot;/&gt;
-        &lt;/exec&gt;
-        &lt;!-- cleanup my moving includefiles to logs and zips to zips\release --&gt;
-        &lt;move todir=&quot;${build.log.dir}&quot;&gt;
-            &lt;fileset dir=&quot;${build.drive}&quot;&gt;&lt;include name=&quot;*_includefile.txt&quot;/&gt;&lt;/fileset&gt;
-        &lt;/move&gt;
-        &lt;move todir=&quot;${build.drive}/output/zips/release&quot;&gt;
-            &lt;fileset dir=&quot;${build.drive}&quot;&gt;&lt;include name=&quot;bin*.zip&quot;/&gt;&lt;/fileset&gt;
-        &lt;/move&gt;
-        &lt;!-- TODO: merge with release_metadata.xml ? --&gt;
+        &lt;antcall target=&quot;sf-zip-content&quot;&gt;
+            &lt;param name=&quot;zip.config.file&quot; value=&quot;${sf.common.config.dir}/generated/zip.cfg.xml.ftl&quot;/&gt;
+            &lt;param name=&quot;zip.target.name&quot; value=&quot;rnd-postbuild&quot;/&gt;
+        &lt;/antcall&gt;
     &lt;/target&gt;
 </pre>
 

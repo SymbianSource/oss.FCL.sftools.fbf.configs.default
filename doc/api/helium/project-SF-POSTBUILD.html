@@ -82,7 +82,7 @@
 <h2>Project SF-POSTBUILD</h2>
 
 <p><b>Location</b></p>
-<p>    <tt class="docutils literal"><a href="/D:/maintools/sf-config/common/build.postbuild.xml">D:/maintools/sf-config/common/build.postbuild.xml</a></tt>  
+<p>    <tt class="docutils literal"><a href="/d:/maintools/sf-config/common/build.postbuild.xml">d:/maintools/sf-config/common/build.postbuild.xml</a></tt>  
 </p>
 <h3>Description</h3>
 <p>
@@ -96,6 +96,24 @@
     <tr>
         <th class="head">Target name</th><th class="head">Description</th>
     </tr>
+        <tr>
+            <td><a href="target-sf-brag-to-diamonds.html" target="classframe">sf-brag-to-diamonds</a></td><td></td>
+        </tr>
+        <tr>
+            <td><a href="target-sf-check-missing-os-files.html" target="classframe">sf-check-missing-os-files</a></td><td></td>
+        </tr>
+        <tr>
+            <td><a href="target-sf-check-missing-s60-files.html" target="classframe">sf-check-missing-s60-files</a></td><td></td>
+        </tr>
+        <tr>
+            <td><a href="target-sf-check-utilities-dir.html" target="classframe">sf-check-utilities-dir</a></td><td></td>
+        </tr>
+        <tr>
+            <td><a href="target-sf-compare-to-baseline.html" target="classframe">sf-compare-to-baseline</a></td><td></td>
+        </tr>
+        <tr>
+            <td><a href="target-sf-create-public-PDK.html" target="classframe">sf-create-public-PDK</a></td><td></td>
+        </tr>
         <tr>
             <td><a href="target-sf-package-binary.html" target="classframe">sf-package-binary</a></td><td></td>
         </tr>
@@ -127,6 +145,9 @@
             <td><a href="target-sf-run-analysis-list.html" target="classframe">sf-run-analysis-list</a></td><td></td>
         </tr>
         <tr>
+            <td><a href="target-sf-run-analysis-missing-files.html" target="classframe">sf-run-analysis-missing-files</a></td><td><p>TODO: Make this work for package builds once we have sysmodel story worked out</p></td>
+        </tr>
+        <tr>
             <td><a href="target-sf-run-analysis-raptor.html" target="classframe">sf-run-analysis-raptor</a></td><td></td>
         </tr>
         <tr>
@@ -151,10 +172,13 @@
             <td><a href="target-sf-run-evalid.html" target="classframe">sf-run-evalid</a></td><td></td>
         </tr>
         <tr>
+            <td><a href="target-sf-run-sfl-licence-munging.html" target="classframe">sf-run-sfl-licence-munging</a></td><td></td>
+        </tr>
+        <tr>
             <td><a href="target-sf-tag-hg-code.html" target="classframe">sf-tag-hg-code</a></td><td></td>
         </tr>
         <tr>
-            <td><a href="target-sf-zip-logs.html" target="classframe">sf-zip-logs</a></td><td><p>package all logs into zipfile before publish</p></td>
+            <td><a href="target-sf-zip-logs.html" target="classframe">sf-zip-logs</a></td><td><p>package all logs into zipfile for publishing</p></td>
         </tr>
 </table>
 
@@ -176,10 +200,6 @@ evalid -g epoc32/cshlpcmp_template output/md5/epoc32_cshlpcmp_template.md5
 <br/>
 <font class="frameitemfont">
 -x@${build.log.dir}/rnd_excludefile.txt
-</font>
-<br/>
-<font class="frameitemfont">
-${sf.common.config.dir}/tools/zip_includefiles.pl
 </font>
 <br/>
 <font class="frameitemfont">
@@ -211,6 +231,10 @@ ${sf.common.config.dir}/tools/sortUnique.pl
 </font>
 <br/>
 <font class="frameitemfont">
+${sf.common.config.dir}/tools/brag/raptorToBRAG.pl
+</font>
+<br/>
+<font class="frameitemfont">
 ${sf.common.config.dir}/tools/analysis/yarp.pl
 </font>
 <br/>
@@ -239,7 +263,51 @@ ${sf.project.location}/sysdefs/system_model_os.xml
 </font>
 <br/>
 <font class="frameitemfont">
+${sf.project.location}/sysdefs/system_model_s60.xml
+</font>
+<br/>
+<font class="frameitemfont">
 ${sf.common.config.dir}/tools/analysis/find_collisions.pl
+</font>
+<br/>
+<font class="frameitemfont">
+${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py
+</font>
+<br/>
+<font class="frameitemfont">
+${build.log.dir}/sf-run-analysis.xml
+</font>
+<br/>
+<font class="frameitemfont">
+${sf.common.config.dir}/tools/mergeXML.pl
+</font>
+<br/>
+<font class="frameitemfont">
+${build.log.dir}/summary/*?_BRAG.xml
+</font>
+<br/>
+<font class="frameitemfont">
+${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py
+</font>
+<br/>
+<font class="frameitemfont">
+${temp.build.dir}/bragForDiamonds.xml
+</font>
+<br/>
+<font class="frameitemfont">
+${build.drive}/utilities/releaseAutomation/fcls4releasenotes.pl
+</font>
+<br/>
+<font class="frameitemfont">
+${build.drive}/utilities/releaseAutomation/mercurialComparison.pl
+</font>
+<br/>
+<font class="frameitemfont">
+${build.log.dir}/BOM/build-info.xml
+</font>
+<br/>
+<font class="frameitemfont">
+${build.drive}/utilities/williamr/convert_to_eula.pl
 </font>
 <br/>
 
