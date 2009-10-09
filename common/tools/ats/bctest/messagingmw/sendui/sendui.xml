@@ -49,7 +49,16 @@
 							<param dst="c:\testframework\ui_senduiapitest.cfg"/>
 							<param component-path="bcsendui" />
 						</params>
-					</step>  
+					</step>
+					<step id="" name="attachment.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="senduiapitest\attachment.txt"/>
+							<param dst="c:\data\testdata\senduiapitest\attachment.txt"/>
+							<param component-path="bcsendui" />
+						</params>
+					</step> 					
 					<step id="" name="senduiapitest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>execute</command>
 						<params>
@@ -73,5 +82,6 @@
 		<file>bcsendui/winscw_udeb/senduiapitest.dll</file>
         <file>bcsendui/general/testframework/testframework_sendui.ini</file>
         <file>bcsendui/general/testframework/ui_senduiapitest.cfg</file>
+		<file>bcsendui/general/senduiapitest/attachment.txt</file>
 	</files>
 </test>
