@@ -98,6 +98,7 @@ foreach my $yarpCSV (@ARGV)
 			compile2object => {message => "Failed to compile $failure->{source}", severity => "minor"},
 			win32compile2object => {message => "Failed to compile $failure->{source}", severity => "minor"},
 			tools2lib => {message => "Failed to build library $failure->{target}", severity => "minor"},
+			ar => {message => "Failed to build library $failure->{target}", severity => "minor"},
 			win32archive => {message => "Failed to build library $failure->{target}", severity => "minor"},
 			"link" => {message => "Failed to create symbols for $failure->{target}", severity => "minor"},
 			postlink => {message => "Failed to link $failure->{target}", severity => "minor"},
