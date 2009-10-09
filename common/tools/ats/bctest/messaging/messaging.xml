@@ -105,8 +105,17 @@
 						<params>
 							<param type="data"/>
 							<param src="test.txt"/>
-							<param dst="c:\testframework\test.txt"/>
-							<param component-path="bcmessaging\testframework" />
+							<param dst="e:\testing\data\pluginbiocontrolapitest\test.txt"/>
+							<param component-path="bcmessaging\pluginbiocontrolapitest" />
+						</params>
+					</step>
+					<step id="" name="test.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="test.txt"/>
+							<param dst="c:\testing\data\pluginbiocontrolapitest\test.txt"/>
+							<param component-path="bcmessaging\pluginbiocontrolapitest" />
 						</params>
 					</step>
 					<step id="" name="PluginBioControlAPITest.rsc on C (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
@@ -114,28 +123,10 @@
 						<params>
 							<param type="data"/>
 							<param src="PluginBioControlAPITest.rsc"/>
-							<param dst="c:\testframework\PluginBioControlAPITest.rsc"/>
+							<param dst="c:\resource\PluginBioControlAPITest.rsc"/>
 							<param component-path="bcmessaging\testframework" />
 						</params>
 					</step>
-					<step id="" name="PluginBioControlAPITest.rsc on Z (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="pluginbiocontrolapitest.rsc"/>
-							<param dst="z:\resource\pluginbiocontrolapitest.rsc"/>
-							<param component-path="bcmessaging\resource" />
-						</params>
-					</step>
-					<step id="" name="PluginBioControlAPITest.r01 on Z (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="pluginbiocontrolapitest.r01"/>
-							<param dst="z:\resource\pluginbiocontrolapitest.r01"/>
-							<param component-path="bcmessaging\resource" />
-						</params>
-					</step>  
 					<step id="" name="PluginBioControlAPITest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>execute</command>
 						<params>
@@ -162,9 +153,8 @@
         <file>bcmessaging/winscw_udeb/PluginBioControlAPITest.dll</file>
         <file>bcmessaging/testframework/general/tcTestUIBioCombiner.cfg</file>
         <file>bcmessaging/testframework/general/ui_PluginBioControlAPITest.cfg</file>
-        <file>bcmessaging/testframework/general/test.txt</file>
+        <file>bcmessaging/pluginbiocontrolapitest/general/test.txt</file>
         <file>bcmessaging/testframework/general/PluginBioControlAPITest.rsc</file>
         <file>bcmessaging/resource/general/pluginbiocontrolapitest.rsc</file>
-        <file>bcmessaging/resource/general/pluginbiocontrolapitest.r01</file>
 	</files>
 </test>
