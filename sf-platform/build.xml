@@ -159,7 +159,7 @@
     ==         - job_refs.ant.xml
     ==
     -->
-  <target name="sf-os-compile">
+  <target name="sf-os-compile" depends="sf-compile-options">
 
         <hlm:argSet id="sbs.tools2.var">
                 <hlm:arg name="config" value="tools2_rel.whatlog" />
@@ -206,9 +206,6 @@
                 <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
 		<hlm:arg name="command" value="WHAT" />
         </hlm:argSet>
-
-        <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options" />
-        <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options" />
 
 		<!-- generate baseline dir list to allow delta creation -->
 		<if><isset property="sf.os.compile.fast"/>
@@ -375,7 +372,7 @@
     ==         - job_refs.ant.xml
     ==
     -->
-  <target name="sf-s60-compile">
+  <target name="sf-s60-compile" depends="sf-compile-options">
 
         <hlm:argSet id="sbs.tools.var">
           			<hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />

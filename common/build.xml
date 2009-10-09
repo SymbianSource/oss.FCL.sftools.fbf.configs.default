@@ -521,6 +521,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             </sequential>
 	</for>
     </target>
+
+  <target name="sf-compile-options">  
+    <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options"/>
+    <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options"/>
+  </target>
     
 </project>
 

@@ -28,11 +28,8 @@
     <runtarget target="sf-package-compile"/>
   </target>
   
-  <target name="sf-package-compile">
-    
-    <hlm:sbsMakeOptions engine="gmake" id="sbs.fullbuild.options"/>
-    <hlm:sbsMakeOptions engine="gmake" id="sbs.toolsbuild.options"/>
-    
+  <target name="sf-package-compile" depends="sf-compile-options">
+        
     <!-- BUILD tools2_rel CLEAN -->
     <!--
     <hlm:argSet id="sbs.tools2_rel.clean.var">
