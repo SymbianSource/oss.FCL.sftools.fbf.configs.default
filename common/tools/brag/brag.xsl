@@ -3,7 +3,8 @@
 
 <!-- Initialise keys (sort of like hashes?) to enable us to list distinct packages/severities -->
 <xsl:key name="packages" match="failure" use="@package"/>
-<xsl:key name="severities" match="failures" use="@severity"/>
+<xsl:key name="severities" match="/buildStatus/phase/step/failures" use="@level"/>
+<xsl:key name="packageANDseverity" match="/buildStatus/phase/step/failures[@level]/failure[@package]" use="concat(../@level, @package)"/>
 
 <!-- Main template -->
 <xsl:template match="/buildStatus">
@@ -67,9 +68,33 @@
 		<!-- Use the Muenchian Method to get a set of distinct packages -->
 		<xsl:for-each select="phase/step/failures/failure[generate-id(.) = generate-id(key('packages', @package))]">
 			<xsl:sort select="@package"/>
-			<tr><td><xsl:value-of select="@package"/></td><td><xsl:value-of select="count(key('packages', @package))"/></td></tr>
+			<tr>
+			<td><a><xsl:attribute name="href"><xsl:value-of select="concat('#package', @package)"/></xsl:attribute><xsl:value-of select="@package"/></a></td>
+			<td><xsl:value-of select="count(key('packages', @package))"/></td>
+			</tr>
 		</xsl:for-each>
 		</table>
+
+		<h2>Breakdown by package/severity</h2>
+		<xsl:for-each select="phase/step/failures[@level]/failure[generate-id(.) = generate-id(key('packages', @package))]">
+			<xsl:sort select="@package"/>
+			<xsl:variable name="package" select="@package"/>
+			<xsl:element name="a">
+			</xsl:element>
+			<a><xsl:attribute name="name"><xsl:value-of select="concat('package', $package)"/></xsl:attribute>
+			<h3><xsl:value-of select="$package"/></h3>
+			</a>
+			<table border="1">
+			<tr><th>Severity</th><th>Count</th></tr>
+			<xsl:for-each select="/buildStatus/phase/step/failures[generate-id(.) = generate-id(key('severities', @level))]">
+				<xsl:variable name="severity" select="@level"/>
+				<tr>
+				<td><xsl:value-of select="$severity"/></td>
+				<td><xsl:value-of select="count(key('packageANDseverity', concat($severity, $package)))"/></td>
+				</tr>
+			</xsl:for-each>
+			</table>
+		</xsl:for-each>
 	</xsl:if>
 
 	</body>
