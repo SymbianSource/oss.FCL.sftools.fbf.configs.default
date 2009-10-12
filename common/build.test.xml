@@ -165,7 +165,7 @@
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="ats_specialise_test_drop.pl"/>
             <arg value="--test-drop-name=Smoketest-${build.id}"/> 
-            <arg value="--device-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
+            <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
             <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
             <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
             <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>			

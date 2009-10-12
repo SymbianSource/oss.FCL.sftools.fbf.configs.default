@@ -175,7 +175,7 @@ sub usage($)
             "  --help                        Display this help and exit\n" .
             "  --test-drop-name=TESTNAME     TESTNAME is the desired name of the test drop. If not specified then the test drop name is not modified.\n" .
             "  --build-id=BUILDID            BUILDID is id of the build being tested. If not specified then the build id is not modified.\n" .            
-            "  --device-name=HOSTNAME        HOSTNAME  is the name of the ATS worker on which the test should be run. " .
+            "  --host-name=HOSTNAME        HOSTNAME  is the name of the ATS worker on which the test should be run. " .
             "If not specified then the test device name is not modified.\n" .
             "  --src=INFILE                  INFILE is the file containing the test drop XML to be modified, or else a zip file " .
             "                                containing the test drop XML in the file 'test.xml'. INFILE must have extension .xml or.zip\n" .
