@@ -79,8 +79,6 @@
 		<xsl:for-each select="phase/step/failures[@level]/failure[generate-id(.) = generate-id(key('packages', @package))]">
 			<xsl:sort select="@package"/>
 			<xsl:variable name="package" select="@package"/>
-			<xsl:element name="a">
-			</xsl:element>
 			<a><xsl:attribute name="name"><xsl:value-of select="concat('package', $package)"/></xsl:attribute>
 			<h3><xsl:value-of select="$package"/></h3>
 			</a>
@@ -96,6 +94,47 @@
 			</table>
 		</xsl:for-each>
 	</xsl:if>
+
+	<h2>Floating failures by phase/step/severity</h2>
+	<xsl:if test="count(phase/step/failures/failure/@package) = count(phase/step/failures/failure)">
+		<p>No errors independent of package</p>
+	</xsl:if>
+	<xsl:for-each select="phase[count(step/failures/failure/@package) != count(step/failures/failure)]">
+		<h3>Phase: <xsl:value-of select="@name"/></h3>
+		<xsl:for-each select="step[count(failures/failure/@package) != count(failures/failure)]">
+			<h4>Step: <xsl:value-of select="@name"/></h4>
+			<xsl:for-each select="failures[count(failure/@package) != count(failure)]">
+				<dl><dt><xsl:value-of select="@level"/></dt><dd>
+				<ul>
+				<xsl:for-each select="failure[count(@package) = 0]">
+					<li><xsl:value-of select="."/></li>
+				</xsl:for-each>
+				</ul>
+				</dd></dl>
+			</xsl:for-each>
+		</xsl:for-each>
+	</xsl:for-each>
+
+	<h2>Package failures by phase/step/severity</h2>
+	<xsl:if test="count(phase/step/failures/failure/@package) = 0">
+		<p>No errors specific to a package</p>
+	</xsl:if>
+	<xsl:for-each select="phase[step/failures/failure/@package]">
+		<h3>Phase: <xsl:value-of select="@name"/></h3>
+		<xsl:for-each select="step[failures/failure/@package]">
+			<h4>Step: <xsl:value-of select="@name"/></h4>
+			<xsl:for-each select="failures[failure/@package]">
+				<dl><dt><xsl:value-of select="@level"/></dt><dd>
+				<ul>
+				<xsl:for-each select="failure[@package]">
+					<xsl:sort select="@package"/>
+					<li><xsl:value-of select="@package"/>: <xsl:value-of select="."/></li>
+				</xsl:for-each>
+				</ul>
+				</dd></dl>
+			</xsl:for-each>
+		</xsl:for-each>
+	</xsl:for-each>
 
 	</body>
 	</html>
