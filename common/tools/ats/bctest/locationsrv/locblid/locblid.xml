@@ -8,7 +8,6 @@
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="ATSINTERFACE" />
-            <property name="NAME" value="emulator_udeb" />
         </device>
 	</target>
 	<plan id="" name="Basic Location Info Display BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -66,7 +65,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\testframework\tcLmkBlid.cfg"/>
 							<param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="1200"/>
 						</params>
 					</step>
 					<step id="" name="tcLmkBlid (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
