@@ -72,7 +72,7 @@
         </then>
     </if>
     
-    <target name="sf-prep" depends="prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
+    <target name="sf-prep" depends="prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <!-- Test for the disk space we would like for this build -->
 	<fail>
@@ -207,7 +207,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-record-proj-conf-bom,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
     
     <target name="sf-prebuild-announce">
         <echo>[SF-PREBUILD]</echo>
@@ -269,6 +269,9 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-getenvs">
+        <!-- create BOM dir -->
+        <mkdir dir="${build.drive}/output/logs/BOM"/>
+        
         <!-- tools baseline must come before epoc baseline to allow clean listing -->
         <touch file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
         <if>
@@ -379,6 +382,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </if>
     </target>
 
+    <!-- This target is overridden in platform builds, but used directly in package builds -->
     <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile,sf-postbuild">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
