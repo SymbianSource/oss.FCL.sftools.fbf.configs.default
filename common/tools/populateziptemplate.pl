@@ -213,6 +213,9 @@ $xml->XMLout($zipConfig, OutputFile => $ftl, XMLDecl => 1, RootName => 'build', 
 
 # Output all rnd files into exclude list for later
 open my $fh, ">", $rndExcludes or die "Cannot write exlude file!";
-print $fh @allRndFiles;
+foreach (@allRndFiles)
+{
+	print $fh "$_\n";
+}
 close $fh;
 
