@@ -16,9 +16,11 @@
 
 use strict;
 
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+
 use Getopt::Long;
 use Text::CSV;
-
 
 if (!@ARGV)
 {
