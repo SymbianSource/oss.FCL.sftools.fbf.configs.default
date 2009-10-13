@@ -91,7 +91,7 @@ foreach my $package (@packages)
 			if ($layer eq "QEMU")
 			{
 				$packageName = $layer;
-				$layer = "os";
+				$layer = "adaptation";
 			}
 			else
 			{
