@@ -422,7 +422,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <exec executable="perl" dir="${build.drive}/" output="${build.drive}${sf.spec.systemdefinition.location}" logError="true" failonerror="true">
           <arg value="${sf.common.config.dir}/tools/csvToSysDef.pl"/>
           <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
-          <arg value="${sf.config.dir}/../build/config/3k"/>
+          <arg value="${sf.config.dir}/../build/config/${sf.spec.job.codeline}"/>
         </exec>
       </else>
     </if>
