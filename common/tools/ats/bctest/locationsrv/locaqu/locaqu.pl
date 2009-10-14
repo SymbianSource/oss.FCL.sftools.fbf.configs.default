@@ -12,7 +12,7 @@
 # Maciej Seroka <maciejs@symbian.org>
 #
 # Description:
-# Script to build ATS test drop Location Acquisition BC tests
+# Script to build ATS test drop for Location Acquisition BC tests
 
 
 use strict;

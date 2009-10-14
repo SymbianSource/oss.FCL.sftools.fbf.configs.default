@@ -12,7 +12,7 @@
 # Maciej Seroka <maciejs@symbian.org>
 #
 # Description:
-# Script to build ATS test drop Landmarks Item Id Db Combi Info BC tests
+# Script to build ATS test drop for Landmarks Item Id Db Combi Info BC tests
 
 
 use strict;

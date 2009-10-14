@@ -12,7 +12,7 @@
 # Maciej Seroka <maciejs@symbian.org>
 #
 # Description:
-# Script to build ATS test drop Landmarks Database Management BC tests
+# Script to build ATS test drop for Landmarks Database Management BC tests
 
 
 use strict;

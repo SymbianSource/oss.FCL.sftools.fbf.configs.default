@@ -12,7 +12,7 @@
 # Maciej Seroka <maciejs@symbian.org>
 #
 # Description:
-# Script to build ATS test drop BLID Application Satellite Info BC tests
+# Script to build ATS test drop for BLID Application Satellite Info BC tests
 
 
 use strict;
