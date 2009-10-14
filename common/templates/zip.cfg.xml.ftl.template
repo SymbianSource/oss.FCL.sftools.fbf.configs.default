@@ -143,5 +143,27 @@
 				<set name="name" value="binaries_winscw"/>
 			</config>
 		</config>
+		<!-- "Null" info entries, which match no files, but do populate the release_metadata.xml -->
+		<config name="info-just-metadata" abstract="true">
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+			<set name="include" value="*"/>
+			<set name="exclude" value="**"/>
+			<config name="logs">
+				<set name="name" value="build_logs"/>
+				<set name="grace.filters" value="logs"/>
+			</config>
+			<config name="BOM">
+				<set name="name" value="build_BOM"/>
+				<set name="grace.filters" value="info"/>
+			</config>
+		</config>
+		<!-- "Null" md5 entry, which matches no files, but does populate the release_metadata.xml -->
+		<config name="md5-just-metadata" abstract="true">
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+			<set name="name" value="build_md5"/>
+			<set name="grace.filters" value="info"/>
+			<set name="include" value="*"/>
+			<set name="exclude" value="**"/>
+		</config>
 	</config>
 </build>

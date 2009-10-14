@@ -86,7 +86,7 @@
         <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
     </target>
 
-    <target name="sf-run-evalid">
+    <target name="sf-run-evalid" depends="sf-preprocess-package-config">
         <delete dir="${build.drive}/output/md5"/>
         <mkdir  dir="${build.drive}/output/md5"/>
 
@@ -194,6 +194,11 @@
         <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
+        <!-- Generate release_metadata entries for the above zips -->
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="bin-just-metadata" />
+        </antcall>
     </target>    
     
     <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
@@ -612,7 +617,7 @@
     </target>
 
     <!-- package all logs into zipfile for publishing -->
-    <target name="sf-zip-logs">
+    <target name="sf-zip-logs" depends="sf-preprocess-package-config">
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>
@@ -629,6 +634,10 @@
                     <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
                     <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
                 </zip>
+                <antcall target="sf-zip-content">
+                    <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+                    <param name="zip.target.name" value="info-just-metadata" />
+                </antcall>
             </then>
         </if>
      </target>
