@@ -87,7 +87,11 @@
 			<xsl:for-each select="/buildStatus/phase/step/failures[generate-id(.) = generate-id(key('severities', @level))]">
 				<xsl:variable name="severity" select="@level"/>
 				<tr>
-				<td><xsl:value-of select="$severity"/></td>
+				<td><a>
+				<xsl:if test="count(/buildStatus/phase/step/failures[@level = $severity]/failure[@package = $package]) != 0">
+					<xsl:attribute name="href"><xsl:value-of select="concat('#', $severity, $package)"/></xsl:attribute>
+				</xsl:if>
+				<xsl:value-of select="$severity"/></a></td>
 				<td><xsl:value-of select="count(key('packageANDseverity', concat($severity, $package)))"/></td>
 				</tr>
 			</xsl:for-each>
@@ -115,24 +119,30 @@
 		</xsl:for-each>
 	</xsl:for-each>
 
-	<h2>Package failures by phase/step/severity</h2>
+	<h2>Package failures by package/severity</h2>
 	<xsl:if test="count(phase/step/failures/failure/@package) = 0">
 		<p>No errors specific to a package</p>
 	</xsl:if>
-	<xsl:for-each select="phase[step/failures/failure/@package]">
-		<h3>Phase: <xsl:value-of select="@name"/></h3>
-		<xsl:for-each select="step[failures/failure/@package]">
-			<h4>Step: <xsl:value-of select="@name"/></h4>
-			<xsl:for-each select="failures[failure/@package]">
-				<dl><dt><xsl:value-of select="@level"/></dt><dd>
+	<xsl:for-each select="phase/step/failures[@level]/failure[generate-id(.) = generate-id(key('packages', @package))]">
+		<xsl:sort select="@package"/>
+		<xsl:variable name="package" select="@package"/>
+		<a><xsl:attribute name="name"><xsl:value-of select="concat('package', $package)"/></xsl:attribute>
+		<h3><xsl:value-of select="$package"/></h3>
+		</a>
+		<xsl:for-each select="/buildStatus/phase/step/failures[generate-id(.) = generate-id(key('severities', @level))]">
+			<xsl:variable name="severity" select="@level"/>
+			<xsl:if test="count(/buildStatus/phase/step/failures[@level = $severity]/failure[@package = $package]) != 0">
+				<dl><dt><a><xsl:attribute name="name"><xsl:value-of select="concat($severity, $package)"/></xsl:attribute>
+					<xsl:value-of select="$severity"/> (<xsl:value-of select="count(/buildStatus/phase/step/failures[@level = $severity]/failure[@package = $package])"/>)
+				</a></dt><dd>
 				<ul>
-				<xsl:for-each select="failure[@package]">
+				<xsl:for-each select="/buildStatus/phase/step/failures[@level = $severity]/failure[@package = $package]">
 					<xsl:sort select="@package"/>
 					<li><xsl:value-of select="@package"/>: <xsl:value-of select="."/></li>
 				</xsl:for-each>
 				</ul>
 				</dd></dl>
-			</xsl:for-each>
+			</xsl:if>
 		</xsl:for-each>
 	</xsl:for-each>
 
