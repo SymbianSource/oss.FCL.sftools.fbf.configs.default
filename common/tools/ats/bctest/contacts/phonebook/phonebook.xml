@@ -15,7 +15,7 @@
 			<device rank="master" alias="emulator_udeb"/>
 		</target>
 		<session id="" name="Contacts Phonebook Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
-			<set id="" name="Phonebook Add/Edit UI" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="Phonebook Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
 				<case id="" name="Phonebook Add/Edit" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
@@ -65,7 +65,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\testframework\tcbctestpbkdataaddedit.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
+                            <param timeout="900"/>
 						</params>
 					</step>
 					<step id="" name="bctestpbkdataaddedit (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -75,9 +75,7 @@
 						</params>
 					</step>
 				</case>
-			</set>
-			<set id="" name="Phonebook Data Management" harness="ATSINTERFACE" enabled="true" passrate="100">
-                <case id="" name="Phonebook View Resource Manager" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="Phonebook Data Management" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
                         <params>
@@ -93,24 +91,6 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="testframework_pbkvrsc.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkvrsc.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkvrsc.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkvrsc.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkvrsc.cfg"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
 					<step id="" name="ui_bctestpbkvrsc.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -120,53 +100,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtrpbkviewresourcefile (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkvrsc.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtrpbkviewresourcefile (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Idle Finder" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkidlefinder.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkidlefinder.dll"/>
 							<param dst="c:\sys\bin\mtpbkidlefinder.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkifinder.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkifinder.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkifinder.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkifinder.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkifinder.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -179,53 +118,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkidlefinder (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkifinder.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkidlefinder (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Icon Info" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkiconinfo.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkiconinfo.dll"/>
 							<param dst="c:\sys\bin\mtpbkiconinfo.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkinfo.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkinfo.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkinfo.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkinfo.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkinfo.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -238,53 +136,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkiconinfo (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkinfo.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkiconinfo (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Icon ID" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkiconid.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkiconid.dll"/>
 							<param dst="c:\sys\bin\mtpbkiconid.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkicon.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkicon.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkicon.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkicon.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkicon.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -297,53 +154,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkiconid (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkicon.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkiconid (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Fields" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkfields.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkfields.dll"/>
 							<param dst="c:\sys\bin\mtpbkfields.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkfeilds.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkfeilds.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkfeilds.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkfeilds.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkfeilds.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -356,53 +172,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkfields (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkfeilds.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkfields (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Field Data" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkfielddata.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkfielddata.dll"/>
 							<param dst="c:\sys\bin\mtpbkfielddata.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkfdata.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkfdata.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkfdata.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkfdata.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkfdata.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -415,53 +190,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkfielddata (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkfdata.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkfielddata (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Contact Iteration" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkcontactiter.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkcontactiter.dll"/>
 							<param dst="c:\sys\bin\mtpbkcontactiter.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkiter.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkiter.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkiter.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkiter.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkiter.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -474,53 +208,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkcontactiter (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkiter.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkcontactiter (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>
-                </case>
-                <case id="" name="Phonebook Contact Item Field" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkcontactitemfield.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkcontactitemfield.dll"/>
 							<param dst="c:\sys\bin\mtpbkcontactitemfield.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkcif.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkcif.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkcif.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkcif.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkcif.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -533,53 +226,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkcontactitemfield (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkcif.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkcontactitemfield (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>
-                </case>
-                <case id="" name="Phonebook Contact Engine" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkcontactengine.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkcontactengine.dll"/>
 							<param dst="c:\sys\bin\mtpbkcontactengine.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_cengine.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_cengine.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestcengine.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestcengine.cfg"/>
-							<param dst="c:\testframework\tcbctestcengine.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -592,53 +244,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkcontactengine (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\testframework\tcbctestcengine.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkcontactengine (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>
-                </case>
-                <case id="" name="Phonebook Fields Info" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkfieldsinfo.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkfieldsinfo.dll"/>
 							<param dst="c:\sys\bin\mtpbkfieldsinfo.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkfinfo.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkfinfo.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkfinfo.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkfinfo.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkfinfo.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -651,53 +262,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkfieldsinfo (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkfinfo.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkfieldsinfo (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>
-                </case>
-                <case id="" name="Phonebook Contact Item" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkcontactitem.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkcontactitem.dll"/>
 							<param dst="c:\sys\bin\mtpbkcontactitem.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkcitem.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbkcitem.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkcitem.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbkcitem.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkcitem.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -710,53 +280,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkcontactitem (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkcitem.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkcontactitem (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>
-                </case>
-                <case id="" name="Phonebook Notifier" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkcontactchangenotifier.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkcontactchangenotifier.dll"/>
 							<param dst="c:\sys\bin\mtpbkcontactchangenotifier.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbknotifier.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/testframework_pbknotifier.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbknotifier.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework/tcbctestpbknotifier.cfg"/>
-							<param dst="c:\testframework\tcbctestpbknotifier.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -769,25 +298,41 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkcontactchangenotifier (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="testframework_pbkdmngt.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_pbkdmngt.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="phonebooktest" />
+						</params>
+					</step>
+					<step id="" name="tcbctestpbkdatamngt.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tcbctestpbkdatamngt.cfg"/>
+							<param dst="c:\testframework\tcbctestpbkdatamngt.cfg"/>
+							<param component-path="phonebooktest" />
+						</params>
+					</step>
+					<step id="" name="testpbkdatamngt (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>execute</command>
 						<params>
 							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbknotifier.cfg"/>
+							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkdatamngt.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="1800"/>
 						</params>
 					</step>
-					<step id="" name="mtpbkcontactchangenotifier (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="testpbkdatamngt (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>fetch-log</command>
 						<params>
 							<param path="c:\logs\testframework\TestReport.txt" /> 
 						</params>
 					</step>                
                 </case>
-            </set>
-            <set id="" name="Phonebook Fetch UI" harness="ATSINTERFACE" enabled="true" passrate="100">
-                <case id="" name="Phonebook SMS Address Select" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="Phonebook Fetch UI" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
                         <params>
@@ -803,24 +348,6 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="testframework_smsaddsel.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_smsaddsel.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestsmsaddsel.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestsmsaddsel.cfg"/>
-							<param dst="c:\testframework\tcbctestsmsaddsel.cfg"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
 					<step id="" name="ui_bctestsmsaddsel.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -830,53 +357,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbksmsaddressselect (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestsmsaddsel.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
-						</params>
-					</step>
-					<step id="" name="mtpbksmsaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Single Entry Fetch Dlg" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbksingleentryfetchdlg.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbksingleentryfetchdlg.dll"/>
 							<param dst="c:\sys\bin\mtpbksingleentryfetchdlg.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_sefielddlg.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_sefielddlg.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestsefielddlg.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestsefielddlg.cfg"/>
-							<param dst="c:\testframework\tcbctestsefielddlg.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -889,53 +375,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbksingleentryfetchdlg (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestsefielddlg.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbksingleentryfetchdlg (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook POC Address Select" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkpocaddressselect.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkpocaddressselect.dll"/>
 							<param dst="c:\sys\bin\mtpbkpocaddressselect.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pocadd.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_pocadd.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestsefielddlg.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestsefielddlg.cfg"/>
-							<param dst="c:\testframework\tcbctestsefielddlg.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -948,53 +393,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkpocaddressselect (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestsefielddlg.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkpocaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Phone Number Select" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkphonenumberselect.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkphonenumberselect.dll"/>
 							<param dst="c:\sys\bin\mtpbkphonenumberselect.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_phonenumber.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_phonenumber.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestphonenumber.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestphonenumber.cfg"/>
-							<param dst="c:\testframework\tcbctestphonenumber.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1007,44 +411,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkphonenumberselect (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestphonenumber.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkphonenumberselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Multiple Entry Fetch Dlg" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkmultipleentryfetchdlg.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkmultipleentryfetchdlg.dll"/>
 							<param dst="c:\sys\bin\mtpbkmultipleentryfetchdlg.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_fetchdlg.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_fetchdlg.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1066,53 +438,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkmultipleentryfetchdlg (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\ui_bctestfetchdlg.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkmultipleentryfetchdlg (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook MMS Address Select" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkmmsaddressselect.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkmmsaddressselect.dll"/>
 							<param dst="c:\sys\bin\mtpbkmmsaddressselect.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_mmsaddsel.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_mmsaddsel.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestmmsaddsel.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestmmsaddsel.cfg"/>
-							<param dst="c:\testframework\tcbctestmmsaddsel.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1125,53 +456,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkmmsaddressselect (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestmmsaddsel.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkmmsaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Add Item Dlg" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkmemoryentryadditemdlg.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkmemoryentryadditemdlg.dll"/>
 							<param dst="c:\sys\bin\mtpbkmemoryentryadditemdlg.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkadditemdlg.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_pbkadditemdlg.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkadditemdlg.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestpbkadditemdlg.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkadditemdlg.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1184,53 +474,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkmemoryentryadditemdlg (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkadditemdlg.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkmemoryentryadditemdlg (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Fetch Selection" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkfetchdlgselection.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkfetchdlgselection.dll"/>
 							<param dst="c:\sys\bin\mtpbkfetchdlgselection.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_fetchsel.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_fetchsel.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestfetchsel.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestfetchsel.cfg"/>
-							<param dst="c:\testframework\tcbctestfetchsel.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1243,53 +492,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkfetchdlgselection (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestfetchsel.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkfetchdlgselection (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Fetch Callbacks" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkfetchcallbacks.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkfetchcallbacks.dll"/>
 							<param dst="c:\sys\bin\mtpbkfetchcallbacks.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_fcallback.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_fcallback.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestfcallback.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestfcallback.cfg"/>
-							<param dst="c:\testframework\tcbctestfcallback.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1302,53 +510,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkfetchcallbacks (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestfcallback.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkfetchcallbacks (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Email Over SMS" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkemailoversms.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkemailoversms.dll"/>
 							<param dst="c:\sys\bin\mtpbkemailoversms.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_emailoversms.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_emailoversms.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestemaioversms.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestemaioversms.cfg"/>
-							<param dst="c:\testframework\tcbctestemaioversms.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1361,53 +528,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkemailoversms (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestemaioversms.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkemailoversms (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Email Address Select" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkemailaddressselect.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkemailaddressselect.dll"/>
 							<param dst="c:\sys\bin\mtpbkemailaddressselect.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_addemailsel.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_addemailsel.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestemailaddsel.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestemailaddsel.cfg"/>
-							<param dst="c:\testframework\tcbctestemailaddsel.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1420,53 +546,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkemailaddressselect (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestemailaddsel.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkemailaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Address Select" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkaddressselect.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkaddressselect.dll"/>
 							<param dst="c:\sys\bin\mtpbkaddressselect.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_pbkaddsel.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_pbkaddsel.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestpbkaddsel.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestpbkaddsel.cfg"/>
-							<param dst="c:\testframework\tcbctestpbkaddsel.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1483,49 +568,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/plugins/pbkaddressselect.rsc"/>
-							<param dst="z:\resource\plugins\pbkaddressselect.rsc"/>
+							<param src="z\resource\pbkaddressselect.rsc"/>
+							<param dst="z:\resource\pbkaddressselect.rsc"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkaddressselect (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkaddsel.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkaddressselect (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Phone Number Select" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkphonenumberselectbase.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkphonenumberselectbase.dll"/>
 							<param dst="c:\sys\bin\mtpbkphonenumberselectbase.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_numsel.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_numsel.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1551,58 +604,17 @@
 						<command>install</command>
 						<params>
 							<param type="binary"/>
-							<param src="z/resource/plugins/mt_cpbkphonenumberselectbase.rsc"/>
-							<param dst="z:\resource\plugins\mt_cpbkphonenumberselectbase.rsc"/>
+							<param src="z\resource\mt_cpbkphonenumberselectbase.rsc"/>
+							<param dst="z:\resource\mt_cpbkphonenumberselectbase.rsc"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkphonenumberselectbase (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestnumsel.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkphonenumberselectbase (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Select Field Dlg" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbkselectfielddlg.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbkselectfielddlg.dll"/>
 							<param dst="c:\sys\bin\mtpbkselectfielddlg.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_fielddlg.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_fielddlg.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestfielddlg.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestfielddlg.cfg"/>
-							<param dst="c:\testframework\tcbctestfielddlg.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1615,53 +627,12 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbkselectfielddlg (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestfielddlg.cfg"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
-						</params>
-					</step>
-					<step id="" name="mtpbkselectfielddlg (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
-						<command>fetch-log</command>
-						<params>
-							<param path="c:\logs\testframework\TestReport.txt" /> 
-						</params>
-					</step>                
-                </case>
-                <case id="" name="Phonebook Single Item Select Dlg" harness="ATSINTERFACE" enabled="true" passrate="100">
-                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-                        <command>makedir</command>
-                        <params>
-                            <param dir="c:\spd_logs\xml" /> 
-                        </params>
-                    </step>
                     <step id="" name="mtpbksingleitemfetchdlg.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
 							<param src="mtpbksingleitemfetchdlg.dll"/>
 							<param dst="c:\sys\bin\mtpbksingleitemfetchdlg.dll"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="testframework_sifielddlg.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\testframework_sifielddlg.ini"/>
-							<param dst="c:\testframework\testframework.ini"/>
-							<param component-path="phonebooktest" />
-						</params>
-					</step>
-					<step id="" name="tcbctestsifielddlg.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\tcbctestsifielddlg.cfg"/>
-							<param dst="c:\testframework\tcbctestsifielddlg.cfg"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1674,24 +645,43 @@
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
-					<step id="" name="mtpbksingleitemfetchdlg (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+					
+					<step id="" name="testframework_pbkfetch.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_pbkfetch.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="phonebooktest" />
+						</params>
+					</step>
+					
+					<step id="" name="tcbctestpbkfetch.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\tcbctestpbkfetch.cfg"/>
+							<param dst="c:\testframework\tcbctestpbkfetch.cfg"/>
+							<param component-path="phonebooktest" />
+						</params>
+					</step>
+					
+					<step id="" name="testpbkfetch (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>execute</command>
 						<params>
 							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestsifielddlg.cfg"/>
+							<param parameters="-testmodule testcombiner -config c:\testframework\tcbctestpbkfetch.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="1800"/>
 						</params>
 					</step>
-					<step id="" name="mtpbksingleitemfetchdlg (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="testpbkfetch (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>fetch-log</command>
 						<params>
 							<param path="c:\logs\testframework\TestReport.txt" /> 
 						</params>
 					</step>                
                 </case>
-            </set>
-            <set id="" name="Phonebook UI Utilities" harness="ATSINTERFACE" enabled="true" passrate="100">
                 <case id="" name="Phonebook UI Utilities" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
@@ -1741,7 +731,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkuiutil.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="1800"/>
 						</params>
 					</step>
 					<step id="" name="bctestpbkuiutil (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1751,8 +741,6 @@
 						</params>
 					</step>                
                 </case>
-            </set>
-            <set id="" name="Phonebook VCard Import Export" harness="ATSINTERFACE" enabled="true" passrate="100">
                 <case id="" name="Phonebook VCard Import Export" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
@@ -1883,7 +871,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkvcardimportexport.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="900"/>
 						</params>
 					</step>
 					<step id="" name="bctestpbkvcardimportexport (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1893,8 +881,6 @@
 						</params>
 					</step>                
                 </case>
-            </set>
-            <set id="" name="Phonebook Speed Dial" harness="ATSINTERFACE" enabled="true" passrate="100">
                 <case id="" name="Phonebook Speed Dial" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
@@ -1944,7 +930,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcspeeddial.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="300"/>
+                            <param timeout="900"/>
 						</params>
 					</step>
 					<step id="" name="bctestspeeddial (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1964,64 +950,43 @@
         <file>phonebooktest/general/testframework/ui_bctestpbkdataaddedit.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtrpbkviewresourcefile.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkvrsc.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkvrsc.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkvrsc.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkidlefinder.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkifinder.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkifinder.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkifinder.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkiconinfo.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkinfo.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkinfo.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkinfo.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkiconid.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkicon.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkicon.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkicon.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkfields.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkfeilds.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkfeilds.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkfeilds.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkfielddata.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkfdata.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkfdata.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkfdata.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactiter.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkiter.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkiter.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkiter.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactitemfield.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkcif.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkcif.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkcif.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactengine.dll</file>
-		<file>phonebooktest/general/testframework/testframework_cengine.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestcengine.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestcengine.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkfieldsinfo.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkfinfo.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkfinfo.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkfinfo.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactitem.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbkcitem.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbkcitem.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkcitem.cfg</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkcontactchangenotifier.dll</file>
-		<file>phonebooktest/general/testframework/testframework_pbknotifier.ini</file>
-        <file>phonebooktest/general/testframework/tcbctestpbknotifier.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkpbknotifier.cfg</file>
+		
+		<file>phonebooktest/general/testframework/testframework_pbkdmngt.ini</file>
+        <file>phonebooktest/general/testframework/tcbctestpbkdatamngt.cfg</file>		
 
 		<file>phonebooktest/winscw_udeb/mtpbksmsaddressselect.dll</file>
 		<file>phonebooktest/general/testframework/testframework_smsaddsel.ini</file>
@@ -2082,13 +1047,13 @@
 		<file>phonebooktest/general/testframework/testframework_pbkaddsel.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkaddsel.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkaddsel.cfg</file>
-		<file>phonebooktest/winscw_udeb/z/resource/plugins/pbkaddressselect.rsc</file>
+		<file>phonebooktest/winscw_udeb/z/resource/pbkaddressselect.rsc</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkphonenumberselectbase.dll</file>
 		<file>phonebooktest/general/testframework/testframework_numsel.ini</file>
         <file>phonebooktest/general/testframework/tcbctestnumsel.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestnumsel.cfg</file>
-		<file>phonebooktest/winscw_udeb/z/resource/plugins/mt_cpbkphonenumberselectbase.rsc</file>
+		<file>phonebooktest/winscw_udeb/z/resource/mt_cpbkphonenumberselectbase.rsc</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkselectfielddlg.dll</file>
 		<file>phonebooktest/general/testframework/testframework_fielddlg.ini</file>
@@ -2100,6 +1065,9 @@
         <file>phonebooktest/general/testframework/tcbctestsifielddlg.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestsifielddlg.cfg</file>
 
+		<file>phonebooktest/general/testframework/testframework_pbkfetch.ini</file>
+		<file>phonebooktest/general/testframework/tcbctestpbkfetch.cfg</file>
+		
 		<file>phonebooktest/winscw_udeb/bctestpbkuiutil.dll</file>
 		<file>phonebooktest/general/testframework/testframework_pbkuiutil.ini</file>
 		<file>phonebooktest/general/testframework/tcbctestpbkuiutil.cfg</file>

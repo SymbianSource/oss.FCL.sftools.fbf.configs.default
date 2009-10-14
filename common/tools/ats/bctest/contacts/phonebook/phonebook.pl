@@ -23,7 +23,7 @@ unlink "phonebooktest.zip";
 rmtree "temp";
 mkpath "temp/phonebooktest/general/testframework";
 mkpath "temp/phonebooktest/general/bcardtest2";
-mkpath "temp/phonebooktest/winscw_udeb/z/resource/plugins";
+mkpath "temp/phonebooktest/winscw_udeb/z/resource";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("phonebook.xml",	"temp/test.xml");
@@ -34,64 +34,43 @@ copy($epoc . "winscw/c/testframework/tcbctestpbkdataaddedit.cfg",				"temp/phone
 copy($epoc . "winscw/c/testframework/ui_bctestpbkdataaddedit.cfg",				"temp/phonebooktest/general/testframework/ui_bctestpbkdataaddedit.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtrpbkviewresourcefile.dll",					"temp/phonebooktest/winscw_udeb/mtrpbkviewresourcefile.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkvrsc.ini",				"temp/phonebooktest/general/testframework/testframework_pbkvrsc.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkvrsc.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkvrsc.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkvrsc.cfg",						"temp/phonebooktest/general/testframework/ui_bctestpbkvrsc.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkidlefinder.dll",							"temp/phonebooktest/winscw_udeb/mtpbkidlefinder.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkifinder.ini",				"temp/phonebooktest/general/testframework/testframework_pbkifinder.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkifinder.cfg",					"temp/phonebooktest/general/testframework/tcbctestpbkifinder.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkifinder.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkifinder.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkiconinfo.dll",							"temp/phonebooktest/winscw_udeb/mtpbkiconinfo.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkinfo.ini",				"temp/phonebooktest/general/testframework/testframework_pbkinfo.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkinfo.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkinfo.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkinfo.cfg",						"temp/phonebooktest/general/testframework/ui_bctestpbkinfo.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkiconid.dll",								"temp/phonebooktest/winscw_udeb/mtpbkiconid.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkicon.ini",				"temp/phonebooktest/general/testframework/testframework_pbkicon.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkicon.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkicon.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkicon.cfg",						"temp/phonebooktest/general/testframework/ui_bctestpbkicon.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkfields.dll",								"temp/phonebooktest/winscw_udeb/mtpbkfields.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkfeilds.ini",				"temp/phonebooktest/general/testframework/testframework_pbkfeilds.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkfeilds.cfg",					"temp/phonebooktest/general/testframework/tcbctestpbkfeilds.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkfeilds.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkfeilds.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkfielddata.dll",							"temp/phonebooktest/winscw_udeb/mtpbkfielddata.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkfdata.ini",				"temp/phonebooktest/general/testframework/testframework_pbkfdata.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkfdata.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkfdata.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkfdata.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkfdata.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkcontactiter.dll",						"temp/phonebooktest/winscw_udeb/mtpbkcontactiter.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkiter.ini",				"temp/phonebooktest/general/testframework/testframework_pbkiter.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkiter.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkiter.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkiter.cfg",						"temp/phonebooktest/general/testframework/ui_bctestpbkiter.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkcontactitemfield.dll",					"temp/phonebooktest/winscw_udeb/mtpbkcontactitemfield.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkcif.ini",					"temp/phonebooktest/general/testframework/testframework_pbkcif.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkcif.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkcif.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkcif.cfg",						"temp/phonebooktest/general/testframework/ui_bctestpbkcif.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkcontactengine.dll",						"temp/phonebooktest/winscw_udeb/mtpbkcontactengine.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_cengine.ini",				"temp/phonebooktest/general/testframework/testframework_cengine.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestcengine.cfg",						"temp/phonebooktest/general/testframework/tcbctestcengine.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestcengine.cfg",						"temp/phonebooktest/general/testframework/ui_bctestcengine.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkfieldsinfo.dll",							"temp/phonebooktest/winscw_udeb/mtpbkfieldsinfo.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkfinfo.ini",				"temp/phonebooktest/general/testframework/testframework_pbkfinfo.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkfinfo.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkfinfo.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkfinfo.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkfinfo.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkcontactitem.dll",						"temp/phonebooktest/winscw_udeb/mtpbkcontactitem.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbkcitem.ini",				"temp/phonebooktest/general/testframework/testframework_pbkcitem.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbkcitem.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkcitem.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkcitem.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkcitem.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkcontactchangenotifier.dll",				"temp/phonebooktest/winscw_udeb/mtpbkcontactchangenotifier.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/testframework_pbknotifier.ini",			"temp/phonebooktest/general/testframework/testframework_pbknotifier.ini") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/tcbctestpbknotifier.cfg",					"temp/phonebooktest/general/testframework/tcbctestpbknotifier.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkpbknotifier.cfg",				"temp/phonebooktest/general/testframework/ui_bctestpbkpbknotifier.cfg") or die "failed : $!";
+
+copy($epoc . "winscw/c/testframework/testframework_pbkdmngt.ini",				"temp/phonebooktest/general/testframework/testframework_pbkdmngt.ini") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/tcbctestpbkdatamngt.cfg",					"temp/phonebooktest/general/testframework/tcbctestpbkdatamngt.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbksmsaddressselect.dll",					"temp/phonebooktest/winscw_udeb/mtpbksmsaddressselect.dll") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/testframework_smsaddsel.ini",				"temp/phonebooktest/general/testframework/testframework_smsaddsel.ini") or die "failed : $!";
@@ -152,13 +131,13 @@ copy($epoc . "release/winscw/udeb/mtpbkaddressselect.dll",						"temp/phonebookt
 copy($epoc . "winscw/c/testframework/testframework_pbkaddsel.ini",				"temp/phonebooktest/general/testframework/testframework_pbkaddsel.ini") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/tcbctestpbkaddsel.cfg",					"temp/phonebooktest/general/testframework/tcbctestpbkaddsel.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkaddsel.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkaddsel.cfg") or die "failed : $!";
-copy($epoc . "release/winscw/udeb/z/resource/pbkaddressselect.rsc",				"temp/phonebooktest/winscw_udeb/z/resource/plugins/pbkaddressselect.rsc") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/z/resource/pbkaddressselect.rsc",				"temp/phonebooktest/winscw_udeb/z/resource/pbkaddressselect.rsc") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkphonenumberselectbase.dll",				"temp/phonebooktest/winscw_udeb/mtpbkphonenumberselectbase.dll") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/testframework_numsel.ini",					"temp/phonebooktest/general/testframework/testframework_numsel.ini") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/tcbctestnumsel.cfg",						"temp/phonebooktest/general/testframework/tcbctestnumsel.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestnumsel.cfg",						"temp/phonebooktest/general/testframework/ui_bctestnumsel.cfg") or die "failed : $!";
-copy($epoc . "release/winscw/udeb/z/resource/mt_cpbkphonenumberselectbase.rsc",	"temp/phonebooktest/winscw_udeb/z/resource/plugins/mt_cpbkphonenumberselectbase.rsc") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/z/resource/mt_cpbkphonenumberselectbase.rsc",	"temp/phonebooktest/winscw_udeb/z/resource/mt_cpbkphonenumberselectbase.rsc") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkselectfielddlg.dll",						"temp/phonebooktest/winscw_udeb/mtpbkselectfielddlg.dll") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/testframework_fielddlg.ini",				"temp/phonebooktest/general/testframework/testframework_fielddlg.ini") or die "failed : $!";
@@ -169,6 +148,9 @@ copy($epoc . "release/winscw/udeb/mtpbksingleitemfetchdlg.dll",					"temp/phoneb
 copy($epoc . "winscw/c/testframework/testframework_sifielddlg.ini",				"temp/phonebooktest/general/testframework/testframework_sifielddlg.ini") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/tcbctestsifielddlg.cfg",					"temp/phonebooktest/general/testframework/tcbctestsifielddlg.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestsifielddlg.cfg",					"temp/phonebooktest/general/testframework/ui_bctestsifielddlg.cfg") or die "failed : $!";
+
+copy($epoc . "winscw/c/testframework/testframework_pbkfetch.ini",				"temp/phonebooktest/general/testframework/testframework_pbkfetch.ini") or die "failed : $!";
+copy($epoc . "winscw/c/testframework/tcbctestpbkfetch.cfg",						"temp/phonebooktest/general/testframework/tcbctestpbkfetch.cfg") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/bctestpbkuiutil.dll",							"temp/phonebooktest/winscw_udeb/bctestpbkuiutil.dll") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/testframework_pbkuiutil.ini",				"temp/phonebooktest/general/testframework/testframework_pbkuiutil.ini") or die "failed : $!";
