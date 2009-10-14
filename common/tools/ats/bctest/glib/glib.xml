@@ -1,0 +1,1615 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>GTK Library BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+	</target>
+	<plan id="" name="GTK Library BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="GTK Library Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="GLib" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="GLib" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="accumulator.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="accumulator.exe"/>
+							<param dst="c:\sys\bin\accumulator.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="array-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="array-test.exe"/>
+							<param dst="c:\sys\bin\array-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="asyncqueue-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="asyncqueue-test.exe"/>
+							<param dst="c:\sys\bin\asyncqueue-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="atomic-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="atomic-test.exe"/>
+							<param dst="c:\sys\bin\atomic-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="child-test1.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="child-test1.exe"/>
+							<param dst="c:\sys\bin\child-test1.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="child-test2.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="child-test2.exe"/>
+							<param dst="c:\sys\bin\child-test2.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="closure-marshal.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="closure-marshal.exe"/>
+							<param dst="c:\sys\bin\closure-marshal.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="closures.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="closures.exe"/>
+							<param dst="c:\sys\bin\closures.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="completion-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="completion-test.exe"/>
+							<param dst="c:\sys\bin\completion-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="convert-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="convert-test.exe"/>
+							<param dst="c:\sys\bin\convert-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="date-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="date-test.exe"/>
+							<param dst="c:\sys\bin\date-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="defaultiface.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="defaultiface.exe"/>
+							<param dst="c:\sys\bin\defaultiface.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="dirname-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="dirname-test.exe"/>
+							<param dst="c:\sys\bin\dirname-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="env-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="env-test.exe"/>
+							<param dst="c:\sys\bin\env-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="error_check_mutexes.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="error_check_mutexes.exe"/>
+							<param dst="c:\sys\bin\error_check_mutexes.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="extra_tests.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="extra_tests.exe"/>
+							<param dst="c:\sys\bin\extra_tests.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="file-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="file-test.exe"/>
+							<param dst="c:\sys\bin\file-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="gio-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="gio-test.exe"/>
+							<param dst="c:\sys\bin\gio-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="gvalue-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="gvalue-test.exe"/>
+							<param dst="c:\sys\bin\gvalue-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="g_test1.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="g_test1.exe"/>
+							<param dst="c:\sys\bin\g_test1.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="g_test2.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="g_test2.exe"/>
+							<param dst="c:\sys\bin\g_test2.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="hash-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="hash-test.exe"/>
+							<param dst="c:\sys\bin\hash-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="ifacecheck.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ifacecheck.exe"/>
+							<param dst="c:\sys\bin\ifacecheck.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="ifaceinherit.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ifaceinherit.exe"/>
+							<param dst="c:\sys\bin\ifaceinherit.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="ifaceinit.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ifaceinit.exe"/>
+							<param dst="c:\sys\bin\ifaceinit.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="ifaceproperties.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ifaceproperties.exe"/>
+							<param dst="c:\sys\bin\ifaceproperties.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="iochannel-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="iochannel-test.exe"/>
+							<param dst="c:\sys\bin\iochannel-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="keyfile-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="keyfile-test.exe"/>
+							<param dst="c:\sys\bin\keyfile-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="list-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="list-test.exe"/>
+							<param dst="c:\sys\bin\list-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="mainloop-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="mainloop-test.exe"/>
+							<param dst="c:\sys\bin\mainloop-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="mapping-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="mapping-test.exe"/>
+							<param dst="c:\sys\bin\mapping-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="markup-escape-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="markup-escape-test.exe"/>
+							<param dst="c:\sys\bin\markup-escape-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="markup-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="markup-test.exe"/>
+							<param dst="c:\sys\bin\markup-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="module-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="module-test.exe"/>
+							<param dst="c:\sys\bin\module-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="node-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="node-test.exe"/>
+							<param dst="c:\sys\bin\node-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="objects.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="objects.exe"/>
+							<param dst="c:\sys\bin\objects.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="objects2.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="objects2.exe"/>
+							<param dst="c:\sys\bin\objects2.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="option-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="option-test.exe"/>
+							<param dst="c:\sys\bin\option-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="override.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="override.exe"/>
+							<param dst="c:\sys\bin\override.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="paramspec-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="paramspec-test.exe"/>
+							<param dst="c:\sys\bin\paramspec-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="patterntest.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="patterntest.exe"/>
+							<param dst="c:\sys\bin\patterntest.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="printf-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="printf-test.exe"/>
+							<param dst="c:\sys\bin\printf-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="properties.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="properties.exe"/>
+							<param dst="c:\sys\bin\properties.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="properties2.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="properties2.exe"/>
+							<param dst="c:\sys\bin\properties2.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="qsort-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="qsort-test.exe"/>
+							<param dst="c:\sys\bin\qsort-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="queue-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="queue-test.exe"/>
+							<param dst="c:\sys\bin\queue-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="rand-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="rand-test.exe"/>
+							<param dst="c:\sys\bin\rand-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="references.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="references.exe"/>
+							<param dst="c:\sys\bin\references.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="relation-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="relation-test.exe"/>
+							<param dst="c:\sys\bin\relation-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="shell-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="shell-test.exe"/>
+							<param dst="c:\sys\bin\shell-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="signals-multithread.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="signals-multithread.exe"/>
+							<param dst="c:\sys\bin\signals-multithread.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="signals-singlethread.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="signals-singlethread.exe"/>
+							<param dst="c:\sys\bin\signals-singlethread.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="slist-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="slist-test.exe"/>
+							<param dst="c:\sys\bin\slist-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="strfunc-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="strfunc-test.exe"/>
+							<param dst="c:\sys\bin\strfunc-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="string-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="string-test.exe"/>
+							<param dst="c:\sys\bin\string-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="strtod-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="strtod-test.exe"/>
+							<param dst="c:\sys\bin\strtod-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tasyncqueue.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tasyncqueue.exe"/>
+							<param dst="c:\sys\bin\tasyncqueue.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="testgdate.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testgdate.exe"/>
+							<param dst="c:\sys\bin\testgdate.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="testgdateparser.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testgdateparser.exe"/>
+							<param dst="c:\sys\bin\testgdateparser.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="testglib.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testglib.exe"/>
+							<param dst="c:\sys\bin\testglib.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="testgobject.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testgobject.exe"/>
+							<param dst="c:\sys\bin\testgobject.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tgstring.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tgstring.exe"/>
+							<param dst="c:\sys\bin\tgstring.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="thread-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="thread-test.exe"/>
+							<param dst="c:\sys\bin\thread-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="threadpool-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="threadpool-test.exe"/>
+							<param dst="c:\sys\bin\threadpool-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="timeloop-closure.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="timeloop-closure.exe"/>
+							<param dst="c:\sys\bin\timeloop-closure.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="timeloop.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="timeloop.exe"/>
+							<param dst="c:\sys\bin\timeloop.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="tmanual.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmanual.exe"/>
+							<param dst="c:\sys\bin\tmanual.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tmisc.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmisc.exe"/>
+							<param dst="c:\sys\bin\tmisc.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tnode.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tnode.exe"/>
+							<param dst="c:\sys\bin\tnode.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="toption.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="toption.exe"/>
+							<param dst="c:\sys\bin\toption.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="tree-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tree-test.exe"/>
+							<param dst="c:\sys\bin\tree-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tscanner.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tscanner.exe"/>
+							<param dst="c:\sys\bin\tscanner.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tslist.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tslist.exe"/>
+							<param dst="c:\sys\bin\tslist.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tthread.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tthread.exe"/>
+							<param dst="c:\sys\bin\tthread.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="ttrash.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ttrash.exe"/>
+							<param dst="c:\sys\bin\ttrash.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="ttree.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ttree.exe"/>
+							<param dst="c:\sys\bin\ttree.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tunichar.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tunichar.exe"/>
+							<param dst="c:\sys\bin\tunichar.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="tutf8.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tutf8.exe"/>
+							<param dst="c:\sys\bin\tutf8.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="typetest.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="typetest.exe"/>
+							<param dst="c:\sys\bin\typetest.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="unichar_test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="unichar_test.exe"/>
+							<param dst="c:\sys\bin\unichar_test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+					<step id="" name="unicode-caseconv.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="unicode-caseconv.exe"/>
+							<param dst="c:\sys\bin\unicode-caseconv.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="unicode-collate.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="unicode-collate.exe"/>
+							<param dst="c:\sys\bin\unicode-collate.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="unicode-encoding.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="unicode-encoding.exe"/>
+							<param dst="c:\sys\bin\unicode-encoding.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="unicode-normalize.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="unicode-normalize.exe"/>
+							<param dst="c:\sys\bin\unicode-normalize.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="uri-test.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="uri-test.exe"/>
+							<param dst="c:\sys\bin\uri-test.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="utf8-pointer.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="utf8-pointer.exe"/>
+							<param dst="c:\sys\bin\utf8-pointer.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="utf8-validate.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="utf8-validate.exe"/>
+							<param dst="c:\sys\bin\utf8-validate.exe"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="libmoduletestplugin_a.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="libmoduletestplugin_a.dll"/>
+							<param dst="c:\sys\bin\libmoduletestplugin_a.dll"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+                    <step id="" name="libmoduletestplugin_b.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="libmoduletestplugin_b.dll"/>
+							<param dst="c:\sys\bin\libmoduletestplugin_b.dll"/>
+							<param component-path="glibtest" />
+						</params>
+					</step>
+
+					<step id="" name="test.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="test.txt"/>
+							<param dst="c:\temp\tmp\test.txt"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="1.gmarkup (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="1.gmarkup"/>
+							<param dst="c:\1.gmarkup"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="iochannel-test-infile (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="iochannel-test-infile"/>
+							<param dst="c:\iochannel-test-infile"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>					
+					<step id="" name="casemap.bin (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="casemap.bin"/>
+							<param dst="c:\casemap.bin"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="casefold.bin (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="casefold.bin"/>
+							<param dst="c:\casefold.bin"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="utf8.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="utf8.txt"/>
+							<param dst="c:\utf8.txt"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="casecollate.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="casecollate.txt"/>
+							<param dst="c:\casecollate.txt"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="utf8_hindi.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="utf8_hindi.txt"/>
+							<param dst="c:\utf8_hindi.txt"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="scanfile.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="scanfile.txt"/>
+							<param dst="c:\scanfile.txt"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="NormalizationTest.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="NormalizationTest.txt"/>
+							<param dst="c:\NormalizationTest.txt"/>
+							<param component-path="glibtest\glib" />
+						</params>
+					</step>
+					<step id="" name="accumulator (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="accumulator.exe"/>
+							<param result-file="c:\spd_logs\xml\accumulator.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="array-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="array-test.exe"/>
+							<param result-file="c:\spd_logs\xml\array-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="asyncqueue-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="asyncqueue-test.exe"/>
+							<param result-file="c:\spd_logs\xml\asyncqueue-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="atomic-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atomic-test.exe"/>
+							<param result-file="c:\spd_logs\xml\atomic-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="closure-marshal (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="closure-marshal.exe"/>
+							<param result-file="c:\spd_logs\xml\closure-marshal.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="closures (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="closures.exe"/>
+							<param result-file="c:\spd_logs\xml\closures.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="completion-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="completion-test.exe"/>
+							<param result-file="c:\spd_logs\xml\completion-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="convert-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="convert-test.exe"/>
+							<param result-file="c:\spd_logs\xml\convert-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="date-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="date-test.exe"/>
+							<param result-file="c:\spd_logs\xml\date-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="defaultiface (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="defaultiface.exe"/>
+							<param result-file="c:\spd_logs\xml\defaultiface.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="dirname-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="dirname-test.exe"/>
+							<param result-file="c:\spd_logs\xml\dirname-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="env-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="env-test.exe"/>
+							<param result-file="c:\spd_logs\xml\env-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="extra_tests (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="extra_tests.exe"/>
+							<param result-file="c:\spd_logs\xml\extra_tests.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="gio-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="gio-test.exe"/>
+							<param result-file="c:\spd_logs\xml\gio-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="gvalue-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="gvalue-test.exe"/>
+							<param result-file="c:\spd_logs\xml\gvalue-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="g_test1 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="g_test1.exe"/>
+							<param result-file="c:\spd_logs\xml\g_test1.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="g_test2 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="g_test2.exe"/>
+							<param result-file="c:\spd_logs\xml\g_test2.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="hash-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="hash-test.exe"/>
+							<param result-file="c:\spd_logs\xml\hash-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="ifacecheck (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ifacecheck.exe"/>
+							<param result-file="c:\spd_logs\xml\ifacecheck.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="ifaceinherit (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ifaceinherit.exe"/>
+							<param result-file="c:\spd_logs\xml\ifaceinherit.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="ifaceinit (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ifaceinit.exe"/>
+							<param result-file="c:\spd_logs\xml\ifaceinit.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="ifaceproperties (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ifaceproperties.exe"/>
+							<param result-file="c:\spd_logs\xml\ifaceproperties.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="iochannel-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="iochannel-test.exe"/>
+							<param result-file="c:\spd_logs\xml\iochannel-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="keyfile-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="keyfile-test.exe"/>
+							<param result-file="c:\spd_logs\xml\keyfile-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="list-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="list-test.exe"/>
+							<param result-file="c:\spd_logs\xml\list-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="mainloop-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="mainloop-test.exe"/>
+							<param result-file="c:\spd_logs\xml\mainloop-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="markup-escape-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="markup-escape-test.exe"/>
+							<param result-file="c:\spd_logs\xml\markup-escape-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="markup-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="markup-test.exe"/>
+							<param result-file="c:\spd_logs\xml\markup-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="module-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="module-test.exe"/>
+							<param result-file="c:\spd_logs\xml\module-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="node-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="node-test.exe"/>
+							<param result-file="c:\spd_logs\xml\node-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="objects (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="objects.exe"/>
+							<param result-file="c:\spd_logs\xml\objects.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="objects2 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="objects2.exe"/>
+							<param result-file="c:\spd_logs\xml\objects2.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="option-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="option-test.exe"/>
+							<param result-file="c:\spd_logs\xml\option-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="override (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="override.exe"/>
+							<param result-file="c:\spd_logs\xml\override.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="paramspec-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="paramspec-test.exe"/>
+							<param result-file="c:\spd_logs\xml\paramspec-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="patterntest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="patterntest.exe"/>
+							<param result-file="c:\spd_logs\xml\patterntest.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="properties (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="properties.exe"/>
+							<param result-file="c:\spd_logs\xml\properties.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="properties2 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="properties2.exe"/>
+							<param result-file="c:\spd_logs\xml\properties2.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="qsort-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="qsort-test.exe"/>
+							<param result-file="c:\spd_logs\xml\qsort-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="queue-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="queue-test.exe"/>
+							<param result-file="c:\spd_logs\xml\queue-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="rand-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="rand-test.exe"/>
+							<param result-file="c:\spd_logs\xml\rand-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="references (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="references.exe"/>
+							<param result-file="c:\spd_logs\xml\references.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="relation-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="relation-test.exe"/>
+							<param result-file="c:\spd_logs\xml\relation-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="shell-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="shell-test.exe"/>
+							<param result-file="c:\spd_logs\xml\shell-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="signals-multithread (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="signals-multithread.exe"/>
+							<param result-file="c:\spd_logs\xml\signals-multithread.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="signals-singlethread (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="signals-singlethread.exe"/>
+							<param result-file="c:\spd_logs\xml\signals-singlethread.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="slist-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="slist-test.exe"/>
+							<param result-file="c:\spd_logs\xml\slist-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="strfunc-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="strfunc-test.exe"/>
+							<param result-file="c:\spd_logs\xml\strfunc-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="string-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="string-test.exe"/>
+							<param result-file="c:\spd_logs\xml\string-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tasyncqueue (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tasyncqueue.exe"/>
+							<param result-file="c:\spd_logs\xml\tasyncqueue.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="testgdate (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testgdate.exe"/>
+							<param result-file="c:\spd_logs\xml\testgdate.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="testgdateparser (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testgdateparser.exe"/>
+							<param result-file="c:\spd_logs\xml\testgdateparser.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="testgobject (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testgobject.exe"/>
+							<param result-file="c:\spd_logs\xml\testgobject.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="thread-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="thread-test.exe"/>
+							<param result-file="c:\spd_logs\xml\thread-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="threadpool-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="threadpool-test.exe"/>
+							<param result-file="c:\spd_logs\xml\threadpool-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="timeloop-closure (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="timeloop-closure.exe"/>
+							<param result-file="c:\spd_logs\xml\timeloop-closure.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="timeloop (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="timeloop.exe"/>
+							<param result-file="c:\spd_logs\xml\timeloop.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tmisc (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tmisc.exe"/>
+							<param result-file="c:\spd_logs\xml\tmisc.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tnode (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tnode.exe"/>
+							<param result-file="c:\spd_logs\xml\tnode.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="toption (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="toption.exe"/>
+							<param result-file="c:\spd_logs\xml\toption.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tscanner (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tscanner.exe"/>
+							<param result-file="c:\spd_logs\xml\tscanner.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tslist (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tslist.exe"/>
+							<param result-file="c:\spd_logs\xml\tslist.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tthread (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tthread.exe"/>
+							<param result-file="c:\spd_logs\xml\tthread.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="ttrash (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ttrash.exe"/>
+							<param result-file="c:\spd_logs\xml\ttrash.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="ttree (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ttree.exe"/>
+							<param result-file="c:\spd_logs\xml\ttree.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tunichar (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tunichar.exe"/>
+							<param result-file="c:\spd_logs\xml\tunichar.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tutf8 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="tutf8.exe"/>
+							<param result-file="c:\spd_logs\xml\tutf8.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="unichar_test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="unichar_test.exe"/>
+							<param result-file="c:\spd_logs\xml\unichar_test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="unicode-collate (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="unicode-collate.exe"/>
+							<param result-file="c:\spd_logs\xml\unicode-collate.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="unicode-encoding (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="unicode-encoding.exe"/>
+							<param result-file="c:\spd_logs\xml\unicode-encoding.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="unicode-normalize (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="unicode-normalize.exe"/>
+							<param result-file="c:\spd_logs\xml\unicode-normalize.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="uri-test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="uri-test.exe"/>
+							<param result-file="c:\spd_logs\xml\uri-test.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="utf8-pointer (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="utf8-pointer.exe"/>
+							<param result-file="c:\spd_logs\xml\utf8-pointer.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="utf8-validate (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="utf8-validate.exe"/>
+							<param result-file="c:\spd_logs\xml\utf8-validate.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>glibtest/winscw_udeb/accumulator.exe</file>
+		<file>glibtest/winscw_udeb/array-test.exe</file>
+		<file>glibtest/winscw_udeb/asyncqueue-test.exe</file>
+		<file>glibtest/winscw_udeb/atomic-test.exe</file>
+		<file>glibtest/winscw_udeb/child-test1.exe</file>
+		<file>glibtest/winscw_udeb/child-test2.exe</file>
+		<file>glibtest/winscw_udeb/closure-marshal.exe</file>
+		<file>glibtest/winscw_udeb/closures.exe</file>
+		<file>glibtest/winscw_udeb/completion-test.exe</file>
+		<file>glibtest/winscw_udeb/convert-test.exe</file>
+		<file>glibtest/winscw_udeb/date-test.exe</file>
+		<file>glibtest/winscw_udeb/defaultiface.exe</file>
+		<file>glibtest/winscw_udeb/dirname-test.exe</file>
+		<file>glibtest/winscw_udeb/env-test.exe</file>
+		<file>glibtest/winscw_udeb/error_check_mutexes.exe</file>
+		<file>glibtest/winscw_udeb/extra_tests.exe</file>
+		<file>glibtest/winscw_udeb/file-test.exe</file>
+		<file>glibtest/winscw_udeb/gio-test.exe</file>
+		<file>glibtest/winscw_udeb/gvalue-test.exe</file>
+		<file>glibtest/winscw_udeb/g_test1.exe</file>
+		<file>glibtest/winscw_udeb/g_test2.exe</file>
+		<file>glibtest/winscw_udeb/hash-test.exe</file>
+		<file>glibtest/winscw_udeb/ifacecheck.exe</file>
+		<file>glibtest/winscw_udeb/ifaceinherit.exe</file>
+		<file>glibtest/winscw_udeb/ifaceinit.exe</file>
+		<file>glibtest/winscw_udeb/ifaceproperties.exe</file>
+		<file>glibtest/winscw_udeb/iochannel-test.exe</file>
+		<file>glibtest/winscw_udeb/keyfile-test.exe</file>
+		<file>glibtest/winscw_udeb/list-test.exe</file>
+		<file>glibtest/winscw_udeb/mainloop-test.exe</file>
+		<file>glibtest/winscw_udeb/mapping-test.exe</file>
+		<file>glibtest/winscw_udeb/markup-escape-test.exe</file>
+		<file>glibtest/winscw_udeb/markup-test.exe</file>
+		<file>glibtest/winscw_udeb/module-test.exe</file>
+		<file>glibtest/winscw_udeb/node-test.exe</file>
+		<file>glibtest/winscw_udeb/objects.exe</file>
+		<file>glibtest/winscw_udeb/objects2.exe</file>
+		<file>glibtest/winscw_udeb/option-test.exe</file>
+		<file>glibtest/winscw_udeb/override.exe</file>
+		<file>glibtest/winscw_udeb/paramspec-test.exe</file>
+		<file>glibtest/winscw_udeb/patterntest.exe</file>
+		<file>glibtest/winscw_udeb/printf-test.exe</file>
+		<file>glibtest/winscw_udeb/properties.exe</file>
+		<file>glibtest/winscw_udeb/properties2.exe</file>
+		<file>glibtest/winscw_udeb/qsort-test.exe</file>
+		<file>glibtest/winscw_udeb/queue-test.exe</file>
+		<file>glibtest/winscw_udeb/rand-test.exe</file>
+		<file>glibtest/winscw_udeb/references.exe</file>
+		<file>glibtest/winscw_udeb/relation-test.exe</file>
+		<file>glibtest/winscw_udeb/shell-test.exe</file>
+		<file>glibtest/winscw_udeb/signals-multithread.exe</file>
+		<file>glibtest/winscw_udeb/signals-singlethread.exe</file>
+		<file>glibtest/winscw_udeb/slist-test.exe</file>
+		<file>glibtest/winscw_udeb/strfunc-test.exe</file>
+		<file>glibtest/winscw_udeb/string-test.exe</file>
+		<file>glibtest/winscw_udeb/strtod-test.exe</file>
+		<file>glibtest/winscw_udeb/tasyncqueue.exe</file>
+		<file>glibtest/winscw_udeb/testgdate.exe</file>
+		<file>glibtest/winscw_udeb/testgdateparser.exe</file>
+		<file>glibtest/winscw_udeb/testglib.exe</file>
+		<file>glibtest/winscw_udeb/testgobject.exe</file>
+		<file>glibtest/winscw_udeb/tgstring.exe</file>
+		<file>glibtest/winscw_udeb/thread-test.exe</file>
+		<file>glibtest/winscw_udeb/threadpool-test.exe</file>
+		<file>glibtest/winscw_udeb/timeloop-closure.exe</file>
+		<file>glibtest/winscw_udeb/timeloop.exe</file>
+		<file>glibtest/winscw_udeb/tmanual.exe</file>
+		<file>glibtest/winscw_udeb/tmisc.exe</file>
+		<file>glibtest/winscw_udeb/tnode.exe</file>
+		<file>glibtest/winscw_udeb/toption.exe</file>
+		<file>glibtest/winscw_udeb/tree-test.exe</file>
+		<file>glibtest/winscw_udeb/tscanner.exe</file>
+		<file>glibtest/winscw_udeb/tslist.exe</file>
+		<file>glibtest/winscw_udeb/tthread.exe</file>
+		<file>glibtest/winscw_udeb/ttrash.exe</file>
+		<file>glibtest/winscw_udeb/ttree.exe</file>
+		<file>glibtest/winscw_udeb/tunichar.exe</file>
+		<file>glibtest/winscw_udeb/tutf8.exe</file>
+		<file>glibtest/winscw_udeb/typetest.exe</file>
+		<file>glibtest/winscw_udeb/unichar_test.exe</file>
+		<file>glibtest/winscw_udeb/unicode-caseconv.exe</file>
+		<file>glibtest/winscw_udeb/unicode-collate.exe</file>
+		<file>glibtest/winscw_udeb/unicode-encoding.exe</file>
+		<file>glibtest/winscw_udeb/unicode-normalize.exe</file>
+		<file>glibtest/winscw_udeb/uri-test.exe</file>
+		<file>glibtest/winscw_udeb/utf8-pointer.exe</file>
+		<file>glibtest/winscw_udeb/utf8-validate.exe</file>
+		<file>glibtest/winscw_udeb/libmoduletestplugin_a.dll</file>
+		<file>glibtest/winscw_udeb/libmoduletestplugin_b.dll</file>
+		<file>glibtest/glib/general/test.txt</file>
+		<file>glibtest/glib/general/1.gmarkup</file>
+		<file>glibtest/glib/general/iochannel-test-infile</file>
+		<file>glibtest/glib/general/casemap.bin</file>
+		<file>glibtest/glib/general/casefold.bin</file>
+		<file>glibtest/glib/general/utf8.txt</file>
+		<file>glibtest/glib/general/casecollate.txt</file>
+		<file>glibtest/glib/general/utf8_hindi.txt</file>
+		<file>glibtest/glib/general/scanfile.txt</file>
+		<file>glibtest/glib/general/NormalizationTest.txt</file>
+	</files>
+</test>
