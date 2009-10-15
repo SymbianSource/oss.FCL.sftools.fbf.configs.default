@@ -56,7 +56,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testscripter -config C:\TestFramework\tlocale.cfg"/>
 							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
-                            <param timeout="600"/>
+                            <param timeout="1200"/>
 						</params>
 					</step>
 					<step id="" name="tlocale (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
