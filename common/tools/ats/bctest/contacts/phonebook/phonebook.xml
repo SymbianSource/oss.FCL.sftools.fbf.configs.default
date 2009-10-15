@@ -567,9 +567,9 @@
 					<step id="" name="pbkaddressselect.rsc (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
-							<param type="binary"/>
-							<param src="z\resource\pbkaddressselect.rsc"/>
-							<param dst="z:\resource\pbkaddressselect.rsc"/>
+							<param type="data"/>
+							<param src="resource\pbkaddressselect.rsc"/>
+							<param dst="C:\resource\pbkaddressselect.rsc"/>
 							<param component-path="phonebooktest" />
 						</params>
 					</step>
@@ -1047,7 +1047,7 @@
 		<file>phonebooktest/general/testframework/testframework_pbkaddsel.ini</file>
         <file>phonebooktest/general/testframework/tcbctestpbkaddsel.cfg</file>
         <file>phonebooktest/general/testframework/ui_bctestpbkaddsel.cfg</file>
-		<file>phonebooktest/winscw_udeb/z/resource/pbkaddressselect.rsc</file>
+		<file>phonebooktest/general/resource/pbkaddressselect.rsc</file>
 
 		<file>phonebooktest/winscw_udeb/mtpbkphonenumberselectbase.dll</file>
 		<file>phonebooktest/general/testframework/testframework_numsel.ini</file>

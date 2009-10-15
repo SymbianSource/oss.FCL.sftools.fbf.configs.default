@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Thread Safe Template Library BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+	</target>
+	<plan id="" name="Thread Safe Template Library BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Thread Safe Template Library Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="tstl" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tstl" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tstl_1.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tstl_1.dll"/>
+							<param dst="c:\sys\bin\tstl_1.dll"/>
+							<param component-path="tstltest" />
+						</params>
+					</step>
+					<step id="" name="testframework_tstl_1.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_tstl_1.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="tstltest" />
+						</params>
+					</step>
+					<step id="" name="tstl_1.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tstl_1.cfg"/>
+							<param dst="c:\testframework\tstl_1.cfg"/>
+							<param component-path="tstltest" />
+						</params>
+					</step>
+					<step id="" name="tstl_1 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tstl_1.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tstl_1 (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>tstltest/winscw_udeb/tstl_1.dll</file>
+		<file>tstltest/general/testframework/testframework_tstl_1.ini</file>
+		<file>tstltest/general/testframework/tstl_1.cfg</file>
+	</files>
+</test>

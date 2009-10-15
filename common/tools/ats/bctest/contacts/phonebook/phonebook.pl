@@ -22,6 +22,7 @@ use File::Path;
 unlink "phonebooktest.zip";
 rmtree "temp";
 mkpath "temp/phonebooktest/general/testframework";
+mkpath "temp/phonebooktest/general/resource";
 mkpath "temp/phonebooktest/general/bcardtest2";
 mkpath "temp/phonebooktest/winscw_udeb/z/resource";
 
@@ -131,7 +132,7 @@ copy($epoc . "release/winscw/udeb/mtpbkaddressselect.dll",						"temp/phonebookt
 copy($epoc . "winscw/c/testframework/testframework_pbkaddsel.ini",				"temp/phonebooktest/general/testframework/testframework_pbkaddsel.ini") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/tcbctestpbkaddsel.cfg",					"temp/phonebooktest/general/testframework/tcbctestpbkaddsel.cfg") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/ui_bctestpbkaddsel.cfg",					"temp/phonebooktest/general/testframework/ui_bctestpbkaddsel.cfg") or die "failed : $!";
-copy($epoc . "release/winscw/udeb/z/resource/pbkaddressselect.rsc",				"temp/phonebooktest/winscw_udeb/z/resource/pbkaddressselect.rsc") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/z/resource/pbkaddressselect.rsc",				"temp/phonebooktest/general/resource/pbkaddressselect.rsc") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/mtpbkphonenumberselectbase.dll",				"temp/phonebooktest/winscw_udeb/mtpbkphonenumberselectbase.dll") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/testframework_numsel.ini",					"temp/phonebooktest/general/testframework/testframework_numsel.ini") or die "failed : $!";

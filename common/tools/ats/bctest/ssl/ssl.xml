@@ -1,0 +1,1181 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>Secure Socket Layer BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+	</target>
+	<plan id="" name="Secure Socket Layer BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Secure Socket Layer Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="ssl" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="ssl" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="crypto_test.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="crypto_test.dll"/>
+							<param dst="c:\sys\bin\crypto_test.dll"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+                    <step id="" name="openssl.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="openssl.exe"/>
+							<param dst="c:\sys\bin\openssl.exe"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+                    <step id="" name="ssltest.exe (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ssltest.exe"/>
+							<param dst="c:\sys\bin\ssltest.exe"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testframework.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework.ini"/>
+							<param dst="c:\testframework\crypto_test\testframework.ini"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="crypto_test.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/crypto_test.cfg"/>
+							<param dst="c:\testframework\crypto_test.cfg"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="evptests.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/evptests.txt"/>
+							<param dst="c:\testframework\evptests.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tpkcs7d.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tpkcs7d.txt"/>
+							<param dst="c:\tpkcs7d.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tpkcs7.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tpkcs7.txt"/>
+							<param dst="c:\tpkcs7.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="treq2.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/treq2.txt"/>
+							<param dst="c:\treq2.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="treq.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/treq.txt"/>
+							<param dst="c:\treq.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="trsa.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/trsa.txt"/>
+							<param dst="c:\trsa.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tsid.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tsid.txt"/>
+							<param dst="c:\tsid.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tx5091.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tx5091.txt"/>
+							<param dst="c:\tx5091.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tx5092.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tx5092.txt"/>
+							<param dst="c:\tx5092.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tx509.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tx509.txt"/>
+							<param dst="c:\tx509.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tcrl.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tcrl.txt"/>
+							<param dst="c:\tcrl.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testenc.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testenc.txt"/>
+							<param dst="c:\testenc.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testgen.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testgen.txt"/>
+							<param dst="c:\testgen.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testss.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testss.txt"/>
+							<param dst="c:\testss.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="test_verify.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/test_verify.txt"/>
+							<param dst="c:\test_verify.txt"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="CAss.cnf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/CAss.cnf"/>
+							<param dst="c:\CAss.cnf"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="openssl.cnf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/openssl.cnf"/>
+							<param dst="c:\openssl.cnf"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="P1ss.cnf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/P1ss.cnf"/>
+							<param dst="c:\P1ss.cnf"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="P2ss.cnf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/P2ss.cnf"/>
+							<param dst="c:\P2ss.cnf"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="test.cnf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/test.cnf"/>
+							<param dst="c:\test.cnf"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="Uss.cnf (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/Uss.cnf"/>
+							<param dst="c:\Uss.cnf"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="argena.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/argena.pem"/>
+							<param dst="c:\argena.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="argeng.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/argeng.pem"/>
+							<param dst="c:\argeng.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="eng1.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/eng1.pem"/>
+							<param dst="c:\eng1.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="eng2.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/eng2.pem"/>
+							<param dst="c:\eng2.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="eng3.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/eng3.pem"/>
+							<param dst="c:\eng3.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="eng4.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/eng4.pem"/>
+							<param dst="c:\eng4.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="eng5.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/eng5.pem"/>
+							<param dst="c:\eng5.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="pkcs7-1.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/pkcs7-1.pem"/>
+							<param dst="c:\pkcs7-1.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="RegTP-5R.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/RegTP-5R.pem"/>
+							<param dst="c:\RegTP-5R.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="RegTP-6R.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/RegTP-6R.pem"/>
+							<param dst="c:\RegTP-6R.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testcrl.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testcrl.pem"/>
+							<param dst="c:\testcrl.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testp7.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testp7.pem"/>
+							<param dst="c:\testp7.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testreq.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testreq.pem"/>
+							<param dst="c:\testreq.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testreq2.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testreq2.pem"/>
+							<param dst="c:\testreq2.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testrsa.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testrsa.pem"/>
+							<param dst="c:\testrsa.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testsid.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testsid.pem"/>
+							<param dst="c:\testsid.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="testx509.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testx509.pem"/>
+							<param dst="c:\testx509.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="thawteCb.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/thawteCb.pem"/>
+							<param dst="c:\thawteCb.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="thawteCp.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/thawteCp.pem"/>
+							<param dst="c:\thawteCp.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="v3-cert1.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/v3-cert1.pem"/>
+							<param dst="c:\v3-cert1.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="v3-cert2.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/v3-cert2.pem"/>
+							<param dst="c:\v3-cert2.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="vsign1.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/vsign1.pem"/>
+							<param dst="c:\vsign1.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="vsign3.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/vsign3.pem"/>
+							<param dst="c:\vsign3.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="vsignss.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/vsignss.pem"/>
+							<param dst="c:\vsignss.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="wellsfgo.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/wellsfgo.pem"/>
+							<param dst="c:\wellsfgo.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="certCA.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/certCA.ss"/>
+							<param dst="c:\certCA.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="certU.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/certU.ss"/>
+							<param dst="c:\certU.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="keyCA.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/keyCA.ss"/>
+							<param dst="c:\keyCA.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="keyU.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/keyU.ss"/>
+							<param dst="c:\keyU.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="reqCA.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/reqCA.ss"/>
+							<param dst="c:\reqCA.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="reqU.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/reqU.ss"/>
+							<param dst="c:\reqU.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="reqCA.ss2 (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/reqCA.ss2"/>
+							<param dst="c:\reqCA.ss2"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="certP1.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/certP1.ss"/>
+							<param dst="c:\certP1.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="certP2.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/certP2.ss"/>
+							<param dst="c:\certP2.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="intP1.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/intP1.ss"/>
+							<param dst="c:\intP1.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="intP2.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/intP2.ss"/>
+							<param dst="c:\intP2.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="keyP1.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/keyP1.ss"/>
+							<param dst="c:\keyP1.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="keyP2.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/keyP2.ss"/>
+							<param dst="c:\keyP2.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="reqP1.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/reqP1.ss"/>
+							<param dst="c:\reqP1.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="reqP2.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/reqP2.ss"/>
+							<param dst="c:\reqP2.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tmp_intP2.ss (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tmp_intP2.ss"/>
+							<param dst="c:\tmp_intP2.ss"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="Makefile (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/Makefile"/>
+							<param dst="c:\Makefile"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="ca_cert.der (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/ca_cert.der"/>
+							<param dst="c:\ca_cert.der"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="ca_cert.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/ca_cert.pem"/>
+							<param dst="c:\ca_cert.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="server.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/server.pem"/>
+							<param dst="c:\server.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="server2.pem (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/server2.pem"/>
+							<param dst="c:\server2.pem"/>
+							<param component-path="ssltest" />
+						</params>
+					</step>
+					<step id="" name="tpkcs7d (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tpkcs7d.txt"/>
+							<param result-file="c:\spd_logs\xml\tpkcs7d(3_50_2_6736).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="treq2 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\treq2.txt"/>
+							<param result-file="c:\spd_logs\xml\treq2(3_50_2_6738).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>					
+					<step id="" name="treq (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\treq.txt"/>
+							<param result-file="c:\spd_logs\xml\treq(3_50_2_6737).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="trsa (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\trsa.txt"/>
+							<param result-file="c:\spd_logs\xml\trsa(3_50_2_6739).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tsid (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tsid.txt"/>
+							<param result-file="c:\spd_logs\xml\tsid(3_50_2_6740).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tx5091 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tx5091.txt"/>
+							<param result-file="c:\spd_logs\xml\tx509_1(3_50_2_6742).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tx5092 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tx5092.txt"/>
+							<param result-file="c:\spd_logs\xml\tx509_2(3_50_2_6743).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tx509 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tx509.txt"/>
+							<param result-file="c:\spd_logs\xml\tx509(3_50_2_6741).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tcrl (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tcrl.txt"/>
+							<param result-file="c:\spd_logs\xml\tcrl(3_50_2_6744).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="testenc (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\testenc.txt"/>
+							<param result-file="c:\spd_logs\xml\testenc(3_50_2_6732).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="testgen (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\testgen.txt"/>
+							<param result-file="c:\spd_logs\xml\testgen(3_50_2_6733).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="testss (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\testss.txt"/>
+							<param result-file="c:\spd_logs\xml\testss(3_50_2_6735).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="test_verify (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\test_verify.txt"/>
+							<param result-file="c:\spd_logs\xml\test_verify(3_50_2_6745).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="tpkcs7 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="openssl.exe"/>
+							<param parameters="c:\tpkcs7.txt"/>
+							<param result-file="c:\spd_logs\xml\tpkcs7(3_50_2_6734).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="crypto_test (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\testframework\crypto_test.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="crypto_test (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6669) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6669) -test_cipherlist"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6669).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6670) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6670) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6670).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6671) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6671) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2 -server_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6671).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6672) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6672) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2 -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6672).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6673) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6673) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2 -server_auth -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6673).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6674) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6674) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6674).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6675) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6675) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2 -server_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6675).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6676) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6676) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2 -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6676).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6677) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6677) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -ssl2 -server_auth -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6677).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6678) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6678) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6678).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6679) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6679) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -server_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6679).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6680) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6680) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6680).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6681) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6681) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -server_auth -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6681).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6682) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6682) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6682).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6683) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6683) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2 -server_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6683).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6684) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6684) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2 -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6684).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6685) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6685) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2 -server_auth -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6685).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6686) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="sltest(3_19_2_6686) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2"/>
+							<param result-file="c:\spd_logs\xml\sltest(3_19_2_6686).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6687) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6687) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6687).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6688) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6688) -key C:/keyU.ss -cert C:/certU.ss -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6688).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6689) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6689) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -ssl2"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6689).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6690) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6690) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6690).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6691) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6691) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -no_dhe"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6691).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6692) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6692) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -dhe1024dsa -v"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6692).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6693) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6693) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -server_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6693).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6694) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6694) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6694).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6695) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6695) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -server_auth -client_auth -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6695).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6696) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6696) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -bio_pair -server_auth -client_auth -app_verify -CAfile C:/certCA.ss"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6696).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6697) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6697) -key C:/keyU.ss -cert C:/certU.ss -c_key C:/keyU.ss -c_cert C:/certU.ss -v -bio_pair -tls1 -cipher ADH -dhe1024dsa -num 10 -f -time"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6697).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6698) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6698) -v -bio_pair -tls1 -cert C:/server2.pem -no_dhe -num 10-f -time"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6698).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6699) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6699) -v -bio_pair -tls1 -cert c:/server2.pem -dhe1024dsa -num 10 -f -time"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6699).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ssltest(3_19_2_6773) (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ssltest.exe"/>
+							<param parameters="ssltest(3_19_2_6773) -symstore"/>
+							<param result-file="c:\spd_logs\xml\ssltest(3_19_2_6773).xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>ssltest/general/testframework/crypto_test.cfg</file>
+		<file>ssltest/general/testframework/TestFramework.ini</file>
+		<file>ssltest/general/testframework/evptests.txt</file>
+		<file>ssltest/general/testframework/tpkcs7d.txt</file>
+		<file>ssltest/general/testframework/tpkcs7.txt</file>
+		<file>ssltest/general/testframework/treq2.txt</file>
+		<file>ssltest/general/testframework/treq.txt</file>
+		<file>ssltest/general/testframework/trsa.txt</file>
+		<file>ssltest/general/testframework/tsid.txt</file>
+		<file>ssltest/general/testframework/tx5091.txt</file>
+		<file>ssltest/general/testframework/tx5092.txt</file>
+		<file>ssltest/general/testframework/tx509.txt</file>
+		<file>ssltest/general/testframework/tcrl.txt</file>
+		<file>ssltest/general/testframework/testenc.txt</file>
+		<file>ssltest/general/testframework/testgen.txt</file>
+		<file>ssltest/general/testframework/testss.txt</file>
+		<file>ssltest/general/testframework/test_verify.txt</file>
+		<file>ssltest/general/testframework/CAss.cnf</file>
+		<file>ssltest/general/testframework/openssl.cnf</file>
+		<file>ssltest/general/testframework/P1ss.cnf</file>
+		<file>ssltest/general/testframework/P2ss.cnf</file>
+		<file>ssltest/general/testframework/test.cnf</file>
+		<file>ssltest/general/testframework/Uss.cnf</file>
+		<file>ssltest/general/testframework/argena.pem</file>
+		<file>ssltest/general/testframework/argeng.pem</file>
+		<file>ssltest/general/testframework/eng1.pem</file>
+		<file>ssltest/general/testframework/eng2.pem</file>
+		<file>ssltest/general/testframework/eng3.pem</file>
+		<file>ssltest/general/testframework/eng4.pem</file>
+		<file>ssltest/general/testframework/eng5.pem</file>
+		<file>ssltest/general/testframework/pkcs7-1.pem</file>
+		<file>ssltest/general/testframework/RegTP-5R.pem</file>
+		<file>ssltest/general/testframework/RegTP-6R.pem</file>
+		<file>ssltest/general/testframework/testcrl.pem</file>
+		<file>ssltest/general/testframework/testp7.pem</file>
+		<file>ssltest/general/testframework/testreq.pem</file>
+		<file>ssltest/general/testframework/testreq2.pem</file>
+		<file>ssltest/general/testframework/testrsa.pem</file>
+		<file>ssltest/general/testframework/testsid.pem</file>
+		<file>ssltest/general/testframework/testx509.pem</file>
+		<file>ssltest/general/testframework/thawteCb.pem</file>
+		<file>ssltest/general/testframework/thawteCp.pem</file>
+		<file>ssltest/general/testframework/v3-cert1.pem</file>
+		<file>ssltest/general/testframework/v3-cert2.pem</file>
+		<file>ssltest/general/testframework/vsign1.pem</file>
+		<file>ssltest/general/testframework/vsign3.pem</file>
+		<file>ssltest/general/testframework/vsignss.pem</file>
+		<file>ssltest/general/testframework/wellsfgo.pem</file>
+		<file>ssltest/general/testframework/certCA.ss</file>
+		<file>ssltest/general/testframework/certU.ss</file>
+		<file>ssltest/general/testframework/keyCA.ss</file>
+		<file>ssltest/general/testframework/keyU.ss</file>
+		<file>ssltest/general/testframework/reqCA.ss</file>
+		<file>ssltest/general/testframework/reqU.ss</file>
+		<file>ssltest/general/testframework/reqCA.ss2</file>
+		<file>ssltest/general/testframework/certP1.ss</file>
+		<file>ssltest/general/testframework/certP2.ss</file>
+		<file>ssltest/general/testframework/intP1.ss</file>
+		<file>ssltest/general/testframework/intP2.ss</file>
+		<file>ssltest/general/testframework/keyP1.ss</file>
+		<file>ssltest/general/testframework/keyP2.ss</file>
+		<file>ssltest/general/testframework/reqP1.ss</file>
+		<file>ssltest/general/testframework/reqP2.ss</file>
+		<file>ssltest/general/testframework/tmp_intP2.ss</file>
+		<file>ssltest/general/testframework/Makefile</file>
+		<file>ssltest/general/testframework/ca_cert.der</file>
+		<file>ssltest/general/testframework/ca_cert.pem</file>
+		<file>ssltest/general/testframework/server.pem</file>
+		<file>ssltest/general/testframework/server2.pem</file>
+		<file>ssltest/winscw_udeb/crypto_test.dll</file>
+		<file>ssltest/winscw_udeb/openssl.exe</file>
+		<file>ssltest/winscw_udeb/ssltest.exe</file>
+	</files>
+</test>

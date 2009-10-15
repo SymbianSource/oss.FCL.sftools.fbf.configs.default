@@ -123,12 +123,13 @@ foreach my $package (@packages)
 	{
 		# RnD repository
 		my $licenseType = $1;
-		my $name="bin_$1_$2";
+		my $binName="bin_$1_$2";
+		my $srcName="src_$1_$2";
 		my $postbuildName = "binaries_$2";
 		my $config = "rnd";
 		if ($licenseType eq "internal")
 		{
-			$name = "binaries_$2_prebuild";
+			$binName = "binaries_$2_prebuild";
 			$config = "rnd-internal";
 		}
 		
@@ -143,11 +144,15 @@ foreach my $package (@packages)
 				},
 				{
 					name => "name",
-					value=> "$name",
+					value=> "$binName",
 				},
 				{
 					name => "include",
-					value=> "/**",
+					value=> "epoc32/**",
+				},
+				{
+					name => "include",
+					value=> "*.txt",
 				},
 			]
 		};
@@ -156,10 +161,48 @@ foreach my $package (@packages)
 		my @files = `dir /b/s/a-d $dosCompatibleDst 2> nul:`;
 		next unless @files;
 		# Add the files to the global list of items to be excluded in the binary zips
-		@files = grep {
+		foreach (@files)
+		{
 			chomp;
 			s{\\}{/}g;
 			s!^[A-Z]:/$package->{dst}/!!i;
+		}
+		my @srcFiles = grep { !m{^epoc32/} and !m{^[^/]+\.txt$}i and !m{^\.hg} } @files;
+		if (@srcFiles)
+		{
+			# Create a zip object for the source
+			push @{$zipConfig->{config}->{config}->{$config}->{config}},
+			{
+				set =>
+				[
+					{
+						name => "root.dir",
+						value=> "\${build.drive}/$package->{dst}",
+					},
+					{
+						name => "name",
+						value=> "$srcName",
+					},
+					{
+						name => "include",
+						value=> "**",
+					},
+					{
+						name => "exclude",
+						value=> "epoc32/**",
+					},
+					{
+						name => "exclude",
+						value=> ".hg/**",
+					},
+					{
+						name => "exclude",
+						value=> ".hg_archival.txt",
+					},
+				]
+			};
+		}
+		@files = grep {
 			m{^epoc32/}i;
 		} @files;
 		push @allRndFiles, @files;

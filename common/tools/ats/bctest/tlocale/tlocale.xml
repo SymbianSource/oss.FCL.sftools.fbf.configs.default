@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>TLocale BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+	</target>
+	<plan id="" name="TLocale BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="TLocale Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="tlocale" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tlocale" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tlocale.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tlocale.dll"/>
+							<param dst="c:\sys\bin\tlocale.dll"/>
+							<param component-path="tlocaletest" />
+						</params>
+					</step>
+					<step id="" name="testframework_tlocale.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_tlocale.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="tlocaletest" />
+						</params>
+					</step>
+					<step id="" name="tlocale.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tlocale.cfg"/>
+							<param dst="c:\testframework\tlocale.cfg"/>
+							<param component-path="tlocaletest" />
+						</params>
+					</step>
+					<step id="" name="tlocale (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tlocale.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tlocale (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>tlocaletest/winscw_udeb/tlocale.dll</file>
+		<file>tlocaletest/general/testframework/testframework_tlocale.ini</file>
+		<file>tlocaletest/general/testframework/tlocale.cfg</file>
+	</files>
+</test>
