@@ -293,7 +293,6 @@
           <istrue value="${sf.spec.publish.enable}"/>
             <then>
             <runtarget target="sf-run-analysis-diamonds"/>
-          	<runtarget target="sf-brag-to-diamonds"/>
             </then>
         </if>
     </target>
@@ -778,6 +777,7 @@
             </then>
         </if>
         <runtarget target="sf-zip-logs"/>
+        <runtarget target="sf-brag-to-diamonds"/>
         <if>
             <istrue value="${sf.spec.publish.enable}" />
             <then>
