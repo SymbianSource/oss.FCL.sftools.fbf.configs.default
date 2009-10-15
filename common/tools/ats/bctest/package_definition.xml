@@ -202,6 +202,11 @@
 					<unit bldFile="sf/os/mm/mmtestenv/mmtestfw/group" />
 				</component>
 			</collection>
+			<collection name="ossrv" long-name="OS Services">
+				<component id="stdcpp" name="Standard C++">
+					<unit bldFile="sf/os/ossrv/stdcpp/tsrc/BC/group" />
+				</component>
+			</collection>
 			<collection name="appinstall" long-name="Application Install Middleware">
 				<component id="appinstall_pub" name="Application Install Middleware Puplic">
 					<unit bldFile="sf/mw/appinstall/appinstall_pub/startup_list_management_api/tsrc/BC/StartupListManagementAPI/SelfSignedStartupApp/group" />
