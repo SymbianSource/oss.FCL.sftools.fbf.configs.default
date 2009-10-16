@@ -63,6 +63,7 @@
 
         <!-- Zip up all the logs -->
         <runtarget target="sf-zip-logs"/>
+        <runtarget target="sf-brag-to-diamonds"/>
 
         <!-- Publish logs/reports -->
         <if>
