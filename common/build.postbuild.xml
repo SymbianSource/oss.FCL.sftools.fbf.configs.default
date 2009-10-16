@@ -45,7 +45,13 @@
               </then>
             </if>
         </parallel>
-        
+
+        <!-- Generate release_metadata entries for the md5 zips -->
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name" value="bin-just-metadata" />
+        </antcall>
+ 
         <!-- Launch smoketest -->
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
             <then>
@@ -194,11 +200,6 @@
         <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
-        <!-- Generate release_metadata entries for the above zips -->
-        <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
-            <param name="zip.target.name" value="bin-just-metadata" />
-        </antcall>
     </target>    
     
     <target name="sf-package-binary" depends="sf-package-postbuild-rnd">
@@ -518,7 +519,7 @@
 
     <target name="sf-brag-to-diamonds">
         <!-- Merge all our bits of XML together -->
-        <exec executable="perl" output="${build.log.dir}/summary/_BRAG.xml">
+        <exec executable="perl" output="${build.log.dir}/summary/_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/mergeXML.pl"/>
             <arg value="--xsl=brag.xsl"/>
             <arg value="--merge=buildStatus,phase(name),step(name),failures(level)"/>
