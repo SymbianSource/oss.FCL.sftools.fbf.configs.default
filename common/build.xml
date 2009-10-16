@@ -57,7 +57,7 @@
     <!-- setup conditional Helium internal properties -->
     <if><istrue value="${sf.spec.sourcesync.usecache}"/>
         <then>
-            <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.common.config.dir}/generated"/>
+            <property name="sf.spec.sourcesync.sourcespecdir" value="${temp.build.dir}"/>
         </then>
         <else>
             <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
@@ -65,14 +65,14 @@
     </if>
     
     <!-- conditional import of generated source spec if available -->
-    <if><available  file="${sf.common.config.dir}/generated/source-spec.ant.xml" />
+    <if><available  file="${temp.build.dir}/source-spec.ant.xml" />
         <then>
             <echo message="Generated source spec found, importing..." />
-            <import file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
+            <import file="${temp.build.dir}/source-spec.ant.xml"/>
         </then>
     </if>
     
-    <target name="sf-prep" depends="sf-clean-generated-directory,prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
+    <target name="sf-prep" depends="prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <!-- Test for the disk space we would like for this build -->
 	<fail>
@@ -164,12 +164,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <if><istrue value="${sf.spec.sourcesync.usecache}"/>
             <then>
                 <echo message="Generating Hg local cache..." />
-                <mkdir dir="${sf.common.config.dir}/generated"/>
                 <exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
                     <arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
                     <arg value="${sf.spec.sourcesync.cachelocation}"/>
                     <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
-                    <arg value="${sf.common.config.dir}/generated/${sf.spec.sourcesync.sourcespecfile}"/>
+                    <arg value="${temp.build.dir}/${sf.spec.sourcesync.sourcespecfile}"/>
                 </exec>
             </then>
         </if>
@@ -177,10 +176,10 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
         for multiple package builds, this needs to be linked with package name. -->
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
-        <delete file="${sf.common.config.dir}/generated/source-spec.ant.xml"/>
+        <delete file="${temp.build.dir}/source-spec.ant.xml"/>
         
         <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
-              outputFile="${sf.common.config.dir}/generated/source-spec.ant.xml">
+              outputFile="${temp.build.dir}/source-spec.ant.xml">
               <data expandProperties="yes">
                     ant: antProperties()
                     data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
@@ -394,13 +393,13 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
       <then>
         <echo message="Executing truclean step."/>
         <fmpp sourceFile="${sf.common.config.dir}/templates/truclean.ant.xml.ftl"
-            outputFile="${sf.common.config.dir}/generated/truclean.ant.xml">
+            outputFile="${temp.build.dir}/truclean.ant.xml">
           <data expandProperties="yes">
               ant: antProperties()
               data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
           </data>
         </fmpp>
-        <ant antfile="${sf.common.config.dir}/generated/truclean.ant.xml"/>
+        <ant antfile="${temp.build.dir}/truclean.ant.xml"/>
       </then>
       <else>
         <echo message="Skipping truclean step."/>
@@ -429,7 +428,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
   </target>
     
     <target name="sf-get-source" depends="sf-generate-source-spec">
-        <ant antfile="${sf.common.config.dir}/generated/source-spec.ant.xml" />
+        <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
     </target>
     
     <target name="sf-diamondize-bom" depends="sf-record-proj-conf-bom">
@@ -449,13 +448,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-preprocess-package-config">
-        <mkdir dir="${sf.common.config.dir}/generated"/>
 	<echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
-            <arg value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <arg value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
         </exec>
         <antcall target="sf-log-to-brag">
@@ -470,16 +468,16 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <!-- If it's the file we use for everything, and it's not up to date... -->
         <if>
           <and>
-            <equals arg1="${zip.config.file}" arg2="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <equals arg1="${zip.config.file}" arg2="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <not>
               <and>
-                <uptodate targetfile="${sf.common.config.dir}/generated/zip.cfg.xml.ftl">
+                <uptodate targetfile="${temp.build.dir}/zip.cfg.xml.ftl">
                   <srcfiles dir="${sf.common.config.dir}">
                     <include name="tools/populateziptemplate.pl"/>
                     <include name="templates/zip.cfg.xml.ftl.template"/>
                   </srcfiles>
                 </uptodate>
-                <uptodate targetfile="${sf.common.config.dir}/generated/zip.cfg.xml.ftl">
+                <uptodate targetfile="${temp.build.dir}/zip.cfg.xml.ftl">
                   <srcfiles dir="${sf.spec.sourcesync.sourcespecdir}">
                     <include name="${sf.spec.sourcesync.sourcespecfile}"/>
                   </srcfiles>
@@ -508,11 +506,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     <target name="sf-package-source" >
         <!-- Firstly zip up rnd by package -->
         <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="rnd" />
         </antcall>
         <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="rnd-internal" />
         </antcall>
         <if>
@@ -520,12 +518,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <then>
                 <echo message="INFO Packaging Source Repos"/>
                 <antcall target="sf-zip-content">
-                    <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+                    <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
                     <param name="zip.target.name" value="src" />
                 </antcall>
                 <!-- Then zip up src zips by layer -->
                 <antcall target="sf-zip-content">
-                    <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+                    <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
                     <param name="zip.target.name" value="src-by-layer" />
                 </antcall>
             </then>
@@ -571,10 +569,5 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
     </target>
     
-    <target name="sf-clean-generated-directory">
-      <delete dir="${sf.common.config.dir}/generated" failonerror="false" />
-      <mkdir dir="${sf.common.config.dir}/generated" />
-    </target>
-
 </project>
 

@@ -48,7 +48,7 @@
 
         <!-- Generate release_metadata entries for the md5 zips -->
         <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin-just-metadata" />
         </antcall>
  
@@ -84,13 +84,13 @@
     <target name="sf-tag-hg-code">
         <property name="sf.tagafterbuild.tag" value="${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
         <fmpp sourceFile="${sf.common.config.dir}/templates/tag-hg-code.ant.xml.ftl"
-              outputFile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml">
+              outputFile="${temp.build.dir}/tag-hg-code.ant.xml">
             <data expandProperties="yes">
                 ant: antProperties()
                 data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
             </data>
         </fmpp>
-        <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
+        <ant antfile="${temp.build.dir}/tag-hg-code.ant.xml"/>
     </target>
 
     <target name="sf-run-evalid" >
@@ -206,7 +206,7 @@
         <!-- Warning: Reverting to using the He zipper will also revert to a single zip for the binaries:
              would need to update the template and possibly the script that populates it -->
         <!--antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin" />
         </antcall-->
         <parallel>
@@ -243,14 +243,14 @@
         </parallel>
         <!-- Generate release_metadata entries for the above zips -->
         <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin-just-metadata" />
         </antcall>
     </target>
 
     <target name="sf-package-postbuild-rnd" >
         <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="rnd-postbuild" />
         </antcall>
     </target>
@@ -264,7 +264,7 @@
             <arg value="epoc32/tools"/>
         </exec>
         <antcall target="sf-zip-content">
-            <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="tools" />
         </antcall>
     </target>
@@ -635,7 +635,7 @@
                     <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
                 </zip>
                 <antcall target="sf-zip-content">
-                    <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+                    <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
                     <param name="zip.target.name" value="info-just-metadata" />
                 </antcall>
             </then>
