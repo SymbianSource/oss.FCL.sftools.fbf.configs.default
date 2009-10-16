@@ -91,99 +91,99 @@
         <mkdir  dir="${build.drive}/output/md5"/>
 
         <parallel>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/include output/md5/epoc32_include.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/s60 output/md5/epoc32_s60.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/localisation output/md5/epoc32_localisation.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -x \.sym$ -x ^armv5/udeb -x ^armv5/urel -x ^winscw/udeb -x ^winscw/urel -g epoc32/release output/md5/epoc32_release.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -x \.sym$ -g epoc32/release/armv5/udeb output/md5/epoc32_release_armv5_udeb.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -x \.sym$ -g epoc32/release/armv5/urel output/md5/epoc32_release_armv5_urel.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -x \.sym$ -g epoc32/release/winscw/udeb output/md5/epoc32_release_winscw_udeb.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -x \.sym$ -g epoc32/release/winscw/urel output/md5/epoc32_release_winscw_urel.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/cshlpcmp_template 	output/md5/epoc32_cshlpcmp_template.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/data output/md5/epoc32_data.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/engdoc output/md5/epoc32_engdoc.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/engineeringtools output/md5/epoc32_engineeringtools.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/gcc output/md5/epoc32_gcc.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/gcc_mingw output/md5/epoc32_gcc_mingw.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/ksa output/md5/epoc32_ksa.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/rom output/md5/epoc32_rom.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/rombuild output/md5/epoc32_rombuild.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/sbs_config output/md5/epoc32_sbs_config.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/sdk_special output/md5/epoc32_sdk_special.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/stdapis output/md5/epoc32_stdapis.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/stubs output/md5/epoc32_stubs.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/tools output/md5/epoc32_tools.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/wins output/md5/epoc32_wins.md5"/>
         </exec>
-        <exec executable="cmd" dir="${build.drive}">
+        <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
             <arg value="evalid -g epoc32/winscw output/md5/epoc32_winscw.md5"/>
         </exec>
