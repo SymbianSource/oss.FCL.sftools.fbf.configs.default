@@ -86,7 +86,7 @@
         <ant antfile="${sf.common.config.dir}/generated/tag-hg-code.ant.xml"/>
     </target>
 
-    <target name="sf-run-evalid" depends="sf-preprocess-package-config">
+    <target name="sf-run-evalid" >
         <delete dir="${build.drive}/output/md5"/>
         <mkdir  dir="${build.drive}/output/md5"/>
 
@@ -188,9 +188,8 @@
             <arg value="evalid -g epoc32/winscw output/md5/epoc32_winscw.md5"/>
         </exec>
         </parallel>
-        
         <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
-		<mkdir dir="${build.output.dir}/zips/release"/> <!-- Hack to prevent non-existing release dir -->
+    		<mkdir dir="${build.output.dir}/zips/release"/> <!-- Hack to prevent non-existing release dir -->
         <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
@@ -201,7 +200,7 @@
         </antcall>
     </target>    
     
-    <target name="sf-package-binary" depends="sf-preprocess-package-config,sf-package-postbuild-rnd">
+    <target name="sf-package-binary" depends="sf-package-postbuild-rnd">
         <!-- Warning: Reverting to using the He zipper will also revert to a single zip for the binaries:
              would need to update the template and possibly the script that populates it -->
         <!--antcall target="sf-zip-content">
@@ -247,14 +246,14 @@
         </antcall>
     </target>
 
-    <target name="sf-package-postbuild-rnd" depends="sf-preprocess-package-config">
+    <target name="sf-package-postbuild-rnd" >
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="rnd-postbuild" />
         </antcall>
     </target>
 
-    <target name="sf-package-tools" depends="sf-preprocess-package-config">
+    <target name="sf-package-tools" >
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
             <arg value="a"/>
             <arg value="-tzip"/>
@@ -616,7 +615,7 @@
     </target>
 
     <!-- package all logs into zipfile for publishing -->
-    <target name="sf-zip-logs" depends="sf-preprocess-package-config">
+    <target name="sf-zip-logs" >
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>

@@ -72,7 +72,7 @@
         </then>
     </if>
     
-    <target name="sf-prep" depends="prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
+    <target name="sf-prep" depends="sf-clean-generated-directory,prep-drive,init-build-area,sf-generate-source-spec,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <!-- Test for the disk space we would like for this build -->
 	<fail>
@@ -466,13 +466,30 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </antcall>
     </target>
     
-    <target name="sf-zip-content" depends="preprocess-zip-config">
-        <property name="zip.${zip.target.name}.log.file" location="${build.log.dir}/${build.id}_${zip.target.name}_zip.log" />
-        <property name="zips.${zip.target.name}.spec.name" value="${zip.target.name}" />
-        <hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
+    <target name="sf-zip-content" >
+        <if>
+          <and>
+            <equals arg1="${zip.config.file}" arg2="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
+            <not><available file="${zip.config.file}"/></not>
+          </and>  
+          <then>
+            <runtarget target="sf-preprocess-package-config"/>
+          </then>  
+        </if>
+        <if><available file="${zip.config.file}"/>
+          <then>
+            <runtarget target="preprocess-zip-config" />
+            <property name="zip.${zip.target.name}.log.file" location="${build.log.dir}/${build.id}_${zip.target.name}_zip.log" />
+            <property name="zips.${zip.target.name}.spec.name" value="${zip.target.name}" />
+            <hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
+          </then>
+          <else>
+            <echo message="ERROR ${zip.config.file} not available for zipping!"/>
+          </else>
+        </if>
     </target>
     
-    <target name="sf-package-source" depends="sf-preprocess-package-config">
+    <target name="sf-package-source" >
         <!-- Firstly zip up rnd by package -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
@@ -536,6 +553,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </exec>
         <!-- And copy the XSL so the output can be transformed by a browser -->
         <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
+    </target>
+    
+    <target name="sf-clean-generated-directory">
+      <delete dir="${sf.common.config.dir}/generated" failonerror="false" />
+      <mkdir dir="${sf.common.config.dir}/generated" />
     </target>
 
 </project>
