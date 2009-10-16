@@ -1,0 +1,882 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>STDCPP BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+	</target>
+	<plan id="" name="STDCPP BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="STDCPP Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="bccppwrap" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bccppwrap" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bccppwrap.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bccppwrap.dll"/>
+							<param dst="c:\sys\bin\bccppwrap.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="TestFramework_cppwrap.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/TestFramework_cppwrap.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bccppwrap.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bccppwrap.cfg"/>
+							<param dst="c:\testframework\bccppwrap.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bccppwrap (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\bccppwrap.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bccppwrap (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bccsruntimesup" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bccsruntimesup" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bccsruntimesup.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bccsruntimesup.dll"/>
+							<param dst="c:\sys\bin\bccsruntimesup.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtruntime.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtruntime.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bccsruntimesup.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bccsruntimesup.cfg"/>
+							<param dst="c:\testframework\bccsruntimesup.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bccsruntimesup (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\bccsruntimesup.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bccsruntimesup (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bcexception" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bcexception" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bcexception.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bcexception.dll"/>
+							<param dst="c:\sys\bin\bcexception.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="TestFramework_mrtexp.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/TestFramework_mrtexp.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcexception.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bcexception.cfg"/>
+							<param dst="c:\testframework\bcexception.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcexception (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\bcexception.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bcexception (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bcnonamespace" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bcnonamespace" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bcnonamespace.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bcnonamespace.dll"/>
+							<param dst="c:\sys\bin\bcnonamespace.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtnons.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtnons.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcnonamespace.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bcnonamespace.cfg"/>
+							<param dst="c:\testframework\bcnonamespace.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcnonamespace (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\bcnonamespace.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bcnonamespace (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bcopencheaders" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bcopencheaders" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bcopencheaders.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bcopencheaders.dll"/>
+							<param dst="c:\sys\bin\bcopencheaders.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtopench.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtopench.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcopencheaders.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bcopencheaders.cfg"/>
+							<param dst="c:\testframework\bcopencheaders.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcopencheaders (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\bcopencheaders.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bcopencheaders (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bcopencwrap" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bcopencwrap" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bcopencwrap.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bcopencwrap.dll"/>
+							<param dst="c:\sys\bin\bcopencwrap.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_ocw.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_ocw.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcopencwrap.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bcopencwrap.cfg"/>
+							<param dst="c:\testframework\bcopencwrap.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcopencwrap (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\BCOpenCWrap.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bcopencwrap (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bcthread" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bcthread" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bcthread.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bcthread.dll"/>
+							<param dst="c:\sys\bin\bcthread.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtthread.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtthread.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcthread.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bcthread.cfg"/>
+							<param dst="c:\testframework\bcthread.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bcthread (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\bcthread.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bcthread (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bctypeattrib" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bctypeattrib" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bctypeattrib.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctypeattrib.dll"/>
+							<param dst="c:\sys\bin\bctypeattrib.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrttypea.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrttypea.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bctypeattrib.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bctypeattrib.cfg"/>
+							<param dst="c:\testframework\bctypeattrib.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bctypeattrib (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\BCTypeAttrib.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bctypeattrib (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="bctypeinfo" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="bctypeinfo" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="bctypeinfo.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="bctypeinfo.dll"/>
+							<param dst="c:\sys\bin\bctypeinfo.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrttypei.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrttypei.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bctypeinfo.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/bctypeinfo.cfg"/>
+							<param dst="c:\testframework\bctypeinfo.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="bctypeinfo (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\BCTypeInfo.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="bctypeinfo (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="chartypes" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="chartypes" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="chartypes.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="chartypes.dll"/>
+							<param dst="c:\sys\bin\chartypes.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_ct.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_ct.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="chartypes (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule chartypes"/>
+							<param result-file="c:\spd_logs\xml\chartypes.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="chartypes (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="tmath_operations" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tmath_operations" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tmath_operations.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmath_operations.dll"/>
+							<param dst="c:\sys\bin\tmath_operations.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtmath.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtmath.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tmath_operations.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tmath_operations.cfg"/>
+							<param dst="c:\testframework\tmath_operations.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tmath_operations (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tmath_operations.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tmath_operations (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="tmemory" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tmemory" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tmemory.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmemory.dll"/>
+							<param dst="c:\sys\bin\tmemory.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtmem.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtmem.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tmemory.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tmemory.cfg"/>
+							<param dst="c:\testframework\tmemory.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tmemory (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tmemory.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tmemory (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="tutility" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tutility" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tutility.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tutility.dll"/>
+							<param dst="c:\sys\bin\tutility.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_mrtutil.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_mrtutil.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tutility.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tutility.cfg"/>
+							<param dst="c:\testframework\tutility.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tutility (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tutility.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tutility (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="widecharclassapibctest" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="widecharclassapibctest" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="widecharclassapibctest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="widecharclassapibctest.dll"/>
+							<param dst="c:\sys\bin\widecharclassapibctest.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_wc.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_wc.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="widecharclassapibctest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule widecharclassapiBCTest"/>
+							<param result-file="c:\spd_logs\xml\widecharclassapibctest.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="widecharclassapibctest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="tstl" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tstl" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tstl_1.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tstl_1.dll"/>
+							<param dst="c:\sys\bin\tstl_1.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_tstl_1.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_tstl_1.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tstl_1.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tstl_1.cfg"/>
+							<param dst="c:\testframework\tstl_1.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tstl_1 (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tstl_1.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tstl_1 (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+			<set id="" name="tlocale" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="tlocale" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="tlocale.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tlocale.dll"/>
+							<param dst="c:\sys\bin\tlocale.dll"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="testframework_tlocale.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_tlocale.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tlocale.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/tlocale.cfg"/>
+							<param dst="c:\testframework\tlocale.cfg"/>
+							<param component-path="stdcpptest" />
+						</params>
+					</step>
+					<step id="" name="tlocale (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config C:\TestFramework\tlocale.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="1200"/>
+						</params>
+					</step>
+					<step id="" name="tlocale (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>stdcpptest/winscw_udeb/bccppwrap.dll</file>
+		<file>stdcpptest/winscw_udeb/bccsruntimesup.dll</file>
+		<file>stdcpptest/winscw_udeb/bcexception.dll</file>
+		<file>stdcpptest/winscw_udeb/bcnonamespace.dll</file>
+		<file>stdcpptest/winscw_udeb/bcopencheaders.dll</file>
+		<file>stdcpptest/winscw_udeb/bcopencwrap.dll</file>
+		<file>stdcpptest/winscw_udeb/bcthread.dll</file>
+		<file>stdcpptest/winscw_udeb/bctypeattrib.dll</file>
+		<file>stdcpptest/winscw_udeb/bctypeinfo.dll</file>
+		<file>stdcpptest/winscw_udeb/chartypes.dll</file>
+		<file>stdcpptest/winscw_udeb/tmath_operations.dll</file>
+		<file>stdcpptest/winscw_udeb/tmemory.dll</file>
+		<file>stdcpptest/winscw_udeb/tutility.dll</file>
+		<file>stdcpptest/winscw_udeb/widecharclassapibctest.dll</file>
+		<file>stdcpptest/winscw_udeb/tstl_1.dll</file>
+		<file>stdcpptest/winscw_udeb/tlocale.dll</file>
+		<file>stdcpptest/general/testframework/testframework_cppwrap.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtruntime.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtexp.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtnons.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtopench.ini</file>
+		<file>stdcpptest/general/testframework/testframework_ocw.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtthread.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrttypea.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrttypei.ini</file>
+		<file>stdcpptest/general/testframework/testframework_ct.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtmath.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtmem.ini</file>
+		<file>stdcpptest/general/testframework/testframework_mrtutil.ini</file>
+		<file>stdcpptest/general/testframework/testframework_wc.ini</file>
+		<file>stdcpptest/general/testframework/testframework_tstl_1.ini</file>
+		<file>stdcpptest/general/testframework/testframework_tlocale.ini</file>
+		<file>stdcpptest/general/testframework/bccppwrap.cfg</file>
+		<file>stdcpptest/general/testframework/bccsruntimesup.cfg</file>
+		<file>stdcpptest/general/testframework/bcexception.cfg</file>
+		<file>stdcpptest/general/testframework/bcnonamespace.cfg</file>
+		<file>stdcpptest/general/testframework/bcopencheaders.cfg</file>
+		<file>stdcpptest/general/testframework/bcopencwrap.cfg</file>
+		<file>stdcpptest/general/testframework/bcthread.cfg</file>
+		<file>stdcpptest/general/testframework/bctypeattrib.cfg</file>
+		<file>stdcpptest/general/testframework/bctypeinfo.cfg</file>
+		<file>stdcpptest/general/testframework/tmath_operations.cfg</file>
+		<file>stdcpptest/general/testframework/tmemory.cfg</file>
+		<file>stdcpptest/general/testframework/tutility.cfg</file>
+		<file>stdcpptest/general/testframework/tstl_1.cfg</file>
+		<file>stdcpptest/general/testframework/tlocale.cfg</file>
+	</files>
+</test>
