@@ -466,13 +466,29 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </antcall>
     </target>
     
-    <target name="sf-zip-content" >
+    <target name="sf-zip-content">
+        <!-- If it's the file we use for everything, and it's not up to date... -->
         <if>
           <and>
             <equals arg1="${zip.config.file}" arg2="${sf.common.config.dir}/generated/zip.cfg.xml.ftl"/>
-            <not><available file="${zip.config.file}"/></not>
-          </and>  
+            <not>
+              <and>
+                <uptodate targetfile="${sf.common.config.dir}/generated/zip.cfg.xml.ftl">
+                  <srcfiles dir="${sf.common.config.dir}">
+                    <include name="tools/populateziptemplate.pl"/>
+                    <include name="templates/zip.cfg.xml.ftl.template"/>
+                  </srcfiles>
+                </uptodate>
+                <uptodate targetfile="${sf.common.config.dir}/generated/zip.cfg.xml.ftl">
+                  <srcfiles dir="${sf.spec.sourcesync.sourcespecdir}">
+                    <include name="${sf.spec.sourcesync.sourcespecfile}"/>
+                  </srcfiles>
+                </uptodate>
+              </and>
+            </not>
+          </and>
           <then>
+            <!-- (Re)build the packaging config file -->      
             <runtarget target="sf-preprocess-package-config"/>
           </then>  
         </if>
