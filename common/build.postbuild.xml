@@ -69,12 +69,15 @@
 
         <!-- Zip up all the logs -->
         <runtarget target="sf-zip-logs"/>
-        <runtarget target="sf-brag-to-diamonds"/>
-
-        <!-- Publish logs/reports -->
+        
         <if>
             <istrue value="${sf.spec.publish.enable}" />
             <then>
+                <echo message="Send links to Diamonds"/>
+                <runtarget target="sf-links-to-diamonds"/>
+                <echo message="Send BRAG status information to Diamonds"/>
+                <runtarget target="sf-brag-to-diamonds"/>
+                
                 <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
                 <runtarget target="sf-publish"/>
             </then>
@@ -498,11 +501,18 @@
     </target>
 
     <target name="sf-run-analysis-diamonds">      
-      <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis.xml">
+      <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis-diamonds.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis-diamonds.xml">
         <data expandProperties="yes">
           ant: antProperties()
           raptor_summary: csv(${build.log.dir}/raptorbits/summary.csv,{separator:',',headers:[category,subcategory,severity,config,component,phase,recipe,file,line]})
-          files: csv(${build.drive}/output/logs/analysis/tmp_yarp_files.csv,{separator:',',headers:[name,path,localpath]})
+        </data>
+      </fmpp>
+    </target>
+    
+    <target name="sf-links-to-diamonds">
+      <fmpp sourceFile="${sf.common.config.dir}/diamonds/linksForDiamonds.xml.ftl" outputFile="${build.log.dir}/linksForDiamonds.xml">
+        <data expandProperties="yes">
+          ant: antProperties()
         </data>
       </fmpp>
       <!-- Send the data to the server -->
@@ -513,9 +523,9 @@
 		    <arg value="-u"/>
 		    <arg value="${diamonds.build.id}"/>
 		    <arg value="-f"/>
-		    <arg value="${build.log.dir}/sf-run-analysis.xml"/>
+		    <arg value="${build.log.dir}/linksForDiamonds.xml"/>
 	  </exec>
-    </target>    
+    </target>
 
     <target name="sf-brag-to-diamonds">
         <!-- Merge all our bits of XML together -->
@@ -778,10 +788,15 @@
             </then>
         </if>
         <runtarget target="sf-zip-logs"/>
-        <runtarget target="sf-brag-to-diamonds"/>
+                
         <if>
             <istrue value="${sf.spec.publish.enable}" />
             <then>
+                <echo message="Send links to Diamonds"/>
+                <runtarget target="sf-links-to-diamonds"/>
+                <echo message="Send BRAG status information to Diamonds"/>
+                <runtarget target="sf-brag-to-diamonds"/>
+                
                 <echo message="Publish log files and reports to ${sf.spec.publish.rootdir}"/>
                 <runtarget target="sf-publish"/>
             </then>
