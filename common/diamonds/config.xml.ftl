@@ -42,7 +42,7 @@ Diamonds configuration template
         <target name="diamonds" template-file="tool.xml.ftl" 
             logfile="${ant['temp.build.dir']}/build/doc/ivy/tool-dependencies-${ant['build.type']}.xml" ant-properties="true"/>        
         
-        <!-- note: replaced by sf-run-analysis -->
+        <!-- note: replaced by sf-run-analysis-diamonds -->
         <!-- target name="compile-main" template-file="compile.xml.ftl"
             logfile="${ant['diamonds.compile.summary']}" ant-properties="true"/ -->
                     
@@ -73,7 +73,7 @@ Diamonds configuration template
         <!-- SF specific -->
         <target name="sf-diamonds-tag-build"/>
         <target name="sf-diamondize-bom"/>
-        <target name="sf-run-analysis"/>
+        <target name="sf-run-analysis-diamonds"/>
     </targets>
 </logger>
 </configuration>
