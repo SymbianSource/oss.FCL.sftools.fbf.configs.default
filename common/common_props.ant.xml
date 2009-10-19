@@ -35,6 +35,8 @@
     
     
     <property name="sf.spec.referenceroms.createimages.enable" value="false"/>
+    <property name="sf.spec.referenceroms.list" value=""/>
+    
     <property name="sf.spec.testroms.createimages.enable" value="false"/>
     
     <property name="sf.spec.sourcesync.enable" value="true"/>

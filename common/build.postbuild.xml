@@ -2,6 +2,14 @@
 <project name="SF-POSTBUILD" xmlns:hlm="http://www.nokia.com/helium">
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
+        
+        <if><istrue value="${sf.spec.referenceroms.createimages.enable}"/>
+        <then>
+            <echo message="INFO Building ROMs defined for this project"/>
+            <runtarget target="sf-rombuild"/>
+        </then>
+        </if>
+        
         <parallel>                
             <!-- TAG SOURCE CODE -->
             <if>
