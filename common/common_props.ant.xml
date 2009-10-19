@@ -59,7 +59,7 @@
     <property name="sf.spec.publish.diamonds.server" value="v800002.ad-sfpd.intra"/>
     <property name="sf.spec.publish.diamonds.port" value="80"/>
     <property name="sf.spec.publish.diamonds.path" value="/diamonds/builds/"/>
-    <property name="sf.spec.publish.diamonds.tag" value="test"/>
+    <property name="sf.spec.publish.diamonds.tag" value=""/>
 	<property name="sf.spec.ats_worker.drive" value="C:\apps\ATS3\bin"/>
     
     <property name="sf.spec.tagafterbuild.enable" value="false"/>
