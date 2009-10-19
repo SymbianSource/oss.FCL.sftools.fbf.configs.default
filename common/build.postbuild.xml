@@ -367,6 +367,7 @@
             <arg value="--config=${raptorconfig}"/>
             <arg value="--log=@{raptorlogfile}"/>
             <arg value="--basedir=${build.log.dir}/raptorbits"/>
+            <arg value="--append"/>
           </exec>
         </sequential>
       </for>
