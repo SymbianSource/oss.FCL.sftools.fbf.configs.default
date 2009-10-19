@@ -613,7 +613,7 @@ close (RAPTORSUMINDEX);
 # /E -> Copies directories and subdirectories, including empty ones.
 # /F -> Displays full source and destination file names while copying.
 # /I -> If destination does not exist and copying more than one file, assumes that destination must be a directory.
-my $copy_html = "xcopy $logdir\\html \\\\bishare\\sf_builds\\$project\\builds\\$codeline\\$buildid\\html \/E \/F \/I";
+my $copy_html = "xcopy $logdir\\html \\\\v800020\\Publish\\sf_builds\\$project\\builds\\$codeline\\$buildid\\html \/E \/F \/I";
 print "Exec: $copy_html\n";
 system($copy_html);
 
@@ -668,7 +668,7 @@ close(BUILDSUMMARYHTML); # Close file build_summary.html
 # *****************************************************************************
 
 # Copy html file to bishare
-my $copy_cmd = "copy $logdir\\build_summary.html \\\\bishare\\sf_builds\\$project\\builds\\$codeline\\$buildid";
+my $copy_cmd = "copy $logdir\\build_summary.html \\\\v800020\\Publish\\sf_builds\\$project\\builds\\$codeline\\$buildid";
 print "Exec: $copy_cmd\n";
 system($copy_cmd);
 
