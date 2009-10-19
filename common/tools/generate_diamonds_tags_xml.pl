@@ -29,6 +29,7 @@ GetOptions((
 if ($help or !$outputfile)
 {
 	print "Usage: perl generate_diamonds_tags_xml.pl --tags COMMA_SEPARATED_TAG_LIST --output OUTPUT_FILE\n";
+	exit(0);
 }
 
 open(FILE, ">$outputfile");
