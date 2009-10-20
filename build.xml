@@ -6,10 +6,6 @@
   <property name="sf.subproject.path" value=""/>
   <property name="sf.project.location" value="${sf.config.dir}/../build/config/${sf.subproject.path}"/>
   <property name="sf.project.name" value="job"/>
-   
-  <target name="set-arm-version"/>
-  <target name="check-env-arm-license"/>
-  <target name="get-arm-license"/>
   
   <!-- import job properties -->
   <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" optional="yes"/>
