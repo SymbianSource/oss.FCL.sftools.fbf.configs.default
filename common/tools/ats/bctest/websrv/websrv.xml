@@ -15,8 +15,8 @@
 			<device rank="master" alias="emulator_udeb"/>
 		</target>
 		<session id="" name="Web Services Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
-			<set id="" name="Web Service Connection" harness="ATSINTERFACE" enabled="true" passrate="100">
-                <case id="" name="Connection API" harness="ATSINTERFACE" enabled="true" passrate="100">
+            <set id="" name="Web Services" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="Web Service Connection API" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
                         <params>
@@ -57,8 +57,6 @@
 						</params>
 					</step>
                 </case>
-            </set>
-			<set id="" name="Hostlet Connection" harness="ATSINTERFACE" enabled="true" passrate="100">
 				<case id="" name="Hostlet Connection API" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
@@ -100,8 +98,6 @@
 						</params>
 					</step>
 				</case>
-			</set>
-			<set id="" name="Web Service Messaging" harness="ATSINTERFACE" enabled="true" passrate="100">
                 <case id="" name="New SOAP Classes API" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
                         <command>makedir</command>
@@ -143,6 +139,170 @@
 						</params>
 					</step>
                 </case>
+                <case id="" name="Web Service Description API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="SenServDescBCTest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SenServDescBCTest.dll"/>
+							<param dst="c:\sys\bin\SenServDescBCTest.dll"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="testframework_senservdesc.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_senservdesc.ini"/>
+							<param dst="c:\testframework\testframework_senservdesc.ini"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="SenServDescBCTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule SenServDescBCTest"/>
+                            <param result-file="c:\spd_logs\xml\SenServDescBCTest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="SenServDescBCTest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="Web Service Manager API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="SenServiceManagerBCTest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SenServiceManagerBCTest.dll"/>
+							<param dst="c:\sys\bin\SenServiceManagerBCTest.dll"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="testframework_senservicemanager.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_senservicemanager.ini"/>
+							<param dst="c:\testframework\testframework_senservicemanager.ini"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="SenServiceManagerBCTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule SenServiceManagerBCTest"/>
+                            <param result-file="c:\spd_logs\xml\SenServiceManagerBCTest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="SenServiceManagerBCTest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="Web Service Messaging Utils API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="SenUtilsBCTest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SenUtilsBCTest.dll"/>
+							<param dst="c:\sys\bin\SenUtilsBCTest.dll"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="testframework_senutils.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_senutils.ini"/>
+							<param dst="c:\testframework\testframework_senutils.ini"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="SenUtilsBCTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule SenUtilsBCTest"/>
+                            <param result-file="c:\spd_logs\xml\SenUtilsBCTest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="SenUtilsBCTest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="Web Service Fragment API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="SenFragmentBCTest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="SenFragmentBCTest.dll"/>
+							<param dst="c:\sys\bin\SenFragmentBCTest.dll"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="TestFramework_senfragment.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\TestFramework_senfragment.ini"/>
+							<param dst="c:\testframework\TestFramework_senfragment.ini"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
+					<step id="" name="SenFragmentBCTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule SenFragmentBCTest"/>
+                            <param result-file="c:\spd_logs\xml\SenFragmentBCTest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="SenFragmentBCTest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
             </set>			
 		</session>
 	</plan>
@@ -153,5 +313,13 @@
 		<file>bcwebsrv/general/testframework/testframework_hostlet.ini</file>
 		<file>bcwebsrv/winscw_udeb/newsoapclassesbctest.dll</file>
 		<file>bcwebsrv/general/testframework/testframework_newsoapclasses.ini</file>
+		<file>bcwebsrv/winscw_udeb/SenServDescBCTest.dll</file>
+		<file>bcwebsrv/general/testframework/testframework_senservdesc.ini</file>
+		<file>bcwebsrv/winscw_udeb/SenServiceManagerBCTest.dll</file>
+		<file>bcwebsrv/general/testframework/testframework_senservicemanager.ini</file>
+		<file>bcwebsrv/winscw_udeb/SenUtilsBCTest.dll</file>
+		<file>bcwebsrv/general/testframework/testframework_senutils.ini</file>
+		<file>bcwebsrv/winscw_udeb/SenFragmentBCTest.dll</file>
+		<file>bcwebsrv/general/testframework/TestFramework_senfragment.ini</file>
 	</files>
 </test>
