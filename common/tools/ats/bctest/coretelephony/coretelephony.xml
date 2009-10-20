@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<name>RTC Core Telephony BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+	</target>
+	<plan id="" name="RTC Core Telephony BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="RTC Core Telephony Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+            <set id="" name="RTC Core Telephony" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="Core Telephony Log Engine API" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="BCLogEngineTest.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="BCLogEngineTest.dll"/>
+							<param dst="c:\sys\bin\BCLogEngineTest.dll"/>
+							<param component-path="rtcct" />
+						</params>
+					</step>
+					<step id="" name="BCLogEngineTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule BCLogEngineTest"/>
+                            <param result-file="c:\spd_logs\xml\BCLogEngineTest.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="BCLogEngineTest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+            </set>			
+		</session>
+	</plan>
+	<files>
+		<file>rtcct/winscw_udeb/BCLogEngineTest.dll</file>
+	</files>
+</test>
