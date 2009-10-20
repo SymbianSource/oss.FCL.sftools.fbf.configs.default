@@ -134,6 +134,10 @@
                 <arg value="log"/>
                 <arg value="-r"/>
                 <arg value="${dollar}{sf.sourcesync.${count}.checksum}:${dollar}{sf.previous.pdk.tag}"/>
+                <#if "${pkg_detail.type}"=="branch">
+                <arg value="-b"/>
+                <arg value="${pkg_detail.pattern}"/>
+                </#if>    
             </exec>
           </sequential>
     </target>
