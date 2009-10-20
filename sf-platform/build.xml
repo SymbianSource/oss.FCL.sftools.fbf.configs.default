@@ -64,7 +64,8 @@
           </exec>  
       </sequential>
     </for>  
-    <copy todir="${build.drive}/epoc32/tools/makefile_templates/s60">
+    <!-- needed for s^2 but not s^3 - so ignore if not present -->
+    <copy todir="${build.drive}/epoc32/tools/makefile_templates/s60" failonerror="false">
         <fileset dir="${build.drive}/sf/tools/makefile_templates">
           <exclude name=".hg*"/>
           <exclude name=".hg/**"/>
