@@ -157,10 +157,10 @@
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="interim/fbf/configs/default" />
 				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/app/contacts				sf/app/contacts" />
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/app/contacts" />
-				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/app/messaging				sf/app/messaging" />
-				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/app/messaging" />
 				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/app/location				sf/app/location" />
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/app/location" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/app/messaging				sf/app/messaging" />
+				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/app/messaging" />
 				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/mw/appinstall				sf/mw/appinstall" />
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/mw/appinstall" />
 				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/mw/appsupport				sf/mw/appsupport" />
@@ -185,7 +185,7 @@
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/os/kernelhwsrv" />
 				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/mm						sf/os/mm" />
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/os/mm" />
-				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/ossrv					sf/os/ossrv" />
+				<command cmd="&cmd.clone;		&codeline.sfl.fcl;/sf/os/ossrv					sf/os/ossrv" />
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/os/ossrv" />
 				<command cmd="&cmd.clone;		&codeline.sfl.mcl;/sf/os/shortlinksrv			sf/os/shortlinksrv" />
 				<command cmd="&cmd.update;		&param.updatebranch;"							dir="sf/os/shortlinksrv" />
@@ -197,12 +197,24 @@
 			</meta>
 		</layer>
 		<layer name="bld_production" long-name="Binary Compatability Production code build" levels="generic specific">
+			<collection name="xvid" long-name="XVid">
+				<component id="xvid" name="XVid">
+					<unit bldFile="xvidpu/group" />
+					<unit bldFile="xvidhwdevice/group" />
+				</component>
+			</collection>
 			<collection name="multimediasvs" long-name="SVS Multimedia API Tests">
 				<component id="mmtestenv" name="Multimedia Test Framework Server">
 					<unit bldFile="sf/os/mm/mmtestenv/mmtestfw/group" />
 				</component>
 			</collection>
 			<collection name="ossrv" long-name="OS Services">
+				<component id="glib" name="glib">
+					<unit bldFile="sf/os/ossrv/glib/tsrc/BC/group" />
+				</component>
+				<component id="ssl" name="ssl">
+					<unit bldFile="sf/os/ossrv/ssl/tsrc/BC/group" />
+				</component>
 				<component id="stdcpp" name="Standard C++">
 					<unit bldFile="sf/os/ossrv/stdcpp/tsrc/BC/group" />
 				</component>
@@ -216,12 +228,19 @@
 			<collection name="appsupport" long-name="Application Support Middleware">
 				<component id="appsupport_pub" name="Application Support Middleware Puplic">
 					<unit bldFile="sf/mw/appsupport/appsupport_pub/flash_viewer_framework_api/tsrc/bc/flashviewerframework/group" />
+					<unit bldFile="sf/mw/appsupport/appsupport_pub/network_status_api/tsrc/bc/networkstatus/group" />
 					<unit bldFile="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/BC/ProfilesEngineWrapperAPI/group" />
+				</component>
+			</collection>
+			<collection name="classicui" long-name="Classic UI">
+				<component id="classicui_pub" name="Classic UI Public">
+					<unit bldFile="sf/mw/classicui/classicui_pub/tsrc/bc/group" />
 				</component>
 			</collection>
 			<collection name="drm" long-name="DRM Middleware">
 				<component id="drm_pub" name="DRM Middleware Public">
-					<unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/group" />
+					<unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/DRM_CAF/group" />
+					<unit bldFile="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/BCDRMCAFCAPS_exe/group" />
 				</component>
 			</collection>
 			<collection name="locationsrv" long-name="Location Server Middleware">
@@ -236,12 +255,12 @@
 			</collection>
 			<collection name="websrv" long-name="Web Services Middleware">
 				<component id="websrv_pub" name="Web Services Middleware Public">
-					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group" />
 					<unit bldFile="sf/mw/websrv/websrv_pub/hostlet_connection_api/tsrc/bc/hostconn/group" />
-					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/group" />
+					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/group" />
+					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/senutils/group" />
 					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_description_api/tsrc/bc/senservdesc/group" />
 					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_manager_api/tsrc/bc/senservicemanager/group" />
-					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/senutils/group" />
+					<unit bldFile="sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/group" />
 				</component>
 			</collection>
 			<collection name="contacts" long-name="Contacts Application">
@@ -276,14 +295,13 @@
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_database_management_api/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LocationFW/LocAquisition/group" />
-					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/apps/mrt/apps/glib/group" />
-					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/apps/mrt/apps/ssl/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/multimedia/apps/BCAppContentManagement/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/networking/apps/ConnectionSettings/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/networking/apps/ConnectionSettingsUI/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/rtcct/apps/BCLogEngineTest/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/rtcct/apps/IsvTelephonyTest/group" />
 					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/systemsw/apps/cenrepnotifyhandler/group" />
+					<unit bldFile="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/systemsw/apps/SystemSWMisc50Test/group" />
 				</component>
 			</collection>
 		</layer>
