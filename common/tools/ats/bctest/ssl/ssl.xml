@@ -73,7 +73,7 @@
 						<params>
 							<param type="data"/>
 							<param src="testframework/evptests.txt"/>
-							<param dst="c:\testframework\evptests.txt"/>
+							<param dst="c:\evptests.txt"/>
 							<param component-path="ssltest" />
 						</params>
 					</step>
