@@ -29,124 +29,41 @@
   </target>
   
   <target name="sf-package-compile" depends="sf-compile-options">
+    
+    <for list="${sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
+      <sequential>
+        <echo message="INFO [Iterative compile] Building target: @{item.sbs.splitconfig}"/>
         
-    <!-- BUILD tools2_rel CLEAN -->
-    <!--
-    <hlm:argSet id="sbs.tools2_rel.clean.var">
-      <hlm:arg name="config" value="tools2_rel" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}"/>
-      <hlm:arg name="command" value="CLEAN"/>
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.tools2_rel.clean.var" torefid="sbs.var" />
-      <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    -->
-    
-    <!-- BUILD tools2_rel -->
-    <hlm:argSet id="sbs.tools2_rel.var">
-      <hlm:arg name="config" value="tools2_rel.whatlog" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.tools2_rel.var" torefid="sbs.var" />
-      <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    
-    <!-- BUILD tools CLEAN -->
-    <!-- 
-    <hlm:argSet id="sbs.tools.clean.var">
-      <hlm:arg name="config" value="tools"/>
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN"/>
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.tools.clean.var" torefid="sbs.var" />
-      <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    -->
-    
-    <!-- BUILD tools -->
-    <!-- 
-    <hlm:argSet id="sbs.tools.var">
-      <hlm:arg name="config" value="tools.whatlog"/>
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.tools.var" torefid="sbs.var" />
-      <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    -->
-    
-    <!-- BUILD winscw CLEAN -->
-    <!--
-    <hlm:argSet id="sbs.winscw.clean.var">
-      <hlm:arg name="config" value="winscw" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN"/>
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.winscw.clean.var" torefid="sbs.var" />
-      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    -->
-    
-    <!-- BUILD winscw -->
-    <hlm:argSet id="sbs.winscw.var">
-      <hlm:arg name="config" value="winscw.whatlog" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.winscw.var" torefid="sbs.var" />
-      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    
-    <!-- BUILD armv5 CLEAN -->
-    <!--
-    <hlm:argSet id="sbs.armv5.clean.var">
-      <hlm:arg name="config" value="armv5" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN"/>
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.armv5.clean.var" torefid="sbs.var" />
-      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-    -->
-    
-    <!-- BUILD armv5 -->
-    <hlm:argSet id="sbs.armv5.var">
-      <hlm:arg name="config" value="armv5.whatlog" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-    </hlm:argSet>
-    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-      <param name="build.system" value="${sf.spec.build.system}" />
-      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-      <reference refid="sbs.armv5.var" torefid="sbs.var" />
-      <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-      <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-    </antcall>
+        <!-- Do CLEAN
+        <hlm:argSet id="sbs.iterate.clean.var">
+          <hlm:arg name="config" value="@{item.sbs.splitconfig}" />
+          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          <hlm:arg name="command" value="CLEAN"/>
+        </hlm:argSet>
+        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+          <param name="build.system" value="${sf.spec.build.system}" />
+          <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+          <reference refid="sbs.iterate.clean.var" torefid="sbs.var" />
+          <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+          <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+        </antcall>
+        -->
+
+        <!-- Do BUILD -->
+        <hlm:argSet id="sbs.main.iterate.sbs.var">
+          <hlm:arg name="config" value="@{item.sbs.splitconfig}" />
+          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
+        </hlm:argSet>
+        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+          <param name="build.system" value="${sf.spec.build.system}" />
+          <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+          <reference refid="sbs.main.iterate.sbs.var" torefid="sbs.var" />
+          <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
+          <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+        </antcall>                
+      </sequential>
+    </for>
     
     <!-- CHECK -->
     <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">

@@ -24,7 +24,7 @@
   <property name="sf.spec.systemdefinition.location" value="\definition.xml"/>
   <property name="sf.spec.sysdef.configurations.list" value="SF"/>
   
-  <property name="sf.spec.sbs.config" value="winscw"/>
+  <property name="sf.spec.sbs.config" value="tools2_rel.whatlog,winscw.whatlog,armv5.whatlog"/>
   <property name="sf.spec.sbs.numberofjobs" value="2"/>
   
   <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
