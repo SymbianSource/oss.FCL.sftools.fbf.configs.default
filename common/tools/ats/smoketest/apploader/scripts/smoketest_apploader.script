@@ -68,3 +68,27 @@ START_TESTCASE			SMOKE_APP_LAUNCH_0008
 //! @SYMTestCaseDesc	Send key events to close UI setup dialogs
 	RUN_TEST_STEP		1000	smoketest_apploader	KeyEvents	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_KEYEVENTS_0008
 END_TESTCASE 			SMOKE_APP_LAUNCH_0008
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0009
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0009
+//! @SYMTestCaseDesc	Start Eshell and end it
+	RUN_TEST_STEP		1000	smoketest_apploader	AppStart	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_LAUNCH_0009
+	DELAY				5000
+	RUN_TEST_STEP		1000	smoketest_apploader	EndTask		c:\smoketest\smoketest_apploader.ini	SMOKE_APP_END_0009
+END_TESTCASE 			SMOKE_APP_LAUNCH_0009
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0010
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0010
+//! @SYMTestCaseDesc	Start Media player and end it
+	RUN_TEST_STEP		1000	smoketest_apploader	AppStart	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_LAUNCH_0010
+	DELAY				5000
+	RUN_TEST_STEP		1000	smoketest_apploader	EndTask		c:\smoketest\smoketest_apploader.ini	SMOKE_APP_END_0010
+END_TESTCASE 			SMOKE_APP_LAUNCH_0010
+
+START_TESTCASE			SMOKE_APP_LAUNCH_0011
+//! @SYMTestCaseID		SMOKE_APP_LAUNCH_0011
+//! @SYMTestCaseDesc	Start Notepad and end it
+	RUN_TEST_STEP		1000	smoketest_apploader	AppStart	c:\smoketest\smoketest_apploader.ini	SMOKE_APP_LAUNCH_0011
+	DELAY				5000
+	RUN_TEST_STEP		1000	smoketest_apploader	EndTask		c:\smoketest\smoketest_apploader.ini	SMOKE_APP_END_0011
+END_TESTCASE 			SMOKE_APP_LAUNCH_0011
