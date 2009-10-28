@@ -46,6 +46,8 @@ my $CATEGORY_RAPTORERROR_NOBLDINFFOUND = 'no_bld_inf_found';
 my $CATEGORY_RAPTORERROR_CANTFINDMMPFILE = 'cant_find_mmp_file';
 my $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS = 'make_exited_with_errors';
 my $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION = 'tool_didnot_return_version';
+my $CATEGORY_RAPTORERROR_UNKNOWNBUILDCONFIG = 'unknown_build_config';
+my $CATEGORY_RAPTORERROR_NOBUILDCONFIGSGIVEN = 'no_build_configs_given';
 
 sub process
 {
@@ -83,6 +85,18 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
 		$subcategory = $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,Unknown build configuration '.*',)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		$subcategory = $CATEGORY_RAPTORERROR_UNKNOWNBUILDCONFIG;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,No build configurations given,)
+	{
+		$severity = $RaptorCommon::SEVERITY_CRITICAL;
+		$subcategory = $CATEGORY_RAPTORERROR_NOBUILDCONFIGSGIVEN;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
