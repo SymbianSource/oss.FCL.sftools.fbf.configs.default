@@ -365,7 +365,7 @@
         </path>
         <sequential>
           <echo message="Extracting error info from @{raptorlogfile}..."/>
-          <propertyregex override="yes" property="raptorconfig" input="@{raptorlogfile}" regexp=".*[\\/].*__(.*)\.whatlog_(single|multiple)_thread.*" replace="\1" casesensitive="false" defaultValue="noconfig"/>
+          <propertyregex override="yes" property="raptorconfig" input="@{raptorlogfile}" regexp=".*[\\/].*__(.*)_(single|multiple)_thread.*" replace="\1" casesensitive="false" defaultValue="noconfig"/>
           <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
             <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
             <arg value="--error"/>
