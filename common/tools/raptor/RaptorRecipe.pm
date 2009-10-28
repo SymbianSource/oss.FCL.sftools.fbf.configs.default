@@ -53,6 +53,7 @@ my $CATEGORY_RECIPEFAILURE = 'recipe_failure';
 my $CATEGORY_RECIPEFAILURE_ARMCC_CANNOTOPENSOURCEINPUTFILE = 'armcc_cannot_open_source_input_file';
 my $CATEGORY_RECIPEFAILURE_ARMLINK_COULDNOTOPENFILE = 'armlink_could_not_open_file';
 my $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE = 'elf2e32_could_not_open_file';
+my $CATEGORY_RECIPEFAILURE_ARMAR_FILEDOESNOTEXIST = 'armar_file_does_not_exist';
 
 sub process
 {
@@ -78,6 +79,12 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,Error: L6833E: File '.*' does not exist,)
+	{
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMAR_FILEDOESNOTEXIST;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
