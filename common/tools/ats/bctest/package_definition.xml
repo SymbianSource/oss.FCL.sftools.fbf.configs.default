@@ -6,12 +6,17 @@
 <!ENTITY param.updatebranch						"-r RCL_1" >
 <!ENTITY cmd.clone								"metacmd.py mcclone" >
 <!ENTITY cmd.copy								"metacmd.py mccopy" >
+<!ENTITY cmd.copytree							"metacmd.py mccopytree" >
+<!ENTITY cmd.remove								"metacmd.py mcrm" >
 <!ENTITY cmd.makedirs							"metacmd.py mcmakedirs" >
 <!ENTITY cmd.perl								"perl" >
 <!ENTITY cmd.sisbld								"makesis" >
 <!ENTITY cmd.unzip								"7z -y x" >
+<!ENTITY cmd.zip								"7z a -tzip" >
 <!ENTITY cmd.update								"hg update -C" >
 <!ENTITY cmd.wget								"wget -N" >
+<!ENTITY dir.outputroot							"bcs" >
+<!ENTITY dir.output								"&dir.outputroot;/bcdrivers/apps" >
 <!ENTITY dir.50_asp_connection					"sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/sis" >
 <!ENTITY dir.50_asp_hostconn					"sf/mw/websrv/websrv_pub/hostlet_connection_api/tsrc/bc/hostconn/sis" >
 <!ENTITY dir.50_asp_newsoapclasses				"sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/sis" >
@@ -383,65 +388,127 @@
 				</component>
 			</collection>
 		</layer>
-		<layer name="post_bld" long-name="Binary Compatability SIS build" levels="generic specific">
+		<layer name="post_bld" long-name="Binary Compatability Suite build" levels="generic specific">
 			<meta type="commands">
-				<command cmd="&cmd.makedirs;	sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_asp_connection;					&dir.50_asp_connection;/50_asp_connection.pkg									sis/50_asp_connection.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_asp_hostconn; 					&dir.50_asp_hostconn;/50_asp_hostconn.pkg										sis/50_asp_hostconn.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_asp_newsoapclasses;		 		&dir.50_asp_newsoapclasses;/50_asp_newsoapclasses.pkg							sis/50_asp_newsoapclasses.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_asp_senfragment;			 		&dir.50_asp_senfragment;/50_asp_senfragment.pkg									sis/50_asp_senfragment.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_asp_senutils;						&dir.50_asp_senutils;/50_asp_senutils.pkg										sis/50_asp_senutils.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_ASP_WSDescription;				&dir.50_ASP_WSDescription;/50_ASP_WSDescription.pkg								sis/50_ASP_WSDescription.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_ASP_WSManager;					&dir.50_ASP_WSManager;/50_ASP_WSManager.pkg										sis/50_ASP_WSManager.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_Control;					&dir.50_Browser_Control;/50_Browser_Control.pkg									sis/50_Browser_Control.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_DownloadMgr; 				&dir.50_Browser_DownloadMgr;/50_Browser_DownloadMgr.pkg							sis/50_Browser_DownloadMgr.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_Favourites; 				&dir.50_Browser_Favourites;/50_Browser_Favourites.pkg							sis/50_Browser_Favourites.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_CoreUI_FlashViewerFramework; 		&dir.50_CoreUI_FlashViewerFramework;/50_CoreUI_FlashViewerFramework.pkg			sis/50_CoreUI_FlashViewerFramework.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_addedit; 						&dir.50_Loc_addedit;/50_Loc_addedit.pkg											sis/50_Loc_addedit.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_Blid; 						&dir.50_Loc_Blid;/50_Loc_Blid.pkg												sis/50_Loc_Blid.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_itemdbci; 					&dir.50_Loc_itemdbci;/50_Loc_itemdbci.pkg										sis/50_Loc_itemdbci.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_loc_landmarks; 					&dir.50_loc_landmarks;/50_loc_landmarks.pkg										sis/50_loc_landmarks.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_loc_LmkDBMgmt;		 			&dir.50_loc_LmkDBMgmt;/50_loc_LmkDBMgmt.pkg										sis/50_loc_LmkDBMgmt.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_loc_LmkSearch;		 			&dir.50_loc_LmkSearch;/50_loc_LmkSearch.pkg										sis/50_loc_LmkSearch.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_LocAquisition;		 		&dir.50_Loc_LocAquisition;/50_Loc_LocAquisition.pkg								sis/50_Loc_LocAquisition.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_selector;		 				&dir.50_Loc_selector;/50_Loc_selector.pkg										sis/50_Loc_selector.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Messaging_MMSClientMTM;	 		&dir.50_Messaging_MMSClientMTM;/50_Messaging_MMSClientMTM.pkg					sis/50_Messaging_MMSClientMTM.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Messaging_PluginBio; 				&dir.50_Messaging_PluginBio;/50_Messaging_PluginBio.pkg							sis/50_Messaging_PluginBio.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_MM_ConMgmt; 						&dir.50_MM_ConMgmt;/50_MM_ConMgmt.pkg											sis/50_MM_ConMgmt.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_MM_DRMCAF; 						&dir.50_MM_DRMCAF;/50_MM_DRMCAF.pkg												sis/50_MM_DRMCAF.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_mrt_glib; 						&dir.50_mrt_glib;/50_mrt_glib.pkg												sis/50_mrt_glib.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_mrt_ssl; 							&dir.50_mrt_ssl;/50_mrt_ssl.pkg													sis/50_mrt_ssl.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_mrt_stdcpp; 						&dir.50_mrt_stdcpp;/50_mrt_stdcpp.pkg											sis/50_mrt_stdcpp.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_msg_sendui; 						&dir.50_msg_sendui;/50_msg_sendui.pkg											sis/50_msg_sendui.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_NW_ConnSet; 						&dir.50_NW_ConnSet;/50_NW_ConnSet.pkg											sis/50_NW_ConnSet.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_NW_ConnSetUI; 					&dir.50_NW_ConnSetUI;/50_NW_ConnSetUI.pkg										sis/50_NW_ConnSetUI.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkDataAddEdit;		 		&dir.50_PIM_PbkDataAddEdit;/50_PIM_PbkDataAddEdit.pkg							sis/50_PIM_PbkDataAddEdit.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkDataMgmt; 					&dir.50_PIM_PbkDataMgmt;/50_PIM_PbkDataMgmt.pkg									sis/50_PIM_PbkDataMgmt.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkFetchAPI; 					&dir.50_PIM_PbkFetchAPI;/50_PIM_PbkFetchAPI.pkg									sis/50_PIM_PbkFetchAPI.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkUIUtil; 					&dir.50_PIM_PbkUIUtil;/50_PIM_PbkUIUtil.pkg										sis/50_PIM_PbkUIUtil.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkVcard; 					&dir.50_PIM_PbkVcard;/50_PIM_PbkVcard.pkg										sis/50_PIM_PbkVcard.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_Spdial; 						&dir.50_PIM_Spdial;/50_PIM_Spdial.pkg											sis/50_PIM_Spdial.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_RTC-CT_IsvTelephony; 				&dir.50_RTC-CT_IsvTelephony;/50_RTC-CT_IsvTelephony.pkg							sis/50_RTC-CT_IsvTelephony.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_RTC-CT_LogEngine; 				&dir.50_RTC-CT_LogEngine;/50_RTC-CT_LogEngine.pkg								sis/50_RTC-CT_LogEngine.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_SP_PROENG;	 					&dir.50_SP_PROENG;/50_SP_PROENG.pkg												sis/50_SP_PROENG.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioConvertUtility; 		&dir.50_Symbian_AudioConvertUtility;/50_Symbian_AudioConvertUtility.pkg			sis/50_Symbian_AudioConvertUtility.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioInputStream; 		&dir.50_Symbian_AudioInputStream;/50_Symbian_AudioInputStream.pkg				sis/50_Symbian_AudioInputStream.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioOutputStream; 		&dir.50_Symbian_AudioOutputStream;/50_Symbian_AudioOutputStream.pkg				sis/50_Symbian_AudioOutputStream.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioPlayerUtility;	 	&dir.50_Symbian_AudioPlayerUtility;/50_Symbian_AudioPlayerUtility.pkg			sis/50_Symbian_AudioPlayerUtility.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioRecorderUtility; 	&dir.50_Symbian_AudioRecorderUtility;/50_Symbian_AudioRecorderUtility.pkg		sis/50_Symbian_AudioRecorderUtility.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_Base; 					&dir.50_Symbian_Base;/50_Symbian_Base.pkg										sis/50_Symbian_Base.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_BTSockAddr; 				&dir.50_Symbian_BTSockAddr;/50_Symbian_BTSockAddr.pkg							sis/50_Symbian_BTSockAddr.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_Ecom; 					&dir.50_Symbian_Ecom;/50_Symbian_Ecom.pkg										sis/50_Symbian_Ecom.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_symbian_graphics; 				&dir.50_symbian_graphics;/50_symbian_graphics.pkg								sis/50_symbian_graphics.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_ImageDecoder; 			&dir.50_Symbian_ImageDecoder;/50_Symbian_ImageDecoder.pkg						sis/50_Symbian_ImageDecoder.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_ImageEncoder; 			&dir.50_Symbian_ImageEncoder;/50_Symbian_ImageEncoder.pkg						sis/50_Symbian_ImageEncoder.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_Camera;	 				&dir.50_Symbian_T_Camera;/50_Symbian_T_Camera.pkg								sis/50_Symbian_T_Camera.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_MdaAudioToneUtility;	&dir.50_Symbian_T_MdaAudioToneUtility;/50_Symbian_T_MdaAudioToneUtility.pkg		sis/50_Symbian_T_MdaAudioToneUtility.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_MidiClientUtility;		&dir.50_Symbian_T_MidiClientUtility;/50_Symbian_T_MidiClientUtility.pkg			sis/50_Symbian_T_MidiClientUtility.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Sync_SelfSignedStartupListMgmt;	&dir.50_Sync_SelfSignedStartupListMgmt;/50_Sync_SelfSignedStartupListMgmt.pkg	sis/50_Sync_SelfSignedStartupListMgmt.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_Sync_StartupListMgmt;				&dir.50_Sync_StartupListMgmt;/50_Sync_StartupListMgmt.pkg						sis/50_Sync_StartupListMgmt.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_systemsw;							&dir.50_systemsw;/50_systemsw.pkg												sis/50_systemsw.sis" />
-				<command cmd="&cmd.sisbld;		-d&dir.50_UIFW;								&dir.50_UIFW;/50_UIFW.pkg														sis/50_UIFW.sis" />
+				<command cmd="&cmd.makedirs;	&dir.outputroot;" />
+				<command cmd="&cmd.copytree;	interim/fbf/configs/default/common/tools/bcs/bcdrivers				&dir.outputroot;/bcdrivers" />
+				<command cmd="&cmd.copytree;	interim/fbf/configs/default/common/tools/bcs/compatibilityanalyser	&dir.outputroot;/compatibilityanalyser" />
+				<command cmd="&cmd.copytree;	interim/fbf/configs/default/common/tools/bcs/doc					&dir.outputroot;/doc" />
+				<command cmd="&cmd.copytree;	interim/fbf/configs/default/common/tools/bcs/utilities				&dir.outputroot;/utilities" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/connection/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_connection;					&dir.50_asp_connection;/50_asp_connection.pkg									&dir.output;/asp/apps/connection/sis/50_asp_connection.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/hostconn/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_hostconn; 					&dir.50_asp_hostconn;/50_asp_hostconn.pkg										&dir.output;/asp/apps/hostconn/sis/50_asp_hostconn.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/newsoapclasses/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_newsoapclasses;		 		&dir.50_asp_newsoapclasses;/50_asp_newsoapclasses.pkg							&dir.output;/asp/apps/newsoapclasses/sis/50_asp_newsoapclasses.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/senfragment/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_senfragment;			 		&dir.50_asp_senfragment;/50_asp_senfragment.pkg									&dir.output;/asp/apps/senfragment/sis/50_asp_senfragment.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/senutils/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_asp_senutils;						&dir.50_asp_senutils;/50_asp_senutils.pkg										&dir.output;/asp/apps/senutils/sis/50_asp_senutils.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/SenServDesc/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_ASP_WSDescription;				&dir.50_ASP_WSDescription;/50_ASP_WSDescription.pkg								&dir.output;/asp/apps/SenServDesc/sis/50_ASP_WSDescription.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/asp/apps/SenServiceManager/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_ASP_WSManager;					&dir.50_ASP_WSManager;/50_ASP_WSManager.pkg										&dir.output;/asp/apps/SenServiceManager/sis/50_ASP_WSManager.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/browser/apps/BrCtlBCTest/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_Control;					&dir.50_Browser_Control;/50_Browser_Control.pkg									&dir.output;/browser/apps/BrCtlBCTest/sis/50_Browser_Control.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/browser/apps/DownloadMgrBCTest/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_DownloadMgr; 				&dir.50_Browser_DownloadMgr;/50_Browser_DownloadMgr.pkg							&dir.output;/browser/apps/DownloadMgrBCTest/sis/50_Browser_DownloadMgr.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/browser/apps/FavouritesBCTest/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Browser_Favourites; 				&dir.50_Browser_Favourites;/50_Browser_Favourites.pkg							&dir.output;/browser/apps/FavouritesBCTest/sis/50_Browser_Favourites.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/flashviewerframework/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_CoreUI_FlashViewerFramework; 		&dir.50_CoreUI_FlashViewerFramework;/50_CoreUI_FlashViewerFramework.pkg			&dir.output;/flashviewerframework/sis/50_CoreUI_FlashViewerFramework.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LandmarksUI/BCAppLmkEditor/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_addedit; 						&dir.50_Loc_addedit;/50_Loc_addedit.pkg											&dir.output;/location/apps/LandmarksUI/BCAppLmkEditor/sis/50_Loc_addedit.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/BLID/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_Blid; 						&dir.50_Loc_Blid;/50_Loc_Blid.pkg												&dir.output;/location/apps/BLID/sis/50_Loc_Blid.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LandmarksUI/BCAppLmkItemIdDbCombiInfo/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_itemdbci; 					&dir.50_Loc_itemdbci;/50_Loc_itemdbci.pkg										&dir.output;/location/apps/LandmarksUI/BCAppLmkItemIdDbCombiInfo/sis/50_Loc_itemdbci.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LandmarksEngine/landmarks_api/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_loc_landmarks; 					&dir.50_loc_landmarks;/50_loc_landmarks.pkg										&dir.output;/location/apps/LandmarksEngine/landmarks_api/sis/50_loc_landmarks.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LandmarksEngine/landmarks_database_management_api/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_loc_LmkDBMgmt;		 			&dir.50_loc_LmkDBMgmt;/50_loc_LmkDBMgmt.pkg										&dir.output;/location/apps/LandmarksEngine/landmarks_database_management_api/sis/50_loc_LmkDBMgmt.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LandmarksEngine/landmarks_search_api/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_loc_LmkSearch;		 			&dir.50_loc_LmkSearch;/50_loc_LmkSearch.pkg										&dir.output;/location/apps/LandmarksEngine/landmarks_search_api/sis/50_loc_LmkSearch.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LocationFW/LocAquisition/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_LocAquisition;		 		&dir.50_Loc_LocAquisition;/50_Loc_LocAquisition.pkg								&dir.output;/location/apps/LocationFW/LocAquisition/sis/50_Loc_LocAquisition.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/location/apps/LandmarksUI/BCAppLmkSelector/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Loc_selector;		 				&dir.50_Loc_selector;/50_Loc_selector.pkg										&dir.output;/location/apps/LandmarksUI/BCAppLmkSelector/sis/50_Loc_selector.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/messaging/apps/BCTforMMSClientMTMAPI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Messaging_MMSClientMTM;	 		&dir.50_Messaging_MMSClientMTM;/50_Messaging_MMSClientMTM.pkg					&dir.output;/messaging/apps/BCTforMMSClientMTMAPI/sis/50_Messaging_MMSClientMTM.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/messaging/apps/BCTforSmartMessagingAPI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Messaging_PluginBio; 				&dir.50_Messaging_PluginBio;/50_Messaging_PluginBio.pkg							&dir.output;/messaging/apps/BCTforSmartMessagingAPI/sis/50_Messaging_PluginBio.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/multimedia/apps/BCAppContentManagement/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_MM_ConMgmt; 						&dir.50_MM_ConMgmt;/50_MM_ConMgmt.pkg											&dir.output;/multimedia/apps/BCAppContentManagement/sis/50_MM_ConMgmt.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/multimedia/apps/DRM_CAF/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_MM_DRMCAF; 						&dir.50_MM_DRMCAF;/50_MM_DRMCAF.pkg												&dir.output;/multimedia/apps/DRM_CAF/sis/50_MM_DRMCAF.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/mrt/apps/glib/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_mrt_glib; 						&dir.50_mrt_glib;/50_mrt_glib.pkg												&dir.output;/mrt/apps/glib/sis/50_mrt_glib.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/mrt/apps/ssl/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_mrt_ssl; 							&dir.50_mrt_ssl;/50_mrt_ssl.pkg													&dir.output;/mrt/apps/ssl/sis/50_mrt_ssl.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/mrt/apps/stdcpp/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_mrt_stdcpp; 						&dir.50_mrt_stdcpp;/50_mrt_stdcpp.pkg											&dir.output;/mrt/apps/stdcpp/sis/50_mrt_stdcpp.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/messaging/apps/BCTForSendUIAPI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_msg_sendui; 						&dir.50_msg_sendui;/50_msg_sendui.pkg											&dir.output;/messaging/apps/BCTForSendUIAPI/sis/50_msg_sendui.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/networking/apps/ConnectionSettings/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_NW_ConnSet; 						&dir.50_NW_ConnSet;/50_NW_ConnSet.pkg											&dir.output;/networking/apps/ConnectionSettings/sis/50_NW_ConnSet.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/networking/apps/ConnectionSettingsUI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_NW_ConnSetUI; 					&dir.50_NW_ConnSetUI;/50_NW_ConnSetUI.pkg										&dir.output;/networking/apps/ConnectionSettingsUI/sis/50_NW_ConnSetUI.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/pim/apps/PhoneBook/BCTestPbkDataAddEdit/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkDataAddEdit;		 		&dir.50_PIM_PbkDataAddEdit;/50_PIM_PbkDataAddEdit.pkg							&dir.output;/pim/apps/PhoneBook/BCTestPbkDataAddEdit/sis/50_PIM_PbkDataAddEdit.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/pim/apps/PhoneBook/BCTestPbkDataManagement/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkDataMgmt; 					&dir.50_PIM_PbkDataMgmt;/50_PIM_PbkDataMgmt.pkg									&dir.output;/pim/apps/PhoneBook/BCTestPbkDataManagement/sis/50_PIM_PbkDataMgmt.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/pim/apps/PhoneBook/BCTestPbkFetchAPI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkFetchAPI; 					&dir.50_PIM_PbkFetchAPI;/50_PIM_PbkFetchAPI.pkg									&dir.output;/pim/apps/PhoneBook/BCTestPbkFetchAPI/sis/50_PIM_PbkFetchAPI.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/pim/apps/PhoneBook/BCTestPbkUIUtil/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkUIUtil; 					&dir.50_PIM_PbkUIUtil;/50_PIM_PbkUIUtil.pkg										&dir.output;/pim/apps/PhoneBook/BCTestPbkUIUtil/sis/50_PIM_PbkUIUtil.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/pim/apps/PhoneBook/BCTestPbkVcardImportExport/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_PbkVcard; 					&dir.50_PIM_PbkVcard;/50_PIM_PbkVcard.pkg										&dir.output;/pim/apps/PhoneBook/BCTestPbkVcardImportExport/sis/50_PIM_PbkVcard.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/pim/apps/SpeedDial/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_PIM_Spdial; 						&dir.50_PIM_Spdial;/50_PIM_Spdial.pkg											&dir.output;/pim/apps/SpeedDial/sis/50_PIM_Spdial.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/rtcct/apps/IsvTelephonyTest/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_RTC-CT_IsvTelephony; 				&dir.50_RTC-CT_IsvTelephony;/50_RTC-CT_IsvTelephony.pkg							&dir.output;/rtcct/apps/IsvTelephonyTest/sis/50_RTC-CT_IsvTelephony.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/rtcct/apps/BCLogEngineTest/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_RTC-CT_LogEngine; 				&dir.50_RTC-CT_LogEngine;/50_RTC-CT_LogEngine.pkg								&dir.output;/rtcct/apps/BCLogEngineTest/sis/50_RTC-CT_LogEngine.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/syncandprovisioning/apps/ProfilesEngineWrapperAPI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_SP_PROENG;	 					&dir.50_SP_PROENG;/50_SP_PROENG.pkg												&dir.output;/syncandprovisioning/apps/ProfilesEngineWrapperAPI/sis/50_SP_PROENG.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioConvertUtility/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioConvertUtility; 		&dir.50_Symbian_AudioConvertUtility;/50_Symbian_AudioConvertUtility.pkg			&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioConvertUtility/sis/50_Symbian_AudioConvertUtility.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioInputStream/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioInputStream; 		&dir.50_Symbian_AudioInputStream;/50_Symbian_AudioInputStream.pkg				&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioInputStream/sis/50_Symbian_AudioInputStream.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioOutputStream/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioOutputStream; 		&dir.50_Symbian_AudioOutputStream;/50_Symbian_AudioOutputStream.pkg				&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioOutputStream/sis/50_Symbian_AudioOutputStream.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioPlayerUtility/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioPlayerUtility;	 	&dir.50_Symbian_AudioPlayerUtility;/50_Symbian_AudioPlayerUtility.pkg			&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioPlayerUtility/sis/50_Symbian_AudioPlayerUtility.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioRecorderUtility/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_AudioRecorderUtility; 	&dir.50_Symbian_AudioRecorderUtility;/50_Symbian_AudioRecorderUtility.pkg		&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioRecorderUtility/sis/50_Symbian_AudioRecorderUtility.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/base/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_Base; 					&dir.50_Symbian_Base;/50_Symbian_Base.pkg										&dir.output;/symbian/apps/base/sis/50_Symbian_Base.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/Bluetooth/T_BTSockAddrAPI/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_BTSockAddr; 				&dir.50_Symbian_BTSockAddr;/50_Symbian_BTSockAddr.pkg							&dir.output;/symbian/apps/Bluetooth/T_BTSockAddrAPI/sis/50_Symbian_BTSockAddr.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/SysLibs/ecom/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_Ecom; 					&dir.50_Symbian_Ecom;/50_Symbian_Ecom.pkg										&dir.output;/symbian/apps/SysLibs/ecom/sis/50_Symbian_Ecom.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/graphics/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_symbian_graphics; 				&dir.50_symbian_graphics;/50_symbian_graphics.pkg								&dir.output;/symbian/apps/graphics/sis/50_symbian_graphics.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/icl/T_ImageDecoder/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_ImageDecoder; 			&dir.50_Symbian_ImageDecoder;/50_Symbian_ImageDecoder.pkg						&dir.output;/symbian/apps/multimedia/icl/T_ImageDecoder/sis/50_Symbian_ImageDecoder.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/icl/T_ImageEncoder/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_ImageEncoder; 			&dir.50_Symbian_ImageEncoder;/50_Symbian_ImageEncoder.pkg						&dir.output;/symbian/apps/multimedia/icl/T_ImageEncoder/sis/50_Symbian_ImageEncoder.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/ecam/T_Camera/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_Camera;	 				&dir.50_Symbian_T_Camera;/50_Symbian_T_Camera.pkg								&dir.output;/symbian/apps/multimedia/ecam/T_Camera/sis/50_Symbian_T_Camera.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioToneUtility/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_MdaAudioToneUtility;	&dir.50_Symbian_T_MdaAudioToneUtility;/50_Symbian_T_MdaAudioToneUtility.pkg		&dir.output;/symbian/apps/multimedia/mmf/T_MdaAudioToneUtility/sis/50_Symbian_T_MdaAudioToneUtility.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/symbian/apps/multimedia/mmf/T_MidiClientUtility/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Symbian_T_MidiClientUtility;		&dir.50_Symbian_T_MidiClientUtility;/50_Symbian_T_MidiClientUtility.pkg			&dir.output;/symbian/apps/multimedia/mmf/T_MidiClientUtility/sis/50_Symbian_T_MidiClientUtility.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/syncandprovisioning/apps/StartupListManagementAPI/SelfSignedStartupApp/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Sync_SelfSignedStartupListMgmt;	&dir.50_Sync_SelfSignedStartupListMgmt;/50_Sync_SelfSignedStartupListMgmt.pkg	&dir.output;/syncandprovisioning/apps/StartupListManagementAPI/SelfSignedStartupApp/sis/50_Sync_SelfSignedStartupListMgmt.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/syncandprovisioning/apps/StartupListManagementAPI/StartupApp/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_Sync_StartupListMgmt;				&dir.50_Sync_StartupListMgmt;/50_Sync_StartupListMgmt.pkg						&dir.output;/syncandprovisioning/apps/StartupListManagementAPI/StartupApp/sis/50_Sync_StartupListMgmt.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/systemsw/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_systemsw;							&dir.50_systemsw;/50_systemsw.pkg												&dir.output;/systemsw/sis/50_systemsw.sis" />
+				<command cmd="&cmd.makedirs;	&dir.output;/uifw/sis" />
+				<command cmd="&cmd.sisbld;		-d&dir.50_UIFW;								&dir.50_UIFW;/50_UIFW.pkg														&dir.output;/uifw/sis/50_UIFW.sis" />
+				<command cmd="&cmd.remove;		bcs.zip" />
+				<command cmd="&cmd.zip;			bcs.zip	bcs/*" />
 			</meta>
 		</layer>
 	</systemModel>
