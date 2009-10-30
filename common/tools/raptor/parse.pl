@@ -91,6 +91,10 @@ if (-d $basedir)
 mkdir($basedir);
 #print "Created dir $basedir.\n";
 
+# create empty summary file anyway
+open(SUMMARY, ">$basedir/summary.csv");
+close(SUMMARY);
+
 my $saxhandler = RaptorSAXHandler->new();
 if ($releaseable_module)
 {
