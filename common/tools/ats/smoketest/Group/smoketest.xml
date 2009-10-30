@@ -41,6 +41,24 @@
 					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
+							<param type="data"/>
+							<param src="20KBody.txt"/>
+							<param dst="c:/smoketest/emailmessage/20KBody.txt"/>
+							<param component-path="smoketest\emailmessage" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="popsettings_test908.txt"/>
+							<param dst="c:/smoketest/emailsettings/popsettings_test908.txt"/>
+							<param component-path="smoketest\emailsettings" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
 							<param type="binary"/>
 							<param src="Smoketest_Agenda_Server.exe"/>
 							<param dst="c:\sys\bin\Smoketest_Agenda_Server.exe"/>
@@ -128,6 +146,33 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_msgutilityserver.dll"/>
+							<param dst="c:\sys\bin\t_msgutilityserver.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>					
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_msgpopserver.exe"/>
+							<param dst="c:\sys\bin\t_msgpopserver.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>					
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="t_msgsmtpserver.exe"/>
+							<param dst="c:\sys\bin\t_msgsmtpserver.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>						
 					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
@@ -183,6 +228,17 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_email.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_email.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
 				</case>
 			</set>
 		</session>
@@ -199,7 +255,12 @@
 		<file>smoketest/general/smoketest_mess.script</file>
 		<file>smoketest/general/smoketest_timew.ini</file>
 		<file>smoketest/general/smoketest_timew.script</file>
+		<file>smoketest/general/smoketest_email.ini</file>
+		<file>smoketest/general/smoketest_email.script</file>
 		<file>smoketest/sms/general/message1.txt</file>
+		<file>smoketest/general/MachineName.txt</file>
+		<file>smoketest/emailmessage/general/20KBody.txt</file>
+		<file>smoketest/emailsettings/general/popsettings_test908.txt</file>
 		<file>smoketest/winscw_udeb/SmokeTestSecureFSclient.dll</file>
 		<file>smoketest/winscw_udeb/SmokeTestSecureFSserver.exe</file>
 		<file>smoketest/winscw_udeb/Smoketest_Agenda_Server.exe</file>
@@ -209,5 +270,8 @@
 		<file>smoketest/winscw_udeb/Smoketest_System.exe</file>
 		<file>smoketest/winscw_udeb/Smoketest_Timew_Server.exe</file>
 		<file>smoketest/winscw_udeb/SmokeTest_Utils.dll</file>
+		<file>smoketest/winscw_udeb/t_msgutilityserver.dll</file>
+		<file>smoketest/winscw_udeb/t_msgpopserver.exe</file>
+		<file>smoketest/winscw_udeb/t_msgsmtpserver.exe</file>
 	</files>
 </test>

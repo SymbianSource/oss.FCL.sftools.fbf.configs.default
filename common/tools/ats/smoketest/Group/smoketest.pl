@@ -9,6 +9,8 @@ rmtree "temp";
 mkpath "temp/smoketest/general";
 mkpath "temp/smoketest/winscw_udeb";
 mkpath "temp/smoketest/sms/general";
+mkpath "temp/smoketest/emailmessage/general";
+mkpath "temp/smoketest/emailsettings/general";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("smoketest.xml",												"temp/test.xml");
@@ -26,7 +28,12 @@ copy($epoc . "data/z/smoketest/smoketest_syncmlapp.script",			"temp/smoketest/ge
 copy($epoc . "data/z/smoketest/smoketest_system.script",			"temp/smoketest/general/smoketest_system.script");
 copy($epoc . "data/z/smoketest/smoketest_timew.ini",				"temp/smoketest/general/smoketest_timew.ini");
 copy($epoc . "data/z/smoketest/smoketest_timew.script",				"temp/smoketest/general/smoketest_timew.script");
+copy($epoc . "data/z/smoketest/smoketest_email.ini",				"temp/smoketest/general/smoketest_email.ini");
+copy($epoc . "data/z/smoketest/smoketest_email.script",				"temp/smoketest/general/smoketest_email.script");
 copy($epoc . "data/z/smoketest/sms/message1.txt",					"temp/smoketest/sms/general/message1.txt");
+copy($epoc . "data/z/smoketest/MachineName.txt",					"temp/smoketest/general/MachineName.txt");
+copy($epoc . "data/z/smoketest/emailmessage/20KBody.txt",			"temp/smoketest/emailmessage/general/20KBody.txt");
+copy($epoc . "data/z/smoketest/emailsettings/popsettings_test908.txt",	"temp/smoketest/emailsettings/general/popsettings_test908.txt");
 copy($epoc . "release/winscw/udeb/SmokeTestSecureFSclient.dll",		"temp/smoketest/winscw_udeb/SmokeTestSecureFSclient.dll");
 copy($epoc . "release/winscw/udeb/SmokeTestSecureFSserver.exe",		"temp/smoketest/winscw_udeb/SmokeTestSecureFSserver.exe");
 copy($epoc . "release/winscw/udeb/Smoketest_Agenda_Server.exe",		"temp/smoketest/winscw_udeb/Smoketest_Agenda_Server.exe");
@@ -36,5 +43,8 @@ copy($epoc . "release/winscw/udeb/Smoketest_Mess_Server.exe",		"temp/smoketest/w
 copy($epoc . "release/winscw/udeb/Smoketest_System.exe",			"temp/smoketest/winscw_udeb/Smoketest_System.exe");
 copy($epoc . "release/winscw/udeb/Smoketest_Timew_Server.exe",		"temp/smoketest/winscw_udeb/Smoketest_Timew_Server.exe");
 copy($epoc . "release/winscw/udeb/SmokeTest_Utils.dll",				"temp/smoketest/winscw_udeb/SmokeTest_Utils.dll");
+copy($epoc . "release/winscw/udeb/t_msgutilityserver.dll",			"temp/smoketest/winscw_udeb/t_msgutilityserver.dll");
+copy($epoc . "release/winscw/udeb/t_msgpopserver.exe",				"temp/smoketest/winscw_udeb/t_msgpopserver.exe");
+copy($epoc . "release/winscw/udeb/t_msgsmtpserver.exe",				"temp/smoketest/winscw_udeb/t_msgsmtpserver.exe");
 
 system("7z a -tzip smoketest.zip ./temp/*");

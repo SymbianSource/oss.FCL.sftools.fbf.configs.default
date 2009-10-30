@@ -1,0 +1,30 @@
+//
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+RUN_UTILS MkDir			c:\smoketest\
+RUN_UTILS MkDir 		c:\smoketest\EmailMessage\
+RUN_UTILS MkDir 		c:\smoketest\emailsettings\
+
+RUN_UTILS CopyFile 		z:\smoketest\smoketest_email.ini	c:\smoketest\smoketest_email.ini
+RUN_UTILS MakeReadWrite	c:\smoketest\smoketest_email.ini
+RUN_UTILS CopyFile 		z:\smoketest\EmailMessage\20KBody.txt	c:\smoketest\EmailMessage\20KBody.txt
+RUN_UTILS MakeReadWrite c:\smoketest\EmailMessage\20KBody.txt
+RUN_UTILS CopyFile 		z:\smoketest\emailsettings\popsettings_test908.txt	c:\smoketest\emailsettings\popsettings_test908.txt
+RUN_UTILS MakeReadWrite c:\smoketest\emailsettings\popsettings_test908.txt
+RUN_UTILS CopyFile 		z:\smoketest\MachineName.txt	c:\smoketest\MachineName.txt
+RUN_UTILS MakeReadWrite c:\smoketest\MachineName.txt
+RUN_UTILS CopyFile 		z:\smoketest\smoketest_email.script	c:\smoketest\smoketest_email.script
+RUN_UTILS MakeReadWrite	c:\smoketest\smoketest_email.script

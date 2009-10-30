@@ -1,0 +1,39 @@
+//
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+PRINT Run Email smoketest
+
+LOAD_SUITE		T_MsgPopServer		-SharedData
+LOAD_SUITE		T_MsgSmtpServer 	-SharedData
+DELAY 1000
+
+START_TESTCASE			SMOKE_EMAIL_0001
+//!	@SYMTestCaseID		SMOKE_EMAIL_0001
+//!	@SYMTestCaseDesc	Create a new email message with 20KB plain body text
+
+PRINT Setup Begins #####################################################
+
+RUN_TEST_STEP 1000 T_MsgPopServer	StartUp
+RUN_TEST_STEP 1000 T_MsgSmtpServer	StartUp
+
+RUN_TEST_STEP 1000 T_MsgPopServer	CreatePopAccount		c:\smoketest\smoketest_email.ini 		0001-CreatePopAccount
+RUN_TEST_STEP 1000 T_MsgSmtpServer	SmtpCreateNewMessageWithPlainBodyText c:\smoketest\smoketest_email.ini 		0001-SmtpCreateNewMessageWithPlainBodyText
+
+RUN_TEST_STEP 1000 T_MsgSmtpServer	ShutDown
+RUN_TEST_STEP 1000 T_MsgPopServer	ShutDown
+
+PRINT Execute Completed ################################################
+END_TESTCASE			SMOKE_EMAIL_0001

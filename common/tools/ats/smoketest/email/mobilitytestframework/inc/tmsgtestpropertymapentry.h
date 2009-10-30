@@ -1,4 +1,4 @@
-// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of the License "Symbian Foundation License v1.0"
@@ -11,15 +11,25 @@
 // Contributors:
 //
 // Description:
-// For automated smoketest
-// 
 //
 
-#include "../Utils/group/bld.inf"
-#include "../agenda/Group/bld.inf"
-#include "../apploader/Group/bld.inf"
-#include "../contacts/group/bld.inf"
-#include "../messaging/Group/bld.inf"
-#include "../System/Group/bld.inf"
-#include "../Timew/Group/bld.inf"
-#include "../email/group/bld.inf"
+
+
+/**
+ @file
+ @internalTechnology
+ @released
+*/
+
+#ifndef __TMSGTESTPROPERTYMAPENTRY_H__
+#define __TMSGTESTPROPERTYMAPENTRY_H__
+
+#include <e32base.h>
+
+struct TMsgTestPropertyMapEntry
+	{
+	const char* name;
+	TInt value;
+	};
+
+#endif //__TMSGTESTPROPERTYMAPENTRY_H__
