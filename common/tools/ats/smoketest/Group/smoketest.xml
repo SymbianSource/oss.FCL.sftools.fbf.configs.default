@@ -8,13 +8,19 @@
         <type>DiamondsAction</type>
     </postAction>
 	<name>smoketest</name>
+    <target>
+        <device rank="master" alias="emulator_udeb_tef">
+            <property name="HARNESS" value="GENERIC" />
+        </device>
+        <device rank="master" alias="emulator_udeb_stif">
+            <property name="HARNESS" value="ATSINTERFACE" />
+        </device>
+    </target>
 	<plan id="" name="WINSCW UDEB SmokeTest" harness="GENERIC" enabled="true" passrate="100">
 		<session id="" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
 			<set id="" name="GENERIC smoke tests" harness="GENERIC" enabled="true" passrate="100">
             	<target>
-                    <device rank="master" alias="emulator_udeb_tef">
-                        <property name="HARNESS" value="GENERIC" />
-                    </device>
+                    <device rank="master" alias="emulator_udeb_tef" />
                 </target>
 				<case id="" name="install and run GENERIC smoketests" harness="GENERIC" enabled="true" passrate="100">
 					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
@@ -239,10 +245,8 @@
 				</case>
 			</set>
             <set id="" name="ATSINTERFACE smoke tests" harness="ATSINTERFACE" enabled="true" passrate="100">
-            	<target>
-                    <device rank="master" alias="emulator_udeb_stif">
-                        <property name="HARNESS" value="ATSINTERFACE" />
-                    </device>
+                <target>
+                    <device rank="master" alias="emulator_udeb_stif" />
                 </target>
                 <case id="" name="install and run ATSINTERFACE smoketests" harness="ATSINTERFACE" enabled="true" passrate="100">
                     <step id="" name="MakeDir (SPD_Logs)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
