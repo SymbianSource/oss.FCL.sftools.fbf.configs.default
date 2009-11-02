@@ -55,6 +55,7 @@ my $CATEGORY_RECIPEFAILURE_ARMLINK_COULDNOTOPENFILE = 'armlink_could_not_open_fi
 my $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE = 'elf2e32_could_not_open_file';
 my $CATEGORY_RECIPEFAILURE_ARMAR_FILEDOESNOTEXIST = 'armar_file_does_not_exist';
 my $CATEGORY_RECIPEFAILURE_ARMCC_CONTROLLINGEXPRESSIONISCONSTANT = 'armcc_controlling_expression_is_constant';
+my $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT = 'armcc_internal_fault';
 my $CATEGORY_RECIPEFAILURE_ARMCC_GENERICWARNINGSERRORS = 'armcc_generic_warnings_errors';
 
 sub process
@@ -93,6 +94,12 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_CONTROLLINGEXPRESSIONISCONSTANT;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,/armcc.exe , and $text =~ m,Internal fault: ,)
+	{
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	# the following captures generic armcc error/warnings, not captured by regexps above
