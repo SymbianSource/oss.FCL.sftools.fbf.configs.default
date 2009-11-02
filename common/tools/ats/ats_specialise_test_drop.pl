@@ -125,13 +125,15 @@ $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
 
 if ($host_name) { # Also insert specified host name
-	
-	my $device_properties = $test_drop->{'test'}->{'target'}->[0]->{'device'}->[0]->{'property'};
-	my $num_properties = @{$device_properties};
-	$device_properties->[$num_properties]= { 'name' => "HOST", 'value' => "$host_name" };
-	$test_drop->{'test'}->{'target'}->[0]->{'device'}->[0]->{'property'} = $device_properties;
-    #print Dumper($device_properties);
-    #exit(0);		
+	my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};
+    
+    foreach my $device (@{$devices}) {
+        my $device_properties = $device->{'property'};
+        my $num_properties = @{$device_properties};
+        
+        $device_properties->[$num_properties] = { 'name' => "HOST", 'value' => "$host_name" };
+        $device->{'property'} = $device_properties;
+    }
 }
 
 if ($srctype =~ /^\.xml$/i ) { # Input file was XML
