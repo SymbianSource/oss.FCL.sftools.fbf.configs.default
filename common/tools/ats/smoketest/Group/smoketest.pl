@@ -11,6 +11,7 @@ mkpath "temp/smoketest/winscw_udeb";
 mkpath "temp/smoketest/sms/general";
 mkpath "temp/smoketest/emailmessage/general";
 mkpath "temp/smoketest/emailsettings/general";
+mkpath "temp/smoketest/general/TestFramework";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("smoketest.xml",												"temp/test.xml");
@@ -46,5 +47,8 @@ copy($epoc . "release/winscw/udeb/SmokeTest_Utils.dll",				"temp/smoketest/winsc
 copy($epoc . "release/winscw/udeb/t_msgutilityserver.dll",			"temp/smoketest/winscw_udeb/t_msgutilityserver.dll");
 copy($epoc . "release/winscw/udeb/t_msgpopserver.exe",				"temp/smoketest/winscw_udeb/t_msgpopserver.exe");
 copy($epoc . "release/winscw/udeb/t_msgsmtpserver.exe",				"temp/smoketest/winscw_udeb/t_msgsmtpserver.exe");
+
+copy($epoc . "release/winscw/udeb/ProfileSmokeTestModule.dll",      "temp/smoketest/winscw_udeb/ProfileSmokeTestModule.dll");
+copy($epoc . "winscw/c/TestFramework/ProfileSmokeTestModule.cfg",   "temp/smoketest/general/TestFramework/ProfileSmokeTestModule.cfg");
 
 system("7z a -tzip smoketest.zip ./temp/*");

@@ -8,18 +8,15 @@
         <type>DiamondsAction</type>
     </postAction>
 	<name>smoketest</name>
-	<target>
-        <device rank="master" alias="emulator_udeb">
-            <property name="HARNESS" value="GENERIC" />
-        </device>
-	</target>
-	<plan id="1.01" name="WINSCW UDEB SmokeTest" harness="GENERIC" enabled="true" passrate="100">
-		<target>
-			<device rank="master" alias="emulator_udeb"/>
-		</target>
-		<session id="1.01.1" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
-			<set id="1.01.1.1" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
-				<case id="1.01.1.1.1" name="install and run smoketests" harness="GENERIC" enabled="true" passrate="100">
+	<plan id="" name="WINSCW UDEB SmokeTest" harness="GENERIC" enabled="true" passrate="100">
+		<session id="" name="smoke tests" harness="GENERIC" enabled="true" passrate="100">
+			<set id="" name="GENERIC smoke tests" harness="GENERIC" enabled="true" passrate="100">
+            	<target>
+                    <device rank="master" alias="emulator_udeb_tef">
+                        <property name="HARNESS" value="GENERIC" />
+                    </device>
+                </target>
+				<case id="" name="install and run GENERIC smoketests" harness="GENERIC" enabled="true" passrate="100">
 					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -241,6 +238,48 @@
 					</step>
 				</case>
 			</set>
+            <set id="" name="ATSINTERFACE smoke tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+            	<target>
+                    <device rank="master" alias="emulator_udeb_stif">
+                        <property name="HARNESS" value="ATSINTERFACE" />
+                    </device>
+                </target>
+                <case id="" name="install and run ATSINTERFACE smoketests" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="MakeDir (SPD_Logs)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml"/> 
+                        </params>
+                    </step>
+                    <step id="" name="ProfileSmokeTestModule.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ProfileSmokeTestModule.dll"/>
+							<param dst="c:\sys\bin\ProfileSmokeTestModule.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+                    <step id="" name="ProfileSmokeTestModule.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/ProfileSmokeTestModule.cfg"/>
+							<param dst="c:\TestFramework\ProfileSmokeTestModule.cfg"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="" name="ProfileSmokeTestModule (execute)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\TestFramework\ProfileSmokeTestModule.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+							<param timeout="600"/>
+						</params>
+					</step>
+                </case>
+            </set>
 		</session>
 	</plan>
 	<files>
@@ -273,5 +312,7 @@
 		<file>smoketest/winscw_udeb/t_msgutilityserver.dll</file>
 		<file>smoketest/winscw_udeb/t_msgpopserver.exe</file>
 		<file>smoketest/winscw_udeb/t_msgsmtpserver.exe</file>
+        <file>smoketest/winscw_udeb/ProfileSmokeTestModule.dll</file>
+        <file>smoketest/general/TestFramework/ProfileSmokeTestModule.cfg</file>
 	</files>
 </test>
