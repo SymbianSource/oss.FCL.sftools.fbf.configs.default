@@ -24,7 +24,7 @@ PRJ_PLATFORMS
 PRJ_TESTEXPORTS
 // NOTE: If using ARS requirements all export operations should be done under this.
 // 'abld test export'
-../conf/ProfileSmokeTestModule.cfg c:/TestFramework/ProfileSmokeTestModule.cfg
+../conf/ProfileSmokeTestModule.cfg c:/smoketest/ProfileSmokeTestModule.cfg
 
 PRJ_TESTMMPFILES
 
