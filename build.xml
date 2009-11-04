@@ -10,6 +10,11 @@
   <!-- import job properties -->
   <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" optional="yes"/>
   
+  <!-- Override Helium defaults to allow winscw builds without RVCT -->
+  <target name="check-env-arm-license"/>
+  <target name="get-arm-license"/>
+  <target name="set-arm-version"/>
+  
   <!-- set sf.spec.job.name and sf.spec.job.codeline if they are not specified in the project's job_props.ant.xml -->
   <path id="lib.path">
     <fileset dir="${helium.dir}/external/antlibs" includes="**/*.jar"/>
