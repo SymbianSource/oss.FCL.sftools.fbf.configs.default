@@ -57,6 +57,8 @@ my $CATEGORY_RECIPEFAILURE_ARMAR_FILEDOESNOTEXIST = 'armar_file_does_not_exist';
 my $CATEGORY_RECIPEFAILURE_ARMCC_CONTROLLINGEXPRESSIONISCONSTANT = 'armcc_controlling_expression_is_constant';
 my $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT = 'armcc_internal_fault';
 my $CATEGORY_RECIPEFAILURE_ARMCC_GENERICWARNINGSERRORS = 'armcc_generic_warnings_errors';
+my $CATEGORY_RECIPEFAILURE_ELF2E32_SYMBOLMISSINGFROMELFFILE = 'elf2e32_symbol_missing_from_elf_file';
+
 
 sub process
 {
@@ -82,6 +84,12 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,elf2e32 : Error: E1036: Symbol .* Missing from ELF File,)
+	{
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ELF2E32_SYMBOLMISSINGFROMELFFILE;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,Error: L6833E: File '.*' does not exist,)
