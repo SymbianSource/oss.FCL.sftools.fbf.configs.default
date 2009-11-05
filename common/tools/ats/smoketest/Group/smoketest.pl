@@ -49,6 +49,8 @@ copy($epoc . "release/winscw/udeb/t_msgsmtpserver.exe",				"temp/smoketest/winsc
 
 copy($epoc . "release/winscw/udeb/ProfileSmokeTestModule.dll",      "temp/smoketest/winscw_udeb/ProfileSmokeTestModule.dll");
 copy($epoc . "winscw/c/smoketest/ProfileSmokeTestModule.cfg",       "temp/smoketest/general/ProfileSmokeTestModule.cfg");
+copy($epoc . "release/winscw/udeb/AppInstallSmokeTestModule.dll",   "temp/smoketest/winscw_udeb/AppInstallSmokeTestModule.dll");
+copy($epoc . "winscw/c/smoketest/AppInstallSmokeTestModule.cfg",    "temp/smoketest/general/AppInstallSmokeTestModule.cfg");
 copy($epoc . "release/winscw/udeb/TestNpdApi.dll",					"temp/smoketest/winscw_udeb/TestNpdApi.dll");
 copy($epoc . "data/c/smoketest/smoketest_notepad.cfg",				"temp/smoketest/general/smoketest_notepad.cfg");
 copy($epoc . "data/c/smoketest/ui_TestNpdApi.cfg",					"temp/smoketest/general/ui_TestNpdApi.cfg");

@@ -24,7 +24,7 @@ PRJ_PLATFORMS
 PRJ_TESTEXPORTS
 // NOTE: If using ARS requirements all export operations should be done under this.
 // 'abld test export'
-../conf/AppInstallSmokeTestModule.cfg	c:/smoketest/AppInstallSmokeTest.cfg
+../conf/AppInstallSmokeTestModule.cfg	c:/smoketest/AppInstallSmokeTestModule.cfg
 
 PRJ_EXPORTS
 // Specify the source file followed by its destination here

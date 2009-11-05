@@ -273,16 +273,7 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
-					<step id="" name="ProfileSmokeTestModule (execute)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="true">
-						<command>execute</command>
-						<params>
-							<param file="atsinterface.exe"/>
-							<param parameters="-testmodule testscripter -config c:\smoketest\ProfileSmokeTestModule.cfg"/>
-							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
-							<param timeout="600"/>
-						</params>
-					</step>
-                    <step id="" name="TestNpdApi.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+					<step id="" name="TestNpdApi.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
 							<param type="binary"/>
@@ -307,6 +298,33 @@
 							<param src="ui_TestNpdApi.cfg"/>
 							<param dst="c:\smoketest\ui_TestNpdApi.cfg"/>
 							<param component-path="smoketest" />
+						</params>
+					</step>
+                    <step id="" name="AppInstallSmokeTestModule.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="AppInstallSmokeTestModule.dll"/>
+							<param dst="c:\sys\bin\AppInstallSmokeTestModule.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+                    <step id="" name="AppInstallSmokeTestModule.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="AppInstallSmokeTestModule.cfg"/>
+							<param dst="c:\smoketest\AppInstallSmokeTestModule.cfg"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="" name="AppInstallSmokeTestModule (execute)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\smoketest\AppInstallSmokeTestModule.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
+							<param timeout="600"/>
 						</params>
 					</step>
 					<step id="" name="smoketest_notepad (execute)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="true">
@@ -357,5 +375,7 @@
         <file>smoketest/winscw_udeb/TestNpdApi.dll</file>		
 		<file>smoketest/general/smoketest_notepad.cfg</file>
 		<file>smoketest/general/ui_TestNpdApi.cfg</file>
+        <file>smoketest/winscw_udeb/AppInstallSmokeTestModule.dll</file>
+        <file>smoketest/general/AppInstallSmokeTestModule.cfg</file>
 	</files>
 </test>

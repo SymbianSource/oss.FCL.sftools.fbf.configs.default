@@ -25,3 +25,4 @@
 #include "../email/group/bld.inf"
 #include "../profiles/group/Bld.inf"
 #include "../notepad/group/bld.inf"
+#include "../appinstall/group/Bld.inf"
