@@ -15,11 +15,10 @@
 *
 */
 
-#ifndef PROFILESMOKETESTMODULE_H
-#define PROFILESMOKETESTMODULE_H
+#ifndef APPINSTALLSMOKETESTMODULE_H
+#define APPINSTALLSMOKETESTMODULE_H
 
 //  INCLUDES
-#include <f32file.h>
 #include <StifLogger.h>
 #include <TestScripterInternal.h>
 #include <StifTestModule.h>
@@ -35,17 +34,18 @@
 #define TEST_CLASS_VERSION_BUILD 0
 
 // Logging path
-_LIT( KProfileSmokeTestModuleLogPath, "\\logs\\testframework\\ProfileSmokeTestModule\\" ); 
+_LIT( KAppInstallSmokeTestModuleLogPath, "\\logs\\testframework\\AppInstallSmokeTestModule\\" ); 
 // Log file
-_LIT( KProfileSmokeTestModuleLogFile, "ProfileSmokeTestModule.txt" ); 
-_LIT( KProfileSmokeTestModuleLogFileWithTitle, "ProfileSmokeTestModule_[%S].txt" );
+_LIT( KAppInstallSmokeTestModuleLogFile, "AppInstallSmokeTestModule.txt" ); 
+_LIT( KAppInstallSmokeTestModuleLogFileWithTitle, "AppInstallSmokeTestModule_[%S].txt" );
 
 // FUNCTION PROTOTYPES
 //?type ?function_name(?arg_list);
 
 // FORWARD DECLARATIONS
 //class ?FORWARD_CLASSNAME;
-class CProfileSmokeTestModule;
+class CAppMngr2Runtime;
+class CAppInstallSmokeTestModule;
 
 // DATA TYPES
 //enum ?declaration
@@ -55,25 +55,25 @@ class CProfileSmokeTestModule;
 // CLASS DECLARATION
 
 /**
-*  CProfileSmokeTestModule test class for STIF Test Framework TestScripter.
+*  CAppInstallSmokeTestModule test class for STIF Test Framework TestScripter.
 *  ?other_description_lines
 *
 *  @lib ?library
 *  @since ?Series60_version
 */
-NONSHARABLE_CLASS(CProfileSmokeTestModule) : public CScriptBase
+NONSHARABLE_CLASS(CAppInstallSmokeTestModule) : public CScriptBase
     {
     public:  // Constructors and destructor
 
         /**
         * Two-phased constructor.
         */
-        static CProfileSmokeTestModule* NewL( CTestModuleIf& aTestModuleIf );
+        static CAppInstallSmokeTestModule* NewL( CTestModuleIf& aTestModuleIf );
 
         /**
         * Destructor.
         */
-        virtual ~CProfileSmokeTestModule();
+        virtual ~CAppInstallSmokeTestModule();
 
     public: // New functions
 
@@ -117,7 +117,7 @@ NONSHARABLE_CLASS(CProfileSmokeTestModule) : public CScriptBase
         /**
         * C++ default constructor.
         */
-        CProfileSmokeTestModule( CTestModuleIf& aTestModuleIf );
+        CAppInstallSmokeTestModule( CTestModuleIf& aTestModuleIf );
 
         /**
         * By default Symbian 2nd phase constructor is private.
@@ -145,9 +145,9 @@ NONSHARABLE_CLASS(CProfileSmokeTestModule) : public CScriptBase
         * @param aItem Script line containing parameters.
         * @return Symbian OS error code.
         */
-        virtual TInt CheckActiveProfileL( CStifItemParser& aItem);
-        virtual TInt SetActiveProfileL( CStifItemParser& aItem );
-
+        virtual TInt InstallAppL( CStifItemParser& aItem );
+        virtual TInt UninstallAppL( CStifItemParser& aItem );
+        
         /**
          * Method used to log version of test class
          */
@@ -165,7 +165,7 @@ NONSHARABLE_CLASS(CProfileSmokeTestModule) : public CScriptBase
         //?data_declaration;
 
     private:    // Data
-        RFs iFs;
+    	RPointerArray<CAppMngr2Runtime> iPlugins;
         // ?one_line_short_description_of_data
         //?data_declaration;
 
@@ -181,6 +181,6 @@ NONSHARABLE_CLASS(CProfileSmokeTestModule) : public CScriptBase
 
     };
 
-#endif      // PROFILESMOKETESTMODULE_H
+#endif      // APPINSTALLSMOKETESTMODULE_H
 
 // End of File

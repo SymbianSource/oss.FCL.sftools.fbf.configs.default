@@ -19,13 +19,9 @@
 #include <e32svr.h>
 #include <StifParser.h>
 #include <Stiftestinterface.h>
-#include <MProEngEngine.h>
-#include <MProEngProfile.h>
-#include <MProEngProfileName.h>
-#include <MProEngToneSettings.h>
-#include <ProEngFactory.h>
-#include <Profile.hrh>
-#include "ProfileSmokeTestModule.h"
+#include <ImplementationInformation.h>
+#include <SwInstApi.h>
+#include "AppInstallSmokeTestModule.h"
 
 // EXTERNAL DATA STRUCTURES
 //extern  ?external_data;
@@ -35,14 +31,6 @@
 
 // CONSTANTS
 //const ?type ?constant_var = ?constant;
-_LIT( KProfileSmokeTestModule, "ProfileSmokeTestModule" );
-_LIT( KProfile, "Profile: %S" );
-_LIT( KRingingVolume, "Ringing Volume: %d");
-
-_LIT(KGeneral, 	"General");
-_LIT(KSilent,  	"Silent");
-_LIT(KMeeting, 	"Meeting");
-_LIT(KOutdoor,	"Outdoor");
 
 // MACROS
 //#define ?macro ?macro_def
@@ -60,6 +48,7 @@ _LIT(KOutdoor,	"Outdoor");
 
 // FORWARD DECLARATIONS
 //class ?FORWARD_CLASSNAME;
+using namespace SwiUI;
 
 // ============================= LOCAL FUNCTIONS ===============================
 
@@ -87,21 +76,22 @@ _LIT(KOutdoor,	"Outdoor");
 // ============================ MEMBER FUNCTIONS ===============================
 
 // -----------------------------------------------------------------------------
-// CProfileSmokeTestModule::Delete
+// CAppInstallSmokeTestModule::Delete
 // Delete here all resources allocated and opened from test methods. 
 // Called from destructor. 
 // -----------------------------------------------------------------------------
 //
-void CProfileSmokeTestModule::Delete() 
+void CAppInstallSmokeTestModule::Delete() 
     {
+
     }
 
 // -----------------------------------------------------------------------------
-// CProfileSmokeTestModule::RunMethodL
+// CAppInstallSmokeTestModule::RunMethodL
 // Run specified method. Contains also table of test mothods and their names.
 // -----------------------------------------------------------------------------
 //
-TInt CProfileSmokeTestModule::RunMethodL( 
+TInt CAppInstallSmokeTestModule::RunMethodL( 
     CStifItemParser& aItem ) 
     {
 
@@ -109,11 +99,12 @@ TInt CProfileSmokeTestModule::RunMethodL(
         {  
         // Copy this line for every implemented function.
         // First string is the function name used in TestScripter script file.
-        // Second is the actual implementation member function. 
-        ENTRY( "CheckActiveProfile", CProfileSmokeTestModule::CheckActiveProfileL),
-        ENTRY( "SetActiveProfile", CProfileSmokeTestModule::SetActiveProfileL ),
+        // Second is the actual implementation member function.
+        ENTRY( "InstallApp", CAppInstallSmokeTestModule::InstallAppL ),
+        ENTRY( "UninstallApp", CAppInstallSmokeTestModule::UninstallAppL ),
         //ADD NEW ENTRY HERE
         // [test cases entries] - Do not remove
+
         };
 
     const TInt count = sizeof( KFunctions ) / 
@@ -124,119 +115,88 @@ TInt CProfileSmokeTestModule::RunMethodL(
     }
 
 // -----------------------------------------------------------------------------
-// CProfileSmokeTestModule::CheckActiveProfileL
-// Changes the current active profile according to the parameter
+// CAppInstallSmokeTestModule::ExampleL
+// Example test method function.
+// (other items were commented in a header).
 // -----------------------------------------------------------------------------
 //
-TInt CProfileSmokeTestModule::CheckActiveProfileL( CStifItemParser& aItem )
+TInt CAppInstallSmokeTestModule::InstallAppL( CStifItemParser& aItem )
     {
     // Print to UI
-    _LIT( KSetProfile, "In CheckActiveProfile" );
-    TestModuleIf().Printf( 0, KProfileSmokeTestModule, KSetProfile );
+    _LIT( KAppInstallSmokeTestModule, "AppInstallSmokeTestModule" );
+    _LIT( KInstallApp, "In InstallApp" );
+    TestModuleIf().Printf( 0, KAppInstallSmokeTestModule, KInstallApp );
     // Print to log file
-    iLog->Log( KSetProfile );
+    iLog->Log( KInstallApp );
 
-	MProEngEngine* engine = ProEngFactory::NewEngineLC( iFs );
-	MProEngProfile* active = engine->ActiveProfileLC();
-    
-    TPtrC expectedName;
-    if ( aItem.GetNextString( expectedName ) == KErrNone )
-    	{
-    	TL( active->ProfileName().Name() == expectedName)
-    	}
-    
-    TInt expectedRingVol;
-    if ( aItem.GetNextInt( expectedRingVol ) == KErrNone )
-    	{
-    	TL(active->ToneSettings().RingingVolume() == expectedRingVol);
-    	}
-    
-    TInt expectedRingType;
-    if ( aItem.GetNextInt( expectedRingType ) == KErrNone )
-    	{
-    	TL(active->ToneSettings().RingingType() == expectedRingType);
-    	}
-    
-    TPtrC vibrate;
-    if ( aItem.GetNextString(vibrate) == KErrNone )
-    	{
-    	TBool expectedVibrate;
-    	if ( vibrate == _L("true"))
-    		{
-    		expectedVibrate = ETrue;
-    		}
-    	else if ( vibrate == _L("false"))
-    		{
-    		expectedVibrate = EFalse;
-    		}
-    	else
-    		{
-    		User::Leave(KErrArgument);
-    		}
-    	
-    	TL(expectedVibrate == active->ToneSettings().VibratingAlert());
-    	}
-    
-    CleanupStack::PopAndDestroy(2);
-    
+    TInt i = 0;
+    TPtrC sisPath;
+    if ( aItem.GetNextString ( sisPath ) == KErrNone )
+        {
+        RSWInstSilentLauncher installer;
+        CleanupClosePushL(installer);
+        User::LeaveIfError(installer.Connect());
+        
+        TInstallOptionsPckg options;
+        options().iUpgrade = SwiUI::EPolicyAllowed;
+        options().iPackageInfo = SwiUI::EPolicyAllowed;
+        options().iOverwrite = SwiUI::EPolicyAllowed;
+        options().iKillApp = SwiUI::EPolicyAllowed;
+
+        
+        User::LeaveIfError(installer.SilentInstall(sisPath, options));
+        
+        CleanupStack::PopAndDestroy(&installer);
+        }
+
     return KErrNone;
     }
 
 // -----------------------------------------------------------------------------
-// CProfileSmokeTestModule::SetProfileL
-// Changes the current active profile according to the parameter
+// CAppInstallSmokeTestModule::ExampleL
+// Example test method function.
+// (other items were commented in a header).
 // -----------------------------------------------------------------------------
 //
-TInt CProfileSmokeTestModule::SetActiveProfileL( CStifItemParser& aItem )
+TInt CAppInstallSmokeTestModule::UninstallAppL( CStifItemParser& aItem )
     {
+
     // Print to UI
-    _LIT( KSetProfile, "In SetActiveProfile" );
-    TestModuleIf().Printf( 0, KProfileSmokeTestModule, KSetProfile );
+    _LIT( KAppInstallSmokeTestModule, "AppInstallSmokeTestModule" );
+    _LIT( KUninstallApp, "In UninstallApp" );
+    TestModuleIf().Printf( 0, KAppInstallSmokeTestModule, KUninstallApp );
     // Print to log file
-    iLog->Log( KSetProfile );
+    iLog->Log( KUninstallApp );
 
-    TPtrC profile;
-    if ( aItem.GetNextString( profile ) == KErrNone )
-    	{
-    	MProEngEngine* engine = ProEngFactory::NewEngineLC( iFs );
+    TUint pkgUid;
+    if ( aItem.GetNextInt(pkgUid, EHex) == KErrNone )
+        {
+        RSWInstSilentLauncher uninstaller;
+        CleanupClosePushL(uninstaller);
+        User::LeaveIfError(uninstaller.Connect());
+        
+        TInstallOptionsPckg options;
+        options().iUpgrade = SwiUI::EPolicyAllowed;
+        options().iPackageInfo = SwiUI::EPolicyAllowed;
+        options().iOverwrite = SwiUI::EPolicyAllowed;
+        options().iKillApp = SwiUI::EPolicyAllowed;
+        
+        User::LeaveIfError(uninstaller.SilentUninstall( TUid::Uid(pkgUid), options, SwiUI::KSisxMimeType ));
+        
+        CleanupStack::PopAndDestroy(&uninstaller);
+        }
 
-    	// create the profile engine and set to the correct profile
-    	if ( profile == KSilent)
-    		{
-    		//set to silent
-    		engine->SetActiveProfileL( EProfileSilentId );
-    		}
-    	else if ( profile == KMeeting )
-    		{
-    		// set to meeting
-    		engine->SetActiveProfileL( EProfileMeetingId );
-    		}
-    	else if ( profile == KGeneral )
-    		{
-    		// set to general
-    		engine->SetActiveProfileL( EProfileGeneralId );
-    		}
-    	else if (profile == KOutdoor)
-    		{
-    		// set to outdoors
-    		engine->SetActiveProfileL( EProfileOutdoorId );
-    		}
-
-    	CleanupStack::PopAndDestroy();
-    	}
-    
     return KErrNone;
     }
 
-
 // -----------------------------------------------------------------------------
-// CProfileSmokeTestModule::?member_function
+// CAppInstallSmokeTestModule::?member_function
 // ?implementation_description
 // (other items were commented in a header).
 // -----------------------------------------------------------------------------
 //
 /*
-TInt CProfileSmokeTestModule::?member_function(
+TInt CAppInstallSmokeTestModule::?member_function(
    CItemParser& aItem )
    {
 
