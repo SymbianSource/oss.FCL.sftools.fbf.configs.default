@@ -1,0 +1,587 @@
+<?xml version="1.0"?>
+<project name="FTS" default="all" basedir=".">
+	<description>
+		Build FTS from source
+	</description>
+    <property environment="env"/>
+    
+    <property name="helium.dir" location="${env.HELIUM_HOME}" />
+    <import file="${helium.dir}/helium.ant.xml"/>
+
+	<!-- set global properties for this build -->
+	<property name="codeline.oss.fcl"						value="//v800008/builds01/mercurial_development/oss/FCL" />
+	<property name="codeline.sfl.fcl"						value="//v800008/builds01/mercurial_development/sfl/FCL" />
+	<property name="codeline.sfl.mcl"						value="//v800008/builds01/Mercurial_master_prod/sfl/MCL" />
+	<property name="param.updatebranch"						value="RCL_1" />
+	<property name="param.updatetip"						value="tip" />
+	<property name="dir.outputroot"							value="bcs" />
+	<property name="dir.output"								value="${dir.outputroot}/bcdrivers/apps" />
+	<property name="dir.50_asp_connection"					value="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/connection/sis" />
+	<property name="dir.50_asp_hostconn"					value="sf/mw/websrv/websrv_pub/hostlet_connection_api/tsrc/bc/hostconn/sis" />
+	<property name="dir.50_asp_newsoapclasses"				value="sf/mw/websrv/websrv_pub/web_service_messaging_api/tsrc/bc/newsoapclasses/sis" />
+	<property name="dir.50_asp_senfragment"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/asp/apps/senfragment/sis" />
+	<property name="dir.50_asp_senutils"					value="sf/mw/websrv/websrv_pub/web_service_connection_api/tsrc/bc/senutils/sis" />
+	<property name="dir.50_ASP_WSDescription"				value="sf/mw/websrv/websrv_pub/web_service_description_api/tsrc/bc/senservdesc/sis" />
+	<property name="dir.50_ASP_WSManager"					value="sf/mw/websrv/websrv_pub/web_service_manager_api/tsrc/bc/senservicemanager/sis" />
+	<property name="dir.50_Browser_Control"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/BrCtlBCTest/sis" />
+	<property name="dir.50_Browser_DownloadMgr"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/DownloadMgrBCTest/sis" />
+	<property name="dir.50_Browser_Favourites"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/browser/apps/FavouritesBCTest/sis" />
+	<property name="dir.50_CoreUI_FlashViewerFramework"		value="sf/mw/appsupport/appsupport_pub/flash_viewer_framework_api/tsrc/bc/flashviewerframework/sis" />
+	<property name="dir.50_Loc_addedit"						value="sf/app/location/loc_pub/landmarks_ui_addedit_api/tsrc/bc/bcapplmkeditor/sis" />
+	<property name="dir.50_Loc_Blid"						value="sf/mw/locationsrv/locsrv_pub/blid_application_satellite_info_api/tsrc/bc_blid_application_satellite_info_Api/sis" />
+	<property name="dir.50_Loc_itemdbci"					value="sf/app/location/loc_pub/landmarks_ui_selector_api/tsrc/bc/bcapplmkitemiddbcombiinfo/sis" />
+	<property name="dir.50_loc_landmarks"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_api/sis" />
+	<property name="dir.50_loc_LmkDBMgmt"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_database_management_api/sis" />
+	<property name="dir.50_loc_LmkSearch"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LandmarksEngine/landmarks_search_api/sis" />
+	<property name="dir.50_Loc_LocAquisition"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/location/apps/LocationFW/LocAquisition/sis" />
+	<property name="dir.50_Loc_selector"					value="sf/app/location/loc_pub/landmarks_ui_selector_api/tsrc/bc/bcapplmkselector/sis" />
+	<property name="dir.50_Messaging_MMSClientMTM"			value="sf/app/messaging/msg_pub/mms_client_mtm_api/tsrc/bc/sis" />
+	<property name="dir.50_Messaging_PluginBio"				value="sf/app/messaging/msg_pub/plugin_bio_control_api/tsrc/bc/sis" />
+	<property name="dir.50_MM_ConMgmt"						value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/multimedia/apps/BCAppContentManagement/sis" />
+	<property name="dir.50_MM_DRMCAF"						value="sf/mw/drm/drm_pub/oma_drm_caf_agent_api/tsrc/bc/sis" />
+	<property name="dir.50_mrt_glib"						value="sf/os/ossrv/glib/tsrc/BC/sis" />
+	<property name="dir.50_mrt_ssl"							value="sf/os/ossrv/ssl/tsrc/BC/sis" />
+	<property name="dir.50_mrt_stdcpp"						value="sf/os/ossrv/stdcpp/tsrc/BC/sis" />
+	<property name="dir.50_msg_sendui"						value="sf/mw/messagingmw/msgfw_pub/send_ui_api/tsrc/bc/sis" />
+	<property name="dir.50_NW_ConnSet"						value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/networking/apps/ConnectionSettings/sis" />
+	<property name="dir.50_NW_ConnSetUI"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/networking/apps/ConnectionSettingsUI/sis" />
+	<property name="dir.50_PIM_PbkDataAddEdit"				value="sf/app/contacts/contacts_pub/phonebook_data_addedit_ui_api/tsrc/bc/sis" />
+	<property name="dir.50_PIM_PbkDataMgmt"					value="sf/app/contacts/contacts_pub/phonebook_data_management_api/tsrc/bc/sis" />
+	<property name="dir.50_PIM_PbkFetchAPI"					value="sf/app/contacts/contacts_pub/phonebook_fetch_ui_api/tsrc/bc/sis" />
+	<property name="dir.50_PIM_PbkUIUtil"					value="sf/app/contacts/contacts_pub/phonebook_ui_utilities_api/tsrc/bc/sis" />
+	<property name="dir.50_PIM_PbkVcard"					value="sf/app/contacts/contacts_pub/phonebook_vcard_importexport_api/tsrc/bc/sis" />
+	<property name="dir.50_PIM_Spdial"						value="sf/app/contacts/contacts_pub/speed_dial_utility_control_api/tsrc/bc/sis" />
+	<property name="dir.50_RTC-CT_IsvTelephony"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/rtcct/apps/IsvTelephonyTest/sis" />
+	<property name="dir.50_RTC-CT_LogEngine"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/rtcct/apps/BCLogEngineTest/sis" />
+	<property name="dir.50_SP_PROENG"						value="sf/mw/appsupport/appsupport_pub/profiles_engine_wrapper_api/tsrc/BC/ProfilesEngineWrapperAPI/sis" />
+	<property name="dir.50_Symbian_AudioConvertUtility"		value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioConvertUtility/sis" />
+	<property name="dir.50_Symbian_AudioInputStream"		value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioInputStream/sis" />
+	<property name="dir.50_Symbian_AudioOutputStream"		value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioOutputStream/sis" />
+	<property name="dir.50_Symbian_AudioPlayerUtility"		value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioPlayerUtility/sis" />
+	<property name="dir.50_Symbian_AudioRecorderUtility"	value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioRecorderUtility/sis" />
+	<property name="dir.50_Symbian_Base"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/base/sis" />
+	<property name="dir.50_Symbian_BTSockAddr"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/Bluetooth/T_BTSockAddrAPI/sis" />
+	<property name="dir.50_Symbian_Ecom"					value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/SysLibs/ecom/sis" />
+	<property name="dir.50_symbian_graphics"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/graphics/sis" />
+	<property name="dir.50_Symbian_ImageDecoder"			value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/icl/T_ImageDecoder/sis" />
+	<property name="dir.50_Symbian_ImageEncoder"			value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/icl/T_ImageEncoder/sis" />
+	<property name="dir.50_Symbian_T_Camera"				value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/ecam/T_Camera/sis" />
+	<property name="dir.50_Symbian_T_MdaAudioToneUtility"	value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MdaAudioToneUtility/sis" />
+	<property name="dir.50_Symbian_T_MidiClientUtility"		value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/symbian/apps/multimedia/mmf/T_MidiClientUtility/sis" />
+	<property name="dir.50_Sync_SelfSignedStartupListMgmt"	value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/syncandprovisioning/apps/StartupListManagementAPI/SelfSignedStartupApp/sis" />
+	<property name="dir.50_Sync_StartupListMgmt"			value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/syncandprovisioning/apps/StartupListManagementAPI/StartupApp/sis" />
+	<property name="dir.50_systemsw"						value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/apps/systemsw/sis" />
+	<property name="dir.50_UIFW"							value="sf/mw/classicui/classicui_pub/tsrc/bc/sis" />
+
+    <target name="cmdsync">
+        <property name="codeline"	value="${codeline.sfl.mcl}" />
+        <property name="dir"		value="" />
+        <property name="revision"	value="${param.updatebranch}" />
+		<if>
+			<available file="${dir}" type="dir" />
+			<then>
+				<exec executable="hg">
+					<arg value="pull" />
+					<arg value="-R" />
+					<arg value="${dir}" />
+				</exec>
+			</then>
+			<else>
+				<exec executable="hg">
+					<arg value="clone" />
+					<arg value="${codeline}/${dir}" />
+					<arg value="${dir}" />
+				</exec>
+			</else>
+		</if>
+		<exec executable="hg">
+			<arg value="update" />
+			<arg value="-R" />
+			<arg value="${dir}" />
+			<arg value="-C" />
+			<arg value="-r" />
+			<arg value="${revision}" />
+		</exec>
+    </target>
+
+    <target name="cmdsisbld">
+        <property name="direxec"	value="" />
+        <property name="dirout"		value="" />
+        <property name="pkg"		value="" />
+        <property name="sis"		value="" />
+		<mkdir dir="${dir.output}/${dirout}" />
+		<exec executable="makesis">
+			<arg value="-d${direxec}" />
+			<arg value="${pkg}" />
+			<arg value="${dir.output}/${dirout}/${sis}" />
+		</exec>
+	</target>
+
+	<target name="init" description="Initialisation">
+		<!-- Create the time stamp -->
+		<tstamp />
+	</target>
+
+	<target name="sync" depends="init" description="Get latest code" unless="nosync">
+		<mkdir dir="interim/fbf/configs" />
+		<mkdir dir="sf/app" />
+		<mkdir dir="sf/mw" />
+		<mkdir dir="sf/os" />
+		<mkdir dir="sftools/ana" />
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.oss.fcl}" />
+			<param name="dir"		value="interim/fbf/configs/default" />
+			<param name="revision"	value="${param.updatetip}" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/app/contacts" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/app/location" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/app/messaging" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/mw/appinstall" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/mw/appsupport" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/mw/classicui" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/mw/drm" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/mw/locationsrv" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/mw/messagingmw" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/mw/mmmw" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/mw/websrv" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/os/devicesrv" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/os/graphics" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/os/kernelhwsrv" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/os/mm" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sf/os/ossrv" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="dir"		value="sf/os/shortlinksrv" />
+		</antcall>
+		<antcall target="cmdsync" inheritAll="false">
+			<param name="codeline"	value="${codeline.sfl.fcl}" />
+			<param name="dir"		value="sftools/ana/compatanamdw" />
+			<param name="revision"	value="${param.updatetip}" />
+		</antcall>
+		<get src="http://developer.symbian.org/wiki/images/e/e7/Xvid.zip" dest="Xvid.zip" />
+		<unzip src="xvid.zip" dest="." />
+		<exec executable="perl">
+			<arg value="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/src/bcdrivers/group/SetEnv.pl" />
+		</exec>
+	</target>
+
+	<target name="bld_production" depends="init" description="Build production code" unless="nobldprod">
+		<exec executable="sbs.bat">
+			<arg value="-s" />
+			<arg value="package_definition.xml" />
+			<arg value="-l" />
+			<arg value="bld_production" />
+			<arg value="-c" />
+			<arg value="armv5_urel" />
+		</exec>
+	</target>
+
+	<target name="bld_test" depends="init" description="Build test code" unless="nobldtest">
+		<exec executable="sbs.bat">
+			<arg value="-s" />
+			<arg value="package_definition.xml" />
+			<arg value="-l" />
+			<arg value="bld_test" />
+			<arg value="-c" />
+			<arg value="armv5_urel.test" />
+		</exec>
+	</target>
+
+	<target name="bld_sis" depends="init" description="Build SIS files" unless="nobldsis">
+		<mkdir dir="${dir.outputroot}" />
+		<copy todir="${dir.outputroot}/bcdrivers">
+			<fileset dir="interim/fbf/configs/default/common/tools/bcs/bcdrivers" />
+		</copy>
+		<copy todir="${dir.outputroot}/compatibilityanalyser">
+			<fileset dir="interim/fbf/configs/default/common/tools/bcs/compatibilityanalyser" />
+		</copy>
+		<copy todir="${dir.outputroot}/doc">
+			<fileset dir="interim/fbf/configs/default/common/tools/bcs/doc" />
+		</copy>
+		<copy todir="${dir.outputroot}/utilities">
+			<fileset dir="interim/fbf/configs/default/common/tools/bcs/utilities" />
+		</copy>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_asp_connection}" />
+			<param name="dirout"	value="asp/apps/connection/sis" />
+			<param name="pkg"		value="${dir.50_asp_connection}/50_asp_connection.pkg" />
+			<param name="sis"		value="50_asp_connection.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_asp_hostconn}" />
+			<param name="dirout"	value="asp/apps/hostconn/sis" />
+			<param name="pkg"		value="${dir.50_asp_hostconn}/50_asp_hostconn.pkg" />
+			<param name="sis"		value="50_asp_hostconn.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_asp_newsoapclasses}" />
+			<param name="dirout"	value="asp/apps/newsoapclasses/sis" />
+			<param name="pkg"		value="${dir.50_asp_newsoapclasses}/50_asp_newsoapclasses.pkg" />
+			<param name="sis"		value="50_asp_newsoapclasses.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_asp_senfragment}" />
+			<param name="dirout"	value="asp/apps/senfragment/sis" />
+			<param name="pkg"		value="${dir.50_asp_senfragment}/50_asp_senfragment.pkg" />
+			<param name="sis"		value="50_asp_senfragment.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_asp_senutils}" />
+			<param name="dirout"	value="asp/apps/senutils/sis" />
+			<param name="pkg"		value="${dir.50_asp_senutils}/50_asp_senutils.pkg" />
+			<param name="sis"		value="50_asp_senutils.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_ASP_WSDescription}" />
+			<param name="dirout"	value="asp/apps/SenServDesc/sis" />
+			<param name="pkg"		value="${dir.50_ASP_WSDescription}/50_ASP_WSDescription.pkg" />
+			<param name="sis"		value="50_ASP_WSDescription.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_ASP_WSManager}" />
+			<param name="dirout"	value="asp/apps/SenServiceManager/sis" />
+			<param name="pkg"		value="${dir.50_ASP_WSManager}/50_ASP_WSManager.pkg" />
+			<param name="sis"		value="50_ASP_WSManager.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Browser_Control}" />
+			<param name="dirout"	value="browser/apps/BrCtlBCTest/sis" />
+			<param name="pkg"		value="${dir.50_Browser_Control}/50_Browser_Control.pkg" />
+			<param name="sis"		value="50_Browser_Control.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Browser_DownloadMgr}" />
+			<param name="dirout"	value="browser/apps/DownloadMgrBCTest/sis" />
+			<param name="pkg"		value="${dir.50_Browser_DownloadMgr}/50_Browser_DownloadMgr.pkg" />
+			<param name="sis"		value="50_Browser_DownloadMgr.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Browser_Favourites}" />
+			<param name="dirout"	value="browser/apps/FavouritesBCTest/sis" />
+			<param name="pkg"		value="${dir.50_Browser_Favourites}/50_Browser_Favourites.pkg" />
+			<param name="sis"		value="50_Browser_Favourites.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_CoreUI_FlashViewerFramework}" />
+			<param name="dirout"	value="flashviewerframework/sis" />
+			<param name="pkg"		value="${dir.50_CoreUI_FlashViewerFramework}/50_CoreUI_FlashViewerFramework.pkg" />
+			<param name="sis"		value="50_CoreUI_FlashViewerFramework.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Loc_addedit}" />
+			<param name="dirout"	value="location/apps/LandmarksUI/BCAppLmkEditor/sis" />
+			<param name="pkg"		value="${dir.50_Loc_addedit}/50_Loc_addedit.pkg" />
+			<param name="sis"		value="50_Loc_addedit.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Loc_Blid}" />
+			<param name="dirout"	value="location/apps/BLID/sis" />
+			<param name="pkg"		value="${dir.50_Loc_Blid}/50_Loc_Blid.pkg" />
+			<param name="sis"		value="50_Loc_Blid.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Loc_itemdbci}" />
+			<param name="dirout"	value="location/apps/LandmarksUI/BCAppLmkItemIdDbCombiInfo/sis" />
+			<param name="pkg"		value="${dir.50_Loc_itemdbci}/50_Loc_itemdbci.pkg" />
+			<param name="sis"		value="50_Loc_itemdbci.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_loc_landmarks}" />
+			<param name="dirout"	value="location/apps/LandmarksEngine/landmarks_api/sis" />
+			<param name="pkg"		value="${dir.50_loc_landmarks}/50_loc_landmarks.pkg" />
+			<param name="sis"		value="50_loc_landmarks.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_loc_LmkDBMgmt}" />
+			<param name="dirout"	value="location/apps/LandmarksEngine/landmarks_database_management_api/sis" />
+			<param name="pkg"		value="${dir.50_loc_LmkDBMgmt}/50_loc_LmkDBMgmt.pkg" />
+			<param name="sis"		value="50_loc_LmkDBMgmt.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_loc_LmkSearch}" />
+			<param name="dirout"	value="location/apps/LandmarksEngine/landmarks_search_api/sis" />
+			<param name="pkg"		value="${dir.50_loc_LmkSearch}/50_loc_LmkSearch.pkg" />
+			<param name="sis"		value="50_loc_LmkSearch.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Loc_LocAquisition}" />
+			<param name="dirout"	value="location/apps/LocationFW/LocAquisition/sis" />
+			<param name="pkg"		value="${dir.50_Loc_LocAquisition}/50_Loc_LocAquisition.pkg" />
+			<param name="sis"		value="50_Loc_LocAquisition.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Loc_selector}" />
+			<param name="dirout"	value="location/apps/LandmarksUI/BCAppLmkSelector/sis" />
+			<param name="pkg"		value="${dir.50_Loc_selector}/50_Loc_selector.pkg" />
+			<param name="sis"		value="50_Loc_selector.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Messaging_MMSClientMTM}" />
+			<param name="dirout"	value="messaging/apps/BCTforMMSClientMTMAPI/sis" />
+			<param name="pkg"		value="${dir.50_Messaging_MMSClientMTM}/50_Messaging_MMSClientMTM.pkg" />
+			<param name="sis"		value="50_Messaging_MMSClientMTM.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Messaging_PluginBio}" />
+			<param name="dirout"	value="messaging/apps/BCTforSmartMessagingAPI/sis" />
+			<param name="pkg"		value="${dir.50_Messaging_PluginBio}/50_Messaging_PluginBio.pkg" />
+			<param name="sis"		value="50_Messaging_PluginBio.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_MM_ConMgmt}" />
+			<param name="dirout"	value="multimedia/apps/BCAppContentManagement/sis" />
+			<param name="pkg"		value="${dir.50_MM_ConMgmt}/50_MM_ConMgmt.pkg" />
+			<param name="sis"		value="50_MM_ConMgmt.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_MM_DRMCAF}" />
+			<param name="dirout"	value="multimedia/apps/DRM_CAF/sis" />
+			<param name="pkg"		value="${dir.50_MM_DRMCAF}/50_MM_DRMCAF.pkg" />
+			<param name="sis"		value="50_MM_DRMCAF.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_mrt_glib}" />
+			<param name="dirout"	value="mrt/apps/glib/sis" />
+			<param name="pkg"		value="${dir.50_mrt_glib}/50_mrt_glib.pkg" />
+			<param name="sis"		value="50_mrt_glib.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_mrt_ssl}" />
+			<param name="dirout"	value="mrt/apps/ssl/sis" />
+			<param name="pkg"		value="${dir.50_mrt_ssl}/50_mrt_ssl.pkg" />
+			<param name="sis"		value="50_mrt_ssl.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_mrt_stdcpp}" />
+			<param name="dirout"	value="mrt/apps/stdcpp/sis" />
+			<param name="pkg"		value="${dir.50_mrt_stdcpp}/50_mrt_stdcpp.pkg" />
+			<param name="sis"		value="50_mrt_stdcpp.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_msg_sendui}" />
+			<param name="dirout"	value="messaging/apps/BCTForSendUIAPI/sis" />
+			<param name="pkg"		value="${dir.50_msg_sendui}/50_msg_sendui.pkg" />
+			<param name="sis"		value="50_msg_sendui.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_NW_ConnSet}" />
+			<param name="dirout"	value="networking/apps/ConnectionSettings/sis" />
+			<param name="pkg"		value="${dir.50_NW_ConnSet}/50_NW_ConnSet.pkg" />
+			<param name="sis"		value="50_NW_ConnSet.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_NW_ConnSetUI}" />
+			<param name="dirout"	value="networking/apps/ConnectionSettingsUI/sis" />
+			<param name="pkg"		value="${dir.50_NW_ConnSetUI}/50_NW_ConnSetUI.pkg" />
+			<param name="sis"		value="50_NW_ConnSetUI.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_PIM_PbkDataAddEdit}" />
+			<param name="dirout"	value="pim/apps/PhoneBook/BCTestPbkDataAddEdit/sis" />
+			<param name="pkg"		value="${dir.50_PIM_PbkDataAddEdit}/50_PIM_PbkDataAddEdit.pkg" />
+			<param name="sis"		value="50_PIM_PbkDataAddEdit.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_PIM_PbkDataMgmt}" />
+			<param name="dirout"	value="pim/apps/PhoneBook/BCTestPbkDataManagement/sis" />
+			<param name="pkg"		value="${dir.50_PIM_PbkDataMgmt}/50_PIM_PbkDataMgmt.pkg" />
+			<param name="sis"		value="50_PIM_PbkDataMgmt.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_PIM_PbkFetchAPI}" />
+			<param name="dirout"	value="pim/apps/PhoneBook/BCTestPbkFetchAPI/sis" />
+			<param name="pkg"		value="${dir.50_PIM_PbkFetchAPI}/50_PIM_PbkFetchAPI.pkg" />
+			<param name="sis"		value="50_PIM_PbkFetchAPI.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_PIM_PbkUIUtil}" />
+			<param name="dirout"	value="pim/apps/PhoneBook/BCTestPbkUIUtil/sis" />
+			<param name="pkg"		value="${dir.50_PIM_PbkUIUtil}/50_PIM_PbkUIUtil.pkg" />
+			<param name="sis"		value="50_PIM_PbkUIUtil.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_PIM_PbkVcard}" />
+			<param name="dirout"	value="pim/apps/PhoneBook/BCTestPbkVcardImportExport/sis" />
+			<param name="pkg"		value="${dir.50_PIM_PbkVcard}/50_PIM_PbkVcard.pkg" />
+			<param name="sis"		value="50_PIM_PbkVcard.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_PIM_Spdial}" />
+			<param name="dirout"	value="pim/apps/SpeedDial/sis" />
+			<param name="pkg"		value="${dir.50_PIM_Spdial}/50_PIM_Spdial.pkg" />
+			<param name="sis"		value="50_PIM_Spdial.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_RTC-CT_IsvTelephony}" />
+			<param name="dirout"	value="rtcct/apps/IsvTelephonyTest/sis" />
+			<param name="pkg"		value="${dir.50_RTC-CT_IsvTelephony}/50_RTC-CT_IsvTelephony.pkg" />
+			<param name="sis"		value="50_RTC-CT_IsvTelephony.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_RTC-CT_LogEngine}" />
+			<param name="dirout"	value="rtcct/apps/BCLogEngineTest/sis" />
+			<param name="pkg"		value="${dir.50_RTC-CT_LogEngine}/50_RTC-CT_LogEngine.pkg" />
+			<param name="sis"		value="50_RTC-CT_LogEngine.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_SP_PROENG}" />
+			<param name="dirout"	value="syncandprovisioning/apps/ProfilesEngineWrapperAPI/sis" />
+			<param name="pkg"		value="${dir.50_SP_PROENG}/50_SP_PROENG.pkg" />
+			<param name="sis"		value="50_SP_PROENG.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_AudioConvertUtility}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MdaAudioConvertUtility/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_AudioConvertUtility}/50_Symbian_AudioConvertUtility.pkg" />
+			<param name="sis"		value="50_Symbian_AudioConvertUtility.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_AudioInputStream}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MdaAudioInputStream/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_AudioInputStream}/50_Symbian_AudioInputStream.pkg" />
+			<param name="sis"		value="50_Symbian_AudioInputStream.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_AudioOutputStream}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MdaAudioOutputStream/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_AudioOutputStream}/50_Symbian_AudioOutputStream.pkg" />
+			<param name="sis"		value="50_Symbian_AudioOutputStream.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_AudioPlayerUtility}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MdaAudioPlayerUtility/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_AudioPlayerUtility}/50_Symbian_AudioPlayerUtility.pkg" />
+			<param name="sis"		value="50_Symbian_AudioPlayerUtility.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_AudioRecorderUtility}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MdaAudioRecorderUtility/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_AudioRecorderUtility}/50_Symbian_AudioRecorderUtility.pkg" />
+			<param name="sis"		value="50_Symbian_AudioRecorderUtility.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_Base}" />
+			<param name="dirout"	value="symbian/apps/base/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_Base}/50_Symbian_Base.pkg" />
+			<param name="sis"		value="50_Symbian_Base.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_BTSockAddr}" />
+			<param name="dirout"	value="symbian/apps/Bluetooth/T_BTSockAddrAPI/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_BTSockAddr}/50_Symbian_BTSockAddr.pkg" />
+			<param name="sis"		value="50_Symbian_BTSockAddr.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_Ecom}" />
+			<param name="dirout"	value="symbian/apps/SysLibs/ecom/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_Ecom}/50_Symbian_Ecom.pkg" />
+			<param name="sis"		value="50_Symbian_Ecom.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_symbian_graphics}" />
+			<param name="dirout"	value="symbian/apps/graphics/sis" />
+			<param name="pkg"		value="${dir.50_symbian_graphics}/50_symbian_graphics.pkg" />
+			<param name="sis"		value="50_symbian_graphics.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_ImageDecoder}" />
+			<param name="dirout"	value="symbian/apps/multimedia/icl/T_ImageDecoder/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_ImageDecoder}/50_Symbian_ImageDecoder.pkg" />
+			<param name="sis"		value="50_Symbian_ImageDecoder.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_ImageEncoder}" />
+			<param name="dirout"	value="symbian/apps/multimedia/icl/T_ImageEncoder/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_ImageEncoder}/50_Symbian_ImageEncoder.pkg" />
+			<param name="sis"		value="50_Symbian_ImageEncoder.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_T_Camera}" />
+			<param name="dirout"	value="symbian/apps/multimedia/ecam/T_Camera/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_T_Camera}/50_Symbian_T_Camera.pkg" />
+			<param name="sis"		value="50_Symbian_T_Camera.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_T_MdaAudioToneUtility}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MdaAudioToneUtility/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_T_MdaAudioToneUtility}/50_Symbian_T_MdaAudioToneUtility.pkg" />
+			<param name="sis"		value="50_Symbian_T_MdaAudioToneUtility.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Symbian_T_MidiClientUtility}" />
+			<param name="dirout"	value="symbian/apps/multimedia/mmf/T_MidiClientUtility/sis" />
+			<param name="pkg"		value="${dir.50_Symbian_T_MidiClientUtility}/50_Symbian_T_MidiClientUtility.pkg" />
+			<param name="sis"		value="50_Symbian_T_MidiClientUtility.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Sync_SelfSignedStartupListMgmt}" />
+			<param name="dirout"	value="syncandprovisioning/apps/StartupListManagementAPI/SelfSignedStartupApp/sis" />
+			<param name="pkg"		value="${dir.50_Sync_SelfSignedStartupListMgmt}/50_Sync_SelfSignedStartupListMgmt.pkg" />
+			<param name="sis"		value="50_Sync_SelfSignedStartupListMgmt.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_Sync_StartupListMgmt}" />
+			<param name="dirout"	value="syncandprovisioning/apps/StartupListManagementAPI/StartupApp/sis" />
+			<param name="pkg"		value="${dir.50_Sync_StartupListMgmt}/50_Sync_StartupListMgmt.pkg" />
+			<param name="sis"		value="50_Sync_StartupListMgmt.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_systemsw}" />
+			<param name="dirout"	value="systemsw/sis" />
+			<param name="pkg"		value="${dir.50_systemsw}/50_systemsw.pkg" />
+			<param name="sis"		value="50_systemsw.sis" />
+		</antcall>
+		<antcall target="cmdsisbld" inheritAll="false">
+			<param name="direxec"	value="${dir.50_UIFW}" />
+			<param name="dirout"	value="uifw/sis" />
+			<param name="pkg"		value="${dir.50_UIFW}/50_UIFW.pkg" />
+			<param name="sis"		value="50_UIFW.sis" />
+		</antcall>
+		<delete 	file="bcs.zip" />
+		<zip 		destfile="bcs.zip"	basedir="bcs" />
+	</target>
+
+	<target name="all" depends="sync,bld_production,bld_test,bld_sis" description="Build all">
+	</target>
+</project>
