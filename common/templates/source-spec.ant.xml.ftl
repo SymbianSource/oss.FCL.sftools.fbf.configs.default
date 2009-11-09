@@ -130,7 +130,11 @@
       		</if>
       		  <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
       		  <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
-            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
+            <#if fast_sync > 
+              <exec executable="hg" dir="${pkg_detail.source}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
+            <#else>      		  
+              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
+            </#if>
                 <arg value="log"/>
                 <arg value="-r"/>
                 <arg value="${dollar}{sf.sourcesync.${count}.checksum}:${dollar}{sf.previous.pdk.tag}"/>
