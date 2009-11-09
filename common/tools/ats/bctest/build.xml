@@ -240,7 +240,7 @@
 			<fileset dir="interim/fbf/configs/default/common/tools/bcs/doc" />
 		</copy>
 		<copy todir="${dir.outputroot}/utilities">
-			<fileset dir="interim/fbf/configs/default/common/tools/bcs/utilities" />
+			<fileset dir="sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/utilities" />
 		</copy>
 		<antcall target="cmdsisbld" inheritAll="false">
 			<param name="direxec"	value="${dir.50_asp_connection}" />
