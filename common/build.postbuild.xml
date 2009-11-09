@@ -598,11 +598,12 @@
     <target name="sf-compare-to-baseline" depends="sf-diamondize-bom,sf-check-utilities-dir" if="sf-utilities-available">
         <property name="sf.releasenotes.wiki.txt" value="${build.log.dir}/releaseNotes.wiki.txt"/>
         <delete file="${sf.releasenotes.wiki.txt}"/>
-        <!-- FCL usage -->
-        <exec executable="perl" dir="${build.drive}/utilities/releaseAutomation/" output="${build.log.dir}/fcls4releasenotes.log">
-            <arg value="${build.drive}/utilities/releaseAutomation/fcls4releasenotes.pl"/>
-            <arg value="--pdkname1=${sf.previous.pdk.tag}"/>
-            <arg value="--pdkloc2=${build.log.dir}"/>
+        <!-- Package Comparison and FCL Usage -->
+        <exec executable="perl" dir="${sf.spec.sourcesync.sourcespecdir}" output="${sf.releasenotes.wiki.txt}">
+            <arg value="${build.drive}/utilities/releaseAutomation/packageComparison.pl"/>
+            <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+	    <arg value="--sysdef=${sf.spec.sourcesync.sourcespecdir}/sysdefs/system_model.xml"/>
+            <arg value="--baseline=${sf.previous.pdk.tag}"/>
         </exec>
         <!-- Mercurial comparison -->
         <echo file="${sf.releasenotes.wiki.txt}" append="true">== Mercurial Comparison ==${line.separator}${line.separator}</echo>
