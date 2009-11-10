@@ -1,0 +1,81 @@
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// @file ctlbscommon.mmp
+// 
+//
+
+SYSTEMINCLUDE	/epoc32/include
+SYSTEMINCLUDE	/epoc32/include/test
+SYSTEMINCLUDE	/epoc32/include/lbs
+SYSTEMINCLUDE	/epoc32/include/lbs/test
+
+USERINCLUDE	../inc
+//USERINCLUDE	../../../../locationmgmt/locationcore/LbsLogging/inc
+// Common framework code.
+SOURCEPATH	../src
+SOURCE		ctlbsserver.cpp
+SOURCE		ctlbsshareddata.cpp
+SOURCE		ctlbsstep.cpp
+SOURCE		ctlbsnetsimstep.cpp
+
+// Common test step code.
+SOURCE		ctlbsstepinstallscheduler.cpp
+SOURCE		ctlbsstepcreateverifymoduledata.cpp
+SOURCE		ctlbsstepcreateverifyposinfos.cpp
+SOURCE		ctlbsstepverifymodinfo.cpp
+SOURCE		ctlbsstepverifyposinfos.cpp
+SOURCE		ctlbsstepverifyroughposinfos.cpp
+SOURCE		ctlbsstepverifyloginfo.cpp
+SOURCE		ctlbsstepverifymodstatus.cpp
+SOURCE		ctlbsstepstartlbs.cpp
+SOURCE		ctlbsstepstoplbs.cpp
+SOURCE		ctlbsstepsetautonomousmode.cpp
+SOURCE		ctlbsstepresetdefaultadmin.cpp
+SOURCE		ctlbsdoposupdate.cpp	
+SOURCE		ctlbsstepcreateverifymodinfo.cpp
+SOURCE		ctlbsstepsetprivhandler.cpp
+SOURCE		ctlbsstepsetupprotocolstub.cpp
+SOURCE		ctlbsstepsetuproamselflocate.cpp
+SOURCE		ctlbsstepclearlog.cpp
+SOURCE		ctlbsstepconfighybridmodule.cpp
+SOURCE		ctlbsactiveyield.cpp
+SOURCE		ctlbsstepsetupstandaloneprivacymode.cpp
+SOURCE		ctlbsstepsetupstandaloneprivacyandsimplectlr.cpp
+SOURCE		ctlbsstepsetupstandaloneprivacywithnoctlr.cpp
+SOURCE		ctlbsportedstepbase.cpp
+SOURCE		ctlbsrequester.cpp
+SOURCE		ctlbsposclient.cpp
+SOURCE		ctlbsposclientholder.cpp
+SOURCE		ctlbsclientrequestor.cpp
+SOURCE		ctlbsclientlog.cpp
+SOURCE		ctlbsstepsetbehaviourmodeoriginal.cpp
+SOURCE		ctlbsstepsetptamode.cpp
+SOURCE		ctlbsstepsetatamode.cpp
+SOURCE		ctlbsstepsetptbmode.cpp
+
+// EPOC + Test Execute libraries.
+LIBRARY	euser.lib
+LIBRARY	testexecuteutils.lib 
+LIBRARY	testexecutelogclient.lib 
+
+// For logging
+LIBRARY			logcli.lib
+LIBRARY			logwrap.lib
+LIBRARY			lbsloggerapi.lib
+LIBRARY 		efsrv.lib
+LIBRARY			centralrepository.lib
+LIBRARY 		bafl.lib // BaflUtils
+
+// Lbs Libraries
+LIBRARY eposmodset.lib

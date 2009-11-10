@@ -1,0 +1,37 @@
+// Copyright (c) 2006-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+PRINT Run LBS smoketest
+
+LOAD_SUITE LbsClientTestServer -SharedData
+WAIT 1000
+
+START_TESTCASE			SMOKE_LBS_0001
+//!	@SYMTestCaseID		SMOKE_LBS_0001
+//!	@SYMTestCaseDesc	Request module count (use GetNumModules) 
+//!						and ensure a count of 2 is returned to indicate the correct
+//!						number of modules is installed (Network and A-GPS modules).
+
+PRINT Run LbsClientTestServer
+
+RUN_TEST_STEP 010 LbsClientTestServer LbsStep_ResetDefaultAdmin 
+RUN_TEST_STEP 030 LbsClientTestServer LbsStep_StartLbs
+
+RUN_TEST_STEP 010 LbsClientTestServer LbsStep_InstallScheduler
+RUN_TEST_STEP 20 LbsClientTestServer LbsClientStep_ModInfo c:\smoketest\smoketest_lbs.ini LBS-Mod-Cnt-0001
+
+RUN_TEST_STEP 030 LbsClientTestServer LbsStep_StopLbs
+
+END_TESTCASE SMOKE_LBS_0001

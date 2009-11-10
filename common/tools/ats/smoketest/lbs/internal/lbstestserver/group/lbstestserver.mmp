@@ -1,0 +1,42 @@
+//
+// lbstestserver.mmp
+//
+// Project file for the LBS test server
+//
+
+TARGET        lbstestserver.exe
+TARGETTYPE    exe
+
+UID           0x1000007A 0x10282283
+
+CAPABILITY All -Tcb
+
+SOURCEPATH	../src
+SOURCE	lbstestservermain.cpp
+SOURCE	lbstestserver.cpp
+SOURCE	lbstestsession.cpp
+
+// Generic server framework
+//SOURCEPATH		../../../../../locationmgmt/locationcore/LbsLocCommon/ServerFramework/src
+SOURCE	csecureasbase.cpp
+SOURCE	csecureserverbase.cpp
+SOURCE	csecuresessionbase.cpp
+SOURCE	cshutdowntimer.cpp
+SOURCE	messageutils.cpp
+SOURCE	tserverstartparams.cpp
+SOURCE	tprocessstartparams.cpp
+SOURCE	cprocesslaunch.cpp
+SOURCE	tstartparamsbase.cpp
+
+
+USERINCLUDE	../inc
+//USERINCLUDE	../../../../../locationmgmt/locationcore/lbsrootapi/inc
+//USERINCLUDE	../../../../../locationmgmt/locationcore/LbsLocCommon/ServerFramework/inc
+
+SYSTEMINCLUDE	/epoc32/include
+SYSTEMINCLUDE	/epoc32/include/lbs
+
+LIBRARY	euser.lib
+LIBRARY	efsrv.lib
+LIBRARY	lbsrootapi.lib
+LIBRARY lbspartnercommon.lib

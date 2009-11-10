@@ -1,0 +1,27 @@
+// Copyright (c) 2006-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// This is the build file for the LBS client Tests
+// 
+//
+
+#include "../lbsexeclient/group/bld.inf"
+
+PRJ_TESTEXPORTS
+../scripts/smoketest_lbs.script			z:/smoketest/smoketest_lbs.script
+../scripts/setup_smoketest_lbs.script	z:/smoketest/setup_smoketest_lbs.script
+
+../testdata/smoketest_lbs.ini			z:/smoketest/smoketest_lbs.ini
+
+PRJ_TESTMMPFILES
+ctlbsclientserver.mmp

@@ -176,6 +176,60 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>						
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="lbstestutils.dll"/>
+							<param dst="c:\sys\bin\lbstestutils.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>	
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="lbstestclient.dll"/>
+							<param dst="c:\sys\bin\lbstestclient.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>	
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="lbstestchannel.dll"/>
+							<param dst="c:\sys\bin\lbstestchannel.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="lbstestserver.exe"/>
+							<param dst="c:\sys\bin\lbstestserver.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ctlbsexeclient.exe"/>
+							<param dst="c:\sys\bin\ctlbsexeclient.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="lbsclienttestserver.exe"/>
+							<param dst="c:\sys\bin\lbsclienttestserver.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>					
 					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
@@ -237,6 +291,17 @@
 							<param file="testexecute.exe"/>
 							<param parameters="c:\smoketest\smoketest_email.script"/>
 							<param result-file="c:\logs\testexecute\smoketest_email.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_lbs.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_lbs.htm"/>
 							<param timeout="600"/>
 							<param parser="TEFTestResultParser"/>
 							<param leave-old-result="true"/>
@@ -363,6 +428,8 @@
 		<file>smoketest/general/smoketest_timew.script</file>
 		<file>smoketest/general/smoketest_email.ini</file>
 		<file>smoketest/general/smoketest_email.script</file>
+		<file>smoketest/general/smoketest_lbs.ini</file>
+		<file>smoketest/general/smoketest_lbs.script</file>
 		<file>smoketest/sms/general/message1.txt</file>
 		<file>smoketest/general/MachineName.txt</file>
 		<file>smoketest/emailmessage/general/20KBody.txt</file>
@@ -379,6 +446,12 @@
 		<file>smoketest/winscw_udeb/t_msgutilityserver.dll</file>
 		<file>smoketest/winscw_udeb/t_msgpopserver.exe</file>
 		<file>smoketest/winscw_udeb/t_msgsmtpserver.exe</file>
+		<file>smoketest/winscw_udeb/lbstestutils.dll</file>
+		<file>smoketest/winscw_udeb/lbstestclient.dll</file>
+		<file>smoketest/winscw_udeb/lbstestchannel.dll</file>
+		<file>smoketest/winscw_udeb/lbstestserver.exe</file>
+		<file>smoketest/winscw_udeb/ctlbsexeclient.exe</file>
+		<file>smoketest/winscw_udeb/lbsclienttestserver.exe</file>
         <file>smoketest/winscw_udeb/ProfileSmokeTestModule.dll</file>
         <file>smoketest/general/ProfileSmokeTestModule.cfg</file>
         <file>smoketest/winscw_udeb/TestNpdApi.dll</file>		

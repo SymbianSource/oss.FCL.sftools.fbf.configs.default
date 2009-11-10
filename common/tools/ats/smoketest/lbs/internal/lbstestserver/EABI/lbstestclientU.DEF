@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN14CLbsTestServer13StopLbsSystemEv @ 1 NONAME
+	_ZN14CLbsTestServer4NewLEv @ 2 NONAME
+	_ZN14CLbsTestServer14ResetLbsSystemEv @ 3 NONAME
+	_ZN14CLbsTestServer14StartLbsSystemEv @ 4 NONAME
+

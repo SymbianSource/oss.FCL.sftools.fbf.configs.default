@@ -1,0 +1,6 @@
+EXPORTS
+	?NewL@CLbsTestServer@@SAPAV1@XZ @ 1 NONAME ; class CLbsTestServer * CLbsTestServer::NewL(void)
+	?StopLbsSystem@CLbsTestServer@@QAEHXZ @ 2 NONAME ; int CLbsTestServer::StopLbsSystem(void)
+	?ResetLbsSystem@CLbsTestServer@@QAEHXZ @ 3 NONAME ; int CLbsTestServer::ResetLbsSystem(void)
+	?StartLbsSystem@CLbsTestServer@@QAEHXZ @ 4 NONAME ; int CLbsTestServer::StartLbsSystem(void)
+

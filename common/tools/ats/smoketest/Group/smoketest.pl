@@ -30,6 +30,8 @@ copy($epoc . "data/z/smoketest/smoketest_timew.ini",				"temp/smoketest/general/
 copy($epoc . "data/z/smoketest/smoketest_timew.script",				"temp/smoketest/general/smoketest_timew.script");
 copy($epoc . "data/z/smoketest/smoketest_email.ini",				"temp/smoketest/general/smoketest_email.ini");
 copy($epoc . "data/z/smoketest/smoketest_email.script",				"temp/smoketest/general/smoketest_email.script");
+copy($epoc . "data/z/smoketest/smoketest_lbs.ini",					"temp/smoketest/general/smoketest_lbs.ini");
+copy($epoc . "data/z/smoketest/smoketest_lbs.script",				"temp/smoketest/general/smoketest_lbs.script");
 copy($epoc . "data/z/smoketest/sms/message1.txt",					"temp/smoketest/sms/general/message1.txt");
 copy($epoc . "data/z/smoketest/MachineName.txt",					"temp/smoketest/general/MachineName.txt");
 copy($epoc . "data/z/smoketest/emailmessage/20KBody.txt",			"temp/smoketest/emailmessage/general/20KBody.txt");
@@ -46,6 +48,12 @@ copy($epoc . "release/winscw/udeb/SmokeTest_Utils.dll",				"temp/smoketest/winsc
 copy($epoc . "release/winscw/udeb/t_msgutilityserver.dll",			"temp/smoketest/winscw_udeb/t_msgutilityserver.dll");
 copy($epoc . "release/winscw/udeb/t_msgpopserver.exe",				"temp/smoketest/winscw_udeb/t_msgpopserver.exe");
 copy($epoc . "release/winscw/udeb/t_msgsmtpserver.exe",				"temp/smoketest/winscw_udeb/t_msgsmtpserver.exe");
+copy($epoc . "release/winscw/udeb/lbstestutils.dll",				"temp/smoketest/winscw_udeb/lbstestutils.dll");
+copy($epoc . "release/winscw/udeb/lbstestclient.dll",				"temp/smoketest/winscw_udeb/lbstestclient.dll");
+copy($epoc . "release/winscw/udeb/lbstestchannel.dll",				"temp/smoketest/winscw_udeb/lbstestchannel.dll");
+copy($epoc . "release/winscw/udeb/lbstestserver.exe",				"temp/smoketest/winscw_udeb/lbstestserver.exe");
+copy($epoc . "release/winscw/udeb/ctlbsexeclient.exe",				"temp/smoketest/winscw_udeb/ctlbsexeclient.exe");
+copy($epoc . "release/winscw/udeb/lbsclienttestserver.exe",			"temp/smoketest/winscw_udeb/lbsclienttestserver.exe");
 
 copy($epoc . "release/winscw/udeb/ProfileSmokeTestModule.dll",      "temp/smoketest/winscw_udeb/ProfileSmokeTestModule.dll");
 copy($epoc . "winscw/c/smoketest/ProfileSmokeTestModule.cfg",       "temp/smoketest/general/ProfileSmokeTestModule.cfg");

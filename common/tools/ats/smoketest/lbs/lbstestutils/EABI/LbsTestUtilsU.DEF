@@ -1,0 +1,91 @@
+EXPORTS
+	_Z27Compare_ModuleUpdateOptionsR22TPositionUpdateOptionsS0_ @ 1 NONAME
+	_ZN10T_LbsUtils14GetBadModuleIdEv @ 2 NONAME
+	_ZN10T_LbsUtils15Compare_PosInfoERK17TPositionInfoBaseS2_ @ 3 NONAME
+	_ZN10T_LbsUtils15Compare_PosInfoERK17TPositionInfoBaseS2_NS_23TComparisonAccuracyTypeE @ 4 NONAME
+	_ZN10T_LbsUtils16GetAGpsModuleIdLER15RPositionServer @ 5 NONAME
+	_ZN10T_LbsUtils18Compare_ModuleInfoER19TPositionModuleInfoS1_ @ 6 NONAME
+	_ZN10T_LbsUtils18Compare_PosInfoArrER13RPointerArrayIvES2_ @ 7 NONAME
+	_ZN10T_LbsUtils18Compare_PosInfoArrER13RPointerArrayIvES2_NS_23TComparisonAccuracyTypeE @ 8 NONAME
+	_ZN10T_LbsUtils18Create_ModuleInfoLE4TUidR19TPositionModuleInfo @ 9 NONAME
+	_ZN10T_LbsUtils19GetNetworkModuleIdLER15RPositionServer @ 10 NONAME
+	_ZN10T_LbsUtils20Compare_ModuleStatusER21TPositionModuleStatusS1_ @ 11 NONAME
+	_ZN10T_LbsUtils21CreateTestPropertiesLEv @ 12 NONAME
+	_ZN10T_LbsUtils22Verify_PositionIsValidER13TPositionInfo @ 13 NONAME
+	_ZN10T_LbsUtils23Compare_PositionQualityER16TPositionQualityS1_ @ 14 NONAME
+	_ZN10T_LbsUtils23GetConfigured_PosInfosLERK7TDesC16S2_R13RPointerArrayIvE @ 15 NONAME
+	_ZN10T_LbsUtils26ResetAndDestroy_PosInfoArrER13RPointerArrayIvE @ 16 NONAME
+	_ZN10T_LbsUtils26VerifySimpleAssistanceDataER36RUEPositioningGpsReferenceTimeReader @ 17 NONAME
+	_ZN10T_LbsUtils27GetConfigured_ModuleStatusLERK7TDesC16S2_R21TPositionModuleStatus @ 18 NONAME
+	_ZN10T_LbsUtils27NotifyModuleOfConfigChangeLERK13TModuleDataIn @ 19 NONAME
+	_ZN10T_LbsUtils34GetConfigured_ModuleUpdateOptionsLERK7TDesC16S2_R22TPositionUpdateOptions @ 20 NONAME
+	_ZN10T_LbsUtilsC1Ev @ 21 NONAME
+	_ZN10T_LbsUtilsC2Ev @ 22 NONAME
+	_ZN10T_LbsUtilsD1Ev @ 23 NONAME
+	_ZN10T_LbsUtilsD2Ev @ 24 NONAME
+	_ZN16CT_LbsTimerUtils11CancelTimerEv @ 25 NONAME
+	_ZN16CT_LbsTimerUtils4NewLEP24MT_LbsTimerUtilsObserveri @ 26 NONAME
+	_ZN16CT_LbsTimerUtils8SetTimerE27TTimeIntervalMicroSeconds32 @ 27 NONAME
+	_ZN16CT_LbsTimerUtils8SetTimerERK5TTime @ 28 NONAME
+	_ZN16CT_LbsTimerUtilsD0Ev @ 29 NONAME
+	_ZN16CT_LbsTimerUtilsD1Ev @ 30 NONAME
+	_ZN16CT_LbsTimerUtilsD2Ev @ 31 NONAME
+	_ZN17CT_LbsAsyncWaiter12StartAndWaitEv @ 32 NONAME
+	_ZN17CT_LbsAsyncWaiter4NewLEv @ 33 NONAME
+	_ZNK17CT_LbsAsyncWaiter6ResultEv @ 34 NONAME
+	_ZTI16CT_LbsTimerUtils @ 35 NONAME ; #<TI>#
+	_ZTI17CConfigReaderBase @ 36 NONAME ; #<TI>#
+	_ZTI17CT_LbsAsyncWaiter @ 37 NONAME ; #<TI>#
+	_ZTI20CPosInfoConfigReader @ 38 NONAME ; #<TI>#
+	_ZTI23CUpdateOptsConfigReader @ 39 NONAME ; #<TI>#
+	_ZTI25CModuleStatusConfigReader @ 40 NONAME ; #<TI>#
+	_ZTV16CT_LbsTimerUtils @ 41 NONAME ; #<VT>#
+	_ZTV17CConfigReaderBase @ 42 NONAME ; #<VT>#
+	_ZTV17CT_LbsAsyncWaiter @ 43 NONAME ; #<VT>#
+	_ZTV20CPosInfoConfigReader @ 44 NONAME ; #<VT>#
+	_ZTV23CUpdateOptsConfigReader @ 45 NONAME ; #<VT>#
+	_ZTV25CModuleStatusConfigReader @ 46 NONAME ; #<VT>#
+	_ZN10T_LbsUtils37WaitForModuleToRequestAssistanceDataLEv @ 47 NONAME
+	_ZN10T_LbsUtils21Compare_SelfLocateLogERK22CLbsSelfLocateLogEventS2_ @ 48 NONAME
+	_ZN10T_LbsUtils24Compare_NetworkLocateLogERK25CLbsNetworkLocateLogEventS2_ @ 49 NONAME
+	_ZN10T_LbsUtils25Compare_AssistanceDataLogERK26CLbsAssistanceDataLogEventS2_ @ 50 NONAME
+	_ZN10T_LbsUtils25Compare_ExternalLocateLogERK26CLbsExternalLocateLogEventS2_ @ 51 NONAME
+	_ZN10T_LbsUtils27Compare_TransmitLocationLogERK28CLbsTransmitLocationLogEventS2_ @ 52 NONAME
+	_ZNK20TLbsModuleUpdateItem11MeasurementEv @ 53 NONAME
+	_ZN20TLbsModuleUpdateItem11SetPositionERK22TPositionSatelliteInfo @ 54 NONAME
+	_ZN20TLbsModuleUpdateItem14SetMeasurementERK27TPositionGpsMeasurementInfo @ 55 NONAME
+	_ZNK20TLbsModuleUpdateItem5ErrorEv @ 56 NONAME
+	_ZNK20TLbsModuleUpdateItem8PositionEv @ 57 NONAME
+	_ZN20TLbsModuleUpdateItem8SetErrorEi @ 58 NONAME
+	_ZN20TLbsModuleUpdateItemC1Ev @ 59 NONAME
+	_ZN20TLbsModuleUpdateItemC2Ev @ 60 NONAME
+	_ZTI19CUpdateConfigReader @ 61 NONAME
+	_ZTV19CUpdateConfigReader @ 62 NONAME
+	_ZN9CT_Dumper5WriteE11TRefByValueIK7TDesC16Ez @ 63 NONAME
+	_ZN9CT_Dumper9OverWriteEv @ 64 NONAME
+	_ZN10T_LbsUtils26GetConfigured_UpdateArrayLERK7TDesC16S2_R13RPointerArrayI20TLbsModuleUpdateItemE @ 65 NONAME
+	_ZN17CT_LbsAGpsHandler16SendRequestErrorEi @ 66 NONAME
+	_ZN17CT_LbsAGpsHandler21SendRequestTimeOutMsgERK25TTimeIntervalMicroSeconds @ 67 NONAME
+	_ZN17CT_LbsAGpsHandler23SendRequestModuleOptionE23TLbsHybridModuleOptionsi @ 68 NONAME
+	_ZN17CT_LbsAGpsHandler24SendRequestUpdateInitMsgERK7TDesC16S2_ @ 69 NONAME
+	_ZN17CT_LbsAGpsHandler30SendRequestSetAllModuleOptionsEv @ 70 NONAME
+	_ZN17CT_LbsAGpsHandler32SendRequestClearAllModuleOptionsEv @ 71 NONAME
+	_ZN17CT_LbsAGpsHandler4NewLEP19MT_ResponseObserver @ 72 NONAME
+	_ZTI17CT_LbsAGpsHandler @ 73 NONAME ; #<TI>#
+	_ZTV17CT_LbsAGpsHandler @ 74 NONAME ; #<VT>#
+	_ZN20TLbsModuleUpdateItem8SetDelayEi @ 75 NONAME
+	_ZNK20TLbsModuleUpdateItem5DelayEv @ 76 NONAME
+	_ZN10T_LbsUtils23GetExpected_ModuleModesERK7TDesC16S2_R13RPointerArrayI14TLbsGpsOptionsE @ 77 NONAME
+	_ZN26CT_AgpsModuleEventListener4NewLER25MT_AgpsModuleEventHandler @ 78 NONAME
+	_ZN26CT_AgpsModuleEventListenerD0Ev @ 79 NONAME
+	_ZN26CT_AgpsModuleEventListenerD1Ev @ 80 NONAME
+	_ZN26CT_AgpsModuleEventListenerD2Ev @ 81 NONAME
+	_ZTI26CT_AgpsModuleEventListener @ 82 NONAME
+	_ZTI28CAgpsModuleModesConfigReader @ 83 NONAME
+	_ZTV26CT_AgpsModuleEventListener @ 84 NONAME
+	_ZTV28CAgpsModuleModesConfigReader @ 85 NONAME
+	_ZN10T_LbsUtils28GetConfigured_ClientDetailsLERK7TDesC16S2_R6RArrayI16TCTClientDetailsE @ 86 NONAME
+	_ZTI26CClientDetailsConfigReader @ 87 NONAME
+	_ZTV26CClientDetailsConfigReader @ 88 NONAME
+	_ZN17CT_LbsAGpsHandler23SendRequestForcedUpdateEv @ 89 NONAME
+
