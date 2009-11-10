@@ -18,9 +18,12 @@ use strict;
 
 use FindBin;
 use lib "$FindBin::Bin/../lib";
+use lib "$FindBin::Bin";
 
 use Getopt::Long;
 use Text::CSV;
+
+use ToBrag;
 
 if (!@ARGV)
 {
@@ -30,20 +33,9 @@ if (!@ARGV)
 }
 
 # Start to build structure to be output as XML (same format as XML::Parser would create for us)
-my $xmlNewline = bless { Text => "\n" }, "Characters";
-my $buildPhase = bless { name => "Build", Kids => [ $xmlNewline ] }, "phase";
-my $buildStatus =
-[
-	bless
-	{
-		Kids =>
-		[
-			$xmlNewline,
-			$buildPhase,
-			$xmlNewline,
-		]
-	}, "buildStatus"
-];
+my $buildStatus = ToBrag::createBuildStatus();
+# Obtain a phase object
+my $buildPhase = ToBrag::ensurePhase($buildStatus, "Build");
 
 @ARGV = map { glob $_ } @ARGV;
 
@@ -114,48 +106,16 @@ foreach my $yarpCSV (@ARGV)
 #		die $failure->{name} unless exists $errorIdToDetail{$failure->{name}};
 		my $message = $errorIdToDetail{$failure->{name}}->{message} || "Unknown failure tag '$failure->{name}' ($failure->{source} -> $failure->{target})";
 		$failure->{severity} = $errorIdToDetail{$failure->{name}}->{severity} || "unknown";
-
-		# Look through the steps to see if we already have one to match this platform
-		my $step;
-		foreach (@{$buildPhase->{Kids}})
-		{
-			next unless ref $_ eq "step";
-			if ($_->{name} eq $failure->{platform})
-			{
-				$step = $_;
-				last;
-			}
-		}
-		unless ($step)
-		{
-			# First item found for this platform - create step entry
-			$step = bless { name => $failure->{platform}, Kids => [ $xmlNewline ] }, "step";
-			push @{$buildPhase->{Kids}}, $step, $xmlNewline;
-			# Also create empty <failures> tags with severities in a sensible order
-			foreach my $severity (qw{critical major minor})
-			{
-				my $failureSet = bless { level => $severity, Kids => [ $xmlNewline ] }, "failures";
-				push @{$step->{Kids}}, $failureSet, $xmlNewline;
-			}
-		}
 		
-		# Look through the sets of failures in this step to see if we hve one which matches this severity
-		my $failureSet;
-		foreach (@{$step->{Kids}})
-		{
-			next unless ref $_ eq "failures";
-			if ($_->{level} eq $failure->{severity})
-			{
-				$failureSet = $_;
-				last;
-			}
-		}
-		unless ($failureSet)
-		{
-			# First item found at this severity - create failures entry
-			$failureSet = bless { level => $failure->{severity}, Kids => [ $xmlNewline ] }, "failures";
-			push @{$step->{Kids}}, $failureSet, $xmlNewline;
-		}
+		# Obtain a matching step
+		my $step = ToBrag::ensureStep($buildPhase, $failure->{platform});
+		# Also create empty <failures> tags with severities in a sensible order
+		ToBrag::ensureFailureSet($step, "critical");
+		ToBrag::ensureFailureSet($step, "major");
+		ToBrag::ensureFailureSet($step, "minor");
+		
+		# Obtain a set of failures which matches this severity
+		my $failureSet = ToBrag::ensureFailureSet($step, $failure->{severity});
 		
 		# Now create the failure itself, and add it to this failure set
 		my $failureItem = bless {
@@ -163,64 +123,15 @@ foreach my $yarpCSV (@ARGV)
 			"package" => $failure->{package},
 			Kids => [ bless { Text => $message }, "Characters" ],
 		}, "failure";
-		push @{$failureSet->{Kids}}, $failureItem, $xmlNewline;
+		push @{$failureSet->{Kids}}, $failureItem, $ToBrag::xmlNewline;
 	}
 	close(CSV);
 }
 # Print XML
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 print "<?xml-stylesheet type='text/xsl' href='brag.xsl'?>\n";
-printTree($buildStatus->[0]);
+ToBrag::printTree($buildStatus->[0]);
 print "\n";
 
 exit(0);
-
-sub printTree
-{
-	my $tree = shift or die;
-	die unless ref $tree;
-
-	my $tagName = ref $tree;
-	$tagName =~ s{^main::}{};
-	if ($tagName eq "Characters")
-	{
-		print $tree->{Text};
-		return;
-	}
-	
-	print "<$tagName";
-
-	foreach my $attr (
-		sort {
-			my $order = "name level start stop href";
-			my $ixA = index $order, $a;
-			my $ixB = index $order, $b;
-			die "$a $b" if $ixA + $ixB == -2;
-			$ixA - $ixB;
-		}
-		grep {
-			! ref $tree->{$_}
-		}
-		keys %$tree)
-	{
-		print " $attr=\"$tree->{$attr}\"";
-	}
-
-	my $children = $tree->{Kids} || [];
-	if (scalar @$children)
-	{
-		print ">";
-		foreach my $child (@$children)
-		{
-			printTree($child);
-		}
-		print "</$tagName";
-	}
-	else
-	{
-		print "/"
-	}
-
-	print ">";
-}
 
