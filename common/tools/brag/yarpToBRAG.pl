@@ -121,7 +121,7 @@ foreach my $yarpCSV (@ARGV)
 		my $failureItem = bless {
 #			href => "",
 			"package" => $failure->{package},
-			Kids => [ bless { Text => $message }, "Characters" ],
+			Kids => [ bless { Kids => [ bless { Text => $message }, "Characters" ]}, "effect"],
 		}, "failure";
 		push @{$failureSet->{Kids}}, $failureItem, $ToBrag::xmlNewline;
 	}

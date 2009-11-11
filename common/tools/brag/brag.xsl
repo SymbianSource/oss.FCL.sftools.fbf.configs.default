@@ -138,7 +138,13 @@
 				<ul>
 				<xsl:for-each select="/buildStatus/phase/step/failures[@level = $severity]/failure[@package = $package]">
 					<xsl:sort select="@package"/>
-					<li><xsl:value-of select="@package"/>: <xsl:value-of select="."/></li>
+					<li><xsl:value-of select="effect"/></li>
+					<xsl:if test="@unreported_causes != '0'">
+						<br/>(Too much text to show everything; <xsl:value-of select="@unreported_causes"/> lines not shown.)
+					</xsl:if>
+					<xsl:for-each select="causes">
+						<pre><xsl:value-of select="."/></pre>
+					</xsl:for-each>
 				</xsl:for-each>
 				</ul>
 				</dd></dl>

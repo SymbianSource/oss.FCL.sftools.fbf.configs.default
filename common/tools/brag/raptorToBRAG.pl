@@ -97,8 +97,7 @@ while (my $line = <CSV>)
 
 	# Now create the failure itself, and add it to this failure set
 	my $failureItem = bless {
-#		href => "",
-		Kids => [ bless { Text => $failure->{subcategory} }, "Characters" ]
+		Kids => [ bless { Kids => [ bless { Text => $failure->{subcategory} }, "Characters" ]}, "effect" ],
 	}, "failure";
 	if ($failure->{component})
 	{

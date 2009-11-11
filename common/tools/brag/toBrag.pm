@@ -21,6 +21,19 @@ package ToBrag;
 # A useful constant
 our $xmlNewline = bless { Text => "\n" }, "Characters";
 
+sub createDocumentAndRoot
+{
+	my $rootTag = shift;
+
+	my $root = bless
+	{
+		Kids =>
+		[ $ToBrag::xmlNewline ]
+	}, $rootTag;
+
+	return [$root], $root;
+}
+
 sub createBuildStatus
 {
 	return [
@@ -55,17 +68,7 @@ sub ensureStep
 	my $phase = shift;
 	my $stepName = shift;
 
-	my ($step) = grep { ref $_ eq "step" && $_->{name} eq $stepName } @{$phase->{Kids}};
-	unless ($step)
-	{
-		$step = bless
-		{
-			name => $stepName,
-			Kids => [ $ToBrag::xmlNewline ]
-		}, "step";
-		push @{$phase->{Kids}}, $step, $ToBrag::xmlNewline;
-	}
-	return $step;
+	return ensureChild($phase, "step", "name", $stepName);
 }
 
 sub ensureFailureSet
@@ -73,17 +76,27 @@ sub ensureFailureSet
 	my $step = shift;
 	my $level = shift;
 
-	my ($failureSet) = grep { ref $_ eq "failures" && $_->{level} eq $level } @{$step->{Kids}};
-	unless ($failureSet)
+	return ensureChild($step, "failures", "level", $level);
+}
+
+sub ensureChild
+{
+	my $parent = shift;
+	my $childName = shift;
+	my $childAttr = shift;
+	my $childAttrValue = shift;
+
+	my ($child) = grep { ref $_ eq $childName && $_->{$childAttr} eq $childAttrValue } @{$parent->{Kids}};
+	unless ($child)
 	{
-		$failureSet = bless
+		$child = bless
 		{
-			level => $level,
+			$childAttr => $childAttrValue,
 			Kids => [ $ToBrag::xmlNewline ]
-		}, "failures";
-		push @{$step->{Kids}}, $failureSet, $ToBrag::xmlNewline;
+		}, $childName;
+		push @{$parent->{Kids}}, $child, $ToBrag::xmlNewline;
 	}
-	return $failureSet;
+	return $child;
 }
 
 # Prints out the XML tree to STDOUT
@@ -96,7 +109,14 @@ sub printTree
 	$tagName =~ s{^main::}{};
 	if ($tagName eq "Characters")
 	{
-		print $tree->{Text};
+		if ($tree->{Text} =~ m{[<>&]})
+		{
+			print "<![CDATA[$tree->{Text}]]>";
+		}
+		else
+		{
+			print $tree->{Text};
+		}
 		return;
 	}
 	
@@ -104,7 +124,7 @@ sub printTree
 
 	foreach my $attr (
 		sort {
-			my $order = "name level start stop href";
+			my $order = "name level start stop href package effect";
 			my $ixA = index $order, $a;
 			my $ixB = index $order, $b;
 			die "$a $b" if $ixA + $ixB == -2;
