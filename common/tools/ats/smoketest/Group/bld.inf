@@ -27,3 +27,4 @@
 #include "../notepad/group/bld.inf"
 #include "../appinstall/group/Bld.inf"
 #include "../lbs/group/bld.inf"
+#include "../uiresources/group/bld.inf"
