@@ -65,5 +65,7 @@ copy($epoc . "data/c/smoketest/ui_TestNpdApi.cfg",					"temp/smoketest/general/u
 copy($epoc . "release/winscw/udeb/testsdkskins.dll",				"temp/smoketest/winscw_udeb/testsdkskins.dll");
 copy($epoc . "data/c/smoketest/smoketest_uiresources.cfg",			"temp/smoketest/general/smoketest_uiresources.cfg");
 copy($epoc . "data/c/smoketest/ui_testsdkskinsu.cfg",				"temp/smoketest/general/ui_testsdkskinsu.cfg");
+copy($epoc . "release/winscw/udeb/IMApiTest.dll",					"temp/smoketest/winscw_udeb/IMApiTest.dll");
+copy($epoc . "data/c/smoketest/imapitest.ini",						"temp/smoketest/general/imapitest.ini");
 
 system("7z a -tzip smoketest.zip ./temp/*");
