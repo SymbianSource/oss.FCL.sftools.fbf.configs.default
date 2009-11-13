@@ -1,0 +1,74 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  STIF TestFramework's IMApiTest
+*
+*
+*/
+
+
+
+/*
+-------------------------------------------------------------------------------
+
+    DESCRIPTION
+
+    MMP file for STIF Test Framework's IMApiTest.
+
+-------------------------------------------------------------------------------
+*/
+#if defined(__S60_)
+    //To get the OS_LAYER_SYSTEMINCLUDE-definition
+    #include <platform_paths.hrh>
+#endif
+
+TARGET      IMApiTest.dll
+TARGETTYPE  dll
+DEFFILE     Demomodule.def
+
+CAPABILITY	ALL -TCB
+VENDORID 	0x101FB657
+SECUREID        0x102073DB
+
+LIBRARY     commdb.lib 
+LIBRARY     euser.lib
+LIBRARY     stiftestinterface.lib
+LIBRARY       ECom.lib
+LIBRARY       bafl.lib
+LIBRARY       cntmodel.lib 
+LIBRARY       flogger.lib
+LIBRARY       efsrv.lib
+LIBRARY       estor.lib       // ReadStream
+
+
+SOURCEPATH      ../src
+SOURCE          IMApiTest.cpp
+SOURCE          IMApiTestCases.cpp
+SOURCE          IMApiMTHandlers.cpp
+SOURCE          TestRunner.cpp
+SOURCE          ParserUtils.cpp
+
+
+USERINCLUDE     ../inc 
+//USERINCLUDE     ../../inc
+
+#if defined(__S60_)
+    APP_LAYER_SYSTEMINCLUDE
+#else
+   	SYSTEMINCLUDE   /epoc32/include/ecom
+#endif
+
+
+// First UID is DLL UID, Second UID is STIF Test Framework UID
+UID             0x1000008D 0x101FB3E7
+// End of File

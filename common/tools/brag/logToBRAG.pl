@@ -100,7 +100,7 @@ while (my $line = <>)
 		{
 			last if $rule->{severity} eq "ignore";
 			# We found a match
-			my $failure = bless{ Kids => [ bless { Text => $line }, "Characters" ] }, "failure";
+			my $failure = bless{ Kids => [ bless { Kids => [ bless { Text => $line }, "Characters" ]}, "effect"] }, "failure";
 			# Ensure we have a <failures> tag for this severity
 			if (!exists $severityShortcut->{$rule->{severity}})
 			{
