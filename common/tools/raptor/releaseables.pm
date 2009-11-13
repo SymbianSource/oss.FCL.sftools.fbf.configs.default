@@ -13,10 +13,9 @@
 # Raptor parser module.
 # Extract releaseable (whatlog) information
 
-package RaptorReleaseable;
+package releaseables;
 
 use strict;
-use RaptorCommon;
 
 our $reset_status = {};
 my $buildlog_status = {};
@@ -35,53 +34,53 @@ $reset_status->{next_status} = {buildlog=>$buildlog_status};
 
 $buildlog_status->{name} = 'buildlog_status';
 $buildlog_status->{next_status} = {whatlog=>$whatlog_status};
-$buildlog_status->{on_start} = 'RaptorReleaseable::on_start_buildlog';
+$buildlog_status->{on_start} = 'releaseables::on_start_buildlog';
 
 $whatlog_status->{name} = 'whatlog_status';
 $whatlog_status->{next_status} = {bitmap=>$bitmap_status, resource=>$resource_status, build=>$build_status, export=>$export_status, stringtable=>$stringtable_status, archive=>$archive_status, '?default?'=>$whatlog_default_status};
-$whatlog_status->{on_start} = 'RaptorReleaseable::on_start_whatlog';
-$whatlog_status->{on_end} = 'RaptorReleaseable::on_end_whatlog';
+$whatlog_status->{on_start} = 'releaseables::on_start_whatlog';
+$whatlog_status->{on_end} = 'releaseables::on_end_whatlog';
 
 $bitmap_status->{name} = 'bitmap_status';
 $bitmap_status->{next_status} = {};
-$bitmap_status->{on_start} = 'RaptorReleaseable::on_start_bitmap';
-$bitmap_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
-$bitmap_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
+$bitmap_status->{on_start} = 'releaseables::on_start_bitmap';
+$bitmap_status->{on_end} = 'releaseables::on_end_whatlog_subtag';
+$bitmap_status->{on_chars} = 'releaseables::on_chars_whatlog_subtag';
 
 $resource_status->{name} = 'resource_status';
 $resource_status->{next_status} = {};
-$resource_status->{on_start} = 'RaptorReleaseable::on_start_resource';
-$resource_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
-$resource_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
+$resource_status->{on_start} = 'releaseables::on_start_resource';
+$resource_status->{on_end} = 'releaseables::on_end_whatlog_subtag';
+$resource_status->{on_chars} = 'releaseables::on_chars_whatlog_subtag';
 
 $build_status->{name} = 'build_status';
 $build_status->{next_status} = {};
-$build_status->{on_start} = 'RaptorReleaseable::on_start_build';
-$build_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
-$build_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
+$build_status->{on_start} = 'releaseables::on_start_build';
+$build_status->{on_end} = 'releaseables::on_end_whatlog_subtag';
+$build_status->{on_chars} = 'releaseables::on_chars_whatlog_subtag';
 
 $stringtable_status->{name} = 'stringtable_status';
 $stringtable_status->{next_status} = {};
-$stringtable_status->{on_start} = 'RaptorReleaseable::on_start_stringtable';
-$stringtable_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
-$stringtable_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
+$stringtable_status->{on_start} = 'releaseables::on_start_stringtable';
+$stringtable_status->{on_end} = 'releaseables::on_end_whatlog_subtag';
+$stringtable_status->{on_chars} = 'releaseables::on_chars_whatlog_subtag';
 
 $archive_status->{name} = 'archive_status';
 $archive_status->{next_status} = {member=>$archive_member_status};
 
 $archive_member_status->{name} = 'archive_member_status';
 $archive_member_status->{next_status} = {};
-$archive_member_status->{on_start} = 'RaptorReleaseable::on_start_archive_member';
-$archive_member_status->{on_end} = 'RaptorReleaseable::on_end_whatlog_subtag';
-$archive_member_status->{on_chars} = 'RaptorReleaseable::on_chars_whatlog_subtag';
+$archive_member_status->{on_start} = 'releaseables::on_start_archive_member';
+$archive_member_status->{on_end} = 'releaseables::on_end_whatlog_subtag';
+$archive_member_status->{on_chars} = 'releaseables::on_chars_whatlog_subtag';
 
 $export_status->{name} = 'export_status';
 $export_status->{next_status} = {};
-$export_status->{on_start} = 'RaptorReleaseable::on_start_export';
+$export_status->{on_start} = 'releaseables::on_start_export';
 
 $whatlog_default_status->{name} = 'whatlog_default_status';
 $whatlog_default_status->{next_status} = {};
-$whatlog_default_status->{on_start} = 'RaptorReleaseable::on_start_whatlog_default';
+$whatlog_default_status->{on_start} = 'releaseables::on_start_whatlog_default';
 
 my $whatlog_info = {};
 my $curbldinf = 'unknown';
@@ -91,7 +90,8 @@ my $characters = '';
 
 sub on_start_buildlog
 {
-	mkdir("$::basedir/releaseables");
+	system("rmdir /S /Q $::raptorbitsdir/releaseables") if (-d "$::basedir/releaseables");
+	mkdir("$::raptorbitsdir/releaseables");
 }
 
 sub on_start_whatlog
@@ -229,10 +229,10 @@ sub on_end_whatlog
 			my $layer = $1;
 			my $package = $2;
 			
-			mkdir("$::basedir/releaseables/$layer");
-			mkdir("$::basedir/releaseables/$layer/$package");
+			mkdir("$::raptorbitsdir/releaseables/$layer");
+			mkdir("$::raptorbitsdir/releaseables/$layer/$package");
 			
-			my $filename = "$::basedir/releaseables/$layer/$package/info.tsv";
+			my $filename = "$::raptorbitsdir/releaseables/$layer/$package/info.tsv";
 			
 			print "Writing info file $filename\n" if (!-f$filename);
 			open(FILE, ">>$filename");

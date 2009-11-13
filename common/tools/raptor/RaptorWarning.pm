@@ -45,7 +45,7 @@ my $CATEGORY_RAPTORWARNING_MISSINGFLAGABIV2 = 'missing_enable_abiv2_mode';
 
 sub process
 {
-	my ($text, $component, $phase, $recipe, $file, $line) = @_;
+	my ($text, $logfile, $component, $mmp, $phase, $recipe, $file, $line) = @_;
 	
 	my $category = $CATEGORY_RAPTORWARNING;
 	my $severity = '';
@@ -55,11 +55,11 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_MINOR;
 		my $subcategory = $CATEGORY_RAPTORWARNING_MISSINGFLAGABIV2;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
 	{
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 }
 
@@ -67,7 +67,7 @@ sub on_start_buildlog
 {
 	RaptorCommon::init();
 	
-	$filename = "$::basedir/raptor_warning.txt";
+	$filename = "$::raptorbitsdir/raptor_warning.txt";
 	if (!-f$filename)
 	{
 		print "Writing warnings file $filename\n";
@@ -118,7 +118,7 @@ sub on_end_buildlog_warning
 		print FILE "$characters\n\n";
 		close(FILE);
 		
-		process($characters, '', '', '', "raptor_warning.txt", $failure_item);
+		process($characters, $::current_log_file, '', '', '', '', "raptor_warning.txt", $failure_item);
 	}
 	
 	$characters = '';

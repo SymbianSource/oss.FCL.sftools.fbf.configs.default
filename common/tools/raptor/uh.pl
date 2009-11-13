@@ -10,32 +10,75 @@
 # Contributors:
 #
 # Description:
-# Generate an HTML summary of the Raptor build from the output of the raptor parser
+# Unite and HTML-ize Raptor log files
 
 use strict;
 use FindBin;
 use lib $FindBin::Bin;
+use RaptorError;
+use RaptorWarning;
+use RaptorInfo;
+use RaptorUnreciped;
+use RaptorRecipe;
+
+use XML::SAX;
+use RaptorSAXHandler;
 use Getopt::Long;
 
-my $raptorbitsdir = 0;
-my $outputdir = '.';
+our $raptorbitsdir = 'raptorbits';
+our $basedir = '';
+my $outputdir = "html";
+our $raptor_config = 'dummy_config';
+our $current_log_file = '';
 my $help = 0;
 GetOptions((
-	'raptorbitsdir=s' => \$raptorbitsdir,
-	'outputdir=s' => \$outputdir,
+	'basedir=s' => \$basedir,
 	'help!' => \$help
 ));
+my @logfiles = @ARGV;
 
-$help = 1 if (!$raptorbitsdir);
+$help = 1 if (!@logfiles);
 
 if ($help)
 {
-	print "Generate an HTML summary of the Raptor build from a summary.csv file\n";
-	print "Usage: perl summarize.pl --raptorbitsdir=DIR [--outputdir=DIR]\n";
+	print "Unite and HTML-ize Raptor log files.\n";
+	print "Usage: perl uh.pl [OPTIONS] FILE1 FILE2 ...\n";
+	print "where OPTIONS are:\n";
+	print "\t--basedir=DIR Generate output under DIR (defaults to current dir)\n";
 	exit(0);
 }
 
-$outputdir = "$outputdir/html";
+if ($basedir)
+{
+	$raptorbitsdir = "$basedir/raptorbits";
+	$outputdir = "$basedir/html";
+}
+mkdir($basedir) if (!-d$basedir);
+
+system("rmdir /S /Q $raptorbitsdir") if (-d $raptorbitsdir);
+mkdir($raptorbitsdir);
+#print "Created dir $raptorbitsdir.\n";
+
+# create empty summary file anyway
+open(SUMMARY, ">$raptorbitsdir/summary.csv");
+close(SUMMARY);
+
+my $saxhandler = RaptorSAXHandler->new();
+$saxhandler->add_observer('RaptorError', $RaptorError::reset_status);
+$saxhandler->add_observer('RaptorWarning', $RaptorWarning::reset_status);
+$saxhandler->add_observer('RaptorInfo', $RaptorInfo::reset_status);
+$saxhandler->add_observer('RaptorUnreciped', $RaptorUnreciped::reset_status);
+$saxhandler->add_observer('RaptorRecipe', $RaptorRecipe::reset_status);
+
+my $parser = XML::SAX::ParserFactory->parser(Handler=>$saxhandler);
+for (@logfiles)
+{
+	print "Reading file: $_\n";
+	$current_log_file = $_;
+	$parser->parse_uri($_);
+}
+
+print "Generating HTML...\n";
 
 system("rd /S /Q $outputdir") if (-d $outputdir);
 mkdir ($outputdir);
@@ -59,7 +102,7 @@ while(<CSV>)
 	$csv_linenum ++;
 	my $line = $_;
 	
-	if ($line =~ /([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*)/)
+	if ($line =~ /([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*)/)
 	{
 		my $failure = {};
 		$failure->{category} = $1;
@@ -67,10 +110,11 @@ while(<CSV>)
 		$failure->{severity} = $3;
 		$failure->{config} = $4;
 		$failure->{component} = $5;
-		$failure->{phase} = $6;
-		$failure->{recipe} = $7;
-		$failure->{file} = $8;
-		$failure->{linenum} = $9;
+		$failure->{mmp} = $6;
+		$failure->{phase} = $7;
+		$failure->{recipe} = $8;
+		$failure->{file} = $9;
+		$failure->{linenum} = $10;
 		
 		my $failure_package = '';
 		
@@ -100,6 +144,7 @@ while(<CSV>)
 		
 		$failure->{subcategory} = 'uncategorized' if (!$failure->{subcategory});
 		$failure->{severity} = 'unknown' if (!$failure->{severity});
+		$failure->{mmp} = '-' if (!$failure->{mmp});
 		
 		# populate severities dynamically.
 		#$severities->{$failure->{severity}} = 1;
@@ -203,6 +248,8 @@ close(AGGREGATED);
 
 translate_detail_files_to_html();
 
+print "OK, done. Please open $outputdir/index.html.\n";
+
 
 sub print_category_specific_summary
 {
@@ -220,8 +267,8 @@ sub print_category_specific_summary
 		{
 			print SPECIFIC "<br/>".uc($severity)."<br/>\n";
 			print SPECIFIC "<table border='1'>\n";
-			# $subcategory, $severity, $component, $phase, $recipe, $file, $line
-			my $tableheader = "<tr><th>category</th><th>configuration</th><th>log snippet</th></tr>";
+			# $subcategory, $severity, $mmp, $phase, $recipe, $file, $line
+			my $tableheader = "<tr><th>category</th><th>log file</th><th>log snippet</th></tr>";
 			print SPECIFIC "$tableheader\n";
 			
 			for my $failure (@{$failures_by_severity->{$severity}})
@@ -257,15 +304,15 @@ sub print_package_specific_summary
 		{
 			print SPECIFIC "<br/>".uc($severity)."<br/>\n";
 			print SPECIFIC "<table border='1'>\n";
-			# $subcategory, $severity, $component, $phase, $recipe, $file, $line
-			my $tableheader = "<tr><th>category</th><th>configuration</th><th>component</th><th>phase</th><th>recipe</th><th>log snippet</th></tr>";
+			# $subcategory, $severity, $mmp, $phase, $recipe, $file, $line
+			my $tableheader = "<tr><th>category</th><th>configuration</th><th>mmp</th><th>phase</th><th>recipe</th><th>log snippet</th></tr>";
 			print SPECIFIC "$tableheader\n";
 			
 			for my $failure (@{$failures_by_severity->{$severity}})
 			{
 				my $failureline = "<tr><td>$failure->{subcategory}</td>";
 				$failureline .= "<td>$failure->{config}</td>";
-				$failureline .= "<td>$failure->{component}</td>";
+				$failureline .= "<td>$failure->{mmp}</td>";
 				$failureline .= "<td>$failure->{phase}</td>";
 				$failureline .= "<td>$failure->{recipe}</td>";
 				$failureline .= "<td><a href='$filenamebase\_failures.html#failure_item_$failure->{linenum}'>item $failure->{linenum}</a></td>";

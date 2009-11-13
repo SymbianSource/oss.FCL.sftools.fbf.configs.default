@@ -55,7 +55,7 @@ sub process
 
 sub on_start_buildlog_info
 {
-	my $filename = "$::basedir/info.txt";
+	my $filename = "$::raptorbitsdir/info.txt";
 	print "Writing info file $filename\n" if (!-f$filename);
 	open(FILE, ">>$filename");
 }

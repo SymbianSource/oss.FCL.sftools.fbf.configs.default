@@ -20,7 +20,7 @@ our $SEVERITY_MINOR = 'minor';
 
 sub init
 {
-	my $filename = "$::basedir/summary.csv";
+	my $filename = "$::raptorbitsdir/summary.csv";
 	if (!-f$filename)
 	{
 		print "Writing summary file $filename\n";
@@ -31,10 +31,10 @@ sub init
 
 sub dump_fault
 {
-	my ($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line) = @_;
+	my ($category, $subcategory, $severity, $location, $component, $mmp, $phase, $recipe, $file, $line) = @_;
 	
-	open(SUMMARY, ">>$::basedir/summary.csv");
-	print SUMMARY "$category,$subcategory,$severity,$::raptor_config,$component,$phase,$recipe,$file,$line\n";
+	open(SUMMARY, ">>$::raptorbitsdir/summary.csv");
+	print SUMMARY "$category,$subcategory,$severity,$location,$component,$mmp,$phase,$recipe,$file,$line\n";
 	close(SUMMARY);
 }
 

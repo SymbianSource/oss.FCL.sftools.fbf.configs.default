@@ -323,8 +323,7 @@
         </exec>
     </target>
 
-    <target name="sf-run-analysis-raptor">
-      <!-- Process raptor logs to remove non-well-formedness  -->
+    <target name="sf-run-analysis-raptor">            
       <echo message="Preprocessing *_compile.log files"/>
       <delete file="${build.log.dir}/analysis/${build.id}_preprocess.log"/>
       <for param="logfile">
@@ -344,55 +343,23 @@
         </sequential>
       </for>
       
-      <!-- Cook the processed raptor logs to produce something in the right format for the BRAG system -->
-      <mkdir dir="${build.log.dir}/summary/"/>
-      <exec executable="perl" output="${build.log.dir}/summary/sbs_BRAG.xml" logError="yes" failonerror="false">
-        <arg value="${sf.common.config.dir}/tools/brag/sbsToBRAG.pl"/>
-        <arg value="${build.log.dir}/analysis/*_compile_preprocessed.log"/>
-      </exec>
-      
       <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
-      <for param="whatlogfile">
-        <path>
-          <fileset dir="${build.log.dir}/analysis">
-            <include name="*whatlog*_compile_preprocessed.log"/>
-          </fileset>
-        </path>
-        <sequential>
-          <echo message="Extracting whatlog info from @{whatlogfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" append="true">
-            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
-            <arg value="--releaseable"/>
-            <arg value="--log=@{whatlogfile}"/>
-            <arg value="--basedir=${build.log.dir}"/>
-            <arg value="--append"/>
-          </exec>
-        </sequential>
-      </for>
+      <apply executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
+        <arg value="releaseables.pl"/>
+        <arg value="--basedir=${build.log.dir}"/>
+        <fileset dir="${build.log.dir}/analysis">
+          <include name="*whatlog*_compile_preprocessed.log"/>
+        </fileset>
+      </apply>
       
       <echo message="Extracting error information from *_compile_preprocessed.log files"/>
-      <for param="raptorlogfile">
-        <path>
-          <fileset dir="${build.log.dir}/analysis">
-            <include name="*_compile_preprocessed.log"/>
-          </fileset>
-        </path>
-        <sequential>
-          <echo message="Extracting error info from @{raptorlogfile}..."/>
-          <propertyregex override="yes" property="raptorconfig" input="@{raptorlogfile}" regexp=".*[\\/].*__(.*)_(single|multiple)_thread.*" replace="\1" casesensitive="false" defaultValue="noconfig"/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
-            <arg value="${sf.common.config.dir}/tools/raptor/parse.pl"/>
-            <arg value="--error"/>
-            <arg value="--warning"/>
-            <arg value="--unreciped"/>
-            <arg value="--recipe"/>
-            <arg value="--config=${raptorconfig}"/>
-            <arg value="--log=@{raptorlogfile}"/>
-            <arg value="--basedir=${build.log.dir}/raptorbits"/>
-            <arg value="--append"/>
-          </exec>
-        </sequential>
-      </for>
+      <apply executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" parallel="true">
+        <arg value="uh.pl"/>
+        <arg value="--basedir=${build.log.dir}"/>
+        <fileset dir="${build.log.dir}/analysis">
+          <include name="*_compile_preprocessed.log"/>
+        </fileset>
+      </apply>
       
       <echo message="Summarizing Raptor data"/>
       <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
@@ -527,7 +494,7 @@
       <fmpp sourceFile="${sf.common.config.dir}/diamonds/sf-run-analysis-diamonds.xml.ftl" outputFile="${build.drive}/output/logs/sf-run-analysis-diamonds.xml">
         <data expandProperties="yes">
           ant: antProperties()
-          raptor_summary: csv(${build.log.dir}/raptorbits/summary.csv,{separator:',',headers:[category,subcategory,severity,config,component,phase,recipe,file,line]})
+          raptor_summary: csv(${build.log.dir}/raptorbits/summary.csv,{separator:',',headers:[category,subcategory,severity,config,component,mmp,phase,recipe,file,line]})
         </data>
       </fmpp>
     </target>

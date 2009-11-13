@@ -51,7 +51,7 @@ my $CATEGORY_RAPTORUNRECIPED_OVERRIDINGCOMMANDSFORTARGET = 'overriding_commands_
 
 sub process
 {
-	my ($text, $component, $phase, $recipe, $file, $line) = @_;
+	my ($text, $logfile, $component, $mmp, $phase, $recipe, $file, $line) = @_;
 
 	my $category = $CATEGORY_RAPTORUNRECIPED;	
 	my $severity = '';
@@ -61,31 +61,31 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RAPTORUNRECIPED_NORULETOMAKETARGET;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,make\.exe: Target .* not remade because of errors,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MINOR;
 		my $subcategory = $CATEGORY_RAPTORUNRECIPED_TARGETNOTREMADEFORERRORS;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,: warning: ignoring old commands for target,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MINOR;
 		my $subcategory = $CATEGORY_RAPTORUNRECIPED_IGNORINGOLDCOMMANDSFORTARGET;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,: warning: overriding commands for target,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MINOR;
 		my $subcategory = $CATEGORY_RAPTORUNRECIPED_OVERRIDINGCOMMANDSFORTARGET;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,make\.exe: Nothing to be done for .*,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MINOR;
 		my $subcategory = $CATEGORY_RAPTORUNRECIPED_NOTHINGTOBEDONEFOR;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,^(true|false)$,)
 	{
@@ -93,7 +93,7 @@ sub process
 	}
 	else # log everything by default
 	{
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 }
 
@@ -101,7 +101,7 @@ sub on_start_buildlog
 {
 	RaptorCommon::init();
 	
-	$filename = "$::basedir/raptor_unreciped.txt";
+	$filename = "$::raptorbitsdir/raptor_unreciped.txt";
 	if (!-f$filename)
 	{
 		print "Writing unreciped file $filename\n";
@@ -163,7 +163,7 @@ sub process_characters
 			print FILE "$line\n\n";
 			close(FILE);
 			
-			process($line, '', '', '', "raptor_unreciped.txt", $failure_item);
+			process($line, $::current_log_file, '', '', '', '', "raptor_unreciped.txt", $failure_item);
 		}
 	}
 	

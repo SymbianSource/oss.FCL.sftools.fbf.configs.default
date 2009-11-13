@@ -51,7 +51,7 @@ my $CATEGORY_RAPTORERROR_NOBUILDCONFIGSGIVEN = 'no_build_configs_given';
 
 sub process
 {
-	my ($text, $component, $phase, $recipe, $file, $line) = @_;
+	my ($text, $logfile, $component, $mmp, $phase, $recipe, $file, $line) = @_;
 	
 	my $category = $CATEGORY_RAPTORERROR;
 	my $severity = '';
@@ -61,47 +61,47 @@ sub process
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
 		$subcategory = $CATEGORY_RAPTORERROR_CANNOTPROCESSSCHEMAVERSION;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,No bld\.inf found at,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		$subcategory = $CATEGORY_RAPTORERROR_NOBLDINFFOUND;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,Can't find mmp file,)
 	{
 		$severity = $RaptorCommon::SEVERITY_MINOR;
 		$subcategory = $CATEGORY_RAPTORERROR_CANTFINDMMPFILE;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,The make-engine exited with errors,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
 		$subcategory = $CATEGORY_RAPTORERROR_MAKEEXITEDWITHERRORS;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,tool .* from config .* did not return version .* as required,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
 		$subcategory = $CATEGORY_RAPTORERROR_TOOLDIDNOTRETURNVERSION;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,Unknown build configuration '.*',)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
 		$subcategory = $CATEGORY_RAPTORERROR_UNKNOWNBUILDCONFIG;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,No build configurations given,)
 	{
 		$severity = $RaptorCommon::SEVERITY_CRITICAL;
 		$subcategory = $CATEGORY_RAPTORERROR_NOBUILDCONFIGSGIVEN;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
 	{
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 }
 
@@ -109,7 +109,7 @@ sub on_start_buildlog
 {
 	RaptorCommon::init();
 	
-	$filename = "$::basedir/raptor_error.txt";
+	$filename = "$::raptorbitsdir/raptor_error.txt";
 	if (!-f$filename)
 	{
 		print "Writing errors file $filename\n";
@@ -160,7 +160,7 @@ sub on_end_buildlog_error
 		print FILE "$characters\n\n";
 		close(FILE);
 		
-		process($characters, '', '', '', "raptor_error.txt", $failure_item);
+		process($characters, $::current_log_file, '', '', '', '', "raptor_error.txt", $failure_item);
 	}
 	
 	$characters = '';

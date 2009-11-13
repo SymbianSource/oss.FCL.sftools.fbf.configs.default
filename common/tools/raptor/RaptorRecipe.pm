@@ -59,67 +59,79 @@ my $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT = 'armcc_internal_fault';
 my $CATEGORY_RECIPEFAILURE_ARMCC_GENERICWARNINGSERRORS = 'armcc_generic_warnings_errors';
 my $CATEGORY_RECIPEFAILURE_ELF2E32_SYMBOLMISSINGFROMELFFILE = 'elf2e32_symbol_missing_from_elf_file';
 
+my $mmp_with_issues = {};
+
 
 sub process
 {
-	my ($text, $component, $phase, $recipe, $file, $line) = @_;
+	my ($text, $config, $component, $mmp, $phase, $recipe, $file, $line) = @_;
 	
 	my $category = $CATEGORY_RECIPEFAILURE;
 	my $severity = '';
 	my $subcategory = '';
 	
-	if ($text =~ m,Error:  #5: cannot open source input file .*: No such file or directory,)
+	# if mmp is defined assign severity=MAJOR for the first failure
+	# then severity=MINOR to all other (for each logfile)
+	if ($mmp and defined $mmp_with_issues->{$::current_log_file}->{$mmp})
+	{
+		$severity = $RaptorCommon::SEVERITY_MINOR;
+	}
+	elsif ($mmp)
+	{
+		$mmp_with_issues->{$::current_log_file} = {} if (!defined $mmp_with_issues->{$::current_log_file});
+		$mmp_with_issues->{$::current_log_file}->{$mmp} = 1;
+		$severity = $RaptorCommon::SEVERITY_MAJOR;
+	}
+	else
 	{
 		$severity = $RaptorCommon::SEVERITY_MAJOR;
+	}
+	
+	
+	if ($text =~ m,Error:  #5: cannot open source input file .*: No such file or directory,)
+	{
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_CANNOTOPENSOURCEINPUTFILE;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,Fatal error: L6002U: Could not open file .*: No such file or directory,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMLINK_COULDNOTOPENFILE;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,elf2e32 : Error: E1001: Could not open file : .*.,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,elf2e32 : Error: E1036: Symbol .* Missing from ELF File,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ELF2E32_SYMBOLMISSINGFROMELFFILE;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,Error: L6833E: File '.*' does not exist,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMAR_FILEDOESNOTEXIST;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,: Warning:  #236-D: controlling expression is constant,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_CONTROLLINGEXPRESSIONISCONSTANT;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	elsif ($text =~ m,/armcc.exe , and $text =~ m,Internal fault: ,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	# the following captures generic armcc error/warnings, not captured by regexps above
 	elsif ($text =~ m,/armcc.exe , and $text =~ m,: \d+ warnings\, \d+ errors$,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MAJOR;
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_GENERICWARNINGSERRORS;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
 	{
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $component, $phase, $recipe, $file, $line);
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 }
 
@@ -199,12 +211,20 @@ sub on_end_buildlog_recipe
 			print "WARNING: can't understand bldinf attribute of recipe: $recipe_info->{bldinf}. Won't dump to failed recipes file.\n";
 		}
 		
+		# also normalize mmp path if this exists
+		if ($recipe_info->{mmp})
+		{
+			$recipe_info->{mmp} = lc($recipe_info->{mmp});
+			$recipe_info->{mmp} =~ s,^[A-Za-z]:,,;
+			$recipe_info->{mmp} =~ s,[\\],/,g;
+		}
+		
 		$characters =~ s,^[\r\n]*,,;
 		$characters =~ s,[\r\n]*$,,;
 		
 		if ($package)
 		{
-			$filename = "$::basedir/$package.txt";
+			$filename = "$::raptorbitsdir/$package.txt";
 			if (!-f$filename)
 			{
 				print "Writing recipe file $filename\n";
@@ -231,7 +251,7 @@ sub on_end_buildlog_recipe
 			close(FILE);
 		}
 		
-		process($characters, $recipe_info->{bldinf}, $recipe_info->{phase}, $recipe_info->{name}, "$package.txt", $failure_item);
+		process($characters, $recipe_info->{config}, $recipe_info->{bldinf}, $recipe_info->{mmp}, $recipe_info->{phase}, $recipe_info->{name}, "$package.txt", $failure_item);
 	}
 
 	$characters = '';
