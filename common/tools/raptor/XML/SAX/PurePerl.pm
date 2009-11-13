@@ -319,6 +319,12 @@ sub CDSect {
             $self->characters({Data => $chars});
             last;
         }
+        elsif ($data =~ /(.*?)\]+$/s) {
+            my $chars = $1;
+            $reader->move_along(length($chars));
+            $self->characters({Data => $chars});
+            $data = $reader->data(3);
+        }
         else {
             $self->characters({Data => $data});
             $reader->move_along(length($data));
