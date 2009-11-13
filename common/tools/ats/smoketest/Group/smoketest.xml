@@ -419,6 +419,24 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
+                    <step id="" name="InputMethodSmokeTestModule.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="InputMethodSmokeTestModule.dll"/>
+							<param dst="c:\sys\bin\InputMethodSmokeTestModule.dll"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+                    <step id="" name="InputMethodSmokeTestModule.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="InputMethodSmokeTestModule.cfg"/>
+							<param dst="c:\smoketest\InputMethodSmokeTestModule.cfg"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
 					<step id="" name="ProfileSmokeTestModule (execute)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
@@ -452,6 +470,15 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config c:\smoketest\smoketest_uiresources.cfg"/>
 							<param result-file="c:\spd_logs\xml\testcombiner.xml"/>
+							<param timeout="600"/>
+						</params>
+					</step>
+					<step id="" name="InputMethodSmokeTestModule (execute)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\smoketest\InputMethodSmokeTestModule.cfg"/>
+							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
 							<param timeout="600"/>
 						</params>
 					</step>
@@ -508,5 +535,7 @@
 		<file>smoketest/winscw_udeb/testsdkskins.dll</file>		
 		<file>smoketest/general/smoketest_uiresources.cfg</file>
 		<file>smoketest/general/ui_testsdkskinsu.cfg</file>
+        <file>smoketest/winscw_udeb/InputMethodSmokeTestModule.dll</file>
+        <file>smoketest/general/InputMethodSmokeTestModule.cfg</file>
 	</files>
 </test>
