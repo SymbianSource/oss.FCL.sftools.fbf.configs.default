@@ -11,6 +11,7 @@ mkpath "temp/smoketest/winscw_udeb";
 mkpath "temp/smoketest/sms/general";
 mkpath "temp/smoketest/emailmessage/general";
 mkpath "temp/smoketest/emailsettings/general";
+mkpath "temp/smoketest/appinstall/general";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("smoketest.xml",												"temp/test.xml");
@@ -59,6 +60,7 @@ copy($epoc . "release/winscw/udeb/ProfileSmokeTestModule.dll",      "temp/smoket
 copy($epoc . "winscw/c/smoketest/ProfileSmokeTestModule.cfg",       "temp/smoketest/general/ProfileSmokeTestModule.cfg");
 copy($epoc . "release/winscw/udeb/AppInstallSmokeTestModule.dll",   "temp/smoketest/winscw_udeb/AppInstallSmokeTestModule.dll");
 copy($epoc . "winscw/c/smoketest/AppInstallSmokeTestModule.cfg",    "temp/smoketest/general/AppInstallSmokeTestModule.cfg");
+copy($epoc . "winscw/c/smoketest/appinstall/sistest_winscw.sisx",   "temp/smoketest/appinstall/general/sistest_winscw.sisx");
 copy($epoc . "release/winscw/udeb/TestNpdApi.dll",					"temp/smoketest/winscw_udeb/TestNpdApi.dll");
 copy($epoc . "data/c/smoketest/smoketest_notepad.cfg",				"temp/smoketest/general/smoketest_notepad.cfg");
 copy($epoc . "data/c/smoketest/ui_TestNpdApi.cfg",					"temp/smoketest/general/ui_TestNpdApi.cfg");

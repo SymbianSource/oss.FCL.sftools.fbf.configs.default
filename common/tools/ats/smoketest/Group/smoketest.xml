@@ -383,6 +383,15 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
+                    <step id="" name="sistest_winscw.sisx (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="sistest_winscw.sisx"/>
+							<param dst="c:\smoketest\appinstall\sistest_winscw.sisx"/>
+							<param component-path="smoketest\appinstall" />
+						</params>
+					</step>
 					<step id="" name="testsdkskins.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -495,6 +504,7 @@
 		<file>smoketest/general/ui_TestNpdApi.cfg</file>
         <file>smoketest/winscw_udeb/AppInstallSmokeTestModule.dll</file>
         <file>smoketest/general/AppInstallSmokeTestModule.cfg</file>
+        <file>smoketest/appinstall/general/sistest_winscw.sisx</file>
 		<file>smoketest/winscw_udeb/testsdkskins.dll</file>		
 		<file>smoketest/general/smoketest_uiresources.cfg</file>
 		<file>smoketest/general/ui_testsdkskinsu.cfg</file>

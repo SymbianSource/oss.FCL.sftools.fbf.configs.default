@@ -25,6 +25,7 @@ PRJ_TESTEXPORTS
 // NOTE: If using ARS requirements all export operations should be done under this.
 // 'abld test export'
 ../conf/AppInstallSmokeTestModule.cfg	c:/smoketest/AppInstallSmokeTestModule.cfg
+../data/sistest_winscw.sisx				c:/smoketest/appinstall/sistest_winscw.sisx
 
 PRJ_EXPORTS
 // Specify the source file followed by its destination here
