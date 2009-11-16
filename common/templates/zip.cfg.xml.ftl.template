@@ -44,56 +44,7 @@
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />
 			<set name="grace.filters" value="src" />
 			<set name="grace.extract" value="double" />
-			<!-- Zips of zips for SFL code -->
-			<config name="sfl-adaptation">
-				<set name="name" value="src_sfl_adaptation"/>
-				<set name="include" value="src_sfl_adaptation_*.zip"/>
-			</config>
-			<config name="sfl-app">
-				<set name="name" value="src_sfl_app"/>
-				<set name="include" value="src_sfl_app_*.zip"/>
-			</config>
-			<config name="sfl-mw">
-				<set name="name" value="src_sfl_mw"/>
-				<set name="include" value="src_sfl_mw_*.zip"/>
-			</config>
-			<config name="sfl-os">
-				<set name="name" value="src_sfl_os"/>
-				<set name="include" value="src_sfl_os_*.zip"/>
-			</config>
-			<config name="sfl-ostools">
-				<set name="name" value="src_sfl_ostools"/>
-				<set name="include" value="src_sfl_ostools_*.zip"/>
-			</config>
-			<config name="sfl-tools">
-				<set name="name" value="src_sfl_tools"/>
-				<set name="include" value="src_sfl_tools_*.zip"/>
-			</config>
-			<!-- Zips of zips for OSS code -->
-			<config name="oss-adaptation">
-				<set name="name" value="src_oss_adaptation"/>
-				<set name="include" value="src_oss_adaptation_*.zip"/>
-			</config>
-			<config name="oss-app">
-				<set name="name" value="src_oss_app"/>
-				<set name="include" value="src_oss_app_*.zip"/>
-			</config>
-			<config name="oss-mw">
-				<set name="name" value="src_oss_mw"/>
-				<set name="include" value="src_oss_mw_*.zip"/>
-			</config>
-			<config name="oss-os">
-				<set name="name" value="src_oss_os"/>
-				<set name="include" value="src_oss_os_*.zip"/>
-			</config>
-			<config name="oss-ostools">
-				<set name="name" value="src_oss_ostools"/>
-				<set name="include" value="src_oss_ostools_*.zip"/>
-			</config>
-			<config name="oss-tools">
-				<set name="name" value="src_oss_tools"/>
-				<set name="include" value="src_oss_tools_*.zip"/>
-			</config>
+			<!-- Zips of zips for SFL code and for OSS code will be inserted here -->
 		</config>
 		<!-- Specify this config to package all rnd inputs to the build that should be released -->
 		<config name="rnd" abstract="true">
