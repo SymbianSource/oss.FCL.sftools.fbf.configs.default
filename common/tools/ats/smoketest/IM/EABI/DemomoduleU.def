@@ -1,0 +1,16 @@
+EXPORTS
+	_Z9LibEntryLv @ 1 NONAME
+	_Z15SetRequirementsRP16CTestModuleParamRm @ 2 NONAME
+	_ZN11CTestLogger3LogE11TRefByValueIK7TDesC16Ez @ 3 NONAME
+	_ZN12CTestLogger13LogE11TRefByValueIK7TDesC16Ez @ 4 NONAME
+	_ZTI11CTestRunner @ 5 NONAME ; #<TI>#
+	_ZTI14CTestScheduler @ 6 NONAME ; #<TI>#
+	_ZTI19CConnectionObserver @ 7 NONAME ; #<TI>#
+	_ZTI19CIMApiClientHandler @ 8 NONAME ; #<TI>#
+	_ZTV11CTestRunner @ 9 NONAME ; #<VT>#
+	_ZTV14CTestScheduler @ 10 NONAME ; #<VT>#
+	_ZTV19CConnectionObserver @ 11 NONAME ; #<VT>#
+	_ZTV19CIMApiClientHandler @ 12 NONAME ; #<VT>#
+	_ZTI16CImpsSettingFile @ 13 NONAME ; #<TI>#
+	_ZTV16CImpsSettingFile @ 14 NONAME ; #<VT>#
+

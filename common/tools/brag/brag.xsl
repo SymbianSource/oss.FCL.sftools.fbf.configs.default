@@ -108,10 +108,17 @@
 		<xsl:for-each select="step[count(failures/failure/@package) != count(failures/failure)]">
 			<h4>Step: <xsl:value-of select="@name"/></h4>
 			<xsl:for-each select="failures[count(failure/@package) != count(failure)]">
-				<dl><dt><xsl:value-of select="@level"/></dt><dd>
+				<xsl:variable name="severity" select="@level"/>
+				<dl><dt><xsl:value-of select="@level"/> (<xsl:value-of select="count(/buildStatus/phase/step/failures[@level = $severity]/failure[count(@package) = 0])"/>)</dt><dd>
 				<ul>
 				<xsl:for-each select="failure[count(@package) = 0]">
-					<li><xsl:value-of select="."/></li>
+					<li><xsl:value-of select="effect"/></li>
+					<xsl:if test="@unreported_causes != '0'">
+						<br/>(Too much text to show everything; <xsl:value-of select="@unreported_causes"/> lines not shown.)
+					</xsl:if>
+					<xsl:for-each select="causes">
+						<pre><xsl:value-of select="."/></pre>
+					</xsl:for-each>
 				</xsl:for-each>
 				</ul>
 				</dd></dl>
@@ -138,7 +145,13 @@
 				<ul>
 				<xsl:for-each select="/buildStatus/phase/step/failures[@level = $severity]/failure[@package = $package]">
 					<xsl:sort select="@package"/>
-					<li><xsl:value-of select="@package"/>: <xsl:value-of select="."/></li>
+					<li><xsl:value-of select="effect"/></li>
+					<xsl:if test="@unreported_causes != '0'">
+						<br/>(Too much text to show everything; <xsl:value-of select="@unreported_causes"/> lines not shown.)
+					</xsl:if>
+					<xsl:for-each select="causes">
+						<pre><xsl:value-of select="."/></pre>
+					</xsl:for-each>
 				</xsl:for-each>
 				</ul>
 				</dd></dl>

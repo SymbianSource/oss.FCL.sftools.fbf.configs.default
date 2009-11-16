@@ -1,0 +1,6 @@
+EXPORTS
+	?LibEntryL@@YAPAVCTestModuleBase@@XZ @ 1 NONAME ; class CTestModuleBase * __cdecl LibEntryL(void)
+	?SetRequirements@@YAHAAPAVCTestModuleParam@@AAK@Z @ 2 NONAME ; int __cdecl SetRequirements(class CTestModuleParam * &,unsigned long &)
+	?Log@CTestLogger1@@SAXV?$TRefByValue@$$CBVTDesC16@@@@ZZ @ 3 NONAME ; void CTestLogger1::Log(class TRefByValue<class TDesC16 const >, ...)
+	?Log@CTestLogger@@SAXV?$TRefByValue@$$CBVTDesC16@@@@ZZ @ 4 NONAME ; void CTestLogger::Log(class TRefByValue<class TDesC16 const >, ...)
+

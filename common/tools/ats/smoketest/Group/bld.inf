@@ -28,3 +28,5 @@
 #include "../appinstall/group/Bld.inf"
 #include "../lbs/group/bld.inf"
 #include "../uiresources/group/bld.inf"
+#include "../inputmethods/group/Bld.inf"
+#include "../IM/group/bld.inf"
