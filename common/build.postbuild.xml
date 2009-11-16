@@ -649,6 +649,10 @@
         <copy todir="${publish.dir}" preservelastmodified="true" failonerror="false">
            <fileset dir="${build.output.dir}/zips/release/"><include name="build_*.zip"/></fileset>
         </copy>
+        <mkdir dir="${publish.dir}/html"/>
+        <copy todir="${publish.dir}/html" preservelastmodified="true" failonerror="false">
+           <fileset dir="${build.log.dir}/html"><include name="*.html"/></fileset>
+        </copy>
     </target>
 
     <!-- TODO: Make this work for package builds once we have sysmodel story worked out -->
