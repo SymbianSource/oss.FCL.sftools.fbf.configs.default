@@ -50,7 +50,9 @@ print "\n";
 
 exit (0);
 
-my $context;
+my $recipeContext;
+my $errorContext;
+
 sub StartTag
 {
 	my $expat = shift;
@@ -59,11 +61,15 @@ sub StartTag
 
 	if ($tagName eq "recipe")
 	{
-		$context = {%attrib};
+		$recipeContext = {%attrib};
 	}
 	elsif ($tagName eq "status")
 	{
-		$context->{"exit"} = $attrib{"exit"};
+		$recipeContext->{"exit"} = $attrib{"exit"};
+	}
+	elsif ($tagName eq "error")
+	{
+		$errorContext = {%attrib};
 	}
 }
 sub EndTag
@@ -73,54 +79,53 @@ sub EndTag
 
 	if ($tagName eq "recipe")
 	{
-		die unless $context;
+		die unless $recipeContext;
 
-		if ($context->{"exit"} ne "ok")
+		if ($recipeContext->{"exit"} ne "ok")
 		{
 			# Create a more readable error message
 			my %errorIdToDetail = (
-				tem => {message => "Failed to execute '$context->{source}' invoked via $context->{bldinf}", severity => "major"},
-				msvctoolscompile => {message => "Failed to compile $context->{source}", severity => "minor"},
-				compile => {message => "Failed to compile $context->{source}", severity => "minor"},
-				compile2object => {message => "Failed to compile $context->{source}", severity => "minor"},
-				win32compile2object => {message => "Failed to compile $context->{source}", severity => "minor"},
-				tools2lib => {message => "Failed to build library $context->{target}", severity => "minor"},
-				ar => {message => "Failed to build library $context->{target}", severity => "minor"},
-				win32archive => {message => "Failed to build library $context->{target}", severity => "minor"},
-				win32def2lib => {message => "Failed to build DLL entry point library $context->{target}", severity => "minor"},
-				"link" => {message => "Failed to create symbols for $context->{target}", severity => "minor"},
-				postlink => {message => "Failed to link $context->{target}", severity => "minor"},
-				win32stageonelink => {message => "Failed to link $context->{target} (stage 1)", severity => "minor"},
-				win32stagetwolink => {message => "Failed to link $context->{target}", severity => "minor"},
-				win32simplelink => {message => "Failed to link $context->{target}", severity => "minor"},
-				win32processexports => {message => "Failed to export $context->{source} to $context->{target}", severity => "minor"},
-				tracecompile => {message => "Trace compile failure for $context->{target}", severity => "unknown"},
-				extension_makefile => {message => "Failed within an extension makefile connected to $context->{bldinf}", severity => "major"},
+				tem => {message => "Failed to execute '$recipeContext->{source}' invoked via $recipeContext->{bldinf}", severity => "major"},
+				msvctoolscompile => {message => "Failed to compile $recipeContext->{source}", severity => "minor"},
+				compile => {message => "Failed to compile $recipeContext->{source}", severity => "minor"},
+				compile2object => {message => "Failed to compile $recipeContext->{source}", severity => "minor"},
+				win32compile2object => {message => "Failed to compile $recipeContext->{source}", severity => "minor"},
+				tools2lib => {message => "Failed to build library $recipeContext->{target}", severity => "minor"},
+				ar => {message => "Failed to build library $recipeContext->{target}", severity => "minor"},
+				win32archive => {message => "Failed to build library $recipeContext->{target}", severity => "minor"},
+				win32def2lib => {message => "Failed to build DLL entry point library $recipeContext->{target}", severity => "minor"},
+				"link" => {message => "Failed to create symbols for $recipeContext->{target}", severity => "minor"},
+				postlink => {message => "Failed to link $recipeContext->{target}", severity => "minor"},
+				win32stageonelink => {message => "Failed to link $recipeContext->{target} (stage 1)", severity => "minor"},
+				win32stagetwolink => {message => "Failed to link $recipeContext->{target}", severity => "minor"},
+				win32simplelink => {message => "Failed to link $recipeContext->{target}", severity => "minor"},
+				win32processexports => {message => "Failed to export $recipeContext->{source} to $recipeContext->{target}", severity => "minor"},
+				tracecompile => {message => "Trace compile failure for $recipeContext->{target}", severity => "unknown"},
+				extension_makefile => {message => "Failed within an extension makefile connected to $recipeContext->{bldinf}", severity => "major"},
 			);
-#			die $context->{name} unless exists $errorIdToDetail{$context->{name}};
 
-			my $message = $errorIdToDetail{$context->{name}}->{message} || "Unknown failure tag '$context->{name}' ($context->{source} -> $context->{target})";
-			$context->{severity} = $errorIdToDetail{$context->{name}}->{severity} || "unknown";
+			my $message = $errorIdToDetail{$recipeContext->{name}}->{message} || "Unknown failure tag '$recipeContext->{name}' ($recipeContext->{source} -> $recipeContext->{target})";
+			$recipeContext->{severity} = $errorIdToDetail{$recipeContext->{name}}->{severity} || "unknown";
 
 			# Obtain a step object
-			my $step = ToBrag::ensureStep($buildPhase, $context->{config});
+			my $step = ToBrag::ensureStep($buildPhase, $recipeContext->{config});
 			# Also create empty <failures> tags with severities in a sensible order
 			ToBrag::ensureFailureSet($step, "critical");
 			ToBrag::ensureFailureSet($step, "major");
 			ToBrag::ensureFailureSet($step, "minor");
 			# Obtain a failures object
-			my $failureSet = ToBrag::ensureFailureSet($step, $context->{severity});
+			my $failureSet = ToBrag::ensureFailureSet($step, $recipeContext->{severity});
 
 			# Now create the failure itself, and add it to this failure set
 			my $failureItem = bless {
 				Kids => [ bless { Kids => [ bless { Text => $message }, "Characters" ]}, "effect" ],
 			}, "failure";
-			if ($context->{component})
+			if ($recipeContext->{component})
 			{
-				$context->{bldinf} =~ s{^\w:(/sf/.*?/.*?)/.*$}{$1};
-				$failureItem->{package} = $context->{bldinf};
+				$recipeContext->{bldinf} =~ s{^\w:(/sf/.*?/.*?)/.*$}{$1};
+				$failureItem->{package} = $recipeContext->{bldinf};
 			}
-			my @causes = grep { $_ && ! m/^\+ / } split("\n", $context->{Chars});
+			my @causes = grep { $_ && ! m/^\+ / } split("\n", $recipeContext->{Chars});
 			@causes = map { "  $_" } @causes;
 			if (@causes)
 			{
@@ -135,15 +140,68 @@ sub EndTag
 			push @{$failureSet->{Kids}}, $failureItem, $ToBrag::xmlNewline;
 		}
 		
-		$context = undef;
+		$recipeContext = undef;
+	}
+	elsif ($tagName eq "error")
+	{
+		die unless $errorContext;
+
+		# Add error to output tree
+
+		my $severity = "unknown";
+		my @messageInterpretation = (
+			{regexp => qr{Cannot process schema version .* of file}, severity => "critical"},
+			{regexp => qr{No bld\.inf found at}, severity => "major"},
+			{regexp => qr{^Preprocessor exception}, severity => "major"},
+			{regexp => qr{No such file or directory$}, severity => "major"},
+			{regexp => qr{Can't find mmp file}, severity => "minor"},
+			{regexp => qr{The make-engine exited with errors}, severity => "critical"},
+			{regexp => qr{tool '.+?' from config '.*' did not return version '.*' as required\.}, severity => "critical"},
+			{regexp => qr{Unknown build configuration '.*'}, severity => "critical"},
+			{regexp => qr{No build configurations given}, severity => "critical"},
+			{regexp => qr{Source of export does not exist:}, severity => "minor"},
+			{regexp => qr{Could not export}, severity => "minor"},
+			{regexp => qr{Could not export}, severity => "minor"},
+			{regexp => qr{Source zip for export does not exist:}, severity => "minor"},
+		);
+
+		foreach (@messageInterpretation)
+		{
+			if ($errorContext->{Chars} =~ $_->{regexp})
+			{
+				$severity = $_->{severity};
+				last;
+			}
+		}
+
+		# Obtain a step object
+		my $step = ToBrag::ensureStep($buildPhase, "Raptor Initialisation");
+		# Also create empty <failures> tags with severities in a sensible order
+		ToBrag::ensureFailureSet($step, "critical");
+		ToBrag::ensureFailureSet($step, "major");
+		ToBrag::ensureFailureSet($step, "minor");
+		# Obtain a failures object
+		my $failureSet = ToBrag::ensureFailureSet($step, $severity);
+
+		# Now create the failure itself, and add it to this failure set
+		my $failureItem = bless {
+			Kids => [ bless { Kids => [ bless { Text => $errorContext->{Chars} }, "Characters" ]}, "effect" ],
+		}, "failure";
+		push @{$failureSet->{Kids}}, $failureItem, $ToBrag::xmlNewline;
+
+		$errorContext = undef;
 	}
 }
 sub Text
 {
 	s/^\n*//;
-	if ($context)
+	if ($recipeContext)
 	{
-		$context->{Chars} .= $_;
+		$recipeContext->{Chars} .= $_;
+	}
+	elsif ($errorContext)
+	{
+		$errorContext->{Chars} .= $_;
 	}
 }
 
