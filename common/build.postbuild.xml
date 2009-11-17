@@ -627,6 +627,7 @@
                 <mkdir dir="${build.output.dir}/zips/release"/> <!-- workaround for when there's no other releaseables, just the logs -->
                 <zip destfile="${build.output.dir}/zips/release/build_logs.zip" basedir="${build.drive}"> 
                     <include name="output/logs/**"/>
+					<exclude name="output/logs/BC/**"/>
                     <exclude name="output/logs/BOM/**"/>
                     <exclude name="output/logs/deliverables/**"/>
                     <exclude name="output/logs/releaseables/**"/>
@@ -652,6 +653,14 @@
         <mkdir dir="${publish.dir}/html"/>
         <copy todir="${publish.dir}/html" preservelastmodified="true" failonerror="false">
            <fileset dir="${build.log.dir}/html"><include name="*.html"/></fileset>
+        </copy>
+		<mkdir dir="${publish.dir}/BC"/>
+        <copy todir="${publish.dir}/BC" preservelastmodified="true" failonerror="false">
+           <fileset dir="${build.log.dir}/BC/">
+		       <include name="BBCResults.xsl"/>
+			   <include name="headers_report.xml"/>
+			   <include name="libraries_report.xml"/>
+		   </fileset>
         </copy>
     </target>
 
