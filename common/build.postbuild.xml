@@ -508,12 +508,8 @@
       <!-- Send the data to the server -->
 	  <exec executable="python">
 		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
-		    <arg value="-s"/>
-		    <arg value="${diamonds.host}"/>
-		    <arg value="-u"/>
-		    <arg value="${diamonds.build.id}"/>
-		    <arg value="-f"/>
-		    <arg value="${build.log.dir}/linksForDiamonds.xml"/>
+		    <arg value="-u http://${diamonds.host}${diamonds.build.id}"/>
+		    <arg value="-f ${build.log.dir}/linksForDiamonds.xml"/>
 	  </exec>
     </target>
 
@@ -556,12 +552,8 @@
                         <!-- Send the data to the server -->
                         <exec executable="python">
                             <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
-                            <arg value="-s"/>
-                            <arg value="${diamonds.host}"/>
-                            <arg value="-u"/>
-                            <arg value="${diamonds.build.id}"/>
-                            <arg value="-f"/>
-                            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+                            <arg value="-u http://${diamonds.host}${diamonds.build.id}"/>
+                            <arg value="-f ${temp.build.dir}/bragForDiamonds.xml"/>
                         </exec>
                     </then>
                     <else>
