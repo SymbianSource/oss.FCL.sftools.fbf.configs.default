@@ -106,7 +106,7 @@
     <property name="sf.spec.bccheck.baseline.name" value="symbian1"/>
     <property name="sf.spec.bccheck.baseline.skd.dir" value="\\v800008\builds01\installed\s60_5th_sdk_installed"/>
     <property name="sf.spec.bccheck.baseline.s60.version" value="5.0"/>
-    <property name="sf.spec.bccheck.current.s60.version" value="SF2"/>
+    <property name="sf.spec.bccheck.current.s60.version" value="5.1"/>
     <property name="sf.spec.bccheck.reportid" value="report"/>
     <property name="sf.spec.bccheck.package.name" value="${env.COMPUTERNAME}-bctest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/>
 </project>
