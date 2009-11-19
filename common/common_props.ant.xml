@@ -99,7 +99,7 @@
     <property name="sf.spec.test.package.droppath"  value="TestDrops"/>
 
     <!-- BC check properties -->
-    <property name="sf.spec.bccheck.enable" value="false"/> <!-- This disables it being called during a normal build, although the target can be called seperately -->
+    <property name="sf.spec.bccheck.enable" value="true"/> <!-- This disables it being called during a normal build, although the target can be called seperately -->
     <property name="sf.spec.bccheck.enable.la" value="true"/>
     <property name="sf.spec.bccheck.enable.ha" value="true"/>
     <property name="sf.spec.bccheck.enable.dynamic" value="false"/>
