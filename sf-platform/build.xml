@@ -493,16 +493,29 @@
 	</target>
 
 	<target name="sf-s60-create-cenrep">
-        <echo message="INFO Generating CenRep"/>
-        <exec executable="${helium.dir}/../ConfigurationTool/cli_build.cmd" dir="${build.drive}" failonerror="false" output="${build.log.dir}/${build.id}_create_cenrep.log">
-		  <arg value="-master_conf"/>
-		  <arg value="s60"/>
-		  <arg value="-impl"/>
-		  <arg value="/epoc32/rom/config/confml_data/s60"/>
-		  <arg value="-confml"/>
-		  <arg value="/epoc32/rom/config/confml_data/s60"/>
-		  <arg value="-ignore_errors"/>
-        </exec>
+    <echo message="INFO Generating CenRep"/>
+    <echo message="Move 'sf.spec.s60.cenrep.export.location' out of the build..."/>
+    <property name="sf.spec.s60.cenrep.export.location.1" value="epoc32/rom/config/confml_data"/>
+    <property name="sf.spec.s60.cenrep.export.location.2" value="epoc32/rom/config/assets"/>
+
+		<if><available file="${build.drive}/${sf.spec.s60.cenrep.export.location.1}" type="dir"/>
+  		<then>
+    		<property name="sf.spec.s60.cenrep.export.location" value="${sf.spec.s60.cenrep.export.location.1}"/>
+      </then>
+      <else>
+    		<property name="sf.spec.s60.cenrep.export.location" value="${sf.spec.s60.cenrep.export.location.2}"/>
+      </else>
+      </if>
+    <echo message="${helium.dir}/../ConfigurationTool/cli_build.cmd -master_conf s60 -impl ${sf.spec.s60.cenrep.export.location} -confml ${sf.spec.s60.cenrep.export.location} -ignore_errors" />  
+    <exec executable="${helium.dir}/../ConfigurationTool/cli_build.cmd" dir="${build.drive}" failonerror="false" output="${build.log.dir}/${build.id}_create_cenrep.log">
+      <arg value="-master_conf"/>
+      <arg value="s60"/>
+      <arg value="-impl"/>
+      <arg value="${sf.spec.s60.cenrep.export.location}"/>
+      <arg value="-confml"/>
+      <arg value="${sf.spec.s60.cenrep.export.location}"/>
+      <arg value="-ignore_errors"/>
+    </exec>
 		
 		<if><available  file="${build.drive}/cli_build_error.log" />
 		<then>
