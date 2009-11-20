@@ -118,6 +118,20 @@ foreach my $package (@packages)
   				},
   			]
   		};
+		$zipConfig->{config}->{config}->{"src-by-layer"}->{config}->{$license."-$layer"} =
+		{
+			set => 
+			[
+				{
+					name => "name",
+					value => join "_", "src", $license, $layer,
+				},
+				{
+					name => "include",
+					value => join "_", "src", $license, $layer, "*.zip",
+				},
+			]
+		};
 	}
 	elsif ($package->{source} =~ m{/rnd/([^/]+)/([^/]+)})
 	{

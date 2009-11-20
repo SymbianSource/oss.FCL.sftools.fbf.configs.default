@@ -87,6 +87,7 @@ sub EndTag
 				tools2lib => {message => "Failed to build library $context->{target}", severity => "minor"},
 				ar => {message => "Failed to build library $context->{target}", severity => "minor"},
 				win32archive => {message => "Failed to build library $context->{target}", severity => "minor"},
+				win32def2lib => {message => "Failed to build DLL entry point library $context->{target}", severity => "minor"},
 				"link" => {message => "Failed to create symbols for $context->{target}", severity => "minor"},
 				postlink => {message => "Failed to link $context->{target}", severity => "minor"},
 				win32stageonelink => {message => "Failed to link $context->{target} (stage 1)", severity => "minor"},

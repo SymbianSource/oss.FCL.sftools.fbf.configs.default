@@ -9,6 +9,11 @@
     </file>
     <file>
       <type>log</type>
+      <name>Raptor Build Summary</name>
+      <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\html\index.html</url>
+    </file>
+    <file>
+      <type>log</type>
       <name>Build BOM</name>
       <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\build_BOM.zip</url>
     </file>
@@ -17,5 +22,19 @@
       <name>Build Logs</name>
       <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\build_logs.zip</url>
     </file>
+	<#if "${ant['sf.spec.bccheck.enable']}" = "true" && "${ant['sf.spec.bccheck.enable.ha']}" = "true">
+	  <file>
+        <type>log</type>
+        <name>Binary Compatibility Report (Headerfiles)</name>
+		<url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\BC\headers_report.xml</url>	  
+	  </file>
+	</#if>
+	<#if "${ant['sf.spec.bccheck.enable']}" = "true" && "${ant['sf.spec.bccheck.enable.la']}" = "true">
+	  <file>
+        <type>log</type>
+        <name>Binary Compatibility Report (Libraries)</name>
+		<url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\BC\libraries_report.xml</url>	  
+	  </file>
+	</#if>	
    </files>
 </diamonds-build>

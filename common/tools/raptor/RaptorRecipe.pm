@@ -56,8 +56,10 @@ my $CATEGORY_RECIPEFAILURE_ELF2E32_COULDNOTOPENFILE = 'elf2e32_could_not_open_fi
 my $CATEGORY_RECIPEFAILURE_ARMAR_FILEDOESNOTEXIST = 'armar_file_does_not_exist';
 my $CATEGORY_RECIPEFAILURE_ARMCC_CONTROLLINGEXPRESSIONISCONSTANT = 'armcc_controlling_expression_is_constant';
 my $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT = 'armcc_internal_fault';
+my $CATEGORY_RECIPEFAILURE_ARMCC_MODIFIERNOTALLOWED = 'armcc_modifier_not_allowed';
 my $CATEGORY_RECIPEFAILURE_ARMCC_GENERICWARNINGSERRORS = 'armcc_generic_warnings_errors';
 my $CATEGORY_RECIPEFAILURE_ELF2E32_SYMBOLMISSINGFROMELFFILE = 'elf2e32_symbol_missing_from_elf_file';
+my $CATEGORY_RECIPEFAILURE_MWCCSYM2_FILECANNOTBEOPENED = 'mwccsym2_file_cannot_be_opened';
 
 my $mmp_with_issues = {};
 
@@ -123,10 +125,20 @@ sub process
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_INTERNALFAULT;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
+	elsif ($text =~ m,/armcc.exe , and $text =~ m,Error:  #655-D: the modifier ".*" is not allowed on this declaration,)
+	{
+		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_MODIFIERNOTALLOWED;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
+	}
 	# the following captures generic armcc error/warnings, not captured by regexps above
 	elsif ($text =~ m,/armcc.exe , and $text =~ m,: \d+ warnings\, \d+ errors$,)
 	{
 		my $subcategory = $CATEGORY_RECIPEFAILURE_ARMCC_GENERICWARNINGSERRORS;
+		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
+	}
+	elsif ($text =~ m,mwccsym2.exe , and $text =~ m,: the file '.*' cannot be opened,)
+	{
+		my $subcategory = $CATEGORY_RECIPEFAILURE_MWCCSYM2_FILECANNOTBEOPENED;
 		RaptorCommon::dump_fault($category, $subcategory, $severity, $config, $component, $mmp, $phase, $recipe, $file, $line);
 	}
 	else # log everything by default
