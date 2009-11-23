@@ -419,6 +419,24 @@
 							<param component-path="smoketest" />
 						</params>
 					</step>
+                    <step id="" name="ui_testsdkskinswu.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="ui_testsdkskinswu.cfg"/>
+							<param dst="c:\smoketest\ui_testsdkskinswu.cfg"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
+					<step id="" name="symbian_01_320x480.jpg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="symbian_01_320x480.jpg"/>
+							<param dst="c:/smoketest/wallpaper/symbian_01_320x480.jpg"/>
+							<param component-path="smoketest\wallpaper" />
+						</params>
+					</step>
                     <step id="" name="InputMethodSmokeTestModule.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -563,6 +581,8 @@
 		<file>smoketest/winscw_udeb/testsdkskins.dll</file>		
 		<file>smoketest/general/smoketest_uiresources.cfg</file>
 		<file>smoketest/general/ui_testsdkskinsu.cfg</file>
+		<file>smoketest/general/ui_testsdkskinswu.cfg</file>
+		<file>smoketest/wallpaper/general/symbian_01_320x480.jpg</file>
         <file>smoketest/winscw_udeb/InputMethodSmokeTestModule.dll</file>
         <file>smoketest/general/InputMethodSmokeTestModule.cfg</file>
 		<file>smoketest/winscw_udeb/IMApiTest.dll</file>		

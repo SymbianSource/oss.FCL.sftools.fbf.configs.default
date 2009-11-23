@@ -21,7 +21,7 @@
 
 #include "testsdkskins.h"
 
-const TInt KLength = 20;
+const TInt KLength = 50;
 
 // ============================ MEMBER FUNCTIONS ===============================
 // -----------------------------------------------------------------------------
@@ -29,7 +29,7 @@ const TInt KLength = 20;
 // -----------------------------------------------------------------------------
 TInt CTestSDKSkins::TestWUSetIdleWallpaper( CStifItemParser& /*aItem*/ )
     {
-    _LIT( KFileName, "wallpaperutils" );
+    _LIT( KFileName, "c:\\smoketest\\wallpaper\\symbian_01_320x480.jpg" );
     TBuf<KLength> fileName( KFileName );
     AknsWallpaperUtils::SetIdleWallpaper( fileName, CCoeEnv::Static() );
     
