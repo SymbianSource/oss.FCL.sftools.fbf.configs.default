@@ -209,7 +209,7 @@
         </exec>
         </parallel>
         <!-- package MD5s directly into epoc32/relinfo location so that its usable out-of-the-box -->
-    		<mkdir dir="${build.output.dir}/zips/release"/> <!-- Hack to prevent non-existing release dir -->
+        <mkdir dir="${build.output.dir}/zips/release"/> <!-- Hack to prevent non-existing release dir -->
         <zip destfile="${build.output.dir}/zips/release/build_md5.zip">
             <zipfileset dir="${build.drive}/output/md5/" prefix="epoc32/relinfo"/>
         </zip>
@@ -227,6 +227,7 @@
                 <arg value="a"/>
                 <arg value="-tzip"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@${sf.common.config.dir}/templates/sdkFiles.txt"/>
                 <arg value="-x!epoc32\tools"/>
                 <arg value="-x!epoc32\build"/>
                 <arg value="-x!epoc32\release\armv5"/>
@@ -234,6 +235,13 @@
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_epoc.zip"/>
                 <arg value="epoc32\"/>
+            </exec>
+            
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_sdk.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-i@${sf.common.config.dir}/templates/sdkFiles.txt"/>
+                <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
             </exec>
             
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
@@ -258,6 +266,13 @@
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin-just-metadata" />
+        </antcall>
+        <!-- Check that all the files we want in the SDK are zipped -->
+        <antcall target="sf-log-to-brag">
+            <param name="sf.brag.id" value="SDK"/>
+            <param name="sf.brag.log" value="${build.log.dir}/zip_${build.id}_binaries_sdk.log"/>
+            <param name="sf.brag.phase" value="Postbuild"/>
+            <param name="sf.brag.step" value="Package SDK"/>
         </antcall>
     </target>
 

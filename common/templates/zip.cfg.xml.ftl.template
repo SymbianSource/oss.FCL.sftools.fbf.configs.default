@@ -87,6 +87,9 @@
 			<config name="core">
 				<set name="name" value="binaries_epoc"/>
 			</config>
+			<config name="sdk">
+				<set name="name" value="binaries_epoc_sdk"/>
+			</config>
 			<config name="armv5">
 				<set name="name" value="binaries_armv5"/>
 			</config>
