@@ -3,13 +3,6 @@
     <target name="sf-postbuild">
         <echo>[SF-POSTBUILD]</echo>
         
-        <if><istrue value="${sf.spec.referenceroms.createimages.enable}"/>
-        <then>
-            <echo message="INFO Building ROMs defined for this project"/>
-            <runtarget target="sf-rombuild"/>
-        </then>
-        </if>
-        
         <if><istrue value="${sf.relicense.exported.headers}"/>
         <then>
             <runtarget target="sf-run-sfl-licence-munging"/>
@@ -50,16 +43,16 @@
             
             <!-- run build analysis tools -->
             <runtarget target="sf-run-analysis"/>
-        
+
             <if>
-              <istrue value="${sf.spec.publish.enable}"/>
-              <then>
-                <!-- Generate reports to compare this build to a previous one -->
-                <runtarget target="sf-compare-to-baseline"/>
-              </then>
+                <istrue value="${sf.spec.publish.enable}"/>
+                <then>
+                    <!-- Generate reports to compare this build to a previous one -->
+                    <runtarget target="sf-compare-to-baseline"/>
+                </then>
             </if>
         </parallel>
-
+        
         <!-- Generate release_metadata entries for the md5 zips -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
@@ -80,6 +73,9 @@
                 <runtarget target="sf-bc-check"/>
             </then>
         </if>
+
+        <!-- copy log files linked to the generation of roms for REE -->
+        <runtarget target="sf-copy-rom-logs"/>
 
         <!-- Zip up all the logs -->
         <runtarget target="sf-zip-logs"/>
@@ -805,6 +801,22 @@
           <arg value="${build.drive}/utilities/williamr/convert_to_eula.pl"/>
         </exec>
         <stopwatch name="munge" action="total"/>
+    </target>
+
+    <target name="sf-copy-rom-logs">
+        <property name="sf.rombuild.dir" value="${build.drive}/epoc32/rom/"/>
+        <!-- copy log files for each variant we have -->
+        <echo message="build.log.dir= ${build.log.dir}"/>
+        <echo message="sf.rombuild.dir= ${sf.rombuild.dir}"/>
+        <echo message="sf.spec.referenceroms.variant= ${sf.spec.referenceroms.variant}"/>
+        
+        <copy todir="${build.log.dir}" preservelastmodified="true" failonerror="false">
+            <fileset dir="${sf.rombuild.dir}/${sf.spec.referenceroms.variant}/"><include name="*ROMBUILD.LOG"/></fileset>
+        </copy>
+        
+        <copy todir="${build.log.dir}" preservelastmodified="true" failonerror="false">
+            <fileset dir="${sf.rombuild.dir}/${sf.spec.referenceroms.variant}/"><include name="*rom.oby"/></fileset>
+        </copy>
     </target>
 
 </project>
