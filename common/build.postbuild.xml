@@ -360,13 +360,6 @@
           <include name="*_compile_preprocessed.log"/>
         </fileset>
       </apply>
-      
-      <echo message="Summarizing Raptor data"/>
-      <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" append="true">
-        <arg value="${sf.common.config.dir}/tools/raptor/summarize.pl"/>
-        <arg value="--raptorbitsdir=${build.log.dir}/raptorbits"/>
-        <arg value="--outputdir=${build.log.dir}"/>
-      </exec>
           
       <!-- Now iterate through the generated TSVs to sort them and remove duplicates -->
       <for param="tsv">

@@ -55,6 +55,8 @@ if ($basedir)
 }
 mkdir($basedir) if (!-d$basedir);
 
+$raptorbitsdir =~ s,/,\\,g; # this is because rmdir doens't cope correctly with the forward slashes
+
 system("rmdir /S /Q $raptorbitsdir") if (-d $raptorbitsdir);
 mkdir($raptorbitsdir);
 #print "Created dir $raptorbitsdir.\n";

@@ -39,6 +39,11 @@ if ($help)
 	exit(0);
 }
 
+my $releaseablesdir = "$::basedir/releaseables";
+$releaseablesdir =~ s,/,\\,g; # this is because rmdir doens't cope correctly with the forward slashes
+system("rmdir /S /Q $releaseablesdir") if (-d "$releaseablesdir");
+mkdir("$releaseablesdir");
+
 my $saxhandler = RaptorSAXHandler->new();
 $saxhandler->add_observer('releaseables', $releaseables::reset_status);
 

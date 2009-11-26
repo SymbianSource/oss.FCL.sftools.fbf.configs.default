@@ -90,8 +90,7 @@ my $characters = '';
 
 sub on_start_buildlog
 {
-	system("rmdir /S /Q $::raptorbitsdir/releaseables") if (-d "$::basedir/releaseables");
-	mkdir("$::raptorbitsdir/releaseables");
+	
 }
 
 sub on_start_whatlog
@@ -229,10 +228,10 @@ sub on_end_whatlog
 			my $layer = $1;
 			my $package = $2;
 			
-			mkdir("$::raptorbitsdir/releaseables/$layer");
-			mkdir("$::raptorbitsdir/releaseables/$layer/$package");
+			mkdir("$::basedir/releaseables/$layer");
+			mkdir("$::basedir/releaseables/$layer/$package");
 			
-			my $filename = "$::raptorbitsdir/releaseables/$layer/$package/info.tsv";
+			my $filename = "$::basedir/releaseables/$layer/$package/info.tsv";
 			
 			print "Writing info file $filename\n" if (!-f$filename);
 			open(FILE, ">>$filename");
