@@ -430,7 +430,7 @@
 							<param file="testexecute.exe"/>
 							<param parameters="c:\smoketest\smoketest_language.script"/>
 							<param result-file="c:\logs\testexecute\smoketest_language.htm"/>
-							<param timeout="600"/>
+							<param timeout="1200"/>
 							<param parser="TEFTestResultParser"/>
 							<param leave-old-result="true"/>
 						</params>
@@ -681,45 +681,45 @@
 		<file>smoketest/general/MachineName.txt</file>
 		<file>smoketest/emailmessage/general/20KBody.txt</file>
 		<file>smoketest/emailsettings/general/popsettings_test908.txt</file>
-		<file>smoketest/10003a3f/general/openservice1a.rsc"</file>
-		<file>smoketest/10003a3f/general/openservice1b.rsc"</file>
-		<file>smoketest/10003a3f/general/serverapp2_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/serverapp3_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/serverapp4_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/serverapp6_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/serverapp7_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/serverapp_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/t_dataprioritysystem3_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/t_groupname_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/t_groupnamever1_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/t_groupnamever2_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/tctrlpnlapp_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/testtrustedpriorityapp1_reg.rsc"</file>
-		<file>smoketest/10003a3f/general/testtrustedpriorityapp2_reg.rsc"</file>
-		<file>smoketest/resource/general/customisedefaulticonapp_loc.rsc"</file>
-		<file>smoketest/resource/general/default_app_icon.m02"</file>
-		<file>smoketest/resource/general/serverapp_loc.rsc"</file>
-		<file>smoketest/resource/general/t_groupname_loc.rsc"</file>
-		<file>smoketest/resource/general/t_groupnamever1_loc.rsc"</file>
-		<file>smoketest/resource/general/t_groupnamever2_loc.rsc"</file>
-		<file>smoketest/resource/general/tstapp02.m02"</file>
-		<file>smoketest/resource/general/tstapp.mbm"</file>
-		<file>smoketest/resource/general/tstapp.rsc"</file>
-		<file>smoketest/resource/general/tstapp_loc.r01"</file>
-		<file>smoketest/resource/general/tstapp_loc.r02"</file>
-		<file>smoketest/resource/general/tstapp_loc.r03"</file>
-		<file>smoketest/resource/general/tstapp_loc.r04"</file>
-		<file>smoketest/resource/general/tstapp_loc.r05"</file>
-		<file>smoketest/resource/general/tstapp_loc.rsc"</file>
-		<file>smoketest/resource/general/tstappview"</file>
-		<file>smoketest/resource/general/tstappview01.m01"</file>
-		<file>smoketest/resource/general/tstappview01.m02"</file>
-		<file>smoketest/resource/general/tstappview02.k"</file>
-		<file>smoketest/localisation/general/customisedefaulticonapp_reg.rsc"</file>
-		<file>smoketest/localisation/general/testuntrustedpriorityapp1_reg.rsc"</file>
-		<file>smoketest/localisation/general/testuntrustedpriorityapp2_reg.rsc"</file>
-		<file>smoketest/localisation/general/tstapp_reg.rsc"</file>
-		<file>smoketest/localisation/general/tstapp_embedded.rsc"</file>
+		<file>smoketest/10003a3f/general/openservice1a.rsc</file>
+		<file>smoketest/10003a3f/general/openservice1b.rsc</file>
+		<file>smoketest/10003a3f/general/serverapp2_reg.rsc</file>
+		<file>smoketest/10003a3f/general/serverapp3_reg.rsc</file>
+		<file>smoketest/10003a3f/general/serverapp4_reg.rsc</file>
+		<file>smoketest/10003a3f/general/serverapp6_reg.rsc</file>
+		<file>smoketest/10003a3f/general/serverapp7_reg.rsc</file>
+		<file>smoketest/10003a3f/general/serverapp_reg.rsc</file>
+		<file>smoketest/10003a3f/general/t_dataprioritysystem3_reg.rsc</file>
+		<file>smoketest/10003a3f/general/t_groupname_reg.rsc</file>
+		<file>smoketest/10003a3f/general/t_groupnamever1_reg.rsc</file>
+		<file>smoketest/10003a3f/general/t_groupnamever2_reg.rsc</file>
+		<file>smoketest/10003a3f/general/tctrlpnlapp_reg.rsc</file>
+		<file>smoketest/10003a3f/general/testtrustedpriorityapp1_reg.rsc</file>
+		<file>smoketest/10003a3f/general/testtrustedpriorityapp2_reg.rsc</file>
+		<file>smoketest/resource/general/customisedefaulticonapp_loc.rsc</file>
+		<file>smoketest/resource/general/default_app_icon.m02</file>
+		<file>smoketest/resource/general/serverapp_loc.rsc</file>
+		<file>smoketest/resource/general/t_groupname_loc.rsc</file>
+		<file>smoketest/resource/general/t_groupnamever1_loc.rsc</file>
+		<file>smoketest/resource/general/t_groupnamever2_loc.rsc</file>
+		<file>smoketest/resource/general/tstapp02.m02</file>
+		<file>smoketest/resource/general/tstapp.mbm</file>
+		<file>smoketest/resource/general/tstapp.rsc</file>
+		<file>smoketest/resource/general/tstapp_loc.r01</file>
+		<file>smoketest/resource/general/tstapp_loc.r02</file>
+		<file>smoketest/resource/general/tstapp_loc.r03</file>
+		<file>smoketest/resource/general/tstapp_loc.r04</file>
+		<file>smoketest/resource/general/tstapp_loc.r05</file>
+		<file>smoketest/resource/general/tstapp_loc.rsc</file>
+		<file>smoketest/resource/general/tstappview</file>
+		<file>smoketest/resource/general/tstappview01.m01</file>
+		<file>smoketest/resource/general/tstappview01.m02</file>
+		<file>smoketest/resource/general/tstappview02.k</file>
+		<file>smoketest/localisation/general/customisedefaulticonapp_reg.rsc</file>
+		<file>smoketest/localisation/general/testuntrustedpriorityapp1_reg.rsc</file>
+		<file>smoketest/localisation/general/testuntrustedpriorityapp2_reg.rsc</file>
+		<file>smoketest/localisation/general/tstapp_reg.rsc</file>
+		<file>smoketest/localisation/general/tstapp_embedded.rsc</file>
 		<file>smoketest/winscw_udeb/SmokeTestSecureFSclient.dll</file>
 		<file>smoketest/winscw_udeb/SmokeTestSecureFSserver.exe</file>
 		<file>smoketest/winscw_udeb/Smoketest_Agenda_Server.exe</file>
