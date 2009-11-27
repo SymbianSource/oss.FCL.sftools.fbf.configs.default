@@ -22,7 +22,7 @@ DELAY 1000
 
 START_TESTCASE			SMOKE_LANGUAGE_0001
 //!	@SYMTestCaseID		SMOKE_LANGUAGE_0001
-//!	@SYMTestCaseDesc	Set a new language (English, French, German, Spanish, Italian, American)
+//!	@SYMTestCaseDesc	Set a new language
 
 RUN_TEST_STEP 100 ApparcTestServer T_Caption
 
