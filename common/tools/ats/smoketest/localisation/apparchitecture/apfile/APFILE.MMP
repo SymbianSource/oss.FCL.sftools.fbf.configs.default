@@ -1,0 +1,74 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+//
+// APFILE.MMP for component APFILE
+//
+
+/**
+@file
+
+@SYMPurpose apfile.dll Internal server helpers
+*/
+
+
+target          apfile.dll
+CAPABILITY All -Tcb
+targettype      DLL
+UID		0x1000008D 0x10003A3B
+VENDORID 0x70000001
+
+SOURCEPATH	../apfile
+
+userinclude   ../inc
+systeminclude   /epoc32/include
+
+macro UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER
+
+source			APFREC.CPP APFSTD.CPP aprfndr.cpp APRuleBased.CPP ApLaunchChecker.cpp ApSidChecker.cpp apuninstallmonitor.cpp
+source			apfmimecontentpolicy.cpp
+
+library         euser.lib efsrv.lib apparc.lib apgrfx.lib bafl.lib apserv.lib ecom.lib 
+library			apmime.lib caf.lib
+
+#if !defined(WINC)
+macro			USING_ECOM_RECOGS
+#endif
+
+#if defined(SYMBIAN_APPARC_APPINFO_CACHE)
+deffile			APFILE_UI_FRAMEWORKS.DEF
+#else
+deffile			APFILE_9_REMOVE_UI_FRAMEWORKS_V1.DEF
+#endif
+
+
+START RESOURCE ../apfile/apfmimecontentpolicy.rss
+HEADER  
+TARGETPATH   /resource/apps
+END
+
+START WINS
+	baseaddress	0x43000000
+END
+
+START MARM
+END
+
+// For the benefit of Eshell which cannot build a resource registration file
+START RESOURCE	eshell_reg.rss
+TARGETPATH	/private/10003a3f/apps
+END
+

@@ -1,0 +1,42 @@
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// 0xA000B461.rss
+// 
+//
+
+#include <registryinfo.rh>
+
+
+RESOURCE REGISTRY_INFO r_registry
+	{
+	dll_uid = 0xA000B461; //should match name of this file
+	interfaces =
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = 0x101F7D87; // Const for all Data Recognizers
+			implementations =
+			 {
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0xA000B461; // Our test recognizer
+					version_no = 1;
+					display_name = "recupg";
+					default_data = "";        // Notify Interface
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}

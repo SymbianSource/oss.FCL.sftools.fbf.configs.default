@@ -1,0 +1,62 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// T_EnvSlots.EXE Test application for environment slots verification
+// 
+//
+
+
+
+/**
+ @file
+*/
+
+TARGETPATH	/sys/bin
+target          T_EnvSlots.EXE
+targettype      EXE
+
+
+UID		0x1000007a 0x102032AB 
+VENDORID 0x70000001
+
+CAPABILITY All -Tcb
+
+SYSTEMINCLUDE   /EPOC32/INCLUDE 
+
+systeminclude	/epoc32/include/test
+
+
+SOURCEPATH		.	
+source       	T_EnvSlots.CPP
+
+USERINCLUDE     .
+USERINCLUDE 	..
+
+
+start resource T_EnvSlots_reg.rss
+targetpath /private/10003A3F/apps
+end
+
+start resource T_EnvSlots_loc.rss
+targetpath /resource/apps
+end
+
+LIBRARY		CONE.LIB   WS32.LIB
+LIBRARY		APPFWK_TEST_APPUI.LIB
+LIBRARY		EUSER.LIB
+LIBRARY		TESTEXECUTEUTILS.LIB  TestExecuteLogClient.LIB
+LIBRARY		APPARC.LIB EFSRV.LIB ESTOR.LIB GDI.LIB FBSCLI.LIB
+LIBRARY     APFILE.LIB APGRFX.LIB  BAFL.LIB APMIME.LIB
+LIBRARY		EIKCORE.LIB 
+LIBRARY		APSERV.LIB
+LIBRARY     ECOM.LIB

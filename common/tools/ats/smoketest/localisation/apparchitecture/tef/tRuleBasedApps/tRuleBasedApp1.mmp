@@ -1,0 +1,57 @@
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// t_RuleBasedApp1.mmp
+// 
+//
+
+#include <platform_paths.hrh>
+
+// using relative paths for sourcepath and user includes
+CAPABILITY NONE
+epocstacksize 		0x5000
+
+TARGETPATH		/sys/bin
+
+
+TARGET			tRuleBasedApp1.exe
+TARGETTYPE		exe
+
+
+UID           		0x100039CE 0X1020D6FC
+
+VENDORID 		0x70000001
+
+SOURCEPATH    		.
+
+SOURCE        		tRuleBasedApp1.cpp
+
+
+USERINCLUDE   		.
+
+SYSTEMINCLUDE 		/epoc32/include
+SYSTEMINCLUDE 		/epoc32/include/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+LIBRARY       		euser.lib apparc.lib cone.lib eikcore.lib bitgdi.lib fntstr.lib fbscli.lib gdi.lib
+
+			
+START RESOURCE      	tRuleBasedApp1.rss
+HEADER
+TARGETPATH		/resource/apps
+END
+
+START RESOURCE		tRuleBasedApp1_reg.rss
+TARGETPATH		/private/10003a3f/apps
+END

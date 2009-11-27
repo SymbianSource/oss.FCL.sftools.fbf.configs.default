@@ -1,0 +1,32 @@
+EXPORTS
+	_Z20PreallocateHALBufferv @ 1 NONAME
+	_ZN10CTestAppUi10ConstructLEv @ 2 NONAME
+	_ZN10CTestAppUi15ProcessCommandLEi @ 3 NONAME
+	_ZN10CTestAppUiC2EP9CTestStepRK7TDesC16iii @ 4 NONAME
+	_ZN10CTestAppUiD0Ev @ 5 NONAME
+	_ZN10CTestAppUiD1Ev @ 6 NONAME
+	_ZN10CTestAppUiD2Ev @ 7 NONAME
+	_ZN13CTestCoeAppUi10ConstructLEv @ 8 NONAME
+	_ZN13CTestCoeAppUiC2EP9CTestStep @ 9 NONAME
+	_ZN13CTestCoeAppUiD0Ev @ 10 NONAME
+	_ZN13CTestCoeAppUiD1Ev @ 11 NONAME
+	_ZN13CTestCoeAppUiD2Ev @ 12 NONAME
+	_ZN16CAutoTestManager13StartAutoTestEv @ 13 NONAME
+	_ZN16CAutoTestManager17SetTestCaseNumberEi @ 14 NONAME
+	_ZN16CAutoTestManager18FinishAllTestCasesENS_11TTestResultE @ 15 NONAME
+	_ZN16CAutoTestManager4NewLEP12MAutoTestApp @ 16 NONAME
+	_ZN16CAutoTestManagerC1EP12MAutoTestApp @ 17 NONAME
+	_ZN16CAutoTestManagerC2EP12MAutoTestApp @ 18 NONAME
+	_ZN16CAutoTestManagerD0Ev @ 19 NONAME
+	_ZN16CAutoTestManagerD1Ev @ 20 NONAME
+	_ZN16CAutoTestManagerD2Ev @ 21 NONAME
+	_ZNK10CTestAppUi10ReduceRectER5TRect @ 22 NONAME
+	_ZTI10CTestAppUi @ 23 NONAME ; #<TI>#
+	_ZTI13CTestCoeAppUi @ 24 NONAME ; #<TI>#
+	_ZTI16CAutoTestManager @ 25 NONAME ; #<TI>#
+	_ZTV10CTestAppUi @ 26 NONAME ; #<VT>#
+	_ZTV13CTestCoeAppUi @ 27 NONAME ; #<VT>#
+	_ZTV16CAutoTestManager @ 28 NONAME ; #<VT>#
+	_ZThn24_N10CTestAppUi15ProcessCommandLEi @ 29 NONAME ; #<thunk>#
+	_Z21CloseAllPanicWindowsLv @ 30 NONAME
+

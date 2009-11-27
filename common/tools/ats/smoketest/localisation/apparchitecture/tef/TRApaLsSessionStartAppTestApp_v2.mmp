@@ -1,0 +1,49 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// TTRApaLsSessionStartAppTestApp.mmp
+// 
+//
+
+#include <platform_paths.hrh>
+
+targetpath	/SYS/BIN
+
+target		TRApaLsSessionStartAppTestApp.EXE
+TARGETTYPE 	exe
+
+VENDORID 	0x70000001
+UID         	0x100039CE 0x10004c4f
+CAPABILITY	All -Tcb
+epocstacksize 	0x5000
+
+SOURCEPATH	.
+USERINCLUDE   	.
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+// Application exe registration resource file
+START RESOURCE	TRApaLsSessionStartAppTestApp_reg.rss
+TARGETPATH	/private/10003a3f/apps
+END
+
+SOURCE        	TRApaLsSessionStartAppTestApp.cpp
+
+
+LIBRARY       	APPARC.LIB
+LIBRARY       	CONE.LIB 
+LIBRARY       	EIKCORE.LIB 
+LIBRARY       	EUSER.LIB
+LIBRARY       	GDI.LIB

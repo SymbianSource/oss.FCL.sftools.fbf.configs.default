@@ -1,0 +1,65 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+//
+// APSERV.MMP for component APSERV
+//
+
+/**
+@file
+
+@SYMPurpose apserv.dll Apparc server
+*/
+
+
+target          apserv.dll
+CAPABILITY All -Tcb
+targettype      DLL
+UID		0x1000008D 0x10003A3E
+VENDORID 0x70000001
+
+SOURCEPATH	../apserv
+
+userinclude		../inc ../apparc
+userinclude		../apgrfx
+systeminclude   /epoc32/include
+
+
+source          APSSERV.CPP APSSES.CPP APSSTD.CPP APSSCAN.CPP
+source          APSSTART.CPP APSRECCACHE.cpp APSRECUTIL.CPP
+source	        APSCONSTDATA.CPP
+source          apsnnapps.cpp apsnnappupdates.cpp
+source			apsiconcaptionoverride.cpp
+
+library         euser.lib efsrv.lib apparc.lib apgrfx.lib apmime.lib fbscli.lib apfile.lib
+library         estor.lib bafl.lib ws32.lib
+library			centralrepository.lib
+
+#if !defined(WINC)
+macro			USING_ECOM_RECOGS
+library         ecom.lib
+#endif
+
+macro UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER
+
+deffile 	APSERV.DEF
+
+START WINS
+	baseaddress	0x43700000
+END
+
+START MARM
+END

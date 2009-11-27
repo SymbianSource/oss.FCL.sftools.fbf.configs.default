@@ -1,0 +1,52 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// TAppEmbeddableUiNotStandAlone.mmp
+// 
+//
+
+#include <platform_paths.hrh>
+
+TARGET        	TAppEmbeddableUiNotStandAlone.dll
+TARGETPATH	/sys/bin
+TARGETTYPE    	PLUGIN
+UID           	0x10009d8d 0x10004c5E
+
+CAPABILITY 	All -Tcb
+VENDORID 	0x70000001
+
+SOURCEPATH    	.
+SOURCE        	TAppEmbeddableUiNotStandAlone.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+SYSTEMINCLUDE 	/epoc32/include/Ecom
+
+MW_LAYER_SYSTEMINCLUDE
+
+//reg added for Datacaging
+START RESOURCE	TAppEmbeddableUiNotStandAlone_reg.rss
+TARGETPATH	/private/10003a3f/apps
+END
+
+START RESOURCE 	10004c5E.rss
+TARGET 		TAppEmbeddableUiNotStandAlone.rsc
+END
+
+LIBRARY       	APPARC.LIB
+LIBRARY       	CONE.LIB 
+LIBRARY       	EIKCORE.LIB 
+LIBRARY       	ECOM.LIB
+LIBRARY       	EUSER.LIB
+LIBRARY       	GDI.LIB

@@ -1,0 +1,27 @@
+EXPORTS
+	??1CApaAppListServer@@UAE@XZ @ 1 NONAME ; public: virtual __thiscall CApaAppListServer::~CApaAppListServer(void)
+	?NewL@CApaAppListServer@@SAPAV1@PAVCApaAppList@@PAVCApaFileRecognizer@@@Z @ 2 NONAME ABSENT ; public: static class CApaAppListServer * __cdecl CApaAppListServer::NewL(class CApaAppList *,class CApaFileRecognizer *)
+	??1CApaFsMonitor@@UAE@XZ @ 3 NONAME ; public: virtual __thiscall CApaFsMonitor::~CApaFsMonitor(void)
+	?NameApaServServerThread@@YA?AVTPtrC16@@XZ @ 4 NONAME ; class TPtrC16  __cdecl NameApaServServerThread(void)
+	?NameApaServStartSemaphore@@YA?AVTPtrC16@@XZ @ 5 NONAME ; class TPtrC16  __cdecl NameApaServStartSemaphore(void)
+	?NewL@CApaAppListServer@@SAPAV1@PAVMApaAppStarter@@@Z @ 6 NONAME ; public: static class CApaAppListServer * __cdecl CApaAppListServer::NewL(class MApaAppStarter *)
+	?NewL@CApaFsMonitor@@SAPAV1@AAVRFs@@ABVTDesC16@@VTCallBack@@@Z @ 7 NONAME ; public: static class CApaFsMonitor * __cdecl CApaFsMonitor::NewL(class RFs &,class TDesC16 const &,class TCallBack)
+	?NotifyType@CApaFsMonitor@@QBE?AW4TNotifyType@@XZ @ 8 NONAME ; public: enum TNotifyType  __thiscall CApaFsMonitor::NotifyType(void)const 
+	?SetBlocked@CApaFsMonitor@@QAEXH@Z @ 9 NONAME ; public: void __thiscall CApaFsMonitor::SetBlocked(int)
+	?Start@CApaFsMonitor@@QAEXW4TNotifyType@@@Z @ 10 NONAME ; public: void __thiscall CApaFsMonitor::Start(enum TNotifyType)
+	?Self@CApaAppListServer@@SAPAV1@XZ @ 11 NONAME ; class CApaAppListServer * CApaAppListServer::Self(void)
+	?AddLocationL@CApaFsMonitor@@QAEXABVTDesC16@@@Z @ 12 NONAME ; void CApaFsMonitor::AddLocationL(class TDesC16 const &)
+	?Cancel@CApaFsMonitor@@QAEXXZ @ 13 NONAME ; void CApaFsMonitor::Cancel(void)
+	?ApaServThreadStart@@YAHPAX@Z @ 14 NONAME ; int ApaServThreadStart(void *)
+	??1CUpdatedAppsList@@UAE@XZ @ 15 NONAME ABSENT ; CUpdatedAppsList::~CUpdatedAppsList(void)
+	?CloseAndDeletePermanentStore@CUpdatedAppsList@@QAEXXZ @ 16 NONAME ABSENT ; void CUpdatedAppsList::CloseAndDeletePermanentStore(void)
+	?IsInList@CUpdatedAppsList@@QBEHABVTDesC16@@@Z @ 17 NONAME ABSENT ; int CUpdatedAppsList::IsInList(class TDesC16 const &) const
+	?RescanCallBack@CApaAppListServer@@QAE?AVTCallBack@@XZ @ 18 NONAME ; class TCallBack CApaAppListServer::RescanCallBack(void)
+	?KApaLoadDataRecognizersOnDemand@@3HB @ 19 NONAME DATA 4 ; int const KApaLoadDataRecognizersOnDemand
+	?KApaUnloadRecognizersTimeout@@3HB @ 20 NONAME DATA 4 ; int const KApaUnloadRecognizersTimeout
+	?HandleEndUninstallEventL@CApaAppListServer@@QAEXXZ @ 21 NONAME ; void CApaAppListServer::HandleEndUninstallEventL(void)
+	?HandleStartUninstallEvent@CApaAppListServer@@QAEXXZ @ 22 NONAME ; void CApaAppListServer::HandleStartUninstallEvent(void)
+	?KApaDrivesToMonitor@@3HB @ 23 NONAME ; int const KApaDrivesToMonitor
+	?KApaLoadMbmIconsOnDemand@@3HB @ 24 NONAME ; int const KApaLoadMbmIconsOnDemand
+
+

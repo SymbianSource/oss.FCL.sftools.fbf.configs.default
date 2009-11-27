@@ -1,0 +1,47 @@
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @internalComponent - Internal Symbian test code  
+*/
+
+
+target			TNNAPP1.EXE
+targetpath		/sys/bin
+targettype		exe
+uid				0x100039ce 0x10207f92
+vendorid 		0x70000001
+
+capability 		none
+
+sourcepath		.
+source			TNNAPP1.CPP
+
+userinclude     .
+userinclude     ..
+
+systeminclude	/epoc32/include
+systeminclude	/epoc32/include/test
+
+resource  		TNNAPP1_REG.RSS
+start resource	TNNAPP1_REG.RSS
+targetpath		/private/10003a3f/apps
+lang			sc
+end
+
+library			EUSER.LIB EFSRV.LIB APMIME.LIB APGRFX.LIB APPARC.LIB WS32.LIB CONE.LIB EIKCORE.LIB GDI.LIB 

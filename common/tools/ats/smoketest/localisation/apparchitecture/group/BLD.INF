@@ -1,0 +1,108 @@
+// Copyright (c) 1999-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// Application architecture
+// 
+//
+
+
+
+/**
+ @file
+ @test
+*/
+
+
+PRJ_PLATFORMS
+WINC DEFAULT
+
+PRJ_EXPORTS
+// test code only
+
+PRJ_MMPFILES
+// test code only
+
+PRJ_TESTMMPFILES
+// specify the .mmp files required for building any test programs here
+//
+// you can specify "manual" to denote that a test should be listed in a generated
+// batch file for running a group of tests which require user input during testing.
+// you can specify "support" to denote that a file is a test support file and shouldn't
+// be listed in a batch file for running a group of tests
+// By default, each test will be listed in a batch file for running a group of tests
+// which can be left to run without requiring watching over by the person running the tests,
+// i.e. tests where no user input is required.  The default will apply if neither "manual"
+// or "support" is specified.
+../tef/apparctestserver.MMP
+#ifdef SYMBIAN_APPARC_APPINFO_CACHE
+//../tef/TAppInstall/TestAppInstall.mmp
+#endif// SYMBIAN_APPARC_APPINFO_CACHE
+//../tef/TDoNothingFileRecognizer_v2.mmp
+../tef/TSTAPP_embedded.MMP 	support
+../tef/TSTAPP_standalone.MMP	support
+//../tef/m_ctrl_v2.mmp	support
+//../tef/SimpleApparcTestApp.mmp	support
+//../tef/TEXE_V2.MMP 	support
+//../tef/TAppNotEmbeddable_v2.mmp support
+//../tef/TAppEmbeddable_embedded.mmp support
+//../tef/TAppEmbeddable_standalone.mmp support
+//../tef/TAppEmbeddableOnly_v2.mmp support
+//../tef/TAppEmbeddableUiOrStandAlone_embedded.mmp support
+//../tef/TAppEmbeddableUiOrStandalone_standalone.mmp support
+//../tef/TAppEmbeddableUiNotStandAlone_v2.mmp support
+//../tef/TStartDocApp_v2.mmp support
+//../tef/t_winchainChild.mmp support
+//../tef/t_winchainLaunch.mmp support
+//../tef/TLongUrlRecognizer_v2.mmp support
+//../tef/TRApaLsSessionStartAppTestRecognizer_v2.mmp support
+//../tef/TRApaLsSessionStartAppTestApp_v2.mmp support
+//../tef/tRuleBasedApps/tRuleBasedApp1.mmp support
+//../tef/tRuleBasedApps/tRuleBasedApp2.mmp support
+//../tef/tRuleBasedApps/tRuleBasedApp3.mmp support
+//../tef/tRuleBasedApps/tRuleBasedApp4.mmp support
+//../tef/TCmdLineExe.mmp 	support
+//../tef/TApparcTestApp.mmp support
+//../tef/TTestEcomFileRec.mmp support
+//../tef/TAppLaunchChecker.mmp support
+//../tef/TAppLaunchChecker2.mmp support
+//../tef/TNonNativeAppLaunchChecker.mmp support
+//../tef/app_CTRL.MMP
+//../tef/app_CTRL2.MMP
+//../tef/T_EnvSlots/T_EnvSlots.MMP
+//../tef/TESTREC/TESTREC.MMP
+//../tef/ParentProcess.mmp
+//../tef/ChildI.mmp
+//../tef/ChildII.mmp
+//../tef/ChildIII.mmp
+//../tef/tssaac/tssaac.mmp
+//../tef/tssaac/tssaac_tapp.mmp
+//../tef/T_DataPrioritySystem1/T_DataPrioritySystem1.MMP
+//../tef/T_DataPrioritySystem2/T_DataPrioritySystem2.MMP
+//../tef/TBufferOnlyRec/TBufferOnlyRec.mmp
+//../tef/TNonNative/TNonNativeRec.mmp
+//../tef/TNonNative/TNNApp1.mmp
+//../tef/TNonNative/TNNApp2.mmp
+//../tef/TSidChecker/TestSidChecker.mmp
+//../tef/TMimeRec/recmime.MMP
+//../tef/TEndTaskTestApp/EndTaskTestApp.mmp
+//../tef/tlargestack/tlargestackapp.mmp
+//../tef/UnProctectedUidApp.mmp	support
+../tef/TIconLoaderAndIconArrayForLeaks.mmp
+//../tef/tupgradeiconapp/tupgradeiconapp.mmp
+//../tef/tnotifydrivesapp/tnotifydrivesapp.mmp
+//../tef/ticoncaptionoverride.mmp
+//../tef/trecupgrade/recupgrade.mmp
+
+PRJ_TESTEXPORTS
+../tef/scripts/smoketest_language.script            		z:/smoketest/smoketest_language.script
+../tef/scripts/setup_smoketest_language.script            	z:/smoketest/setup_smoketest_language.script

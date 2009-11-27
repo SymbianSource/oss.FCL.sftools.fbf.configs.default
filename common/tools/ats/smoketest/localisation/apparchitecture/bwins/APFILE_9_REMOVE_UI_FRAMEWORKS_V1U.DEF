@@ -1,0 +1,72 @@
+EXPORTS
+	??0CApaScanningFileRecognizer@@IAE@AAVRFs@@PAVMApaAppStarter@@@Z @ 1 NONAME
+	??1CApaAppLocatorProxy@@UAE@XZ @ 2 NONAME ABSENT
+	??1CApaScanningAppFinder@@UAE@XZ @ 3 NONAME ABSENT
+	??1CApaScanningFileRecognizer@@UAE@XZ @ 4 NONAME
+	?ConstructL@CApaScanningFileRecognizer@@IAEXXZ @ 5 NONAME
+	?DefaultAppInfoFileName@CApaScanningAppFinder@@UBE?AV?$TBuf@$0BAA@@@XZ @ 6 NONAME ABSENT
+	?FindAllAppsL@CApaScanningAppFinder@@UAEXXZ @ 7 NONAME ABSENT
+	?FindAppL@CApaScanningAppFinder@@UAE?AV?$TBuf@$0BAA@@@ABVTDesC16@@VTUid@@@Z @ 8 NONAME ABSENT
+	?GetAppCapabilityByUid@CApaAppLocatorProxy@@UAEHAAVTDes8@@VTUid@@@Z @ 9 NONAME ABSENT
+	?GetAppEntryByUid@CApaAppLocatorProxy@@UAEHAAVTApaAppEntry@@VTUid@@@Z @ 10 NONAME ABSENT
+	?NewL@CApaAppLocatorProxy@@SAPAV1@AAVRFs@@@Z @ 11 NONAME ABSENT
+	?NewL@CApaScanningAppFinder@@SAPAV1@ABVRFs@@@Z @ 12 NONAME ABSENT
+	?NewL@CApaScanningFileRecognizer@@SAPAV1@AAVRFs@@PAVMApaAppStarter@@@Z @ 13 NONAME
+	?NewLC@CApaScanningAppFinder@@SAPAV1@ABVRFs@@@Z @ 14 NONAME ABSENT
+	?NextL@CApaScanningAppFinder@@UAEHAAVTApaAppEntry@@@Z @ 15 NONAME ABSENT
+	?RecognizerCount@CApaScanningFileRecognizer@@QAEHXZ @ 16 NONAME
+	?RecognizerListLC@CApaScanningFileRecognizer@@QBEPAV?$CArrayFixFlat@VTRecognizer@CApaScanningFileRecognizer@@@@XZ @ 17 NONAME
+	?ScanForRecognizersL@CApaScanningFileRecognizer@@QAEXXZ @ 18 NONAME
+	?SetRecognizersFromListL@CApaScanningFileRecognizer@@QAEXABV?$CArrayFixFlat@VTRecognizer@CApaScanningFileRecognizer@@@@@Z @ 19 NONAME ABSENT
+	?TempPath@CApaScanningAppFinder@@UBE?AV?$TBuf@$0BAA@@@XZ @ 20 NONAME ABSENT
+	?TempPath@Apfile@@SA?AVTPtrC16@@XZ @ 21 NONAME ABSENT
+	??ACApaScanningFileRecognizer@@QBEABVTRecognizer@0@H@Z @ 22 NONAME ; class CApaScanningFileRecognizer::TRecognizer const & CApaScanningFileRecognizer::operator[](int) const
+	?SetRecognizerL@CApaScanningFileRecognizer@@QAEXABVTRecognizer@1@@Z @ 23 NONAME ABSENT
+	?UpdateCounter@CApaScanningFileRecognizer@@QBEHXZ @ 24 NONAME
+	??1CApaScanningControlFinder@@UAE@XZ @ 25 NONAME ABSENT
+	?DefaultAppInfoFileName@CApaScanningControlFinder@@UBE?AV?$TBuf@$0BAA@@@XZ @ 26 NONAME ABSENT
+	?FindAllAppsL@CApaScanningControlFinder@@UAEXXZ @ 27 NONAME ABSENT
+	?FindAppL@CApaScanningControlFinder@@UAE?AV?$TBuf@$0BAA@@@ABVTDesC16@@VTUid@@@Z @ 28 NONAME ABSENT
+	?NewL@CApaScanningControlFinder@@SAPAV1@ABVRFs@@@Z @ 29 NONAME ABSENT
+	?NewLC@CApaScanningControlFinder@@SAPAV1@ABVRFs@@@Z @ 30 NONAME ABSENT
+	?NextL@CApaScanningControlFinder@@UAEHAAVTApaAppEntry@@@Z @ 31 NONAME ABSENT
+	?TempPath@CApaScanningControlFinder@@UBE?AV?$TBuf@$0BAA@@@XZ @ 32 NONAME ABSENT
+	?SetEcomRecognizerL@CApaScanningFileRecognizer@@QAEXABVTRecognizer@1@@Z @ 33 NONAME
+	?SetEcomRecognizersFromListL@CApaScanningFileRecognizer@@QAEXABV?$CArrayFixFlat@VTRecognizer@CApaScanningFileRecognizer@@@@@Z @ 34 NONAME
+	?FindAllAppsL@CApaAppRegFinder@@QAEXXZ @ 35 NONAME ; void CApaAppRegFinder::FindAllAppsL(void)
+	?FindAppL@CApaAppRegFinder@@QAE?AV?$TBuf@$0BAA@@@ABVTDesC16@@VTUid@@@Z @ 36 NONAME ABSENT ; class TBuf<256> CApaAppRegFinder::FindAppL(class TDesC16 const &, class TUid)
+	?NewL@CApaAppRegFinder@@SAPAV1@ABVRFs@@@Z @ 37 NONAME ; class CApaAppRegFinder * CApaAppRegFinder::NewL(class RFs const &)
+	?NewLC@CApaAppRegFinder@@SAPAV1@ABVRFs@@@Z @ 38 NONAME ; class CApaAppRegFinder * CApaAppRegFinder::NewLC(class RFs const &)
+	?NextL@CApaAppRegFinder@@QAEHAAVTApaAppEntry@@ABV?$RPointerArray@VHBufC16@@@@@Z @ 39 NONAME ; int CApaAppRegFinder::NextL(class TApaAppEntry &, class RPointerArray<class HBufC16> const &)
+	?TempPath@CApaAppRegFinder@@UBE?AV?$TBuf@$0BAA@@@XZ @ 40 NONAME ABSENT ; class TBuf<256> CApaAppRegFinder::TempPath(void) const
+	??1CAppLaunchChecker@@UAE@XZ @ 41 NONAME ; CAppLaunchChecker::~CAppLaunchChecker(void)
+	??ACApaScanningRuleBasedPlugIns@@QBEPAVCAppLaunchChecker@@H@Z @ 42 NONAME ; class CAppLaunchChecker * CApaScanningRuleBasedPlugIns::operator[](int) const
+	??1CApaScanningRuleBasedPlugIns@@UAE@XZ @ 43 NONAME ; CApaScanningRuleBasedPlugIns::~CApaScanningRuleBasedPlugIns(void)
+	?NewL@CApaScanningRuleBasedPlugIns@@SAPAV1@XZ @ 44 NONAME ; class CApaScanningRuleBasedPlugIns * CApaScanningRuleBasedPlugIns::NewL(void)
+	?ScanForRuleBasedPlugInsL@CApaScanningRuleBasedPlugIns@@QAEXXZ @ 45 NONAME ; void CApaScanningRuleBasedPlugIns::ScanForRuleBasedPlugInsL(void)
+	?ImplementationCount@CApaScanningRuleBasedPlugIns@@QBEHXZ @ 46 NONAME ; int CApaScanningRuleBasedPlugIns::ImplementationCount(void) const
+	?Reserved_1@CAppLaunchChecker@@EAEXXZ @ 47 NONAME ; void CAppLaunchChecker::Reserved_1(void)
+	?Reserved_2@CAppLaunchChecker@@EAEXXZ @ 48 NONAME ; void CAppLaunchChecker::Reserved_2(void)
+	?Reserved_3@CAppLaunchChecker@@EAEXXZ @ 49 NONAME ; void CAppLaunchChecker::Reserved_3(void)
+	??1CAppSidChecker@@UAE@XZ @ 50 NONAME ; CAppSidChecker::~CAppSidChecker(void)
+	?SetRescanCallBackL@CAppSidChecker@@UAEXABVTCallBack@@@Z @ 51 NONAME ; void CAppSidChecker::SetRescanCallBackL(class TCallBack const &)
+	?reserved1@CAppSidChecker@@EAEXXZ @ 52 NONAME ; void CAppSidChecker::reserved1(void)
+	?reserved2@CAppSidChecker@@EAEXXZ @ 53 NONAME ; void CAppSidChecker::reserved2(void)
+	?reserved3@CAppSidChecker@@EAEXXZ @ 54 NONAME ; void CAppSidChecker::reserved3(void)
+	X @ 55 NONAME ABSENT ; dummy entry for DriveList function used for Argus and above releases
+	X @ 56 NONAME ABSENT ; dummy entry for FindAllRemovableMediaAppsL function used for Argus and above releases
+	??1CApaAppUnInstallMonitor@@UAE@XZ @ 57 NONAME ; CApUnInstallMonitor::~CApUnInstallMonitor(void)
+	?Start@CApaAppUnInstallMonitor@@QAEXXZ @ 58 NONAME ; void CApUnInstallMonitor::Start(void)
+	?NewL@CApaAppUnInstallMonitor@@SAPAV1@PAVCApaAppListServer@@@Z @ 59 NONAME ; class CApUnInstallMonitor * CApUnInstallMonitor::NewL(class CApaAppListServer *)
+	??1CApfMimeContentPolicy@@UAE@XZ @ 60 NONAME ; CApfMimeContentPolicy::~CApfMimeContentPolicy(void)
+	?IsClosedExtension@CApfMimeContentPolicy@@QAEHABVTDesC16@@@Z @ 61 NONAME ; int CApfMimeContentPolicy::IsClosedExtension(class TDesC16 const &)
+	?IsClosedFileL@CApfMimeContentPolicy@@QAEHAAVRFile@@@Z @ 62 NONAME ; int CApfMimeContentPolicy::IsClosedFileL(class RFile &)
+	?IsClosedFileL@CApfMimeContentPolicy@@QAEHABVTDesC16@@@Z @ 63 NONAME ; int CApfMimeContentPolicy::IsClosedFileL(class TDesC16 const &)
+	?IsClosedType@CApfMimeContentPolicy@@QAEHABVTDesC16@@@Z @ 64 NONAME ; int CApfMimeContentPolicy::IsClosedType(class TDesC16 const &)
+	?IsDRMEnvelopeL@CApfMimeContentPolicy@@QAEHAAVRFile@@@Z @ 65 NONAME ; int CApfMimeContentPolicy::IsDRMEnvelopeL(class RFile &)
+	?IsDRMEnvelopeL@CApfMimeContentPolicy@@QAEHABVTDesC16@@@Z @ 66 NONAME ; int CApfMimeContentPolicy::IsDRMEnvelopeL(class TDesC16 const &)
+	?NewL@CApfMimeContentPolicy@@SAPAV1@AAVRFs@@@Z @ 67 NONAME ; class CApfMimeContentPolicy * CApfMimeContentPolicy::NewL(class RFs &)
+	?NewL@CApfMimeContentPolicy@@SAPAV1@XZ @ 68 NONAME ; class CApfMimeContentPolicy * CApfMimeContentPolicy::NewL(void)
+	?NewLC@CApfMimeContentPolicy@@SAPAV1@AAVRFs@@@Z @ 69 NONAME ; class CApfMimeContentPolicy * CApfMimeContentPolicy::NewLC(class RFs &)
+	?NewLC@CApfMimeContentPolicy@@SAPAV1@XZ @ 70 NONAME ; class CApfMimeContentPolicy * CApfMimeContentPolicy::NewLC(void)
+

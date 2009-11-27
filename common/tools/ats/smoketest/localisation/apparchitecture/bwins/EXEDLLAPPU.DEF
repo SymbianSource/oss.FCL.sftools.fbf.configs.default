@@ -1,0 +1,1 @@
+EXPORTS ?WinsMain@@YAHPAVTDesC16@@@Z @ 1 NONAME ; int __cdecl WinsMain(class TDesC16 *)

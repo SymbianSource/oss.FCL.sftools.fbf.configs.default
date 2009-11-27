@@ -1,0 +1,42 @@
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0x10207f7c
+
+RESOURCE APP_REGISTRATION_INFO
+	{
+	app_file="T_DataPrioritySystem2";
+	localisable_resource_file="\\resource\\apps\\T_DataPrioritySystem2_loc";
+	hidden=KAppNotHidden;
+	embeddability=KAppNotEmbeddable;
+	newfile=KAppDoesNotSupportNewFile;
+	launch=KAppLaunchInForeground;
+	service_list = 
+		{
+		SERVICE_INFO 
+			{
+			uid = 0x10207f7e;
+			datatype_list = 
+				{
+				DATATYPE { priority=0xFFF9; type="text/custom1"; }
+				};
+			opaque_data = 0;
+			}
+		};
+
+	}	

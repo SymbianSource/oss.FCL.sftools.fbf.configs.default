@@ -1,0 +1,18 @@
+EXPORTS
+	??0CAutoTestManager@@AAE@PAVMAutoTestApp@@@Z @ 1 NONAME ; CAutoTestManager::CAutoTestManager(class MAutoTestApp *)
+	??0CTestAppUi@@QAE@PAVCTestStep@@ABVTDesC16@@HHH@Z @ 2 NONAME ; CTestAppUi::CTestAppUi(class CTestStep *, class TDesC16 const &, int, int, int)
+	??0CTestCoeAppUi@@QAE@PAVCTestStep@@@Z @ 3 NONAME ; CTestCoeAppUi::CTestCoeAppUi(class CTestStep *)
+	??1CAutoTestManager@@UAE@XZ @ 4 NONAME ; CAutoTestManager::~CAutoTestManager(void)
+	??1CTestAppUi@@UAE@XZ @ 5 NONAME ; CTestAppUi::~CTestAppUi(void)
+	??1CTestCoeAppUi@@UAE@XZ @ 6 NONAME ; CTestCoeAppUi::~CTestCoeAppUi(void)
+	?ConstructL@CTestAppUi@@UAEXXZ @ 7 NONAME ; void CTestAppUi::ConstructL(void)
+	?ConstructL@CTestCoeAppUi@@QAEXXZ @ 8 NONAME ; void CTestCoeAppUi::ConstructL(void)
+	?FinishAllTestCases@CAutoTestManager@@QAEXW4TTestResult@1@@Z @ 9 NONAME ; void CAutoTestManager::FinishAllTestCases(enum CAutoTestManager::TTestResult)
+	?NewL@CAutoTestManager@@SAPAV1@PAVMAutoTestApp@@@Z @ 10 NONAME ; class CAutoTestManager * CAutoTestManager::NewL(class MAutoTestApp *)
+	?PreallocateHALBuffer@@YAXXZ @ 11 NONAME ; void PreallocateHALBuffer(void)
+	?ProcessCommandL@CTestAppUi@@MAEXH@Z @ 12 NONAME ; void CTestAppUi::ProcessCommandL(int)
+	?ReduceRect@CTestAppUi@@IBEXAAVTRect@@@Z @ 13 NONAME ; void CTestAppUi::ReduceRect(class TRect &) const
+	?SetTestCaseNumber@CAutoTestManager@@QAEXH@Z @ 14 NONAME ; void CAutoTestManager::SetTestCaseNumber(int)
+	?StartAutoTest@CAutoTestManager@@QAEXXZ @ 15 NONAME ; void CAutoTestManager::StartAutoTest(void)
+	?CloseAllPanicWindowsL@@YAXXZ @ 16 NONAME ; void CloseAllPanicWindowsL(void)
+

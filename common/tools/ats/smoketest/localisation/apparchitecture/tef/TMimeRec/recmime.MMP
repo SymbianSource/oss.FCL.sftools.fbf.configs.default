@@ -1,0 +1,39 @@
+// Copyright (c) 2006-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// recmime.dll Symbian OS new MIME type recognizer
+// 
+//
+
+
+
+/**
+ @file
+*/
+
+target 		recmime.dll
+targettype 	plugin 
+uid			0x10009d8d 0x102822B7
+VENDORID 	0x70000001
+CAPABILITY	All -Tcb
+
+systeminclude   /EPOC32/INCLUDE /EPOC32/INCLUDE/ECOM /EPOC32/INCLUDE/TEST
+
+SOURCEPATH	.
+source		recmime.cpp
+
+library         EUSER.LIB APMIME.LIB EFSRV.LIB APPFWK_TEST_UTILS.LIB
+
+start resource 102822B7.rss
+target recmime.rsc
+end

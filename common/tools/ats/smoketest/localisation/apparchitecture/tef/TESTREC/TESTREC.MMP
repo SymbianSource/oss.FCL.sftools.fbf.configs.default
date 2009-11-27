@@ -1,0 +1,45 @@
+
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// TESTREC.dll Test application recogniser
+// 
+//
+
+
+
+/**
+ @file
+*/
+
+target		TESTREC.DLL
+targettype	plugin
+
+uid		0x10009d8d 0x102032A5
+CAPABILITY	ALL -Tcb
+
+VENDORID 0x70000001
+
+systeminclude	/EPOC32/INCLUDE/ECOM
+
+SOURCEPATH	.
+systeminclude   ../../INC
+systeminclude   /EPOC32/INCLUDE /EPOC32/INCLUDE/TEST
+
+source          TESTREC.CPP
+
+library         EUSER.LIB APMIME.LIB APPARC.LIB
+
+START resource	102032A5.rss
+target testrec.rsc
+END

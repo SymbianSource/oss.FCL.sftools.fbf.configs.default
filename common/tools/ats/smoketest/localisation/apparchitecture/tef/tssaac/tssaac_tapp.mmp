@@ -1,0 +1,84 @@
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @test
+ @internalComponent  Internal Symbian test code
+*/
+
+#include <platform_paths.hrh>
+
+target			tssaac_tapp.exe
+TARGETTYPE 		exe
+targetpath		/sys/bin
+UID           	0x100039CE 0x10207F7A
+VENDORID 		0x70000001
+CAPABILITY 		none
+
+#if defined(WINS)
+// startup with tssaac application for emulator
+START RESOURCE	tssaac_tapp_emulator.rss
+TARGETPATH		/private/10205C44
+END
+#else
+// startup with tssaac application for hardware
+START RESOURCE	tssaac_tapp_hardware.rss
+TARGETPATH		/private/10205C44
+END
+#endif
+
+SOURCEPATH    	.
+SOURCE			tssaac_tapp.cpp
+
+USERINCLUDE   	.
+USERINCLUDE     ../../tef
+USERINCLUDE     ../../../uiftestfw/inc
+
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+SYSTEMINCLUDE   /epoc32/include/test
+
+MW_LAYER_SYSTEMINCLUDE
+
+// Application exe specific resource which is localised to the application
+RESOURCE		tssaac_tapp.rss
+start resource	tssaac_tapp.rss
+targetpath		/resource/apps
+lang			sc
+end
+
+RESOURCE	 	tssaac_tapp_loc.rss
+start resource	tssaac_tapp_loc.rss
+targetpath		/resource/apps
+lang			sc
+end
+
+// Application exe registration resource file
+START RESOURCE	tssaac_tapp_reg.rss
+TARGETPATH		/private/10003a3f/apps
+lang			sc
+END
+
+
+LIBRARY       	APPARC.LIB
+LIBRARY       	CONE.LIB 
+LIBRARY       	EFSRV.LIB
+LIBRARY       	EIKCORE.LIB 
+LIBRARY       	ESTOR.LIB
+LIBRARY       	EUSER.LIB
+LIBRARY       	GDI.LIB

@@ -1,0 +1,49 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// App-framework notifier plug-in resource file.
+// N.B. Testcode.
+// 
+//
+
+
+
+/**
+ @file 10000180.rss
+ @internalComponent - Internal Symbian test code
+*/
+
+#include <RegistryInfo.rh>
+
+RESOURCE REGISTRY_INFO r_registry
+	{
+	dll_uid = 0x10000180; //should match name of this file
+	interfaces =
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = 0x101F7D86;  // need to create this uid in the uid database
+			implementations =
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0x101DC568; //Unique number
+					version_no = 1;
+					display_name = "TDoNothingFileRecognizer";
+					default_data = "";        // Notify Interface
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}

@@ -1,0 +1,14 @@
+component	app-framework_apparc
+source	\sf\mw\appsupport\appfw\apparchitecture
+binary	\sf\mw\appsupport\appfw\apparchitecture\group	all
+exports	\sf\mw\appsupport\appfw\apparchitecture\group
+notes_source	\component_defs\release.src
+
+
+#  == IPR section auto-inserted from distribution.policy files  ==
+ipr D 
+ipr T \sf\mw\appsupport\appfw\apparchitecture\tdata
+ipr T \sf\mw\appsupport\appfw\apparchitecture\tdatasrc
+ipr T \sf\mw\appsupport\appfw\apparchitecture\tef
+
+# == end auto-inserted section ==

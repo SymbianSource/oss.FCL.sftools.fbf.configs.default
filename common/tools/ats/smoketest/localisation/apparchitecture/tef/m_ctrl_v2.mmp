@@ -1,0 +1,73 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+//
+// M_CTRL.MMP for test component M_CTRL (released in APPARC)
+// New style APP/EXE built for a secure environment
+//
+
+#include <platform_paths.hrh>
+
+target 		M_CTRL.EXE
+TARGETTYPE 	exe
+
+targetpath	/sys/bin
+UID		0x100039CE 0x13008AEE
+CAPABILITY 	All -Tcb
+VENDORID 	0x70000001
+
+epocstacksize 	0x5000
+
+SOURCEPATH	.
+
+
+systeminclude   ../INC 		
+systeminclude   /EPOC32/INCLUDE
+systeminclude   /EPOC32/INCLUDE/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+userinclude     .
+
+// Application exe specific resource which is localised to the application
+resource  	M_CTRL.rss
+start resource  M_CTRL.rss
+targetpath	/Resource/apps
+lang 		sc
+end
+
+// Application exe registration resource file
+start resource 	M_CTRL_reg.rss
+targetpath 	/private/10003a3f/import/apps
+lang		sc
+end
+
+// Application localisable resource file
+start resource 	M_CTRL_loc.rss
+targetpath 	/Resource/apps
+lang		sc
+end
+
+SOURCE		M_CTRL_V2.CPP
+
+LIBRARY 	APPARC.LIB 
+LIBRARY 	CONE.LIB
+LIBRARY 	EFSRV.LIB
+LIBRARY 	EIKCORE.LIB
+LIBRARY 	EUSER.LIB 
+LIBRARY 	GDI.LIB
+LIBRARY 	APPFWK_TEST_APPUI.LIB 
+

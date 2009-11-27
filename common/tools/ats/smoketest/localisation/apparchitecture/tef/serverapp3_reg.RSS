@@ -1,0 +1,104 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file serverapp3_reg.rss
+ @internalComponent - Internal Symbian test code
+*/
+
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0x10004c57 // UID of the application this registration file represents
+
+RESOURCE APP_REGISTRATION_INFO
+	{
+	app_file="serverapp3";
+	//
+	datatype_list = 
+		{
+		DATATYPE { priority=EDataTypePriorityHigh; type="text/priority"; }
+		};
+
+	service_list = 
+		{
+		SERVICE_INFO 
+			{
+			uid = 0x01020304; 
+			datatype_list = 
+				{
+				DATATYPE { priority=EDataTypePriorityNormal; type="text/custom1"; }
+				};
+			opaque_data = r_first_service_specific_data;
+			},
+		SERVICE_INFO { uid = 0x02345000; opaque_data = r_second_service_specific_data;},
+		SERVICE_INFO { uid = 0x03456000; opaque_data = r_third_service_specific_data;},
+		SERVICE_INFO { uid = 0x04567000; opaque_data = r_fourth_service_specific_data;},
+		SERVICE_INFO { uid = 0x05678000; opaque_data = r_fifth_service_specific_data;},
+		SERVICE_INFO { uid = 0x01234000; opaque_data = r_fifth_service_specific_data;},
+		SERVICE_INFO { uid = 0x02345000; opaque_data = r_fourth_service_specific_data;},
+		SERVICE_INFO { uid = 0x03456000; opaque_data = r_third_service_specific_data;},
+		SERVICE_INFO { uid = 0x04567000; opaque_data = r_second_service_specific_data;},
+		SERVICE_INFO { uid = 0x05678000; opaque_data = r_first_service_specific_data;},
+		SERVICE_INFO { uid = 0x01234000; opaque_data = r_fifth_service_specific_data;},
+		SERVICE_INFO { uid = 0x02345000; opaque_data = r_fourth_service_specific_data;},
+		SERVICE_INFO { uid = 0x03456000; opaque_data = r_third_service_specific_data;},
+		SERVICE_INFO { uid = 0x04567000; opaque_data = r_second_service_specific_data;},
+		SERVICE_INFO { uid = 0x05678000; opaque_data = r_first_service_specific_data;}
+		//SERVICE_INFO { uid = 0x05678001; opaque_data = the_large_struct;}
+		};
+	}
+
+STRUCT SERVICE_NAME
+	{
+	LTEXT name = "";
+	}
+
+STRUCT LARGE_STRUCT
+	{
+	LONG arrays[256];
+	}
+
+RESOURCE LARGE_STRUCT the_large_struct
+	{
+	
+	}
+
+RESOURCE SERVICE_NAME r_first_service_specific_data
+	{
+	name = "Non-localised text for service uid 0x01020304";
+	}
+
+RESOURCE SERVICE_NAME r_second_service_specific_data
+	{
+	name = "Non-localised text for service uid 0x02345000";
+	}
+
+RESOURCE SERVICE_NAME r_third_service_specific_data
+	{
+	name = "Non-localised text for service uid 0x03456000";
+	}
+
+RESOURCE SERVICE_NAME r_fourth_service_specific_data
+	{
+	name = "Non-localised text for service uid 0x04567000";
+	}
+
+RESOURCE SERVICE_NAME r_fifth_service_specific_data
+	{
+	name = "Non-localised text for service uid 0x05678000";
+	}

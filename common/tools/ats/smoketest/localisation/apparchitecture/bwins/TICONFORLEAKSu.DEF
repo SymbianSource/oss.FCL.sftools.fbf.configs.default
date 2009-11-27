@@ -1,0 +1,300 @@
+EXPORTS
+	??0CDataRecognitionResultArray@@QAE@XZ @ 1 NONAME ; CDataRecognitionResultArray::CDataRecognitionResultArray(void)
+	??0MApaAppListServObserver@@IAE@XZ @ 2 NONAME ; MApaAppListServObserver::MApaAppListServObserver(void)
+	??0RApaLsSession@@QAE@XZ @ 3 NONAME ; RApaLsSession::RApaLsSession(void)
+	??0TApaPictureFactory@@IAE@XZ @ 4 NONAME ; TApaPictureFactory::TApaPictureFactory(void)
+	??0TApaPictureFactory@@QAE@PAVCApaProcess@@@Z @ 5 NONAME ; TApaPictureFactory::TApaPictureFactory(class CApaProcess *)
+	??0TApaTask@@QAE@AAVRWsSession@@@Z @ 6 NONAME ; TApaTask::TApaTask(class RWsSession &)
+	??0TApaTaskList@@QAE@AAVRWsSession@@@Z @ 7 NONAME ; TApaTaskList::TApaTaskList(class RWsSession &)
+	??1CApaAppData@@UAE@XZ @ 8 NONAME ; CApaAppData::~CApaAppData(void)
+	??1CApaAppInfoFileWriter@@UAE@XZ @ 9 NONAME ; CApaAppInfoFileWriter::~CApaAppInfoFileWriter(void)
+	??1CApaAppList@@UAE@XZ @ 10 NONAME ; CApaAppList::~CApaAppList(void)
+	??1CApaAppListNotifier@@UAE@XZ @ 11 NONAME ; CApaAppListNotifier::~CApaAppListNotifier(void)
+	??1CApaDoor@@UAE@XZ @ 12 NONAME ; CApaDoor::~CApaDoor(void)
+	??1CApaLocalisableResourceFileWriter@@UAE@XZ @ 13 NONAME ; CApaLocalisableResourceFileWriter::~CApaLocalisableResourceFileWriter(void)
+	??1CApaMaskedBitmap@@UAE@XZ @ 14 NONAME ; CApaMaskedBitmap::~CApaMaskedBitmap(void)
+	??1CApaRegistrationResourceFileWriter@@UAE@XZ @ 15 NONAME ; CApaRegistrationResourceFileWriter::~CApaRegistrationResourceFileWriter(void)
+	??1CApaSystemControlList@@UAE@XZ @ 16 NONAME ; CApaSystemControlList::~CApaSystemControlList(void)
+	??1CApaWindowGroupName@@UAE@XZ @ 17 NONAME ; CApaWindowGroupName::~CApaWindowGroupName(void)
+	??1CDataRecognitionResultArray@@UAE@XZ @ 18 NONAME ; CDataRecognitionResultArray::~CDataRecognitionResultArray(void)
+	?AddCaptionL@CApaAppInfoFileWriter@@QAEXW4TLanguage@@ABVTDesC16@@@Z @ 19 NONAME ; void CApaAppInfoFileWriter::AddCaptionL(enum TLanguage, class TDesC16 const &)
+	?AddDataTypeL@CApaAppInfoFileWriter@@QAEXABVTDataTypeWithPriority@@@Z @ 20 NONAME ; void CApaAppInfoFileWriter::AddDataTypeL(class TDataTypeWithPriority const &)
+	?AddDataTypeL@CApaRegistrationResourceFileWriter@@QAEXHABVTDesC8@@@Z @ 21 NONAME ; void CApaRegistrationResourceFileWriter::AddDataTypeL(int, class TDesC8 const &)
+	?AddFileOwnershipInfoL@CApaRegistrationResourceFileWriter@@QAEXABVTDesC16@@@Z @ 22 NONAME ; void CApaRegistrationResourceFileWriter::AddFileOwnershipInfoL(class TDesC16 const &)
+	?AddForcedRegistrationL@CApaAppList@@QAEXPAVHBufC16@@@Z @ 23 NONAME ; void CApaAppList::AddForcedRegistrationL(class HBufC16 *)
+	?AddIconL@CApaAppInfoFileWriter@@QAEXAAVCApaMaskedBitmap@@@Z @ 24 NONAME ; void CApaAppInfoFileWriter::AddIconL(class CApaMaskedBitmap &)
+	?AppCount@RApaLsSession@@QBEHAAH@Z @ 25 NONAME ; int RApaLsSession::AppCount(int &) const
+	?AppDataByFileName@CApaAppList@@QBEPAVCApaAppData@@ABVTDesC16@@@Z @ 26 NONAME ; class CApaAppData * CApaAppList::AppDataByFileName(class TDesC16 const &) const
+	?AppDataByUid@CApaAppList@@QBEPAVCApaAppData@@VTUid@@@Z @ 27 NONAME ; class CApaAppData * CApaAppList::AppDataByUid(class TUid) const
+	?AppEntry@CApaAppData@@QBE?AVTApaAppEntry@@XZ @ 28 NONAME ; class TApaAppEntry CApaAppData::AppEntry(void) const
+	?AppForDataType@RApaLsSession@@QBEHABVTDataType@@AAVTUid@@@Z @ 29 NONAME ; int RApaLsSession::AppForDataType(class TDataType const &, class TUid &) const
+	?AppForDataTypeAndService@RApaLsSession@@QBEHABVTDataType@@VTUid@@AAV3@@Z @ 30 NONAME ; int RApaLsSession::AppForDataTypeAndService(class TDataType const &, class TUid, class TUid &) const
+	?AppForDocument@RApaLsSession@@QBEHABVRFile@@AAVTUid@@AAVTDataType@@@Z @ 31 NONAME ; int RApaLsSession::AppForDocument(class RFile const &, class TUid &, class TDataType &) const
+	?AppForDocument@RApaLsSession@@QBEHABVTDesC16@@AAVTUid@@AAVTDataType@@@Z @ 32 NONAME ; int RApaLsSession::AppForDocument(class TDesC16 const &, class TUid &, class TDataType &) const
+	?AppForDocumentAndService@RApaLsSession@@QBEHABVRFile@@VTUid@@AAV3@AAVTDataType@@@Z @ 33 NONAME ; int RApaLsSession::AppForDocumentAndService(class RFile const &, class TUid, class TUid &, class TDataType &) const
+	?AppForDocumentAndService@RApaLsSession@@QBEHABVTDesC16@@VTUid@@AAV3@AAVTDataType@@@Z @ 34 NONAME ; int RApaLsSession::AppForDocumentAndService(class TDesC16 const &, class TUid, class TUid &, class TDataType &) const
+	?AppScanInProgress@CApaAppList@@QBEHXZ @ 35 NONAME ; int CApaAppList::AppScanInProgress(void) const
+	?AppUid@CApaWindowGroupName@@QBE?AVTUid@@XZ @ 36 NONAME ; class TUid CApaWindowGroupName::AppUid(void) const
+	?AppUidL@CApaDoor@@QBE?AVTUid@@XZ @ 37 NONAME ; class TUid CApaDoor::AppUidL(void) const
+	?ApplicationLanguage@CApaAppData@@QBE?AW4TLanguage@@XZ @ 38 NONAME ; enum TLanguage CApaAppData::ApplicationLanguage(void) const
+	?ApplicationLanguage@RApaLsSession@@QBEHVTUid@@AAW4TLanguage@@@Z @ 39 NONAME ; int RApaLsSession::ApplicationLanguage(class TUid, enum TLanguage &) const
+	?BringToForeground@TApaTask@@QAEXXZ @ 40 NONAME ; void TApaTask::BringToForeground(void)
+	?CanUseScreenMode@CApaAppData@@QAEHH@Z @ 41 NONAME ; int CApaAppData::CanUseScreenMode(int)
+	?CancelListPopulationCompleteObserver@RApaLsSession@@QBEHXZ @ 42 NONAME ; int RApaLsSession::CancelListPopulationCompleteObserver(void) const
+	?CancelNotify@RApaLsSession@@QAEXXZ @ 43 NONAME ; void RApaLsSession::CancelNotify(void)
+	?CancelNotifyOnDataMappingChange@RApaLsSession@@QAEXXZ @ 44 NONAME ; void RApaLsSession::CancelNotifyOnDataMappingChange(void)
+	?CancelRecognizeFiles@RApaLsSession@@QAEXXZ @ 45 NONAME ; void RApaLsSession::CancelRecognizeFiles(void)
+	?Capability@CApaAppData@@QBEXAAVTDes8@@@Z @ 46 NONAME ; void CApaAppData::Capability(class TDes8 &) const
+	?Caption@CApaSystemControl@@QBE?AVTPtrC16@@XZ @ 47 NONAME ; class TPtrC16 CApaSystemControl::Caption(void) const
+	?Caption@CApaWindowGroupName@@QBE?AVTPtrC16@@XZ @ 48 NONAME ; class TPtrC16 CApaWindowGroupName::Caption(void) const
+	?CheckInterimFormatFileNotCorruptL@ForJavaMIDletInstaller@@SAXAAVRFile@@@Z @ 49 NONAME ; void ForJavaMIDletInstaller::CheckInterimFormatFileNotCorruptL(class RFile &)
+	?ClearFsSession@RApaLsSession@@SAXXZ @ 50 NONAME ; void RApaLsSession::ClearFsSession(void)
+	?Close@RApaLsSession@@QAEXXZ @ 51 NONAME ; void RApaLsSession::Close(void)
+	?CommitNonNativeApplicationsUpdatesL@RApaLsSession@@QAEXXZ @ 52 NONAME ; void RApaLsSession::CommitNonNativeApplicationsUpdatesL(void)
+	?CompareStrings@CApaAppList@@SAHABVHBufC16@@0@Z @ 53 NONAME ; int CApaAppList::CompareStrings(class HBufC16 const &, class HBufC16 const &)
+	?Connect@RApaLsSession@@QAEHXZ @ 54 NONAME ; int RApaLsSession::Connect(void)
+	?ConstructFromWgIdL@CApaWindowGroupName@@QAEXH@Z @ 55 NONAME ; void CApaWindowGroupName::ConstructFromWgIdL(int)
+	?Control@CApaSystemControlList@@QBEPAVCApaSystemControl@@H@Z @ 56 NONAME ; class CApaSystemControl * CApaSystemControlList::Control(int) const
+	?Control@CApaSystemControlList@@QBEPAVCApaSystemControl@@VTUid@@@Z @ 57 NONAME ; class CApaSystemControl * CApaSystemControlList::Control(class TUid) const
+	?Count@CApaAppList@@QBEHXZ @ 58 NONAME ; int CApaAppList::Count(void) const
+	?Count@CApaSystemControlList@@QBEHXZ @ 59 NONAME ; int CApaSystemControlList::Count(void) const
+	?Count@CDataRecognitionResultArray@@QBEIXZ @ 60 NONAME ; unsigned int CDataRecognitionResultArray::Count(void) const
+	?CreateDocument@RApaLsSession@@QAEHABVTDesC16@@VTUid@@AAVTThreadId@@W4TLaunchType@1@@Z @ 61 NONAME ; int RApaLsSession::CreateDocument(class TDesC16 const &, class TUid, class TThreadId &, enum RApaLsSession::TLaunchType)
+	?CreateL@CApaSystemControl@@QAEXXZ @ 62 NONAME ; void CApaSystemControl::CreateL(void)
+	?CycleTasks@TApaTaskList@@QAEHVTUid@@W4TCycleDirection@1@@Z @ 63 NONAME ; int TApaTaskList::CycleTasks(class TUid, enum TApaTaskList::TCycleDirection)
+	?DataType@CApaAppData@@QBEJABVTDataType@@@Z @ 64 NONAME ; long CApaAppData::DataType(class TDataType const &) const
+	?DataTypes@TApaAppServiceInfo@@QBEABV?$CArrayFixFlat@VTDataTypeWithPriority@@@@XZ @ 65 NONAME ; class CArrayFixFlat<class TDataTypeWithPriority> const & TApaAppServiceInfo::DataTypes(void) const
+	?DefaultScreenNumber@CApaAppData@@QBEIXZ @ 66 NONAME ; unsigned int CApaAppData::DefaultScreenNumber(void) const
+	?DeleteDataMapping@RApaLsSession@@QAEHABVTDataType@@@Z @ 67 NONAME ; int RApaLsSession::DeleteDataMapping(class TDataType const &)
+	?DeleteDataMapping@RApaLsSession@@QAEHABVTDataType@@VTUid@@@Z @ 68 NONAME ; int RApaLsSession::DeleteDataMapping(class TDataType const &, class TUid)
+	?DeregisterNonNativeApplicationL@RApaLsSession@@QAEXVTUid@@@Z @ 69 NONAME ; void RApaLsSession::DeregisterNonNativeApplicationL(class TUid)
+	?DeregisterNonNativeApplicationTypeL@RApaLsSession@@QAEXVTUid@@@Z @ 70 NONAME ; void RApaLsSession::DeregisterNonNativeApplicationTypeL(class TUid)
+	?DocName@CApaWindowGroupName@@QBE?AVTPtrC16@@XZ @ 71 NONAME ; class TPtrC16 CApaWindowGroupName::DocName(void) const
+	?DocNameIsAFile@CApaWindowGroupName@@QBEHXZ @ 72 NONAME ; int CApaWindowGroupName::DocNameIsAFile(void) const
+	?DocumentL@CApaDoor@@QAEPAVCApaDocument@@H@Z @ 73 NONAME ; class CApaDocument * CApaDoor::DocumentL(int)
+	?EmbeddableAppCount@RApaLsSession@@QBEHAAH@Z @ 74 NONAME ; int RApaLsSession::EmbeddableAppCount(int &) const
+	?EndTask@TApaTask@@QAEXXZ @ 75 NONAME ; void TApaTask::EndTask(void)
+	?Exists@TApaTask@@QBEHXZ @ 76 NONAME ; int TApaTask::Exists(void) const
+	?ExternalizeL@CApaMaskedBitmap@@QBEXAAVRWriteStream@@@Z @ 77 NONAME ; void CApaMaskedBitmap::ExternalizeL(class RWriteStream &) const
+	?FileName@CApaSystemControl@@QBE?AV?$TBuf@$0BAA@@@XZ @ 78 NONAME ; class TBuf<256> CApaSystemControl::FileName(void) const
+	?FindAndAddSpecificAppL@CApaAppList@@QAEPAVCApaAppData@@PAVCApaAppRegFinder@@VTUid@@@Z @ 79 NONAME ; class CApaAppData * CApaAppList::FindAndAddSpecificAppL(class CApaAppRegFinder *, class TUid)
+	?FindApp@TApaTaskList@@QAE?AVTApaTask@@ABVTDesC16@@@Z @ 80 NONAME ; class TApaTask TApaTaskList::FindApp(class TDesC16 const &)
+	?FindApp@TApaTaskList@@QAE?AVTApaTask@@VTUid@@@Z @ 81 NONAME ; class TApaTask TApaTaskList::FindApp(class TUid)
+	?FindByAppUid@CApaWindowGroupName@@SAXVTUid@@AAVRWsSession@@AAH@Z @ 82 NONAME ; void CApaWindowGroupName::FindByAppUid(class TUid, class RWsSession &, int &)
+	?FindByCaption@CApaWindowGroupName@@SAXABVTDesC16@@AAVRWsSession@@AAH@Z @ 83 NONAME ; void CApaWindowGroupName::FindByCaption(class TDesC16 const &, class RWsSession &, int &)
+	?FindByDocName@CApaWindowGroupName@@SAXABVTDesC16@@AAVRWsSession@@AAH@Z @ 84 NONAME ; void CApaWindowGroupName::FindByDocName(class TDesC16 const &, class RWsSession &, int &)
+	?FindByPos@TApaTaskList@@QAE?AVTApaTask@@H@Z @ 85 NONAME ; class TApaTask TApaTaskList::FindByPos(int)
+	?FindDoc@TApaTaskList@@QAE?AVTApaTask@@ABVTDesC16@@@Z @ 86 NONAME ; class TApaTask TApaTaskList::FindDoc(class TDesC16 const &)
+	?FirstApp@CApaAppList@@QBEPAVCApaAppData@@H@Z @ 87 NONAME ; class CApaAppData * CApaAppList::FirstApp(int) const
+	?FirstApp@CApaAppList@@QBEPAVCApaAppData@@XZ @ 88 NONAME ; class CApaAppData * CApaAppList::FirstApp(void) const
+	?ForceRegistration@RApaLsSession@@QAEHABV?$RPointerArray@VTDesC16@@@@@Z @ 89 NONAME ; int RApaLsSession::ForceRegistration(class RPointerArray<class TDesC16> const &)
+	?FsSession@RApaLsSession@@SAPAVRFs@@XZ @ 90 NONAME ; class RFs * RApaLsSession::FsSession(void)
+	?GetAcceptedConfidence@RApaLsSession@@QBEHAAH@Z @ 91 NONAME ; int RApaLsSession::GetAcceptedConfidence(int &) const
+	?GetAllApps@RApaLsSession@@QBEHH@Z @ 92 NONAME ; int RApaLsSession::GetAllApps(int) const
+	?GetAllApps@RApaLsSession@@QBEHXZ @ 93 NONAME ; int RApaLsSession::GetAllApps(void) const
+	?GetAppByDataType@RApaLsSession@@QBEHABVTDataType@@VTUid@@AAV3@@Z @ 94 NONAME ; int RApaLsSession::GetAppByDataType(class TDataType const &, class TUid, class TUid &) const
+	?GetAppCapability@RApaLsSession@@QBEHAAVTDes8@@VTUid@@@Z @ 95 NONAME ; int RApaLsSession::GetAppCapability(class TDes8 &, class TUid) const
+	?GetAppIcon@RApaLsSession@@QBEHVTUid@@AAPAVHBufC16@@@Z @ 96 NONAME ; int RApaLsSession::GetAppIcon(class TUid, class HBufC16 * &) const
+	?GetAppIcon@RApaLsSession@@QBEHVTUid@@AAVRFile@@@Z @ 97 NONAME ; int RApaLsSession::GetAppIcon(class TUid, class RFile &) const
+	?GetAppIcon@RApaLsSession@@QBEHVTUid@@HAAVCApaMaskedBitmap@@@Z @ 98 NONAME ; int RApaLsSession::GetAppIcon(class TUid, int, class CApaMaskedBitmap &) const
+	?GetAppIcon@RApaLsSession@@QBEHVTUid@@VTSize@@AAVCApaMaskedBitmap@@@Z @ 99 NONAME ; int RApaLsSession::GetAppIcon(class TUid, class TSize, class CApaMaskedBitmap &) const
+	?GetAppIconSizes@RApaLsSession@@QBEHVTUid@@AAV?$CArrayFixFlat@VTSize@@@@@Z @ 100 NONAME ; int RApaLsSession::GetAppIconSizes(class TUid, class CArrayFixFlat<class TSize> &) const
+	?GetAppInfo@RApaLsSession@@QBEHAAVTApaAppInfo@@VTUid@@@Z @ 101 NONAME ; int RApaLsSession::GetAppInfo(class TApaAppInfo &, class TUid) const
+	?GetAppOwnedFiles@RApaLsSession@@QBEHAAVCDesC16Array@@VTUid@@@Z @ 102 NONAME ; int RApaLsSession::GetAppOwnedFiles(class CDesC16Array &, class TUid) const
+	?GetAppServiceOpaqueDataLC@RApaLsSession@@QBEPAVCApaAppServiceInfoArray@@VTUid@@0@Z @ 103 NONAME ; class CApaAppServiceInfoArray * RApaLsSession::GetAppServiceOpaqueDataLC(class TUid, class TUid) const
+	?GetAppServicesL@RApaLsSession@@QBEXVTUid@@AAV?$CArrayFixFlat@VTUid@@@@@Z @ 104 NONAME ; void RApaLsSession::GetAppServicesL(class TUid, class CArrayFixFlat<class TUid> &) const
+	?GetAppServicesLC@RApaLsSession@@QBEPAVCApaAppServiceInfoArray@@VTUid@@@Z @ 105 NONAME ; class CApaAppServiceInfoArray * RApaLsSession::GetAppServicesLC(class TUid) const
+	?GetAppType@RApaLsSession@@QBEHAAVTUid@@V2@@Z @ 106 NONAME ; int RApaLsSession::GetAppType(class TUid &, class TUid) const
+	?GetAppViewIcon@RApaLsSession@@QBEHVTUid@@0AAPAVHBufC16@@@Z @ 107 NONAME ; int RApaLsSession::GetAppViewIcon(class TUid, class TUid, class HBufC16 * &) const
+	?GetAppViewIcon@RApaLsSession@@QBEHVTUid@@0ABVTSize@@AAVCApaMaskedBitmap@@@Z @ 108 NONAME ; int RApaLsSession::GetAppViewIcon(class TUid, class TUid, class TSize const &, class CApaMaskedBitmap &) const
+	?GetAppViews@RApaLsSession@@QBEHAAV?$CArrayFixFlat@VTApaAppViewInfo@@@@VTUid@@@Z @ 109 NONAME ; int RApaLsSession::GetAppViews(class CArrayFixFlat<class TApaAppViewInfo> &, class TUid) const
+	?GetDataRecognitionResultL@CDataRecognitionResultArray@@QBEXAAVTDataRecognitionResult@@I@Z @ 110 NONAME ; void CDataRecognitionResultArray::GetDataRecognitionResultL(class TDataRecognitionResult &, unsigned int) const
+	?GetDefaultScreenNumber@RApaLsSession@@QBEHAAHVTUid@@@Z @ 111 NONAME ; int RApaLsSession::GetDefaultScreenNumber(int &, class TUid) const
+	?GetEmbeddableApps@RApaLsSession@@QBEHH@Z @ 112 NONAME ; int RApaLsSession::GetEmbeddableApps(int) const
+	?GetEmbeddableApps@RApaLsSession@@QBEHXZ @ 113 NONAME ; int RApaLsSession::GetEmbeddableApps(void) const
+	?GetFileNameL@CDataRecognitionResultArray@@QBEXAAV?$TBuf@$0BAA@@@I@Z @ 114 NONAME ; void CDataRecognitionResultArray::GetFileNameL(class TBuf<256> &, unsigned int) const
+	?GetFilteredApps@RApaLsSession@@QBEHABVTApaEmbeddabilityFilter@@@Z @ 115 NONAME ; int RApaLsSession::GetFilteredApps(class TApaEmbeddabilityFilter const &) const
+	?GetFilteredApps@RApaLsSession@@QBEHABVTApaEmbeddabilityFilter@@H@Z @ 116 NONAME ; int RApaLsSession::GetFilteredApps(class TApaEmbeddabilityFilter const &, int) const
+	?GetFilteredApps@RApaLsSession@@QBEHII@Z @ 117 NONAME ; int RApaLsSession::GetFilteredApps(unsigned int, unsigned int) const
+	?GetFilteredApps@RApaLsSession@@QBEHIIH@Z @ 118 NONAME ; int RApaLsSession::GetFilteredApps(unsigned int, unsigned int, int) const
+	?GetIconInfo@CApaAppData@@QBEXAAH0@Z @ 119 NONAME ; void CApaAppData::GetIconInfo(int &, int &) const
+	?GetJavaMIDletInfoL@ForJavaMIDletInstaller@@SAXAAVRFs@@ABVTDesC16@@AAK2@Z @ 120 NONAME ; void ForJavaMIDletInstaller::GetJavaMIDletInfoL(class RFs &, class TDesC16 const &, unsigned long &, unsigned long &)
+	?GetMaxDataBufSize@RApaLsSession@@QBEHAAH@Z @ 121 NONAME ; int RApaLsSession::GetMaxDataBufSize(int &) const
+	?GetNextApp@RApaLsSession@@QBEHAAVTApaAppInfo@@@Z @ 122 NONAME ; int RApaLsSession::GetNextApp(class TApaAppInfo &) const
+	?GetNextApp@RApaLsSession@@QBEHAAVTApaAppInfo@@H@Z @ 123 NONAME ; int RApaLsSession::GetNextApp(class TApaAppInfo &, int) const
+	?GetPreferredBufSize@RApaLsSession@@QBEHAAH@Z @ 124 NONAME ; int RApaLsSession::GetPreferredBufSize(int &) const
+	?GetServerApps@RApaLsSession@@QBEHVTUid@@@Z @ 125 NONAME ; int RApaLsSession::GetServerApps(class TUid) const
+	?GetServerApps@RApaLsSession@@QBEHVTUid@@H@Z @ 126 NONAME ; int RApaLsSession::GetServerApps(class TUid, int) const
+	?GetServiceImplementationsLC@RApaLsSession@@QBEPAVCApaAppServiceInfoArray@@VTUid@@@Z @ 127 NONAME ; class CApaAppServiceInfoArray * RApaLsSession::GetServiceImplementationsLC(class TUid) const
+	?GetServiceImplementationsLC@RApaLsSession@@QBEPAVCApaAppServiceInfoArray@@VTUid@@ABVTDataType@@@Z @ 128 NONAME ; class CApaAppServiceInfoArray * RApaLsSession::GetServiceImplementationsLC(class TUid, class TDataType const &) const
+	?GetSupportedDataTypesL@RApaLsSession@@QBEHAAV?$CArrayFixFlat@VTDataType@@@@@Z @ 129 NONAME ; int RApaLsSession::GetSupportedDataTypesL(class CArrayFixFlat<class TDataType> &) const
+	?HandleAsRegistrationFile@ApaUtils@@SAHABVTUidType@@@Z @ 130 NONAME ; int ApaUtils::HandleAsRegistrationFile(class TUidType const &)
+	?Hidden@CApaWindowGroupName@@QBEHXZ @ 131 NONAME ; int CApaWindowGroupName::Hidden(void) const
+	?Icon@CApaAppData@@QBEPAVCApaMaskedBitmap@@H@Z @ 132 NONAME ; class CApaMaskedBitmap * CApaAppData::Icon(int) const
+	?Icon@CApaAppData@@QBEPAVCApaMaskedBitmap@@VTSize@@@Z @ 133 NONAME ; class CApaMaskedBitmap * CApaAppData::Icon(class TSize) const
+	?Icon@CApaAppViewData@@QBEPAVCApaMaskedBitmap@@ABVTSize@@@Z @ 134 NONAME ; class CApaMaskedBitmap * CApaAppViewData::Icon(class TSize const &) const
+	?Icon@CApaSystemControl@@QBEPAVCApaMaskedBitmap@@XZ @ 135 NONAME ; class CApaMaskedBitmap * CApaSystemControl::Icon(void) const
+	?IconFileName@CApaAppData@@QBE?AVTPtrC16@@XZ @ 136 NONAME ; class TPtrC16 CApaAppData::IconFileName(void) const
+	?IconFileName@CApaAppViewData@@QBE?AVTPtrC16@@XZ @ 137 NONAME ; class TPtrC16 CApaAppViewData::IconFileName(void) const
+	?IconSizesL@CApaAppData@@QBEPAV?$CArrayFixFlat@VTSize@@@@XZ @ 138 NONAME ; class CArrayFixFlat<class TSize> * CApaAppData::IconSizesL(void) const
+	?IconSizesL@CApaAppViewData@@QBEPAV?$CArrayFixFlat@VTSize@@@@XZ @ 139 NONAME ; class CArrayFixFlat<class TSize> * CApaAppViewData::IconSizesL(void) const
+	?ImplementsService@CApaAppData@@QBEHVTUid@@@Z @ 140 NONAME ; int CApaAppData::ImplementsService(class TUid) const
+	?Index@CApaSystemControlList@@QBEHVTUid@@@Z @ 141 NONAME ; int CApaSystemControlList::Index(class TUid) const
+	?InitListL@CApaAppList@@QAEXPAVMApaAppListObserver@@@Z @ 142 NONAME ; void CApaAppList::InitListL(class MApaAppListObserver *)
+	?InsertDataMapping@RApaLsSession@@QAEHABVTDataType@@JVTUid@@1@Z @ 143 NONAME ; int RApaLsSession::InsertDataMapping(class TDataType const &, long, class TUid, class TUid)
+	?InsertDataMapping@RApaLsSession@@QAEHABVTDataType@@JVTUid@@@Z @ 144 NONAME ; int RApaLsSession::InsertDataMapping(class TDataType const &, long, class TUid)
+	?InsertDataMappingIfHigher@RApaLsSession@@QAEHABVTDataType@@JVTUid@@AAH@Z @ 145 NONAME ; int RApaLsSession::InsertDataMappingIfHigher(class TDataType const &, long, class TUid, int &)
+	?InternalizeL@CApaMaskedBitmap@@QAEXAAVRReadStream@@@Z @ 146 NONAME ; void CApaMaskedBitmap::InternalizeL(class RReadStream &)
+	?IsAppReady@CApaWindowGroupName@@QBEHXZ @ 147 NONAME ; int CApaWindowGroupName::IsAppReady(void) const
+	?IsBusy@CApaWindowGroupName@@QBEHXZ @ 148 NONAME ; int CApaWindowGroupName::IsBusy(void) const
+	?IsFirstScanComplete@CApaAppList@@QBEHXZ @ 149 NONAME ; int CApaAppList::IsFirstScanComplete(void) const
+	?IsIdleUpdateComplete@CApaAppList@@QBEHXZ @ 150 NONAME ; int CApaAppList::IsIdleUpdateComplete(void) const
+	?IsLanguageChangePending@CApaAppList@@QBEHXZ @ 151 NONAME ; int CApaAppList::IsLanguageChangePending(void) const
+	?IsPending@CApaAppData@@QBEHXZ @ 152 NONAME ; int CApaAppData::IsPending(void) const
+	?IsProgram@RApaLsSession@@QBEHABVTDesC16@@AAH@Z @ 153 NONAME ; int RApaLsSession::IsProgram(class TDesC16 const &, int &) const
+	?IsSystem@CApaWindowGroupName@@QBEHXZ @ 154 NONAME ; int CApaWindowGroupName::IsSystem(void) const
+	?KillTask@TApaTask@@QAEXXZ @ 155 NONAME ; void TApaTask::KillTask(void)
+	?LocalisableResourceFileName@CApaAppData@@QBE?AVTPtrC16@@XZ @ 156 NONAME ; class TPtrC16 CApaAppData::LocalisableResourceFileName(void) const
+	?MApaAppListServObserver_Reserved1@MApaAppListServObserver@@EAEXXZ @ 157 NONAME ; void MApaAppListServObserver::MApaAppListServObserver_Reserved1(void)
+	?MApaAppListServObserver_Reserved2@MApaAppListServObserver@@EAEXXZ @ 158 NONAME ; void MApaAppListServObserver::MApaAppListServObserver_Reserved2(void)
+	?Mask@CApaMaskedBitmap@@QBEPAVCFbsBitmap@@XZ @ 159 NONAME ; class CFbsBitmap * CApaMaskedBitmap::Mask(void) const
+	?MatchesSecurityPolicy@RApaLsSession@@QBEHAAHVTUid@@ABVTSecurityPolicy@@@Z @ 160 NONAME ; int RApaLsSession::MatchesSecurityPolicy(int &, class TUid, class TSecurityPolicy const &) const
+	?MinApplicationStackSize@@YAIXZ @ 161 NONAME ; unsigned int MinApplicationStackSize(void)
+	?New@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@PAVHBufC16@@@Z @ 162 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::New(class RWsSession const &, class HBufC16 *)
+	?NewInterimFormatFileWriterLC@ForJavaMIDletInstaller@@SAPAVCApaAppInfoFileWriter@@AAVRFs@@ABVTDesC16@@VTUid@@KH@Z @ 163 NONAME ; class CApaAppInfoFileWriter * ForJavaMIDletInstaller::NewInterimFormatFileWriterLC(class RFs &, class TDesC16 const &, class TUid, unsigned long, int)
+	?NewL@CApaAppData@@SAPAV1@ABVTApaAppEntry@@AAVRFs@@@Z @ 164 NONAME ; class CApaAppData * CApaAppData::NewL(class TApaAppEntry const &, class RFs &)
+	?NewL@CApaAppList@@SAPAV1@AAVRFs@@PAVCApaAppRegFinder@@HH@Z @ 165 NONAME ; class CApaAppList * CApaAppList::NewL(class RFs &, class CApaAppRegFinder *, int, int)
+	?NewL@CApaAppListNotifier@@SAPAV1@PAVMApaAppListServObserver@@W4TPriority@CActive@@@Z @ 166 NONAME ; class CApaAppListNotifier * CApaAppListNotifier::NewL(class MApaAppListServObserver *, enum CActive::TPriority)
+	?NewL@CApaDoor@@SAPAV1@AAVRFs@@AAVCApaDocument@@ABVTSize@@@Z @ 167 NONAME ; class CApaDoor * CApaDoor::NewL(class RFs &, class CApaDocument &, class TSize const &)
+	?NewL@CApaDoor@@SAPAV1@AAVRFs@@ABVCStreamStore@@VTStreamId@@AAVCApaProcess@@@Z @ 168 NONAME ; class CApaDoor * CApaDoor::NewL(class RFs &, class CStreamStore const &, class TStreamId, class CApaProcess &)
+	?NewL@CApaLocalisableResourceFileWriter@@SAPAV1@ABVTDesC16@@0H0@Z @ 169 NONAME ; class CApaLocalisableResourceFileWriter * CApaLocalisableResourceFileWriter::NewL(class TDesC16 const &, class TDesC16 const &, int, class TDesC16 const &)
+	?NewL@CApaMaskedBitmap@@SAPAV1@PBV1@@Z @ 170 NONAME ; class CApaMaskedBitmap * CApaMaskedBitmap::NewL(class CApaMaskedBitmap const *)
+	?NewL@CApaRegistrationResourceFileWriter@@SAPAV1@VTUid@@ABVTDesC16@@I@Z @ 171 NONAME ; class CApaRegistrationResourceFileWriter * CApaRegistrationResourceFileWriter::NewL(class TUid, class TDesC16 const &, unsigned int)
+	?NewL@CApaSystemControlList@@SAPAV1@AAVRFs@@@Z @ 172 NONAME ; class CApaSystemControlList * CApaSystemControlList::NewL(class RFs &)
+	?NewL@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@@Z @ 173 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::NewL(class RWsSession const &)
+	?NewL@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@ABVTDesC16@@@Z @ 174 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::NewL(class RWsSession const &, class TDesC16 const &)
+	?NewL@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@H@Z @ 175 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::NewL(class RWsSession const &, int)
+	?NewLC@CApaDoor@@SAPAV1@AAVRFs@@AAVCApaDocument@@ABVTSize@@@Z @ 176 NONAME ; class CApaDoor * CApaDoor::NewLC(class RFs &, class CApaDocument &, class TSize const &)
+	?NewLC@CApaMaskedBitmap@@SAPAV1@XZ @ 177 NONAME ; class CApaMaskedBitmap * CApaMaskedBitmap::NewLC(void)
+	?NewLC@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@@Z @ 178 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::NewLC(class RWsSession const &)
+	?NewLC@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@ABVTDesC16@@@Z @ 179 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::NewLC(class RWsSession const &, class TDesC16 const &)
+	?NewLC@CApaWindowGroupName@@SAPAV1@ABVRWsSession@@H@Z @ 180 NONAME ; class CApaWindowGroupName * CApaWindowGroupName::NewLC(class RWsSession const &, int)
+	?NewPictureL@TApaPictureFactory@@UBEXAAVTPictureHeader@@ABVCStreamStore@@@Z @ 181 NONAME ; void TApaPictureFactory::NewPictureL(class TPictureHeader &, class CStreamStore const &) const
+	?NextApp@CApaAppList@@QBEPAVCApaAppData@@PBV2@@Z @ 182 NONAME ; class CApaAppData * CApaAppList::NextApp(class CApaAppData const *) const
+	?NextApp@CApaAppList@@QBEPAVCApaAppData@@PBV2@H@Z @ 183 NONAME ; class CApaAppData * CApaAppList::NextApp(class CApaAppData const *, int) const
+	?NonMbmIconFile@CApaAppData@@QBEHXZ @ 184 NONAME ; int CApaAppData::NonMbmIconFile(void) const
+	?NonMbmIconFile@CApaAppViewData@@QBEHXZ @ 185 NONAME ; int CApaAppViewData::NonMbmIconFile(void) const
+	?NonNativeApplicationType@CApaAppData@@QBE?AVTUid@@XZ @ 186 NONAME ; class TUid CApaAppData::NonNativeApplicationType(void) const
+	?NotifyOnDataMappingChange@RApaLsSession@@QAEXAAVTRequestStatus@@@Z @ 187 NONAME ; void RApaLsSession::NotifyOnDataMappingChange(class TRequestStatus &)
+	?NumberOfOwnDefinedIcons@RApaLsSession@@QBEHVTUid@@AAH@Z @ 188 NONAME ; int RApaLsSession::NumberOfOwnDefinedIcons(class TUid, int &) const
+	?OpaqueData@CApaAppData@@QBE?AVTPtrC8@@XZ @ 189 NONAME ; class TPtrC8 CApaAppData::OpaqueData(void) const
+	?OpaqueData@TApaAppServiceInfo@@QBEABVTDesC8@@XZ @ 190 NONAME ; class TDesC8 const & TApaAppServiceInfo::OpaqueData(void) const
+	?OwnedFiles@CApaAppData@@QBEPAVCDesC16Array@@XZ @ 191 NONAME ; class CDesC16Array * CApaAppData::OwnedFiles(void) const
+	?Path@CDataRecognitionResultArray@@QBEABV?$TBuf@$0BAA@@@XZ @ 192 NONAME ; class TBuf<256> const & CDataRecognitionResultArray::Path(void) const
+	?PreferredDataHandlerL@CApaAppList@@QBE?AVTUid@@ABVTDataType@@@Z @ 193 NONAME ; class TUid CApaAppList::PreferredDataHandlerL(class TDataType const &) const
+	?PreferredDataHandlerL@CApaAppList@@QBE?AVTUid@@ABVTDataType@@PBV2@AAH@Z @ 194 NONAME ; class TUid CApaAppList::PreferredDataHandlerL(class TDataType const &, class TUid const *, int &) const
+	?PrepareNonNativeApplicationsUpdatesL@RApaLsSession@@QAEXXZ @ 195 NONAME ; void RApaLsSession::PrepareNonNativeApplicationsUpdatesL(void)
+	?PurgeL@CApaAppList@@QAEXXZ @ 196 NONAME ; void CApaAppList::PurgeL(void)
+	?RApaLsSession_Reserved1@RApaLsSession@@EAEXXZ @ 197 NONAME ; void RApaLsSession::RApaLsSession_Reserved1(void)
+	?RApaLsSession_Reserved2@RApaLsSession@@EAEXXZ @ 198 NONAME ; void RApaLsSession::RApaLsSession_Reserved2(void)
+	?RecognizeData@RApaLsSession@@QBEHABVRFile@@AAVTDataRecognitionResult@@@Z @ 199 NONAME ; int RApaLsSession::RecognizeData(class RFile const &, class TDataRecognitionResult &) const
+	?RecognizeData@RApaLsSession@@QBEHABVTDesC16@@ABVTDesC8@@AAVTDataRecognitionResult@@@Z @ 200 NONAME ; int RApaLsSession::RecognizeData(class TDesC16 const &, class TDesC8 const &, class TDataRecognitionResult &) const
+	?RecognizeFilesL@RApaLsSession@@QAEXABVTDesC16@@AAVCDataRecognitionResultArray@@AAVTRequestStatus@@@Z @ 201 NONAME ; void RApaLsSession::RecognizeFilesL(class TDesC16 const &, class CDataRecognitionResultArray &, class TRequestStatus &)
+	?RecognizeFilesL@RApaLsSession@@QAEXABVTDesC16@@ABVTDesC8@@AAVCDataRecognitionResultArray@@AAVTRequestStatus@@@Z @ 202 NONAME ; void RApaLsSession::RecognizeFilesL(class TDesC16 const &, class TDesC8 const &, class CDataRecognitionResultArray &, class TRequestStatus &)
+	?RecognizeFilesL@RApaLsSession@@QBEHABVTDesC16@@AAVCDataRecognitionResultArray@@@Z @ 203 NONAME ; int RApaLsSession::RecognizeFilesL(class TDesC16 const &, class CDataRecognitionResultArray &) const
+	?RecognizeFilesL@RApaLsSession@@QBEHABVTDesC16@@ABVTDesC8@@AAVCDataRecognitionResultArray@@@Z @ 204 NONAME ; int RApaLsSession::RecognizeFilesL(class TDesC16 const &, class TDesC8 const &, class CDataRecognitionResultArray &) const
+	?RecognizeSpecificData@RApaLsSession@@QBEHABVRFile@@ABVTDataType@@AAH@Z @ 205 NONAME ; int RApaLsSession::RecognizeSpecificData(class RFile const &, class TDataType const &, int &) const
+	?RecognizeSpecificData@RApaLsSession@@QBEHABVTDesC16@@ABVTDesC8@@ABVTDataType@@AAH@Z @ 206 NONAME ; int RApaLsSession::RecognizeSpecificData(class TDesC16 const &, class TDesC8 const &, class TDataType const &, int &) const
+	?RegisterListPopulationCompleteObserver@RApaLsSession@@QBEXAAVTRequestStatus@@@Z @ 207 NONAME ; void RApaLsSession::RegisterListPopulationCompleteObserver(class TRequestStatus &) const
+	?RegisterNonNativeApplicationL@RApaLsSession@@QAEXVTUid@@ABVTDriveUnit@@AAVCApaRegistrationResourceFileWriter@@PAVCApaLocalisableResourceFileWriter@@PBVRFile@@@Z @ 208 NONAME ; void RApaLsSession::RegisterNonNativeApplicationL(class TUid, class TDriveUnit const &, class CApaRegistrationResourceFileWriter &, class CApaLocalisableResourceFileWriter *, class RFile const *)
+	?RegisterNonNativeApplicationTypeL@RApaLsSession@@QAEXVTUid@@ABVTDesC16@@@Z @ 209 NONAME ; void RApaLsSession::RegisterNonNativeApplicationTypeL(class TUid, class TDesC16 const &)
+	?RegistrationFileName@CApaAppData@@QBE?AVTPtrC16@@XZ @ 210 NONAME ; class TPtrC16 CApaAppData::RegistrationFileName(void) const
+	?RegistrationFileUsed@CApaAppData@@QBEHXZ @ 211 NONAME ; int CApaAppData::RegistrationFileUsed(void) const
+	?ResetForcedRegistrations@CApaAppList@@QAEXXZ @ 212 NONAME ; void CApaAppList::ResetForcedRegistrations(void)
+	?RespondsToShutdownEvent@CApaWindowGroupName@@QBEHXZ @ 213 NONAME ; int CApaWindowGroupName::RespondsToShutdownEvent(void) const
+	?RespondsToSwitchFilesEvent@CApaWindowGroupName@@QBEHXZ @ 214 NONAME ; int CApaWindowGroupName::RespondsToSwitchFilesEvent(void) const
+	?RestartScanL@CApaAppList@@QAEXXZ @ 215 NONAME ; void CApaAppList::RestartScanL(void)
+	?RestoreL@CApaDoor@@QAEXABVCStreamStore@@VTStreamId@@@Z @ 216 NONAME ; void CApaDoor::RestoreL(class CStreamStore const &, class TStreamId)
+	?RollbackNonNativeApplicationsUpdates@RApaLsSession@@QAEHXZ @ 217 NONAME ; int RApaLsSession::RollbackNonNativeApplicationsUpdates(void)
+	?ScreenMode@CApaAppViewData@@QBEHXZ @ 218 NONAME ; int CApaAppViewData::ScreenMode(void) const
+	?Self@CApaAppList@@SAPAV1@XZ @ 219 NONAME ; class CApaAppList * CApaAppList::Self(void)
+	?SendKey@TApaTask@@QAEXABUTKeyEvent@@@Z @ 220 NONAME ; void TApaTask::SendKey(struct TKeyEvent const &)
+	?SendKey@TApaTask@@QAEXHH@Z @ 221 NONAME ; void TApaTask::SendKey(int, int)
+	?SendMessage@TApaTask@@QAEHVTUid@@ABVTDesC8@@@Z @ 222 NONAME ; int TApaTask::SendMessage(class TUid, class TDesC8 const &)
+	?SendSystemEvent@TApaTask@@QAEXW4TApaSystemEvent@@@Z @ 223 NONAME ; void TApaTask::SendSystemEvent(enum TApaSystemEvent)
+	?SendToBackground@TApaTask@@QAEXXZ @ 224 NONAME ; void TApaTask::SendToBackground(void)
+	?ServiceArrayBufferL@CApaAppList@@QBEPAVCBufFlat@@VTUid@@@Z @ 225 NONAME ; class CBufFlat * CApaAppList::ServiceArrayBufferL(class TUid) const
+	?ServiceImplArrayBufferL@CApaAppList@@QBEPAVCBufFlat@@VTUid@@@Z @ 226 NONAME ; class CBufFlat * CApaAppList::ServiceImplArrayBufferL(class TUid) const
+	?ServiceImplArrayBufferL@CApaAppList@@QBEPAVCBufFlat@@VTUid@@ABVTDataType@@@Z @ 227 NONAME ; class CBufFlat * CApaAppList::ServiceImplArrayBufferL(class TUid, class TDataType const &) const
+	?ServiceOpaqueDataBufferL@CApaAppList@@QBEPAVCBufFlat@@VTUid@@0@Z @ 228 NONAME ; class CBufFlat * CApaAppList::ServiceOpaqueDataBufferL(class TUid, class TUid) const
+	?ServiceUidBufferL@CApaAppList@@QBEPAVCBufFlat@@VTUid@@@Z @ 229 NONAME ; class CBufFlat * CApaAppList::ServiceUidBufferL(class TUid) const
+	?SetAcceptedConfidence@RApaLsSession@@QAEHH@Z @ 230 NONAME ; int RApaLsSession::SetAcceptedConfidence(int)
+	?SetAppIsHiddenL@CApaRegistrationResourceFileWriter@@QAEXH@Z @ 231 NONAME ; void CApaRegistrationResourceFileWriter::SetAppIsHiddenL(int)
+	?SetAppReady@CApaWindowGroupName@@QAEXH@Z @ 232 NONAME ; void CApaWindowGroupName::SetAppReady(int)
+	?SetAppShortCaption@RApaLsSession@@QAEHABVTDesC16@@W4TLanguage@@VTUid@@@Z @ 233 NONAME ; int RApaLsSession::SetAppShortCaption(class TDesC16 const &, enum TLanguage, class TUid)
+	?SetAppUid@CApaWindowGroupName@@QAEXVTUid@@@Z @ 234 NONAME ; void CApaWindowGroupName::SetAppUid(class TUid)
+	?SetBusy@CApaWindowGroupName@@QAEXH@Z @ 235 NONAME ; void CApaWindowGroupName::SetBusy(int)
+	?SetCapability@CApaAppInfoFileWriter@@QAEHABVTDesC8@@@Z @ 236 NONAME ; int CApaAppInfoFileWriter::SetCapability(class TDesC8 const &)
+	?SetCaptionL@CApaWindowGroupName@@QAEXABVTDesC16@@@Z @ 237 NONAME ; void CApaWindowGroupName::SetCaptionL(class TDesC16 const &)
+	?SetDefaultScreenNumberL@CApaRegistrationResourceFileWriter@@QAEXH@Z @ 238 NONAME ; void CApaRegistrationResourceFileWriter::SetDefaultScreenNumberL(int)
+	?SetDocNameIsAFile@CApaWindowGroupName@@QAEXH@Z @ 239 NONAME ; void CApaWindowGroupName::SetDocNameIsAFile(int)
+	?SetDocNameL@CApaWindowGroupName@@QAEXABVTDesC16@@@Z @ 240 NONAME ; void CApaWindowGroupName::SetDocNameL(class TDesC16 const &)
+	?SetEmbeddabilityL@CApaRegistrationResourceFileWriter@@QAEXW4TEmbeddability@TApaAppCapability@@@Z @ 241 NONAME ; void CApaRegistrationResourceFileWriter::SetEmbeddabilityL(enum TApaAppCapability::TEmbeddability)
+	?SetFormatToGlassL@CApaDoor@@QAEXXZ @ 242 NONAME ; void CApaDoor::SetFormatToGlassL(void)
+	?SetFormatToIconL@CApaDoor@@QAEXXZ @ 243 NONAME ; void CApaDoor::SetFormatToIconL(void)
+	?SetFormatToTemporaryIconL@CApaDoor@@QAEXH@Z @ 244 NONAME ; void CApaDoor::SetFormatToTemporaryIconL(int)
+	?SetFsSessionL@RApaLsSession@@SAXAAVRFs@@@Z @ 245 NONAME ; void RApaLsSession::SetFsSessionL(class RFs &)
+	?SetGroupNameL@CApaRegistrationResourceFileWriter@@QAEXABVTDesC16@@@Z @ 246 NONAME ; void CApaRegistrationResourceFileWriter::SetGroupNameL(class TDesC16 const &)
+	?SetHidden@CApaWindowGroupName@@QAEXH@Z @ 247 NONAME ; void CApaWindowGroupName::SetHidden(int)
+	?SetLaunchInBackgroundL@CApaRegistrationResourceFileWriter@@QAEXH@Z @ 248 NONAME ; void CApaRegistrationResourceFileWriter::SetLaunchInBackgroundL(int)
+	?SetMaskBitmap@CApaMaskedBitmap@@QAEXPAVCFbsBitmap@@@Z @ 249 NONAME ; void CApaMaskedBitmap::SetMaskBitmap(class CFbsBitmap *)
+	?SetMaxDataBufSize@RApaLsSession@@QAEHH@Z @ 250 NONAME ; int RApaLsSession::SetMaxDataBufSize(int)
+	?SetNotify@RApaLsSession@@QAEXHAAVTRequestStatus@@@Z @ 251 NONAME ; void RApaLsSession::SetNotify(int, class TRequestStatus &)
+	?SetOpaqueDataL@CApaRegistrationResourceFileWriter@@QAEXABVTDesC8@@@Z @ 252 NONAME ; void CApaRegistrationResourceFileWriter::SetOpaqueDataL(class TDesC8 const &)
+	?SetRespondsToShutdownEvent@CApaWindowGroupName@@QAEXH@Z @ 253 NONAME ; void CApaWindowGroupName::SetRespondsToShutdownEvent(int)
+	?SetRespondsToSwitchFilesEvent@CApaWindowGroupName@@QAEXH@Z @ 254 NONAME ; void CApaWindowGroupName::SetRespondsToSwitchFilesEvent(int)
+	?SetShortCaptionL@CApaAppData@@QAEXABVTDesC16@@@Z @ 255 NONAME ; void CApaAppData::SetShortCaptionL(class TDesC16 const &)
+	?SetSupportsNewFileL@CApaRegistrationResourceFileWriter@@QAEXH@Z @ 256 NONAME ; void CApaRegistrationResourceFileWriter::SetSupportsNewFileL(int)
+	?SetSystem@CApaWindowGroupName@@QAEXH@Z @ 257 NONAME ; void CApaWindowGroupName::SetSystem(int)
+	?SetUpdatedAppsList@CApaAppList@@QAEXPAVCUpdatedAppsList@@@Z @ 258 NONAME ABSENT ; void CApaAppList::SetUpdatedAppsList(class CUpdatedAppsList *)
+	?SetWgId@TApaTask@@QAEXH@Z @ 259 NONAME ; void TApaTask::SetWgId(int)
+	?SetWindowGroupName@CApaWindowGroupName@@QAEXPAVHBufC16@@@Z @ 260 NONAME ; void CApaWindowGroupName::SetWindowGroupName(class HBufC16 *)
+	?SetWindowGroupName@CApaWindowGroupName@@QBEHAAVRWindowGroup@@@Z @ 261 NONAME ; int CApaWindowGroupName::SetWindowGroupName(class RWindowGroup &) const
+	?SetWindowGroupNameL@CApaWindowGroupName@@QAEXABVTDesC16@@@Z @ 262 NONAME ; void CApaWindowGroupName::SetWindowGroupNameL(class TDesC16 const &)
+	?ShortCaption@CApaSystemControl@@QBE?AVTPtrC16@@XZ @ 263 NONAME ; class TPtrC16 CApaSystemControl::ShortCaption(void) const
+	?StartApp@RApaLsSession@@QAEHABVCApaCommandLine@@@Z @ 264 NONAME ; int RApaLsSession::StartApp(class CApaCommandLine const &)
+	?StartApp@RApaLsSession@@QAEHABVCApaCommandLine@@AAVTThreadId@@@Z @ 265 NONAME ; int RApaLsSession::StartApp(class CApaCommandLine const &, class TThreadId &)
+	?StartApp@RApaLsSession@@QAEHABVCApaCommandLine@@AAVTThreadId@@PAVTRequestStatus@@@Z @ 266 NONAME ; int RApaLsSession::StartApp(class CApaCommandLine const &, class TThreadId &, class TRequestStatus *)
+	?StartDocument@RApaLsSession@@QAEHAAVRFile@@AAVTThreadId@@PAVTRequestStatus@@@Z @ 267 NONAME ; int RApaLsSession::StartDocument(class RFile &, class TThreadId &, class TRequestStatus *)
+	?StartDocument@RApaLsSession@@QAEHAAVRFile@@ABVTDataType@@AAVTThreadId@@PAVTRequestStatus@@@Z @ 268 NONAME ; int RApaLsSession::StartDocument(class RFile &, class TDataType const &, class TThreadId &, class TRequestStatus *)
+	?StartDocument@RApaLsSession@@QAEHAAVRFile@@VTUid@@AAVTThreadId@@PAVTRequestStatus@@@Z @ 269 NONAME ; int RApaLsSession::StartDocument(class RFile &, class TUid, class TThreadId &, class TRequestStatus *)
+	?StartDocument@RApaLsSession@@QAEHABVTDesC16@@AAVTThreadId@@W4TLaunchType@1@@Z @ 270 NONAME ; int RApaLsSession::StartDocument(class TDesC16 const &, class TThreadId &, enum RApaLsSession::TLaunchType)
+	?StartDocument@RApaLsSession@@QAEHABVTDesC16@@ABVTDataType@@AAVTThreadId@@W4TLaunchType@1@@Z @ 271 NONAME ; int RApaLsSession::StartDocument(class TDesC16 const &, class TDataType const &, class TThreadId &, enum RApaLsSession::TLaunchType)
+	?StartDocument@RApaLsSession@@QAEHABVTDesC16@@VTUid@@AAVTThreadId@@W4TLaunchType@1@@Z @ 272 NONAME ; int RApaLsSession::StartDocument(class TDesC16 const &, class TUid, class TThreadId &, enum RApaLsSession::TLaunchType)
+	?StartIdleUpdateL@CApaAppList@@QAEXPAVMApaAppListObserver@@@Z @ 273 NONAME ; void CApaAppList::StartIdleUpdateL(class MApaAppListObserver *)
+	?StartIdleUpdateL@CApaAppList@@QAEXXZ @ 274 NONAME ; void CApaAppList::StartIdleUpdateL(void)
+	?StartupApaServer@@YAHAAVMApaAppStarter@@@Z @ 275 NONAME ; int StartupApaServer(class MApaAppStarter &)
+	?StartupApaServerProcess@@YAHXZ @ 276 NONAME ; int StartupApaServerProcess(void)
+	?StopScan@CApaAppList@@QAEXH@Z @ 277 NONAME ; void CApaAppList::StopScan(TBool)
+	?StoreL@CApaAppInfoFileWriter@@QAEXXZ @ 278 NONAME ; void CApaAppInfoFileWriter::StoreL(void)
+	?SwitchCreateFile@TApaTask@@QAEHABVTDesC16@@@Z @ 279 NONAME ; int TApaTask::SwitchCreateFile(class TDesC16 const &)
+	?SwitchOpenFile@TApaTask@@QAEHABVTDesC16@@@Z @ 280 NONAME ; int TApaTask::SwitchOpenFile(class TDesC16 const &)
+	?TestIconLoaderAndIconArrayL@TIconLoaderAndIconArrayForLeaks@@SAXXZ @ 281 NONAME ; void TIconLoaderAndIconArrayForLeaks::TestIconLoaderAndIconArrayL(void)
+	?ThreadId@TApaTask@@QBE?AVTThreadId@@XZ @ 282 NONAME ; class TThreadId TApaTask::ThreadId(void) const
+	?Type@CApaSystemControl@@QBE?AVTUid@@XZ @ 283 NONAME ; class TUid CApaSystemControl::Type(void) const
+	?Uid@CApaAppViewData@@QBE?AVTUid@@XZ @ 284 NONAME ; class TUid CApaAppViewData::Uid(void) const
+	?Uid@TApaAppServiceInfo@@QBE?AVTUid@@XZ @ 285 NONAME ; class TUid TApaAppServiceInfo::Uid(void) const
+	?UpdateL@CApaSystemControlList@@QAEXXZ @ 286 NONAME ; void CApaSystemControlList::UpdateL(void)
+	?UpdatedAppsList@CApaAppList@@QAEPAVCUpdatedAppsList@@XZ @ 287 NONAME ABSENT ; class CUpdatedAppsList * CApaAppList::UpdatedAppsList(void)
+	?Version@RApaLsSession@@QBE?AVTVersion@@XZ @ 288 NONAME ; class TVersion RApaLsSession::Version(void) const
+	?Views@CApaAppData@@QBEPAV?$CArrayPtrFlat@VCApaAppViewData@@@@XZ @ 289 NONAME ; class CArrayPtrFlat<class CApaAppViewData> * CApaAppData::Views(void) const
+	?WgId@TApaTask@@QBEHXZ @ 290 NONAME ; int TApaTask::WgId(void) const
+	?WindowGroupName@CApaWindowGroupName@@QBE?AVTPtrC16@@XZ @ 291 NONAME ; class TPtrC16 CApaWindowGroupName::WindowGroupName(void) const
+	?KMinApplicationStackSize@@3HB @ 292 NONAME ; int const KMinApplicationStackSize
+	?CheckAppSecurity@CApaSecurityUtils@@SAHABVTPtrC16@@AAH1@Z @ 293 NONAME ; int CApaSecurityUtils::CheckAppSecurity(class TPtrC16 const &, int &, int &)
+	?SetCaptionL@CApaAppData@@QAEXABVTDesC16@@@Z @ 294 NONAME ; void CApaAppData::SetCaptionL(class TDesC16 const &)
+	?SetIconsL@CApaAppData@@QAEXABVTDesC16@@H@Z @ 295 NONAME ; void CApaAppData::SetIconsL(class TDesC16 const &, int)
+	?TestIconCaptionOverridesL@TIconLoaderAndIconArrayForLeaks@@SAXXZ @ 296 NONAME ; void TIconLoaderAndIconArrayForLeaks::TestIconCaptionOverridesL(void)
+	?ForceCommitNonNativeApplicationsUpdatesL@RApaLsSession@@QAEXXZ @ 297 NONAME ; void RApaLsSession::ForceCommitNonNativeApplicationsUpdatesL(void)
+	?AppListUpdatePending@CApaAppList@@QAEHXZ @ 298 NONAME ; int CApaAppList::AppListUpdatePending(void)
+	?UninstalledAppArray@CApaAppList@@QAEPAV?$CArrayFixFlat@VTUid@@@@XZ @ 299 NONAME ; class CArrayFixFlat<class TUid> * CApaAppList::UninstalledAppArray(void)

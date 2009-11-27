@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CApaAppStart@@SAPAV1@XZ @ 1 NONAME ; class CApaAppStart * CApaAppStart::NewL(void)
+

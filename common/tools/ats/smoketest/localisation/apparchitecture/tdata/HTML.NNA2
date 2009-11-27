@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1515" name=GENERATOR></HEAD>
+<BODY>09:48:45:769 <PRE>09:48:45:769 *** TestExecute Started 16/09/2005 09:48:45:769 ***
+09:48:45:789 z:\apparctest\apparctest_t_nonnativeapps.script PRINT Run NonNativeApps Apparc test
+09:48:45:789 INFO -  104 ScriptEngine.cpp 1077  Run NonNativeApps Apparc test
+
+09:48:45:794 z:\apparctest\apparctest_t_nonnativeapps.script LOAD_SUITE ApparcTestServer
+09:48:46:165 z:\apparctest\apparctest_t_nonnativeapps.script RUN_TEST_STEP 100 ApparcTestServer T_NonNativeApps
+09:48:46:180 INFO -  112 T_NonNativeAppsStep.cpp 393 Test NonNativeApps starting....
+
+09:48:46:185 INFO -  112 T_NonNativeAppsStep.cpp 124 Testing AppForDocumentL()...
+09:48:46:185 INFO -  112 T_NonNativeAppsStep.cpp 132 ..using following file: 'GIF.NNA'
+09:48:46:190 ERROR -  112 T_NonNativeAppsStep.cpp 414 ERROR: Test Failed
+09:48:46:190 INFO -  112 T_NonNativeAppsStep.cpp 415 TestAppForDocumentL completes with ret=-12.
+
+09:48:46:190 INFO -  112 T_NonNativeAppsStep.cpp 182 Testing AppForDocumentAndServiceL()...
+09:48:46:190 INFO -  112 T_NonNativeAppsStep.cpp 190 ..using following file: 'GIF.NNA'
+09:48:46:190 INFO -  112 T_NonNativeAppsStep.cpp 421 TestAppForDocumentAndServiceL completes with ret=-12.
+
+09:48:46:195 INFO -  112 T_NonNativeAppsStep.cpp 221 Testing RecognizingL()...
+09:48:46:195 INFO -  112 T_NonNativeAppsStep.cpp 229 ..using following file: 'GIF.NNA'
+09:48:46:195 INFO -  112 T_NonNativeAppsStep.cpp 427 TestRecognizingL completes with ret=-12.
+
+09:48:46:195 INFO -  112 T_NonNativeAppsStep.cpp 285 Testing StartDocumentL()...
+09:48:46:200 INFO -  112 T_NonNativeAppsStep.cpp 293 ..using following file: 'GIF.NNA'
+09:48:46:200 INFO -  112 T_NonNativeAppsStep.cpp 433 TestStartDocumentL completes with ret=-12.
+
+09:48:46:200 INFO -  112 T_NonNativeAppsStep.cpp 438 Test completed!
+09:48:46:205 <FONT color=#ff0000 size=2>z:\apparctest\apparctest_t_nonnativeapps.script Line = 5 Command = RUN_TEST_STEP 100 ApparcTestServer T_NonNativeApps ***Result = FAIL </FONT>
+09:48:46:215 <FONT color=#00afff size=2>SUMMARY:</FONT>
+09:48:46:215 <FONT color=#00af00 size=2>PASS = 0</FONT>
+09:48:46:215 <FONT color=#ff0000 size=2>FAIL = 1</FONT>
+09:48:46:223 <FONT color=#0000ff size=2>ABORT = 0</FONT>
+09:48:46:238 <FONT color=#0000ff size=2>PANIC = 0</FONT>
+09:48:46:238 <FONT color=#0000ff size=2>INCONCLUSIVE = 0</FONT>
+09:48:46:238 <FONT color=#0000ff size=2>UNKNOWN = 0</FONT>
+09:48:46:238 <FONT color=#0000ff size=2>UNEXECUTED = 0</FONT>
+09:48:46:238 <FONT color=#0000ff size=2>COMMENTED OUT RUN COMMAND'S = 0</FONT>
+09:48:46:238 </PRE></BODY></HTML>

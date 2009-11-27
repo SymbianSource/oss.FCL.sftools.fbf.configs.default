@@ -1,0 +1,49 @@
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @internalComponent - Internal Symbian test code
+*/
+
+TARGET TAppLaunchChecker.dll
+CAPABILITY	All -Tcb
+TARGETTYPE PLUGIN
+VENDORID 0x70000001
+
+// ECom Dll recognition UID followed by the unique dll UID 
+UID 0x10009D8D 0x1020d465
+
+SOURCEPATH ../tef 
+SOURCE TAppLaunchChecker.cpp
+
+USERINCLUDE ../tef
+USERINCLUDE ../inc
+SYSTEMINCLUDE /epoc32/include
+SYSTEMINCLUDE /epoc32/include/ecom
+
+start resource 1020d465.rss
+target TAppLaunchChecker.rsc
+
+end
+
+LIBRARY euser.lib
+LIBRARY ECom.lib
+LIBRARY apfile.lib
+LIBRARY ws32.lib 
+LIBRARY apgrfx.lib
+LIBRARY apparc.lib 

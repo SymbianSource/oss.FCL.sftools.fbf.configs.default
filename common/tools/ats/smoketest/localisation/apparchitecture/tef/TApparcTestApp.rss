@@ -1,0 +1,63 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file TApparcTestApp.rss
+ @internalComponent - Internal Symbian test code
+*/
+
+
+NAME TCON
+
+#include <eikon.rh>
+#include <eikcore.rsg>
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	hotkeys=r_tconetest_hotkeys;
+	menubar=r_tconetest_menubar;
+	}
+
+RESOURCE HOTKEYS r_tconetest_hotkeys
+    {
+    control=
+        {
+        HOTKEY { command=EEikCmdExit; key='e'; }
+        };
+    }
+
+RESOURCE MENU_BAR r_tconetest_menubar
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_tconetest_first_menu; txt="tconetest"; }
+	};
+    }
+
+RESOURCE MENU_PANE r_tconetest_first_menu
+    {
+	items=
+	  {
+	  MENU_ITEM { command=EEikCmdExit; txt="Close"; }
+          };
+    }
+
+RESOURCE TBUF r_tapparctest_text_Title { buf="tapparctest for static objects"; }

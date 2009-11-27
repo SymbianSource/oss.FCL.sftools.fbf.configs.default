@@ -1,0 +1,64 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// using relative paths for sourcepath and user includes
+// 
+//
+
+#include <platform_paths.hrh>
+
+TARGETPATH	/sys/bin
+TARGET		tapparctestapp.exe
+TARGETTYPE	exe
+
+
+epocstacksize 	0x5000
+
+
+CAPABILITY 	All -Tcb
+UID		0x100039CE  0x100048F3
+VENDORID 	0x70000001
+
+SOURCEPATH	.
+SOURCE		tapparctestapp.cpp
+
+USERINCLUDE	.
+
+SYSTEMINCLUDE	/epoc32/include ../inc
+SYSTEMINCLUDE 	/epoc32/include/test
+SYSTEMINCLUDE	/epoc32/include/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+RESOURCE	tApparctestapp.rss
+
+START RESOURCE  tApparctestapp.rss
+HEADER
+TARGETPATH	/resource/apps
+END
+
+START RESOURCE	tApparctestapp_reg.rss
+TARGETPATH	/private/10003a3f/import/apps
+END
+
+START RESOURCE	tApparctestapp_loc.rss
+TARGETPATH	/resource/apps
+LANG		sc
+END
+
+LIBRARY	apparc.lib
+LIBRARY	cone.lib
+LIBRARY	efsrv.lib
+LIBRARY	eikcore.lib
+LIBRARY	euser.lib
+LIBRARY	gdi.lib

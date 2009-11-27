@@ -1,0 +1,2677 @@
+AppArc 1.2.118
+--------------
+Released by MattM
+
+Upgraded to new E32TOOLS and E32TOOLP
+
+Updated bld.inf file to add support to support testcode, and corrected 
+controlpanel .def file exports.
+
+This release is not BC or SC due to: 
+
+the fix for EDNATHE-488DCR (increase in the size of a class, as a fix for 
+potential recurring panics) 
+
+EDNATHE-464JPQ has breaks SC and BC
+
+Fixed: 
+ER5 deferred defects
+EDN761578 Recent Files list has gone
+EDNBWHE-45UCS4 Need to reset shell after changing "text/html" mapping
+EDNATHE-462DBT Control panel DLLs are not unloaded
+EDNATHE-488DCR Recogniser names restricted to 12 characters
+EDNATHE-464JPQ CApaAppInfoFile classes create temporary RFs connections
+EDN779965 Dangerous code in CApaFsMonitor::Start()
+
+
+
+AppArc 1.2.117
+--------------
+Released by SimonC on 09 July 1999
+
+Binary and source compatible with 116
+
+Fixed EDNDMAY-49CDSX "Need to remove call to deprecated function"
+Various changes to MNT to remove all references to narrow releasables.
+
+No test code run due to the lack of changes
+
+Apparc 1.2.116
+--------------
+Re-released for automated build process
+
+AppArc 1.2.114
+--------------
+Built by SimonC on 10 Feb 1999
+
+Fixed EDN557946 "CApaFsMonitor uses the wrong form of RFs::NotifyChangeCancel"
+
+AppArc 1.2.113
+--------------
+Built by MattM on 29 Jan 1999
+
+Fixed
+Not found error after installing application
+
+AppArc 1.2.112
+--------------
+Built by MattM on 19 Jan 1999
+
+Fixed
+EDN062791 Default app can be wrong
+EDN923095 RDL recognisers didn't work immediately after installation
+EDN173648 Problem with RApaLsSession::AppForDataType
+
+AppArc 1.2.111
+--------------
+Built by MattM on 13 Jan 1999
+
+Fixed
+EDN537499 Panic attempting to view directory with unknown App file
+EDN116503 CApaProcess::SetMainDocFileName does not allow clearing of the file name
+
+AppArc 1.2.110
+--------------
+Built by MattM on
+
+Changed priority of AppArc server to EPriorityAbsoluteForeground
+Changed scanning active object from CIdle to CPeriodic, with a small pause
+between each scanning unit (to allow lower priority threads a lookin)
+
+Fixed
+EDN736553 Machine completely* locks up
+EDN851148 Panic on Startup which locks the machine
+
+AppArc 1.2.109
+--------------
+Built by MattM on 5 December 1998
+
+Changed priority of AppArc server to nearer priority of EIKSRV.
+
+Fixed
+EDN833327 MRU list doesn't work if the C:\system\data directory doesn't exist.
+EDN060924 Deleting mru.dat stops the mru-list coming up
+EDN349934 Recent files does not work if there's no c:\System\Data\ directory
+EDN572427 "mru.dat" should be "Mru.dat"
+EDN951003 Recently used files list is case-sensitive
+EDN969635 DataType may not be reported correctly
+
+AppArc 1.2.108
+--------------
+Built by MattM on 26 November 1998
+
+SW1-427 IsProgram() return value can be incorrect
+SW1-400 AppArc doesn't handle even-numbered tailend lengths correctly.
+SW1-413 Shell is too slow
+SW1-455 Apparc is too hard to fetch
+
+AppArc 1.2.107
+--------------
+Built by MattM on 12 November 1998
+
+Added Base addresses for all new DLL's
+
+EPOC Software Problems
+SW1-329 AppArc doesn't set TailEnd length.
+SW1-330 RECAPP doesn't recognize narrow build documents on wide build machines
+SW1-195 APSEXE.DLL WINS base address clashes with that of EIKSRV.DLL
+SW1-306 Missing #defines
+SW1-287 #defines should be replaced by literal descriptors
+
+AppArc 1.2.106
+--------------
+Built by MattM on 30 October 1998
+
+Deb/rel and unicode Uid release.
+
+UID fest from AppArc is here:
+
+Control panel items:
+uid			0x10000297
+unicodeuid	0x10003A34
+
+Applications
+uid			0x1000006c
+unicodeuid	0x100039CE
+
+Application data files
+uid			0x1000006d
+unicodeuid	0x10003A12
+
+Recognizers
+uid			0x1000013E
+unicodeuid	0x10003A37
+
+AIF files
+uid			0x1000006a
+unicodeuid	0x10003A38
+
+AppArc 1.2.105
+--------------
+Built by MattM on 28 October 1998
+
+Moved ApMime to EMIME project.
+
+AppArc 1.2.104
+--------------
+Built by MattM on 19 October 1998
+
+Breaks BC for UNICODE build users of CApaCommandLine::TailEnd.  Previously this 
+had a TDes16 interface, now it has a TDes8 interface in both builds.  This 
+reflects the intended usage, the passing of binary data to applications.
+
+The client interface to RApaLsSession now attempts reconnection if the server 
+terminates during an open session.
+
+AppArc server now uses the new fileserver notification to minimise
+rescanning of drives, and the new fileserver read functions to read
+the first few bytes from a file when identifying it's type.
+
+AppArc 1.2.103
+--------------
+Built by MattM on 24 September 1998
+
+This is a BETA release
+
+This build breaks BC for the new exports in build 100+
+
+Optimisations made to TDataType to enable Shell to perform cached lookup
+on UID'd types without resorting to server calls.
+
+AppArc 1.2.102
+--------------
+Built by MattM on 21 August 1998
+
+ONLY FOR USE BY APPS EG (and friends)
+
+This build breaks BC with the new exports added for build 101.
+
+Source compatability is maintained.
+
+Completed implementation of new server interface as per document 
+R:\apparc\dspec\Server API.rtf, please refer to that document for documentation.
+
+This build of AppArc is intended for use by development Shells 060+
+
+AppArc 1.2.101
+--------------
+Built by MattM on 28 July 1998
+
+Release valids on a clean drive
+
+This build is of BETA status, pending a design review of the AppArc server and Shell.
+
+The export in RApaLsSession UpdateDataRecognizerList() is likely to be removed in the
+future.
+
+1) Added Data type support to AIF files
+The following exports are new for R5:
+
+class CApaAppInfoFileReader
+	void DataTypesSupportedL(CArrayFix<TDataTypeWithPriority>& aTypeList) const;
+
+class CApaAppInfoFileWriter : public CApaAppInfoFile void AddDataTypeL(const 
+TDataTypeWithPriority& aTypePriority);
+
+Supported data types are stored in Application AIF files (which are fully data 
+compatible with R1 AIF files) along with a concept of "Priority" this is used 
+for resolving the current preferred handler of a data type, in the absence of 
+any user preferences.
+
+Data type priorities are defined in APMSTD.H and are:
+
+KDataTypePriorityUserSpecified
+KDataTypePriorityHigh
+KDataTypePriorityNormal
+KDataTypePriorityLow
+KDataTypePriorityLastResort
+
+Note, it's not legal for applications to specify KDataTypePriorityUserSpecified 
+in their AIF file, as this can't be overridden, and contrary to all the 
+available evidence, the user DOES know best.
+
+Extended test code to cope with new stuff
+
+2) Added Data Type to application map to APMIME
+
+The following (interesting) exports have been added compared to the APMIME 
+release in 100: (this isn't an all inclusive list, it's just the ones that are 
+of interest to AppArc clients)
+
+class CTypeStoreManager
+	static CTypeStoreManager* NewL(RFs& aFs);
+	// Persistence
+	void StoreL();
+	void RestoreL();
+	void InternalizeL(RReadStream& aStream);
+	void ExternalizeL(RWriteStream& aStream) const;
+	// Enquiry
+	void GetAppByDataType(const TDataType& aDataType, TUid& aUid) const;
+	void GetDataTypesByAppL(TUid aUid, CArrayFix<TDataType>* aTypeArray) const;
+	const CArrayFixFlat<TMappingDataTypeToApp>& MappingArray() const;
+	// Management
+	void InsertDataMappingL(const TDataType& aDataType, TDataTypePriority aPriority, TUid aUid);
+	TBool InsertIfHigherL(const TDataType& aDataType, TDataTypePriority aPriority, TUid aUid);
+	void DeleteDataMapping(const TDataType& aDataType);
+
+These can be used to query and amend the list of application/data type associations.
+
+3) Added TDataTypeWithPriority and priority utilities.
+
+For use in 1) and 2)
+
+4) Fixed T_SERV debug panics
+
+5) Added MIME type recognition to the AppArc Server, the following exports are 
+new:
+class RApaLsSession
+	TInt UpdateDataRecognizerList();
+	TInt RecognizeData(const TDesC& aName, const TDesC8& aBuffer, TDataRecognitionResult& aDataType);
+	TInt RecognizeSpecificData(const TDesC& aName, const TDesC8& aBuffer, const TDataType& aDataType, TBool& aResult);
+
+The Shell is responsible for ensuring the AppArc server is kept up to date with 
+respect of the recognizer list - clients shouldn't need to call 
+UpdateRecognizerList(), which due to the scanning efforts involved has a heavy 
+overhead.
+
+RecognizeData and RecognizeSpecificData will provide mime type information to 
+the client, based on the information supplied - the client must open the file if 
+this is appropriate.
+
+6) Added application launching to the AppArc server.
+
+This marks a change in the architecure of document launching.  It is strongly 
+recommended that launchers of applications use these new server calls to broker 
+all their application launching.
+
+There is also a slight change in the way recognizers use UID's, from now the 
+following is true:
+
+The 2nd Uid if a TUidType indicates the protocol used to launch the application.  
+This protocol must be uniquely implemented by a recognizer in a .RDL file, 
+derived from CApaRecognizerType, currently supported protocols are:
+The EIKON App protocol (KUidApp)
+The OPL protocol (KUidOplApp) released by the OPL runtime
+
+It's anticipated that Java will release an additional recognizer for Java 
+applications (KUidJavaApp)
+
+The 2nd Uid contained within an EPOC store file is used for type identification, 
+and is mapped on to a "TDataType" that can also handle internet standard MIME 
+types.
+
+Thus a CApaRecognizerType file can now expect to be called with a document file 
+name, but a TUidType that is different to the TUidType within that file (this is 
+to support the launching of, say, Agenda files by an OPL or Java based Agenda 
+file viewer)
+
+If no mime type mapping is available the CApaRecognizerType list will be called 
+as for ER1 releases, this is to fully support compatibility with ER1 style 3rd 
+party recognizers.
+
+The following exports are of interest:
+class RApaLsSession
+	TInt AppForDataType(const TDataType& aDataType, TUid& aAppUid);
+This returns the binding of application to DataType in aAppUid, if there is no 
+binding then the current "default" handler is returned.  If there is no handler
+a NULL uid is returned.
+
+	TInt StartDocument(const TDesC& aFileName, TThreadId& aId);
+This starts the document file of aFileName and returns the TThreadId of the 
+process.  The effect is the same as performing a RecognizeData on the file, 
+followed by a call to the next documented method.
+
+	TInt StartDocument(const TDesC& aFileName, const TDataType& aDataType, TThreadId& aId);
+This launches an application with a known data type, this is useful to clients 
+that already have data type information and wish to take advantage of this, and 
+avoid the overhead of performing a recognition on the file.  This uses the 
+current "preferred" handler of the data type, this may be specified by the user.  
+If another application is desired this must be chosen explictily using the 
+following method.  If no binding can be found for the data type the old style 
+recognition by the .RDL recognizers will be performed, if this doesn't get a 
+match KErrNotSupported will be returned.
+
+	TInt StartDocument(const TDesC& aFileName, TUid aAppUid, TThreadId& aId);
+This launches the filename with the supplied application. 
+
+7) Added Application icons to AppArc server, the relevant export here is:
+class RApaLsSession
+	TInt GetAppIcon(TUid aAppUid, TInt aSize, CApaMaskedBitmap& aAppBitmap);
+Size is a number between 0 and 2 inclusive, representing the smallest to largest
+icons for the application.  The actual size of these icons is dependent on the
+implementation, no scaling is performed.  Fully featured EPOC apps can be expected
+to supply 24,32 and 48 pixel icons on 1/2 VGA.
+
+8) Added test code, and less interesting utility functions for all the above.
+
+9) Added batch files for running test code - runtest.bat on MARM and runtestw [var]
+under WINS, these live in \apparc\tdata\
+
+10) Moved down to E32TOOLS 088 due to a defect in DEFMAKE
+
+All WINS variants pass tests
+All MARM varinats pass tests, with the exception of
+
+T_PRO and T_OOM which fail on MARM unicode
+
+These failures do not constitute a regression from AppArc 100
+
+AppArc 1.2.100
+==============
+Built by MattM on 3/7/98
+
+Jumped from 086 to 100 release to allow space for platform 4 revisions
+
+Changed interface in APMIME to "Data" in place of "Mime" allowing for greater 
+flexibility in use of "mime" types.  Retained name for DLL to ensure binary 
+compatibility.
+
+Fixed defect in APMFNDR as for APFFNDR - wins REL and UREL mime recognizer 
+loading did not work
+
+Updated ROM build files
+
+AppArc 1.1.86
+=============
+Built by MattM on 29/6/98
+
+Release valids on a clean drive.
+
+Removed incorrect mime getrel methods
+Fixed rom building scripts
+
+Fixes:
+SW1-544 WINS rel & urel recognisers don't work
+
+All 4 WINS and 4 MARM variants released and tested.
+
+The following tests pass on all variants:
+
+T_CMDLN, T_FILE, T_MDR, T_WGNAM, ICONTOOL
+
+The following tests have the documented failure conditions:
+
+T_MRU fails test 07 line 248 on all MARM variants (passes on WINS)
+T_OOM fails KERN-EXEC 3 on MARM Unicode variants (passes WINS and MARM narrow)
+T_SERV fails on all debug variants WINS and MARM (passes on release variants)
+T_PRO fails KERN-EXEC 3 on MARM Unicode variants (passes WINS and MARM narrow)
+
+None of these failures is a regression from AppArc 1.1.85
+
+AppArc 1.1.85
+=============
+
+Identical to 084 without MIME releases
+
+AppArc 1.1.84
+=============
+Built on 22/5/98 by MattM
+
+Changes following code review
+
+AppArc 1.1.83
+=============
+Built on 18/5/98 by MattM
+
+Added MIME type recognition
+
+Fixed AppArc DLL loading to allow unloading of AppArc DLLs due to deletion or 
+updating, however due to EPOC32 defect SW1-46 this remains broken, however as of 
+this release it's possible to unload recognizer DLL's by removing the DLL, then 
+waiting sufficient time for the Shell recognizer scanner to update it's list, 
+then 1 second later the AppArc server list will be updated.
+[an easy way is to Open/close a CF card door, this forces a full rescan]
+
+Fixed some VC5 warnings
+
+Fixed 
+SW1-957 Missing leave in AppArc
+
+Apparc 1.0.82
+=============
+
+Added extra support for Recent Files list for OPL apps.
+
+
+Apparc 1.0.80
+=============
+20/02/98 by Natascha
+
+Uses:	apparc.dll: E32[120] ; F32[090] ; Store[043] ; GDI[057]
+
+	apgrfx.dll: Fntstore[046] ; Fbserv[075] ; Bitgdi[062] ; Wserv[094]
+
+        Mimestor[002]
+
+Tools: E32Tools[082] ; E32Utils[014] ; GCCTOOLS[113]; GDITOOLS[039]
+EIKTOOLS[123]
+
+1) Rebuilt using correct Unicode components.
+
+Apparc 1.0.79
+=============
+19/02/98 by Natascha
+
+Uses:	apparc.dll: E32[119] ; F32[089] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[075] ; Bitgdi[058] ; Wserv[090]
+
+Tools: E32Tools[082] ; E32Utils[014] ; GCCTOOLS[113]; GDITOOLS[039]
+EIKTOOLS[123]
+
+Made the following changes as a result of code review (by CharlesW).
+
+1) Changed CApaFileRecognizer::DoRecognizeAllApps() to
+DoRecognizeAllAppsL() since it is a leaving function.
+
+2) Use the more efficient InsertL() function to copy one array to
+another rather than AppendL() in a for loop.
+
+3) In CApaFileRecognizer::InsertAppIntoListL() the priority is now
+based primarily on the mime type priority, not an average of the app
+and mime type priorities.
+
+4) Put the mimestor manager on the Cleanup stack in
+CApaDataTypeRecognizer functions.
+
+5) Made the CApaFileRecognizerData class definition and member data
+private to CApaFileRecognizer.
+
+
+Apparc 1.0.78
+=============
+02/02/98 by Natascha
+
+Uses:	apparc.dll: E32[119] ; F32[089] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[075] ; Bitgdi[058] ; Wserv[090]
+
+Tools: E32Tools[082] ; E32Utils[014] ; GCCTOOLS[113]; GDITOOLS[039]
+EIKTOOLS[123]
+
+Includes UNICODE release of all components.
+
+1) Changed over to new build system splitting mnt.cmd into ebld.bat
+and mnt.cmd and using makmake etc...
+
+2) Bug fix SW1-516: to speed up drawing of control panel moved the DLL loading into
+CApaSystemControl::CreateL() from CApaSystemControl::ConstructL()
+which was being called to build up the list of available controls. 
+Added member data iUidType and iFullPath.  This also means that OOM
+is less likely when bringing up the control panel.
+
+3) Bug fix SW1-451: in CApaScanningAppFinder::FindAllAppsL() set
+iDriveList=NULL after deleting it (spotted by MartinB).
+
+4) Bug fix SW1-566: in CApaScanningAppFinder destructor now delete
+iFileList.
+
+5) Bug fix SW1-620: in CApaScanningControlFinder::NextL() iFileIndex
+was only being reset to 0 if there was a drive in between which
+failed GetFileListL(); if 2 consecutive drives both had controls it
+was hit and miss whether all those on the second drive would be
+correctly picked up since it only started scanning the file list at
+the iFileIndex value at which the drive before had finished.  Fix is
+to set iFileIndex=0 at the same time as deleting iFileList.
+
+6) Extension to recognizer scheme: added class CApaUidlessRecognizerType
+which is there to recognize files that the uid-based recognizers
+fail to recognize.  This means that CApaFileRecognizer class now has
+a new private member *iData (before only 1 pointer so store all the
+new data in the one pointer to keep things BC) - iData contains
+iFileRecognizerList and iUidlessFileRecognizerList, and a list of
+mime types and supporting apps.  
+
+CApaFileRecognizer::RecognizeFileL() now works by calling the
+uid-based recognizers as usual, if none of them recognize the file 
+call all uidless recognizers, which can each add
+MIME types to the list, then picks the highest priority MIME type and
+finds the best app capable of handling that MIME type, if no apps are
+found to support the best MIME type keep going through the list until
+the best app is found, then call the uid based recognizer passing in the
+uid of the app.
+
+Various other functions for clients to call through
+CApaFileRecognizer class:
+
+RecognizeAllMimeTypesL()        - for file
+RecognizeAllAppsL()             - for file
+RecognizeBestAppL()             - for file
+RecognizeAllAppsByMimeType()    - for MIME type.
+
+Test code added to T_FILE to test some of the uidless recognizer
+functionality.
+
+7) Recognizer loading code changed to support the new uidless
+recognizers - in CApaScanningFileRecognizer class.
+
+8) A new uidless recognizer CApaDataTypeRecognizer which gets MIME
+types from the mimestor manager and apps from the mimestor manager
+and aif files.
+
+9) UNICODE releases for all components.
+
+10) CApaAppInfoFileReader and CApaAppInfoFileWriter classes changed to support
+the ability to specify supported MIME types in AIF files.
+
+
+AppArc 1.0.077
+==============
+
+22/07/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 076, but extends API (see 3)
+
+1) MNT no longer fetches non-existant WSERV MARMUD releasables (spotted by Natascha).
+
+2) MNT getdef extended to get WINS control.def's
+
+3) Two inline methods added to CApaDoorBase to get and set the already present protected member data iSource. 
+This is not a 1.01 change, more a platform improvement for the initial benefit of Nautilus.
+
+public:
+	inline TUid Source()const;
+	inline void SetSource(TUid aSource);
+protected:
+	TUid iSource; // foreign representation of a translated door (eg MS Word doc)
+
+4) Testcode T_MDR extended to test the above.
+
+
+
+AppArc 1.0.076
+==============
+
+16/07/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 075
+
+) Fixes CSW3-1386: Overriding of ROM apps doesnt work - the in ROM versions are still loaded instead of those in RAM. The fix ensures that the correct dll is loaded, but does not cache the new AIF data.
+
+) Fixes SW1-122: OPL programs don't run when copied from one disk to another. This was another manifestation of the above bug, and the fix carries the same proviso (though in this case it's meaningless as the data is the same - it was just copied between discs).
+
+) The above fixes left a couple of slight problems, and these have been noted in a new bug report SW1-134.
+
+
+
+AppArc 1.0.075
+==============
+
+10/07/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 074
+
+) Fixes SW3-1520 (showstopper): Apparc sometimes paniced if a document file was corrupt. Now it always leaves KErrCorrupt
+
+) Fixes CSW3-1680: Some code was taking the address of temporary TPtrC's returned from CApaCommandLine members. This was causing CApaLsSession::StartApp() to fail strangely in some circumstances, eg when trying to open the help database from EasyFax.
+
+) Fixes SW1-63: Synchronising agenda entries that countain embedded objects could lose the embedded objects entirely if the entry had been edited in eg Schedule+. Not any more though...
+
+) MNT VALID extended as per orders.
+
+
+
+AppArc 1.0.074
+==============
+
+4/06/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 073
+
+) Fixes SW3-1277: AIF's of plug=in controls were not being loaded, leaving all controls with default captions and icons. A showstopper for Babel.
+
+) MNT getrel tweaked.
+
+
+
+AppArc 1.0.073
+==============
+
+2/06/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 072
+
+) Fixes SW3-1041: MNT now unsets all environmental variables it uses
+
+) Fixes SW3-1048: CApaAppList::UpdateL() does not increment iUpdateCounter. At last the extras bar updates properly.
+
+
+
+
+
+
+AppArc 1.0.072
+==============
+
+27/05/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 071
+
+) Fixed SW3-950: CApaApplication:GenerateFileName() will PANIC with <long-name>(100) by increasing a temp descriptors length by 4 bytes
+
+) Fixed SW3-1002: App list not always marked changed when it should be. Now it is.
+
+
+
+AppArc 1.0.071
+==============
+
+27/05/97 by IanH
+
+Uses:	apparc.dll: E32[107] ; F32[074] ; Store[043] ; GDI[053]
+
+	apgrfx.dll: Fntstore[043] ; Fbserv[066] ; Bitgdi[058] ; Wserv[085]
+
+Tools: E32Tools[067] ; E32Utils[018] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 070
+
+) Upgraded to C-001 level dependancies.
+
+) Eradicated all "taking address of temporary" warnings caused by passing &_L("") descriptors into TParse::Set() by creating temporary variables of type TPtrC. 
+
+) Checked that all major mnt commands work properly.
+
+) App list server version number incremented (I forgot to do this in the last release)
+
+) Fixed SW3-125: Changes to AIF files weren't being picked up by the cached app list.
+The list now caches the time stamp of each app's AIF - if this changes between scans then the data is re-read.
+If the AIF disappears, the icons & caption are reset to the defaults.
+
+) Fixed SW-5483: Password protected documents not handled gracefully under WINC.
+Model doors tried to restore encrypted documents without decrypting them first, leading to death. 
+Now encrypted docs are not restored, instead their container stores are just kept kicking about, ready to be written out again.
+This will allow Nautilus' Agenda synchronizer to deal with passworded memos tidily.
+
+
+
+
+AppArc 1.0.070
+==============
+
+23/05/97 by IanH
+
+Uses:	apparc.dll: E32[105] ; F32[072] ; Store[042] ; GDI[051]
+
+	apgrfx.dll: Fntstore[042] ; Fbserv[063] ; Bitgdi[056] ; Wserv[083]
+
+Tools: E32Tools[066] ; E32Utils[014] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 069
+
+) Fixed a bug in the recognizer list where in copying recognizers from one list to another the wrong extension was being appended to recognizer dll names and so they were failing to load.
+Involved adding one line of code that parsed in the absent .RDL extension. (spotted by Bill)
+
+
+
+AppArc 1.0.069
+==============
+
+21/05/97 by IanH
+
+Uses:	apparc.dll: E32[105] ; F32[072] ; Store[042] ; GDI[051]
+
+	apgrfx.dll: Fntstore[042] ; Fbserv[063] ; Bitgdi[056] ; Wserv[083]
+
+Tools: E32Tools[066] ; E32Utils[014] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 068
+
+) The data cached by the recognizer list to avoid calls to RLibrary wasn't actually being taken advantage of, meaning that the Shell couldn't atke advantage of these methods. 
+The cached data is now used whereever possible (spotted by Bill). 
+Changes made to CApaScanningFileRecognizer::operator[] and CApaScanningFileRecognizer::RecognizerListLC()
+
+
+
+
+
+
+
+AppArc 1.0.068
+==============
+
+21/05/97 by IanH
+
+Uses:	apparc.dll: E32[105] ; F32[072] ; Store[042] ; GDI[051]
+
+	apgrfx.dll: Fntstore[042] ; Fbserv[063] ; Bitgdi[056] ; Wserv[083]
+
+Tools: E32Tools[066] ; E32Utils[014] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 - 067
+
+) SW3-305 fixed: CApaAppList::Update() and Purge() fixed so that overriding of built-in apps works properly.
+
+) Loading/unloading/overriding of file recognizer dlls fixed. This has necessitated a couple of API changes:
+
+Two new exported methods on CApaFileRecognizerType - Lock() and Unlock().
+When CApaFileRecognizer::RecognizeFileL() is called and a particular type recognizer returned, this object should be Lock()'ed immediately, and should only be Unlock()'ed when you've finished using it.
+This will ensure the dll is not unloaded while you are using it. This change in usage will only affect the Shell.
+
+The protected method IMPORT_C TInt CApaFileRecognizer::RemoveFileRecognizerType(const CApaFileRecognizerType* aFileRecognizerType) added to allow recognizers to be removed from the list before their dll's are unloaded.
+
+
+
+
+
+
+
+AppArc 1.0.067
+==============
+
+19/05/97 by IanH
+
+Uses:	apparc.dll: E32[105] ; F32[072] ; Store[042] ; GDI[051]
+
+	apgrfx.dll: Fntstore[042] ; Fbserv[063] ; Bitgdi[056] ; Wserv[083]
+
+Tools: E32Tools[066] ; E32Utils[014] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065 and 066
+
+From Neil:
+
+) Fixed SW3-347: EXEs don't die properly when killed by the shell - all memory is now freed.
+
+) Fixed SW3-362: TApaTask::EndTask(TTimeIntervalMicroSeconds32 aDelay, TRequestStatus& aStatus) is flawed.
+It loses its two parameters, and no longer waits to see if an app responds to the shutdown message, offering to kill it if it does not.
+This behaviour was flawed because so apps where taking longer than the time limit to save their doc's before exiting, and so where being mistakenly identified as hung and were being shot.
+Changes made to the .def and .frx files to remove the parameters - only Eikon need rebuild.
+
+From Ian:
+
+) Optimisations of CApaDoor::SetFormatToIcon() code have brought a 100% speed increase for both creating and restoring doors.
+The changes included using the app list server to avoid scanning the filesystem when possible, and cutting down my use of AIF files (they are now loaded once instead of twice).
+
+) Fixed SW3-373: CreateControl should be CreateControlL(). control def & frz files altered accordingly.
+
+) Fixed SW3-424: AppListServer version numbers incorrect.
+
+) CApaScanningFileRecognizer now caches recognizers uid, drive and name so that this information can be returned to callers in other threads (the alternative, using RLibrary, will not work in this case). 
+This fix facilitates the Shell's use of this class.
+
+) "Profile" testcode added that profiles various aspects of apparc.
+
+
+
+
+
+
+
+AppArc 1.0.066
+==============
+
+15/05/97 by IanH
+
+Uses:	apparc.dll: E32[105] ; F32[072] ; Store[042] ; GDI[051]
+
+	apgrfx.dll: Fntstore[042] ; Fbserv[063] ; Bitgdi[056] ; Wserv[083]
+
+Tools: E32Tools[066] ; E32Utils[014] ; GCCTOOLS[113]
+
+General:
+
+Binary compatible with 065
+
+From Neil:
+
+) Fix for SW-5164 - Bombs leaping to the foreground when tasking between apps. 
+BC change involving moving the new window to the front before sending the old window to the back when switching tasks.
+
+From Ian:
+
+) Introduction of 3 new classes, and accompanying testcode :-)
+The technology for making the shell's control panel dynamically extensible is now in place.
+Extensions come in the form of plug-in dll's who's API must conform to control.def/frx (released in ctwns*.* and ctmarm*.*). 
+This means a method of the form:
+
+	EXPORT_C void CreateControl(const TDesC& aPath)
+		{}
+
+This first export must be a method that creates the control and runs it asynchronously.
+The path passed in is the full path of the control's dll - this could be useful for loading resources etc.
+There is no base class for these controls - implementors may write them as they wish.
+
+The plug-in control dll's must reside in \system\controls\ on any local drive. 
+They should have a ".ctl" extension and a UID2 of KUidSystemControlDll (defined in apgctl.h). 
+Their UID3 should uniquely identify that particular control.
+The system for loading these dll's means that dll's in ROM can be overridden by dll's in RAM and on local media - this means that the standard controls in the shell may be replaced by whizzier versions in the future.
+
+Each control dll may have an accompanying AIF file.
+If present, this file should contain the controls icon (1 icon 48x48 pixels), and it's caption in multiple languages. The other sections of AIF files are ignored for the purposes of controls.
+If a control doesn't have an accompanying AIF file, its caption defaults to the dll name and a default icon is used (this icon need not be the same as that for unrecognised files).
+
+AppArc provides classes to automate loading and caching these plug-in controls:
+CApaSystemControl (apgctl.h) is a wrapper for a plug-in extension to the shell's control panel. It represents a loaded control dll, and also caches the dll's icon and caption.
+CApaSystemControlList (apgctl.h) holds a linked list of CApaSystemControl's. It also manages rescanning of the filesystem to locate new controls.
+CApaScanningControlFinder (apfctlf.h) carries out the actual scanning, and it is here that the directory structure for control dll's is mandated
+
+One minimal sample control has been supplied in testcode: m_ctrl.mak
+
+
+
+
+AppArc 1.0.065
+==============
+
+14/05/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[105] ; F32[072] ; Store[042] ; GDI[051]
+
+	apgrfx.dll: Fntstore[042] ; Fbserv[063] ; Bitgdi[056] ; Wserv[083]
+
+Tools: E32Tools[066] ; E32Utils[014] ; GCCTOOLS[113]
+
+General:
+
+***** Do not touch this apparc until there's a new WPENG to go with it!!!!!!!! *****
+
+Not quite binary compatible with 058 - 061 and 064, but almost nobody will notice (see 5)
+
+1) Moved up to C0 level dependancies.
+
+2) App's aifdata no longer released - this is now released with AifTool but in time will migrate to the apps themselves.
+
+3) Fixed SW3-71 - IMPORT_C static TInt NewThread() removed from apsserv.h as the method didn't actually exist.
+
+4) Fixed SW-5359 - Drives are now scanned in the order y:->a: then z:, ensuring that removable/substed drives are scanned before the RAM drive, and that ROM is scanned last. 
+Remote drives are not scanned.
+This means that files in RAM or ROM can be overridden by plugging in a CF card - a good last ditch escape route.
+
+5) Fixed SW-5220 - CApaModelDoor needed a DetachFromStore(), otherwise an embedded store was being left open when its host was destroyed, causing panics in Nautilus.
+CApaModelDoor now overrides virtual CPicture::DetachFromStore(), but this shouldn't affect anyone because CApaModelDoor has a NewL() and it's c'tor is private and not exported.
+This fix involved adding one new export to apparc.dll - done in a BC fashion. 
+It also meant adding one new virtual function to CApaModelHeader:
+
+	virtual void DetachFromStoreL(CPicture::TDetach /*aDegree*/)=0;
+
+This means that anyone who used this class must recompile against this new apparc - a grep of r: suggests that this will only be WPENG and Nautilus.
+
+grep -dli-w CApaModelHeader r:\*.cpv r:\*.inv r:\*.h_v
+
+File R:\APPARC\APPARC\APAMDR.CPV:
+File R:\APPARC\TSRC\T_MDR.CPV:
+File R:\NAOLEIFS\AGNSYSRC\E32MODEL.CPV:
+File R:\NAOLEIFS\AGNSYSRC\E32RICHT.CPV:
+File R:\NAOLEIFS\WRDSRC\EWORD.CPV:
+File R:\NAUTILUS\SCWORD\EWORD.CPV:
+File R:\WORD\WPENG\WNGDOOR.CPV:
+File R:\APPARC\INC\APAMDR.H_V:
+File R:\NAOLEIFS\AGNSYSRC\E32MODEL.H_V:
+File R:\NAOLEIFS\WRDSRC\MODELDH.H_V:
+File R:\NAOLEIFS\WRDSRC\MODELHD.H_V:
+File R:\WORD\INC\WNGDOOR.H_V:
+
+Implementors of this class (ie WPENG) should provide this new method with a body that, if necessary, passes the call on to the model that they contain. This will ensure that all users of the store have a chance to tidily get rid of any dependance on the store before it disappears.
+In the case of WPENG this will mean either adding a DetachFromStoreL() method to CWordModel that propagates the call to its text component, or making this call directly on the text from the header.
+Nautilus, the only other team affected, will need to do no more than rebuild against the new apparc and WPENG.
+
+6) .map files for all arm dll's are now pvcsed along with the dll's themselves
+
+
+
+
+
+
+
+AppArc.064
+==========
+
+07/05/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[099+] ; F32[069+] ; Store[042+] ; GDI[048+]
+
+	apgrfx.dll: Fntstore[038+] ; Fbserv[057+] ; Bitgdi[055+] ; Wserv[080+]
+
+Tools: E32Tools[063] ; E32Utils[012] ; GDITOOLS[034] ; GCCTOOLS[113]
+
+General:
+
+) Binary compatible with 058 - 062.
+
+) replaces bad 063
+
+
+AppArc.063
+==========
+
+07/05/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[099+] ; F32[069+] ; Store[042+] ; GDI[048+]
+
+	apgrfx.dll: Fntstore[038+] ; Fbserv[057+] ; Bitgdi[055+] ; Wserv[080+]
+
+Tools: E32Tools[063] ; E32Utils[012] ; GDITOOLS[034] ; GCCTOOLS[113]
+
+General:
+
+) Binary compatible with 058 - 062.
+
+) Fixed SW-5063 - apps being orphaned if their doc's failed to construct.
+
+) Following three public methods added to CApaScanningFileRecognizer:
+
+	IMPORT_C void SetRecognizerL(const TRecognizer& aRecognizer); 
+	IMPORT_C TRecognizer operator[](TInt aIndex)const; 
+	IMPORT_C TInt UpdateCounter()const;
+
+These additions have been approved by the BC police and have been implemented in a BC fashion.
+They are required by the Shell so that it can keep it's two recognizers in sync with one another without undue work and allocing.
+
+SetRecognizerL() will return silently if a recognizer of that UID is already present in the list, but will leave if it doesn't exist on disc or has incorrect UID's etc.
+
+) T_File testcode expanded to test the above
+
+
+
+AppArc.062
+==========
+
+02/05/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[099+] ; F32[069+] ; Store[042+] ; GDI[048+]
+
+	apgrfx.dll: Fntstore[038+] ; Fbserv[057+] ; Bitgdi[055+] ; Wserv[080+]
+
+Tools: E32Tools[063] ; E32Utils[012] ; GDITOOLS[034] ; GCCTOOLS[113]
+
+General:
+
+) Binary compatible with 058 - 061.
+
+) Fix to CApaDoor::NewL() that was not always deleting the doc it took ownership of in OOM conditions.
+
+) Texted's .AIF updated such that it's caption is now "Program"
+
+) The spec of CApaAppFinder::FindAppL(const TDesC& aFileName,TUid aFileUid)=0 has changed (SDK team take note!):
+
+- if a valid full path has been passed in as aFileName, that is returned.
+
+Otherwise,
+
+- if aFileUid is not KNullUid all drives are scanned for a file matching aFileUid and aFileName's extension (.APP is used if no extension is specified) ie. if aFileUid is supplied aFileName is ignored except for the extension
+- if aFileUid is KNullUid a file matching aFileName is searched for
+
+This means that an app can have it's dll and directory renamed (eg system\apps\word\word.app -> system\apps\oldword\oldWord.app) and word documents will still be associated with it because association is now by UID  in the first instance.
+
+) Testcode updated.
+
+
+
+
+
+AppArc.059
+==========
+
+29/04/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[099+] ; F32[069+] ; Store[042+] ; GDI[048+]
+
+	apgrfx.dll: Fntstore[038+] ; Fbserv[057+] ; Bitgdi[055+] ; Wserv[080+]
+
+Tools: E32Tools[063] ; E32Utils[012] ; GDITOOLS[034] ; GCCTOOLS[113]
+
+General:
+
+) Binary compatible with 058. Source compatible unless you used KApfTempPath in apfdef.h
+
+) KApfTempPath now hidden in a static method Apfile::TempPath(), added in a BC manner.
+
+) Bug in TApaAppCapability::InternalizeL() that was causing the iIsHidden flag to always be set to false fixed (spotted by Bill).
+
+) 2nd UID of KSharedLibraryUid [0x1000008d] added to apparc.dll, apgrfx.dll, apfile.dll and apserv.dll (SW-3947)
+
+) CApaAppListServer::NewL() no longer panics if you try to create a second instance - it now leaves KErrAlreadyExists (SW-4338)
+
+) CApaScanningAppFinder::FindAppL() does not now confuse files and directories, and only recognizes apps with \system\apps\ in their path (SW-4325)
+
+) Server-side support for RApaLsSession::GetAppCapability() and StartApp() added - they no longer return KErrNotSupported.
+
+) Apparc no longer releases the default AIF file (appdata.zip) - this will now be released by Eikon.
+
+
+
+
+
+
+
+AppArc.058
+==========
+
+22/04/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[098] ; F32[069] ; Store[042] ; GDI[049]
+
+	apgrfx.dll: Fntstore[038] ; Fbserv[055] ; Bitgdi[054] ; Wserv[079]
+
+Tools: E32Tools[063] ; E32Utils[011] ; GDITOOLS[032] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible with previous releases. This release freezes the API.
+
+) Takes new components as above
+
+) TBool TApaAppCapability::iAppIsHidden added to AIF files. The extensability system for capabilities means that old AIF files are still valid - they will just default to a false value for this new flag.
+If this flag is set true then the app should not be shown in the Shell (eg in the extra's bar). (requested by Kevin Dempsey)
+
+) CApaDocument::ValidatePasswordL()const added. Apps that support passwording should override the default implementation and check the password, leaving KErrLocked if the password is set but not successfully entered. (suggested by DW)
+
+) CApaDoor::DocumentL(TBool aCheckPassword=EFalse) gains the aCheckPassword parameter.
+If aCheckPassword is set to ETrue and the document is in memory, any password will be checked before a handle to the doc is returned. 
+If the document has to be restored the password will always be checked, irrespective of this parameter's value.
+
+) TRunContext removed from CApaApplication, along with virtual method DocumentRunContext(). 
+It has been replaced by a pv method Capability() that should return a cached version of the information held in the AIF file (an implementation of this method will be provided at the Eikon level).
+
+== sell App::Capability() and PreDocConstruct() to Eikon
+
+) CApaDoor's c'tor now checks that the document passed in supports embedding, leaving KErrNotSupported if it does not.
+
+) When CApaDoor restores a glass door but SetFormatToGlassL() fails, the door now sets itself iconic unless the error returned was KErrNoMemory, which is propagated.
+
+) TFileName iFullFileName removed - RLibrary::FileName() is now used instead.
+
+) RApaLsSession::GetAppCapability() added - stubbed for now.
+
+) CApaMaskedBitmap c'tor provided and made private to sabotage derivation.
+
+) CApaWindowGroupName member data made private.
+
+) CApaFileRecognizerType::RunL() now returns the TThreadId of the main thread started so that observers can log onto clients threads etc. (requested by HowardP)
+
+) Taken over releasing the app's .AIF files from Bill - Apparc now pvcs's the necessary bitmaps etc.
+
+) enum CApaFileRecognizerType::TFileType renamed TRecognizedType. Some values have been renamed:
+EApp -> EProgram
+ENotDocOrApp -> EOtherFile
+
+Type() method added to CApaFileRecognizerType that returns the TRecognizedType of the current file.
+
+) TUid CApaFileRecognizerType::FileType() renamed TypeUid()
+
+) TApaAppCapability::CopyCapability() made void.
+CApaFileRecognizerType::Capability() made void.
+CApaAppData::Capability() made void.
+CApaAppInfoFileReader::Capability() made void.
+
+) CApaAppListServer no longer takes ownership of the app list and recognizer passed into its c'tor
+
+) UpdateList() withdrawn from the Xxx API to avoid nasty re-entrance problems in the app list.
+
+) The max filename length for recognizer dll's is now limited to 12 characters (not including path or extension). 
+This is defined as KApaMaxRecognizerNameLength in apaflrec.h
+
+) CRecognizerArray* RecognizerListLC()const and SetRecognizersFromList(const CRecognizerArray& aList) added to CApaScanningFileRecognizer so that multiple recognizers can be kept up-to-date without them all needing to rescan.
+
+) The exe recognizer now recognizes all files with a 1st UID of KExecutableImageUid (defined in e32uid.h). It runs them as exe's on ARM, but loads them as dll's under WINS (exe's dont work under WINS).
+UID[2] values are no longer used for exe's - KUidExe, KUidExeNonFile and KUidExeDoc have been withdrawn.
+
+Changes as a result of AndrewT's API review:
+
+) CApaDll, and it's containing header apadll.h, made private - no longer released
+
+) MApaAppFinder becomes CApaAppFinder - better design, as the object can be deleted through this interface
+MApaAppLocator becomes CApaAppLocator for similar reasons...
+
+) As a result CApaAppFinder becomes CApaScanningAppFinder
+
+) CApaApplication::OpenIniFileLC(RFs& aFs) becomes pure virtual to avoid dangerous policy decisions on file locations. 
+An implementation will be provided by Eikon :-)
+
+) Reserved some virtual methods in CApaApplication and CApaDocument
+
+) KIniFileDrive removed from apadef.h along with KIniFileExtension and KAppInfoFileExtension
+
+) TApaDocCleanupItem (apacln.h) has changed slightly - it's now even easier to but CApaDocument-derived classes on the cleanup stack:
+
+		TApaDocCleanupItem cleanup(iApaProcess,doc);
+		CleanupStack::PushL(cleanup);
+		// do stuff...
+		CleanupStack::Pop();
+
+) The following definitions moved from apadef.h to a new header apfdef.h:
+KAppFileExtension
+KAppInfoFileExtension
+KIniFileExtension
+KIniFileDrive
+
+
+
+
+AppArc.056
+==========
+
+07/04/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[097] ; F32[067] ; Store[041] ; GDI[047]
+
+	apgrfx.dll: Fntstore[038] ; Fbserv[053] ; Bitgdi[053] ; Wserv[078]
+
+Tools: E32Tools[060] ; E32Utils[010] ; GDITOOLS[031] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible with previous releases.
+
+) CApaMaskedBitmap::NewL() made static (spotted by Bill)
+
+) As suggested by Geert, the protected interfaces of all public classes have been reviewed. 
+The following classes no longer have protected interfaces, meaning that they lose some exported functions and can no longer be derived from:
+
+	CApaDoor
+	CApaModelDoor
+	CApaAppFinder 
+	CApaIconFileReader / Writer (these classes have also been renamed... see below)
+
+) CApaAppListServer startup changed. The server now runs in the callers thread, and takes ownership of the applist and file recognizer passed to it.
+Any shell should have code similar to the following in it's construction routine (eg in CShlModel::NewL()):
+
+	CApaAppFinder* appFinder=CApaAppFinder::NewL(fs);
+	appList = CApaAppList::NewL(fs,appFinder);	// takes ownership of appFinder
+	fileRecognizer = CApfFileRecognizer::NewL(fs,appList,aAppStarter);
+	appListServer = CApaAppListServer::NewL(appList,fileRecognizer); // takes ownership of appList and fileRecognizer
+
+) Icon files have been renamed to application info files - they now contain information previously encoded into the app UID.
+The old .ICN file format is no longer supported - new .AIF files for all apps will be forthcoming.
+The capabilities are defined by the following class in apgicnfl.h:
+
+	class TApaAppCapability
+		{
+	public:
+		TBool iCannotRunAsMainApp;
+		TBool iIsEmbeddable;
+		TBool iSupportsNewFile;
+		};
+	typedef TPckgBuf<TApaAppCapability> TApaAppCapabilityBuf;
+
+New methods of the app info file reader and writer (previously icon file reader/writer) get and set the capability:
+
+TInt CApaAppInfoFileReader::Capability(TDes8& aInfo)const
+TInt CApaAppInfoFileWriter::SetCapability(TDes8& aInfo)const
+
+Both methods should be used in conjunction with the TApaAppCapabilityBuf buffer as follows:
+
+	// set some capabilities
+	TApaAppCapability capability;
+	capability.iIsEmbeddable = ETrue;
+	capability.iSupportsNewFile = EFalse;
+	TApaAppCapabilityBuf buf(capability);
+	TInt ret = writer->SetCapability(buf);
+
+	// check the capability
+	TApaAppCapabilityBuf buf;
+	TInt ret = reader->Capability(buf);
+	TApaAppCapability capability=buf();
+
+) There have been various API changes to support this:
+	- The CApaIconFileXxx classes become CApaAppInfoFileXxx 
+	- KIconFileExtension becomes KAppInfoFileExtension and is now defined as ".AIF"
+	- KUidAppIcon is renamed KUidAppInfoFile, but retains the same value.
+	- some classes have gained Capability(TDes& ) methods, into which you  should pass a TApaAppCapabilityBuf as described above.
+	- CApaApplication::OpenIconFileLC() becomes OpenAppInfoFileLC()
+	- MApaAppLocator::GetAppCapabilityByUid(TDes8& aCapabilityBuf,TUid aAppUid)=0 added
+
+) All apps should now have the same UID[1] - KUidApp. All other app UID values have been withdrawn.
+As a result CApaDll::IsAppUid() has been withdrawn.
+
+) EIKAPP.DEF, the def file used by apps when linking, has been renamed APP.DEF and is now reeased by apparc into epoc32\release\wins.
+The link section of all apps should now contain /def:"\Epoc32\Release\Wins\app.def" unless they have any other exports apart from those specified app.def
+A matching app.frz has been released into \Epoc32\Release\Marm\ - this is only a guide however. 
+Each app should produce it's own set of 4 ARM .frz files (one for each build) because ARM .frz files encode the dll name and build in their first line.
+
+) There are two new releasables dfwns and dfarm that should be fetched to \epoc32\release\wins\ and \epoc32\release\marm\ respectively. They contain the .def files for apps and recognizers.
+
+From Neil:
+
+) CApaTask::SwitchOpenFile() and SwitchCreateFile() now check the window group name for busy and not supported flags, returning an error if the request cannot be completed. 
+A few chnages have been made to CApaWindowGroupName to support this
+
+
+
+
+
+
+
+
+
+AppArc.055
+==========
+
+06/04/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[096] ; F32[065] ; Store[040] ; GDI[046]
+
+	apgrfx.dll: Fntstore[037] ; Fbserv[052] ; Bitgdi[051] ; Wserv[076]
+
+Tools: E32Tools[057] ; E32Utils[009] ; GDITOOLS[031] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible with previous releases.
+
+From Neil:
+
+) RestartAfterBackup() and Set...() removed from CApaWindowGroupName API as these services are now handled remotely.
+
+) RespondsToSwitchFilesEvent() and Set...() added to CApaWindowGroupName - an app (eg OPL) can unset this flag to inform the shell that it does not support switch files and that a new instance should be created for each new launching of the app.
+
+) RespondsToShutdownEvent() and Set...() added to CApaWindowGroupName - an app (eg OPL) can set this flag to inform any shell that it needs to be killed, not closed.
+
+) TApaTask::KillTask() added to kill tasks that dont respond to "shutdown" messages
+
+) T_wgnam extended to test above CApaWindowGroupName changes.
+
+From Ian:
+
+) Fixes to a couple of header files such that all referenced classes are now defined prior to their use, rather than relying on someone else doing it some time before including that header.
+
+) CApaAppList now behaves sensibly if an app's icon file is corrupt or empty - it loads icons from the default icon file rather than leaving.
+
+) CApaIconFileReader::NewL() added to complement NewLC()
+
+) Extra "name" builds added to all .mak files to make binary compatable releases easier (suggested by Geert)
+
+) Temporarily iconic doors now persist the correct glass door size even if the embedded doc is edited (bug spotted by MartinH SW-2195)
+
+) Base address of 0x43700000 set for apserv.dll (ommission spotted by MartinB)
+
+) All RApaLsSession methods now implemented except for UpdateList() and StartApp(), which still return KErrNotSupported.
+
+
+
+
+
+
+
+AppArc.053
+==========
+
+30/03/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[095] ; F32[063] ; Store[039] ; GDI[046]
+
+	apgrfx.dll: Fntstore[037] ; Fbserv[051] ; Bitgdi[051] ; Wserv[075]
+
+Tools: E32Tools[056] ; E32Utils[009] ; GDITOOLS[031] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible
+
+From Neil:
+
+) CApaCommandLine::New(HBufC*) added.
+
+) Untrapped leave bug fix to CApaTaskList
+
+From Ian:
+
+) OOM testcode T_OOM added. A couple of OOM fixes have arisen from this.
+
+) Fix to CApaAppFinder such that it ignores more F32 errors rather than stopping a search prematurely without good reason (spotted by Simon while using his floppy drive)
+
+) The API of RApaLsSession (apgcli.h) is now complete, though some methods are not yet implemented server-side. 
+This class represents a session with the app list server.
+The app list server provides system-wide access to any shell's cached list of applications.
+When the shell is started it will create a CApaAppList - after doing this it should start a server, passing in the handle to it's list.
+The server shares the Shell's heap and accesses the list as required.
+If the shell does not set up the server all client attempts to connect will fail. Among other things, this will mean that "Embed object" dialogs will not work.
+
+) TApaAlServStarter::StartInThread(CApaAppList* aAppList,CApaFileRecognizer* aFileRecognizer) now takes the CApaFileRecognizer* as an extra parameter. 
+For you can pass in a null recognizer handle if you wish, though that will mean that clients wont be able to start apps using the app list server.
+
+) Americanized some argument names in header files on request of MartinT (eg aRecogniser -> aRecognizer)
+
+) static TInt CApaApplication::GenerateFileName(RFs& aFs,TFileName& aRootName) added - some code taken from Shell.
+The root name passed should consist of drive,path,and root filename. 
+The path is created if it doesn't already exist, and then if the root filename is already in use a new name is generated:
+eg "c:\Documents\Name.ext"
+   "c:\Documents\name(01).ext"
+aRootName is set to equal the new full name.
+KErrArgument is returned if not all components of aRootname are present, and KErrOverflow is returned if the generated filename becomes too long.
+
+) The definition of "non-filebased" has been tightened somewhat to mean "cannot create new files" ie an app that doesn't want to appear on the Shell's "New file" list.
+
+) 
+
+
+
+
+
+
+
+
+AppArc.052
+==========
+
+24/03/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[093] ; F32[061] ; Store[037] ; GDI[044]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[050] ; Bitgdi[050] ; Wserv[074]
+
+Tools: E32Tools[053] ; E32Utils[009] ; GDITOOLS[031] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible
+
+From Ian:
+
+) The pure virtual method CApaDocument::IsEmptyL(CStreamStore) becomes IsEmpty()const.
+It becomes const, ceases to leave and no longer takes a store as a parameter - on Restore() doc's should internalize enough data such that they know whether or not they have any content. (suggested by Delma)
+
+) Added new dll apserv - released as a part of the apgrfx releasables. It provides server access to a cached list of apps available on the machine. Nobody bar Eikon will want to use it. 
+More details to follow
+
+) Added CApaDoor::AppUidL() that returns the UID of the app associated with the embedded doc (requested by DavidA)
+
+) Icon files no longer stretch icons to the required size when they're requested. 
+A call to CApaIconFileReader::CreateMaskedBitmapL() will now returned the largest available bitmap that isn't larger than the requested size.
+If all available icons are larger than the size requested, the smallest available icon is scaled down and returned. 
+
+
+
+
+
+AppArc.050
+==========
+
+19/03/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[093] ; F32[061] ; Store[037] ; GDI[044]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[050] ; Bitgdi[050] ; Wserv[074]
+
+Tools: E32Tools[053] ; E32Utils[009] ; GDITOOLS[031] ; GCCTOOLS[113]
+
+General:
+
+1) Binary compatible with 049
+
+From Ian:
+
+2) Bug fix to CApaDoor::ExternalizeStateStream() - temporarily iconic doors now remember their glass size correctly after multiple Store()'s (spotted by DavidA)
+
+
+
+
+
+
+
+AppArc.049
+==========
+
+11/3/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[093] ; F32[061] ; Store[037] ; GDI[044]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[050] ; Bitgdi[050] ; Wserv[074]
+
+Tools: E32Tools[053] ; E32Utils[009] ; GDITOOLS[031] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible with previous releases
+
+From Ian:
+
+2) Bug fix to dodgy ASSERT in CApaDoor::DetachFromStore() (spotted by DavidA)
+
+) CApaDocument::EditL() now takes an extra parameter: TBool aReadOnly.
+If aReadOnly is true, the embedded doc should be opened in read-only mode - ie navigation of the document should be allowed, but it should not be possible to change the content.
+This parameter defaults to EFalse.
+
+) Agenda bugs SW-479 and SW-520 fixed - glass doors now correctly persist their size if they are temporarily made iconic
+
+) CApaDoor::SetFormatToTemporaryIcon() now takes a TBool parameter which allows it to be toggled on and off. The default parameter is ETrue
+If a door is in iconic mode, SetFormatToTemporaryIcon(ETrue) has no effect - it stays iconic.
+If a door is glass, SetFormatToTemporaryIcon(ETrue) temporarily makes it iconic, but when persisted the door will persist glass door settings.
+SetFormatToTemporaryIcon(EFalse) only has an effect if the door is currently ETemporarilyIconic. In this case the door is returned to EGlassDoor format.
+
+) TApaPictureFactory::SetIconSize() added. 
+If called, this causes all doors restored by the factory to have their iconic size set as specified instead of using the persisted value.
+This fixes SW-1026 - doors being pasted from one app to another end up with the door size of the old app, even though this is often different to the default icon size in the new app.
+
+From Neil:
+
+) TApaWindowGroupName becomes CApaWindowGroupName, using an HBufC to provide support for long filenames.  
+This will fix showstopper bug SW-1488
+
+Consequent changes to this class are:
+
+The static FindByXxx() functions no longer return an instance of the class.  
+Use the NewL() or NewLC() variant which takes a window group id (returned by the FindByXxx() function), to initialize a window group name or the new exported function ConstructFromWgIdL() for an existing instance of the class
+
+SetCaption() becomes SetCaptionL() and likewise: SetDocName() becomes SetDocNameL();
+
+
+
+AppArc.048
+==========
+
+11/3/97 by DavidW
+
+Uses:
+
+	apparc.dll: E32[090] ; F32[060] ; Store[037] ; GDI[044]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[049] ; Bitgdi[049] ; Wserv[073]
+
+Tools: E32Tools[051] ; E32Utils[008] ; GDITOOLS[030] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible
+
+2) Provided a VALID verb for MNT.CMD, to check that the (Arm Rel and
+Arm Deb) releaseables are completely rebuildable from the network
+
+3) Three new functions added to TApaTask:
+
+    IMPORT_C TInt SwitchOpenFile(const TDesC& aFilename);
+    IMPORT_C TInt SwitchCreateFile(const TDesC& aFilename);
+    IMPORT_C TInt SendMessage(TUid aUid, const TDesC& aParams);
+
+4) The above implemented by means of new Uid values
+
+const TUid KUidApaMessageSwitchOpenFile={0x10000163};
+const TUid KUidApaMessageSwitchCreateFile={0x10000164};
+
+5) I have broken the Unicode build, since SendMessage wants to call
+an RWsSession function taking a TDesC8& as a parameter.  I'll leave
+this for someone else to fix
+
+6) Fixed the FindApp(TUid) and CycleTasks() functions to TApaTaskList
+to be EXPORTed
+
+From Ian:
+---------
+7) On Kevin's suggestion, introduced a new TFormat type for CApaDoorBase, namely ETemporarilyIconic
+
+8) New virtual function SetFormatToTemporaryIconL() in CApaDoor, with the effect that
+// if the door is currently iconic do nothing
+// if the door is glass switch it's format to iconic, but ensure that when externalized the format will be persisted as glass
+
+
+
+
+
+AppArc.047
+==========
+
+10/3/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[090] ; F32[060] ; Store[037] ; GDI[044]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[049] ; Bitgdi[049] ; Wserv[073]
+
+Tools: E32Tools[051] ; E32Utils[008] ; GDITOOLS[030] ; GCCTOOLS[113]
+
+General:
+
+1) Not binary compatible
+
+2) Takes new F32, GDI, GCC
+
+) CApaDocument::EditL() no longer takes a store as a parameter. On restoration documents should hang onto the store handle for future reference, only nulling it if DetachFromStore() is called (this will be called before the doc is stored).
+
+) The OPL recogniser (formerly known as recint.rdl) is no longer released by apparc. 
+It will now be released as a part of OPL - .iby's should change to reflect this but no changes to mnt getbld's should be required as all apparc's recognisers are packaged in one releasable.
+
+) Default implementation of CApaDocument::GlassDoorL() now panics instead of returning null. Should aid debugging. (suggested by MartinB)
+
+) TUid iSource added to CApaDoorBase for use by converters. 
+It stores the foreign representation of a translated door (eg MS Word doc), and is KNullUid if the door was not created by converting from a foreign file.
+
+From Bill:
+
+) CApaAppList::UpdateL() changed such that it only increments the "UpdateCounter" if the apps present have changed.
+This will stop the Shell ExtrasBar from re-drawing itself every time a file is created / deleted, etc.
+
+) TApaTaskList::FindApp(TUid) and TApaTaskList::CycleTasks() added (merged by NeilD)
+
+
+
+
+
+
+
+
+
+
+AppArc.046
+==========
+
+4/3/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[090] ; F32[060] ; Store[036] ; GDI[043]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[049] ; Bitgdi[049] ; Wserv[073]
+
+Tools: E32Tools[051] ; E32Utils[008] ; GDITOOLS[030] ; GCCTOOLS[111]
+
+General:
+
+1) Binary compatible with 045
+
+) Fixed access violation bug in CApaDoor::SetFormatToGlass() (spotted by MartinD)
+
+
+
+
+
+
+
+AppArc.045
+==========
+
+3/3/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[090] ; F32[058] ; Store[036] ; GDI[043]
+
+	apgrfx.dll: Fntstore[036] ; Fbserv[049] ; Bitgdi[049] ; Wserv[073]
+
+Tools: E32Tools[051] ; E32Utils[008] ; GDITOOLS[030] ; GCCTOOLS[111]
+
+General:
+
+1) Not binary compatible with 044
+
+) updated to new components as above
+
+) CApaAppFinder's constructor now takes it's RFs& as const (suggested by Simon)
+
+) CApaDocument::GlassPictureL() no longer takes a store as a parameter. 
+The doc will either be newly created or will be RestoreL()'ed before GlassPictureL() is called - so CApaDocument::RestoreL() must restore the doc to a state from which it can draw itself as a glass door (if it supports this form of display).
+
+) CApaDoor::DocumentL() and SetFormatToGlassL() no longer take a store as a parameter
+
+) CApaDoor::SetFormatToIconL() no longer takes a size as a parameter - the size is passed in on construction and persisted. 
+An iconic door's Capability() states that it does not support scaling (ie changing its size) so that form will not allow the user to drag icons to different sizes. 
+Despite this the icons size may still be altered through calls to SetSizeInTwips() and SetSizeInPixels().
+
+) Embedded documents in doors are now put in their own embedded store inside the door. (Thanks to Charles, AndrewT and Geert for help with this)
+This means that doors can be copied without having to load up the document they contain, giving speed and memory gains.
+A consequence of this is that even if a main document is encrypted, any embedded documents will remain unencrypted. 
+Embedded documents may be encrypted in their own right, but they do not inherit any protection from container documents.
+This should be stressed in user documentation. 
+
+) Representation of doors as icons improved - they now make better use of the different sizes of icon available.
+
+) If an app supports embedding (eg it has a rich text component) it should ensure that it overrides CApaDocument::DetachFromStore and propagates the call to all embedded objects.
+
+) CApaIconFileReader::NewLC() now accepts KNullUid instead of a valid uid for the icon file, and doesn't check the type in this case.
+
+) MApaAppFinder gains two more pure virtual methods that return the temp file path and the full filename of the default icon file, centralizing access to the two pieces of info.
+
+) CApaProcess::NewL() no longer takes a temp path as a parameter. This path is now defined in apffndr.h and need not be defined anywhere else.
+
+) CApaModelDoor now stores and restores it's format and size such that it can be understood by a CApaDoor and vice versa.
+
+) Class CApaDoorBase introduced, which CApaModelDoor and CApaDoor inherit from. 
+The enum TFormat that was scoped by CApaDoor is now scoped by CApaDoorBase.
+The method CApaDoor::GetFormat() moves to CApaDoorBase and changes name to Format().
+
+) The UID typing scheme for app dll's has been extended slightly. 
+The general layout for an app dll's uid type has not been changed, and is:
+
+UID[0] = PE File
+UID[1] = Type of app
+UID[2] = particular app id
+
+The types of app have been extended to specify whether or not an app is file-based, and are now as follows:
+
+KUidApp							0x1000006c - file-base, non-embeddable app (eg Agenda)
+KUidAppNonFile					0x1000014a - non-file based non-embeddable app (eg Calculator)
+KUidAppEmbeddable				0x1000006e - file-based embeddable and main app (eg Word)
+KUidAppEmbeddableNonFile		0x1000014b - non-file-based main and embeddable app (no eg)
+KUidAppEmbeddableOnly			0x1000006f - app is embeddable only, cannot run as a main app (therefore non-filebased by definition)
+
+File-based apps are document centric and create lots of files (eg word), while non-file-based apps aren't and don't (eg calculator).
+All app writers must choose the UID that best suits their app - see Ian if you're unsure.
+This change will allow the shell to list only file-based apps in it's "Create new file" dialog.
+This has involved a couple of UID name changes (though the meaning of the UIDs reamins the same)
+
+KUidAppDll becomes KUidApp
+KUidAppAndEmbeddedApp becomes KUidAppEmbeddable
+
+) A third file recogniser dll added: RECEXE.DLL, the exe recogniser. This recognises files with the following uid layout:
+
+For exe's:
+
+UID[0] = PE File
+UID[1] = Type of exe					
+UID[2] = particular exe id
+
+The types of exe mirror the types of app, and are as follows:
+
+KUidExe							0x10000070 
+KUidExeNonFile					0x1000014C
+
+For doc's associated with exe's:
+
+UID[0] = Store type
+UID[1] = KUidExeDoc				0x10000071
+UID[2] = id of associated exe
+
+) File recogniser dlls now have a .rdl extension (Recognizer DLl) and live in \system\recogs NB this means mnt getrel's will have to change to get the recognisers down into this directory
+
+) Changes to CApaFileRecognizerType:
+RecognizeFileL() becomes concrete and a pure virtual method DoRecognizeFileL() is added.
+TUid iFileType is added - by default this is set to UID[1] of the recognized file - it's type
+TUid iAppUid is now the UID of the associated app - by default this is set to UID[2] of the recognized file. 
+There are now inline methods to return these two UID's.
+Pure virtual method Capability() added - this returns a TCapability class detailing whether the recognised file is a program, and, if so, whether it is file-based and whether it is embeddable.
+
+) CApaDocument::DetachFromStoreL() now takes a CPicture::TDetach as a parameter. 
+This will be one of EDetachFull and EDetachDraw.
+For EDetachFull you should ensure that you internalize all data that you require to fully store yourself later, and null any references to containing stores.
+For EDetachDraw you should ensure that you have internalized enough info to draw yourself, nothing more, and that you null any references to containing stores.
+If an app doesn't support drawing as a glass door it wont have to do anything in the case of EDetachDraw (except that nulling of stores).
+
+From Neil:
+
+) TApaCommandLine class heavily revamped. 
+It's now called CApaCommandLine, and gains methods for setting each component of the command line separately.
+
+) Implementors of MApaAppStarter::StartAppL(const CApaCommandLine& aCommandLine) should note that it must now take ownership of the command line and protect it and destroy it appropriately.
+ 
+
+
+
+
+
+
+
+AppArc.043
+==========
+
+13/2/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[035] ; GDI[042]
+
+	apgrfx.dll: Fntstore[035] ; Fbserv[045] ; Bitgdi[045] ; Wserv[065]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General:
+
+1) Not binary compatible with 042
+
+) updated to new components as above
+
+2) A large-scale re-organisation of code has taken place. 
+AppArc is now split into 3 major dll's plus multiple plug-in app recognisers.
+Of all the changes, the highlights include:
+
+The file recogniser base classes now live in apparc.dll and can be found in apaflrec.h, not apgflrec.h as was previously the case.
+
+TApaAppIdentifier, TApaAppEntry and TApaAppFinderBase now live in a new header apaid.h in apparc.dll
+
+Apgrfx.h becomes apgdoor.h as it defines CApaDoor
+
+TApaAppFinderBase becomes MApaAppFinder, and gains member functions to find all available apps as well as finding a particular one.
+
+TApaAppFinder becomes CApaAppFinder. It now lives in apfile.dll and encasulates all the search logic that depends on any particular file system structure (ie system\apps etc).
+
+CApaAppList now takes a MApaAppFinder as a parameter to its constructor, using this to build its list of available apps. It takes ownership of the app finder supplied.
+
+A couple of mixins gain virtual inline destructors. This allows derived objects to be deleted through these interfaces.
+
+Names defined for a few previously anonymous CBase-derived classes.
+
+apgrfx.h becomes apgdoor.h
+
+CApaModelHeader::AppId() made const (suggested by Duncan)
+
+Class CApaScanningFileRecogniser added - this is a concrete implementation of CApaFileRecogniser that scans the system for plug-in app recogniser dlls (eg interpreted app recogniser, exe recogniser, apparc app recogniser).
+Plug-in app recognisers are searched for in \system\libs\ on all non-remote drives.
+Plug-in dlls should have the following UIDS: 
+	UID[0] = [dll build]
+	UID[1] = KUidAppRecognizer   (={0x1000013E})
+	UID[2] = [uid of the particular dll] (eg KUidInterpreterExe for the exe interpreter)
+A plug-in's first exported function should be a parameterless constructor that returns a pointer to full constructed object of base type CApaFileRecogniserType.
+
+A concrete implementation of MApaAppLocator, CApaAppLocatorProxy, is also provided (for the sole use of CApaScanningFileRecogniser). This class implements GetAppEntryByUid(TUid) by scanning the system for an app dll that has the matching UID.
+ 
+App dll's should now once again export their constructor as their ordinal 1 method. The dummy 1st export is no longer required due to changes in the shell to bring it into line with the rest of the world. (Sorry for the hassle).
+
+
+Testcode:
+
+T_FILE testcode added that tests the built-in app finder, and also CApaScanningFileRecogniser.
+
+T_PRO expanded to test classes CApaAppList and CApaAppData that previously had no testcode.
+
+
+
+
+AppArc.042
+==========
+
+12/2/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[035] ; GDI[042]
+
+	apgrfx.dll: Fntstore[035] ; Fbserv[045] ; Bitgdi[045] ; Wserv[065]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General:
+
+1) Binary compatible with 041
+
+2) Regressed to GCCTOOLS 111
+
+3) Interpreted app starter re-written (by Howard)
+
+4) Bug fix to command line to remove trailing space from full command line (by Neil)
+
+Notes for Glass-door enabled apps and SDK:
+
+Having just written a glass door add-on for TOPBUT1 I thought it might be worth more carefully defining a couple of the methods in the CPicture interface:
+
+The "Current size" of a picture is calculated from the original size taking cropping and scale factor into account.
+
+The value of "Crop" is relative to the *original* size of the picture.
+
+
+
+
+
+
+
+AppArc.041
+==========
+
+7/2/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[035] ; GDI[042]
+
+	apgrfx.dll: Fntstore[035] ; Fbserv[045] ; Bitgdi[045] ; Wserv[065]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[112]
+
+General:
+
+1) Not build compatible with 040
+
+) Apps must now export their constructor as the ordinal 2 function of their app dll. 
+Changes will be made to the Eikon .def file to support this, but all apps should add the following line to their project to ensure that they have a first exported function as well as a second:
+
+__FIRST_EXPORT
+
+) Bug fix in command line classes by Neil
+
+
+
+
+AppArc.040
+==========
+
+6/2/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[035] ; GDI[042]
+
+	apgrfx.dll: Fntstore[035] ; Fbserv[045] ; Bitgdi[045] ; Wserv[065]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[112]
+
+General:
+
+1) Binary compatible with 039
+
+) Changes made to CApaAppData such that if an application doesnt have an icon file it's dll name is used as a caption and the default icon is used as it's icon. Previously apps without icon files weren't being detected by the shell at all.
+
+
+
+
+
+
+
+
+AppArc.039
+==========
+
+5/2/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[035] ; GDI[042]
+
+	apgrfx.dll: Fntstore[035] ; Fbserv[045] ; Bitgdi[045] ; Wserv[065]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[112]
+
+General:
+
+1) Not binary compatible with 038
+
+) apgrfx.dll now has its base address set to avoid conflicts (spotted by MartinB)
+
+) MApaDocContainer renamed MApaEmbeddedDocObserver, and an extra exit mode "EEmpty" added. If an embedded document has no content it should return EEmpty when it exits, and the container can then choose not to insert it if it doesnt want to.
+
+) Bug in CApaDoor::RestoreDoc() fixed (spotted by DavidA)
+
+From Bill:
+
+) Rewrite of the file recogniser module, and new classes CApaAppList and CApaAppData that cache a list of all apps available on the system. No testcode for this stuff yet...
+
+) The interpreted app recogniser is now completely buggered and will have to be rewritten (Howard?)
+
+From Neil:
+
+) Relocated the TApaCommandLine class from Eikon to Apparch.  This class encapsulates the command line and is formatted as follows:
+
+<app name><space>command byte><doc name><space><tail end>
+
+app name and doc name may conatain spaces if surrounded by quotes.  Embedded quotes in these names is not supported.
+
+Various accessor functions exist to extract the various components of the command line, and setter functions will be added soon (for now you must construct the command line in a descriptor and call Set())
+
+This class will be used to start all apps.  This has involved some API changes to the file recognizer classes.
+
+New class TApaWindowGroupName to encapsulate the window group name of applications.  Set and get functions exist for all components.  
+
+The window group name stores the caption name, document name, application uid, and several "status bits" for apps to mark themselves as System (will not be closed for backup), Busy, that there document name is not actually a file (eg Platypus) and whether the app wishes to be restarted after a backup (mainly for use by OPL programs but will be ignored in version 1 anyway!)
+
+Test code for TApaWindowGroupName in T_WGNAM.*
+
+
+
+
+
+
+AppArc.038
+==========
+
+3/2/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[035] ; GDI[042]
+
+	apgrfx.dll: Fntstore[035] ; Fbserv[045] ; Bitgdi[045] ; Wserv[065]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[112]
+
+General:
+
+1) Not binary compatible with 037
+
+2) Takes the new gdi etc.
+
+3) CApaProcess::NewL() now takes a TApaAppFinderBase by & instead of as a *, and no longer defaults this parameter to NULL.
+The default search algorithm will now be provided in Eikon and must be passed in each time on construction of a process. 
+Nb CApaProcess takes ownership of the TApaAppFinderBase passed in, which should be allocated on the heap.
+
+
+
+
+
+
+
+
+
+AppArc.037
+==========
+
+31/1/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[033] ; GDI[041]
+
+	apgrfx.dll: Fntstore[034] ; Fbserv[044] ; Bitgdi[044] ; Wserv[064]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General
+
+1) Not binary compatible with 036
+
+) App dlls are no longer Gate()'ed on loading. 
+This means that __DECLARE_APP_DLL_UID should no longer be declared in each app's code and that the ordinal one function of an app dll should now be the constructor (this was previously the ordinal 2 function).
+
+) Missing exports added to many file recogniser methods
+
+
+
+
+
+
+
+AppArc.036
+==========
+
+27/1/97 by IanH
+
+Uses:
+
+	apparc.dll: E32[086] ; F32[050] ; Store[033] ; GDI[041]
+
+	apgrfx.dll: Fntstore[034] ; Fbserv[044] ; Bitgdi[044] ; Wserv[064]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General
+
+1) Not binary compatible with 035
+
+) apgrfx.dll now links to wserv
+
+) Icon files no longer store iRequiresNewDocName, which as a result no longer has an accessor (change from Bill)
+
+) New modules:
+
+ApgTask.h - the task and task list classes (formerly in Eikon)
+
+ApgFlrec.h - the file recogniser classes (formerly in Shell)
+
+ApgApp.h - the app recogniser for app arc apps (formerly in Shell)
+
+ApgInt.h - the app recogniser for interpreted apps (formerly in Shell)
+
+The above modules have no testcode as yet...
+
+
+
+
+
+
+
+AppArc.035
+==========
+
+27/1/97 by IanH
+
+Uses: E32[085] ; F32[049] ; Store[033] ; GDI[041] ; Fntstore[034] ; Fbserv[044] ; Bitgdi[044]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General
+
+1) Not binary compatible with 034
+
+3) There will be at least one more non-binary compatible release this week before the B5 freeze.
+
+Changes
+
+4) Further re-arrangement of code between the two dll's. CApaDoor is now entirely in apgrfx.dll, and no longer has a CApaDoorBase baseclass.
+
+5) A new module apamdr added for the benefit of Nautilus-type converters. 
+It contains a concrete CApaModelDoor that contains a CApaModelHeader. 
+Concrete implementations of the header must be provided for all application models that wish to support embedding and have their embedded documents translated by Nautilus.
+The persistant format of a CApaEmbeddedDoor is compatible with that of a CApaDoor to the extent that either can be internalized by the other safely.
+A factory class must be provided for each implementation of the header.
+
+) In the interests of encapsulation CApaDocument::Capability() now returns a CApaDocument::TCapability instead of a TUint (suggested by Duncan).
+
+) CApaProcess::MainDocFileName() and TempFilePath() now return TPtrC instead of const TDesC* (suggested by Brendan)
+
+) If a glass door is passworded it will now be automatically iconified on restoration and the user will only be prompted for a password when they directly interact with it.
+
+) const TUid KUidSecurityStream={268435661} is now defined in apparc.h - this is the uid that should be used for the security stream for passworded documents.
+
+) The persistant format of CApaDoors has changed, so any apps that support embedding will find that their file formats have changed also...
+
+
+
+
+
+
+AppArc.034
+==========
+
+20/1/97 by IanH
+
+Uses: E32[085] ; F32[049] ; Store[033] ; GDI[041] ; Fntstore[034] ; Fbserv[044] ; Bitgdi[044]
+
+Tools: E32Tools[050] ; E32Utils[005] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General
+
+1) Not binary compatible with 033
+
+2) Takes new E32 etc.
+
+) The search algorithm for locating app dll's has changed. An app dll is now searched for in \system\apps\appname\appname.app on all drives until one is located. Files of the correct name can optionally have their uids checked. This new algorithm should significantly speed up loading of documents.
+
+) CApaProcess now takes a TApaAppFinderBase* as a parameter of its NewL() instead of a search path. This base class efines an API for access to a method in which any search algorithm required could be implemented. This parameter defaults to NULL, and if no finder is passed in a default one is used that implements the above behaviour. A substitute finder should only be passed in if eg a different directory structure is implemented on a future machine. CApaProcess takes ownership of any app finder passed in.
+
+) As a result of the search code moving CApaDll no longer has a FindAppDll() method.
+
+) CApaDoor gains a NewL to complement its NewLC (requested by SimonC)
+
+) inline const TDesC* TempFilePath()const added to CApaProcess (requested by SimonC)
+
+) CApaProcess::OpenNewDocumentL() now takes a CStreamDictionary*& as an extra parameter - this is read in from the file that is opened (error spotted by Kevin).
+
+) ReadRootStreamL() and OpenNewDocumentL() take a TUint aFileMode as additional parameters. aFileMode indicates the mode in which the file should be opened. For most use this should be set to EFileShareExclusive|EFileWrite, while EFileShareExclusive|EFileRead should be used if the file is to be opened read only. These methods no longer try to open files with write access, retrying with read-only access if this fails. If you require this behaviour you'll have to do it yourself by trapping calls to these methods.
+
+) The following CApaProcess methods are now static:
+
+	static CStreamDictionary* ReadRootStreamLC(RFs& ,CFileStore*& ,const TDesC& ,TUint )
+	static void WriteRootStreamL(CFileStore& ,CStreamDictionary& ,const CApaApplication& )
+	static TApaAppIdentifier ReadAppIdentifierL(const CStreamStore& ,const CStreamDictionary& )
+	static void WriteAppIdentifierL(CStreamStore& ,CStreamDictionary& ,const TApaAppIdentifier& )
+
+Note that ReadRootStreamL() now takes an RFs& and WriteRootStreamL() has been overloaded with a version that takes a correctly constructed TApaAppIdentifier instead of a CApaApplication&
+
+) Access violation bug in ~CApaProcess() fixed (spotted by MartinB)
+
+) The plan for passworded documents:
+
+When a document's RestoreL() is called and it begins to restore, the first thing it should do is check to see whether its store contains an appropriate password stream. 
+If it does then this means the store is passworded, so prompt the user to enter the password (EikProcess should provide a method that pops up this dialog for you). 
+If the password is entered correctly then continue restoration.
+If the password is wrong, RestoreL() should leave KErrLocked.
+
+) CApaDoor::RestoreL() will not leave if a *glass* door's RestoreL() leaves with KErrLocked. 
+Instead it TRAP's the leave and iconises the document without restoring it. 
+In this way the user can try to open the document again later if they want to view it.
+
+) CApaDocument::CanDrawGlass() becomes Capability() - this returns a set of flags (defined in CApaDocument) as follows:
+	
+	enum {
+		ECanDrawGlass	=0x01,
+		ECanPrint		=0x02
+		};
+
+By default this method returns 0 (ie the doc can do nothing) - return any combination of the above flags if you feel more daring
+
+) CApaApplication::OpenIconFileLC() is now pure virtual - an implementation will be supplied by Eikon's CEikDocument
+
+
+
+
+
+AppArc.033
+==========
+
+10/1/97 by IanH
+
+Uses: E32[082] ; F32[046] ; Store[032] ; GDI[040] ; Fntstore[033] ; Fbserv[043] ; Bitgdi[043]
+
+Tools: E32Tools[049] ; E32Utils[004] ; GDITOOLS[028] ; GCCTOOLS[111]
+
+General
+
+1) Not binary compatible with 032
+
+2) Takes new GDI etc
+
+3) Definitions for KIconFileExtension, KIniFileExtension and KAppFileExtension are now publicised in apparc.h
+
+4) Ini files now always live on drive c:
+
+
+CApaApplication changes:
+
+5) OpenIconFileL() and OpenIniFileL() become LC and const
+
+6) New method: 
+
+	TFileName AppFullName()const;
+
+This should return the full path and name of the app - by default the dll name & location is returned but this method may be over-ridden by eg OPL to return another location. (requested by Howard)
+
+
+CApaDocument changes:
+
+7) CApaDocument::CreateFileStoreLC() has changed its specification. Previously it returned a stream dictionary and took a store by reference. The first thing any caller did after calling this function was to write the rootstream of the file to make it valid and then destroy the stream dictionary. The WriteRootStream() step has now been moved inside CreateFileStoreLC(), meaning that it now returns a CFileStore* instead of taking one by reference. One new line of code should be added at the end of applications' CreateFileStore() implementations:
+
+	iApaProcess->WriteRootStreamL(*store,*streamDic,*Application());
+
+This will ensure that CreateFileStoreLC() now returns a fully constructed and initialised file store (on the cleanup stack).
+
+
+CApaProcess changes:
+
+8) MainDocFileName() becomes const
+
+9) SetMainDocFileNameL(const TDesC&) loses the L - it can no longer leave, though it will panic if a filename larger than a TFileName is passed in.
+
+10) SetMainDocument(CApaDocument* aDocument) added. It panics if aDocument has not already been added using AddNewDocument() or OpenNewDocument()
+
+11) ImportNewDocumentL() becomes 
+
+	CApaDocument* OpenNewDocumentL(CFileStore*& aStore,const TDesC& aDocFullFileName)
+	
+It now returns the opened store via a parameter taken by reference. 
+
+12) SaveToDirectFileStoreL() withdrawn - this method will now be provided by Eikon.
+
+13) NewMainDocumentL() and OpenMainDocumentL() have been withdrawn. A combination of Open/AddNewDocument() and SetMainDocument() should now be used. Combined with the above changes this in fact gives Eikon and applications much more flexibility in creating and opening documents.
+
+Replacing a typical call to OpenMainDocumentL(), the following calls should take place:
+
+	// open the document
+	CFileStore* store = NULL;
+	CApaDocument* doc = apaProcess->OpenNewDocumentL(store,filePath);
+	// set it as the main document
+	apaProcess->SetMainDocument(doc);
+	apaProcess->SetMainDocFileName(filePath);
+
+Replacing a typical call to NewMainDocumentL(), the following calls should take place:
+
+	// create a new document
+	CApaDocument* doc = apaProcess->AddNewDocumentL(dllname);
+	apaProcess->SetMainDocument(doc);
+	// create the store and initialise it
+	CFileStore* store = doc->CreateFileStoreLC(apaProcess->FsSession(),filePath);
+	apaProcess->SetMainDocFileName(filePath);
+	// initialise the document with factory settings
+	doc->NewDocumentL();
+
+
+CApaDoor changes:
+
+14) If there is no caption in an application's icn file the Caption() in a containing CApaDoor is now set to a zero length descriptor instead of "UNKNOWN". This should be detectyed at a higher level and some locale specific message substituted.
+
+15) Default icon size should now be passed in to CApaDoor::NewL() - it is no longer hard-coded to TSize(500,500)
+
+
+
+
+AppArc.032
+==========
+
+19/12/96 by IanH
+
+Uses: E32[076] ; F32[042] ; Store[030] ; GDI[039] ; Fntstore[032] ; Fbserv[039] ; Bitgdi[041]
+
+Tools: E32Tools[048] ; E32Utils[004] ; GDITOOLS[027] ; GCCTOOLS[111]
+
+1) Binary compatible with 030 and 031 (B4 level)
+
+2) NewMainDocumentL() altered slightly such that the filename is correctly set before NewDocumentL() is called on the newly creaed document. This allows some speed optimisations in Word.
+
+
+
+
+AppArc.031
+==========
+
+17/12/96 by IanH
+
+Uses: E32[076] ; F32[042] ; Store[030] ; GDI[039] ; Fntstore[032] ; Fbserv[039] ; Bitgdi[041]
+
+Tools: E32Tools[048] ; E32Utils[004] ; GDITOOLS[027] ; GCCTOOLS[111]
+
+1) Binary compatible with 030
+
+2) As per the spec team decision the icons representing embedded objects are no longer resizable by dragging. 
+
+This effect is slightly weird because when the icon is highlighted it has the blobby marquee around it which somewhat implies that you can drag its extent. 
+However, if you try to drag one of the blobs you immediately launch the embedded application - not exactly intuitive.
+Maybe two different types of marquee are required, one to indicate dragableness and the other just focus (but this falls down when you consider using shift-drag to crop).
+
+
+
+AppArc.030
+==========
+
+13/12/96 by IanH
+
+Uses: E32[076] ; F32[042] ; Store[030] ; GDI[039] ; Fntstore[032] ; Fbserv[039] ; Bitgdi[041]
+
+Tools: E32Tools[048] ; E32Utils[004] ; GDITOOLS[027] ; GCCTOOLS[111]
+
+1) Binary compatible with 029
+
+Changes to CApaProcess:
+
+) SaveToDirectFileStoreL() now creates any temporary file on the same drive as the target document to ensure that RFs::Replace() works.
+
+) SaveToDirectFileStoreL() now checks that the store passed in is non-null and of the right type.
+
+) NewMainDocumentL() code re-arranged so that it is now rollback-robust (thanks Duncan). This fixes HA-383
+
+
+
+
+AppArc.028
+==========
+
+05/12/96 by IanH
+
+Uses: E32[076] ; F32[042] ; Store[030] ; GDI[039] ; Fntstore[032] ; Fbserv[039] ; Bitgdi[041]
+
+Tools: E32Tools[048] ; E32Utils[004] ; GDITOOLS[027] ; GCCTOOLS[111]
+
+1) B4 release. This is not compatible with the previous release.
+
+Changes:
+
+) CApaDoor::SetFormatToGlassL() no longer takes a TSize as a parameter. The embedded document is now relied upon to initially size itself sensibly and from then on to remember any changes in scaling and cropping.
+
+) Subtle chagnes to iconic doors - they are now scalable but not cropable. 
+
+) Any concept of document file extensions has been removed from application architecture, in line with current thinking:
+
+	CApaApplication::DocFileExtension() withdrawn, and extensions are no longer appended to filenames. App dll's, icon files and ini files retain their extensions.
+
+
+
+AppArc.027
+==========
+
+03/12/96 by IanH
+
+Uses: E32[075] ; F32[042] ; Store[030] ; GDI[039] ; Fntstore[032] ; Fbserv[039] ; Bitgdi[041]
+
+Tools: E32Tools[048] ; E32Utils[004] ; GDITOOLS[027] ; GCCTOOLS[111]
+
+1) B4 release
+
+Changes:
+
+) inline CApaDoor::GetFormat()const added that returns one of CApaDoor::EIconic or CApaDoor::EGlassDoor depending upon the door's current format.
+
+) Iconic door code re-written to (hopefully) solve the problems of resizing etc.
+
+) CApaApplication::OpenIniFileLC() is now implemented to return a CDictionaryStore (see Store release notes for details of this class). The path of the ini file is determined to be the same as that of the app dll unless the app dll is in ROM in which case the same path is used except on drive c:
+CDictionaryStore should be treated as a temporary object - all the time it exists the file is open, so the object should be destroyed as soon as it is finished with to ensure that other processes are not unnecessarily blocked from using the file.
+
+Here is some example code for using an ini file in a (possibly) typical scenario:
+
+	//
+	// open an app's ini file
+	CDictionaryStore* iniFile = Application()->OpenIniFileL(TheFs);
+	CleanupStack::PushL(iniFile);
+	//
+	// read the required data stream out of the file
+	RDictionaryReadStream readStream;
+	readStream.OpenL(*iniFile,aDataStreamUid);
+	TLotsOfData data;
+	readStream>> data;
+	readStream.Close();
+	//
+	// close the ini file
+	CleanupStack::PopAndDestroy(); // iniFile
+	iniFile = NULL;
+	//
+	//
+	// ...
+	// do loads of stuff (eg launch a dialog) that uses the data read in
+	// ...
+	//
+	//
+	// if the data has changed as a result of "doing stuff" then re-write it to the ini file
+	CDictionaryStore* iniFile = Application()->OpenIniFileL(TheFs);
+	CleanupStack::PushL(iniFile);
+	//
+	// write the new data
+	RDictionaryWriteStream writeStream;
+	writeStream.AssignL(*iniFile,aDataStreamUid);
+	writeStream<< data;
+	writeStream.CommitL();
+	writeStream.Close();
+	//
+	// commit the store safely and close it again
+	if (iniFile->Commit()!=KErrNone)
+		iniFile->RevertL(); // try to restore the store to it's previous state if things go wrong
+	CleanupStack::PopAndDestroy(); // iniFile
+	iniFile = NULL;
+	//
+
+
+AppArc.026
+==========
+
+27/11/96 by IanH
+
+Uses: E32[074] ; F32[041] ; Store[029] ; GDI[038] ; Fntstore[031] ; Fbserv[038] ; Bitgdi[040]
+
+Tools: E32Tools[046] ; E32Utils[003] ; GDITOOLS[027] ; GCCTOOLS[111]
+
+1) Takes new GDI etc., and new gditools (all bitmaps have to be reconverted).
+
+Changes:
+
+) RDebug::Print()'s removed from the apparc dll
+
+) CApaDoor::DetachFromStoreL() added to completely restore the embedded document.
+
+) CApaDocument::DetachFromStoreL(const CStreamStore& aStore) added. This does nothing by default - an app should supply an imlementation if they support deferred loading. In this case the action of this method should be to load in any data not yet internalized from the store, but not to overwrite any data already in memory.
+
+
+AppArc.025
+==========
+
+22/11/96 by IanH
+
+Uses: E32[074] ; F32[040] ; Store[029] ; GDI[037] ; Fntstore[030] ; Fbserv[037] ; Bitgdi[039]
+
+Tools: E32Tools[046] ; E32Utils[003] ; GDITOOLS[026] ; GCCTOOLS[111]
+
+1) Binary compatible bug fix release for Agenda and Data
+
+2) No new components taken
+
+Changes:
+
+) Files are now opened writable if this is possible, only defaulting to read-only if opening as writable fails. This allows documents based in permanent file stores to be edited :-) (Spotted by Kev)
+
+
+AppArc.024
+==========
+
+19/11/96 by IanH
+
+Uses: E32[074] ; F32[040] ; Store[029] ; GDI[037] ; Fntstore[030] ; Fbserv[037] ; Bitgdi[039]
+
+Tools: E32Tools[046] ; E32Utils[003] ; GDITOOLS[026] ; GCCTOOLS[111]
+
+1) This release is being made primarily to allow work to proceed on OPL
+
+2) No new components taken
+
+Changes:
+
+) Some files have changed name:
+	AppIcnfl.*  -> ApaIcnfl.*
+	AppPriv.h   -> ApaDll.h
+	AppStd.h    -> ApaStd.h
+	AppUtil.cpp -> ApaStd.cpp
+
+) CApaIconFileWriter::AddIconL(CApaMaskedBitmap& aIcon) added.
+
+) TAppCaption becomes TApaAppCaption
+
+
+AppArc.023
+==========
+
+15/11/96 by IanH
+
+Uses: E32[074] ; F32[040] ; Store[029] ; GDI[037] ; Fntstore[030] ; Fbserv[037] ; Bitgdi[039]
+
+Tools: E32Tools[046] ; E32Utils[003] ; GDITOOLS[026] ; GCCTOOLS[111]
+
+2) This release reinstates all the testcode that was dropped in the change to the new directory structure.
+
+3) The base address for the AppArc dll is now set as 0x40000000 in line with MartinB's revised suggestion.
+
+4) AppArc.dll now supports typesafe linking with uid KApparcDllUid = 0x100000DE
+
+5) New releasable appdata that contains the default icn file (see below). It should be fetched into:
+	\Epoc32\Release\Wins\Rel\Z\System\Data
+	\Epoc32\Release\Wins\Deb\Z\System\Data
+	\Epoc32\Release\Marm
+
+and the following line should be placed in .oby files:
+
+	data=\Epoc32\Release\Marm\default.icn System\Data\default.icn
+
+
+Changes:
+
+) CApaDoor now has access to a default icon file which it uses if it can't locate the correct icon file (eg the app used to embed an object was on a CF card). This means that apps no longer *require* the existance of an icon file to be embeddable
+
+) The persistant format of *glass* doors has changed , so files containing such doors will be incompatible with previous versions of apparc.
+
+) TDesC* CApaDoor::Caption() added that returns the name of the app with which the embedded object is associated. 
+
+) CApaApplication::IniFileUid() and IconFileUid() have been withdrawn as they were of no use and made no sense.
+
+) CApaDocument::HasChanged() is now pure virtual, and CApaDocument no longer has a TBool iChanged as member data. This keeps apparc policy independant as different apps will want to implement this function in different ways. Eikon may supply a default implemenation...
+
+) CApaDoor* NewLC(CApaDocument& aDoc,...) no longer takes a CApaProcess as a parameter as it can get at this pointer via the aDoc parameter.
+
+) CApaProcess::WriteRootStreamL() now takes a const CApaApplication& instead of a CApaDocument. This app should be the application used to create the main doc in the file being written.
+
+) CApaProcess::SaveToDirectFileStoreL() has changed in the same way as WriteRootStreamL()
+
+) Extra type checking of document added to CApaProcess::ReadRootStreamL(). This method now leaves KErrCorrupt if the file is not of the correct type.
+
+) TApaPictureFactory now takes a MGraphicsDeviceMap* on construction
+
+) CApaApplication::OpenIconFileLC() now just OpenIconFileL() because this call was often being trapped and the C caused aggro.
+
+) Some CApaDoor methods that took a TSize as a parameter now take a const TSize& instead
+
+Bug Fixes:
+
+) The correct UID for the icon file is now used in CApaApplication::OpenIconFileLC()
+
+) CApaApplication::Dll() now const
+
+) Resizing of embedded icons should now work properly.
+
+) CApaProcess::ReadRootStreamLC() now opens the store in read only mode (so files can be read from ROM). If you wish to make your CFileStore writable call CFileStore::File().ChangeMode(EFileShareExclusive|EFileWrite) to get exclusive write access. (Spotted by Duncan)
+ 
+Test Code:
+
+) T_Pro extended to test the embedding subsystem when some required app dlls and/or icn files are not present.
+
+
+
+AppArc.020
+==========
+
+3/11/96 by DavidW
+
+Uses: E32Tools[045] ; E32[072] ; F32[038] ; Store[028] ; GDI[036] ; Fntstore[030] ; Fbserv[036] ; Bitgdi[039]
+
+1)  Fixed an infinite loop bug in CApaProcess::FindAppInListL() which
+meant that a second app couldn't be added to a process
+
+
+AppArc.019
+==========
+
+31/10/96 by DavidW
+
+Uses: E32Tools[045] ; E32[072] ; F32[038] ; Store[028] ; GDI[036] ; Fntstore[030] ; Fbserv[036] ; Bitgdi[039]
+
+1)  Upgraded to E32[072] et al.  Rebuilt the Wins Release and Debug
+variants, and the Gcc Release variant.  Test code not rebuilt! 
+Relying on Eikon's test code for now
+
+2)  As suggested by Julian, provided CApaProcess with a public
+accessor function FsSession() which returns a reference to the RFs
+held inside CApaProcess property
+
+3)  Fixed MNT GETSRC not to impose a version number if none has been
+given from the command line
+
+4)  Fixed MNT GETBLD to only run the MAKEWORK and GETTOOLS once,
+instead of twice
+
+
+AppArc.018
+==========
+
+29/10/96 by DavidW
+
+Uses: E32Tools[045] ; E32[071] ; F32[037] ; Store[027] ; GDI[035] ; Fntstore[029] ; Fbserv[035] ; Bitgdi[038]
+
+1)  Moved up to Store[027], and therefore dropped Apparc's copy of
+the CStreamDictionary class
+
+2)  Also moved up to F32[037]
+
+3)  CApaProcess::NewMainDocumentL() now supports being called with a
+zero-length filename, in which case the function no longer attempts
+to create a file of this name, but returns NULL for the CFileStore*
+handle; this supports applications that don't create files
+
+4)  Made the MainDocFileName() function of CApaProcess simply return
+a const TDesC*, instead of going to the overhead of calling the Des()
+function on the internal HBuf variable; this is also important for
+applications that don't create files (since otherwise the function
+involved creating a TPtr from the NULL pointer)
+
+5)  The above changes mean that the iMainDoc and iMainDocFileName
+data members of CApaProcess can revert to being private (previously I
+had patched the INCC release component of AppArc 017 to make them
+public, else Eikon couldn't work)
+
+6)  Fixed a series of latent fatalities by altering code like
+	delete iMainDocFileName;
+	iMainDocFileName = xxx.AllocL();
+to insert the line
+	iMainDocFileName = NULL;
+in between the delete and the AllocL()
+
+7)  Fixed a bug pointed out by MartinD and Jezar in that the
+ReadRootStreamLC() function was always opening the file in read mode
+only, which is fine for Direct stores but not for Permanent
+("re-writable") ones; note that some decision will need to be taken
+shortly on how to cope with read-only data files
+
+8)  As suggested by MartinB & Duncan, changed the Changed() function
+in CApaDocument to be virtual and const, and renamed it to
+HasChanged(); the default implementation remains to return the value
+of the iChanged member data, but some applications may prefer to
+implement change tracking in a more sophisticated manner
+
+9)  As suggested by MartinB, altered the StoreL() function of
+CApaDocument to be const, since Store is a const operation.  At the
+same time, applied const to various other CApaDocument functions
+
+10) Added UNLOCK and LOCK verbs to MNT.CMD.
+
+
+AppArc.017
+==========
+
+18/10/96 by IanH
+
+Uses: E32Tools[045] ; E32[071] ; F32[036] ; Store[026] ; GDI[035] ; Fntstore[029] ; Fbserv[035] ; Bitgdi[038]
+
+ARM release size:
+
+apparc.dll  18,108
+
+General
+=======
+
+) Not binary compatible with previous release
+
+
+Changes
+=======
+
+Changes to CApaProcess:
+
+) At the request of MartinB all member data is now private and accessor functions have been supplied as required.
+
+) DestroyDocumentL() no longer takes the CApaDocument* by reference (and consequently no longer sets it to null).
+
+Changes to CApaDocument:
+
+) At the request of MartinB iChanged is now protected and has an inline accessor function Changed()
+
+General changes:
+
+) Fixed mnt getrel so it no longer does mad stuff (thanks Julian)
+
+) Extended the embedding testcode slightly
+
+
+Still To Come
+=============
+
+) .ini files (with visited document lists)
+

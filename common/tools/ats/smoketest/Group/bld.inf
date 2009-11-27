@@ -30,3 +30,5 @@
 #include "../uiresources/group/bld.inf"
 #include "../inputmethods/group/Bld.inf"
 #include "../IM/group/bld.inf"
+#include "../localisation/uiftestfw/group/BLD.INF"
+#include "../localisation/apparchitecture/group/BLD.INF"

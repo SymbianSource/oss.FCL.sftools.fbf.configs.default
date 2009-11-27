@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN16CServiceRegistry10SetDefaultE4TUidRK9TDataTypeS0_ @ 1 NONAME
+	_ZN16CServiceRegistry10GetDefaultE4TUidRK9TDataTypeRS0_ @ 2 NONAME
+	_ZN16CServiceRegistry11RemoveEntryE4TUidRK9TDataType @ 3 NONAME
+	_ZN16CServiceRegistry4NewLEv @ 4 NONAME
+	_ZN16CServiceRegistryD0Ev @ 5 NONAME
+	_ZN16CServiceRegistryD1Ev @ 6 NONAME
+	_ZN16CServiceRegistryD2Ev @ 7 NONAME
+	_ZTI16CServiceRegistry @ 8 NONAME ; #<TI>#
+	_ZTV16CServiceRegistry @ 9 NONAME ; #<VT>#
+

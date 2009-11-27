@@ -1,0 +1,57 @@
+// Copyright (c) 2000-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// using relative paths for sourcepath and user includes
+// 
+//
+
+#include <platform_paths.hrh>
+
+target		SimpleApparcTestApp.EXE
+TARGETTYPE 	exe
+	
+targetpath	/SYS/BIN
+UID           	0x100039CE 0x12008ACE
+VENDORID 	0x70000001
+CAPABILITY 	All -Tcb
+epocstacksize 	0x5000
+
+SOURCEPATH    	.
+SOURCE		SimpleApparcTestApp.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+// Application exe specific resource which is localised to the application
+RESOURCE	SimpleApparcTestApp.rss
+start resource	SimpleApparcTestApp.rss
+targetpath	/resource/apps
+lang		sc
+end
+
+
+// Application exe registration resource file
+START RESOURCE	SimpleApparcTestApp_reg.rss
+TARGETPATH	/private/10003a3f/apps
+lang		sc
+END
+
+ 
+LIBRARY       	APPARC.LIB  
+LIBRARY       	CONE.LIB 
+LIBRARY       	EIKCORE.LIB
+LIBRARY       	EUSER.LIB 
+LIBRARY       	GDI.LIB

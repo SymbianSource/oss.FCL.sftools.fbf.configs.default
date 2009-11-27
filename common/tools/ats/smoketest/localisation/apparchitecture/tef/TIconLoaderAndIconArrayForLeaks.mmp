@@ -1,0 +1,70 @@
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @test
+ @internalComponent - Internal Symbian test code  
+*/
+
+
+target		TIconLoaderAndIconArrayForLeaks.dll
+TARGETTYPE 	DLL
+UID         0x1000008D 0x102833D0 	
+VENDORID 	0x70000001
+
+CAPABILITY 	All -Tcb
+
+SOURCEPATH    	.
+SOURCE		TIconLoaderAndIconArrayForLeaks.cpp
+
+SOURCEPATH	 ../apserv
+SOURCE		 apsiconcaptionoverride.cpp
+
+SOURCEPATH  ../apgrfx
+#if defined SYMBIAN_APPARC_APPINFO_CACHE
+	source          	APGAPLSTV2.CPP
+#else
+	source          	APGAPLST.CPP
+#endif
+source      APGCTL.CPP APGDOOR.CPP APGICNFL.CPP APGSTD.CPP APGTASK.CPP
+source		APGWGNAM.CPP APGCLI.CPP APGPRIV.CPP
+source		apgnotif.cpp APGAIR.CPP APGAIRV2.CPP APSCLI.CPP apgconstdata.cpp
+source		apsecutils.cpp
+
+
+USERINCLUDE   	.
+USERINCLUDE		../apgrfx
+USERINCLUDE 	../apserv
+USERINCLUDE		../inc
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+ 
+library         euser.lib apparc.lib apmime.lib gdi.lib estor.lib efsrv.lib fbscli.lib
+library         bitgdi.lib ws32.lib bafl.lib
+library         apserv.lib apfile.lib centralrepository.lib
+#ifdef SYMBIAN_BAFL_SYSUTIL
+library sysutil.lib
+#endif
+
+macro 			UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER
+
+#if defined SYMBIAN_APPARC_APPINFO_CACHE
+	deffile		TICONFORLEAKS.DEF
+#else
+	deffile		TICONFORLEAKSV2.DEF
+#endif

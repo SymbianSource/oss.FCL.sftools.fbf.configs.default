@@ -1,0 +1,42 @@
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @test
+ @internalComponent - Internal Symbian test code
+*/
+
+target 		recupgrade.dll
+targettype 	plugin 
+uid			0x10009d8d 0xA000B461
+VENDORID 	0x70000001
+CAPABILITY	All -Tcb
+
+systeminclude   /EPOC32/INCLUDE /EPOC32/INCLUDE/ECOM /EPOC32/INCLUDE/TEST
+
+SOURCEPATH	.
+source			recupgrade_1.cpp
+
+library         EUSER.LIB APMIME.LIB EFSRV.LIB
+
+// Both recupgrade.rsc files are same (above one and the one which is mention in TRecUpgrade/recupgrade.MMP),so commented this one and used the othere one .
+/**
+start resource A000B461.rss
+target recupgrade.rsc
+end
+*/

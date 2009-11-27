@@ -1,0 +1,56 @@
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @test
+ @internalComponent - Internal Symbian test code 
+*/
+
+#include <platform_paths.hrh>
+
+TARGET          appfwk_test_AppUi.dll
+TARGETTYPE      DLL
+TARGETPATH      /sys/bin  
+UID				0x1100008D 0x11003B3C
+VENDORID 		0x70000001
+
+CAPABILITY		All -tcb
+
+SYSTEMINCLUDE   /epoc32/include 
+SYSTEMINCLUDE	/epoc32/include/techview
+SYSTEMINCLUDE   /epoc32/include/test
+
+MW_LAYER_SYSTEMINCLUDE
+
+USERINCLUDE	../inc
+
+SOURCEPATH	../src
+SOURCE 		appfwk_test_AppUi.CPP
+
+LIBRARY		EUSER.LIB
+LIBRARY		CONE.LIB
+LIBRARY		BAFL.LIB
+LIBRARY		EFSRV.LIB
+LIBRARY		ESTOR.LIB
+LIBRARY		EGUL.LIB
+LIBRARY		EIKCORE.LIB
+LIBRARY		EIKCOCTL.LIB
+LIBRARY		HAL.LIB
+LIBRARY		WS32.LIB 
+
+DEFFILE 	APPFWK_TEST_APPUI.DEF

@@ -1,0 +1,42 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// Standalone TAppEmbeddable.mmp
+// 
+//
+
+
+
+ TARGET        	TAppEmbeddable.exe
+ TARGETTYPE    	exe
+
+CAPABILITY 		All -Tcb //do standalone need this too?
+
+UID           	0x100039CE 0x10004c48 //the original UID
+VENDORID 		0x70000001 
+TARGETPATH		/sys/bin
+EPOCSTACKSIZE 	0x5000
+
+SOURCEPATH    	.
+SOURCE        	TAppEmbeddable_standalone.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview 
+
+//reg added for Datacaging
+START RESOURCE	TAppEmbeddable_reg.rss
+TARGETPATH		/private/10003a3f/apps
+END
+
+LIBRARY 		euser.lib apparc.lib eikcore.lib cone.lib  

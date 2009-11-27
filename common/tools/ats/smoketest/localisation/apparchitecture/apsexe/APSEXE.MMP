@@ -1,0 +1,45 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+//
+// APSEXE.MMP server launch code for AppArc server
+//
+
+/**
+@file
+
+@SYMPurpose apsexe.dll Apparc server stub
+*/
+target          apsexe.exe
+targettype      EXE
+CAPABILITY ProtServ
+
+UID		0x1000008D 0x10003A3F
+VENDORID 0x70000001
+
+SOURCEPATH	../apsexe
+
+userinclude		../inc
+systeminclude   /epoc32/include
+
+source			APSMAIN.CPP
+
+library  euser.lib  apserv.lib
+
+
+// Apparc server need extra stack as it has a lot of
+// filenames and parse objects on stack from time to time
+epocstacksize	0x3000

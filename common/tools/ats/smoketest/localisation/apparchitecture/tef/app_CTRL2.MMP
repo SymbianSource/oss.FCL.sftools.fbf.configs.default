@@ -1,0 +1,62 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+//
+// App_CTRL2.MMP for test component App_CTRL2 (released in APPARC)
+//
+
+#include <platform_paths.hrh>
+
+target		APP_CTRL2.EXE
+TARGETTYPE 	exe
+
+CAPABILITY 	All -Tcb
+VENDORID 	0x70000001
+
+UID             0x100039CE 0x13008ADE
+targetpath 	/sys/bin
+SOURCEPATH	.	
+
+// your public include directory should be here
+systeminclude   ../inc
+systeminclude   /epoc32/include
+systeminclude   /epoc32/include/techview
+systeminclude   /epoc32/include/kernel
+
+MW_LAYER_SYSTEMINCLUDE
+
+source          App_CTRL2.CPP
+
+// Application exe specific resource which is localised to the application
+resource	App_CTRL2.rss
+start resource	App_CTRL2.rss
+targetpath	/Resource/apps
+lang		sc
+end
+
+// Application exe registration resource file
+resource	App_CTRL2_reg.rss
+start resource	App_CTRL2_reg.rss
+targetpath 	/private/10003a3f/import/apps
+lang		sc
+end
+
+
+LIBRARY       	APPARC.LIB
+LIBRARY       	CONE.LIB 
+LIBRARY       	EIKCORE.LIB 
+LIBRARY       	EUSER.LIB
+LIBRARY       	GDI.LIB

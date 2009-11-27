@@ -1,0 +1,7 @@
+EXPORTS
+	??1CServiceRegistry@@UAE@XZ @ 1 NONAME ; CServiceRegistry::~CServiceRegistry(void)
+	?GetDefault@CServiceRegistry@@QAEHVTUid@@ABVTDataType@@AAV2@@Z @ 2 NONAME ; int CServiceRegistry::GetDefault(class TUid, class TDataType const &, class TUid &)
+	?NewL@CServiceRegistry@@SAPAV1@XZ @ 3 NONAME ; class CServiceRegistry * CServiceRegistry::NewL(void)
+	?RemoveEntry@CServiceRegistry@@QAEHVTUid@@ABVTDataType@@@Z @ 4 NONAME ; int CServiceRegistry::RemoveEntry(class TUid, class TDataType const &)
+	?SetDefault@CServiceRegistry@@QAEHVTUid@@ABVTDataType@@0@Z @ 5 NONAME ; int CServiceRegistry::SetDefault(class TUid, class TDataType const &, class TUid)
+

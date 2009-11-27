@@ -1,0 +1,46 @@
+// Copyright (c) 2006-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @internalComponent - Internal Symbian test code
+*/
+
+#include "RegistryInfo.rh"
+
+RESOURCE REGISTRY_INFO theInfo
+{
+dll_uid = 0xA0000B70; // Dll UId
+interfaces = 
+    {
+    INTERFACE_INFO
+        {
+        interface_uid = 0x1020d466; //Uid for access to all implementations of rule-based interface
+        implementations = 
+            {
+            IMPLEMENTATION_INFO
+                {
+                implementation_uid = 0xA0000B6F; // Our Test Plugin for NonNative Applications
+                version_no = 1;
+                display_name = "Test implementation of Nonnative application launch checker";
+                default_data = "";
+                opaque_data = "some extra data";
+                }
+            };
+        }
+    };
+}

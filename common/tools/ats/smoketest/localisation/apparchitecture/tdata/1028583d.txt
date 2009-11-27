@@ -1,0 +1,26 @@
+cenrep
+Version 1
+
+[defaultmeta]
+0
+
+[Platsec]
+cap_rd=alwayspass  
+cap_wr=WriteDeviceData
+
+
+[Main]
+
+# EFDemoApp
+# app UID (??FFFFFF)
+0x00FFFFFF int 0x2001B674
+# English (language 0001)
+0x00000001 string "CRTC UK"
+0x00010001 string "CRTstCap UK"
+0x00020001 int 2
+0x00030001 string "z:\\resource\\apps\\ticoncapoverride.mbm"
+# French (language 0002)
+0x00000002 string "CRTC FR"
+0x00010002 string "CRTstCap FR"
+0x00020002 int 2
+0x00030002 string "z:\\resource\\apps\\svg_icon.svg"

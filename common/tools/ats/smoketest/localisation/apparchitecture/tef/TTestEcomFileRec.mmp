@@ -1,0 +1,34 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+target 		ttestecomfilerec.dll
+CAPABILITY	All -Tcb
+targettype 	plugin
+uid			0x10009d8d 0x10000181
+VENDORID 	0x70000001
+
+SOURCEPATH		.
+SOURCE			TTESTECOMFILEREC.CPP
+systeminclude   /EPOC32/INCLUDE
+systeminclude	/EPOC32/INCLUDE/ECOM
+
+
+library         EUSER.LIB APPARC.LIB 
+
+
+start resource 10000181.rss
+target ttestecomfilerec.rsc
+end

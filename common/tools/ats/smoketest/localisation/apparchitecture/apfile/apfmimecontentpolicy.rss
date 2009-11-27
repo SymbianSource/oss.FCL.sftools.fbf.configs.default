@@ -1,0 +1,79 @@
+// Copyright (c) 2002-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+NAME CCLS
+
+#include <uikon.rh>
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+//----------------------------------------------------
+//    r_commoneng_closed_content_list
+//	  Contains all MIME types in closed content list.	    
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_commoneng_closed_content_list
+    {
+    items=
+        {	
+        LBUF { txt="application/vnd.oma.drm.message"; },
+		LBUF { txt="application/vnd.oma.drm.rights+xml"; },
+		LBUF { txt="application/vnd.oma.drm.rights+wbxml"; },
+		LBUF { txt="application/vnd.nokia.ringing-tone"; },
+		LBUF { txt="audio/amr-wb"; },
+		LBUF { txt="audio/sp-midi"; },
+		LBUF { txt="image/vnd.nok.3Dscreensaver"; },
+		LBUF { txt="image/vnd.nok-wallpaper"; },
+		LBUF { txt="image/vnd.nok-oplogo"; },
+		LBUF { txt="image/vnd.nok-oplogo-color"; },
+		LBUF { txt="application/java"; },
+		LBUF { txt="application/java-archive"; },
+		LBUF { txt="application/x-java-archive"; },
+		LBUF { txt="text/vnd.sun.j2me.app-descriptor"; },
+		LBUF { txt="application/x-NokiaGameData"; },
+		LBUF { txt="application/vnd.symbian.install"; },
+		LBUF { txt="x-epoc/x-sisx-app"; }  
+        };
+    }
+
+//----------------------------------------------------
+//    r_commoneng_closed_extensions_list
+//	  List of closed file extensions.	
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_commoneng_closed_extensions_list
+    {
+    items=
+        {
+		LBUF { txt=".dm"; },
+		LBUF { txt=".dr"; },
+		LBUF { txt=".drc"; },
+		LBUF { txt=".ott"; },
+		LBUF { txt=".awb"; },
+		LBUF { txt=".mid"; },
+		LBUF { txt=".c3d"; },
+		LBUF { txt=".jar"; },
+		LBUF { txt=".ngd"; },
+		LBUF { txt=".sis"; },
+		LBUF { txt=".sisx"; }
+        };
+    }
+
+
+// End of file

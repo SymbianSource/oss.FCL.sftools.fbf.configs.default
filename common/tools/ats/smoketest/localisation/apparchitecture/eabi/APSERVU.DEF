@@ -1,0 +1,69 @@
+EXPORTS
+	_Z23NameApaServServerThreadv @ 1 NONAME
+	_Z25NameApaServStartSemaphorev @ 2 NONAME
+	_ZN13CApaFsMonitor10SetBlockedEi @ 3 NONAME
+	_ZN13CApaFsMonitor4NewLER3RFsRK7TDesC169TCallBack @ 4 NONAME
+	_ZN13CApaFsMonitor5StartE11TNotifyType @ 5 NONAME
+	_ZN13CApaFsMonitorD0Ev @ 6 NONAME
+	_ZN13CApaFsMonitorD1Ev @ 7 NONAME
+	_ZN13CApaFsMonitorD2Ev @ 8 NONAME
+	_ZN17CApaAppListServer4NewLEP11CApaAppListP18CApaFileRecognizer @ 9 NONAME ABSENT
+	_ZN17CApaAppListServer4NewLEP14MApaAppStarter @ 10 NONAME
+	_ZN17CApaAppListServerD0Ev @ 11 NONAME
+	_ZN17CApaAppListServerD1Ev @ 12 NONAME
+	_ZN17CApaAppListServerD2Ev @ 13 NONAME
+	_ZNK13CApaFsMonitor10NotifyTypeEv @ 14 NONAME
+	_ZTI13CApaFsMonitor @ 15 NONAME ; #<TI>#
+	_ZTI15CApaEComMonitor @ 16 NONAME ; #<TI>#
+	_ZTI17CApaAppListServer @ 17 NONAME ; #<TI>#
+	_ZTI20TDesCArrayItemWriter @ 18 NONAME ; #<TI>#
+	_ZTI20TSizeArrayItemWriter @ 19 NONAME ; #<TI>#
+	_ZTI22CApaAppListServSession @ 20 NONAME ; #<TI>#
+	_ZTI24TViewDataArrayItemWriter @ 21 NONAME ; #<TI>#
+	_ZTV13CApaFsMonitor @ 22 NONAME ; #<VT>#
+	_ZTV15CApaEComMonitor @ 23 NONAME ; #<VT>#
+	_ZTV17CApaAppListServer @ 24 NONAME ; #<VT>#
+	_ZTV20TDesCArrayItemWriter @ 25 NONAME ; #<VT>#
+	_ZTV20TSizeArrayItemWriter @ 26 NONAME ; #<VT>#
+	_ZTV22CApaAppListServSession @ 27 NONAME ; #<VT>#
+	_ZTV24TViewDataArrayItemWriter @ 28 NONAME ; #<VT>#
+	_ZN13CApaFsMonitor12AddLocationLERK7TDesC16 @ 29 NONAME
+	_ZTIN13CApaFsMonitor14CApaFsNotifierE @ 30 NONAME ; #<TI>#
+	_ZTVN13CApaFsMonitor14CApaFsNotifierE @ 31 NONAME ; #<VT>#
+	_ZN17CApaAppListServer4SelfEv @ 32 NONAME
+	_ZN13CApaFsMonitor6CancelEv @ 33 NONAME
+	_Z18ApaServThreadStartPv @ 34 NONAME
+	_ZTI18CRecognitionResult @ 35 NONAME ; #<TI>#
+	_ZTI20CApsRecognitionCache @ 36 NONAME ; #<TI>#
+	_ZTI20CCacheDirectoryEntry @ 37 NONAME ; #<TI>#
+	_ZTI23CFileRecognitionUtility @ 38 NONAME ; #<TI>#
+	_ZTI25CRecognitionResultHashMap @ 39 NONAME ; #<TI>#
+	_ZTI27CDirectoryRecognitionResult @ 40 NONAME ; #<TI>#
+	_ZTI30CRecognitionResultHashMapEntry @ 41 NONAME ; #<TI>#
+	_ZTV18CRecognitionResult @ 42 NONAME ; #<VT>#
+	_ZTV20CApsRecognitionCache @ 43 NONAME ; #<VT>#
+	_ZTV20CCacheDirectoryEntry @ 44 NONAME ; #<VT>#
+	_ZTV23CFileRecognitionUtility @ 45 NONAME ; #<VT>#
+	_ZTV25CRecognitionResultHashMap @ 46 NONAME ; #<VT>#
+	_ZTV27CDirectoryRecognitionResult @ 47 NONAME ; #<VT>#
+	_ZTV30CRecognitionResultHashMapEntry @ 48 NONAME ; #<VT>#
+	_ZN16CUpdatedAppsList28CloseAndDeletePermanentStoreEv @ 49 NONAME ABSENT
+	_ZN16CUpdatedAppsListD0Ev @ 50 NONAME ABSENT
+	_ZN16CUpdatedAppsListD1Ev @ 51 NONAME ABSENT
+	_ZN16CUpdatedAppsListD2Ev @ 52 NONAME ABSENT
+	_ZTI16CUpdatedAppsList @ 53 NONAME ABSENT ; #<TI>#
+	_ZTV16CUpdatedAppsList @ 54 NONAME ABSENT ; #<VT>#
+	_ZNK16CUpdatedAppsList8IsInListERK7TDesC16 @ 55 NONAME ABSENT
+	_ZTIN16CUpdatedAppsList15CUpdatedAppInfoE @ 56 NONAME ABSENT ; #<TI>#
+	_ZTVN16CUpdatedAppsList15CUpdatedAppInfoE @ 57 NONAME ABSENT ; #<VT>#
+	_ZN17CApaAppListServer14RescanCallBackEv @ 58 NONAME
+	_ZTI18CCustomAppInfoData @ 59 NONAME ; #<TI>#
+	_ZTV18CCustomAppInfoData @ 60 NONAME ; #<VT>#
+	KApaLoadDataRecognizersOnDemand @ 61 NONAME DATA 4
+	KApaUnloadRecognizersTimeout @ 62 NONAME DATA 4
+	_ZN17CApaAppListServer24HandleEndUninstallEventLEv @ 63 NONAME
+	_ZN17CApaAppListServer25HandleStartUninstallEventEv @ 64 NONAME
+	KApaDrivesToMonitor @ 65 NONAME DATA 4
+	KApaLoadMbmIconsOnDemand @ 66 NONAME DATA 4
+
+

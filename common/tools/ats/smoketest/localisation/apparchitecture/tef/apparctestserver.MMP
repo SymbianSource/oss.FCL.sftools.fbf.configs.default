@@ -1,0 +1,235 @@
+// Copyright (c) 1997-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+#include <platform_paths.hrh>
+
+target			apparctestserver.EXE
+targettype		exe
+UID             0x1000007A 0x101F289C
+CAPABILITY  	AllFiles WriteDeviceData PowerMgmt Protserv SwEvent
+
+
+SYSTEMINCLUDE   /EPOC32/INCLUDE /EPOC32/INCLUDE/TECHVIEW /EPOC32/INCLUDE/TEST
+systeminclude /epoc32/include/ecom
+systeminclude  ../tef
+
+MW_LAYER_SYSTEMINCLUDE
+
+SOURCEPATH		../tef
+SOURCE			apparctestserver.cpp
+
+//-------START 
+
+SOURCE		T_Foreground.cpp
+SOURCE		T_ProStep.cpp T_OOMStep.cpp T_File1Step.cpp T_File2Step.cpp T_File3Step.cpp
+SOURCE		T_BackupStep.cpp T_MdrStep.cpp
+SOURCE		T_Serv2Step.cpp  T_Serv3Step.cpp
+SOURCE		T_MRUStep.cpp T_WgnamStep.cpp
+SOURCE		T_CmdlnStep.cpp T_RApaLsSessionStep.cpp 
+SOURCE		T_ExeStep.cpp T_NotifStep.cpp
+SOURCE		T_CaptionStep.cpp T_LocaleStep.cpp 
+SOURCE		T_AutoMMCReaderOpen.cpp
+   
+SOURCE		T_ServicesStep.cpp
+SOURCE		T_StartAppStep.cpp
+SOURCE		T_ServiceRegistryStep.cpp
+SOURCE		T_StartDocStep.CPP
+SOURCE		T_ControlPanelTest.cpp
+SOURCE		T_RuleBasedLaunchingStep.cpp
+SOURCE		T_Capability1.cpp
+SOURCE		T_Capability2.cpp
+SOURCE		T_groupNametest.cpp
+SOURCE		T_groupNametest_ver1.cpp
+SOURCE		T_groupNametest_ver2.cpp
+SOURCE		T_windowchainingstep.cpp
+SOURCE		T_AppList.CPP
+SOURCE		T_SysStartApparcStep.cpp
+SOURCE		T_ProcStep.cpp
+SOURCE		T_DataMappingPersistenceA.cpp
+SOURCE		T_DataMappingPersistenceB.cpp
+SOURCE		T_DataMappingPersistenceC.cpp
+SOURCE		T_NonNativeAppsStep.cpp
+SOURCE		T_IntegritySupportStep.cpp
+SOURCE		T_IntegritySupportRebootStep.cpp
+SOURCE		T_ApsScan.CPP
+SOURCE		T_EndTaskStep.cpp
+#ifdef SYMBIAN_APPARC_APPINFO_CACHE
+SOURCE		T_AppListFileUpdateStep.cpp
+SOURCE		T_AppListFileBootStep.cpp
+#endif
+SOURCE		testableapalssession.cpp
+SOURCE		t_largestackstep.cpp
+SOURCE		T_DataTypeMappingWithSid1.cpp
+SOURCE      t_abstractnonnativeappsstep.cpp
+SOURCE      t_drivenotification.cpp
+SOURCE		t_mimecontentpolicystep.cpp
+SOURCE		t_servicebasestep.cpp
+SOURCE		T_RecUpgrade.cpp
+
+resource		t_rapalssessionstep.rss
+start resource	t_rapalssessionstep.rss
+TARGETPATH		/system/test/t_rapalssessionstep
+lang			SC
+end
+
+// START resource files for service registration and discovery tests
+start resource	serverapp_loc.RSS
+HEADER
+targetpath	/resource/apps
+lang		sc
+end
+
+start resource	serverapp_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	serverapp3_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	serverapp6_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	serverapp7_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	serverapp2_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	serverapp4_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	openservice1a.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	openservice1b.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	T_DataPrioritySystem3_reg.rss 
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+// END resource files for service registration and discovery tests
+
+
+start resource	TCtrlPnlApp_reg.RSS
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+// START resource files for customising the default icon wrt locale
+
+start resource	CustomiseDefaultIconApp_loc.RSS
+HEADER
+targetpath	/resource/apps
+lang		SC 
+end
+
+start resource	CustomiseDefaultIconApp_reg.RSS
+targetpath	/private/10003a3f/import/apps
+lang		SC 
+end
+
+start bitmap		default_app_icon.m02
+targetpath		/resource/apps
+SOURCEPATH 		../tdatasrc
+source			c8,1 def25.bmp def25m.bmp def35.bmp def35m.bmp def50.bmp def50m.bmp 
+end 
+//END resource files for customising the default icon wrt locale
+
+
+start resource	TestUnTrustedPriorityApp1_reg.rss 
+targetpath	/private/10003a3f/import/apps
+lang		sc
+end
+
+start resource	TestTrustedPriorityApp1_reg.rss 
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	TestUnTrustedPriorityApp2_reg.rss 
+targetpath	/private/10003a3f/import/apps
+lang		sc
+end
+
+start resource	TestTrustedPriorityApp2_reg.rss 
+targetpath	/private/10003a3f/apps
+lang		sc
+end
+
+start resource	T_groupname_loc.rss
+HEADER
+targetpath	/resource/apps
+lang		sc
+end
+
+start resource	T_groupnamever1_loc.rss
+HEADER
+targetpath	/resource/apps
+lang		sc
+end
+
+start resource	T_groupnamever2_loc.rss
+HEADER
+targetpath	/resource/apps
+lang		sc
+end
+
+resource  		T_groupname_reg.rss
+start resource 		T_groupname_reg.rss
+targetpath 		/private/10003a3f/apps
+end
+
+resource  		T_groupnamever1_reg.rss
+start resource 		T_groupnamever1_reg.rss
+targetpath 		/private/10003a3f/apps
+end
+
+resource  		T_groupnamever2_reg.rss
+start resource 		T_groupnamever2_reg.rss
+targetpath 		/private/10003a3f/apps
+end
+
+//-------END 
+
+USERINCLUDE	 	../tef
+userinclude		../../uiftestfw/inc
+
+LIBRARY		CONE.LIB WS32.LIB APPFWK_TEST_APPUI.LIB EUSER.LIB ECOM.LIB
+LIBRARY		TESTEXECUTEUTILS.LIB  TestExecuteLogClient.LIB
+LIBRARY		APPARC.LIB EFSRV.LIB ESTOR.LIB GDI.LIB FBSCLI.LIB
+LIBRARY     	APFILE.LIB APGRFX.LIB  BAFL.LIB APMIME.LIB APSERV.LIB
+LIBRARY		EIKCORE.LIB APPFWK_TEST_UTILS.LIB SERVICEREGISTRY.LIB
+LIBRARY     ticonloaderandiconarrayforleaks.lib centralrepository.lib
+// We're quite heavy on the stack... 4k in WinS isn't enough...
+EPOCSTACKSIZE	0xf000
+
+VENDORID 0x70000001

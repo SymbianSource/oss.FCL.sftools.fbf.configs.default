@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<relnotes schema="1.0.0" name="Application Architecture" purpose="" type="component">
+<revision major="1" functional="0" minor="5" date="20080820">
+    <ref name="125788" type="defect"/>
+    <description> RApaLsSession::CancelRecognizeFiles() complete the TRequestStatus that was passed to RApaLsSession::RecognizeFilesL(). </description>
+  </revision>
+  <revision major="1" functional="0" minor="4" date="20080528">
+    <ref name="122634" type="defect"/>
+    <description> If drive name is present in the filename then it scans through the \\sys\\bin of that particular drive,
+	otherwise it scans through the \\sys\\bin folders in all the avaliable drives.</description>
+  </revision>	   	
+  <revision major="1" functional="0" minor="3" date="20080305">
+    <ref name="119000" type="defect"/>
+    <description>Changed documetnation in How To Port Guide: Control Panel Plugins.doc correctly.
+Changed out of date documentation in apgctl.h and apgctl.cpp
+Removed incorrect check in CApaSystemControl::ConstructL()</description>
+  </revision>
+  <revision major="1" functional="0" minor="2" date="20071226">
+    <ref name="115489" type="defect"/>
+    <description>Behavior of CApaAppServiceBase::SecurityCheckL() is made to pass security checks always as this is the default behavior</description>
+  </revision>
+  <revision major="1" functional="0" minor="1" date="20071203">
+    <ref name="114861" type="defect"/>
+    <description>Modified documentation of RApaLsSession::GetSupportedDataTypesL() and RApaLsSession::DeleteDataMapping() appropriately.</description>
+  </revision>
+  <revision major="1" functional="0" minor="0" date="20070828">
+    <ref name="1803" type="preq"/>
+    <description>Added CApfMimeContentPolicy API to apfile.dll.  It is used for checking MIME types and 
+file extensions against closed content list.</description>
+  </revision>
+  <purpose>
+    Framework environment for applications and application data, defines key application responsibilities and interactions with data and UI.
+  </purpose>
+  <defect number="PDEF106618" title="Apparc should kill the child process if a leave occurs" revision="019">
+    Child Process is terminated if SetOpaqueDataL() and SetProcessEnvironmentL() function leaves.
+  </defect>
+  <defect number="PDEF106542" title="t_IntegritySupportReboot2 test fails for WINSCW builds" revision="018">
+    PDEF106542:t_IntegritySupportReboot2 test fails for WINSCW builds
+  </defect>
+  <defect number="DEF104372" title="AppArc's T_ProcStep TEF test doesn't actually work" revision="017">
+    The mismatch between UID used in ParentProcess_reg.rss and ParentProcess_Main.cpp, and UID used in the MMP file has been corrected.
+    Minor change in apparc CApaParentProcessMonitor::RunL
+  </defect>
+  <defect number="DEF103470" title="RApaLsSession::SetAppShortCaption() does not deal correctly with ELangNone" revision="016">
+    Appropriate changes are made while setting short caption with ELangNone. While updating short caption precedence is given to other application languages over ELangNone if it is present.
+  </defect>
+  <defect number="PDEF102728" title="STABILITY: Unchecked return value of RBuf::Create, potential User::11!" revision="015">
+    Update CApaApplication::GenerateFileName to return KErrNoMemory if RBuf::Create() fails.
+  </defect>
+  <defect number="PDEF102643" title="There are still references to \\system\\apps folder in apparc code" revision="014">
+    Update KApplicationLocation constant in apparc.cpp to point to the data-caged location ('\\sys\\bin\\').
+  </defect>
+  <defect number="DEF101056" title="t_ServiceRegistry test fails for WINSCW builds" revision="013">
+    Update test code so the heap check is not performed in the server side for this t_ServiceRegistry test case.
+  </defect>
+  <defect number="DEF099074" title="Memory leaks and crashes in app startup" revision="012">
+    Part of fix to problem with memory leaks and crashes in app startup, found using the WillHeapChecker tool. See also Cone and Uikon changes.
+  </defect>
+  <defect number="INC098717" title="support for scalable midlet icons is missing" revision="011">
+    Added test code to test :
+    
+    TInt RApaLsSession::GetAppIcon(TUid aAppUid, RFile&amp; aFile) const API
+    
+    for native and non-native apps for SVG and MBM icons.
+  </defect>
+  <defect number="INC098717" title="support for scalable midlet icons is missing" revision="010">
+    Added a new API -
+    EXPORT_C TInt RApaLsSession::GetAppIcon(TUid aAppUid, RFile&amp; aFile) const
+    
+    It gets an open read only file handle to the application icon file for the application with the specified UID.
+    
+    Non-native application icons stored in the private data cage of AppArc, can now be accessed using this API.
+  </defect>
+  <defect number="DEF100340" title="t_services test fails for WINSCW builds" revision="009">
+    The type store gets updated whenever any of these function (InsertDataMapping() &amp; DeleteDataMapping()) call is made. Due to the timing issue, the method &#xE2;&#x20AC;&#x2122;WaitForTypeStoreUpdate()&#xE2;&#x20AC;&#x2122; has been moved inside the test cases TestServiceDiscovery9() &amp; TestPrioritySystemL() soon after the call to &#xE2;&#x20AC;&#x2122;DeleteDataMapping()&#xE2;&#x20AC;&#x2122;. The type store updation takes on the server side while the test case is still running which causes the heap check to fail.To avoid the heap check on the server side DONT_CHECK macro is used.
+  </defect>
+  <defect number="INC100656" title="Apparc can panic with APFILE:0 during emulator boot" revision="008">
+    Condition has been added to check the presence of removable media drive(s), before issuing a request for removable media scan during phone boot.
+  </defect>
+  <defect number="DEF100338" title="t_controlpanel test fails for WISNCW builds" revision="007">
+    Delay in Apparc test script is increased to ensure that apparc is fully initialised and to avoid intermittent test failure on ONB.
+  </defect>
+  <minorchange revision="006">
+    Correct the path for FileWithUnknownMimeType.UnrecognisableExtention in apparctest.iby to remove the ROM building warning
+  </minorchange>
+  <defect number="PDEF100157" title="loading recognisers on demand - need emulator configuration support" revision="005">
+    In APSCONSTDATA.CPP comments are updated to make sure that
+    patchdata_apserv_dll_KApaLoadDataRecognizersOnDemand 1 line is added to epoc.ini.
+    Code lines are put in place in CApaAppListServer::CApaAppListServer(TInt aPriority) ,present in APSSERV.CPP so that if WINS then it read the value from epoc.ini. UserSvr::HalFunction( ... ) is used to check epoc.ini for a specific emulator property.
+  </defect>
+  <defect number="DEF099521" title="DP: [TBAS] apparctest_t_nonnativeapps.script crashes on Functional DP-ROM." revision="004">
+    Changes have been made in Apparc test code. Due to paging under Functional configuration of DP, the time required for Apparc update is added as part of solution. That is, a user delay of 5sec is introduced sufficient enough for Apparc to close the test app.
+  </defect>
+  <defect number="DEF095225" title="Platsec errors introduced since previous UIF defect fixes submission" revision="003">
+    Platsec errors introduced by previous defect submissions in T_Nonnativeapps are corrected by wrapping tests within APPFWK_EXPECTED_PLATSEC_START and
+    APPFWK_EXPECTED_PLATSEC_FINISH Macros. Other Platsec errors are resolved by making changes in Test code of T_Rulebasedlaunching and TShutter.
+  </defect>
+  <cr number="0902" title="Enable Dynamic Language Switching in APPARC, ECOM and EIKSTD" revision="002">
+    Added new test cases to test the changes made in apparc component to enable dynamic language switching.
+    Test cases have been added in existing T_Locale test step.
+  </cr>
+  <cr number="0902" title="Enable Dynamic Language Switching in APPARC, ECOM and EIKSTD" revision="001">
+    Changes have been made in apparc component to reload the locale information (caption, short caption and icon file name) for all installed applications and their views on language change event.
+    
+    To enable dynamic language switching in apparc, apparc now monitors language change event using RChangeNotifier. On language change event, apparc issues a rescan on app-list which updates localisable information for all applications and their views in the app-list.
+  </cr>
+</relnotes>

@@ -1,0 +1,48 @@
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// TAppEmbeddableUiOrStandalone resource - Test
+// 
+//
+
+
+
+/**
+ @file 10004c5d.rss
+ @internalComponent - Internal Symbian test code
+*/
+
+#include <RegistryInfo.rh>
+
+RESOURCE REGISTRY_INFO
+	{
+	dll_uid = 0x10004c5D; //should match name of this file
+	interfaces =
+		{
+		INTERFACE_INFO
+			{
+			interface_uid=0x101f8c96;
+			implementations =
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0x10004c4A; 			
+					version_no = 1;
+					display_name = "TAppEmbeddableUiOrStandAlone";
+					default_data = "";        
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}

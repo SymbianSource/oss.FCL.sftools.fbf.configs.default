@@ -1,0 +1,239 @@
+EXPORTS
+	??0CApaDocument@@IAE@AAVCApaApplication@@AAVCApaProcess@@@Z @ 1 NONAME ; protected: __thiscall CApaDocument::CApaDocument(class CApaApplication &,class CApaProcess &)
+	??0CApaFileRecognizer@@IAE@AAVRFs@@@Z @ 2 NONAME ; protected: __thiscall CApaFileRecognizer::CApaFileRecognizer(class RFs &)
+	??0CApaFileRecognizerType@@IAE@XZ @ 3 NONAME ; protected: __thiscall CApaFileRecognizerType::CApaFileRecognizerType(void)
+	??0CApaProcess@@IAE@ABVRFs@@AAVCApaAppFinder@@@Z @ 4 NONAME ABSENT ; protected: __thiscall CApaProcess::CApaProcess(class RFs const &,class CApaAppFinder &)
+	??0TApaAppEntry@@QAE@ABVTUidType@@ABV?$TBuf@$0BAA@@@@Z @ 5 NONAME ; public: __thiscall TApaAppEntry::TApaAppEntry(class TUidType const &,class TBuf<256> const &)
+	??0TApaAppEntry@@QAE@XZ @ 6 NONAME ; public: __thiscall TApaAppEntry::TApaAppEntry(void)
+	??0TApaAppIdentifier@@QAE@VTUid@@ABV?$TBuf@$0BAA@@@@Z @ 7 NONAME ; public: __thiscall TApaAppIdentifier::TApaAppIdentifier(class TUid,class TBuf<256> const &)
+	??0TApaAppIdentifier@@QAE@XZ @ 8 NONAME ; public: __thiscall TApaAppIdentifier::TApaAppIdentifier(void)
+	??0TApaAppInfo@@QAE@VTUid@@ABV?$TBuf@$0BAA@@@1@Z @ 9 NONAME ; public: __thiscall TApaAppInfo::TApaAppInfo(class TUid,class TBuf<256> const &,class TBuf<256> const &)
+	??0TApaAppInfo@@QAE@XZ @ 10 NONAME ; public: __thiscall TApaAppInfo::TApaAppInfo(void)
+	??0TApaModelDoorFactory@@QAE@PBVMApaModelHeaderFactory@@@Z @ 11 NONAME ; public: __thiscall TApaModelDoorFactory::TApaModelDoorFactory(class MApaModelHeaderFactory const *)
+	??0TCapability@CApaDocument@@QAE@XZ @ 12 NONAME ; public: __thiscall CApaDocument::TCapability::TCapability(void)
+	??1CApaCommandLine@@UAE@XZ @ 13 NONAME ; public: virtual __thiscall CApaCommandLine::~CApaCommandLine(void)
+	??1CApaDocument@@UAE@XZ @ 14 NONAME ; public: virtual __thiscall CApaDocument::~CApaDocument(void)
+	??1CApaFileRecognizer@@UAE@XZ @ 15 NONAME ; public: virtual __thiscall CApaFileRecognizer::~CApaFileRecognizer(void)
+	??1CApaFileRecognizerType@@MAE@XZ @ 16 NONAME ; protected: virtual __thiscall CApaFileRecognizerType::~CApaFileRecognizerType(void)
+	??1CApaModelDoor@@UAE@XZ @ 17 NONAME ; public: virtual __thiscall CApaModelDoor::~CApaModelDoor(void)
+	??1CApaProcess@@UAE@XZ @ 18 NONAME ; public: virtual __thiscall CApaProcess::~CApaProcess(void)
+	?AddFileRecognizerType@CApaFileRecognizer@@IAEXPAVCApaFileRecognizerType@@@Z @ 19 NONAME ; protected: void __thiscall CApaFileRecognizer::AddFileRecognizerType(class CApaFileRecognizerType *)
+	?AddNewDocumentL@CApaProcess@@QAEPAVCApaDocument@@ABVTDesC16@@VTUid@@@Z @ 20 NONAME ABSENT ; public: class CApaDocument * __thiscall CApaProcess::AddNewDocumentL(class TDesC16 const &,class TUid)
+	?AppFullName@CApaApplication@@UBE?AV?$TBuf@$0BAA@@@XZ @ 21 NONAME ; public: virtual class TBuf<256>  __thiscall CApaApplication::AppFullName(void)const 
+	?AppLocator@CApaFileRecognizer@@QBEPAVCApaAppLocator@@XZ @ 22 NONAME ; public: class CApaAppLocator * __thiscall CApaFileRecognizer::AppLocator(void)const 
+	?AppRunL@CApaFileRecognizerType@@IBE?AVTThreadId@@ABVCApaCommandLine@@@Z @ 23 NONAME ; protected: class TThreadId  __thiscall CApaFileRecognizerType::AppRunL(class CApaCommandLine const &)const 
+	?Capability@CApaDocument@@UBE?AVTCapability@1@XZ @ 24 NONAME ; public: virtual class CApaDocument::TCapability  __thiscall CApaDocument::Capability(void)const 
+	?Capability@CApaFileRecognizerType@@QBEXAAVTDes8@@@Z @ 25 NONAME ; public: void __thiscall CApaFileRecognizerType::Capability(class TDes8 &)const 
+	?Command@CApaCommandLine@@QBE?AW4TApaCommand@@XZ @ 26 NONAME ; public: enum TApaCommand  __thiscall CApaCommandLine::Command(void)const 
+	?ConstructL@CApaProcess@@IAEXXZ @ 27 NONAME ; protected: void __thiscall CApaProcess::ConstructL(void)
+	?CopyCapability@TApaAppCapability@@SAXAAVTDes8@@ABVTDesC8@@@Z @ 28 NONAME ; public: static void __cdecl TApaAppCapability::CopyCapability(class TDes8 &,class TDesC8 const &)
+	?DestroyDocument@CApaProcess@@QAEXPAVCApaDocument@@@Z @ 29 NONAME ; public: void __thiscall CApaProcess::DestroyDocument(class CApaDocument *)
+	?DestroyRecognizerList@CApaFileRecognizer@@IAEXXZ @ 30 NONAME ; protected: void __thiscall CApaFileRecognizer::DestroyRecognizerList(void)
+	?DllName@CApaApplication@@QBE?AV?$TBuf@$0BAA@@@XZ @ 31 NONAME ; public: class TBuf<256>  __thiscall CApaApplication::DllName(void)const 
+	?DoCleanup@TApaDocCleanupItem@@CAXPAX@Z @ 32 NONAME ; private: static void __cdecl TApaDocCleanupItem::DoCleanup(void *)
+	?DocumentName@CApaCommandLine@@QBE?AVTPtrC16@@XZ @ 33 NONAME ; public: class TPtrC16  __thiscall CApaCommandLine::DocumentName(void)const 
+	?Draw@CApaModelDoor@@UBEXAAVCGraphicsContext@@ABVTPoint@@ABVTRect@@PAVMGraphicsDeviceMap@@@Z @ 34 NONAME ; public: virtual void __thiscall CApaModelDoor::Draw(class CGraphicsContext &,class TPoint const &,class TRect const &,class MGraphicsDeviceMap *)const 
+	?ExternalizeBaseStreamL@CApaDoorBase@@IBEXAAVCStreamStore@@AAVCStreamDictionary@@@Z @ 35 NONAME ; protected: void __thiscall CApaDoorBase::ExternalizeBaseStreamL(class CStreamStore &,class CStreamDictionary &)const 
+	?ExternalizeL@CApaDocument@@UBEXAAVRWriteStream@@@Z @ 36 NONAME ; public: virtual void __thiscall CApaDocument::ExternalizeL(class RWriteStream &)const 
+	?ExternalizeL@CApaModelDoor@@UBEXAAVRWriteStream@@@Z @ 37 NONAME ; public: virtual void __thiscall CApaModelDoor::ExternalizeL(class RWriteStream &)const 
+	?ExternalizeL@TApaAppCapability@@QBEXAAVRWriteStream@@@Z @ 38 NONAME ; public: void __thiscall TApaAppCapability::ExternalizeL(class RWriteStream &)const 
+	?ExternalizeL@TApaAppEntry@@QBEXAAVRWriteStream@@@Z @ 39 NONAME ; public: void __thiscall TApaAppEntry::ExternalizeL(class RWriteStream &)const 
+	?ExternalizeL@TApaAppIdentifier@@QBEXAAVRWriteStream@@@Z @ 40 NONAME ; public: void __thiscall TApaAppIdentifier::ExternalizeL(class RWriteStream &)const 
+	?ExternalizeL@TApaAppInfo@@QBEXAAVRWriteStream@@@Z @ 41 NONAME ; public: void __thiscall TApaAppInfo::ExternalizeL(class RWriteStream &)const 
+	?FullCommandLine@CApaCommandLine@@QBE?AVTPtrC16@@XZ @ 42 NONAME ABSENT ; public: class TPtrC16  __thiscall CApaCommandLine::FullCommandLine(void)const 
+	?GenerateFileName@CApaApplication@@SAHAAVRFs@@AAV?$TBuf@$0BAA@@@@Z @ 43 NONAME ; public: static int __cdecl CApaApplication::GenerateFileName(class RFs &,class TBuf<256> &)
+	?GetOriginalSizeInTwips@CApaModelDoor@@UBEXAAVTSize@@@Z @ 44 NONAME ; public: virtual void __thiscall CApaModelDoor::GetOriginalSizeInTwips(class TSize &)const 
+	?GlassPictureL@CApaDocument@@UAEPAVCPicture@@XZ @ 45 NONAME ; public: virtual class CPicture * __thiscall CApaDocument::GlassPictureL(void)
+	?InternalizeBaseStreamL@CApaDoorBase@@IAE?AVTSize@@ABVCStreamStore@@ABVCStreamDictionary@@@Z @ 46 NONAME ; protected: class TSize  __thiscall CApaDoorBase::InternalizeBaseStreamL(class CStreamStore const &,class CStreamDictionary const &)
+	?InternalizeL@TApaAppCapability@@QAEXAAVRReadStream@@@Z @ 47 NONAME ; public: void __thiscall TApaAppCapability::InternalizeL(class RReadStream &)
+	?InternalizeL@TApaAppEntry@@QAEXAAVRReadStream@@@Z @ 48 NONAME ; public: void __thiscall TApaAppEntry::InternalizeL(class RReadStream &)
+	?InternalizeL@TApaAppIdentifier@@QAEXAAVRReadStream@@@Z @ 49 NONAME ; public: void __thiscall TApaAppIdentifier::InternalizeL(class RReadStream &)
+	?InternalizeL@TApaAppInfo@@QAEXAAVRReadStream@@@Z @ 50 NONAME ; public: void __thiscall TApaAppInfo::InternalizeL(class RReadStream &)
+	?LibraryName@CApaCommandLine@@QBE?AVTPtrC16@@XZ @ 51 NONAME ABSENT ; public: class TPtrC16  __thiscall CApaCommandLine::LibraryName(void)const 
+	?MainDocFileName@CApaProcess@@QBE?AVTPtrC16@@XZ @ 52 NONAME ; public: class TPtrC16  __thiscall CApaProcess::MainDocFileName(void)const 
+	?New@CApaCommandLine@@SAPAV1@PAVHBufC16@@@Z @ 53 NONAME ABSENT ; public: static class CApaCommandLine * __cdecl CApaCommandLine::New(class HBufC16 *)
+	?NewL@CApaCommandLine@@SAPAV1@ABVTDesC16@@@Z @ 54 NONAME ABSENT ; public: static class CApaCommandLine * __cdecl CApaCommandLine::NewL(class TDesC16 const &)
+	?NewL@CApaCommandLine@@SAPAV1@XZ @ 55 NONAME ; public: static class CApaCommandLine * __cdecl CApaCommandLine::NewL(void)
+	?NewL@CApaModelDoor@@SAPAV1@ABVCStreamStore@@VTStreamId@@PBVMApaModelHeaderFactory@@@Z @ 56 NONAME ; public: static class CApaModelDoor * __cdecl CApaModelDoor::NewL(class CStreamStore const &,class TStreamId,class MApaModelHeaderFactory const *)
+	?NewL@CApaModelDoor@@SAPAV1@PAVCApaModelHeader@@@Z @ 57 NONAME ; public: static class CApaModelDoor * __cdecl CApaModelDoor::NewL(class CApaModelHeader *)
+	?NewL@CApaProcess@@SAPAV1@ABVRFs@@AAVCApaAppFinder@@@Z @ 58 NONAME ABSENT ; public: static class CApaProcess * __cdecl CApaProcess::NewL(class RFs const &,class CApaAppFinder &)
+	?NewLC@CApaCommandLine@@SAPAV1@ABVTDesC16@@@Z @ 59 NONAME ABSENT ; public: static class CApaCommandLine * __cdecl CApaCommandLine::NewLC(class TDesC16 const &)
+	?NewLC@CApaCommandLine@@SAPAV1@XZ @ 60 NONAME ; public: static class CApaCommandLine * __cdecl CApaCommandLine::NewLC(void)
+	?NewLC@CApaModelDoor@@SAPAV1@PAVCApaModelHeader@@@Z @ 61 NONAME ; public: static class CApaModelDoor * __cdecl CApaModelDoor::NewLC(class CApaModelHeader *)
+	?NewPictureL@TApaModelDoorFactory@@UBEXAAVTPictureHeader@@ABVCStreamStore@@@Z @ 62 NONAME ; public: virtual void __thiscall TApaModelDoorFactory::NewPictureL(class TPictureHeader &,class CStreamStore const &)const 
+	?OpenAppInfoFileL@CApaApplication@@QBEPAVCApaAppInfoFileReader@@XZ @ 63 NONAME ABSENT ; public: class CApaAppInfoFileReader * __thiscall CApaApplication::OpenAppInfoFileL(void)const 
+	?OpenIniFileL@CApaApplication@@QBEPAVCDictionaryStore@@AAVRFs@@@Z @ 64 NONAME ; public: class CDictionaryStore * __thiscall CApaApplication::OpenIniFileL(class RFs &)const 
+	?OpenNewDocumentL@CApaProcess@@QAEPAVCApaDocument@@AAPAVCFileStore@@AAPAVCStreamDictionary@@ABVTDesC16@@I@Z @ 65 NONAME ; public: class CApaDocument * __thiscall CApaProcess::OpenNewDocumentL(class CFileStore * &,class CStreamDictionary * &,class TDesC16 const &,unsigned int)
+	?ReadAppIdentifierL@CApaProcess@@SA?AVTApaAppIdentifier@@ABVCStreamStore@@ABVCStreamDictionary@@@Z @ 66 NONAME ; public: static class TApaAppIdentifier  __cdecl CApaProcess::ReadAppIdentifierL(class CStreamStore const &,class CStreamDictionary const &)
+	?ReadRootStreamLC@CApaProcess@@SAPAVCStreamDictionary@@AAVRFs@@AAPAVCFileStore@@ABVTDesC16@@I@Z @ 67 NONAME ; public: static class CStreamDictionary * __cdecl CApaProcess::ReadRootStreamLC(class RFs &,class CFileStore * &,class TDesC16 const &,unsigned int)
+	?RecognizeFileL@CApaFileRecognizer@@QAEPAVCApaFileRecognizerType@@ABVTDesC16@@PBVTUidType@@@Z @ 68 NONAME ; public: class CApaFileRecognizerType * __thiscall CApaFileRecognizer::RecognizeFileL(class TDesC16 const &,class TUidType const *)
+	?NewAppServerL@CApaApplication@@UAEXAAPAVCApaAppServer@@@Z @ 69 NONAME ; void CApaApplication::NewAppServerL(class CApaAppServer * &)
+	?OpenFileL@CApaDocument@@EAEXAAPAVCFileStore@@AAVRFile@@@Z @ 70 NONAME ; void CApaDocument::OpenFileL(class CFileStore * &, class RFile &)
+	?Reserved_2@CApaDocument@@EAEXXZ @ 71 NONAME ; private: virtual void __thiscall CApaDocument::Reserved_2(void)
+	?ResetL@CApaProcess@@QAEXXZ @ 72 NONAME ; public: void __thiscall CApaProcess::ResetL(void)
+	?RestoreL@CApaModelDoor@@QAEXABVCStreamStore@@VTStreamId@@PBVMApaModelHeaderFactory@@@Z @ 73 NONAME ; public: void __thiscall CApaModelDoor::RestoreL(class CStreamStore const &,class TStreamId,class MApaModelHeaderFactory const *)
+	?ScaleFactorHeight@CApaModelDoor@@UBEHXZ @ 74 NONAME ; public: virtual int __thiscall CApaModelDoor::ScaleFactorHeight(void)const 
+	?ScaleFactorWidth@CApaModelDoor@@UBEHXZ @ 75 NONAME ; public: virtual int __thiscall CApaModelDoor::ScaleFactorWidth(void)const 
+	?SetAppLocator@CApaFileRecognizer@@IAEXPAVCApaAppLocator@@@Z @ 76 NONAME ; protected: void __thiscall CApaFileRecognizer::SetAppLocator(class CApaAppLocator *)
+	?SetCommandL@CApaCommandLine@@QAEXW4TApaCommand@@@Z @ 77 NONAME ; public: void __thiscall CApaCommandLine::SetCommandL(enum TApaCommand)
+	?SetDocumentNameL@CApaCommandLine@@QAEXABVTDesC16@@@Z @ 78 NONAME ; public: void __thiscall CApaCommandLine::SetDocumentNameL(class TDesC16 const &)
+	?SetFullCommandLine@CApaCommandLine@@QAEHPAVHBufC16@@@Z @ 79 NONAME ABSENT ; public: int __thiscall CApaCommandLine::SetFullCommandLine(class HBufC16 *)
+	?SetFullCommandLineL@CApaCommandLine@@QAEXABVTDesC16@@@Z @ 80 NONAME ABSENT ; public: void __thiscall CApaCommandLine::SetFullCommandLineL(class TDesC16 const &)
+	?SetLibraryNameL@CApaCommandLine@@QAEXABVTDesC16@@@Z @ 81 NONAME ABSENT ; public: void __thiscall CApaCommandLine::SetLibraryNameL(class TDesC16 const &)
+	?SetMainDocFileName@CApaProcess@@QAEXABVTDesC16@@@Z @ 82 NONAME ; public: void __thiscall CApaProcess::SetMainDocFileName(class TDesC16 const &)
+	?SetMainDocument@CApaProcess@@QAEXPAVCApaDocument@@@Z @ 83 NONAME ; public: void __thiscall CApaProcess::SetMainDocument(class CApaDocument *)
+	?SetReserveLengthL@CApaCommandLine@@QAEXH@Z @ 84 NONAME ABSENT ; public: void __thiscall CApaCommandLine::SetReserveLengthL(int)
+	?SetScaleFactor@CApaModelDoor@@UAEXHH@Z @ 85 NONAME ; public: virtual void __thiscall CApaModelDoor::SetScaleFactor(int,int)
+	?SetTailEndL@CApaCommandLine@@QAEXABVTDesC8@@@Z @ 86 NONAME ; public: void __thiscall CApaCommandLine::SetTailEndL(class TDesC8 const &)
+	?StoreL@CApaModelDoor@@UBE?AVTStreamId@@AAVCStreamStore@@@Z @ 87 NONAME ; public: virtual class TStreamId  __thiscall CApaModelDoor::StoreL(class CStreamStore &)const 
+	?TailEnd@CApaCommandLine@@QBE?AVTPtrC8@@XZ @ 88 NONAME ; public: class TPtrC8  __thiscall CApaCommandLine::TailEnd(void)const 
+	?ValidatePasswordL@CApaDocument@@UBEXXZ @ 89 NONAME ; public: virtual void __thiscall CApaDocument::ValidatePasswordL(void)const 
+	?WriteAppIdentifierL@CApaProcess@@SAXAAVCStreamStore@@AAVCStreamDictionary@@ABVTApaAppIdentifier@@@Z @ 90 NONAME ; public: static void __cdecl CApaProcess::WriteAppIdentifierL(class CStreamStore &,class CStreamDictionary &,class TApaAppIdentifier const &)
+	?WriteRootStreamL@CApaProcess@@SAXAAVCPersistentStore@@AAVCStreamDictionary@@ABVCApaApplication@@@Z @ 91 NONAME ; public: static void __cdecl CApaProcess::WriteRootStreamL(class CPersistentStore &,class CStreamDictionary &,class CApaApplication const &)
+	?WriteRootStreamL@CApaProcess@@SAXAAVCPersistentStore@@AAVCStreamDictionary@@ABVTApaAppIdentifier@@@Z @ 92 NONAME ; public: static void __cdecl CApaProcess::WriteRootStreamL(class CPersistentStore &,class CStreamDictionary &,class TApaAppIdentifier const &)
+	?DetachFromStoreL@CApaModelDoor@@UAEXW4TDetach@CPicture@@@Z @ 93 NONAME ; public: virtual void __thiscall CApaModelDoor::DetachFromStoreL(enum CPicture::TDetach)
+	?Lock@CApaFileRecognizerType@@QAEXXZ @ 94 NONAME ; public: void __thiscall CApaFileRecognizerType::Lock(void)
+	?RemoveFileRecognizerType@CApaFileRecognizer@@IAEHPBVCApaFileRecognizerType@@@Z @ 95 NONAME ; protected: int __thiscall CApaFileRecognizer::RemoveFileRecognizerType(class CApaFileRecognizerType const *)
+	?Unlock@CApaFileRecognizerType@@QAEXXZ @ 96 NONAME ; public: void __thiscall CApaFileRecognizerType::Unlock(void)
+	??0TApaLastUsedEntry@@QAE@V?$TBuf@$0BAA@@@VTUid@@@Z @ 97 NONAME ABSENT ; public: __thiscall TApaLastUsedEntry::TApaLastUsedEntry(class TBuf<256>,class TUid)
+	??0TApaLastUsedEntry@@QAE@XZ @ 98 NONAME ABSENT ; public: __thiscall TApaLastUsedEntry::TApaLastUsedEntry(void)
+	?AddLastUsedEntryL@CApaRecentFile@@SAXAAVRFs@@ABVTDesC16@@VTUid@@@Z @ 99 NONAME ABSENT ; public: static void __cdecl CApaRecentFile::AddLastUsedEntryL(class RFs &,class TDesC16 const &,class TUid)
+	?ExternalizeL@TApaLastUsedEntry@@QBEXAAVRWriteStream@@@Z @ 100 NONAME ABSENT ; public: void __thiscall TApaLastUsedEntry::ExternalizeL(class RWriteStream &)const 
+	?GetRecentFileL@CApaRecentFile@@SA?AVTApaLastUsedEntry@@AAVRFs@@VTUid@@H@Z @ 101 NONAME ABSENT ; public: static class TApaLastUsedEntry  __cdecl CApaRecentFile::GetRecentFileL(class RFs &,class TUid,int)
+	?GetRecentFileListL@CApaRecentFile@@SAPAV?$CArrayFixFlat@VTApaLastUsedEntry@@@@AAVRFs@@VTUid@@@Z @ 102 NONAME ABSENT ; public: static class CArrayFixFlat<class TApaLastUsedEntry> * __cdecl CApaRecentFile::GetRecentFileListL(class RFs &,class TUid)
+	?InternalizeL@TApaLastUsedEntry@@QAEXAAVRReadStream@@@Z @ 103 NONAME ABSENT ; public: void __thiscall TApaLastUsedEntry::InternalizeL(class RReadStream &)
+	?Reserved_1@CApaFileRecognizerType@@EAEXXZ @ 104 NONAME ; private: virtual void __thiscall CApaFileRecognizerType::Reserved_1(void)
+	?Reserved_1@CApaModelHeader@@EAEXXZ @ 105 NONAME ; private: virtual void __thiscall CApaModelHeader::Reserved_1(void)
+	??0TApaAppViewInfo@@QAE@VTUid@@ABV?$TBuf@$0BAA@@@H@Z @ 106 NONAME ; public: __thiscall TApaAppViewInfo::TApaAppViewInfo(class TUid,class TBuf<256> const &,int)
+	??0TApaAppViewInfo@@QAE@XZ @ 107 NONAME ; public: __thiscall TApaAppViewInfo::TApaAppViewInfo(void)
+	?ExternalizeL@TApaAppViewInfo@@QBEXAAVRWriteStream@@@Z @ 108 NONAME ; public: void __thiscall TApaAppViewInfo::ExternalizeL(class RWriteStream &)const 
+	?InternalizeL@TApaAppViewInfo@@QAEXAAVRReadStream@@@Z @ 109 NONAME ; public: void __thiscall TApaAppViewInfo::InternalizeL(class RReadStream &)
+	??0TApaAppInfo@@QAE@VTUid@@ABV?$TBuf@$0BAA@@@11@Z @ 110 NONAME ; public: __thiscall TApaAppInfo::TApaAppInfo(class TUid,class TBuf<256> const &,class TBuf<256> const &,class TBuf<256> const &)
+	??0TApaAppInfo_7_0@@QAE@VTUid@@ABV?$TBuf@$0BAA@@@1@Z @ 111 NONAME ABSENT ; TApaAppInfo_7_0::TApaAppInfo_7_0(class TUid, class TBuf<256> const &, class TBuf<256> const &)
+	??0TApaAppInfo_7_0@@QAE@XZ @ 112 NONAME ABSENT ; TApaAppInfo_7_0::TApaAppInfo_7_0(void)
+	?ExternalizeL@TApaAppInfo_7_0@@QBEXAAVRWriteStream@@@Z @ 113 NONAME ABSENT ; void TApaAppInfo_7_0::ExternalizeL(class RWriteStream &) const
+	?InternalizeL@TApaAppInfo_7_0@@QAEXAAVRReadStream@@@Z @ 114 NONAME ABSENT ; void TApaAppInfo_7_0::InternalizeL(class RReadStream &)
+	?Externalize7_0L@TApaAppCapability@@ABEXAAVRWriteStream@@@Z @ 115 NONAME ; void TApaAppCapability::Externalize7_0L(class RWriteStream &) const
+	?Internalize7_0L@TApaAppCapability@@QAEXAAVRReadStream@@@Z @ 116 NONAME ; void TApaAppCapability::Internalize7_0L(class RReadStream &)
+	??0TApaEmbeddabilityFilter@@QAE@XZ @ 117 NONAME ; public: __thiscall TApaEmbeddabilityFilter::TApaEmbeddabilityFilter(void)
+	?AddEmbeddability@TApaEmbeddabilityFilter@@QAEXW4TEmbeddability@TApaAppCapability@@@Z @ 118 NONAME ; public: void __thiscall TApaEmbeddabilityFilter::AddEmbeddability(enum TApaAppCapability::TEmbeddability)
+	?MatchesEmbeddability@TApaEmbeddabilityFilter@@QBEHW4TEmbeddability@TApaAppCapability@@@Z @ 119 NONAME ; public: int __thiscall TApaEmbeddabilityFilter::MatchesEmbeddability(enum TApaAppCapability::TEmbeddability)const 
+	?SetMainDocFileNameL@CApaProcess@@QAEXABVTDesC16@@@Z @ 120 NONAME ; public: void __thiscall CApaProcess::SetMainDocFileNameL(class TDesC16 const &)
+	?CreateFileRecognizerL@CApaFileRecognizerType@@SAPAV1@VTUid@@@Z @ 121 NONAME ; public: static class CApaFileRecognizerType * __cdecl CApaFileRecognizerType::CreateFileRecognizerL(class TUid)
+	??0TApaApplicationFactory@@QAE@ABVCImplementationInformation@@@Z @ 122 NONAME ; TApaApplicationFactory::TApaApplicationFactory(class CImplementationInformation const &)
+	??0TApaApplicationFactory@@QAE@P6APAVCApaApplication@@XZ@Z @ 123 NONAME ; TApaApplicationFactory::TApaApplicationFactory(class CApaApplication * (*)(void))
+	??0TApaApplicationFactory@@QAE@VTUid@@@Z @ 124 NONAME ; TApaApplicationFactory::TApaApplicationFactory(class TUid)
+	??1CApaApplication@@UAE@XZ @ 125 NONAME ; CApaApplication::~CApaApplication(void)
+	?AddNewDocumentL@CApaProcess@@QAEPAVCApaDocument@@VTApaApplicationFactory@@@Z @ 126 NONAME ; class CApaDocument * CApaProcess::AddNewDocumentL(class TApaApplicationFactory)
+	??0CApaAppServer@@IAE@XZ @ 127 NONAME ; CApaAppServer::CApaAppServer(void)
+	??0CApaAppServiceBase@@QAE@XZ @ 128 NONAME ; CApaAppServiceBase::CApaAppServiceBase(void)
+	??0RApaAppServiceBase@@IAE@XZ @ 129 NONAME ; RApaAppServiceBase::RApaAppServiceBase(void)
+	??1CApaAppServer@@UAE@XZ @ 130 NONAME ; CApaAppServer::~CApaAppServer(void)
+	??1CApaAppServiceBase@@UAE@XZ @ 131 NONAME ; CApaAppServiceBase::~CApaAppServiceBase(void)
+	??1CApaServerAppExitMonitor@@UAE@XZ @ 132 NONAME ; CApaServerAppExitMonitor::~CApaServerAppExitMonitor(void)
+	?CancelNotifyServerExit@RApaAppServiceBase@@QBEXXZ @ 133 NONAME ; void RApaAppServiceBase::CancelNotifyServerExit(void) const
+	?Close@RApaAppServiceBase@@QAEXXZ @ 134 NONAME ; void RApaAppServiceBase::Close(void)
+	?ConnectExistingAppL@RApaAppServiceBase@@QAEXABV1@@Z @ 135 NONAME ; void RApaAppServiceBase::ConnectExistingAppL(class RApaAppServiceBase const &)
+	?ConnectExistingByNameL@RApaAppServiceBase@@QAEXABVTDesC16@@@Z @ 136 NONAME ; void RApaAppServiceBase::ConnectExistingByNameL(class TDesC16 const &)
+	?ConstructL@CApaAppServer@@UAEXABVTDesC16@@@Z @ 137 NONAME ; void CApaAppServer::ConstructL(class TDesC16 const &)
+	?CreateL@CApaAppServiceBase@@MAEXXZ @ 138 NONAME ; void CApaAppServiceBase::CreateL(void)
+	?CreateServiceL@CApaAppServer@@UBEPAVCApaAppServiceBase@@VTUid@@@Z @ 139 NONAME ; class CApaAppServiceBase * CApaAppServer::CreateServiceL(class TUid) const
+	?CreateServiceSecurityCheckL@CApaAppServer@@UAE?AW4TCustomResult@CPolicyServer@@VTUid@@ABVRMessage2@@AAHAAVTSecurityInfo@@@Z @ 140 NONAME ; enum CPolicyServer::TCustomResult CApaAppServer::CreateServiceSecurityCheckL(class TUid, class RMessage2 const &, int &, class TSecurityInfo &)
+	?CustomSecurityCheckL@CApaAppServer@@MAE?AW4TCustomResult@CPolicyServer@@ABVRMessage2@@AAHAAVTSecurityInfo@@@Z @ 141 NONAME ; enum CPolicyServer::TCustomResult CApaAppServer::CustomSecurityCheckL(class RMessage2 const &, int &, class TSecurityInfo &)
+	?ExtensionInterface@CApaAppServer@@EAEXVTUid@@AAPAX@Z @ 142 NONAME ; void CApaAppServer::ExtensionInterface(class TUid, void * &)
+	?ExtensionInterface@CApaAppServiceBase@@EAEXVTUid@@AAPAX@Z @ 143 NONAME ; void CApaAppServiceBase::ExtensionInterface(class TUid, void * &)
+	?ExtensionInterface@RApaAppServiceBase@@EAEXVTUid@@AAPAX@Z @ 144 NONAME ; void RApaAppServiceBase::ExtensionInterface(class TUid, void * &)
+	?NewL@CApaServerAppExitMonitor@@SAPAV1@AAVRApaAppServiceBase@@AAVMApaServerAppExitObserver@@H@Z @ 145 NONAME ; class CApaServerAppExitMonitor * CApaServerAppExitMonitor::NewL(class RApaAppServiceBase &, class MApaServerAppExitObserver &, int)
+	?NewLC@CApaServerAppExitMonitor@@SAPAV1@AAVRApaAppServiceBase@@AAVMApaServerAppExitObserver@@H@Z @ 146 NONAME ; class CApaServerAppExitMonitor * CApaServerAppExitMonitor::NewLC(class RApaAppServiceBase &, class MApaServerAppExitObserver &, int)
+	?NewSessionL@CApaAppServer@@EBEPAVCSession2@@ABVTVersion@@ABVRMessage2@@@Z @ 147 NONAME ; class CSession2 * CApaAppServer::NewSessionL(class TVersion const &, class RMessage2 const &) const
+	?NotifyServerExit@CApaAppServer@@QAEXH@Z @ 148 NONAME ; void CApaAppServer::NotifyServerExit(int)
+	?NotifyServerExit@RApaAppServiceBase@@QBEXAAVTRequestStatus@@@Z @ 149 NONAME ; void RApaAppServiceBase::NotifyServerExit(class TRequestStatus &) const
+	?SecurityCheckL@CApaAppServiceBase@@UAE?AW4TCustomResult@CPolicyServer@@ABVRMessage2@@AAHAAVTSecurityInfo@@@Z @ 150 NONAME ; enum CPolicyServer::TCustomResult CApaAppServiceBase::SecurityCheckL(class RMessage2 const &, int &, class TSecurityInfo &)
+	?ServerName@RApaAppServiceBase@@QBE?AVTPtrC16@@XZ @ 151 NONAME ; class TPtrC16 RApaAppServiceBase::ServerName(void) const
+	?ServerRequired@CApaCommandLine@@QBEIXZ @ 152 NONAME ; unsigned int CApaCommandLine::ServerRequired(void) const
+	?ServiceError@CApaAppServiceBase@@MAEXABVRMessage2@@H@Z @ 153 NONAME ; void CApaAppServiceBase::ServiceError(class RMessage2 const &, int)
+	?ServiceL@CApaAppServiceBase@@MAEXABVRMessage2@@@Z @ 154 NONAME ; void CApaAppServiceBase::ServiceL(class RMessage2 const &)
+	?SetServerNotRequiredL@CApaCommandLine@@QAEXXZ @ 155 NONAME ; void CApaCommandLine::SetServerNotRequiredL(void)
+	?SetServerRequiredL@CApaCommandLine@@QAEXI@Z @ 156 NONAME ; void CApaCommandLine::SetServerRequiredL(unsigned int)
+	?ExecutableName@CApaCommandLine@@QBE?AVTPtrC16@@XZ @ 157 NONAME ; class TPtrC16 CApaCommandLine::ExecutableName(void) const
+	?ConstructCmdLineFromMessageL@CApaCommandLine@@QAEXABVRMessage2@@@Z @ 158 NONAME ; void CApaCommandLine::ConstructCmdLineFromMessageL(class RMessage2 const &)
+	Apparc_Dummy1 @ 159 NONAME ABSENT
+	Apparc_Dummy2 @ 160 NONAME ABSENT
+	?GetIpcArgsLC@CApaCommandLine@@QBEXAAVTIpcArgs@@@Z @ 161 NONAME ; void CApaCommandLine::GetIpcArgsLC(class TIpcArgs &) const
+	Apparc_Dummy3 @ 162 NONAME ABSENT
+	?GetCommandLineFromProcessEnvironment@CApaCommandLine@@SAHAAPAV1@@Z @ 163 NONAME ; static int CApaCommandLine::GetCommandLineFromProcessEnvironment(class CApaCommandLine * &)
+	??0CApaProcess@@IAE@ABVRFs@@@Z @ 164 NONAME ; CApaProcess::CApaProcess(class RFs const &)
+	?SetExecutableNameL@CApaCommandLine@@QAEXABVTDesC16@@@Z @ 165 NONAME ; void CApaCommandLine::SetExecutableNameL(class TDesC16 const &)
+	?SetProcessEnvironmentL@CApaCommandLine@@QBEXAAVRProcess@@@Z @ 166 NONAME ; void CApaCommandLine::SetProcessEnvironmentL(class RProcess &) const
+	?NewL@CApaProcess@@SAPAV1@ABVRFs@@@Z @ 167 NONAME ; class CApaProcess * CApaProcess::NewL(class RFs const &)
+	?EnvironmentSlotForPublicUse@CApaCommandLine@@SAHH@Z @ 168 NONAME ; int CApaCommandLine::EnvironmentSlotForPublicUse(int)
+	?GetFileByHandleL@CApaCommandLine@@QBEXAAVRFile@@@Z @ 169 NONAME ; void CApaCommandLine::GetFileByHandleL(class RFile &) const
+	?SetFileByHandleL@CApaCommandLine@@QAEXABVRFile@@@Z @ 170 NONAME ; void CApaCommandLine::SetFileByHandleL(class RFile const &)
+	?DefaultScreen@CApaCommandLine@@QBEHXZ @ 171 NONAME ; int CApaCommandLine::DefaultScreen(void) const
+	?SetDefaultScreenL@CApaCommandLine@@QAEXH@Z @ 172 NONAME ; void CApaCommandLine::SetDefaultScreenL(int)
+	?ParentWindowGroupID@CApaCommandLine@@QBEHXZ @ 173 NONAME ; int CApaCommandLine::ParentWindowGroupID(void) const
+	?SetParentWindowGroupID@CApaCommandLine@@QAEXH@Z @ 174 NONAME ; void CApaCommandLine::SetParentWindowGroupID(int)
+	?DebugMemFail@CApaCommandLine@@QBEHXZ @ 175 NONAME ; int CApaCommandLine::DebugMemFail(void) const
+	?SetAppStartupInstrumentationEventIdBaseL@CApaCommandLine@@QAEXH@Z @ 176 NONAME ; void CApaCommandLine::SetAppStartupInstrumentationEventIdBaseL(int)
+	?SetDebugMemFailL@CApaCommandLine@@QAEXH@Z @ 177 NONAME ; void CApaCommandLine::SetDebugMemFailL(int)
+	?ReadRootStreamLC@CApaProcess@@SAPAVCStreamDictionary@@AAPAVCFileStore@@ABVRFile@@@Z @ 178 NONAME ; class CStreamDictionary * CApaProcess::ReadRootStreamLC(class CFileStore * &, class RFile const &)
+	?AppStartupInstrumentationEventIdBase@CApaCommandLine@@QBEHXZ @ 179 NONAME ; int CApaCommandLine::AppStartupInstrumentationEventIdBase(void) const
+	??0CApaAppFinder@@IAE@XZ @ 180 NONAME ; CApaAppFinder::CApaAppFinder(void)
+	??0CApaAppServiceInfoArray@@IAE@XZ @ 181 NONAME ; CApaAppServiceInfoArray::CApaAppServiceInfoArray(void)
+	??0CApaApplication@@IAE@XZ @ 182 NONAME ; CApaApplication::CApaApplication(void)
+	??0CApaDocument@@IAE@XZ @ 183 NONAME ; CApaDocument::CApaDocument(void)
+	??0CApaDoorBase@@IAE@XZ @ 184 NONAME ; CApaDoorBase::CApaDoorBase(void)
+	??0CApaModelHeader@@IAE@XZ @ 185 NONAME ; CApaModelHeader::CApaModelHeader(void)
+	??0CApaProcess@@IAE@XZ @ 186 NONAME ; CApaProcess::CApaProcess(void)
+	??0MApaAppStarter@@IAE@XZ @ 187 NONAME ; MApaAppStarter::MApaAppStarter(void)
+	??0MApaEmbeddedDocObserver@@IAE@XZ @ 188 NONAME ; MApaEmbeddedDocObserver::MApaEmbeddedDocObserver(void)
+	??0MApaModelHeaderFactory@@IAE@XZ @ 189 NONAME ; MApaModelHeaderFactory::MApaModelHeaderFactory(void)
+	??0MApaServerAppExitObserver@@IAE@XZ @ 190 NONAME ; MApaServerAppExitObserver::MApaServerAppExitObserver(void)
+	??0TApaApplicationFactory@@QAE@XZ @ 191 NONAME ; TApaApplicationFactory::TApaApplicationFactory(void)
+	?CApaAppFinder_Reserved1@CApaAppFinder@@EAEXXZ @ 192 NONAME ; void CApaAppFinder::CApaAppFinder_Reserved1(void)
+	?CApaAppFinder_Reserved2@CApaAppFinder@@EAEXXZ @ 193 NONAME ; void CApaAppFinder::CApaAppFinder_Reserved2(void)
+	?CApaAppServer_Reserved1@CApaAppServer@@EAEXXZ @ 194 NONAME ; void CApaAppServer::CApaAppServer_Reserved1(void)
+	?CApaAppServer_Reserved2@CApaAppServer@@EAEXXZ @ 195 NONAME ; void CApaAppServer::CApaAppServer_Reserved2(void)
+	?CApaAppServiceBase_Reserved1@CApaAppServiceBase@@EAEXXZ @ 196 NONAME ; void CApaAppServiceBase::CApaAppServiceBase_Reserved1(void)
+	?CApaAppServiceBase_Reserved2@CApaAppServiceBase@@EAEXXZ @ 197 NONAME ; void CApaAppServiceBase::CApaAppServiceBase_Reserved2(void)
+	?CApaAppServiceInfoArray_Reserved1@CApaAppServiceInfoArray@@EAEXXZ @ 198 NONAME ; void CApaAppServiceInfoArray::CApaAppServiceInfoArray_Reserved1(void)
+	?CApaAppServiceInfoArray_Reserved2@CApaAppServiceInfoArray@@EAEXXZ @ 199 NONAME ; void CApaAppServiceInfoArray::CApaAppServiceInfoArray_Reserved2(void)
+	?CApaApplication_Reserved1@CApaApplication@@MAEXXZ @ 200 NONAME ; void CApaApplication::CApaApplication_Reserved1(void)
+	?CApaApplication_Reserved2@CApaApplication@@MAEXXZ @ 201 NONAME ; void CApaApplication::CApaApplication_Reserved2(void)
+	?CApaDoorBase_Reserved1@CApaDoorBase@@EAEXXZ @ 202 NONAME ; void CApaDoorBase::CApaDoorBase_Reserved1(void)
+	?CApaDoorBase_Reserved2@CApaDoorBase@@EAEXXZ @ 203 NONAME ; void CApaDoorBase::CApaDoorBase_Reserved2(void)
+	?CApaProcess_Reserved1@CApaProcess@@MAEXXZ @ 204 NONAME ; void CApaProcess::CApaProcess_Reserved1(void)
+	?CApaProcess_Reserved2@CApaProcess@@MAEXXZ @ 205 NONAME ; void CApaProcess::CApaProcess_Reserved2(void)
+	?Capability@CApaDoorBase@@UBE?AVTPictureCapability@@XZ @ 206 NONAME ; class TPictureCapability CApaDoorBase::Capability(void) const
+	?CountResources@CApaAppServiceBase@@MAEHXZ @ 207 NONAME ; int CApaAppServiceBase::CountResources(void)
+	?Disconnect@CApaAppServiceBase@@MAEXABVRMessage2@@@Z @ 208 NONAME ; void CApaAppServiceBase::Disconnect(class RMessage2 const &)
+	?DoConnect@CApaAppServer@@MAEXABVRMessage2@@@Z @ 209 NONAME ; void CApaAppServer::DoConnect(class RMessage2 const &)
+	?GetCropInTwips@CApaDoorBase@@UBEXAAVTMargins@@@Z @ 210 NONAME ; void CApaDoorBase::GetCropInTwips(class TMargins &) const
+	?LineBreakPossible@CApaDoorBase@@UBEHIHH@Z @ 211 NONAME ; int CApaDoorBase::LineBreakPossible(unsigned int, int, int) const
+	?MApaAppStarter_Reserved1@MApaAppStarter@@EAEXXZ @ 212 NONAME ; void MApaAppStarter::MApaAppStarter_Reserved1(void)
+	?MApaAppStarter_Reserved2@MApaAppStarter@@EAEXXZ @ 213 NONAME ; void MApaAppStarter::MApaAppStarter_Reserved2(void)
+	?MApaEmbeddedDocObserver_Reserved1@MApaEmbeddedDocObserver@@EAEXXZ @ 214 NONAME ; void MApaEmbeddedDocObserver::MApaEmbeddedDocObserver_Reserved1(void)
+	?MApaEmbeddedDocObserver_Reserved2@MApaEmbeddedDocObserver@@EAEXXZ @ 215 NONAME ; void MApaEmbeddedDocObserver::MApaEmbeddedDocObserver_Reserved2(void)
+	?MApaModelHeaderFactory_Reserved1@MApaModelHeaderFactory@@EAEXXZ @ 216 NONAME ; void MApaModelHeaderFactory::MApaModelHeaderFactory_Reserved1(void)
+	?MApaModelHeaderFactory_Reserved2@MApaModelHeaderFactory@@EAEXXZ @ 217 NONAME ; void MApaModelHeaderFactory::MApaModelHeaderFactory_Reserved2(void)
+	?MApaServerAppExitObserver_Reserved1@MApaServerAppExitObserver@@EAEXXZ @ 218 NONAME ; void MApaServerAppExitObserver::MApaServerAppExitObserver_Reserved1(void)
+	?MApaServerAppExitObserver_Reserved2@MApaServerAppExitObserver@@EAEXXZ @ 219 NONAME ; void MApaServerAppExitObserver::MApaServerAppExitObserver_Reserved2(void)
+	?NativePixelSize@CApaDoorBase@@UAEHAAVTSize@@@Z @ 220 NONAME ; int CApaDoorBase::NativePixelSize(class TSize &)
+	?RApaAppServiceBase_Reserved1@RApaAppServiceBase@@EAEXXZ @ 221 NONAME ; void RApaAppServiceBase::RApaAppServiceBase_Reserved1(void)
+	?RApaAppServiceBase_Reserved2@RApaAppServiceBase@@EAEXXZ @ 222 NONAME ; void RApaAppServiceBase::RApaAppServiceBase_Reserved2(void)
+	?Reserved_2@CApaModelHeader@@EAEXXZ @ 223 NONAME ; void CApaModelHeader::Reserved_2(void)
+	?ScaleFactorHeight@CApaDoorBase@@UBEHXZ @ 224 NONAME ; int CApaDoorBase::ScaleFactorHeight(void) const
+	?ScaleFactorWidth@CApaDoorBase@@UBEHXZ @ 225 NONAME ; int CApaDoorBase::ScaleFactorWidth(void) const
+	?SetCropInTwips@CApaDoorBase@@UAEXABVTMargins@@@Z @ 226 NONAME ; void CApaDoorBase::SetCropInTwips(class TMargins const &)
+	?SetScaleFactor@CApaDoorBase@@UAEXHH@Z @ 227 NONAME ; void CApaDoorBase::SetScaleFactor(int, int)
+	?StoreL@CApaDoorBase@@UBE?AVTStreamId@@AAVCStreamStore@@@Z @ 228 NONAME ; class TStreamId CApaDoorBase::StoreL(class CStreamStore &) const
+	?OpaqueData@CApaCommandLine@@QBE?AVTPtrC8@@XZ @ 229 NONAME ; class TPtrC8 CApaCommandLine::OpaqueData(void) const
+	?SetOpaqueDataL@CApaCommandLine@@QAEXABVTDesC8@@@Z @ 230 NONAME ; void CApaCommandLine::SetOpaqueDataL(class TDesC8 cosnt &)
+	?IsDefaultScreenSet@CApaCommandLine@@QBEHXZ @ 231 NONAME ; int CApaCommandLine::IsDefaultScreenSet(void) const
+	?ConstructL@CApaProcess@@IAEXVTProcessId@@@Z @ 232 NONAME ; void CApaProcess::ConstructL(class TProcessId)
+	?ParentProcessId@CApaCommandLine@@QBE?AVTProcessId@@XZ @ 233 NONAME ; class TProcessId CApaCommandLine::ParentProcessId(void) const
+	?SetParentProcessId@CApaCommandLine@@QAEXVTProcessId@@@Z @ 234 NONAME ; void CApaCommandLine::SetParentProcessId(class TProcessId)
+	?ConnectExistingAppL@RApaAppServiceBase@@QAEXABV1@ABVTSecurityPolicy@@@Z @ 235 NONAME ; void RApaAppServiceBase::ConnectExistingAppL(class RApaAppServiceBase const &, class TSecurityPolicy const &)
+	?ConnectExistingByNameL@RApaAppServiceBase@@QAEXABVTDesC16@@ABVTSecurityPolicy@@@Z @ 236 NONAME ; void RApaAppServiceBase::ConnectExistingByNameL(class TDesC16 const &, class TSecurityPolicy const &)
+	?TransferExistingSessionL@RApaAppServiceBase@@QAEXAAV1@@Z @ 237 NONAME ; void RApaAppServiceBase::TransferExistingSessionL(class RApaAppServiceBase &)
+

@@ -1,0 +1,5 @@
+EXPORTS
+	_Z16StartupApaServerR14MApaAppStarter @ 1 NONAME
+	_ZTI18CSvActiveScheduler @ 2 NONAME ; #<TI>#
+	_ZTV18CSvActiveScheduler @ 3 NONAME ; #<VT>#
+

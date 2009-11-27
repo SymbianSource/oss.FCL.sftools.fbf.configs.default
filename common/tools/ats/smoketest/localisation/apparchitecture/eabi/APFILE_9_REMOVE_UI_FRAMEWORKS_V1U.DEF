@@ -1,0 +1,101 @@
+EXPORTS
+	_ZN19CApaAppLocatorProxy16GetAppEntryByUidER12TApaAppEntry4TUid @ 1 NONAME ABSENT
+	_ZN19CApaAppLocatorProxy21GetAppCapabilityByUidER5TDes84TUid @ 2 NONAME ABSENT
+	_ZN19CApaAppLocatorProxy4NewLER3RFs @ 3 NONAME ABSENT
+	_ZN19CApaAppLocatorProxyD0Ev @ 4 NONAME ABSENT
+	_ZN19CApaAppLocatorProxyD1Ev @ 5 NONAME ABSENT
+	_ZN19CApaAppLocatorProxyD2Ev @ 6 NONAME ABSENT
+	_ZN21CApaScanningAppFinder12FindAllAppsLEv @ 7 NONAME ABSENT
+	_ZN21CApaScanningAppFinder4NewLERK3RFs @ 8 NONAME ABSENT
+	_ZN21CApaScanningAppFinder5NewLCERK3RFs @ 9 NONAME ABSENT
+	_ZN21CApaScanningAppFinder5NextLER12TApaAppEntry @ 10 NONAME ABSENT
+	_ZN21CApaScanningAppFinder8FindAppLERK7TDesC164TUid @ 11 NONAME ABSENT
+	_ZN21CApaScanningAppFinderD0Ev @ 12 NONAME ABSENT
+	_ZN21CApaScanningAppFinderD1Ev @ 13 NONAME ABSENT
+	_ZN21CApaScanningAppFinderD2Ev @ 14 NONAME ABSENT
+	_ZN25CApaScanningControlFinder12FindAllAppsLEv @ 15 NONAME ABSENT
+	_ZN25CApaScanningControlFinder4NewLERK3RFs @ 16 NONAME ABSENT
+	_ZN25CApaScanningControlFinder5NewLCERK3RFs @ 17 NONAME ABSENT
+	_ZN25CApaScanningControlFinder5NextLER12TApaAppEntry @ 18 NONAME ABSENT
+	_ZN25CApaScanningControlFinder8FindAppLERK7TDesC164TUid @ 19 NONAME ABSENT
+	_ZN25CApaScanningControlFinderD0Ev @ 20 NONAME ABSENT
+	_ZN25CApaScanningControlFinderD1Ev @ 21 NONAME ABSENT
+	_ZN25CApaScanningControlFinderD2Ev @ 22 NONAME ABSENT
+	_ZN26CApaScanningFileRecognizer10ConstructLEv @ 23 NONAME
+	_ZN26CApaScanningFileRecognizer14SetRecognizerLERKNS_11TRecognizerE @ 24 NONAME ABSENT
+	_ZN26CApaScanningFileRecognizer15RecognizerCountEv @ 25 NONAME
+	_ZN26CApaScanningFileRecognizer19ScanForRecognizersLEv @ 26 NONAME
+	_ZN26CApaScanningFileRecognizer23SetRecognizersFromListLERK13CArrayFixFlatINS_11TRecognizerEE @ 27 NONAME ABSENT
+	_ZN26CApaScanningFileRecognizer4NewLER3RFsP14MApaAppStarter @ 28 NONAME
+	_ZN26CApaScanningFileRecognizerC1ER3RFsP14MApaAppStarter @ 29 NONAME
+	_ZN26CApaScanningFileRecognizerC2ER3RFsP14MApaAppStarter @ 30 NONAME
+	_ZN26CApaScanningFileRecognizerD0Ev @ 31 NONAME
+	_ZN26CApaScanningFileRecognizerD1Ev @ 32 NONAME
+	_ZN26CApaScanningFileRecognizerD2Ev @ 33 NONAME
+	_ZN6Apfile8TempPathEv @ 34 NONAME ABSENT
+	_ZNK21CApaScanningAppFinder22DefaultAppInfoFileNameEv @ 35 NONAME ABSENT
+	_ZNK21CApaScanningAppFinder8TempPathEv @ 36 NONAME ABSENT
+	_ZNK25CApaScanningControlFinder22DefaultAppInfoFileNameEv @ 37 NONAME ABSENT
+	_ZNK25CApaScanningControlFinder8TempPathEv @ 38 NONAME ABSENT
+	_ZNK26CApaScanningFileRecognizer13UpdateCounterEv @ 39 NONAME
+	_ZNK26CApaScanningFileRecognizer16RecognizerListLCEv @ 40 NONAME
+	_ZNK26CApaScanningFileRecognizerixEi @ 41 NONAME
+	_ZTI26CApaScanningFileRecognizer @ 42 NONAME ; #<TI>#
+	_ZTV26CApaScanningFileRecognizer @ 43 NONAME ; #<VT>#
+	_ZN26CApaScanningFileRecognizer18SetEcomRecognizerLERKNS_11TRecognizerE @ 44 NONAME
+	_ZN26CApaScanningFileRecognizer27SetEcomRecognizersFromListLERK13CArrayFixFlatINS_11TRecognizerEE @ 45 NONAME
+	_ZTI17CApaRecognizerDll @ 46 NONAME ; #<TI>#
+	_ZTI19CApaAppLocatorProxy @ 47 NONAME ABSENT ; #<TI>#
+	_ZTI21CApaScanningAppFinder @ 48 NONAME ABSENT ; #<TI>#
+	_ZTI25CApaScanningControlFinder @ 49 NONAME ABSENT ; #<TI>#
+	_ZTIN26CApaScanningFileRecognizer27CApaBackupOperationObserverE @ 50 NONAME ; #<TI>#
+	_ZTV17CApaRecognizerDll @ 51 NONAME ; #<VT>#
+	_ZTV19CApaAppLocatorProxy @ 52 NONAME ABSENT ; #<VT>#
+	_ZTV21CApaScanningAppFinder @ 53 NONAME ABSENT ; #<VT>#
+	_ZTV25CApaScanningControlFinder @ 54 NONAME ABSENT ; #<VT>#
+	_ZTVN26CApaScanningFileRecognizer27CApaBackupOperationObserverE @ 55 NONAME ; #<VT>#
+	_ZN16CApaAppRegFinder12FindAllAppsLEv @ 56 NONAME
+	_ZN16CApaAppRegFinder4NewLERK3RFs @ 57 NONAME
+	_ZN16CApaAppRegFinder5NewLCERK3RFs @ 58 NONAME
+	_ZN16CApaAppRegFinder5NextLER12TApaAppEntry @ 59 NONAME ABSENT
+	_ZN16CApaAppRegFinder5NextLER12TApaAppEntryRK13RPointerArrayI7HBufC16E @ 60 NONAME
+	_ZNK16CApaAppRegFinder8TempPathEv @ 61 NONAME ABSENT
+	_ZTI16CApaAppRegFinder @ 62 NONAME ; #<TI>#
+	_ZTV16CApaAppRegFinder @ 63 NONAME ; #<VT>#
+	_ZN17CAppLaunchChecker10Reserved_1Ev @ 64 NONAME
+	_ZN17CAppLaunchChecker10Reserved_2Ev @ 65 NONAME
+	_ZN17CAppLaunchChecker10Reserved_3Ev @ 66 NONAME
+	_ZN17CAppLaunchCheckerD0Ev @ 67 NONAME
+	_ZN17CAppLaunchCheckerD1Ev @ 68 NONAME
+	_ZN17CAppLaunchCheckerD2Ev @ 69 NONAME
+	_ZN28CApaScanningRuleBasedPlugIns4NewLEv @ 70 NONAME
+	_ZNK28CApaScanningRuleBasedPlugInsixEi @ 71 NONAME
+	_ZTI16CApaRuleBasedDll @ 72 NONAME ; #<TI>#
+	_ZTI17CAppLaunchChecker @ 73 NONAME ; #<TI>#
+	_ZTV16CApaRuleBasedDll @ 74 NONAME ; #<VT>#
+	_ZTV17CAppLaunchChecker @ 75 NONAME ; #<VT>#
+	_ZN28CApaScanningRuleBasedPlugInsD0Ev @ 76 NONAME
+	_ZN28CApaScanningRuleBasedPlugInsD1Ev @ 77 NONAME
+	_ZN28CApaScanningRuleBasedPlugInsD2Ev @ 78 NONAME
+	_ZTI28CApaScanningRuleBasedPlugIns @ 79 NONAME ; #<TI>#
+	_ZTV28CApaScanningRuleBasedPlugIns @ 80 NONAME ; #<VT>#
+	_ZN28CApaScanningRuleBasedPlugIns24ScanForRuleBasedPlugInsLEv @ 81 NONAME
+	_ZNK28CApaScanningRuleBasedPlugIns19ImplementationCountEv @ 82 NONAME
+	_ZN14CAppSidChecker18SetRescanCallBackLERK9TCallBack @ 83 NONAME
+	_ZN14CAppSidChecker9reserved1Ev @ 84 NONAME
+	_ZN14CAppSidChecker9reserved2Ev @ 85 NONAME
+	_ZN14CAppSidChecker9reserved3Ev @ 86 NONAME
+	_ZN14CAppSidCheckerD0Ev @ 87 NONAME
+	_ZN14CAppSidCheckerD1Ev @ 88 NONAME
+	_ZN14CAppSidCheckerD2Ev @ 89 NONAME
+	_ZTI14CAppSidChecker @ 90 NONAME ; #<TI>#
+	_ZTV14CAppSidChecker @ 91 NONAME ; #<VT>#
+	X @ 92 NONAME ABSENT
+	X @ 93 NONAME ABSENT
+	_ZN23CApaAppUnInstallMonitor4NewLEP17CApaAppListServer @ 94 NONAME
+	_ZN23CApaAppUnInstallMonitor5StartEv @ 95 NONAME
+	_ZN23CApaAppUnInstallMonitorD0Ev @ 96 NONAME
+	_ZN23CApaAppUnInstallMonitorD1Ev @ 97 NONAME
+	_ZN23CApaAppUnInstallMonitorD2Ev @ 98 NONAME
+	
+

@@ -1,0 +1,57 @@
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// using relative paths for sourcepath and user includes
+// 
+//
+
+
+
+/**
+ @file
+ @test
+ @internalComponent - Internal Symbian test code
+*/
+
+#include <platform_paths.hrh>
+
+TARGET        		tupgradeiconapp.exe
+TARGETTYPE    		exe
+TARGETPATH      	/sys/bin
+UID           		0x100039CE 0xA0003195
+CAPABILITY  		tcb
+VENDORID 	  		0x70000001
+
+SOURCEPATH    	.
+SOURCE		tupgradeiconapp.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+SOURCEPATH	.
+RESOURCE 	tupgradeiconapp.RSS
+START RESOURCE	tupgradeiconapp.RSS
+TARGETPATH	/resource/apps
+LANG		SC
+END
+
+SOURCEPATH	.
+START RESOURCE	tupgradeiconapp_reg.rss
+TARGETPATH /private/10003a3f/apps
+END
+
+
+LIBRARY       euser.lib apparc.lib cone.lib eikcore.lib gdi.lib

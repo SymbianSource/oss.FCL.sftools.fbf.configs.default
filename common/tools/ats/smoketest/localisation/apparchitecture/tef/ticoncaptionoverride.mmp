@@ -1,0 +1,71 @@
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+/**
+ @file
+ @test
+ @internalComponent - Internal Symbian test code 
+*/
+
+#include <platform_paths.hrh>
+
+TARGET        	ticoncaptionoverride.exe
+TARGETTYPE    	exe
+TARGETPATH		/sys/bin
+
+CAPABILITY 	All -Tcb
+
+UID           	0x100039CE 0x2001B674 //the original UID
+VENDORID 		0x70000001
+
+SOURCEPATH    	.
+SOURCE        	ticoncaptionoverride.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	/epoc32/include
+SYSTEMINCLUDE 	/epoc32/include/techview
+
+MW_LAYER_SYSTEMINCLUDE
+
+//reg added for Datacaging
+START RESOURCE	ticoncaptionoverride_reg.rss
+TARGETPATH		/private/10003a3f/import/apps
+END
+
+START RESOURCE 	ticoncaptionoverride.rss
+TARGETPATH 		/resource/apps
+END
+
+START RESOURCE 	ticoncaptionoverride_loc.rss
+TARGETPATH 		/resource/apps
+LANG 			SC 01 02 03
+END
+
+START BITMAP 	ticoncapoverride.mbm
+TARGETPATH 		/resource/apps
+SOURCEPATH 		../tdatasrc
+SOURCE 			c8,1 tstappicon24x20.bmp tstappicon24x20m.bmp
+SOURCE 			c8,1 tstappicon40x55.bmp tstappicon40x55m.bmp
+END
+
+START BITMAP 	ticoncapoverride02.m02
+TARGETPATH 		/resource/apps
+SOURCEPATH 		../tdatasrc
+SOURCE 			c8,1 DEF25.BMP DEF25M.BMP DEF25.BMP DEF25M.BMP DEF50.BMP DEF50M.BMP
+END
+
+LIBRARY 	euser.lib apparc.lib eikcore.lib cone.lib 

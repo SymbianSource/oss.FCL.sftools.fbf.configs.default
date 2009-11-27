@@ -1,0 +1,34 @@
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+PRJ_PLATFORMS
+DEFAULT
+
+PRJ_EXPORTS
+// test code only
+
+PRJ_MMPFILES
+// test code only
+
+PRJ_TESTMMPFILES
+../group/appfwk_test_AppUi.mmp
+../group/appfwk_test_utils.mmp
+
+PRJ_TESTEXPORTS
+
+// TestFramework INCLUDE files
+../inc/appfwk_test.h 				/epoc32/include/test/appfwk_test.h
+../inc/appfwk_test_AppUi.h			/epoc32/include/test/appfwk_test_appui.h
+../inc/appfwk_test_utils.h 			/epoc32/include/test/appfwk_test_utils.h

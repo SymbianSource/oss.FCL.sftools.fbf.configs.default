@@ -1,0 +1,83 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Symbian Foundation License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+//
+// APGRFX.MMP for component APGRFX
+//
+
+/**
+@file
+
+@SYMPurpose apgrfx.dll Apparc server client APIs + wserv wrapper utilities
+*/
+
+target          apgrfx.dll
+CAPABILITY All -Tcb
+targettype      DLL
+UID		0x1000008D 0x10003A3C
+VENDORID 0x70000001
+
+option MSVC /Od
+
+SOURCEPATH	../apgrfx
+
+userinclude		../inc
+systeminclude   /epoc32/include
+
+source          APGCTL.CPP APGDOOR.CPP APGICNFL.CPP APGSTD.CPP APGTASK.CPP
+source		APGWGNAM.CPP APGCLI.CPP APGPRIV.CPP
+source		apgnotif.cpp APGAIR.CPP APGAIRV2.CPP APSCLI.CPP apgconstdata.cpp
+SOURCE		apsecutils.cpp
+
+#if defined SYMBIAN_APPARC_APPINFO_CACHE
+source          	APGAPLSTV2.CPP
+#else
+source          	APGAPLST.CPP
+#endif
+
+library         euser.lib apparc.lib apmime.lib gdi.lib estor.lib efsrv.lib fbscli.lib
+library         bitgdi.lib ws32.lib bafl.lib
+library         apserv.lib apfile.lib
+
+#ifdef USE_IH_RAISE_EVENT
+LIBRARY			instrumentationhandler.lib
+#endif // USE_IH_RAISE_EVENT
+
+#ifdef SYMBIAN_BAFL_SYSUTIL
+library sysutil.lib
+#endif
+
+macro			SYMBIAN_SUPPORT_UI_FRAMEWORKS_V1
+
+#define UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER
+macro UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER
+
+#if defined(UI_FRAMEWORKS_V1_REMNANT_FOR_JAVA_MIDLET_INSTALLER)
+	#if defined(SYMBIAN_APPARC_APPINFO_CACHE)
+	deffile		APGRFX_UI_FRAMEWORKS.DEF
+	#else
+	deffile		APGRFX_9_REMOVE_UI_FRAMEWORKS_V1_EXCEPT_REMNANT_FOR_JAVA_MIDLET_INSTALLER.DEF
+	#endif
+#else
+deffile			APGRFX_9_REMOVE_UI_FRAMEWORKS_V1.DEF
+#endif
+
+START WINS
+	baseaddress	0x42F00000
+END
+
+START MARM
+END

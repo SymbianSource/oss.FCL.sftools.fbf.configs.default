@@ -1,0 +1,37 @@
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// TDONOTHINGFILERECOGNIZER.MMP
+// 
+//
+
+#include <platform_paths.hrh>
+
+target          TDONOTHINGFILERECOGNIZER.DLL
+capability		All -Tcb
+targettype      PLUGIN
+UID				0x10009D8D  0x10000180
+VENDORID 		0x70000001
+
+SOURCEPATH		.
+SOURCE			TDoNothingFileRecognizer.CPP
+SYSTEMINCLUDE   /epoc32/include
+systeminclude	/epoc32/include/ecom 
+
+MW_LAYER_SYSTEMINCLUDE
+
+library         	EUSER.LIB APPARC.LIB
+
+start resource	10000180.RSS
+TARGET		TDONOTHINGFILERECOGNIZER.rsc
+end
