@@ -7,27 +7,16 @@
 <#assign change_list  = "" />
 <#assign dollar = "$"/>
 <#assign count = 0 />
-
-<#if ("${ant['sf.spec.sourcesync.archive']}")??>
-  <#if "${ant['sf.spec.sourcesync.archive']}" == "true">
-    <#assign fast_sync = true />
-  <#else>
-    <#assign fast_sync = false />
-  </#if>
+<#if ("${ant['sf.spec.sourcesync.archive']}")?? && "${ant['sf.spec.sourcesync.archive']}" == "true">
+  <#assign fast_sync = true />
 <#else>
   <#assign fast_sync = false />
 </#if>
-
-<#if ("${ant['sf.spec.sourcesync.bug419']}")??>
-  <#if "${ant['sf.spec.sourcesync.bug419']}" == "true">
-    <#assign bug419 = true />
-  <#else>
-    <#assign bug419 = false />
-  </#if>
+<#if ("${ant['sf.spec.sourcesync.bug419']}")?? && "${ant['sf.spec.sourcesync.bug419']}" == "true">
+  <#assign bug419 = true />
 <#else>
   <#assign bug419 = false />
 </#if>
-
 
     <!-- remove previous version of BOM file (if exists)  -->
     <target name="reset-bom-sources-csv">
@@ -36,9 +25,6 @@
 
 <#list data as pkg_detail>
     <target name="sf-prebuild-${count}">
-        <#if (count > 0) >
-            <#assign fileset = "${fileset}"  />
-        </#if>
         <sequential>
             <!-- create sf\layer dir  -->
             <mkdir dir="${ant['build.drive']}${pkg_detail.dst}"/>
@@ -106,7 +92,6 @@
     </target>
 
     <target name="sf-bom-info-${count}">
-
         <sequential>
             <!-- record info on source code repo/rev in BOM file  -->
             <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : ${dollar}{sf.sourcesync.${count}.checksum}"/>
@@ -146,12 +131,11 @@
           </sequential>
     </target>
 
-    <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.sysdef}\"/>" />       
-    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\n\t\t"/>       
-    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\n\t"/>
-    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\n\t"/>        
+    <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.sysdef}\"/>\r\n        " />       
+    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\r\n    "/>
+    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\r\n  "/>
+    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\r\n  "/>
     <#assign count = count + 1 />
-
 </#list>
 
     <path id="system.definition.files">
@@ -160,7 +144,6 @@
     </path>
 
 <target name="all" depends="reset-bom-sources-csv">
-
   <parallel threadCount="${ant['env.NUMBER_OF_PROCESSORS']}">
     ${sync_list}
   </parallel>
@@ -178,10 +161,10 @@
 </target>
 
 <target name="sf-bom-change-info">
-  
   <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
-  <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/> 
-  ${change_list}
+  <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/>
 
+  ${change_list}
 </target>
+
 </project>
