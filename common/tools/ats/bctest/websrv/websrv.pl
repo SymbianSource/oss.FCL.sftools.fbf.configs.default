@@ -40,7 +40,7 @@ copy($epoc . "release/winscw/udeb/SenServiceManagerBCTest.dll",             "tem
 copy($epoc . "winscw/c/testframework/testframework_senservicemanager.ini",  "temp/bcwebsrv/general/testframework/testframework_senservicemanager.ini") or die "failed : $!";
 copy($epoc . "release/winscw/udeb/SenUtilsBCTest.dll",                      "temp/bcwebsrv/winscw_udeb/SenUtilsBCTest.dll") or die "failed : $!";
 copy($epoc . "winscw/c/testframework/testframework_senutils.ini",           "temp/bcwebsrv/general/testframework/testframework_senutils.ini") or die "failed : $!";
-copy($epoc . "release/winscw/udeb/SenFragmentBCTest.dll",                   "temp/bcwebsrv/winscw_udeb/SenFragmentBCTest.dll") or die "failed : $!";
-copy($epoc . "winscw/c/testframework/TestFramework_senfragment.ini",        "temp/bcwebsrv/general/testframework/TestFramework_senfragment.ini") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/SenFragmentTester.dll",                   "temp/bcwebsrv/winscw_udeb/SenFragmentBCTest.dll") or die "failed : $!";
+#copy($epoc . "winscw/c/testframework/TestFramework_senfragment.ini",        "temp/bcwebsrv/general/testframework/TestFramework_senfragment.ini") or die "failed : $!";
 
 system("7z a -tzip websrv.zip ./temp/*");

@@ -28,12 +28,12 @@ mkpath "temp/syslibstest/winscw_udeb/z/resource/plugins";
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("syslibstest.xml",	"temp/test.xml");
 
-copy($epoc . "data/z/syslibs/t_syslibs.tcs",		"temp/syslibstest/general/syslibs/t_syslibs.tcs") or die "failed : $!";
-copy($epoc . "winscw/c/syslibs/winscw/t_syslibs.ini",	"temp/syslibstest/general/syslibs/t_syslibs.ini") or die "failed : $!";
+copy($epoc . "data/z/syslibs/t_syslibs.tcs",						"temp/syslibstest/general/syslibs/t_syslibs.tcs") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/z/syslibs/winscw/t_syslibs.ini",	"temp/syslibstest/general/syslibs/t_syslibs.ini") or die "failed : $!";
 
-copy($epoc . "winscw/c/ecom/syslib-ecom-publicapi.script",	"temp/syslibstest/general/ecom/syslib-ecom-publicapi.script") or die "failed : $!";
-copy($epoc . "winscw/c/ecom/syslib-ecom-publicapi.ini",		"temp/syslibstest/general/ecom/syslib-ecom-publicapi.ini") or die "failed : $!";
-copy($epoc . "data/z/ecom/testproduct_plugin.rsc",			"temp/syslibstest/general/ecom/testproduct_plugin.rsc") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/z/ecom/syslib-ecom-publicapi.script",	"temp/syslibstest/general/ecom/syslib-ecom-publicapi.script") or die "failed : $!";
+copy($epoc . "release/winscw/udeb/z/ecom/syslib-ecom-publicapi.ini",	"temp/syslibstest/general/ecom/syslib-ecom-publicapi.ini") or die "failed : $!";
+copy($epoc . "data/z/ecom/testproduct_plugin.rsc",		"temp/syslibstest/general/ecom/testproduct_plugin.rsc") or die "failed : $!";
 copy($epoc . "release/winscw/udeb/testproduct_plugin.dll",	"temp/syslibstest/general/ecom/testproduct_plugin.dll") or die "failed : $!";
 
 copy($epoc . "release/winscw/udeb/t_ecom.exe",				"temp/syslibstest/winscw_udeb/t_ecom.exe") or die "failed : $!";

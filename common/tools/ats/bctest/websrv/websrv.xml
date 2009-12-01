@@ -278,15 +278,6 @@
 							<param component-path="bcwebsrv" />
 						</params>
 					</step>
-					<step id="" name="TestFramework_senfragment.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
-						<command>install</command>
-						<params>
-							<param type="data"/>
-							<param src="testframework\TestFramework_senfragment.ini"/>
-							<param dst="c:\testframework\TestFramework_senfragment.ini"/>
-							<param component-path="bcwebsrv" />
-						</params>
-					</step>
 					<step id="" name="SenFragmentBCTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>execute</command>
 						<params>
@@ -320,6 +311,5 @@
 		<file>bcwebsrv/winscw_udeb/SenUtilsBCTest.dll</file>
 		<file>bcwebsrv/general/testframework/testframework_senutils.ini</file>
 		<file>bcwebsrv/winscw_udeb/SenFragmentBCTest.dll</file>
-		<file>bcwebsrv/general/testframework/TestFramework_senfragment.ini</file>
 	</files>
 </test>
