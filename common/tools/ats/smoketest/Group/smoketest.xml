@@ -424,7 +424,7 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
-					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="false" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
