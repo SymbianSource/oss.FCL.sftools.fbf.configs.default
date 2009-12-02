@@ -495,8 +495,8 @@
 	<target name="sf-s60-create-cenrep">
     <echo message="INFO Generating CenRep"/>
     <echo message="Move 'sf.spec.s60.cenrep.export.location' out of the build..."/>
-    <property name="sf.spec.s60.cenrep.export.location.1" value="epoc32/rom/config/confml_data"/>
-    <property name="sf.spec.s60.cenrep.export.location.2" value="epoc32/rom/config/assets"/>
+    <property name="sf.spec.s60.cenrep.export.location.1" value="/epoc32/rom/config/confml_data/s60"/>
+    <property name="sf.spec.s60.cenrep.export.location.2" value="/epoc32/rom/config/assets/s60"/>
 
 		<if><available file="${build.drive}/${sf.spec.s60.cenrep.export.location.1}" type="dir"/>
   		<then>
