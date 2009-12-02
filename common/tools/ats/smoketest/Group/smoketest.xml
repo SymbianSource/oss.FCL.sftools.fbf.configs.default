@@ -63,8 +63,8 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="*"/>
-							<param dst="z:/private/10003a3f/apps/"/>
+							<param src="openservice1a.rsc"/>
+							<param dst="z:/private/10003a3f/apps/openservice1a.rsc"/>
 							<param component-path="smoketest\10003a3f" />
 						</params>
 					</step>
@@ -72,8 +72,296 @@
 						<command>install</command>
 						<params>
 							<param type="data"/>
-							<param src="*"/>
-							<param dst="z:/resource/apps"/>
+							<param src="openservice1b.rsc"/>
+							<param dst="z:/private/10003a3f/apps/openservice1b.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp2_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/serverapp2_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp3_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/serverapp3_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp4_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/serverapp4_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp6_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/serverapp6_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp7_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/serverapp7_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/serverapp_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_dataprioritysystem3_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/t_dataprioritysystem3_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_groupname_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/t_groupname_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_groupnamever1_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/t_groupnamever1_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_groupnamever2_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/t_groupnamever2_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tctrlpnlapp_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/tctrlpnlapp_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testtrustedpriorityapp1_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/testtrustedpriorityapp1_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testtrustedpriorityapp2_reg.rsc"/>
+							<param dst="z:/private/10003a3f/apps/testtrustedpriorityapp2_reg.rsc"/>
+							<param component-path="smoketest\10003a3f" />
+						</params>
+					</step>					
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="customisedefaulticonapp_loc.rsc"/>
+							<param dst="z:/resource/apps/customisedefaulticonapp_loc.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="default_app_icon.m02"/>
+							<param dst="z:/resource/apps/default_app_icon.m02"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="serverapp_loc.rsc"/>
+							<param dst="z:/resource/apps/serverapp_loc.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_groupname_loc.rsc"/>
+							<param dst="z:/resource/apps/t_groupname_loc.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_groupnamever1_loc.rsc"/>
+							<param dst="z:/resource/apps/t_groupnamever1_loc.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="t_groupnamever2_loc.rsc"/>
+							<param dst="z:/resource/apps/t_groupnamever2_loc.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp02.m02"/>
+							<param dst="z:/resource/apps/tstapp02.m02"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp.mbm"/>
+							<param dst="z:/resource/apps/tstapp.mbm"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp.rsc"/>
+							<param dst="z:/resource/apps/tstapp.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp_loc.r01"/>
+							<param dst="z:/resource/apps/tstapp_loc.r01"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp_loc.r02"/>
+							<param dst="z:/resource/apps/tstapp_loc.r02"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp_loc.r03"/>
+							<param dst="z:/resource/apps/tstapp_loc.r03"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp_loc.r04"/>
+							<param dst="z:/resource/apps/tstapp_loc.r04"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp_loc.r05"/>
+							<param dst="z:/resource/apps/tstapp_loc.r05"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstapp_loc.rsc"/>
+							<param dst="z:/resource/apps/tstapp_loc.rsc"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstappview"/>
+							<param dst="z:/resource/apps/tstappview"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstappview01.m01"/>
+							<param dst="z:/resource/apps/tstappview01.m01"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstappview01.m02"/>
+							<param dst="z:/resource/apps/tstappview01.m02"/>
+							<param component-path="smoketest\resource" />
+						</params>
+					</step>
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="tstappview02.k"/>
+							<param dst="z:/resource/apps/tstappview02.k"/>
 							<param component-path="smoketest\resource" />
 						</params>
 					</step>
@@ -424,7 +712,7 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
-					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="false" passrate="100" significant="true">
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
 							<param file="testexecute.exe"/>
