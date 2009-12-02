@@ -521,7 +521,6 @@ epoc32/include/distanceattenuationdata.h
 epoc32/include/dns_qry.inl
 epoc32/include/mw/documenthandler.h
 epoc32/include/mw/browseruisdkcrkeys.h
-epoc32/include/mw/browseruisdkcrkeys.h
 epoc32/include/dopplerbase.h
 epoc32/include/dopplerdata.h
 epoc32/include/mw/downloadmgrclient.h
