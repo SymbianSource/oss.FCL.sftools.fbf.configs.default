@@ -223,26 +223,52 @@
             <param name="zip.target.name" value="bin" />
         </antcall-->
         <parallel>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
-                <arg value="a"/>
-                <arg value="-tzip"/>
-                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@${sf.common.config.dir}/templates/sdkFiles.txt"/>
-                <arg value="-x!epoc32\tools"/>
-                <arg value="-x!epoc32\build"/>
-                <arg value="-x!epoc32\release\armv5"/>
-                <arg value="-x!epoc32\release\winscw"/>
-                <arg value="-xr!*.sym"/>
-                <arg value="${build.drive}/output/zips/release/binaries_epoc.zip"/>
-                <arg value="epoc32\"/>
-            </exec>
+            <sequential>
+                <if>
+                    <isset property="sf.sdk.header.list.file"/>
+                    <then>
+                        <property name="sf.epoc32.exclusions.file" value="${sf.sdk.header.list.file}"/>
+                    </then>
+                </if>
+                <property name="sf.epoc32.exclusions.file" value="nul:"/>
+                <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+                    <arg value="a"/>
+                    <arg value="-tzip"/>
+                    <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                    <arg value="-x@${sf.epoc32.exclusions.file}"/>
+                    <arg value="-x!epoc32\tools"/>
+                    <arg value="-x!epoc32\build"/>
+                    <arg value="-x!epoc32\release\armv5"/>
+                    <arg value="-x!epoc32\release\winscw"/>
+                    <arg value="-xr!*.sym"/>
+                    <arg value="${build.drive}/output/zips/release/binaries_epoc.zip"/>
+                    <arg value="epoc32\"/>
+                </exec>
+	    </sequential>
             
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_sdk.log">
-                <arg value="a"/>
-                <arg value="-tzip"/>
-                <arg value="-i@${sf.common.config.dir}/templates/sdkFiles.txt"/>
-                <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
-            </exec>
+            <if>
+                <isset property="sf.sdk.header.list.file"/>
+                <then>
+                    <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_sdk.log">
+                        <arg value="a"/>
+                        <arg value="-tzip"/>
+                        <arg value="-i@${sf.sdk.header.list.file}"/>
+                        <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
+                    </exec>
+                    <!-- Check that all the files we want in the SDK are zipped -->
+                    <antcall target="sf-log-to-brag">
+                        <param name="sf.brag.id" value="SDK"/>
+                        <param name="sf.brag.log" value="${build.log.dir}/zip_${build.id}_binaries_sdk.log"/>
+                        <param name="sf.brag.phase" value="Postbuild"/>
+                        <param name="sf.brag.step" value="Package SDK"/>
+                    </antcall>
+                    <!-- Generate release_metadata entries for the SDK zip -->
+                    <antcall target="sf-zip-content">
+                        <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
+                        <param name="zip.target.name" value="bin-sdk-just-metadata" />
+                    </antcall>
+                </then>
+            </if>
             
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
                 <arg value="a"/>
@@ -266,13 +292,6 @@
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin-just-metadata" />
-        </antcall>
-        <!-- Check that all the files we want in the SDK are zipped -->
-        <antcall target="sf-log-to-brag">
-            <param name="sf.brag.id" value="SDK"/>
-            <param name="sf.brag.log" value="${build.log.dir}/zip_${build.id}_binaries_sdk.log"/>
-            <param name="sf.brag.phase" value="Postbuild"/>
-            <param name="sf.brag.step" value="Package SDK"/>
         </antcall>
     </target>
 

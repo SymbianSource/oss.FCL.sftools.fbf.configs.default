@@ -81,6 +81,7 @@
     <!-- packaging options for bin/src-->
     <property name="sf.spec.package.bin.enable"  value="false"/>
     <property name="sf.spec.package.src.enable"  value="false"/>
+<!--<property name="sf.sdk.header.list.file"     value=""/> --> <!-- Set this to package SDK headers separately from the rest of epoc32 -->
 
     <!-- enable creation of MD5s -->
     <property name="sf.spec.md5.enable"          value="false"/>

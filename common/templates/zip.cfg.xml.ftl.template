@@ -87,14 +87,21 @@
 			<config name="core">
 				<set name="name" value="binaries_epoc"/>
 			</config>
-			<config name="sdk">
-				<set name="name" value="binaries_epoc_sdk"/>
-			</config>
 			<config name="armv5">
 				<set name="name" value="binaries_armv5"/>
 			</config>
 			<config name="winscw">
 				<set name="name" value="binaries_winscw"/>
+			</config>
+		</config>
+		<!-- "Null" SDK entry, which matches no files, but does populate the release_metadata.xml -->
+		<config name="bin-sdk-just-metadata" abstract="true">
+			<set name="archives.dir" value="${build.output.dir}/zips/release" />
+			<set name="grace.filters" value="emu"/>
+			<set name="include" value="*"/>
+			<set name="exclude" value="**"/>
+			<config name="sdk">
+				<set name="name" value="binaries_epoc_sdk"/>
 			</config>
 		</config>
 		<!-- "Null" info entries, which match no files, but do populate the release_metadata.xml -->
