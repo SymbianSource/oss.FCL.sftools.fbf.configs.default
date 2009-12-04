@@ -61,7 +61,7 @@ while (my $line = <CSV>)
 	
 	my @keys = qw{category subcategory severity config component phase recipe file linenum};
 	my @values = $csv->fields();
-	unless (scalar @keys == scalar @keys)
+	unless (scalar @values == scalar @keys)
 	{
 		warn "WARNING: line does not match expected format at $raptorSummary line $.. Skipping\n";
 		next;
