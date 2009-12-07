@@ -373,6 +373,13 @@
         </sequential>
       </for>
       
+      <!-- Cook the processed raptor logs to produce something in the right format for the BRAG system -->
+      <mkdir dir="${build.log.dir}/summary/"/>
+      <exec executable="perl" output="${build.log.dir}/summary/sbs_BRAG.xml" logError="yes" failonerror="false">
+        <arg value="${sf.common.config.dir}/tools/brag/sbsToBRAG.pl"/>
+        <arg value="${build.log.dir}/analysis/*_compile_preprocessed.log"/>
+      </exec>
+      
       <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
       <apply executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
         <arg value="releaseables.pl"/>
