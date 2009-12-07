@@ -253,6 +253,7 @@
                         <arg value="a"/>
                         <arg value="-tzip"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
+                        <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
                     </exec>
                     <!-- Check that all the files we want in the SDK are zipped -->
