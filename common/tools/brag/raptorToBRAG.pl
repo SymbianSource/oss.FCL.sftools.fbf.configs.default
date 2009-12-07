@@ -59,11 +59,11 @@ while (my $line = <CSV>)
 		next;
 	}
 	
-	my @keys = qw{category subcategory severity config component phase recipe file linenum};
+	my @keys = qw{category subcategory severity config component mmp phase recipe file linenum};
 	my @values = $csv->fields();
 	unless (scalar @values == scalar @keys)
 	{
-		warn "WARNING: line does not match expected format at $raptorSummary line $.. Skipping\n";
+		warn "WARNING: (raptorToBRAG.pl) line does not match expected format at $raptorSummary line $.. Skipping\n";
 		next;
 	}
 	
@@ -73,13 +73,13 @@ while (my $line = <CSV>)
 	
 	if (!$failure->{category})
 	{
-		warn "WARNING: summary line without a category at $raptorSummary line $.. Skipping\n";
+		warn "WARNING: (raptorToBRAG.pl) summary line without a category at $raptorSummary line $.. Skipping\n";
 		next;
 	}
 	
 	if ($failure->{category} =~ m{^recipe_failure$}i and !$failure->{component})
 	{
-		warn "WARNING: recipe_failure with component field empty at $raptorSummary line $.. Skipping\n";
+		warn "WARNING: (raptorToBRAG.pl) recipe_failure with component field empty at $raptorSummary line $.. Skipping\n";
 		next;
 	}
 	$failure->{subcategory} ||= 'uncategorized';
