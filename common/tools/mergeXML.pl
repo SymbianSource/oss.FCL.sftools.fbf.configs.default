@@ -18,6 +18,11 @@ use strict;
 use XML::Parser;
 use Getopt::Long;
 
+use FindBin;
+use lib "$FindBin::Bin/lib";
+
+use XML::Printer;
+
 # Read option arguments
 my $howtoString;
 my $xslLink;
@@ -61,7 +66,7 @@ my $outTree = mergeMultipleTrees($mergeTags, @ARGV);
 # Output total tree
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 print "<?xml-stylesheet type=\"text/xsl\" href=\"$xslLink\"?>\n" if $xslLink;
-printTree($outTree->[0]);
+XML::Printer::printTree($outTree->[0]);
 print "\n";
 
 exit(0);
@@ -145,49 +150,6 @@ sub matchTag
 	}
 	
 	return undef;
-}
-
-sub printTree
-{
-	my $tree = shift or die;
-	die unless ref $tree;
-
-	my $tagName = ref $tree;
-	$tagName =~ s{^main::}{};
-	if ($tagName eq "Characters")
-	{
-		print $tree->{Text};
-		return;
-	}
-	
-	print "<$tagName";
-
-	foreach my $attr (
-		sort
-		grep {
-			! ref $tree->{$_}
-		}
-		keys %$tree)
-	{
-		print " $attr=\"$tree->{$attr}\"";
-	}
-
-	my $children = $tree->{Kids};
-	if (scalar @$children)
-	{
-		print ">";
-		foreach my $child (@$children)
-		{
-			printTree($child);
-		}
-		print "</$tagName";
-	}
-	else
-	{
-		print "/"
-	}
-
-	print ">";
 }
 
 
