@@ -1,12 +1,19 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <test>
 	<id>1</id>
 	<owner>admin</owner>
 	<priority>10</priority>
 	<buildid></buildid>
 	<postAction>
-        <type>DiamondsAction</type>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="to-folder" value="\\localhost\ats3_testdrop_arrivals\reports\§RUN_NAME§"/>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
     </postAction>
+	<postAction>
+		<type>DiamondsAction</type>
+	</postAction>
 	<name>smoketest</name>
     <target>
         <device rank="master" alias="emulator_udeb_tef">
