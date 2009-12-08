@@ -162,52 +162,6 @@
     -->
   <target name="sf-os-compile" depends="sf-compile-options">
 
-    <hlm:argSet id="sbs.tools2.var">
-      <hlm:arg name="config" value="tools2_rel.whatlog" />
-      <hlm:arg name="singlejob" value="false" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
-    </hlm:argSet>
-
-    <hlm:argSet id="sbs.tools2.clean.var">
-      <hlm:arg name="config" value="tools2_rel.whatlog" />
-      <hlm:arg name="singlejob" value="false" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN --check" />
-    </hlm:argSet>
-
-    <hlm:argSet id="sbs.tools.var">
-      <hlm:arg name="config" value="tools_rel.whatlog" />
-      <hlm:arg name="singlejob" value="true" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
-    </hlm:argSet>
-
-    <hlm:argSet id="sbs.tools.clean.var">
-      <hlm:arg name="config" value="tools_rel.whatlog" />
-      <hlm:arg name="singlejob" value="true" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN --check" />
-    </hlm:argSet>
-
-    <hlm:argSet id="sbs.main.sbs.var">
-      <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
-    </hlm:argSet>
-
-    <hlm:argSet id="sbs.main.clean.sbs.var">
-      <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="CLEAN --check" />
-    </hlm:argSet>
-
-    <hlm:argSet id="sbs.main.what.sbs.var">
-      <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-      <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-      <hlm:arg name="command" value="WHAT" />
-    </hlm:argSet>
-
     <!-- generate baseline dir list to allow delta creation -->
     <if><isset property="sf.os.compile.fast"/>
       <then>
@@ -223,6 +177,11 @@
     <!-- OS clean main build -->
     <if><istrue value="${sf.spec.baseline.clean}"/>
       <then>
+        <hlm:argSet id="sbs.main.clean.sbs.var">
+          <hlm:arg name="config" value="${sf.spec.sbs.config}" />
+          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          <hlm:arg name="command" value="CLEAN --check" />
+        </hlm:argSet>
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
           <param name="build.system" value="${sf.spec.build.system}" />
           <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
@@ -257,6 +216,12 @@
       </then>
       <else>
         <!-- OS tools2 build first-->
+        <hlm:argSet id="sbs.tools2.var">
+          <hlm:arg name="config" value="tools2_rel.whatlog" />
+          <hlm:arg name="singlejob" value="false" />
+          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
+        </hlm:argSet>
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
           <param name="build.system" value="${sf.spec.build.system}" />
           <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
@@ -272,6 +237,12 @@
         </antcall>
 
         <!-- OS tools build after tools2 -->
+        <hlm:argSet id="sbs.tools.var">
+          <hlm:arg name="config" value="tools_rel.whatlog" />
+          <hlm:arg name="singlejob" value="true" />
+          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
+        </hlm:argSet>
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
           <param name="build.system" value="${sf.spec.build.system}" />
           <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
@@ -313,6 +284,11 @@
       </then>
       <else>
         <!-- OS main build -->
+        <hlm:argSet id="sbs.main.sbs.var">
+          <hlm:arg name="config" value="${sf.spec.sbs.config}" />
+          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
+          <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
+        </hlm:argSet>
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
           <param name="build.system" value="${sf.spec.build.system}" />
           <param name="compile.sysdef.dtd.stub" value="${sf.spec.os.sysdef.dtd}" />
