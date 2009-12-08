@@ -156,6 +156,7 @@ sub EndTag
 			{regexp => qr{No such file or directory$}, severity => "major"},
 			{regexp => qr{Can't find mmp file}, severity => "minor"},
 			{regexp => qr{The make-engine exited with errors}, severity => "critical"},
+			{regexp => qr{tool 'MS_.+?' from config '.*' did not return version '.*' as required\.}, severity => "inconsequential"},
 			{regexp => qr{tool '.+?' from config '.*' did not return version '.*' as required\.}, severity => "critical"},
 			{regexp => qr{Unknown build configuration '.*'}, severity => "critical"},
 			{regexp => qr{No build configurations given}, severity => "critical"},
@@ -163,6 +164,7 @@ sub EndTag
 			{regexp => qr{Could not export}, severity => "minor"},
 			{regexp => qr{Could not export}, severity => "minor"},
 			{regexp => qr{Source zip for export does not exist:}, severity => "minor"},
+			{regexp => qr{^(INCLUDE|LIB) is not set in the environment and has no default}, severity => "inconsequential"},
 		);
 
 		foreach (@messageInterpretation)
