@@ -37,6 +37,7 @@ my $zipper;		# Zip command, depending on whether zip or 7z is available.
 my $unzipper;	# Unzip command, depending on whether [unzip or 7z is available.
 my $xml_in;		# Name of the input xml file. Always 'test.xml' if extracted from zipped test drop.
 my $temp_dest_name; # Leafname of temporary output file, if $destfile undefined.
+my $publish;	# Publishing folder for ats reports.
 
 sub usage($);
 sub help();
@@ -48,7 +49,8 @@ my %optmap = (  'test-drop-name' => \$test_drop_name,
 			    'build-id' => \$build_id,
 			    'src' => \$srcfile,
 			    'dest' => \$destfile,
-                'help' => \$help);
+                'help' => \$help,
+                'publish' => \$publish);
 
 GetOptions(\%optmap,
           'test-drop-name=s',
@@ -56,7 +58,8 @@ GetOptions(\%optmap,
           'build-id=s',
           'src=s',
           'dest=s',
-          'help!') 
+          'help!',
+          'publish=s') 
           or usage_error();
 
 if ($help) {
@@ -123,8 +126,8 @@ $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 # Insert the specified build id, if any.
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
 # Insert the FileStoreAction parameter
-my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'};
-$postaction_params->[1] = { 'name' => "to-folder", 'value' => "\\\\localhost\\ats3_testdrop_arrivals\\reports\\" . $test_drop_name };
+my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'}, if $publish;
+$postaction_params->[1] = { 'name' => "to-folder", 'value' => $publish . "\\ats_reports" }, if $publish;
 
 if ($host_name) { # Also insert specified host name
 	my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};

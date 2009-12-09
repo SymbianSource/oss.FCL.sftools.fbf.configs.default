@@ -168,7 +168,8 @@
             <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
             <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
             <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
-            <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>			
+            <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
+            <arg value="--publish=${publish.dir}\ats_reports"/>
         </exec>
         <!-- Now ready to send to ATS3 -->
     </target>   
