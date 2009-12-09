@@ -118,11 +118,13 @@ my $test_drop = XMLin("./$xml_in", keeproot => 1,
     forcearray => [ 'name', 'id','owner','priority','buildid','postaction','type','target','device', 'property', 'command', 'param'],#
         keyattr => [] );
     
-        
 # Insert the specified test drop name, if any.
 $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 # Insert the specified build id, if any.
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
+# Insert the FileStoreAction parameter
+my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'};
+$postaction_params->[1] = { 'name' => "to-folder", 'value' => "\\\\localhost\\ats3_testdrop_arrivals\\reports\\" . $test_drop_name };
 
 if ($host_name) { # Also insert specified host name
 	my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};
