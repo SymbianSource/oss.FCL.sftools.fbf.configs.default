@@ -62,6 +62,10 @@ GetOptions(\%optmap,
           'publish=s') 
           or usage_error();
 
+# Check if Tie::File module installed
+eval("use Tie::File");
+if ($@) { $publish = '' };
+		  
 if ($help) {
 	help();
 }
@@ -127,7 +131,7 @@ $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
 # Insert the FileStoreAction parameter
 my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'}, if $publish;
-$postaction_params->[1] = { 'name' => "to-folder", 'value' => $publish . "\\ats_reports" }, if $publish;
+$postaction_params->[1] = { 'name' => "to-folder", 'value' => $publish }, if $publish;
 
 if ($host_name) { # Also insert specified host name
 	my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};
@@ -152,6 +156,21 @@ else { #Input file was a zip.
     open OUT,">test.xml" or die("Cannot open file \"test.xml\" for writing. $!\n");
     print OUT XMLout($test_drop, keeproot => 1);
     close OUT;
+	if ($publish) { #Move <type>FileStoreAction</type> above <params>
+		my @lines;
+		tie @lines, 'Tie::File', "test.xml" or die("Cannot tie file \"test.xml\". $!\n");
+		my $current_line = 0;
+		for (@lines) {
+			if (/FileStoreAction/) {
+				my $line_to_move = @lines[$current_line];
+				splice @lines, $current_line, 1;
+				splice @lines, $current_line-4, 0, $line_to_move;
+				last;
+			}
+		  $current_line++;
+	    }
+	untie @lines;
+	}
     if ( -f "$destfile.zip") {
         unlink("$destfile.zip") or die("Could not delete \"$destfile.zip\": $!\n");
     } 
