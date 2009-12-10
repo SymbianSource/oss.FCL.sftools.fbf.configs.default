@@ -41,7 +41,7 @@
 		<tool name="Mercurial">
 			<location strict="false" value="C:\Apps\mercurial\hg.exe"/>
 			<verify version="1.2" showstopper="false">
-				<check name="version" execute="%location% version" values="1\.2\.[1-9]" locator="Mercurial Distributed SCM \(version ([0-9\.]*)\)"/>
+				<check name="version" execute="%location% version" values="1\.[23]\.[0-9]" locator="Mercurial Distributed SCM \(version ([0-9\.]*)\)"/>
 			</verify>
 		</tool>
 		<tool name="Python">
@@ -52,7 +52,7 @@
 		</tool>
 		<tool name="Java Compiler">
 			<location strict="false" value="C:\apps\jdk1.6.0_14\bin\javac"/>
-			<verify version="1.6" showstopper="true">
+			<verify version="1.6" showstopper="false">
 				<check var="JAVA_6_HOME" values="jdk1\.6"/>
 				<check name="version" execute="%JAVA_6_HOME%\bin\javac -version" values="1\.6\.[0-9]_[0-9]+" locator="javac (.*)"/>
 			</verify>
@@ -61,9 +61,8 @@
 			</verify>
 		</tool>
 		<tool name="7-Zip">
-			<location strict="false" value="C:\apps\7-zip\7z.exe"/>
 			<verify version="4.65" showstopper="false">
-				<check name="version" execute="%location% -h" values="4\.65" locator="7-Zip (.*)  Copyright"/>
+				<check name="version" execute="7z.exe -h" values="4\.65" locator="7-Zip (.*)  Copyright"/>
 			</verify>
 		</tool>
 		<tool name="PDT Home">
@@ -80,17 +79,15 @@
 		</tool>
 		<tool name="Helium">
 			<location strict="false" value="C:\Symbian\Tools\PDT_1.0\helium\hlm.bat"/>
-			<verify version="4.0 [patched]" showstopper="true">
-				<check var="HELIUM_HOME" values="[CD]:\\Symbian\\Tools\\PDT_1.0\\helium"/>
-				<check name="version" execute="%HELIUM_HOME%\hlm.bat -f %HELIUM_HOME%\build.xml version" values="4\.0" locator="Helium version: ([\d\.]+)"/>
+			<verify version="5.0" showstopper="true">
+				<check var="HELIUM_HOME" values="[CD]:\\Symbian\\Tools\\PDT_1.\d\\helium"/>
+				<check name="version" execute="%HELIUM_HOME%\hlm.bat -f %HELIUM_HOME%\build.xml version" values="5\.\d" locator="Helium version: ([\d\.]+)"/>
 			</verify>
 		</tool>
 		<tool name="Raptor">
 			<location strict="false" value="C:\apps\raptor2.7.2\bin\sbs.bat"/>
-			<verify version="2.7.2 [patched]" showstopper="true">
-				<check var="SBS_HOME" values="apps\\raptor"/>
-				<check name="version" execute="%SBS_HOME%\bin\sbs.bat -version" values="2\.7\.2" locator="sbs version (.*) \["/>
-				<check name="patch" execute="%SBS_HOME%\win32\python252\python.exe -V" values="2\.5\.4"/>
+			<verify version="2.9.*" showstopper="true">
+				<check name="version" execute="%SBS_HOME%\bin\sbs.bat -version" values="2\.9\.\d" locator="sbs version (.*) \["/>
 			</verify>
 		</tool>
 	</context>
