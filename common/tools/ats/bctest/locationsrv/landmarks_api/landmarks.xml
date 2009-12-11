@@ -4,6 +4,12 @@
 	<owner>admin</owner>
 	<priority>10</priority>
 	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
 	<name>Landmarks API BCTests</name>
 	<target>
         <device rank="master" alias="emulator_udeb">

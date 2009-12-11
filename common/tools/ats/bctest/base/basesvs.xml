@@ -5,6 +5,12 @@
 	<priority>10</priority>
     <build></build>
     <buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
 	<name>Base SVS Tests</name>
 	<target>
 		<device alias="emulator_udeb" rank="master">

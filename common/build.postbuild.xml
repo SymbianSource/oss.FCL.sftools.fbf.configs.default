@@ -689,7 +689,6 @@
 			   <include name="libraries_report.xml"/>
 		   </fileset>
         </copy>
-		<mkdir dir="${publish.dir}/ats_reports"/>
     </target>
 
     <!-- TODO: Make this work for package builds once we have sysmodel story worked out -->
