@@ -17,7 +17,7 @@
    -->
 
   <!-- MattD - workaround until generating a model from package definitions works-->
-  <target name="sf-build-noprep" depends="sf-platform-bootstrap,sf-compile">
+  <target name="sf-build-noprep" depends="sf-platform-bootstrap,sf-compile,sf-postbuild">
     <echo>[SF-BUILD-NOPREP] (platform)</echo>
     <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
   </target>
