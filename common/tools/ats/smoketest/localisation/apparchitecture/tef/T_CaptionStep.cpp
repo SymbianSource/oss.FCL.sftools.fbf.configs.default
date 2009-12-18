@@ -129,7 +129,8 @@ void CT_CaptionStep::DoLanguageTestL()
 	TLanguage language = User::Language();	// keep a copy to restore it later on.
 	
 	TInt ch = 0;
-	for (ch=0; ch < 2; ch++)
+	// loop changed to run French only
+	for (ch=1; ch < 2; ch++)
 		{
 		TLanguage languageToTest = ELangTest;	// init to supress compiler remark
 		switch (ch)

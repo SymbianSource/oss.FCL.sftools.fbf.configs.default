@@ -1,0 +1,83 @@
+//
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+PRINT Run Bitmap smoketest
+
+LOAD_SUITE	T_GraphicsWservAPI
+
+START_TESTCASE	SMOKE_BITMAP_0001
+//! @SYMTestCaseID		SMOKE_BITMAP_0001
+//! @SYMTestCaseDesc	BitBlt(const TPoint &aPos, const CFbsBitmap *aBitmap): perform a bitmap block transfer
+//!				Uses API elements: RWsSession::Connect & SetAutoFlush, CWsScreenDevice::Construct & GetPixel, RWindowGroup::Construct, RWindow::Construct & BeginRedraw & EndRedraw,
+//!				CWindowGc::Construct & Activate & Deactivate & SetBrushColor & SetBrushStyle, CFbsBitmap::Load & SetSizeInTwips
+//! @SYMTestActions		1.	Setup a CWindowGc to test and a RWindow to display its drawing result
+//!				1.1	New and connect a RWsSession
+//!				1.2	New and construct a CWsScreenDevice within the RWsSession
+//!				1.3	Create a CWindowGc within the CWsScreenDevice (use CreateContext)
+//!				1.4	New and construct a RWindowGroup within the RWsSession
+//!				1.5	New and construct a RWindow as the child of the RWindowGroup
+//!					and SetRequiredDisplayMode (to EColor4K) for the RWindow, SetBackgroundColor to TRgb(255,255,255)
+//!				1.6	SetAutoFlush to TRUE for the RWsSession
+//!				1.7	Activate the CWindowGc to the RWindow
+//!					and SetBrushColor to TRgb(255,0,0) and SetBrushStyle to ESolidBrush
+//!				.	New and Load a CFbsBitmap
+//!				3.	Use RWindow::BeginRedraw() to start a redraw cycle
+//!				4.	Execute BitBlt to perform a bitmap block transfer to the specified point (10,11)
+//!				5.	RWindow::EndRedraw() to end the redraw cycle and display the drawing result
+//!				6.	Deactive RWindow, destruct and close all objects used
+	START_TEST_BLOCK	10		T_GraphicsWservAPI	c:\smoketest\smoketest_bitmap.ini
+		CREATE_OBJECT	RWsSession	ws
+		CREATE_OBJECT	CWsScreenDevice	scrdev
+		CREATE_OBJECT	CWindowGc	wingc
+		CREATE_OBJECT	RWindowGroup	wingrp
+		CREATE_OBJECT	RWindow		win
+		COMMAND		ws		new
+		COMMAND		ws		Connect
+		COMMAND		scrdev		new			GRAPHICS-WSERV-WindowGc-Setup-0002-0001-new_command004
+		COMMAND		scrdev		Construct		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-Construct_command005
+		COMMAND		scrdev		CreateContext		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-CreateContext_command006
+		COMMAND		wingrp		new			GRAPHICS-WSERV-WindowGc-Setup-0002-0001-new_command008
+		COMMAND		wingrp		Construct		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-Construct_command009
+		COMMAND		win		new			GRAPHICS-WSERV-WindowGc-Setup-0002-0001-new_command011
+		COMMAND		win		Construct		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-Construct_command012
+		COMMAND		win		SetRequiredDisplayMode	GRAPHICS-WSERV-WindowGc-Setup-0002-0001-SetRequiredDisplayMode_command013
+		COMMAND		win		SetBackgroundColor	GRAPHICS-WSERV-WindowGc-Setup-0002-0001-SetBackgroundColor_command014
+		COMMAND		win		Activate
+		COMMAND		ws		SetAutoFlush		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-SetAutoFlush_command017
+		COMMAND		wingc		Activate		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-Activate_command019
+		COMMAND		wingc		SetBrushColor		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-SetBrushColor_command020
+		COMMAND		wingc		SetBrushStyle		GRAPHICS-WSERV-WindowGc-Setup-0002-0001-SetBrushStyle_command021
+
+		CREATE_OBJECT	CFbsBitmap	fbsbmp
+		COMMAND		fbsbmp		new
+		COMMAND		fbsbmp		Load			GRAPHICS-WSERV-WindowGc-PublicApi-0051-0001-Load_command002
+		COMMAND		fbsbmp		SizeInTwips
+		COMMAND		fbsbmp		SizeInPixels
+		COMMAND		fbsbmp		DisplayMode
+		COMMAND		win		BeginRedraw
+		COMMAND		wingc		BitBlt			GRAPHICS-WSERV-WindowGc-PublicApi-0051-0001-BitBlt_command009
+		COMMAND		win		EndRedraw
+		COMMAND		win		Save
+		COMMAND		fbsbmp	~
+
+		COMMAND		wingc		Deactivate
+		COMMAND		win		Close
+		COMMAND		wingrp		Close
+		COMMAND		wingc		~
+		COMMAND		scrdev		~
+		COMMAND		ws		Close
+	END_TEST_BLOCK
+END_TESTCASE	SMOKE_BITMAP_0001

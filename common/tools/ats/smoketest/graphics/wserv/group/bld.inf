@@ -1,0 +1,34 @@
+//
+// Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+PRJ_TESTEXPORTS
+
+//	T_DataWindowGc
+../scripts/smoketest_bitmap.script			z:/smoketest/smoketest_bitmap.script
+../scripts/setup_smoketest_bitmap.script	z:/smoketest/setup_smoketest_bitmap.script
+
+../testdata/smoketest_bitmap.ini			z:/smoketest/smoketest_bitmap.ini
+
+//	Generic test data
+../testdata/datafile/uibench_16bit.mbm		z:/smoketest/bitmap/uibench_16bit.mbm
+
+PRJ_TESTMMPFILES
+
+T_GraphicsWservAPI.mmp
+
+../AnimPlugin/group/T_AnimPlugin.mmp
+../TWsGraphicShare/TWsGraphicShare.mmp
+../TWsGraphicShare/TWsGraphicUnshare.mmp
