@@ -17,6 +17,7 @@ mkpath "temp/smoketest/10003a3f/general";
 mkpath "temp/smoketest/resource/general";
 mkpath "temp/smoketest/localisation/general";
 mkpath "temp/smoketest/bitmap/general";
+mkpath "temp/smoketest/ethernet/general";
 
 my $epoc=$ENV{'EPOCROOT'} . "epoc32/";
 copy("smoketest.xml",												"temp/test.xml");
@@ -41,6 +42,8 @@ copy($epoc . "data/z/smoketest/smoketest_lbs.script",				"temp/smoketest/general
 copy($epoc . "data/z/smoketest/smoketest_language.script",			"temp/smoketest/general/smoketest_language.script");
 copy($epoc . "data/z/smoketest/smoketest_bitmap.ini",				"temp/smoketest/general/smoketest_bitmap.ini");
 copy($epoc . "data/z/smoketest/smoketest_bitmap.script",			"temp/smoketest/general/smoketest_bitmap.script");
+copy($epoc . "data/z/smoketest/smoketest_http.ini",					"temp/smoketest/general/smoketest_http.ini");
+copy($epoc . "data/z/smoketest/smoketest_http.script",				"temp/smoketest/general/smoketest_http.script");
 copy($epoc . "data/z/smoketest/sms/message1.txt",					"temp/smoketest/sms/general/message1.txt");
 copy($epoc . "data/z/smoketest/MachineName.txt",					"temp/smoketest/general/MachineName.txt");
 copy($epoc . "data/z/smoketest/emailmessage/20KBody.txt",			"temp/smoketest/emailmessage/general/20KBody.txt");
@@ -85,6 +88,7 @@ copy($epoc . "data/z/private/10003a3f/import/apps/testuntrustedpriorityapp2_reg.
 copy($epoc . "data/z/private/10003a3f/import/apps/tstapp_reg.rsc",	"temp/smoketest/localisation/general/tstapp_reg.rsc");
 copy($epoc . "data/z/resource/plugins/tstapp_embedded.rsc",			"temp/smoketest/localisation/general/tstapp_embedded.rsc");
 copy($epoc . "data/z/smoketest/bitmap/uibench_16bit.mbm",			"temp/smoketest/bitmap/general/uibench_16bit.mbm");
+copy($epoc . "data/z/delproxy.pl",									"temp/smoketest/ethernet/general/delproxy.pl");
 copy($epoc . "release/winscw/udeb/SmokeTestSecureFSclient.dll",		"temp/smoketest/winscw_udeb/SmokeTestSecureFSclient.dll");
 copy($epoc . "release/winscw/udeb/SmokeTestSecureFSserver.exe",		"temp/smoketest/winscw_udeb/SmokeTestSecureFSserver.exe");
 copy($epoc . "release/winscw/udeb/Smoketest_Agenda_Server.exe",		"temp/smoketest/winscw_udeb/Smoketest_Agenda_Server.exe");
@@ -113,6 +117,7 @@ copy($epoc . "release/winscw/udeb/t_animplugin.dll",				"temp/smoketest/winscw_u
 copy($epoc . "release/winscw/udeb/t_graphicswservapi.exe",			"temp/smoketest/winscw_udeb/t_graphicswservapi.exe");
 copy($epoc . "release/winscw/udeb/twsgraphicshare.exe",				"temp/smoketest/winscw_udeb/twsgraphicshare.exe");
 copy($epoc . "release/winscw/udeb/twsgraphicunshare.exe",			"temp/smoketest/winscw_udeb/twsgraphicunshare.exe");
+copy($epoc . "release/winscw/udeb/testhttpsuite.exe",				"temp/smoketest/winscw_udeb/testhttpsuite.exe");
 
 copy($epoc . "release/winscw/udeb/ProfileSmokeTestModule.dll",      "temp/smoketest/winscw_udeb/ProfileSmokeTestModule.dll");
 copy($epoc . "winscw/c/smoketest/ProfileSmokeTestModule.cfg",       "temp/smoketest/general/ProfileSmokeTestModule.cfg");

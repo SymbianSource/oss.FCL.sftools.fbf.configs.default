@@ -1,0 +1,34 @@
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+//OPTION CW   -w off
+TARGET          testhttpsuite.exe 
+TARGETTYPE      EXE
+CAPABILITY ALL -TCB
+
+UID		0x1000007A 0x102729DF
+    
+
+SYSTEMINCLUDE 	/epoc32/include /epoc32/include/test  /epoc32/include/ecom
+USERINCLUDE		../inc
+
+SOURCEPATH		../src
+SOURCE			testhttpserver.cpp testhttpbasestep.cpp testhttpeboclientstep.cpp testhttpbuffersizestep.cpp testhttpeboclientconditionalstep.cpp
+
+LIBRARY     	c32.lib euser.lib estor.lib efsrv.lib http.lib inetprotutil.lib bafl.lib ecom.lib crypto.lib
+LIBRARY  		commdb.lib esock.lib
+
+//For TEF
+LIBRARY		testexecuteutils.lib testexecutelogclient.lib

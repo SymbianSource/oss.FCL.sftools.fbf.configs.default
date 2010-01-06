@@ -424,7 +424,16 @@
 							<param dst="c:/smoketest/bitmap/uibench_16bit.mbm"/>
 							<param component-path="smoketest\bitmap" />
 						</params>
-					</step>					
+					</step>			
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="delproxy.pl"/>
+							<param dst="c:\delproxy.pl"/>
+							<param component-path="smoketest\ethernet" />
+						</params>
+					</step>
 					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
 						<command>install</command>
 						<params>
@@ -676,7 +685,16 @@
 							<param dst="c:\sys\bin\twsgraphicunshare.exe"/>
 							<param component-path="smoketest" />
 						</params>
-					</step>					
+					</step>		
+					<step id="" name="Test Step 1 (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testhttpsuite.exe"/>
+							<param dst="c:\sys\bin\testhttpsuite.exe"/>
+							<param component-path="smoketest" />
+						</params>
+					</step>
 					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
 						<command>execute</command>
 						<params>
@@ -776,12 +794,59 @@
 							<param leave-old-result="true"/>
 						</params>
 					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param local="true"/>
+							<param file="perl"/>
+							<param dir="D:\ATS\winscw_smoketest\epoc32\winscw\c"/>
+							<param parameters="delproxy.pl ethernetced.xml"/>
+							<param timeout="600"/>
+							<param async="false"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param local="true"/>
+							<param file="perl"/>
+							<param dir="D:\ATS\winscw_smoketest\epoc32\tools"/>
+							<param parameters="configchange.pl --config ethernetWithCommDB --kernel EKA2 --target winscw --variant UDEB"/>
+							<param timeout="1200"/>
+							<param async="false"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="dbcreator.exe"/>
+							<param parameters="-dtextshell -- f:c:\S60_32_default_snaps.xml"/>
+							<param timeout="600"/>
+						</params>
+					</step>
+					<step id="" name="Test Step 2 (execute)" harness="GENERIC" enabled="true" passrate="100" significant="true">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\smoketest\smoketest_http.script"/>
+							<param result-file="c:\logs\testexecute\smoketest_http.htm"/>
+							<param timeout="600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
 					<step id="" name="Test Step 3 (fetch-log)" harness="GENERIC" enabled="true" passrate="100">
 						<command>fetch-log</command>
 						<params>
 							<param path="c:\logs\testexecute\screen.mbm" /> 
 						</params>
 					</step>
+					<step id="" name="Test Step 3 (fetch-log)" harness="GENERIC" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testexecute\HttpGoogle.htm" /> 
+						</params>
+					</step>					
 				</case>
 			</set>
             <set id="" name="ATSINTERFACE smoke tests" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -1023,9 +1088,11 @@
 		<file>smoketest/general/smoketest_email.script</file>
 		<file>smoketest/general/smoketest_lbs.ini</file>
 		<file>smoketest/general/smoketest_lbs.script</file>
+		<file>smoketest/general/smoketest_language.script</file>
 		<file>smoketest/general/smoketest_bitmap.ini</file>
 		<file>smoketest/general/smoketest_bitmap.script</file>
-		<file>smoketest/general/smoketest_language.script</file>
+		<file>smoketest/general/smoketest_http.ini</file>
+		<file>smoketest/general/smoketest_http.script</file>
 		<file>smoketest/sms/general/message1.txt</file>
 		<file>smoketest/general/MachineName.txt</file>
 		<file>smoketest/emailmessage/general/20KBody.txt</file>
@@ -1070,6 +1137,7 @@
 		<file>smoketest/localisation/general/tstapp_reg.rsc</file>
 		<file>smoketest/localisation/general/tstapp_embedded.rsc</file>
 		<file>smoketest/bitmap/general/uibench_16bit.mbm</file>
+		<file>smoketest/ethernet/general/delproxy.pl</file>
 		<file>smoketest/winscw_udeb/SmokeTestSecureFSclient.dll</file>
 		<file>smoketest/winscw_udeb/SmokeTestSecureFSserver.exe</file>
 		<file>smoketest/winscw_udeb/Smoketest_Agenda_Server.exe</file>
@@ -1098,6 +1166,7 @@
 		<file>smoketest/winscw_udeb/t_graphicswservapi.exe</file>
 		<file>smoketest/winscw_udeb/twsgraphicshare.exe</file>
 		<file>smoketest/winscw_udeb/twsgraphicunshare.exe</file>
+		<file>smoketest/winscw_udeb/testhttpsuite.exe</file>
         <file>smoketest/winscw_udeb/ProfileSmokeTestModule.dll</file>
         <file>smoketest/general/ProfileSmokeTestModule.cfg</file>
         <file>smoketest/winscw_udeb/TestNpdApi.dll</file>		

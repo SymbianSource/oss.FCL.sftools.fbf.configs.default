@@ -12,6 +12,7 @@
 #
 # Contributors:
 #	Brendan Donegan, brendand@symbian.org
+#	Maciej Seroka, maciejs@symbian.org
 #
 # Description:
 #   This is a tool for setting the name of an ATS test drop, and/or the build id
@@ -38,6 +39,7 @@ my $unzipper;	# Unzip command, depending on whether [unzip or 7z is available.
 my $xml_in;		# Name of the input xml file. Always 'test.xml' if extracted from zipped test drop.
 my $temp_dest_name; # Leafname of temporary output file, if $destfile undefined.
 my $publish;	# Publishing folder for ats reports.
+my $bld_drive;  # Subst'd drive
 
 sub usage($);
 sub help();
@@ -50,7 +52,8 @@ my %optmap = (  'test-drop-name' => \$test_drop_name,
 			    'src' => \$srcfile,
 			    'dest' => \$destfile,
                 'help' => \$help,
-                'publish' => \$publish);
+                'publish' => \$publish,
+				'bld-drive' => \$bld_drive);
 
 GetOptions(\%optmap,
           'test-drop-name=s',
@@ -59,12 +62,13 @@ GetOptions(\%optmap,
           'src=s',
           'dest=s',
           'help!',
-          'publish=s') 
+          'publish=s', 
+		  'bld-drive=s') 
           or usage_error();
 
 # Check if Tie::File module installed
 eval("use Tie::File");
-if ($@) { $publish = '' };
+if ($@) { $publish = ''; $bld_drive = ''; };
 		  
 if ($help) {
 	help();
@@ -170,6 +174,14 @@ else { #Input file was a zip.
 		  $current_line++;
 	    }
 	untie @lines;
+	}
+	if ($bld_drive) { #Replace D:\ATS\winscw_smoketest path with subst'd drive
+		my @LINE;
+		tie @LINE, 'Tie::File', "test.xml" or die("Cannot tie file \"test.xml\". $!\n");
+		for (@LINE) {
+			s/D:\\ATS\\winscw_smoketest/$bld_drive/g;
+		}
+	untie @LINE;	
 	}
     if ( -f "$destfile.zip") {
         unlink("$destfile.zip") or die("Could not delete \"$destfile.zip\": $!\n");

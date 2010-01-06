@@ -33,3 +33,4 @@
 #include "../localisation/uiftestfw/group/BLD.INF"
 #include "../localisation/apparchitecture/group/BLD.INF"
 #include "../graphics/wserv/group/bld.inf"
+#include "../http/group/bld.inf"

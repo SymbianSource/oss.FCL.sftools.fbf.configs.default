@@ -119,6 +119,7 @@
                               <arg value="--src=${sf.spec.test.package.location}/../bctest/${program}"/>
                               <arg value="--dest=${sf.spec.test.package.location}\${env.COMPUTERNAME}-bctest-${build.id}_${program}" />
                               <arg value="--publish=${publish.dir}\ats_reports\${program}"/>
+                              <arg value="--bld-drive=${build.drive}"/>
                             </exec>
                             <!-- Now ready to send to ATS3 -->  
 					      <echo message="Sending Test drop :  ${program} ............" />									
