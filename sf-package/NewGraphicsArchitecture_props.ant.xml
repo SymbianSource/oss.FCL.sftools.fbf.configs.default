@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
 <project name="NEWGRAPHICSARCHITECTURE-PROPS">
-  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_3.0.e"/>
+  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_3.0.d"/>
 </project>
 
