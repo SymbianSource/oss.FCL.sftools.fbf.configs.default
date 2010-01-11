@@ -46,6 +46,10 @@ while (my $line = <>)
 	{
 		$line = unterminated_archive_tag($line, scalar <>, $.)
 	}
+	elsif ($line =~ m{make.exe: Circular .* <- .* dependency dropped.})
+	{
+		$line = escape_left_angle_bracket($line);
+	}
 	
 	print $line;
 }
@@ -91,4 +95,17 @@ sub unterminated_archive_tag
 	}
 	
 	return $line . $nextLine;
+}
+
+sub escape_left_angle_bracket
+{
+	my ($line) = @_;
+	
+	warn "escape_left_angle_bracket\n";
+	warn "in: $line";
+	
+	$line =~ s,<,&lt;,g;
+	
+	warn "out: $line";
+	return $line;
 }
