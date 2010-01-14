@@ -1,25 +1,25 @@
-Directory,File,Pattern,Test_type,
-,*.inf,.script,TEF/MTF,
-,*.pkg,,TEF/MTF,
-,*.inf,PRJ_TESTMMPFILES,All,
-,*.inf,PRJ_TESTEXPORTS,All,
-*test*,,,test_dir,
-tsrc,,,tsrc_dir,
-*svs*,,,svs_dir,
-,*.mmp,.cfg,STIF,
-,*.mmp,stif*.lib,STIF,
-,*.cfg,[TEST],STIF,
-,*.cfg,[ENDTEST],STIF,
-,*.mmp,.script,TEF,
-,*.mmp,testexecute*.lib,TEF,
-,*.script,LOAD_SUITE,TEF,
-tsrc,test.xml,,CTC++,
-,test.xml,ctcdata.txt,CTC++,
-,*.cpp,""".Start(""",RTest,
-,*.cpp,""".Next(""",RTest,
-,*.cpp,""".End();""",RTest,
-,*.cpp,""".close();""",RTest,
-,*.h,"""class RTest : public""",RTest,
-,*.h,""": public RTest""",RTest,
-rtest,,,RTest,
-,*.cpp,"""RTest test(""",RTest,?????
+Directory,File,Pattern,Test_type
+,*.inf,.script,TEF/MTF
+,*.pkg,,TEF/MTF
+,*.inf,PRJ_TESTMMPFILES,All
+,*.inf,PRJ_TESTEXPORTS,All
+*test*,,,test_dir
+tsrc,,,tsrc_dir
+*svs*,,,svs_dir
+,*.mmp,.cfg,STIF
+,*.mmp,stif*.lib,STIF
+,*.cfg,[TEST],STIF
+,*.cfg,[ENDTEST],STIF
+,*.mmp,.script,TEF
+,*.mmp,testexecute*.lib,TEF
+,*.script,LOAD_SUITE,TEF
+tsrc,test.xml,,CTC++
+,test.xml,ctcdata.txt,CTC++
+,*.cpp,""".Start(""",RTest
+,*.cpp,""".Next(""",RTest
+,*.cpp,""".End();""",RTest
+,*.cpp,""".close();""",RTest
+,*.h,"""class RTest : public""",RTest
+,*.h,""": public RTest""",RTest
+rtest,,,RTest
+,*.cpp,"""RTest test(""",RTest
