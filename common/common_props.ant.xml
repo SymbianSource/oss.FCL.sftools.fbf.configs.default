@@ -100,10 +100,10 @@
     <property name="sf.spec.test.package.droppath"  value="TestDrops"/>
 
     <!-- BC check properties -->
-    <property name="sf.spec.bccheck.enable" value="false"/> <!-- This disables it being called during a normal build, although the target can be called seperately -->
-    <property name="sf.spec.bccheck.enable.la" value="true"/>
-    <property name="sf.spec.bccheck.enable.ha" value="true"/>
-    <property name="sf.spec.bccheck.enable.dynamic" value="false"/>
+    <property name="sf.spec.bccheck.enable" value="true"/> <!-- This disables it being called during a normal build, although the target can be called seperately -->
+    <property name="sf.spec.bccheck.enable.la" value="false"/>
+    <property name="sf.spec.bccheck.enable.ha" value="false"/>
+    <property name="sf.spec.bccheck.enable.dynamic" value="true"/>
     <property name="sf.spec.bccheck.baseline.name" value="symbian1"/>
     <property name="sf.spec.bccheck.baseline.skd.dir" value="\\v800008\builds01\installed\s60_5th_sdk_installed"/>
     <property name="sf.spec.bccheck.baseline.s60.version" value="5.0"/>

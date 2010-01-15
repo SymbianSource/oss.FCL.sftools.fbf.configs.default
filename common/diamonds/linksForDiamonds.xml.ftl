@@ -42,6 +42,13 @@
         <name>Binary Compatibility Report (Libraries)</name>
         <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\BC\libraries_report.xml</url>	  
       </file>
-    </#if>	
+    </#if>
+    <#if "${ant['sf.spec.bccheck.enable.dynamic']}" = "true">
+      <file>
+        <type>log</type>
+        <name>Dynamic BC Test Reports</name>
+        <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\ats_reports\index.html</url>	  
+      </file>
+    </#if>
    </files>
 </diamonds-build>
