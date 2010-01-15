@@ -110,6 +110,9 @@
     <property name="sf.spec.bccheck.current.s60.version" value="5.1"/>
     <property name="sf.spec.bccheck.reportid" value="report"/>
     <property name="sf.spec.bccheck.package.name" value="${env.COMPUTERNAME}-bctest-${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}.zip"/>
+	
+	<!-- Smoketest properties -->
+	<property name="sf.spec.smoketest.enable" value="true"/> <!-- This disables publishing Smoke Test Report -->
 </project>
 
 

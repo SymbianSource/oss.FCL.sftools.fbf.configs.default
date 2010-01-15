@@ -28,6 +28,8 @@
   <property name="sf.spec.sbs.numberofjobs" value="2"/>
   
   <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
+  
+  <property name="sf.spec.smoketest.enable" value="false"/> <!-- This disables publishing Smoke Test Report -->
 
 </project>
 
