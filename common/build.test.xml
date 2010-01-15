@@ -129,7 +129,6 @@
 						</sequential>
   
 					</for>
-					<copy file="${sf.common.config.dir}/tools/ats/report_dummy.html" tofile="${build.log.dir}/ats_reports/index.html" failonerror="false" verbose="true"/>
 				</then>
 			</if>
 		</then>
