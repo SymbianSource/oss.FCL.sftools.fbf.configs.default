@@ -691,7 +691,7 @@
 			   <include name="libraries_report.xml"/>
 		   </fileset>
         </copy>
-		<mkdir dir="${publish.dir}/ats_reports" failonerror="false"/>
+		<mkdir dir="${publish.dir}/ats_reports"/>
 		<copy file="${sf.common.config.dir}/tools/ats/report_dummy.html" tofile="${publish.dir}/ats_reports/index.html" failonerror="false"/>
     </target>
 
