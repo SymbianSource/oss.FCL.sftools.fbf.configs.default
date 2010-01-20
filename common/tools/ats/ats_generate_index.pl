@@ -29,11 +29,21 @@ if ($ARGV[0]) {
 else { die "Missing parameter \"path\". For example: //v800020/Publish/SF_builds/symbian2/builds/default/symbian2_default.sf-test-bc-check.PDK_2.0.1.51/ats_reports"; }
 
 find(\&Wanted, $path);
+
+#Find and delete the link to Smoke Test Report
 my $n = 0;
+my $item_to_find = $path . "/ATS3Report.html";
+foreach (@files) {
+	if (@files[$n] eq $item_to_find) { splice @files, $n, 1; }
+	$n++;
+}
+
+$n = 0;
 foreach (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,org"
 	@files[$n] =~ s/\/\/v800020\/Publish/http:\/\/cdn.symbian.org/;
 	$n++;
 }
+
 #Copy template and insert links
 copy("report_template.html","index.html") or die ("Cannot copy file \"report_template.html\". $!\n");
 tie @lines, 'Tie::File', "index.html" or die ("Cannot tie file \"index.html\". $!\n");
@@ -56,6 +66,6 @@ copy("index.html","$path/index.html") or die ("Cannot copy file \"index.html\" t
 
 sub Wanted {
     # only operate on ATS3Report.html files
-    /ATS3Report.html/ or return;	
-	push (@files, $File::Find::name);
+	/ATS3Report.html/ or return;
+    push (@files, $File::Find::name);
 }
