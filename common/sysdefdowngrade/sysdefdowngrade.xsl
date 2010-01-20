@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<?xml version="1.0"?>
+ <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="xml" indent="yes"/>
 	
 	<xsl:param name="Path">os/deviceplatformrelease/foundation_system/system_model</xsl:param>
 	<!-- $Path is the location of the root system definition XML file. Must not end in /
 		This is used to compute the absolute paths the 2.0 syntax needs-->
+	<xsl:param name="Root"/> <!-- space separated list of root variables in the form "VAR1=value1 VAR=value2" --> 
+	<xsl:variable name="root" select="concat(' ',$Root,' ')"/> <!-- sort of hack to allow absolute paths in downgraded output -->
+	<xsl:variable name="srcroot" select="substring-before(substring-after($root,' SRCROOT='),' ')"/> <!-- the default path prefix -->
 
 <xsl:template match="/*">
 	<xsl:message terminate="yes">Cannot process this document</xsl:message>
@@ -53,11 +56,11 @@
 	<!-- comments are copied verbatim. Attribtues are copied by default -->
 
 <xsl:template match="systemModel">
-	<xsl:copy>
+	<systemModel>
   	<xsl:apply-templates select="*|comment()"> <!-- no attributes -->
   		<xsl:with-param name="path" select="$Path"/> <!-- need to keep tack of where the current document is -->
   	</xsl:apply-templates>
-	</xsl:copy>
+	</systemModel>
 </xsl:template>
 
 <xsl:template mode="copy" match="@*">
@@ -91,8 +94,10 @@
 			<xsl:when test="@href">
 				<xsl:variable name="this" select="."/>
 				<xsl:for-each select="document(@href,.)/SystemDefinition/*">
-					<xsl:if test="@id!=$this/@id">
-						<xsl:message terminate="yes">Error: IDs do not match: <xsl:value-of select="@id"/> vs <xsl:value-of select="$this/@id"/></xsl:message>
+					<xsl:variable name="my-id"><xsl:apply-templates mode="normalize-id" select="@id"/></xsl:variable>
+					<xsl:variable name="other-id"><xsl:apply-templates mode="normalize-id" select="$this/@id"/></xsl:variable>
+					<xsl:if test="$my-id != $other-id">
+						<xsl:message terminate="yes">Error: IDs do not match: <xsl:value-of select="$my-id"/> vs <xsl:value-of select="$other-id"/></xsl:message>
 					</xsl:if>
 					<xsl:if test="@name and @name!=@id and not($this/@name and $this/@name=$this/@id)">
 						<!-- set long-name only if name is different from the id and not set in child doc -->
@@ -175,7 +180,7 @@
 		<xsl:apply-templates select="@mrp|@bldFile|@late">
 			<xsl:with-param name="path" select="$path"/> 
 		</xsl:apply-templates>
-		<xsl:copy-of select="@filter|@root|@version|@prebuilt|@priority"/>
+		<xsl:copy-of select="@filter|@root[not(contains($root,concat(' ',.,'=')))]|@version|@prebuilt|@priority"/>
 	</unit>
 </xsl:template>
 
@@ -190,9 +195,18 @@
 
 <xsl:template match="@mrp|@bldFile"><xsl:param name="path"/>
 	<xsl:attribute name="{name()}">
-	<xsl:choose>
+		<xsl:choose>
+			<xsl:when test="../@root">
+				<xsl:variable name="pre" select="substring-before(substring-after($root,concat(' ',../@root,'=')),' ')"/>
+				<xsl:if test="$pre!=''"><xsl:value-of select="concat($pre,'/')"/></xsl:if>
+			</xsl:when>
+			<xsl:when test="$srcroot!=''">
+				<xsl:value-of select="concat($srcroot,'/')"/>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:choose>
 		<xsl:when test="starts-with(.,'/')"> <!-- keep absolute paths verbatim (barring the leading / ) -->
-			<xsl:value-of select="substring-after(substring(.,2),'/')"/>
+			<xsl:value-of select="substring-after(.,'/')"/>
 		</xsl:when>
 		<xsl:otherwise>	
 			<xsl:call-template name="normpath">
@@ -212,6 +226,13 @@
 
 <xsl:template match="meta[info/@contract]"> <!-- except contract -->
 	<xsl:copy-of select="info/@contract"/>
+</xsl:template>
+
+<xsl:template match="@id" mode="normalize-id">
+	<xsl:choose>
+		<xsl:when test="contains(@id,':')"><xsl:value-of select="substring-after(@id,':')"/></xsl:when>
+		<xsl:otherwise><xsl:value-of select="@id"/></xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <xsl:template name="class"><xsl:param name="remove"/><xsl:param name="add"/>
