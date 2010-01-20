@@ -5,6 +5,19 @@
     
     <dirname property="sf.common.config.dir" file="${ant.file.SF-COMMON-CONFIG}"/>
     
+    <!-- If we're told that we've been invoked by Hudson, then use the executor number to determine the drive to use -->
+    <if>
+        <isset property="sf.hudson.executor.number"/>
+        <then>
+            <!-- This property could be set differently according to the varying set-ups of build parks -->
+            <property name="sf.hudson.executor.drive.letter.mapping" value="zyxwvutsrqponmlk"/>
+            <!-- Pick the Nth letter from the string using a regex -->
+            <!-- (Would be nice if ant gave us a more obvious way to look up an item from an array...) -->
+            <!-- Default string is arranged to use z: for executor 0, y: for executor 1, etc, etc. At present, SF build machines have a maximum of 4 executors -->
+            <propertyregex property="sf.spec.job.drive" input="${sf.hudson.executor.drive.letter.mapping}" regexp="\w{${sf.hudson.executor.number}}(\w)" select="\1:"/>
+        </then>
+    </if>
+    
     <!-- Import common properties -->
     <import file="${sf.common.config.dir}/common_props.ant.xml" />
     
@@ -28,7 +41,7 @@
     <property name="base_release.path" value="${sf.spec.baseline.location}"/>
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
-	<property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
+    <property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
     
     <if>
       <isset property="sf.spec.sbs.numberofjobs"/>
