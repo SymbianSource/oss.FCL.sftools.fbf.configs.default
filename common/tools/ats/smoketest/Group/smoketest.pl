@@ -136,5 +136,8 @@ copy($epoc . "release/winscw/udeb/InputMethodSmokeTestModule.dll",  "temp/smoket
 copy($epoc . "winscw/c/smoketest/InputMethodSmokeTestModule.cfg",   "temp/smoketest/general/InputMethodSmokeTestModule.cfg");
 copy($epoc . "release/winscw/udeb/IMApiTest.dll",					"temp/smoketest/winscw_udeb/IMApiTest.dll");
 copy($epoc . "data/c/smoketest/imapitest.ini",						"temp/smoketest/general/imapitest.ini");
+copy($epoc . "release/winscw/udeb/MediaMgmtSmokeTestModule.dll",	"temp/smoketest/winscw_udeb/MediaMgmtSmokeTestModule.dll");
+copy($epoc . "winscw/c/smoketest/UI_MediaMgmtSmokeTestModule.cfg",  "temp/smoketest/general/UI_MediaMgmtSmokeTestModule.cfg");
+copy($epoc . "winscw/c/smoketest/MediaMgmtSmokeTestModule.cfg",   	"temp/smoketest/general/MediaMgmtSmokeTestModule.cfg");
 
 system("7z a -tzip smoketest.zip ./temp/*");

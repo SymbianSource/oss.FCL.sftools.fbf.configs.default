@@ -34,3 +34,4 @@
 #include "../localisation/apparchitecture/group/BLD.INF"
 #include "../graphics/wserv/group/bld.inf"
 #include "../http/group/bld.inf"
+#include "../mediamgmt/group/Bld.inf"
