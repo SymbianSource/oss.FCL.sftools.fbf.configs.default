@@ -328,7 +328,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcbctestpbkdatamngt.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="1800"/>
+                            <param timeout="3600"/>
 						</params>
 					</step>
 					<step id="" name="testpbkdatamngt (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -678,7 +678,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config c:\testframework\tcbctestpbkfetch.cfg"/>
                             <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
-                            <param timeout="1800"/>
+                            <param timeout="3600"/>
 						</params>
 					</step>
 					<step id="" name="testpbkfetch (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">

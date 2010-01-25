@@ -62,7 +62,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testscripter -config c:\testframework\testlbslocacquisition.cfg"/>
 							<param result-file="c:\spd_logs\xml\testscripter.xml"/>
-                            <param timeout="1200"/>
+                            <param timeout="3600"/>
 						</params>
 					</step>
 					<step id="" name="testlbslocacquisition (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">

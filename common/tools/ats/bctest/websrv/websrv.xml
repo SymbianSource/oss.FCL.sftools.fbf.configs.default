@@ -94,7 +94,7 @@
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule HostletConnectionBCTest"/>
 							<param result-file="c:\spd_logs\xml\HostletConnectionBCTest.xml"/>
-                            <param timeout="3600"/>
+                            <param timeout="1200"/>
 						</params>
 					</step>
 					<step id="" name="HostletConnectionBCTest (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
@@ -284,6 +284,15 @@
 							<param component-path="bcwebsrv" />
 						</params>
 					</step>
+					<step id="" name="testframework_senfragment.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework\testframework_senfragment.ini"/>
+							<param dst="c:\testframework\testframework_senfragment.ini"/>
+							<param component-path="bcwebsrv" />
+						</params>
+					</step>
 					<step id="" name="SenFragmentBCTest (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
 						<command>execute</command>
 						<params>
@@ -317,5 +326,6 @@
 		<file>bcwebsrv/winscw_udeb/SenUtilsBCTest.dll</file>
 		<file>bcwebsrv/general/testframework/testframework_senutils.ini</file>
 		<file>bcwebsrv/winscw_udeb/SenFragmentBCTest.dll</file>
+		<file>bcwebsrv/general/testframework/testframework_senfragment.ini</file>
 	</files>
 </test>
