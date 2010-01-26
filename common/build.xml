@@ -172,11 +172,16 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
         <delete file="${temp.build.dir}/source-spec.ant.xml"/>
         
+        <property name="sf.test.csv.file" value="nul:"/>
+
         <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
               outputFile="${temp.build.dir}/source-spec.ant.xml">
               <data expandProperties="yes">
                     ant: antProperties()
-                    data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                    data: [
+                        csv(${sf.test.csv.file}, {separator:','})
+                        csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                    ]
               </data>
         </fmpp>
     </target>

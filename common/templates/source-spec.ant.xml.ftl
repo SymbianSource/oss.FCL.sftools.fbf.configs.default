@@ -23,7 +23,8 @@
         <delete file="${ant['build.drive']}/output/logs/BOM/sources.csv" quiet="true"/>
     </target>
 
-<#list data as pkg_detail>
+<#list data as csv_file>
+  <#list csv_file as pkg_detail>
     <target name="sf-prebuild-${count}">
         <sequential>
             <!-- create sf\layer dir  -->
@@ -136,6 +137,7 @@
     <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\r\n  "/>
     <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\r\n  "/>
     <#assign count = count + 1 />
+  </#list>
 </#list>
 
     <path id="system.definition.files">
