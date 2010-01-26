@@ -1,0 +1,47 @@
+<!-- This is the template used to fill the package test status for a package -->
+
+<!-- Root for package -->
+<!ELEMENT package (domain,owner,location,testable*)>
+<!ATTLIST package
+ pckgname CDATA #REQUIRED
+ pckg_id CDATA #REQUIRED>
+<!ELEMENT domain (#PCDATA)>
+ <!ATTLIST domain type (Base_OS_Serivices|Data_Communications|Device_Connectivity|Device_Management|Location|Multimedia|Multimedia_Apss|Personal_Comms|Productivity|Runtimes_and_Web|Security|Tools|User_Interface|undefined) "undefined">
+<!-- owner is child of package -->
+<!ELEMENT owner (surname,firstname,company,city,country,email)>
+<!ELEMENT surname (#PCDATA)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT company (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!-- location  is child of package-->
+<!ELEMENT location (license,branch,repository)>
+<!ATTLIST license type (oss|sfl|rnd|undefined) "undefined">
+ <!ATTLIST branch type (MCL|RCL_1|FCL|undefined) "undefined">
+<!ELEMENT repository (#PCDATA)>
+<!-- testable is child of package -->
+<!ELEMENT testable (suite,builditem*,mapping,run)>
+<!-- suite is a child of testable -->
+<!ELEMENT suite (test_level*,test_type,suite_type*)>
+<!-- test_level: Platform (aka system test) or Package -->
+<!ATTLIST test_level type (platform|package) "package">
+<!-- test_type: stif, tef or rtest (maybe MTF???) -->
+<!ATTLIST test_type type (stif|tef|rtest|undefined) "undefined">
+<!-- suite_type: Only one at the time smoketest or sanity, both of them are part of the regression and we can have one or both ticked for a test suite -->
+<!ATTLIST suite_type type (smoketest|sanitytest|regressiontest) "regressiontest">
+<!-- builditem is a child of testable -->
+<!ELEMENT builditem (build_type,bldinf_location,pckg_def_xml_loc,pckg_test_def_xml_loc)>
+<!-- build_type: production or test -->
+<!ATTLIST build_type type (production_build|test_build|undefined) "undefined">
+<!ELEMENT bldinf_location (#PCDATA)>
+<!ELEMENT pckg_def_xml_loc (#PCDATA)>
+<!ELEMENT pckg_test_def_xml_loc (#PCDATA)>
+<!-- mapping is a child of testable src for where the file come from and dest where the file will be in ROM -->
+<!ELEMENT mapping (src,dest)>
+<!ELEMENT src (#PCDATA)>
+<!ELEMENT dest (#PCDATA)>
+<!-- run is a child of testable -->
+<!ELEMENT run (cmd,param+)>
+<!ELEMENT cmd (#PCDATA)>
+<!ELEMENT param (#PCDATA)>

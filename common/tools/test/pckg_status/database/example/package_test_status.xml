@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE package SYSTEM "package_test_status.dtd">
+<!-- This is the xml file used for the package tests status -->
+
+<!-- is the next line necessary??????? -->
+<!-- 
+<project name="PACKAGES_STATUS" xmlns:hlm="http://www.nokia.com/helium">
+-->
+
+<package>
+ <pckgname> kernelhwsrv </pckgname>
+ <pckg_id> 1 </pckg_id>
+ <domain type="OS_Base_Services"/>
+ <owner>
+  <surname> Imhofe </surname>
+  <firstname> John  </firstname>
+  <company> Nokia </company>
+  <city> London </city>
+  <country> UK </country>
+  <email> john.imhofe@nokia.com </email>
+ </owner>
+ <location>
+  <license type="oss" />
+  <branch type="MCL" />
+  <repository> http://developer.symbian.org/oss/MCL/sf/os/kernelhwsrv </repository>
+ </location>
+ <testable>
+  <suite>
+   <test_level type="package" />
+   <test_type type="tef" />
+   <suite_type type="smoke_test" />
+   <suite_type type="sanity_test" />
+  </suite>
+  <builditem>
+   <build_type type="test_build"/>
+   <bldinf_location> sf\os\kernelhwsrv\eka\generic.inf </bldinf_location>
+   <pckg_def_xml_loc> sf\os\kernelhwsrv\package_definition.xml </pckg_def_xml_loc>
+   <pckg_test_def_xml_loc> sf\os\kernelhwsrv\package_definition_test.xml </pckg_test_def_xml_loc>
+  </builditem>
+  <mapping>
+   <src> ? </src>
+   <dest> ? </dest>
+  </mapping>
+  <run>
+   <cmd> ? </cmd>
+   <param> ? </param>
+  </run>
+  </testable> 
+</package>
