@@ -89,14 +89,6 @@
         </else>
     </if>
     
-    <!-- conditional import of generated source spec if available -->
-    <if><available  file="${temp.build.dir}/source-spec.ant.xml" />
-        <then>
-            <echo message="Generated source spec found, importing..." />
-            <import file="${temp.build.dir}/source-spec.ant.xml"/>
-        </then>
-    </if>
-    
     <target name="sf-prep" depends="prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
         <echo>[SF-PREP]</echo>
         <!-- Test for the disk space we would like for this build -->
@@ -176,6 +168,18 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
 
     <target name="sf-build" depends="sf-prebuild,sf-build-noprep,sf-postbuild">
         <echo>[SF-BUILD]</echo>
+    </target>
+    
+    <target name="sf-scrub-build" description="Cleans up everything left behind after a build. Danger!">
+        <if>
+            <available file="${sf.spec.job.drive}/"/>
+            <then>
+                <!-- Un-subst the drive -->
+                <hlm:unsubst drive="${sf.spec.job.drive}"/>
+            </then>
+        </if>
+        <!-- Delete build directory -->
+        <delete dir="${prep.build.dir}"/>
     </target>
     
     <target name="sf-generate-source-spec">
