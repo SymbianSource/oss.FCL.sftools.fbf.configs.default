@@ -65,12 +65,6 @@
 				<check name="version" execute="7z.exe -h" values="4\.65" locator="7-Zip (.*)  Copyright"/>
 			</verify>
 		</tool>
-		<tool name="PDT Home">
-			<location strict="false" value="C:\Symbian\Tools\PDT_1.0\helium\hlm.bat"/>
-			<verify version="1.0 [beta]" showstopper="false">
-				<check var="PDT_HOME" values="\\Tools\\PDT_\d"/>
-			</verify>
-		</tool>
 		<tool name="EPOC">
 			<verify version="Environment Vars" showstopper="true">
 				<check var="EPOCROOT" values="^\\$"/>
