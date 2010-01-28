@@ -542,6 +542,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <runtarget target="sf-preprocess-package-config"/>
           </then>  
         </if>
+        <stopwatch name="sf-zip-content (${zip.target.name})"/>
         <if><available file="${zip.config.file}"/>
           <then>
             <runtarget target="preprocess-zip-config" />
@@ -553,6 +554,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <echo message="ERROR ${zip.config.file} not available for zipping!"/>
           </else>
         </if>
+        <stopwatch name="sf-zip-content (${zip.target.name})" action="elapsed"/>
     </target>
     
     <target name="sf-package-source" >
