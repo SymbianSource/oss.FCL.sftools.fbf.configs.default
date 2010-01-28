@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SF-POSTBUILD" xmlns:hlm="http://www.nokia.com/helium">
     <target name="sf-postbuild">
+        <stopwatch name="sf-postbuild"/>
         <echo>[SF-POSTBUILD]</echo>
         
         <if><istrue value="${sf.relicense.exported.headers}"/>
@@ -32,12 +33,14 @@
             <if>
                 <istrue value="${sf.spec.package.bin.enable}"/>
                 <then>
+                    <stopwatch name="sf-postbuild packaging binaries"/>
                     <echo message="INFO Packaging Binaries"/>
                     <runtarget target="sf-package-binary"/>
                     <runtarget target="sf-package-tools"/>
     
                     <echo message="INFO Validate Zip files"/>
                     <runtarget target="sf-package-validate"/>
+                    <stopwatch name="sf-postbuild packaging binaries" action="elapsed"/>
                 </then>
             </if>
             
@@ -54,10 +57,12 @@
         </parallel>
         
         <!-- Generate release_metadata entries for the md5 zips -->
+        <stopwatch name="sf-postbuild" action="elapsed"/>
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <param name="zip.target.name" value="bin-just-metadata" />
         </antcall>
+        <stopwatch name="sf-postbuild" action="elapsed"/>
  
         <!-- Launch smoketest -->
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
@@ -92,6 +97,7 @@
                 <runtarget target="sf-publish"/>
             </then>
         </if>
+        <stopwatch name="sf-postbuild" action="elapsed"/>
     </target>
 
     <target name="sf-tag-hg-code">
@@ -332,6 +338,7 @@
 
     <!-- runs analysis of missing bins and source -->
     <target name="sf-run-analysis">
+        <stopwatch name="sf-run-analysis"/>
         <mkdir dir="${build.log.dir}/analysis"/>
         <parallel>
           <runtarget target="sf-run-analysis-ant"/>
@@ -346,6 +353,7 @@
             <runtarget target="sf-run-analysis-diamonds"/>
             </then>
         </if>
+        <stopwatch name="sf-run-analysis" action="elapsed"/>
     </target>
 
     <target name="sf-run-analysis-ant">    

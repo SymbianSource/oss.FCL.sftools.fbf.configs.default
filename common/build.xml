@@ -89,8 +89,7 @@
         </else>
     </if>
     
-    <target name="sf-prep" depends="prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
-        <echo>[SF-PREP]</echo>
+    <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
         <!-- Test for the disk space we would like for this build -->
 	<fail>
             <condition>
@@ -107,8 +106,14 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
 
         <runtarget target="sf-check-env"/>
+        <stopwatch name="sf-prep" action="elapsed"/>
     </target>
-        
+
+    <target name="sf-prep-announce">    
+        <stopwatch name="sf-prep"/>
+        <echo>[SF-PREP]</echo>
+    </target>
+
     <target name="sf-check-env">
         <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
         <if><available file="${sf.project.location}/BuildEnv.xml"/>        
@@ -235,9 +240,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom"/>
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom">
+        <stopwatch name="sf-prebuild" action="elapsed"/>
+    </target>
     
     <target name="sf-prebuild-announce">
+        <stopwatch name="sf-prebuild"/>
         <echo>[SF-PREBUILD]</echo>
     </target>
     
@@ -297,6 +305,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-getenvs">
+        <stopwatch name="sf-getenvs"/>
         <!-- create BOM dir -->
         <mkdir dir="${build.drive}/output/logs/BOM"/>
         
@@ -305,6 +314,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <if>
             <istrue value="${sf.spec.toolsbaseline.enable}" />
             <then>
+                <stopwatch name="sf-getenvs (tools)"/>
 
                 <!-- record toolsbaseline information in BOM file -->
                 <echo message="${sf.spec.toolsbaseline.location}" file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
@@ -317,6 +327,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                     <arg value="${sf.common.config.dir}/tools/listdir.pl"/>
                     <arg value="${build.drive}/epoc32"/>
                 </exec>
+                <stopwatch name="sf-getenvs (tools)" action="elapsed"/>
             </then>
         </if>        
 
@@ -324,13 +335,16 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <if>
             <istrue value="${sf.spec.baseline.enable}" />
             <then>
+                <stopwatch name="sf-getenvs (baseline)"/>
                 <!-- record baseline information in BOM file -->
                 <echo message="${sf.spec.baseline.location}" file="${build.drive}/output/logs/BOM/baseline.txt"/>
                 
                 <!-- run internal target preparation-getenv -->
                 <runtarget target="preparation-getenv"/>
+                <stopwatch name="sf-getenvs (baseline)" action="elapsed"/>
             </then>
         </if>
+        <stopwatch name="sf-getenvs" action="elapsed"/>
     </target>
 
     <target name="sf-getenv-tools">
@@ -341,6 +355,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-syncsource">
+        <stopwatch name="sf-syncsource"/>
         <touch file="${build.log.dir}/BOM/sources.csv"/> 
         <if>
             <istrue value="${sf.spec.sourcesync.enable}" />
@@ -350,6 +365,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                 <runtarget target="sf-unpack-rnd"/>
             </then>
         </if>        
+        <stopwatch name="sf-syncsource" action="elapsed"/>
     </target>
 
     <!-- generate dir list using passed location and name 
@@ -411,7 +427,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <!-- This target is overridden in platform builds, but used directly in package builds -->
-    <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile,sf-postbuild">
+    <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
@@ -420,6 +436,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
     
   <target name="sf-truclean">
+    <stopwatch name="sf-truclean"/>
     <if>
       <istrue value="${sf.spec.build.clean.enable}"/>
       <then>
@@ -437,9 +454,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <echo message="Skipping truclean step."/>
       </else>
     </if>
+    <stopwatch name="sf-truclean" action="elapsed"/>
   </target>
   
   <target name="sf-model-from-project">
+    <stopwatch name="sf-model-from-project"/>
     <if>
       <isset property="sf.spec.systemdefinition.source"/>
       <then>
@@ -457,6 +476,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </exec>
       </else>
     </if>
+    <stopwatch name="sf-model-from-project" action="elapsed"/>
   </target>
     
     <target name="sf-get-source" depends="sf-generate-source-spec">

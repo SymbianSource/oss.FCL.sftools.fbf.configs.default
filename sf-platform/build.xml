@@ -17,7 +17,7 @@
    -->
 
   <!-- MattD - workaround until generating a model from package definitions works-->
-  <target name="sf-build-noprep" depends="sf-platform-bootstrap,sf-compile,sf-postbuild">
+  <target name="sf-build-noprep" depends="sf-platform-bootstrap,sf-compile">
     <echo>[SF-BUILD-NOPREP] (platform)</echo>
     <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
   </target>
@@ -129,26 +129,30 @@
     ==
     -->
   <target name="sf-compile">
+    <stopwatch name="sf-compile"/>
 
     <!-- TODO clean up to single target once genxml v2.0.0 merge is fixed -->
     <if><istrue value="${sf.spec.splitbuild}"/>
-       <then>
-       <if><istrue value="${sf.spec.os.skipbuild}" />
-            <then><echo message="Skipping OS build"/></then>
-       <else><runtarget target="sf-os-compile"/></else></if>
+      <then>
+        <if><istrue value="${sf.spec.os.skipbuild}" />
+          <then><echo message="Skipping OS build"/></then>
+          <else><runtarget target="sf-os-compile"/></else>
+        </if>
 
-       <if><istrue value="${sf.spec.s60.skipbuild}" />
-            <then><echo message="Skipping S60 build"/></then>
-       <else><runtarget target="sf-s60-compile"/></else></if>
-	   </then>
-	   <else>
-	        <!-- TODO targets for single sysdef build -->
-	        <runtarget target="sf-os-compile"/>
-	   </else>
+        <if><istrue value="${sf.spec.s60.skipbuild}" />
+          <then><echo message="Skipping S60 build"/></then>
+          <else><runtarget target="sf-s60-compile"/></else>
+        </if>
+      </then>
+      <else>
+        <!-- TODO targets for single sysdef build -->
+        <runtarget target="sf-os-compile"/>
+      </else>
     </if>
-       <!-- always run cenrep -->
-       <runtarget target="sf-s60-create-cenrep"/>
 
+    <!-- always run cenrep -->
+    <runtarget target="sf-s60-create-cenrep"/>
+    <stopwatch name="sf-compile" action="elapsed"/>
   </target>
 
   <!--
