@@ -324,14 +324,14 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     <target name="sf-syncsource">
         <stopwatch name="sf-syncsource"/>
         <touch file="${build.log.dir}/BOM/sources.csv"/> 
+        <runtarget target="sf-get-source"/>                
         <if>
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
-                <runtarget target="sf-get-source"/>                
                 <runtarget target="sf-package-source"/>                
                 <runtarget target="sf-unpack-rnd"/>
             </then>
-        </if>        
+        </if>
         <stopwatch name="sf-syncsource" action="elapsed"/>
     </target>
 
@@ -359,6 +359,14 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <delete file="${temp.build.dir}/source-spec.ant.xml"/>
         
         <property name="sf.test.csv.file" value="nul:"/>
+        
+        <if>
+            <istrue value="${sf.spec.sourcesync.enable}" />
+            <then>
+                <property name="sf.source.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+            </then>
+        </if>
+        <property name="sf.source.csv.file" value="nul:"/>
 
         <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
               outputFile="${temp.build.dir}/source-spec.ant.xml">
@@ -366,7 +374,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                     ant: antProperties()
                     data: [
                         csv(${sf.test.csv.file}, {separator:','})
-                        csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                        csv(${sf.source.csv.file}, {separator:','})
                     ]
               </data>
         </fmpp>
