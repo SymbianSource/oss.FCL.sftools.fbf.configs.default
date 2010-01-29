@@ -187,39 +187,6 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <delete dir="${prep.build.dir}"/>
     </target>
     
-    <target name="sf-generate-source-spec">
-        <!-- Generate the sources.csv if hg cache is activated -->
-        <if><istrue value="${sf.spec.sourcesync.usecache}"/>
-            <then>
-                <echo message="Generating Hg local cache..." />
-                <exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
-                    <arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
-                    <arg value="${sf.spec.sourcesync.cachelocation}"/>
-                    <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
-                    <arg value="${temp.build.dir}/${sf.spec.sourcesync.sourcespecfile}"/>
-                </exec>
-            </then>
-        </if>
-
-        <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
-        for multiple package builds, this needs to be linked with package name. -->
-        <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
-        <delete file="${temp.build.dir}/source-spec.ant.xml"/>
-        
-        <property name="sf.test.csv.file" value="nul:"/>
-
-        <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
-              outputFile="${temp.build.dir}/source-spec.ant.xml">
-              <data expandProperties="yes">
-                    ant: antProperties()
-                    data: [
-                        csv(${sf.test.csv.file}, {separator:','})
-                        csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
-                    ]
-              </data>
-        </fmpp>
-    </target>
-    
     <target name="generate-layers">
        <echo message="canno-file:${canonical.sysdef.file}"/>
        <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
@@ -368,6 +335,43 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <stopwatch name="sf-syncsource" action="elapsed"/>
     </target>
 
+    <target name="sf-get-source" depends="sf-generate-source-spec">
+        <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
+    </target>
+    
+    <target name="sf-generate-source-spec">
+        <!-- Generate the sources.csv if hg cache is activated -->
+        <if><istrue value="${sf.spec.sourcesync.usecache}"/>
+            <then>
+                <echo message="Generating Hg local cache..." />
+                <exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
+                    <arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
+                    <arg value="${sf.spec.sourcesync.cachelocation}"/>
+                    <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
+                    <arg value="${temp.build.dir}/${sf.spec.sourcesync.sourcespecfile}"/>
+                </exec>
+            </then>
+        </if>
+
+        <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
+        for multiple package builds, this needs to be linked with package name. -->
+        <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
+        <delete file="${temp.build.dir}/source-spec.ant.xml"/>
+        
+        <property name="sf.test.csv.file" value="nul:"/>
+
+        <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
+              outputFile="${temp.build.dir}/source-spec.ant.xml">
+              <data expandProperties="yes">
+                    ant: antProperties()
+                    data: [
+                        csv(${sf.test.csv.file}, {separator:','})
+                        csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+                    ]
+              </data>
+        </fmpp>
+    </target>
+    
     <!-- generate dir list using passed location and name 
     if a baseline list is available then generate deltas too -->
 
@@ -478,10 +482,6 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </if>
     <stopwatch name="sf-model-from-project" action="elapsed"/>
   </target>
-    
-    <target name="sf-get-source" depends="sf-generate-source-spec">
-        <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
-    </target>
     
     <target name="sf-diamondize-bom" depends="sf-record-proj-conf-bom">
         <fmpp sourceFile="${sf.common.config.dir}/templates/build-info.xml.ftl"
