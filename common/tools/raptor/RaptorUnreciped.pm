@@ -45,7 +45,6 @@ my $store_chars = 1;
 my $CATEGORY_RAPTORUNRECIPED = 'raptor_unreciped';
 my $CATEGORY_RAPTORUNRECIPED_NORULETOMAKETARGET = 'no_rule_to_make_target';
 my $CATEGORY_RAPTORUNRECIPED_TARGETNOTREMADEFORERRORS = 'target_not_remade_for_errors';
-my $CATEGORY_RAPTORUNRECIPED_NOTHINGTOBEDONEFOR = 'nothing_to_be_done_for';
 my $CATEGORY_RAPTORUNRECIPED_IGNORINGOLDCOMMANDSFORTARGET = 'ignoring_old_commands_for_target';
 my $CATEGORY_RAPTORUNRECIPED_OVERRIDINGCOMMANDSFORTARGET = 'overriding_commands_for_target';
 
@@ -83,9 +82,7 @@ sub process
 	}
 	elsif ($text =~ m,make\.exe: Nothing to be done for .*,)
 	{
-		$severity = $RaptorCommon::SEVERITY_MINOR;
-		my $subcategory = $CATEGORY_RAPTORUNRECIPED_NOTHINGTOBEDONEFOR;
-		RaptorCommon::dump_fault($category, $subcategory, $severity, $logfile, $component, $mmp, $phase, $recipe, $file, $line);
+		# don't dump
 	}
 	elsif ($text =~ m,^(true|false)$,)
 	{
