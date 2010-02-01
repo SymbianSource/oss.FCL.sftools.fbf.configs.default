@@ -358,7 +358,9 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-get-source" depends="sf-generate-source-spec">
+        <stopwatch name="sf-get-source"/>
         <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
+        <stopwatch name="sf-get-source" action="elapsed"/>
     </target>
     
     <target name="sf-generate-source-spec">
