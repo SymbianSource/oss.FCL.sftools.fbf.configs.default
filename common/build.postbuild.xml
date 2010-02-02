@@ -702,7 +702,7 @@
     </target>
 
     <!-- TODO: Make this work for package builds once we have sysmodel story worked out -->
-    <target name="sf-run-analysis-missing-files" if="sf.spec.splitbuild">
+    <target name="sf-run-analysis-missing-files" if="sf.spec.checkbuild">
     <!-- splitbuild is only set for Platform builds -->
        <if><istrue value="${sf.spec.splitbuild}"/>
        <then>
