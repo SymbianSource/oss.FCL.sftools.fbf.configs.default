@@ -559,6 +559,20 @@
               <arg value="-v"/>
               <arg value="5"/>
             </exec>
+
+            <exec executable="cmd" dir="${build.drive}/epoc32/tools" failonerror="false" append="true" output="${build.log.dir}/${build.id}_cenrep.log">
+              <arg value="/c"/>
+              <arg value="cone"/>
+              <arg value="generate"/>
+              <arg value="-p"/>
+              <arg value="\epoc32\rom\config"/>
+              <arg value="-o"/>
+              <arg value="\epoc32\data\z"/>
+              <arg value="-c"/>
+              <arg value="s60_root.confml"/>
+              <arg value="-v"/>
+              <arg value="5"/>
+            </exec>
             
             <exec executable="cmd" dir="${build.drive}/epoc32/tools" failonerror="false" append="true" output="${build.log.dir}/${build.id}_cenrep.log">
               <arg value="/c"/>
