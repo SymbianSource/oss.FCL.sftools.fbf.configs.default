@@ -18,11 +18,6 @@
   <#assign bug419 = false />
 </#if>
 
-    <!-- remove previous version of BOM file (if exists)  -->
-    <target name="reset-bom-sources-csv">
-        <delete file="${ant['build.drive']}/output/logs/BOM/sources.csv" quiet="true"/>
-    </target>
-
 <#list data as csv_file>
   <#list csv_file as pkg_detail>
     <target name="sf-prebuild-${count}">
@@ -47,7 +42,7 @@
                   <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
               </exec>
             <#else>
-            <exec executable="hg" dir="${ant['build.drive']}">
+	    <exec executable="hg" dir="${ant['build.drive']}/">
                 <arg value="clone"/>
                 <arg value="-U"/>
                 <arg value="${pkg_detail.source}"/>
@@ -91,31 +86,23 @@
           </#if>  
         </sequential>
     </target>
-
+    
     <target name="sf-bom-info-${count}">
-        <sequential>
-            <!-- record info on source code repo/rev in BOM file  -->
-            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : ${dollar}{sf.sourcesync.${count}.checksum}"/>
-            <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
-                <arg value="/c"/>
-                <arg value="echo"/>
-                <arg value="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}"/>
-            </exec>
-        </sequential>
+        <!-- record info on source code repo/rev in BOM file  -->
+        <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true" message="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}${dollar}{line.separator}"/>
     </target>
-
+    
     <target name="sf-bom-change-info-${count}">
-        <sequential>
-      		<if><not><isset property="sf.sourcesync.${count}.checksum"/></not>
-      			<then>
-              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                <arg value="identify"/>
-                <arg value="-i"/>
-              </exec>
-      			</then>
-      		</if>
-      		  <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
-      		  <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
+        <if><not><isset property="sf.sourcesync.${count}.checksum"/></not>
+            <then>
+                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                    <arg value="identify"/>
+                    <arg value="-i"/>
+                </exec>
+            </then>
+        </if>
+        <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
+        <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
             <#if fast_sync > 
               <exec executable="hg" dir="${pkg_detail.source}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
             <#else>      		  
@@ -129,44 +116,35 @@
                 <arg value="${pkg_detail.pattern}"/>
                 </#if>    
             </exec>
-          </sequential>
     </target>
-
+    
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.sysdef}\"/>\r\n        " />       
-    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\r\n    "/>
-    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\r\n  "/>
-    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\r\n  "/>
+    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\r\n            "/>
+    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\r\n        "/>
+    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\r\n        "/>
     <#assign count = count + 1 />
   </#list>
 </#list>
-
+    
     <path id="system.definition.files">
         <fileset dir="${dollar}{sf.common.config.dir}/sysdefs" includes="*.sysdef.xml"/>
         ${fileset}
     </path>
-
-<target name="all" depends="reset-bom-sources-csv">
-  <parallel threadCount="${ant['env.NUMBER_OF_PROCESSORS']}">
-    ${sync_list}
-  </parallel>
-
-  <echo message="Adding BOM header"/>
-      <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
-      <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
-      <arg value="/c"/>
-      <arg value="echo"/>
-      <arg value="source,dst,type,pattern,sysdef"/>
-  </exec>
-  
-  ${bom_list}
-  <runtarget target="sf-bom-change-info" />
-</target>
-
-<target name="sf-bom-change-info">
-  <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
-  <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/>
-
-  ${change_list}
-</target>
-
+    
+    <target name="all">
+        <parallel threadsPerProcessor="1">
+            ${sync_list}
+        </parallel>
+        
+        <echo message="Adding BOM header"/>
+        <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
+        <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" message="source,dst,type,pattern,sysdef${dollar}{line.separator}"/>
+        
+        ${bom_list}
+        
+        <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/>
+        
+        ${change_list}
+    </target>
+    
 </project>
