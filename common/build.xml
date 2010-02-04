@@ -89,7 +89,7 @@
         </else>
     </if>
     
-    <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,check-tool-dependencies,create-bom,log-build-env">
+    <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,create-bom,log-build-env">
         <!-- Test for the disk space we would like for this build -->
 	<fail>
             <condition>
