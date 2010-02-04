@@ -82,7 +82,6 @@
                         <arg value="CheckBC.py"/>
                         <arg value="${build.log.dir}/BC/bc.config"/>
                         <arg value="-la"/>
-                        <arg value="-f"/>
                         <arg value="${sf.spec.bccheck.reportid}"/>
                     </exec>
                     <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Libraries_CompatibilityReport_${sf.spec.bccheck.reportid}.xml" tofile="${build.log.dir}/BC/libraries_report.xml" failonerror="false" verbose="true"/>
@@ -95,7 +94,6 @@
                         <arg value="CheckBC.py"/>
                         <arg value="${build.log.dir}/BC/bc.config"/>
                         <arg value="-ha"/>
-                        <arg value="-f"/>
                         <arg value="${sf.spec.bccheck.reportid}"/>
                     </exec>
                     <copy file="${sf.spec.pdt.root}/fts/compatibilityanalyser/reports/Headers_CompatibilityReport_${sf.spec.bccheck.reportid}.xml" tofile="${build.log.dir}/BC/headers_report.xml" failonerror="false" verbose="true"/>
