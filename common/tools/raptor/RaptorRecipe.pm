@@ -205,6 +205,8 @@ sub on_start_buildlog_recipe_status
 
 sub on_end_buildlog_recipe
 {
+	$::allbldinfs->{$recipe_info->{bldinf}} = 1;
+	
 	if ($recipe_info->{exit} =~ /failed/)
 	{
 		# normalize bldinf path

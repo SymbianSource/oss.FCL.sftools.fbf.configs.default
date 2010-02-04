@@ -72,6 +72,8 @@ $saxhandler->add_observer('RaptorInfo', $RaptorInfo::reset_status);
 $saxhandler->add_observer('RaptorUnreciped', $RaptorUnreciped::reset_status);
 $saxhandler->add_observer('RaptorRecipe', $RaptorRecipe::reset_status);
 
+our $allbldinfs = {};
+
 my $parser = XML::SAX::ParserFactory->parser(Handler=>$saxhandler);
 for (@logfiles)
 {
@@ -79,6 +81,8 @@ for (@logfiles)
 	$current_log_file = $_;
 	$parser->parse_uri($_);
 }
+
+my @allpackages = distinct_packages($allbldinfs);
 
 print "Generating HTML...\n";
 
@@ -223,27 +227,37 @@ for my $category (keys %{$general_failures_num_by_severity})
 print AGGREGATED "</table>\n";
 print AGGREGATED "<br/>\n";
 
-print AGGREGATED "<br/>PACKGE-SPECIFIC FAILURES<br/>\n";
+print AGGREGATED "<br/>PACKAGE-SPECIFIC FAILURES<br/>\n";
 print AGGREGATED "<table border='1'>\n";
 $tableheader = "<tr><th>package</th>";
 for (@severities) { $tableheader .= "<th>$_</th>"; }
 $tableheader .= "</tr>";
 print AGGREGATED "$tableheader\n";
-for my $package (keys %{$recipe_failures_num_by_severity})
+for my $package (@allpackages)
 {
-	print_package_specific_summary($package, $recipe_failures_by_package_severity->{$package});
-	my $packagesummaryhtml = $package;
-	$packagesummaryhtml =~ s,/,_,;
-	$packagesummaryhtml .= ".html";
-	my $packageline = "<tr><td><a href='$packagesummaryhtml'>$package</a></td>";
-	for (@severities)
+	if (defined $recipe_failures_num_by_severity->{$package})
 	{
-		my $failuresbyseverity = 0;
-		$failuresbyseverity = $recipe_failures_num_by_severity->{$package}->{$_} if (defined $recipe_failures_num_by_severity->{$package}->{$_});
-		$packageline .= "<td>$failuresbyseverity</td>";
+		print_package_specific_summary($package, $recipe_failures_by_package_severity->{$package});
+		my $packagesummaryhtml = $package;
+		$packagesummaryhtml =~ s,/,_,;
+		$packagesummaryhtml .= ".html";
+		my $packageline = "<tr><td><a href='$packagesummaryhtml'>$package</a></td>";
+		for (@severities)
+		{
+			my $failuresbyseverity = 0;
+			$failuresbyseverity = $recipe_failures_num_by_severity->{$package}->{$_} if (defined $recipe_failures_num_by_severity->{$package}->{$_});
+			$packageline .= "<td>$failuresbyseverity</td>";
+		}
+		$packageline .= "</tr>";
+		print AGGREGATED "$packageline\n";
 	}
-	$packageline .= "</tr>";
-	print AGGREGATED "$packageline\n";
+	else
+	{
+		my $packageline = "<tr><td>$package</td>";
+		for (@severities) { $packageline .= "<td>0</td>"; }
+		$packageline .= "</tr>";
+		print AGGREGATED "$packageline\n";
+	}
 }
 print AGGREGATED "</table>\n";
 close(AGGREGATED);
@@ -357,4 +371,33 @@ sub translate_detail_files_to_html
 		print FILE $filecontent;
 		close(FILE);
 	}
+}
+
+sub distinct_packages
+{
+	my ($allbldinfs) = @_;
+	
+	my $allpackages = {};
+	
+	for my $bldinf (keys %{$allbldinfs})
+	{
+		# normalize bldinf path
+		$bldinf = lc($bldinf);
+		$bldinf =~ s,^[A-Za-z]:,,;
+		$bldinf =~ s,[\\],/,g;
+		
+		my $package = '';
+		if ($bldinf =~ m,/((os|mw|app|tools|ostools|adaptation)/[^/]*),)
+		{
+			$package = $1;
+		}
+		else
+		{
+			print "WARNING: can't understand bldinf attribute of recipe: $bldinf. Won't dump to failed recipes file.\n";
+		}
+		
+		$allpackages->{$package} = 1;
+	}
+	
+	return sort {$a cmp $b} keys %{$allpackages};
 }
