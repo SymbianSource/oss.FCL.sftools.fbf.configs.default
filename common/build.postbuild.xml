@@ -384,10 +384,10 @@
       
       <!-- Cook the processed raptor logs to produce something in the right format for the BRAG system -->
       <mkdir dir="${build.log.dir}/summary/"/>
-      <exec executable="perl" output="${build.log.dir}/summary/sbs_BRAG.xml" logError="yes" failonerror="false">
+      <!-- exec executable="perl" output="${build.log.dir}/summary/sbs_BRAG.xml" logError="yes" failonerror="false">
         <arg value="${sf.common.config.dir}/tools/brag/sbsToBRAG.pl"/>
         <arg value="${build.log.dir}/analysis/*_compile_preprocessed.log"/>
-      </exec>
+      </exec -->
       
       <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
       <apply executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
@@ -459,10 +459,10 @@
       
       <!-- Cook the yarp analysis further to produce something in the right format for the BRAG system -->
       <mkdir dir="${build.log.dir}/summary/"/>
-      <exec executable="perl" output="${build.log.dir}/summary/Yarp_BRAG.xml" logError="yes">
+      <!-- exec executable="perl" output="${build.log.dir}/summary/Yarp_BRAG.xml" logError="yes">
         <arg value="${sf.common.config.dir}/tools/brag/yarpToBRAG.pl"/>
         <arg value="${build.log.dir}/analysis/*_yarp.csv"/>
-      </exec>
+      </exec -->
       
       <exec executable="perl" dir="${build.drive}" failonerror="false" outputproperty="sf.job.totalyarperrors">
         <arg value="${sf.common.config.dir}/tools/analysis/parse_yarp_files.pl"/>
