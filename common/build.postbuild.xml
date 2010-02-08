@@ -422,10 +422,10 @@
       </for>
 
       <!-- Cook the raptor analysis further to produce something in the right format for the BRAG system -->
-      <exec executable="perl" output="${build.log.dir}/summary/Raptor_BRAG.xml" logError="yes">
-        <arg value="${sf.common.config.dir}/tools/brag/raptorToBRAG.pl"/>
-        <arg value="--raptorsummary"/>
-        <arg value="${build.log.dir}/raptorbits/summary.csv"/>
+      <exec executable="perl" output="${build.log.dir}/summary/Uh_BRAG.xml" logError="yes">
+        <arg value="${sf.common.config.dir}/tools/brag/uh2brag.pl"/>
+        <arg value="--index"/>
+        <arg value="${build.log.dir}/html/index.html"/>
       </exec>
       <!-- And copy the XSL so the output can be transformed by a browser -->
       <copy file="${sf.common.config.dir}/tools/brag/brag.xsl" toDir="${build.log.dir}/summary/"/>
