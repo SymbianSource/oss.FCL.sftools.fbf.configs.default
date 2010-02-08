@@ -24,6 +24,7 @@
         <then>
             <exec executable="perl" outputproperty="sf.spec.job.root.drive" logerror="true" failonerror="true">
                 <arg value="${sf.common.config.dir}/tools/findPhysicalDrive.pl"/>
+                <arg value="-space"/>
             </exec>
         </then>
     </if>
