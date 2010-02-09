@@ -60,7 +60,7 @@ print <<_END;
 <?xml-stylesheet type='text/xsl' href='brag.xsl'?>
 <buildStatus>
 <phase name="Build">
-<step name=\"Raptor Build\" detailshref=\"..\\html\\index.html\">
+<step name=\"Raptor Build\" detailshref=\"../html/index.html\">
 <failures level=\"critical\" count=\"$criticals\"/>
 <failures level=\"major\" count=\"$majors\"/>
 <failures level=\"minor\" count=\"$minors\"/>
