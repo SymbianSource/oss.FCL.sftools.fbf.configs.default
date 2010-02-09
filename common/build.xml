@@ -31,8 +31,9 @@
     
     <!-- Import common properties -->
     <import file="${sf.common.config.dir}/common_props.ant.xml" />
-
+    
     <property name="sf.spec.job.rootdir" value="${sf.spec.job.root.drive}/${sf.spec.job.root.path}"/>
+    <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
     
     <!-- setup Helium internal properties from their equivalent in the project spec -->
     <property name="build.name" value="${sf.spec.job.name}"/>
@@ -77,18 +78,8 @@
     <!-- Import functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.postbuild.xml"/>
 	
-	<!-- Import test functionality distributed into other file(s) -->
+    <!-- Import test functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.test.xml"/>
-             
-    <!-- setup conditional Helium internal properties -->
-    <if><istrue value="${sf.spec.sourcesync.usecache}"/>
-        <then>
-            <property name="sf.spec.sourcesync.sourcespecdir" value="${temp.build.dir}"/>
-        </then>
-        <else>
-            <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
-        </else>
-    </if>
     
     <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,create-bom,log-build-env">
         <!-- Test for the disk space we would like for this build -->
@@ -357,7 +348,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </if>
         <stopwatch name="sf-syncsource" action="elapsed"/>
     </target>
-
+    
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <stopwatch name="sf-get-source"/>
         <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
@@ -365,19 +356,38 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
     
     <target name="sf-generate-source-spec">
-        <!-- Generate the sources.csv if hg cache is activated -->
-        <if><istrue value="${sf.spec.sourcesync.usecache}"/>
+        <!-- If we've not had a cache specified, but we should use one, then work one out... -->
+        <if>
+            <and>    
+                <istrue value="${sf.spec.sourcesync.usecache}"/>
+                <not><isset property="sf.spec.sourcesync.cachelocation"/></not>
+            </and>
             <then>
-                <echo message="Generating Hg local cache..." />
-                <exec executable="perl" dir="${build.log.dir}" failonerror="true" output="${build.log.dir}/${build.id}_hgcache.log">
-                    <arg value="${sf.common.config.dir}/tools/cachefiles.pl"/>
-                    <arg value="${sf.spec.sourcesync.cachelocation}"/>
-                    <arg value="${sf.project.location}/${sf.spec.sourcesync.sourcespecfile}"/>
-                    <arg value="${temp.build.dir}/${sf.spec.sourcesync.sourcespecfile}"/>
+                <!-- Iterate through drives to look for an existing cache -->
+                <exec executable="perl" outputproperty="sf.spec.sourcesync.all.drives" logerror="true" failonerror="true">
+                    <arg value="${sf.common.config.dir}/tools/findPhysicalDrive.pl"/>
+                    <arg value="-all"/>
                 </exec>
+                <for list="${sf.spec.all.drives}" param="physical.drive">
+                    <sequential>
+                        <available property="sf.spec.sourcesync.cachelocation" value="@{physical.drive}/${sf.spec.sourcesync.cache.path}" file="@{physical.drive}${sf.spec.sourcesync.cache.path}" type="dir"/>
+                    </sequential>
+                </for>
+                <if>
+                    <not><isset property="sf.spec.sourcesync.cachelocation"/></not>
+                    <then>
+                        <!-- No existing cache - locate the preferred drive for creating one -->
+                        <exec executable="perl" outputproperty="sf.spec.sourcesync.largest.drive" logerror="true" failonerror="true">
+                            <arg value="${sf.common.config.dir}/tools/findPhysicalDrive.pl"/>
+                            <arg value="-capacity"/>
+                        </exec>
+                        <property name="sf.spec.sourcesync.cachelocation" value="${sf.spec.sourcesync.largest.drive}/${sf.spec.sourcesync.cache.path}"/>
+                        <mkdir dir="${sf.spec.sourcesync.cachelocation}"/>
+                    </then>
+                </if>
             </then>
         </if>
-
+        
         <!-- TODO: 1. Same file name souce-spec.ant.xml is used for all packages
         for multiple package builds, this needs to be linked with package name. -->
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->

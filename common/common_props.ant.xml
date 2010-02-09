@@ -43,8 +43,8 @@
     <property name="sf.spec.sourcesync.enable" value="true"/>
     <property name="sf.spec.sourcesync.usecache" value="false"/>
     <property name="sf.spec.sourcesync.sourcespecfile" value="sources.csv"/>
-    <property name="sf.spec.sourcesync.cachelocation" value="${sf.spec.job.rootdir}/hgcache"/>
-    <property name="sf.spec.sourcesync.bug419" value="true"/> <!--Temporary workaround for bug 419 - Does source sync manually -->
+    <property name="sf.spec.sourcesync.cache.path" value="hgcache"/> <!-- Path relative to root of some drive for location of hg cache -->
+    <property name="sf.spec.sourcesync.local.development.area" value="//v800008/Builds01"/> <!-- Location of a "development area" which should be cached on build machines (in addition to developer.symbian.org content) -->
     
     <property name="sf.spec.baseline.enable" value="true"/>
     <property name="sf.spec.baseline.select" value="auto"/> <!-- auto|explicit|location -->
@@ -63,7 +63,7 @@
     <property name="sf.spec.publish.diamonds.port" value="80"/>
     <property name="sf.spec.publish.diamonds.path" value="/diamonds/builds/"/>
     <property name="sf.spec.publish.diamonds.tag" value=""/>
-	<property name="sf.spec.ats_worker.drive" value="C:\apps\ATS3\bin"/>
+    <property name="sf.spec.ats_worker.drive" value="C:\apps\ATS3\bin"/>
     
     <property name="sf.spec.tagafterbuild.enable" value="false"/>
 
