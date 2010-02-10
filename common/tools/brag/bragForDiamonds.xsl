@@ -2,10 +2,10 @@
 
 <!-- Main template -->
 <xsl:template match="/buildStatus">
-	<xsl:variable name="criticalCount" select="count(phase/step/failures[@level='critical']/failure)"/>
-	<xsl:variable name="majorCount" select="count(phase/step/failures[@level='major']/failure)"/>
-	<xsl:variable name="minorCount" select="count(phase/step/failures[@level='minor']/failure)"/>
-	<xsl:variable name="unknownCount" select="count(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/failure)"/>
+	<xsl:variable name="criticalCount" select="count(phase/step/failures[@level='critical']/failure)+sum(phase/step/failures[@level='critical']/@count)"/>
+	<xsl:variable name="majorCount" select="count(phase/step/failures[@level='major']/failure)+sum(phase/step/failures[@level='major']/@count)"/>
+	<xsl:variable name="minorCount" select="count(phase/step/failures[@level='minor']/failure)+sum(phase/step/failures[@level='minor']/@count)"/>
+	<xsl:variable name="unknownCount" select="count(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/failure)+sum(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/@count)"/>
 
 	<diamonds-build>
 	<schema>13</schema>
