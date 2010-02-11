@@ -32,24 +32,18 @@
             </and>
             <then>
                 <!-- Package in cache already -->
-		<!-- Clone null revision from source to get the right default repo -->
+                <echo message="Pull from ${pkg_detail.source} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="true">
+                    <arg value="pull"/>
+                    <arg value="${pkg_detail.source}"/>
+                </exec>
+                <echo message="Clone from ${dollar}{sf.spec.sourcesync.cachelocation.${count}} to ${ant['build.drive']}${pkg_detail.dst}"/>
                 <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
                     <arg value="clone"/>
-                    <arg value="-r"/>
-                    <arg value="null"/>
-                    <arg value="${pkg_detail.source}"/>
-                    <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
-                </exec>
-                <echo message="Pull from ${dollar}{sf.spec.sourcesync.cachelocation.${count}} to ${ant['build.drive']}${pkg_detail.dst}"/>
-                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}/" failonerror="true">
-                    <arg value="pull"/>
-                    <arg value="-f"/>
+                    <arg value="-U"/>
+                    <arg value="--uncompressed"/>
                     <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
-                </exec>
-                <echo message="Pull from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
-                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
-                    <arg value="pull"/>
-                    <arg value="${pkg_detail.source}"/>
+                    <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
                 </exec>
                 <!-- Update to required revision -->
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
@@ -62,15 +56,6 @@
                     <arg value="identify"/>
                     <arg value="-i"/>
                 </exec>
-                <forget>
-                    <echo message="Push from ${ant['build.drive']}${pkg_detail.dst} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}} in background"/>
-                    <nice newpriority="1"/>
-                    <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false">
-                        <arg value="push"/>
-                        <arg value="-f"/>
-                        <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
-                    </exec>
-                </forget>
             </then>
             <else>
                 <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
@@ -108,6 +93,10 @@
                                 <arg value="${pkg_detail.source}"/>
                                 <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
                             </exec>
+                            <!-- Set the speed-up flag on the cache repo -->
+                            <echo file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}/.hg/hgrc" append="true" message="${dollar}{line.separator}"/>
+                            <echo file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}/.hg/hgrc" append="true" message="[server]${dollar}{line.separator}"/>
+                            <echo file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}/.hg/hgrc" append="true" message="uncompressed=True${dollar}{line.separator}"/>
                             <echo message="Push from ${ant['build.drive']}${pkg_detail.dst} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}} in background"/>
                             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false">
                                 <arg value="push"/>
