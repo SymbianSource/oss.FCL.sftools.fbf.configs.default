@@ -79,7 +79,7 @@ push @environment_info, {name=>'sbs', version=>$sbs_ver};
 # Metrowerk Compiler
 my $mwcc_ver = 'N.A.';
 my $mwcc_out = `mwccsym2 -version`;
-$mwcc_ver = $1 if ($mwcc_out =~ /^Version (.*) \(Build/m);
+$mwcc_ver = $1 if ($mwcc_out =~ /^Version (.*)/m);
 push @environment_info, {name=>'mwccsym2', version=>$mwcc_ver};
 
 # RVCT 2.2
