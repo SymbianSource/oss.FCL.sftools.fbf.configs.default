@@ -370,7 +370,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                 </exec>
                 <for list="${sf.spec.all.drives}" param="physical.drive">
                     <sequential>
-                        <available property="sf.spec.sourcesync.cachelocation" value="@{physical.drive}/${sf.spec.sourcesync.cache.path}" file="@{physical.drive}${sf.spec.sourcesync.cache.path}" type="dir"/>
+                        <available property="sf.spec.sourcesync.cachelocation" value="@{physical.drive}/${sf.spec.sourcesync.cache.path}" file="@{physical.drive}/${sf.spec.sourcesync.cache.path}" type="dir"/>
                     </sequential>
                 </for>
                 <if>
