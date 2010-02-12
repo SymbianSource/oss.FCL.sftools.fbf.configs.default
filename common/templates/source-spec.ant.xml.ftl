@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
+<#assign dollar = "$"/>
+
     <!-- Convert \s in cache location, because otherwise they disappear entirely when used in a regex replacement! -->
     <propertyregex property="sf.spec.sourcesync.cachelocation.for.regex" input="${dollar}{sf.spec.sourcesync.cachelocation}" regexp="\\" replace="/" global="true" defaultValue="${dollar}{sf.spec.sourcesync.cachelocation}"/>
     
@@ -8,7 +10,6 @@
 <#assign sync_list = "" />
 <#assign bom_list  = "" />
 <#assign change_list  = "" />
-<#assign dollar = "$"/>
 <#assign count = 0 />
 
 <#list data as csv_file>
