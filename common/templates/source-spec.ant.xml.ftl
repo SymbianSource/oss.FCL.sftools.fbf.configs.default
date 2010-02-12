@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
+    <!-- Convert \s in cache location, because otherwise they disappear entirely when used in a regex replacement! -->
+    <propertyregex property="sf.spec.sourcesync.cachelocation.for.regex" input="${dollar}{sf.spec.sourcesync.cachelocation}" regexp="\\" replace="/" global="true" defaultValue="${dollar}{sf.spec.sourcesync.cachelocation}"/>
+    
 <#assign fileset = "" />
 <#assign sync_list = "" />
 <#assign bom_list  = "" />
@@ -20,8 +23,8 @@
             <istrue value="${dollar}{sf.spec.sourcesync.usecache}"/>
             <then>
                 <!-- Work out cache location from source location -->
-                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^http://developer.symbian.org/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation}/Live/"/>
-		<propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^${ant['sf.spec.sourcesync.local.development.area']}/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation}/LocalDev/"/>
+                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^http://developer.symbian.org/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/Live/"/>
+                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^${ant['sf.spec.sourcesync.local.development.area']}/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/LocalDev/"/>
             </then>
         </if>
 	
