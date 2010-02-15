@@ -37,18 +37,47 @@
             <then>
                 <!-- Package in cache already -->
                 <echo message="Pull from ${pkg_detail.source} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
-                <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="true">
+                <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="false" resultproperty="sf.spec.sourcesync.cache.pull.error.code.${count}">
                     <arg value="pull"/>
                     <arg value="${pkg_detail.source}"/>
                 </exec>
-                <echo message="Clone from ${dollar}{sf.spec.sourcesync.cachelocation.${count}} to ${ant['build.drive']}${pkg_detail.dst}"/>
-                <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
-                    <arg value="clone"/>
-                    <arg value="-U"/>
-                    <arg value="--uncompressed"/>
-                    <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
-                    <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
-                </exec>
+                <if>
+                    <equals arg1="0" arg2="${dollar}{sf.spec.sourcesync.cache.pull.error.code.${count}}"/>
+                    <then>
+                        <echo message="Clone from ${dollar}{sf.spec.sourcesync.cachelocation.${count}} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                        <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                            <arg value="clone"/>
+                            <arg value="-U"/>
+                            <arg value="--uncompressed"/>
+                            <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                            <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                        </exec>
+                    </then>
+                    <else>
+                        <!-- Uh oh - the cache is corrupted somehow -->
+                        <!-- (Try to) recover the cache repo -->
+                        <forget>
+                            <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="false" resultproperty="sf.spec.sourcesync.cache.recover.error.code.${count}">
+                                <arg value="recover"/>
+                            </exec>
+                            <if>
+                                <not><equals arg1="0" arg2="${dollar}{sf.spec.sourcesync.cache.recover.error.code.${count}}"/></not>
+                                <then>
+                                    <echo message="Trashing ${dollar}{sf.spec.sourcesync.cachelocation.${count}} as broken"/>
+                                    <delete dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                                </then>
+                            </if>
+                        </forget>
+                        <!-- In the meantime, by-pass it for this build -->
+                        <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                        <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                            <arg value="clone"/>
+                            <arg value="-U"/>
+                            <arg value="${pkg_detail.source}"/>
+                            <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                        </exec>
+                    </else>
+                </if>
                 <!-- Update to required revision -->
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
                     <arg value="update"/>
