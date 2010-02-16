@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
 <project name="SYMBIAN3-PROPS">
-  <property name="sf.spec.baseline.location" value="\\bishare\Releases\PDK_3.0.d"/>
+  <property name="sf.spec.baseline.location" value="\\bishare\releases\PDK_3.0.f"/>
 </project>
 

@@ -39,8 +39,9 @@ Diamonds configuration template
         <stage name="release" start="publish-variants" end="final" />
     </stages>
     <targets>
-        <target name="diamonds" template-file="tool.xml.ftl" 
-            logfile="${ant['temp.build.dir']}/build/doc/ivy/tool-dependencies-${ant['build.type']}.xml" ant-properties="true"/>        
+    	<!-- note: replaced by sf-diamonds-envinfo -->
+        <!-- target name="diamonds" template-file="tool.xml.ftl" 
+            logfile="${ant['temp.build.dir']}/build/doc/ivy/tool-dependencies-${ant['build.type']}.xml" ant-properties="true"/ -->
         
         <!-- note: replaced by sf-run-analysis-diamonds -->
         <!-- target name="compile-main" template-file="compile.xml.ftl"
@@ -64,11 +65,12 @@ Diamonds configuration template
             logfile="${ant['validate.policy.log']}"/>
         </#if>
 
+        <!-- note: replaced by sf-diamonds-envinfo -->
         <!-- defer will store all the converted output file and sends only if there any other
             stage / target starts to send some data to diamonds -->
-        <target name="check-tool-dependencies" template-file="tool.xml.ftl" 
+        <!-- target name="check-tool-dependencies" template-file="tool.xml.ftl" 
             logfile="${ant['temp.build.dir']}/build/doc/ivy/tool-dependencies-${ant['build.type']}.xml" ant-properties="true"
-            defer="true"/>
+            defer="true"/ -->
             
         <!-- SF specific -->
         <target name="sf-diamonds-tag-build"/>

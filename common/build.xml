@@ -130,6 +130,11 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
 
     <target name="sf-check-env">
+    	<!-- Dario's environment dumper -->
+    	<exec executable="perl" dir="${build.drive}">
+            <arg value="${sf.common.config.dir}/tools/envinfo.pl"/>
+        </exec>
+    	
         <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
         <if><available file="${sf.project.location}/BuildEnv.xml"/>        
             <then>
@@ -149,12 +154,12 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
             <arg value="--tools='${sf.spec.sbs.tools.config}'"/>
             <arg value="Common"/>
         </exec>
-        <antcall target="sf-log-to-brag">
+        <!-- antcall target="sf-log-to-brag">
             <param name="sf.brag.phase" value="Prebuild"/>
             <param name="sf.brag.step" value="Build Environment Check"/>
             <param name="sf.brag.log" value="${build.log.dir}/BuildEnvironmentCheck.log"/>
             <param name="sf.brag.id" value="BuildEnvironmentCheck"/>
-        </antcall>
+        </antcall -->
         <fail>
             <condition>
                 <not>
@@ -222,7 +227,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom">
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-envinfo,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom">
         <stopwatch name="sf-prebuild" action="elapsed"/>
     </target>
     
@@ -239,6 +244,23 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
           <runtarget target="diamonds"/>
           <echo message="Save Diamonds build id value (${diamonds.build.id}) in a file"/>
           <echo message="diamonds.build.id=${diamonds.build.id}" file="${build.log.dir}/diamonds_build_id.properties"/>
+        </then>
+      </if>
+    </target>
+    
+    <target name="sf-diamonds-envinfo">
+      <if>
+        <istrue value="${sf.spec.publish.enable}"/>
+        <then>
+          <echo>[SF-DIAMONDS-ENVINFO]</echo>
+          <echo message="Send ${build.log.dir}/diamonds_envinfo.xml to Diamonds"/>
+          <exec executable="python">
+		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+		    <arg value="-u"/>
+		    <arg value="http://${diamonds.host}${diamonds.build.id}"/>
+		    <arg value="-f"/>
+		    <arg value="${build.log.dir}/diamonds_envinfo.xml"/>
+		  </exec>
         </then>
       </if>
     </target>
