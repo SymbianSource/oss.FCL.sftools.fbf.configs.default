@@ -25,11 +25,66 @@
       <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
     </exec>
     
-    <runtarget target="sf-package-compile"/>
+    
+    <!-- helium 7+ should use new sf-package-compile target -->
+    <if>
+        <or>
+          <equals arg1="${helium.version}" arg2="7.0"/>
+          <equals arg1="${last.major.helium.version}" arg2="7.0"/>
+        </or>
+        <then>
+            <runtarget target="sf-package-compile"/>
+        </then>
+        <else>
+            <runtarget target="sf-package-compile-hlm-5"/>
+        </else>
+    </if>
+    
   </target>
   
-  <target name="sf-package-compile" depends="sf-compile-options">
     
+    
+  <target name="sf-package-compile">
+
+    <!-- build stuff -->
+    <for list="${sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
+      <sequential>
+      
+      <hlm:sbsinput id="sf.build">
+        <sbsOptions>
+            <arg line="-c @{item.sbs.splitconfig}"/>
+            <arg line="-k" />
+            <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
+            <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+            <arg line="${sf.spec.sbs.options}"/>
+            <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
+            <arg name="--logfile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_compile.log" />
+            <arg name="--makefile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_Makefile" />
+        </sbsOptions>
+      </hlm:sbsinput>
+      
+      <echo message="INFO [Iterative compile] Building target: @{item.sbs.splitconfig}"/>
+      <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+          <param name="build.system" value="${sf.spec.build.system}" />
+          <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+          <param name="sbs.inputs.list" value="sf.build"/>
+          <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+      </antcall>    
+      </sequential>
+    </for>
+    
+    
+    <!-- CHECK -->
+    <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">
+      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools2_rel -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
+      <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
+    </exec>
+    
+  </target>
+        
+        
+  <target name="sf-package-compile-hlm-5">
+
     <for list="${sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
       <sequential>
         <echo message="INFO [Iterative compile] Building target: @{item.sbs.splitconfig}"/>

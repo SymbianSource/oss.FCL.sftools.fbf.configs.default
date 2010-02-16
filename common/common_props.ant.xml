@@ -17,6 +17,12 @@
 
     <property name="sf.spec.pdt.root" value="${env.PDT_HOME}"/> <!-- e.g. C:\Symbian\Tools\PDT_1.0\ -->
 
+    <!-- comma separated sbs filter list -->
+    <property name="sf.spec.sbs.filter.list" value=""/> 
+    
+    <!-- options to pass directly to sbs e.g. pp=on for parallel parsing -->
+    <property name="sf.spec.sbs.options" value=""/> 
+    
     <property name="sf.spec.sbs.config" value="armv5"/>
 
     <!-- sbs -t param -->

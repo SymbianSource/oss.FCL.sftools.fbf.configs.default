@@ -54,7 +54,7 @@
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
     <property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
-    
+    <property name="skip.sbs.layer.generation" value="true"/> <!-- helium 7: needs to be predefined before hlm import --> 
     <if>
       <isset property="sf.spec.sbs.numberofjobs"/>
       <then>
@@ -88,6 +88,21 @@
             <property name="sf.spec.sourcesync.sourcespecdir" value="${sf.project.location}"/>
         </else>
     </if>
+    
+    <!-- helium 7 compatability. needs to be defined -->
+    <if>
+      <or>
+        <equals arg1="${helium.version}" arg2="7.0"/>
+        <equals arg1="${last.major.helium.version}" arg2="7.0"/>
+      </or>
+      <then>
+          <property name="schema.new" value="true"/>
+      </then>
+    </if>
+    
+    <!--
+      - END OF PROPERTY DEFINITIONS, TARGETS START HERE
+      -->
     
     <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,create-bom,log-build-env">
         <!-- Test for the disk space we would like for this build -->
@@ -439,7 +454,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <!-- This target is overridden in platform builds, but used directly in package builds -->
-    <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile">
+    <target name="sf-build-noprep" depends="sf-truclean,sf-model-from-project,sf-compile,sf-postbuild">
         <echo>[SF-BUILD-NOPREP]</echo>
     </target>
     
