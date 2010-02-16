@@ -1,126 +1,165 @@
 <?xml version="1.0"?>
 <project name="SF-SOURCESPEC" default="all" xmlns:hlm="http://www.nokia.com/helium">
 
+<#assign dollar = "$"/>
+
+    <!-- Convert \s in cache location, because otherwise they disappear entirely when used in a regex replacement! -->
+    <propertyregex property="sf.spec.sourcesync.cachelocation.for.regex" input="${dollar}{sf.spec.sourcesync.cachelocation}" regexp="\\" replace="/" global="true" defaultValue="${dollar}{sf.spec.sourcesync.cachelocation}"/>
+    
 <#assign fileset = "" />
 <#assign sync_list = "" />
 <#assign bom_list  = "" />
 <#assign change_list  = "" />
-<#assign dollar = "$"/>
 <#assign count = 0 />
-<#if ("${ant['sf.spec.sourcesync.archive']}")?? && "${ant['sf.spec.sourcesync.archive']}" == "true">
-  <#assign fast_sync = true />
-<#else>
-  <#assign fast_sync = false />
-</#if>
-<#if ("${ant['sf.spec.sourcesync.bug419']}")?? && "${ant['sf.spec.sourcesync.bug419']}" == "true">
-  <#assign bug419 = true />
-<#else>
-  <#assign bug419 = false />
-</#if>
-
-    <!-- remove previous version of BOM file (if exists)  -->
-    <target name="reset-bom-sources-csv">
-        <delete file="${ant['build.drive']}/output/logs/BOM/sources.csv" quiet="true"/>
-    </target>
 
 <#list data as csv_file>
   <#list csv_file as pkg_detail>
     <target name="sf-prebuild-${count}">
-        <sequential>
-            <!-- create sf\layer dir  -->
-            <mkdir dir="${ant['build.drive']}${pkg_detail.dst}"/>
-            <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false" />
-            <!-- Don't use hg archive with tags, as we can have wildcards in the tags... -->
-            <#if fast_sync && ("${pkg_detail.type}"!="tag") > 
-              <!-- Identify the version on the cache first -->
-              <exec executable="hg" dir="${pkg_detail.source}" outputproperty="sf.sourcesync.${count}.checksum">
-                  <arg value="identify"/>
-                  <arg value="-i"/>
-                  <arg value="-r"/>
-                  <arg value="${pkg_detail.pattern}"/>
-              </exec>
-              <!-- hg archive on the version we found -->
-              <exec executable="hg" dir="${pkg_detail.source}">
-                  <arg value="archive"/>
-                  <arg value="-r"/>
-                  <arg value="${dollar}{sf.sourcesync.${count}.checksum}"/>
-                  <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
-              </exec>
-            <#else>
-            <exec executable="hg" dir="${ant['build.drive']}">
-                <arg value="clone"/>
-                <arg value="-U"/>
-                <arg value="${pkg_detail.source}"/>
-                <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
-            </exec>
-            
-            <#if bug419 >
-              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                  <arg value="identify"/>
-                  <arg value="-i"/>
-                  <arg value="-r"/>
-                  <arg value="${pkg_detail.pattern}"/>
-              </exec>
-              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}">
-                  <arg value="update"/>
-                  <arg value="-r"/>
-                  <arg value="${dollar}{sf.sourcesync.${count}.checksum}"/>
-              </exec>            
-            <#else>
-            <hlm:scm verbose="true" scmUrl="scm:hg:${pkg_detail.source}">
-                <!--hlm:checkout basedir="${ant['build.drive']}${pkg_detail.dst}"/-->
-                <#if "${pkg_detail.type}"=="tag" >
-                <hlm:tags basedir="${ant['build.drive']}${pkg_detail.dst}" reference="hg.tags.id${dollar}{refid}"/>
-                <hlm:update basedir="${ant['build.drive']}${pkg_detail.dst}">
-                <hlm:latestTag pattern="${pkg_detail.pattern}">
-                        <hlm:tagSet refid="hg.tags.id${dollar}{refid}" />
-                </hlm:latestTag>
-                </hlm:update>
-                </#if>
-                <#if "${pkg_detail.type}"== "changeset" || "${pkg_detail.type}"=="branch">
-                <hlm:update basedir="${ant['build.drive']}${pkg_detail.dst}">
-                     <hlm:tag name="${pkg_detail.pattern}"/>
-                </hlm:update>
-                </#if>
-            </hlm:scm>
-            </#if>
+        
+        <!-- Create sf\layer dir on build dir -->
+        <mkdir dir="${ant['build.drive']}${pkg_detail.dst}"/>
+        <delete dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true" />
+        
+        <if>
+            <istrue value="${dollar}{sf.spec.sourcesync.usecache}"/>
+            <then>
+                <!-- Work out cache location from source location -->
+                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^http://developer.symbian.org/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/Live/"/>
+                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^${ant['sf.spec.sourcesync.local.development.area']}/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/LocalDev/"/>
+            </then>
+        </if>
+	
+        <if>
+            <and>
+                <isset property="sf.spec.sourcesync.cachelocation.${count}"/>
+                <available file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" type="dir"/>
+            </and>
+            <then>
+                <!-- Package in cache already -->
+                <echo message="Pull from ${pkg_detail.source} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="false" resultproperty="sf.spec.sourcesync.cache.pull.error.code.${count}">
+                    <arg value="pull"/>
+                    <arg value="${pkg_detail.source}"/>
+                </exec>
+                <if>
+                    <equals arg1="0" arg2="${dollar}{sf.spec.sourcesync.cache.pull.error.code.${count}}"/>
+                    <then>
+                        <echo message="Clone from ${dollar}{sf.spec.sourcesync.cachelocation.${count}} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                        <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                            <arg value="clone"/>
+                            <arg value="-U"/>
+                            <arg value="--uncompressed"/>
+                            <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                            <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                        </exec>
+                    </then>
+                    <else>
+                        <!-- Uh oh - the cache is corrupted somehow -->
+                        <!-- (Try to) recover the cache repo -->
+                        <forget>
+                            <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="false" resultproperty="sf.spec.sourcesync.cache.recover.error.code.${count}">
+                                <arg value="recover"/>
+                            </exec>
+                            <if>
+                                <not><equals arg1="0" arg2="${dollar}{sf.spec.sourcesync.cache.recover.error.code.${count}}"/></not>
+                                <then>
+                                    <echo message="Trashing ${dollar}{sf.spec.sourcesync.cachelocation.${count}} as broken"/>
+                                    <delete dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                                </then>
+                            </if>
+                        </forget>
+                        <!-- In the meantime, by-pass it for this build -->
+                        <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                        <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                            <arg value="clone"/>
+                            <arg value="-U"/>
+                            <arg value="${pkg_detail.source}"/>
+                            <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                        </exec>
+                    </else>
+                </if>
+                <!-- Update to required revision -->
+                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
+                    <arg value="update"/>
+                    <arg value="-r"/>
+                    <arg value="${pkg_detail.pattern}"/>
+                </exec>
+                <!-- Record the changeset selected, for the BOM -->
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                <arg value="identify"/>
-                <arg value="-i"/>
-            </exec>
-          </#if>  
-        </sequential>
+                    <arg value="identify"/>
+                    <arg value="-i"/>
+                </exec>
+            </then>
+            <else>
+                <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                    <arg value="clone"/>
+                    <arg value="-U"/>
+                    <arg value="${pkg_detail.source}"/>
+                    <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                </exec>
+                <!-- Update to required version -->
+                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
+                    <arg value="update"/>
+                    <arg value="-r"/>
+                    <arg value="${pkg_detail.pattern}"/>
+                </exec>
+                <!-- Record the changeset selected, for the BOM -->
+                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                    <arg value="identify"/>
+                    <arg value="-i"/>
+                </exec>
+                <if>
+                    <isset property="sf.spec.sourcesync.cachelocation.${count}"/>
+                    <then>
+                        <forget>
+                            <nice newpriority="1"/>
+                            <!-- Init cache -->
+                            <mkdir dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                            <delete dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="true" />
+                            <echo message="Initialise cache at ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                            <!-- Clone source to get the right default repo -->
+                            <exec executable="hg" dir="${ant['build.drive']}/" failonerror="false">
+                                <arg value="clone"/>
+                                <arg value="-r"/>
+                                <arg value="null"/>
+                                <arg value="${pkg_detail.source}"/>
+                                <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                            </exec>
+                            <!-- Set the speed-up flag on the cache repo -->
+                            <echo file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}/.hg/hgrc" append="true" message="${dollar}{line.separator}"/>
+                            <echo file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}/.hg/hgrc" append="true" message="[server]${dollar}{line.separator}"/>
+                            <echo file="${dollar}{sf.spec.sourcesync.cachelocation.${count}}/.hg/hgrc" append="true" message="uncompressed=True${dollar}{line.separator}"/>
+                            <echo message="Push from ${ant['build.drive']}${pkg_detail.dst} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}} in background"/>
+                            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="false">
+                                <arg value="push"/>
+                                <arg value="-f"/>
+                                <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                            </exec>
+                        </forget>
+                    </then>
+                </if>
+            </else>
+        </if>
     </target>
-
+    
     <target name="sf-bom-info-${count}">
-        <sequential>
-            <!-- record info on source code repo/rev in BOM file  -->
-            <echo message="dir ${ant['build.drive']}${pkg_detail.dst} : ${dollar}{sf.sourcesync.${count}.checksum}"/>
-            <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
-                <arg value="/c"/>
-                <arg value="echo"/>
-                <arg value="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}"/>
-            </exec>
-        </sequential>
+        <!-- record info on source code repo/rev in BOM file  -->
+        <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true" message="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}${dollar}{line.separator}"/>
     </target>
-
+    
     <target name="sf-bom-change-info-${count}">
-        <sequential>
-      		<if><not><isset property="sf.sourcesync.${count}.checksum"/></not>
-      			<then>
-              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                <arg value="identify"/>
-                <arg value="-i"/>
-              </exec>
-      			</then>
-      		</if>
-      		  <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
-      		  <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
-            <#if fast_sync > 
-              <exec executable="hg" dir="${pkg_detail.source}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
-            <#else>      		  
-              <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
-            </#if>
+        <if><not><isset property="sf.sourcesync.${count}.checksum"/></not>
+            <then>
+                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
+                    <arg value="identify"/>
+                    <arg value="-i"/>
+                </exec>
+            </then>
+        </if>
+        <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
+        <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
+            <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
                 <arg value="log"/>
                 <arg value="-r"/>
                 <arg value="${dollar}{sf.sourcesync.${count}.checksum}:${dollar}{sf.previous.pdk.tag}"/>
@@ -129,44 +168,35 @@
                 <arg value="${pkg_detail.pattern}"/>
                 </#if>    
             </exec>
-          </sequential>
     </target>
-
+    
     <#assign fileset = "${fileset}" + "<fileset dir=\"${ant['build.drive']}${pkg_detail.dst}\" includes=\"${pkg_detail.sysdef}\"/>\r\n        " />       
-    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\r\n    "/>
-    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\r\n  "/>
-    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\r\n  "/>
+    <#assign sync_list = "${sync_list}" + "<runtarget target=\"sf-prebuild-${count}\"/>\r\n            "/>
+    <#assign bom_list = "${bom_list}" + "<runtarget target=\"sf-bom-info-${count}\"/>\r\n        "/>
+    <#assign change_list = "${change_list}" + "<runtarget target=\"sf-bom-change-info-${count}\"/>\r\n        "/>
     <#assign count = count + 1 />
   </#list>
 </#list>
-
+    
     <path id="system.definition.files">
         <fileset dir="${dollar}{sf.common.config.dir}/sysdefs" includes="*.sysdef.xml"/>
         ${fileset}
     </path>
-
-<target name="all" depends="reset-bom-sources-csv">
-  <parallel threadCount="${ant['env.NUMBER_OF_PROCESSORS']}">
-    ${sync_list}
-  </parallel>
-
-  <echo message="Adding BOM header"/>
-      <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
-      <exec executable="cmd" output="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true">
-      <arg value="/c"/>
-      <arg value="echo"/>
-      <arg value="source,dst,type,pattern,sysdef"/>
-  </exec>
-  
-  ${bom_list}
-  <runtarget target="sf-bom-change-info" />
-</target>
-
-<target name="sf-bom-change-info">
-  <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
-  <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/>
-
-  ${change_list}
-</target>
-
+    
+    <target name="all">
+        <parallel threadsPerProcessor="1" failonany="true">
+            ${sync_list}
+        </parallel>
+        
+        <echo message="Adding BOM header"/>
+        <mkdir dir="${ant['build.drive']}/output/logs/BOM/"/>
+        <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" message="source,dst,type,pattern,sysdef${dollar}{line.separator}"/>
+        
+        ${bom_list}
+        
+        <delete file="${ant['build.drive']}/output/logs/BOM/changes.txt" quiet="true"/>
+        
+        ${change_list}
+    </target>
+    
 </project>
