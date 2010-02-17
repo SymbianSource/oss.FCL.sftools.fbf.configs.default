@@ -14,9 +14,9 @@
 	<xsl:choose>
 		<xsl:when test="$criticalCount != 0">Black</xsl:when>
 		<xsl:when test="$majorCount != 0">Red</xsl:when>
+		<xsl:when test="$unknownCount != 0">Red</xsl:when>
 		<xsl:when test="$minorCount != 0">Amber</xsl:when>
-		<xsl:when test="$unknownCount != 0">Green</xsl:when>
-		<xsl:otherwise>Gold</xsl:otherwise>
+		<xsl:otherwise>Green</xsl:otherwise>
 	</xsl:choose>
 	</status>
 	</build>
