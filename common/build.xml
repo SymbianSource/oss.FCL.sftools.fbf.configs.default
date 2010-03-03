@@ -89,6 +89,16 @@
       </or>
       <then>
           <property name="schema.new" value="true"/>
+          <property name="skip.sbs.parser.exception" value="true"/>
+          
+          <!-- Never fail on sbs compile errors -->
+          <hlm:signalInput id="compileSignalInput" failbuild="never">
+            <hlm:notifierListRef refid="defaultFailNotifier" />
+          </hlm:signalInput>
+          
+          <hlm:signalInput id="raptorErrorSignalInput" failbuild="never">
+            <hlm:notifierListRef refid="defaultFailNotifier" />
+          </hlm:signalInput>
       </then>
     </if>
     
