@@ -359,6 +359,8 @@
         <exec executable="perl" dir="${build.log.dir}" failonerror="false" output="${build.log.dir}/analysis/${build.id}_scan_ant.log">
             <arg value="${sf.common.config.dir}/tools/analysis/scan_antlogs.pl"/>
             <arg value="*ant*"/>
+            <arg value="*stderr*"/>  <!-- helium 7 splits output into stderr logs, so use them also -->
+            <arg value="*sbs_error*"/> 
         </exec>
     </target>
 
