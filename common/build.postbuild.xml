@@ -237,7 +237,7 @@
                 <property name="sf.epoc32.exclusions.file" value="nul:"/>
                 <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
                     <arg value="a"/>
-                    <arg value="-tzip"/>
+                    <arg value="-t${sf.spec.package.zip.format}"/>
                     <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                     <arg value="-x@${sf.epoc32.exclusions.file}"/>
                     <arg value="-x!epoc32\gcc"/>
@@ -256,7 +256,7 @@
                 <then>
                     <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_sdk.log">
                         <arg value="a"/>
-                        <arg value="-tzip"/>
+                        <arg value="-t${sf.spec.package.zip.format}"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
                         <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
@@ -279,7 +279,7 @@
             <!-- WinsCW binaries, by udeb/urel/lib -->
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_udeb.log">
                 <arg value="a"/>
-                <arg value="-tzip"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
@@ -288,7 +288,7 @@
             </exec>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_urel.log">
                 <arg value="a"/>
-                <arg value="-tzip"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
@@ -297,17 +297,16 @@
             </exec>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_lib.log">
                 <arg value="a"/>
-                <arg value="-tzip"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
+                <arg value="-ir!epoc32/release/winscw/*.lib"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-ir*.lib"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_lib.zip"/>
-                <arg value="epoc32\release\winscw\"/>
             </exec>
             
             <!-- ARMv5 binaries, by udeb/urel/lib -->
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_udeb.log">
                 <arg value="a"/>
-                <arg value="-tzip"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
@@ -315,7 +314,7 @@
             </exec>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_urel.log">
                 <arg value="a"/>
-                <arg value="-tzip"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
@@ -323,7 +322,7 @@
             </exec>
             <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_lib.log">
                 <arg value="a"/>
-                <arg value="-tzip"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
@@ -348,7 +347,7 @@
     <target name="sf-package-tools" >
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
             <arg value="a"/>
-            <arg value="-tzip"/>
+            <arg value="-t${sf.spec.package.zip.format}"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
             <arg value="epoc32/tools"/>
