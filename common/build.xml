@@ -81,14 +81,24 @@
     <!-- Import test functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.test.xml"/>
     
-    <!-- helium 7 compatability. needs to be defined -->
+    <!-- helium 7+ compatability. needs to be defined -->
     <if>
-      <or>
-        <equals arg1="${helium.version}" arg2="7.0"/>
-        <equals arg1="${last.major.helium.version}" arg2="7.0"/>
-      </or>
+      <not><or>
+        <equals arg1="${helium.version}" arg2="5.0"/>
+        <equals arg1="${last.major.helium.version}" arg2="5.0"/>
+      </or></not>
       <then>
           <property name="schema.new" value="true"/>
+          <property name="skip.sbs.parser.exception" value="true"/>
+          
+          <!-- Never fail on sbs compile errors -->
+          <hlm:signalInput id="compileSignalInput" failbuild="never">
+            <hlm:notifierListRef refid="defaultFailNotifier" />
+          </hlm:signalInput>
+          
+          <hlm:signalInput id="raptorErrorSignalInput" failbuild="never">
+            <hlm:notifierListRef refid="defaultFailNotifier" />
+          </hlm:signalInput>
       </then>
     </if>
     

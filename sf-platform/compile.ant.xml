@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-COMPILE" xmlns:hlm="http://www.nokia.com/helium">
+
+ <math result="sf.spec.sbs.numberofjobs" operand1="${env.NUMBER_OF_PROCESSORS}" operation="*" operand2="2" datatype="int"/>
+ 
+  <!-- compile specified sysdef file. called from sf-compile target in sf-platform/build.xml -->
+  <target name="sf-os-compile">
+    
+    <antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
+        <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+        <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
+    </antcall>
+  </target>
+  
+  <!-- compile specified sysdef file. called from sf-compile target in sf-platform/build.xml -->
+  <target name="sf-s60-compile">
+    <antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
+        <param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
+        <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
+    </antcall>
+  </target>
+  
+  <!-- compile sbs.tools.config and sbs.config. tools built only if its not being unpacked first.
+       note: must be called from sf-os/s60-compile targets, as sys model input needed -->
+  <target name="sf-do-compile">
+    <echo message="INFO Using Helium 7+ for sf-do-compile"/>
+    <propertyregex property="sf.unpack.tools" override="true" input="${sf.spec.baseline.getenv_options}" regexp="-i tools" select="true" defaultValue="false" casesensitive="false"/>
+  
+    <if> <!-- If tools baseline unpack has not been specified, or its not a "fast" build then try to build them -->
+      <or>
+        <isfalse value="${sf.unpack.tools}"/>
+        <isfalse value="${sf.spec.baseline.enable}"/>
+        <isfalse value="${sf.os.compile.fast}"/>
+      </or>
+      <then>
+        <echo message="INFO Building tools, unpack is not specified"/>        
+        
+        <!-- sf.spec.sbs.tools.config param used. do-target-build will decide to build sequentially/together -->
+        <antcall target="sf-do-target-compile" inheritAll="false" inheritRefs="true">
+            <param name="i.sf.spec.sbs.config" value="${sf.spec.sbs.tools.config}" />           
+        </antcall>
+      </then>
+      <else>
+        <echo message="INFO Skipping tools build, tools were unpacked from ${sf.spec.baseline.location}"/>        
+      </else>
+      </if>
+      
+      <!-- sf.spec.sbs.config param used. do-target-build will decide to build sequentially/together -->
+      <antcall target="sf-do-target-compile" inheritAll="false" inheritRefs="true">
+          <param name="i.sf.spec.sbs.config" value="${sf.spec.sbs.config}" />
+      </antcall>
+  </target>
+
+
+  <!-- compile sbs.config list of targets either sequentially or together -->
+  <target name="sf-do-target-compile">
+
+    <if>
+      <istrue value="${sf.os.compile.iterate}"/>
+      <then>
+        <for list="${i.sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
+        <sequential>
+            <!-- define sbs args, log name etc -->
+            <hlm:sbsinput id="sf.build">
+                <sbsOptions>
+                    <arg line="-c @{item.sbs.splitconfig}"/>
+                    <arg line="-k" />
+                    <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
+                    <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+                    <arg line="${sf.spec.sbs.options}"/>
+                    <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
+                    <arg name="--logfile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
+                    <arg name="--makefile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_Makefile" />
+                </sbsOptions>
+            </hlm:sbsinput>
+            
+            <!-- call helium's compile-main target using the sbsInput args defined above -->
+            <echo message="INFO Iterative compile building target: @{item.sbs.splitconfig}"/>
+            <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+              <param name="build.system" value="${sf.spec.build.system}" />
+              <param name="sbs.inputs.list" value="sf.build"/>
+            </antcall> 
+            
+        </sequential>
+        </for>
+      </then>
+      <else>
+           <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
+           <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${i.sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${i.sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+           <propertyregex property="i.sf.spec.sbs.config.expanded.logname" override="true" input="${i.sf.spec.sbs.config}" regexp="(,)" replace="_"    defaultValue="${i.sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+           <echo message="INFO Target : ${i.sf.spec.sbs.config.expanded}"/>
+           <echo message="INFO Logname: ${i.sf.spec.sbs.config.expanded.logname} + Config: ${sf.spec.os.sysdef.clean.configurations.list}"/>
+           
+           <!-- TODO: Make this use above compile-main call? -->
+           
+           <!-- define sbs args, log name etc -->
+           <hlm:sbsinput id="sf.build">
+                <sbsOptions>
+                    <arg line="-c ${i.sf.spec.sbs.config.expanded}"/>
+                    <arg line="-k" />
+                    <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
+                    <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+                    <arg line="${sf.spec.sbs.options}"/>
+                    <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
+                    <arg name="--logfile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
+                    <arg name="--makefile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_Makefile" />
+                </sbsOptions>
+           </hlm:sbsinput>
+            
+            <!-- call helium's compile-main target using the sbsInput args defined above -->
+            <echo message="INFO Building target(s): ${i.sf.spec.sbs.config.expanded}"/>
+            <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+              <param name="build.system" value="${sf.spec.build.system}" />
+              <param name="sbs.inputs.list" value="sf.build"/>
+            </antcall> 
+           
+      </else>
+    </if>
+  </target>
+  
+</project>
+

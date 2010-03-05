@@ -608,7 +608,7 @@ print BUILDSUMMARYHTML "<br/>$filecontent<br/>"; # copy the content of the index
 close (RAPTORSUMINDEX);
 }
 
-# Copy html files for raptor summarise to bishare
+# Copy html files for raptor summarise to v800020
 # options used for xcopy
 # /E -> Copies directories and subdirectories, including empty ones.
 # /F -> Displays full source and destination file names while copying.
@@ -638,7 +638,7 @@ print BUILDSUMMARYHTML "<br/>#************************************************#<
 print BUILDSUMMARYHTML "<br/>#********** DATA BREAKDOWN starts here **********#<br/><br/>";
 
 
-# Get tree for the directory where the log files are (bishare probably the best place???)
+# Get tree for the directory where the log files are (v800020 probably the best place???)
 # Should be already exported there, but maybe in a zip file)
 # Extract each file with directory, then create a hyperlink to that file to make sure that user can click on the link and open the file!
 
@@ -664,10 +664,10 @@ close(BUILDSUMMARYHTML); # Close file build_summary.html
 
 
 # *****************************************************************************
-# Final step, copy build_summary.html to \\bishare drive
+# Final step, copy build_summary.html to \\v800020 drive
 # *****************************************************************************
 
-# Copy html file to bishare
+# Copy html file to v800020
 my $copy_cmd = "copy $logdir\\build_summary.html \\\\v800020\\Publish\\sf_builds\\$project\\builds\\$codeline\\$buildid";
 print "Exec: $copy_cmd\n";
 system($copy_cmd);
