@@ -219,7 +219,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-envinfo,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom">
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-envinfo,sf-diamonds-tag-build,sf-get-utils,sf-getenvs,sf-syncsource,sf-diamondize-bom">
         <stopwatch name="sf-prebuild" action="elapsed"/>
     </target>
     
@@ -298,6 +298,18 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="-i"/>
         </exec>
 	<echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
+    </target>
+    
+    <target name="sf-get-utils">
+    	<stopwatch name="sf-get-utils"/>
+			<echo message="Cloning utilities repository to ${build.drive}/utilities"/>
+            <exec executable="hg">
+              <arg value="clone"/>
+              <arg value="-rdefault"/>
+              <arg value="http://developer.symbian.org/oss/MCL/utilities"/>
+              <arg value="${build.drive}/utilities"/>
+            </exec>
+    	<stopwatch name="sf-get-utils" action="elapsed"/>
     </target>
 
     <target name="sf-getenvs">

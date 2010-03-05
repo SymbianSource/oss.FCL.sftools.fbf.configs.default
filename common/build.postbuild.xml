@@ -390,7 +390,7 @@
       </exec -->
       
       <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
-      <apply executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
+      <apply executable="perl" dir="${build.drive}/utilities/uh_parser" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
         <arg value="releaseables.pl"/>
         <arg value="--basedir=${build.log.dir}"/>
         <fileset dir="${build.log.dir}/analysis">
@@ -399,7 +399,7 @@
       </apply>
       
       <echo message="Extracting error information from *_compile_preprocessed.log files"/>
-      <apply executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" parallel="true">
+      <apply executable="perl" dir="${build.drive}/utilities/uh_parser" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" parallel="true">
         <arg value="uh.pl"/>
         <arg value="--basedir=${build.log.dir}"/>
         <fileset dir="${build.log.dir}/analysis">
