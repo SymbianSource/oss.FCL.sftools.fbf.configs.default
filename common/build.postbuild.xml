@@ -276,23 +276,60 @@
                 </then>
             </if>
             
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw.log">
+            <!-- WinsCW binaries, by udeb/urel/lib -->
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_udeb.log">
                 <arg value="a"/>
                 <arg value="-tzip"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
-                <arg value="${build.drive}/output/zips/release/binaries_winscw.zip"/>
+                <arg value="-xr!*.lib"/>
+                <arg value="${build.drive}/output/zips/release/binaries_winscw_udeb.zip"/>
+                <arg value="epoc32\release\winscw\udeb"/>
+            </exec>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_urel.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="-xr!*.lib"/>
+                <arg value="${build.drive}/output/zips/release/binaries_winscw_urel.zip"/>
+                <arg value="epoc32\release\winscw\urel"/>
+            </exec>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_lib.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-ir*.lib"/>
+                <arg value="${build.drive}/output/zips/release/binaries_winscw_lib.zip"/>
                 <arg value="epoc32\release\winscw\"/>
             </exec>
             
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5.log">
+            <!-- ARMv5 binaries, by udeb/urel/lib -->
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_udeb.log">
                 <arg value="a"/>
                 <arg value="-tzip"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
-                <arg value="${build.drive}/output/zips/release/binaries_armv5.zip"/>
-                <arg value="epoc32\release\armv5\"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
+                <arg value="epoc32\release\armv5\udeb"/>
             </exec>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_urel.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
+                <arg value="epoc32\release\armv5\urel"/>
+            </exec>
+            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_lib.log">
+                <arg value="a"/>
+                <arg value="-tzip"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
+                <arg value="epoc32\release\armv5\lib"/>
+            </exec>
+
         </parallel>
         <!-- Generate release_metadata entries for the above zips -->
         <antcall target="sf-zip-content">
