@@ -135,6 +135,25 @@ if ($gcc441_path)
 }
 push @environment_info, {name=>'GCC4.4.1', version=>$gcc441_ver};
 
+# Helium
+my $helium_ver = 'N.A.';
+if ($ENV{'HELIUM_HOME'} && -f "$ENV{'HELIUM_HOME'}\\config\\version.txt")
+{
+	open(VERSION, "$ENV{'HELIUM_HOME'}\\config\\version.txt");
+	my $line = '';
+	while ($line = <VERSION>)
+	{
+		$helium_ver = $1 if ($line =~ /^helium\.version=(.*)/);
+	}
+	close(VERSION);
+}
+push @environment_info, {name=>'helium', version=>$helium_ver};
+
+# java
+my $java_ver = 'N.A.';
+my $java_out = `java -version`;
+$java_ver = $1 if ($zip_out =~ /^java version (.*)/m);
+push @environment_info, {name=>'java', version=>$java_ver};
 
 for my $tool_info (@environment_info)
 {
