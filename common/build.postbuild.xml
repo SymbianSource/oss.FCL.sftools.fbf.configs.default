@@ -363,25 +363,6 @@
     </target>
 
     <target name="sf-run-analysis-raptor">            
-      <echo message="Preprocessing *_compile.log files"/>
-      <delete file="${build.log.dir}/analysis/${build.id}_preprocess.log"/>
-      <for param="logfile">
-        <path>
-          <fileset dir="${build.log.dir}">
-            <include name="*_compile.log"/>
-            <exclude name="*build_check_compile.log"/>
-          </fileset>
-        </path>
-        <sequential>
-          <propertyregex override="yes" property="preprocessedlogfile" input="@{logfile}" regexp=".*[\\/](.*)_compile\.log" replace="\1_compile_preprocessed.log"/>
-          <echo message="Preprocessing @{logfile}..."/>
-          <exec executable="perl" dir="${sf.common.config.dir}/tools/raptor" failonerror="false" input="@{logfile}" output="${build.log.dir}/analysis/${preprocessedlogfile}" errorProperty="@{logfile}" >
-            <arg value="${sf.common.config.dir}/tools/raptor/preprocess_log.pl"/>
-          </exec>
-	  <echo file="${build.log.dir}/analysis/${build.id}_preprocess.log" append="true" message="${@{logfile}}${line.separator}"/>
-        </sequential>
-      </for>
-      
       <!-- Cook the processed raptor logs to produce something in the right format for the BRAG system -->
       <mkdir dir="${build.log.dir}/summary/"/>
       <!-- exec executable="perl" output="${build.log.dir}/summary/sbs_BRAG.xml" logError="yes" failonerror="false">
@@ -389,21 +370,22 @@
         <arg value="${build.log.dir}/analysis/*_compile_preprocessed.log"/>
       </exec -->
       
-      <echo message="Extracting whatlog information from *whatlog*_compile_preprocessed.log files"/>
+      <echo message="Extracting whatlog information from *whatlog*_compile.log files"/>
       <apply executable="perl" dir="${build.drive}/utilities/uh_parser" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
         <arg value="releaseables.pl"/>
         <arg value="--basedir=${build.log.dir}"/>
-        <fileset dir="${build.log.dir}/analysis">
-          <include name="*whatlog*_compile_preprocessed.log"/>
+        <fileset dir="${build.log.dir}">
+          <include name="*whatlog*_compile.log"/>
         </fileset>
       </apply>
       
-      <echo message="Extracting error information from *_compile_preprocessed.log files"/>
+      <echo message="Running UH parser on *_compile.log files"/>
       <apply executable="perl" dir="${build.drive}/utilities/uh_parser" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" parallel="true">
         <arg value="uh.pl"/>
         <arg value="--basedir=${build.log.dir}"/>
-        <fileset dir="${build.log.dir}/analysis">
-          <include name="*_compile_preprocessed.log"/>
+        <fileset dir="${build.log.dir}">
+          <include name="*_compile.log"/>
+          <exclude name="*build_check_compile.log"/>
         </fileset>
       </apply>
           
