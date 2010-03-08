@@ -24,6 +24,10 @@
        note: must be called from sf-os/s60-compile targets, as sys model input needed -->
   <target name="sf-do-compile">
     <echo message="INFO Using Helium 7+ for sf-do-compile"/>
+    
+    <!-- Export model to BOM, as generate-layers target is no longer called from compile-main target -->
+    <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configurations.list}.xml" todir="${build.log.dir}/BOM/"/>
+    
     <propertyregex property="sf.unpack.tools" override="true" input="${sf.spec.baseline.getenv_options}" regexp="-i tools" select="true" defaultValue="false" casesensitive="false"/>
   
     <if> <!-- If tools baseline unpack has not been specified, or its not a "fast" build then try to build them -->

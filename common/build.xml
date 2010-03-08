@@ -209,6 +209,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <delete dir="${prep.build.dir}"/>
     </target>
     
+    <!-- Note: Not used from Helium 7 onwards -->
     <target name="generate-layers">
        <echo message="canno-file:${canonical.sysdef.file}"/>
        <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
