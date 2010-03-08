@@ -87,12 +87,25 @@
 			<config name="core">
 				<set name="name" value="binaries_epoc"/>
 			</config>
-			<config name="armv5">
-				<set name="name" value="binaries_armv5"/>
+			<config name="armv5_udeb">
+				<set name="name" value="binaries_armv5_udeb"/>
 			</config>
-			<config name="winscw">
-				<set name="name" value="binaries_winscw"/>
+			<config name="armv5_urel">
+				<set name="name" value="binaries_armv5_urel"/>
 			</config>
+			<config name="armv5_lib">
+				<set name="name" value="binaries_armv5_lib"/>
+			</config>
+			<config name="winscw_udeb">
+				<set name="name" value="binaries_winscw_udeb"/>
+			</config>
+			<config name="winscw_urel">
+				<set name="name" value="binaries_winscw_urel"/>
+			</config>
+			<config name="winscw_lib">
+				<set name="name" value="binaries_winscw_lib"/>
+			</config>
+
 		</config>
 		<!-- "Null" SDK entry, which matches no files, but does populate the release_metadata.xml -->
 		<config name="bin-sdk-just-metadata" abstract="true">
