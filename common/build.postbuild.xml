@@ -36,7 +36,7 @@
                     <stopwatch name="sf-postbuild packaging binaries"/>
                     <echo message="INFO Packaging Binaries"/>
                     <runtarget target="sf-package-binary"/>
-                    <runtarget target="sf-package-tools"/>
+<!--                    <runtarget target="sf-package-tools"/> -->
     
                     <echo message="INFO Validate Zip files"/>
                     <runtarget target="sf-package-validate"/>
@@ -328,6 +328,7 @@
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
                 <arg value="epoc32\release\armv5\lib"/>
             </exec>
+            <runtarget target="sf-package-tools"/>
 
         </parallel>
         <!-- Generate release_metadata entries for the above zips -->
@@ -862,7 +863,7 @@
             <then>
                 <echo message="INFO Packaging Binaries"/>
                 <runtarget target="sf-package-binary"/>
-                <runtarget target="sf-package-tools"/>
+<!--                <runtarget target="sf-package-tools"/> -->
 
                 <echo message="INFO Validate Zip files"/>
                 <runtarget target="sf-package-validate"/>
