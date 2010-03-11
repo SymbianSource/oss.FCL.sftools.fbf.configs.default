@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
 <project name="COMPILERCOMPATIBILITY-PROPS">
-  <property name="sf.spec.baseline.location" value="\\v800020\releases\PDK_3.0.f"/>
+  <property name="sf.spec.baseline.location" value="\\v800020\releases\PDK_3.0.g"/>
 </project>
 
