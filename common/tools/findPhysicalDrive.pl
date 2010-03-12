@@ -74,7 +74,7 @@ for my $driveLine (@details)
 		next if ($driveLine =~ m{System\s*$});
 
 		# Use dir to get the freespace (bytes)
-		my @bytesFree = grep { s{^.*?(\d+) bytes free\s*$}{$1} } map {chomp;$_} `cmd /c dir /-C $letter:\\`;
+		my @bytesFree = grep { s{^.*?(\d+) bytes free\s*$}{$1} } map {chomp;$_} `cmd /c dir /-C /A $letter:\\`;
 		# Take the value from the bottom of the report
 		my $bytesFree = $bytesFree[-1];
 
