@@ -27,16 +27,6 @@
   <property name="sf.spec.job.name" value="${jobname}"/>
   <property name="sf.spec.job.codeline" value="${codeline}"/>
   
-  <!-- override helium 7 defaults to operate like helium 5.
-     *.log.dir props dont exist yet so need to be set now, otherwise they 
-     become immutable after helium.ant.xml import -->
-    
-  <property name="prep.log.dir"    value="${build.drive}/output/logs"/>
-  <property name="compile.log.dir" value="${build.drive}/output/logs"/>
-  <property name="post.log.dir"    value="${build.drive}/output/logs"/>
-  <property name="archive.log.dir"    value="${build.drive}/output/logs"/>
-  <property name="signals.log.dir"    value="${build.drive}/output/logs"/>
-
   <!-- import project properties/targets/references -->
   <import file="sf-${sf.project.type}/build.xml" />
   

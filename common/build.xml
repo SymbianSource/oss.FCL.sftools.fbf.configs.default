@@ -20,7 +20,10 @@
     
     <!-- If we've not has a physical drive specified, then we'd better be able to work one out... -->
     <if>
+        <and>
+        <not><isset property="sf.spec.job.rootdir"/></not>
         <not><isset property="sf.spec.job.root.drive"/></not>
+        </and>
         <then>
             <exec executable="perl" outputproperty="sf.spec.job.root.drive" logerror="true" failonerror="true">
                 <arg value="${sf.common.config.dir}/tools/findPhysicalDrive.pl"/>
@@ -56,7 +59,18 @@
     <property name="base_release.getenv_options" value="${sf.spec.baseline.getenv_options}"/>
     <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
     <property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
-    <property name="skip.sbs.layer.generation" value="true"/> <!-- helium 7: needs to be predefined before hlm import --> 
+    <property name="skip.sbs.layer.generation" value="true"/> <!-- helium 7: needs to be predefined before hlm import -->
+
+    <!-- override helium 7 defaults to operate like helium 5.
+       *.log.dir props dont exist yet so need to be set now, otherwise they 
+       become immutable after helium.ant.xml import -->
+      
+    <property name="prep.log.dir"    value="${build.drive}/output/logs"/>
+    <property name="compile.log.dir" value="${build.drive}/output/logs"/>
+    <property name="post.log.dir"    value="${build.drive}/output/logs"/>
+    <property name="archive.log.dir"    value="${build.drive}/output/logs"/>
+    <property name="signals.log.dir"    value="${build.drive}/output/logs"/>
+     
     <if>
       <isset property="sf.spec.sbs.numberofjobs"/>
       <then>
