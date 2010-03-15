@@ -59,7 +59,7 @@
         <!-- Generate release_metadata entries for the md5 zips -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
-            <param name="zip.target.name" value="bin-just-metadata" />
+            <param name="zip.target.name" value="md5-just-metadata" />
         </antcall>
  
         <!-- Launch smoketest -->
