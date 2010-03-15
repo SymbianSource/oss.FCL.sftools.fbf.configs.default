@@ -102,6 +102,7 @@
         <equals arg1="${last.major.helium.version}" arg2="5.0"/>
       </or></not>
       <then>
+          <property name="sf.using.newer.than.helium5" value="true"/>
           <property name="schema.new" value="true"/>
           <property name="skip.sbs.parser.exception" value="true"/>
           
@@ -643,7 +644,14 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <runtarget target="preprocess-zip-config" />
             <property name="zip.${zip.target.name}.log.file" location="${build.log.dir}/${build.id}_${zip.target.name}_zip.log" />
             <property name="zips.${zip.target.name}.spec.name" value="${zip.target.name}" />
-            <hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
+            <if><isset property="sf.using.newer.than.helium5"/>
+            <then>
+                <hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" failonemptyconfig="false"/>
+            </then>
+            <else>
+                <hlm:zipContentMacro type="${zip.target.name}" file="${zip.config.file}" />
+            </else>
+            </if>
           </then>
           <else>
             <echo message="ERROR ${zip.config.file} not available for zipping!"/>
