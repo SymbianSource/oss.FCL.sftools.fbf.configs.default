@@ -216,14 +216,16 @@
       <then>
         <echo message="INFO Generating ConE CenRep"/>
 
-        <exec executable="cmd" dir="${build.drive}/epoc32/rom/config" failonerror="false" output="${build.log.dir}/${build.id}_cenrep.log">
+        <exec executable="cmd" dir="${build.drive}/epoc32/tools" failonerror="false" output="${build.log.dir}/${build.id}_cenrep.log">
           <arg value="/c"/>
           <arg value="${env.PDT_HOME}/ConE/cone.cmd"/>
           <arg value="generate"/>
+          <arg value="-p"/>
+          <arg value="\epoc32\rom\config"/>
           <arg value="-c"/>
           <arg value="convert.confml"/>
           <arg value="-o"/>
-          <arg value="."/>
+          <arg value="${build.drive}/epoc32/rom/config"/>
         </exec>
 
         <exec executable="cmd" dir="${build.drive}/epoc32/tools" failonerror="false" append="true" output="${build.log.dir}/${build.id}_cenrep.log">
