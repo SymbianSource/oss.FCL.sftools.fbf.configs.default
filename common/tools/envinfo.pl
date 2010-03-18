@@ -151,8 +151,8 @@ push @environment_info, {name=>'helium', version=>$helium_ver};
 
 # java
 my $java_ver = 'N.A.';
-my $java_out = `java -version`;
-$java_ver = $1 if ($zip_out =~ /^java version (.*)/m);
+my $java_out = `java -version 2>&1`;
+$java_ver = $1 if ($java_out =~ /^java version (.*)/m);
 push @environment_info, {name=>'java', version=>$java_ver};
 
 for my $tool_info (@environment_info)
