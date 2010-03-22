@@ -325,6 +325,7 @@
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                 <arg value="-xr!*.sym"/>
+                <arg value="-ir!epoc32/release/armv5/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
                 <arg value="epoc32\release\armv5\lib"/>
             </exec>
