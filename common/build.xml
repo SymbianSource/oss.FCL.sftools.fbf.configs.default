@@ -404,6 +404,9 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <stopwatch name="sf-get-source"/>
+        <!-- Get test manifest, and move resolved csv so that it doesnt conflict with source-spec.ant.xml -->
+        <ant antfile="${temp.build.dir}/source-test-spec.ant.xml" />
+        <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_test.csv"/>
         <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
         <stopwatch name="sf-get-source" action="elapsed"/>
     </target>
@@ -461,8 +464,16 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
               <data expandProperties="yes">
                     ant: antProperties()
                     data: [
-                        csv(${sf.test.csv.file}, {separator:','})
                         csv(${sf.source.csv.file}, {separator:','})
+                    ]
+              </data>
+        </fmpp>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
+              outputFile="${temp.build.dir}/source-test-spec.ant.xml">
+              <data expandProperties="yes">
+                    ant: antProperties()
+                    data: [
+                        csv(${sf.test.csv.file}, {separator:','})
                     ]
               </data>
         </fmpp>

@@ -22,7 +22,7 @@
   
   <!-- compile sbs.tools.config and sbs.config. tools built only if its not being unpacked first.
        note: must be called from sf-os/s60-compile targets, as sys model input needed -->
-  <target name="sf-do-compile">
+  <target name="sf-do-compile" depends="sf-do-full-export">
     <echo message="INFO Using Helium 7+ for sf-do-compile"/>
         
     <propertyregex property="sf.unpack.tools" override="true" input="${sf.spec.baseline.getenv_options}" regexp="-i tools" select="true" defaultValue="false" casesensitive="false"/>
@@ -55,15 +55,35 @@
       <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configurations.list}.xml" todir="${build.log.dir}/BOM/"/>
   </target>
 
+  <!-- perform export only first to assist when parallel makefile parsing -->
+  <target name="sf-do-full-export">
+    <hlm:sbsinput id="sf.export">
+        <sbsOptions>
+            <arg line="-k" />
+            <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+            <arg name="--logfile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_full_export.log" />
+            <arg name="--makefile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_full_export_Makefile" />
+            <arg line="--export-only"/>
+        </sbsOptions>
+    </hlm:sbsinput>
+    
+    <!-- call helium's compile-main target using the sbsInput args defined above -->
+    <echo message="INFO Full export for all targets"/>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+        <param name="build.system" value="${sf.spec.build.system}" />
+        <param name="sbs.inputs.list" value="sf.export"/>
+    </antcall> 
+  </target>
 
   <!-- compile sbs.config list of targets either sequentially or together -->
   <target name="sf-do-target-compile">
-
+  
     <if>
       <istrue value="${sf.os.compile.iterate}"/>
       <then>
         <for list="${i.sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
         <sequential>
+        
             <!-- define sbs args, log name etc -->
             <hlm:sbsinput id="sf.build">
                 <sbsOptions>
@@ -75,16 +95,17 @@
                     <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
                     <arg name="--logfile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
                     <arg name="--makefile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_Makefile" />
+                    <arg line="--noexport"/>
                 </sbsOptions>
             </hlm:sbsinput>
-            
+
             <!-- call helium's compile-main target using the sbsInput args defined above -->
             <echo message="INFO Iterative compile building target: @{item.sbs.splitconfig}"/>
             <antcall target="compile-main" inheritAll="false" inheritRefs="true">
               <param name="build.system" value="${sf.spec.build.system}" />
               <param name="sbs.inputs.list" value="sf.build"/>
             </antcall> 
-            
+                        
         </sequential>
         </for>
       </then>
@@ -96,7 +117,7 @@
            <echo message="INFO Logname: ${i.sf.spec.sbs.config.expanded.logname} + Config: ${sf.spec.os.sysdef.clean.configurations.list}"/>
            
            <!-- TODO: Make this use above compile-main call? -->
-           
+
            <!-- define sbs args, log name etc -->
            <hlm:sbsinput id="sf.build">
                 <sbsOptions>
@@ -108,6 +129,7 @@
                     <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
                     <arg name="--logfile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
                     <arg name="--makefile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_Makefile" />
+                    <arg line="--noexport"/>
                 </sbsOptions>
            </hlm:sbsinput>
             
