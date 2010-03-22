@@ -40,8 +40,8 @@
 		</tool>
 		<tool name="Mercurial">
 			<location strict="false" value="C:\Apps\mercurial\hg.exe"/>
-			<verify version="1.2" showstopper="false">
-				<check name="version" execute="%location% version" values="1\.[23]\.[0-9]" locator="Mercurial Distributed SCM \(version ([0-9\.]*)\)"/>
+			<verify version="1.2 or later" showstopper="false">
+				<check name="version" execute="%location% version" values="1\.[2-5](\.[0-9])?" locator="Mercurial Distributed SCM \(version ([0-9\.]*)\)"/>
 			</verify>
 		</tool>
 		<tool name="Python">
