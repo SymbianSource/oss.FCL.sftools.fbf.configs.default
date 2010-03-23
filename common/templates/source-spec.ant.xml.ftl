@@ -5,7 +5,13 @@
 
     <!-- Convert \s in cache location, because otherwise they disappear entirely when used in a regex replacement! -->
     <propertyregex property="sf.spec.sourcesync.cachelocation.for.regex" input="${dollar}{sf.spec.sourcesync.cachelocation}" regexp="\\" replace="/" global="true" defaultValue="${dollar}{sf.spec.sourcesync.cachelocation}"/>
-    
+
+    <!-- Create an empty hg repo to use when converting remote tags into hashes-->
+    <exec executable="hg" dir="${ant['temp.build.dir']}">
+        <arg value="init"/>
+        <arg value="emptyRepo"/>
+    </exec>
+
 <#assign fileset = "" />
 <#assign sync_list = "" />
 <#assign bom_list  = "" />
@@ -28,7 +34,20 @@
                 <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^${ant['sf.spec.sourcesync.local.development.area']}/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/LocalDev/"/>
             </then>
         </if>
-	
+        
+        <!-- Convert source tag/branch to to changeset hash, in case it's a local tag on the server -->
+        <exec executable="hg" dir="${ant['temp.build.dir']}/emptyRepo" outputproperty="sf.sourcesync.${count}.checksum">
+            <arg value="in"/>
+            <arg value="${pkg_detail.source}"/>
+            <arg value="-r"/>
+            <arg value="${pkg_detail.pattern}"/>
+            <arg value="-l"/>
+            <arg value="1"/>
+            <arg value="--template"/>
+            <arg value="{node|short}"/>
+            <arg value="-q"/>
+        </exec>
+        
         <if>
             <and>
                 <isset property="sf.spec.sourcesync.cachelocation.${count}"/>
@@ -82,12 +101,7 @@
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
                     <arg value="update"/>
                     <arg value="-r"/>
-                    <arg value="${pkg_detail.pattern}"/>
-                </exec>
-                <!-- Record the changeset selected, for the BOM -->
-                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                    <arg value="identify"/>
-                    <arg value="-i"/>
+                    <arg value="${dollar}{sf.sourcesync.${count}.checksum}"/>
                 </exec>
             </then>
             <else>
@@ -102,12 +116,7 @@
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
                     <arg value="update"/>
                     <arg value="-r"/>
-                    <arg value="${pkg_detail.pattern}"/>
-                </exec>
-                <!-- Record the changeset selected, for the BOM -->
-                <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="sf.sourcesync.${count}.checksum">
-                    <arg value="identify"/>
-                    <arg value="-i"/>
+                    <arg value="${dollar}{sf.sourcesync.${count}.checksum}"/>
                 </exec>
                 <if>
                     <isset property="sf.spec.sourcesync.cachelocation.${count}"/>
