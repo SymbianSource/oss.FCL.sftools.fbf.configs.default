@@ -410,18 +410,10 @@
         <arg value="${build.log.dir}/analysis/*_compile_preprocessed.log"/>
       </exec -->
       
-      <echo message="Extracting whatlog information from *whatlog*_compile.log files"/>
-      <apply executable="perl" dir="${build.drive}/utilities/uh_parser" failonerror="false" output="${build.log.dir}/analysis/${build.id}_whatlog.log" parallel="true">
-        <arg value="releaseables.pl"/>
-        <arg value="--basedir=${build.log.dir}"/>
-        <fileset dir="${build.log.dir}">
-          <include name="*whatlog*_compile.log"/>
-        </fileset>
-      </apply>
-      
       <echo message="Running UH parser on *_compile.log files"/>
       <apply executable="perl" dir="${build.drive}/utilities/uh_parser" failonerror="false" output="${build.log.dir}/analysis/${build.id}_raptorparse.log" parallel="true">
         <arg value="uh.pl"/>
+        <arg value="-m"/>
         <arg value="--basedir=${build.log.dir}"/>
         <fileset dir="${build.log.dir}">
           <include name="*_compile.log"/>
