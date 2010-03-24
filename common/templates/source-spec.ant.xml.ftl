@@ -43,6 +43,7 @@
             <arg value="${pkg_detail.pattern}"/>
             <arg value="-l"/>
             <arg value="1"/>
+            <arg value="-n"/>
             <arg value="--template"/>
             <arg value="{node|short}"/>
             <arg value="-q"/>
