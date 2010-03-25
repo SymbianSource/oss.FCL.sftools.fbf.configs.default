@@ -23,3 +23,21 @@ tsrc,test.xml,,CTC++
 ,*.h,""": public RTest""",RTest
 rtest,,,RTest
 ,*.cpp,"""RTest test(""",RTest
+,*.bat,.pkg,STIF
+,*.bat,makesis,STIF
+,*.bat,signsis,STIF
+,*.bat,ATSInterface.exe,STIF
+,*.mmp,stiftestinterface.lib,STIF
+,*.doc*,,DOC
+,*.rtf,,DOC
+,*.txt,,DOC
+,*.ppt*,,DOC
+,*.xls*,,DOC
+,bld.inf,.inf,All
+,*.script,.script,TEF
+,*.bat,testexecute.exe,TEF
+eunit,,,Eunit
+*e32test*,,,RTest
+*f32test*,,,RTest
+,*.bat,runtests,RTest
+,*.pdf,,DOC
