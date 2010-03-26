@@ -332,7 +332,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <exec executable="hg">
               <arg value="clone"/>
               <arg value="-rdefault"/>
-              <arg value="http://developer.symbian.org/oss/MCL/utilities"/>
+              <arg value="http://developer.symbian.org/oss/MCL/sftools/fbf/utilities"/>
               <arg value="${build.drive}/utilities"/>
             </exec>
     	<stopwatch name="sf-get-utils" action="elapsed"/>
