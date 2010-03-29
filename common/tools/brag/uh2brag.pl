@@ -43,7 +43,7 @@ if (open(INDEX, $raptorSummary))
 {
 	while (my $line = <INDEX>)
 	{
-		if ($line =~ m{<tr><td><a href='.*'>.*</a></td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td></tr>})
+		if ($line =~ m{<tr><td><a href='.*'>.*</a></td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td>})
 		{
 			$criticals += $1 if ($1);
 			$majors += $2 if ($2);
