@@ -75,7 +75,6 @@
 			<location strict="false" value="C:\Symbian\Tools\PDT_1.0\helium\hlm.bat"/>
 			<verify version="5.0" showstopper="true">
 				<check var="HELIUM_HOME" values="[CD]:\\Symbian\\Tools\\PDT_1.\d\\helium"/>
-				<check name="version" execute="%HELIUM_HOME%\hlm.bat -f %HELIUM_HOME%\build.xml version" values="5\.\d" locator="Helium version: ([\d\.]+)"/>
 			</verify>
 		</tool>
 		<tool name="Raptor">
