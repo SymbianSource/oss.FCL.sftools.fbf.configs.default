@@ -20,6 +20,7 @@
 use strict;
 
 use Getopt::Long;
+use Win32::OLE;
 
 # Read option arguments
 my $option;
@@ -43,65 +44,35 @@ if (!$ok || @ARGV || 1 != scalar grep { defined $option->{$_} } keys %$option)
 	exit(1);
 }
 
-# Use Windows command to list physical volumes on the machine
-# (No substed drives, or mapped network drives)
-my @details = map {chomp;$_} `echo list volume | diskpart`;
+# Connect to WMI services on this machine (".")
+my $wmiServices = Win32::OLE->GetObject( "winmgmts:{impersonationLevel=impersonate,(security)}//." ) or die;
+# Get list of all volumes (drive letters)
+my @volumes = Win32::OLE::in($wmiServices->InstancesOf( "Win32_LogicalDisk" ));
+# Get list of substed drives
+my %subst = map { (substr $_, 0, 2) => 1 } `subst`;
+# Filter volumes to remove non-Partitions, and substed drives
+@volumes = grep { $_->{DriveType} == 3 && !exists $subst{$_->{DeviceID}} } @volumes;
+# Also remove the system drive (usually C:) unless it's the only drive in the box!
+@volumes = grep { $_->{DeviceID} ne $ENV{SystemDrive} } @volumes if scalar(@volumes) > 1;
 
-my @drives;
-my %space;
-my %capacity;
-for my $driveLine (@details)
-{
-	# If this line of output is actually about a healthy HD volume...
-	if ($driveLine =~ m{^\s+Volume \d+\s+([A-Z]).*?(Partition|RAID-5)\s+(\d+) ([A-Z]+)\s+Healthy} )
-	{
-		my ($letter, $capacityValue, $capacityUnit) = ($1, $3, $4);
-		
-		my %multiplier = (
-			MB => 1000000,
-			GB => 1000000000,
-			TB => 1000000000000,
-		);
-
-		if (not exists $multiplier{$capacityUnit})
-		{
-			warn "Don't know how to interpret $capacityValue $capacityUnit\n";
-			next;
-		}
-		$capacityValue *= $multiplier{$capacityUnit};
-
-		# Ignore the system drive
-		next if ($driveLine =~ m{System\s*$});
-
-		# Use dir to get the freespace (bytes)
-		my @bytesFree = grep { s{^.*?(\d+) bytes free\s*$}{$1} } map {chomp;$_} `cmd /c dir /-C /A $letter:\\`;
-		# Take the value from the bottom of the report
-		my $bytesFree = $bytesFree[-1];
-
-		# Record info for this volume
-		push @drives, $letter;
-		$space{$bytesFree} = $letter;
-		$capacity{$capacityValue} = $letter;
-	}
-}
-
-die "Unable to find any suitable drives at all\n" unless %space;
+die "Unable to find any suitable drives at all\n" unless @volumes;
 
 if ($option->{all})
 {
-	print join ",", map { "$_:" } @drives;
+	print join ",", map { $_->{DeviceID} } @volumes;
 	print "\n";
-	exit;
 }
 elsif ($option->{capacity})
 {
 	# Sort by capacity to find the largest volume and print out the corresponding letter
-	print "$capacity{(reverse sort keys %capacity)[0]}:\n";
+	@volumes = reverse sort { $a->{Size} <=> $b->{Size} } @volumes;
+	print "$volumes[0]->{DeviceID}\n";
 }
 elsif ($option->{space})
 {
 	# Sort by space to find the volume with the largest amount of space and print out the corresponding letter
-	print "$space{(reverse sort keys %space)[0]}:\n";
+	@volumes = reverse sort { $a->{FreeSpace} <=> $b->{FreeSpace} } @volumes;
+	print "$volumes[0]->{DeviceID}\n";
 }
 
 exit;
