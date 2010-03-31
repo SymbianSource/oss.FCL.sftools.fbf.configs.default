@@ -79,7 +79,9 @@
 
         <!-- copy log files linked to the generation of roms for REE -->
         <runtarget target="sf-copy-rom-logs"/>
-
+		
+		<runtarget target="sf-merge-brag"/>
+		
         <!-- Zip up all the logs -->
         <runtarget target="sf-zip-logs"/>
         
@@ -567,8 +569,8 @@
 		    <arg value="${build.log.dir}/linksForDiamonds.xml"/>
 	  </exec>
     </target>
-
-    <target name="sf-brag-to-diamonds">
+	
+	<target name="sf-merge-brag">
         <!-- Merge all our bits of XML together -->
         <exec executable="perl" output="${build.log.dir}/summary/_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/mergeXML.pl"/>
@@ -576,6 +578,9 @@
             <arg value="--merge=buildStatus,phase(name),step(name),failures(level)"/>
             <arg value="${build.log.dir}/summary/*?_BRAG.xml"/>
         </exec>
+	</target>
+	
+    <target name="sf-brag-to-diamonds">
         <!-- Run XSL transform to create file to send to diamonds -->
         <java jar="${sf.common.config.dir}/sysdefdowngrade/xalan-j_2_7_1/xalan.jar" fork="true">
             <arg value="-IN"/>
@@ -844,6 +849,7 @@
                 <runtarget target="sf-package-validate"/>
             </then>
         </if>
+		<runtarget target="sf-merge-brag"/>
         <runtarget target="sf-zip-logs"/>
                 
         <if>
