@@ -72,15 +72,21 @@ foreach my $package (@packages)
 {
 	warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 	$package->{dst} =~ s{^/}{}g;
-	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/(sf|sftools|interim)/(([^/]+)/)?([^/]+)?})
+	if ($package->{source} =~ m{/(sfl|oss)/(MCL|FCL)/(sf|utilities|sftools|interim)/(([^/]+)/)?([^/]+)?})
 	{
 		my ($license, $codeline, $thingy, $layer, $packageName) = ($1, $2, $3, $5, $6);
 		# $thingy is the part of the path after the codeline. For
 		# platform packages, it's "sf". For the utilities package, it's
-		# "sftools".
+		# "sftools", or "utilities, depending on the URL used to
+		# obtain it.
 		#
 		# I can't think of anything to describe this item, hence $thingy
-		if ($thingy eq "sftools")
+		if ($thingy eq "utilities")
+		{
+			$layer = "tools";
+			$packageName = "utilities";
+		}
+		elsif ($thingy eq "sftools")
 		{
 			$layer = "tools";
 		}
