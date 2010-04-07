@@ -8,8 +8,8 @@ system("rmdir /S /Q tmp") if (-d "tmp");
 mkdir("tmp");
 chdir("tmp");
 
-print "\n\n### CLONE FCL/sftools/fbf/projects/packages REPO ###\n";
-system("hg clone -r HighFidelityModel http://developer.symbian.org/oss/FCL/sftools/fbf/projects/packages");
+print "\n\n### CLONE MCL/sftools/fbf/projects/packages REPO ###\n";
+system("hg clone -r HighFidelityModel http://developer.symbian.org/oss/MCL/sftools/fbf/projects/packages");
 my $changeset = `hg -R packages identify -i`;
 chomp $changeset;
 print "-->$changeset<--\n";
