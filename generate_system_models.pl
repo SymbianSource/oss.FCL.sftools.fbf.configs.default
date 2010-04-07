@@ -17,8 +17,8 @@ my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
 my $timestamp = sprintf "%4d%02d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min,$sec;
 #print "\n\n### CLONE MCL/sf/os/buildtools REPO ###\n";
 #system("hg clone -r RCL_3 http://developer.symbian.org/oss/MCL/sf/os/buildtools");
-print "\n\n### CLONE FCL/sftools/fbf/projects/platforms REPO ###\n";
-system("hg clone -r default http://developer.symbian.org/oss/FCL/sftools/fbf/projects/platforms");
+print "\n\n### CLONE MCL/sftools/fbf/projects/platforms REPO ###\n";
+system("hg clone -r default http://developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
 
 # get the codelines from the packages repo
 opendir(DIR, "packages");
@@ -90,7 +90,7 @@ for my $codeline (@codelines)
 		system("copy $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\auto\\model_$timestamp\_$changeset.xml");
 		system("hg -R platforms add");
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
-		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/FCL/sftools/fbf/projects/platforms");
+		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
 	}
 }
 
