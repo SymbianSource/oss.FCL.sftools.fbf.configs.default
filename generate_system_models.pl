@@ -90,7 +90,7 @@ for my $codeline (@codelines)
 		system("copy $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\auto\\model_$timestamp\_$changeset.xml");
 		system("hg -R platforms add");
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
-		#system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/FCL/sftools/fbf/projects/platforms");
+		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/FCL/sftools/fbf/projects/platforms");
 	}
 }
 
