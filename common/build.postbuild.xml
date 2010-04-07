@@ -243,6 +243,7 @@
                     <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                     <arg value="-x@${sf.epoc32.exclusions.file}"/>
                     <arg value="-x!epoc32\gcc"/>
+                    <arg value="-x!epoc32\gcc_mingw"/>
                     <arg value="-x!epoc32\tools"/>
                     <arg value="-x!epoc32\build"/>
                     <arg value="-x!epoc32\release\armv5"/>
@@ -356,6 +357,7 @@
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
             <arg value="epoc32/tools"/>
             <arg value="epoc32/gcc"/>
+            <arg value="epoc32/gcc_mingw"/>
         </exec>
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
