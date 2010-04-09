@@ -55,7 +55,11 @@ sub printTree
 		}
 		keys %$tree)
 	{
-		print " $attr=\"$tree->{$attr}\"";
+		my $value_escaped = $tree->{$attr};
+		$value_escaped =~ s/&/&amp;/g;
+		$value_escaped =~ s/</&lt;/g;
+		$value_escaped =~ s/>/&gt;/g;
+		print " $attr=\"$value_escaped\"";
 	}
 
 	my $children = $tree->{Kids} || [];

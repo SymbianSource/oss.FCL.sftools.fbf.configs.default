@@ -153,7 +153,14 @@ sub printTree
 	$tagName =~ s{^main::}{};
 	if ($tagName eq "Characters")
 	{
-		print $tree->{Text};
+		if ($tree->{Text} =~ m{[<>&]})
+		{
+			print "<![CDATA[$tree->{Text}]]>";
+		}
+		else
+		{
+			print $tree->{Text};
+		}
 		return;
 	}
 	
@@ -172,7 +179,11 @@ sub printTree
 		}
 		keys %$tree)
 	{
-		print " $attr=\"$tree->{$attr}\"";
+		my $value_escaped = $tree->{$attr};
+		$value_escaped =~ s/&/&amp;/g;
+		$value_escaped =~ s/</&lt;/g;
+		$value_escaped =~ s/>/&gt;/g;
+		print " $attr=\"$value_escaped\"";
 	}
 
 	my $children = $tree->{Kids};
