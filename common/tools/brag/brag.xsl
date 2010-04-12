@@ -21,10 +21,9 @@
 	<h2>
 	Overall BRAGG staus: 
 	<xsl:choose>
-		<xsl:when test="$criticalCount != 0">BLACK</xsl:when>
-		<xsl:when test="$majorCount != 0">RED</xsl:when>
-		<xsl:when test="$unknownCount != 0">RED</xsl:when>
-		<xsl:when test="$minorCount != 0">AMBER</xsl:when>
+		<xsl:when test="$criticalCount != 0">RED</xsl:when>
+		<xsl:when test="$majorCount != 0">AMBER</xsl:when>
+		<xsl:when test="$unknownCount != 0">AMBER</xsl:when>
 		<xsl:otherwise>GREEN</xsl:otherwise>
 	</xsl:choose>
 	</h2>
