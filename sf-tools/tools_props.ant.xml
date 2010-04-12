@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="SF-TOOLS-PROPS">
+  
+  <property name="sf.project.type" value="tools" />
+    
+  <property name="sf.drive.space.needed" value="4G"/>
+
+  <property name="sf.spec.bldmefirst.s60.variant" value="western" /> <!-- western|apac|japan -->
+
+  <property name="sf.spec.sourcesync.usecache"     value="true"/>
+
+  <!-- tools build doesnt have a test payload yet -->
+  <property name="sf.spec.test.sendpkg.enable"  value="false"/>
+
+  <property name="sf.spec.md5.enable"      value="false"/>  
+  <property name="sf.spec.publish.enable"  value="false"/> 
+ 
+  <!-- prefilter raptor logs -->
+  <property name="sf.spec.logs.raptorfilter.enable" value="false"/>
+ 
+  <!-- zip all logs before publish -->
+  <property name="sf.spec.logs.zip.enable"  value="true"/>
+
+  <!-- zip all logs before publish -->
+  <property name="sf.spec.logs.zip.enable"  value="true"/> 
+
+</project>
+

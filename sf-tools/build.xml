@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-TOOLS-CONFIG" xmlns:hlm="http://www.nokia.com/helium">
+  <!-- location of this config -->
+  <dirname property="sf.tools.config.dir" file="${ant.file.SF-TOOLS-CONFIG}"/>
+
+  <!-- import package properties -->
+  <import file="${sf.tools.config.dir}/tools_props.ant.xml" optional="true"/>
+  
+  <!-- import common properties/targets/references -->
+  <import file="../common/build.xml" />
+  
+  <!-- import package references -->
+  <import file="${sf.tools.config.dir}/tools_refs.ant.xml"  optional="true"/>
+  
+    <!-- Support Helium 7+ only for Tools build -->
+    <if>
+        <or>
+          <equals arg1="${helium.version}" arg2="5.0"/>
+          <equals arg1="${last.major.helium.version}" arg2="5.0"/>
+        </or>
+        <then>
+            <fail>INFO Tools build requires minimum of Helium 7.0</fail>
+        </then>
+    </if>
+    
+  <target name="sf-build-noprep" depends="sf-platform-bootstrap-gt,sf-compile,sf-postbuild">
+    <echo>[SF-BUILD-NOPREP] INFO:(tools)</echo>
+    <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
+  </target>
+    
+    <target name="sf-platform-bootstrap-gt" >
+    <echo>INFO: Bootstrap files required by SBSv2</echo>
+    <!-- do initial stuff to get raptor working -->
+    <copy todir="${build.drive}/epoc32/include/variant/" failonerror="true" verbose="true">
+        <fileset dir="${build.drive}/${sf.spec.bldmefirst.gt.hrh}" includes="*.hrh"/>
+    </copy>
+    <copy file="${build.drive}/${sf.spec.bldmefirst.gt.variant}" tofile="${build.drive}/epoc32/tools/variant/variant.cfg" failonerror="true" verbose="true" overwrite="true" preservelastmodified="true" />
+    <if><isset property="sf.spec.bldmefirst.gt.hrh.os"/>
+    <then>
+      <copy file="${build.drive}/${sf.spec.bldmefirst.gt.hrh.os}" tofile="${build.drive}/epoc32/include/variant/Symbian_OS.hrh" failonerror="false" overwrite="true" verbose="true" preservelastmodified="true" />
+    </then>
+    </if>
+    
+    <echo>INFO: Explicit export of files needed for tools build</echo>
+    <exec executable="cmd" dir="${build.drive}" failonerror="false" output="${build.log.dir}/${build.id}_bootstrap_export.log">
+        <arg value="/c sbs.bat EXPORT --export-only -b /sf/os/kernelhwsrv/kernel/eka/bld.inf -b /sf/os/kernelhwsrv/userlibandfileserver/fileserver/group/bld.inf -k -c tools2"/>
+    </exec>
+
+    <echo message="INFO Getting bootstrap environment listing"/>
+    <antcall target="sf-list-dir" inheritAll="false">
+      <param name="sf.list.name" value="bootstrap"/>
+    </antcall>
+  </target>
+  
+  
+  
+  
+ <target name="sf-compile" depends="sf-platform-bootstrap-gt">
+
+   <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
+   <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+   <propertyregex property="i.sf.spec.sbs.config.expanded.logname" override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace="_"    defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+   <echo message="INFO Target : ${i.sf.spec.sbs.config.expanded}"/>
+   <echo message="INFO Logname: ${i.sf.spec.sbs.config.expanded.logname} + Config: ${sf.spec.sysdef.configurations.list}"/>
+
+   <!-- define sbs args, log name etc -->
+   <hlm:sbsinput id="sf.build">
+        <sbsOptions>
+            <arg line="-c ${i.sf.spec.sbs.config.expanded}"/>
+            <arg line="-k" />
+            <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+            <arg line="${sf.spec.sbs.options}"/>
+            <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
+            <arg name="--logfile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_compile.log" />
+            <arg name="--makefile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_Makefile" />
+        </sbsOptions>
+   </hlm:sbsinput>
+    
+    <!-- call helium's compile-main target using the sbsInput args defined above -->
+    <echo message="INFO Building target(s): ${i.sf.spec.sbs.config.expanded}"/>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+      <param name="build.system"               value="${sf.spec.build.system}" />
+      <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+      <param name="sbs.inputs.list"            value="sf.build"/>
+      <reference refid="sf.spec.tools.system.definition.files" torefid="system.definition.files" />
+    </antcall> 
+
+ </target>
+
+ <target name="sf-package-binary">
+
+    <exec executable="7z" dir="${build.drive}/epoc32" output="${build.log.dir}/zip_${build.id}_binaries_${sf.spec.job.name}.log">
+        <arg value="a"/>
+        <arg value="-t${sf.spec.package.zip.format}"/>
+        <arg value="-x@${build.log.dir}/listdir_${build.id}_bootstrap.log"/>
+        <arg value="-x!build\"/>
+        <arg value="${build.drive}/output/zips/release/binaries_${sf.spec.job.name}.zip"/>
+    </exec>
+
+    <antcall target="sf-zip-content">
+        <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
+        <param name="zip.target.name" value="bin-${sf.spec.job.name}-metadata" />
+    </antcall>
+
+ </target>
+ 
+  <target name="create-canonical-sysdef-file">
+     <copy file="${sf.spec.systemdefinition.location}" tofile="${canonical.sysdef.file}" failonerror="true" verbose="true"/>
+  </target>
+
+ <!-- do nothing for these in a tools build -->
+ <target name="sf-run-analysis"/>
+ <target name="sf-copy-rom-logs"/>
+    
+</project>
+
