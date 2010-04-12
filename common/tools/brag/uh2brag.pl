@@ -43,10 +43,11 @@ if (open(INDEX, $raptorSummary))
 {
 	while (my $line = <INDEX>)
 	{
-		if ($line =~ m{<tr><td><a href='.*'>.*</a></td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td>})
+		if ($line =~ m{<tr><td><a href='.*'>.*</a></td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td>(<td>(\d+)</td>)?})
 		{
 			$criticals += $1 if ($1);
 			$majors += $2 if ($2);
+			$majors += $6 if ($6); # add number of missing files to majors
 			$minors += $3 if ($3);
 			$unknowns += $4 if ($4);
 		}
