@@ -48,8 +48,10 @@
 
     <echo message="INFO Getting bootstrap environment listing"/>
     <antcall target="sf-list-dir" inheritAll="false">
+      <param name="sf.dir.location" value="${build.drive}/"/> 
+      <param name="sf.dir.exclude"  value="${build.drive}/epoc32/build"/>     
       <param name="sf.list.name" value="bootstrap"/>
-    </antcall>
+    </antcall>    
   </target>
   
   
@@ -89,12 +91,14 @@
 
  <target name="sf-package-binary">
 
-    <exec executable="7z" dir="${build.drive}/epoc32" output="${build.log.dir}/zip_${build.id}_binaries_${sf.spec.job.name}.log">
+    <exec executable="7z" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_${sf.spec.job.name}.log">
         <arg value="a"/>
         <arg value="-t${sf.spec.package.zip.format}"/>
         <arg value="-x@${build.log.dir}/listdir_${build.id}_bootstrap.log"/>
-        <arg value="-x!build\"/>
+        <arg value="-x!epoc32\build"/>
+        <arg value="-x!sf"/>
         <arg value="${build.drive}/output/zips/release/binaries_${sf.spec.job.name}.zip"/>
+        <arg value="epoc32\"/>
     </exec>
 
     <antcall target="sf-zip-content">
