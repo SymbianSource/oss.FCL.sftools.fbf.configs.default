@@ -60,7 +60,8 @@
     <property name="ccm.user.password" value="set_to_any_value_to_skip_scm_checks__for_helium_5"/>
     <property name="ats.drive" value="${sf.spec.ats_worker.drive}"/>
     <property name="skip.sbs.layer.generation" value="true"/> <!-- helium 7: needs to be predefined before hlm import -->
-
+    <property name="qt.qmake.ant.template" value="${sf.common.config.dir}/templates/run-qmake.ant.xml.ftl"/> <!-- override helium default to use our own template -->
+    
     <!-- override helium 7 defaults to operate like helium 5.
        *.log.dir props dont exist yet so need to be set now, otherwise they 
        become immutable after helium.ant.xml import -->
