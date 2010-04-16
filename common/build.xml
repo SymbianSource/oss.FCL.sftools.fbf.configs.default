@@ -115,6 +115,11 @@
           <hlm:signalInput id="raptorErrorSignalInput" failbuild="never">
             <hlm:notifierListRef refid="defaultFailNotifier" />
           </hlm:signalInput>
+
+          <hlm:signalInput id="signalRunQMakeInput" failbuild="never">
+            <hlm:notifierListRef refid="defaultFailNotifier" />
+          </hlm:signalInput>
+
       </then>
     </if>
     
