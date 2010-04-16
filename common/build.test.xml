@@ -183,7 +183,7 @@
         </exec>
     </target>
 	<target name="sf-start-ats">        			
-	    <exec executable="start.cmd" dir="${ats.drive}" failonerror="false"/>
+	    <exec executable="start.cmd" dir="${ats.drive}" spawn="true" failonerror="false"/>
 		<echo message="Waiting for 10 seconds to start the ATS Worker......."/>
 		<sleep seconds="10"/>
     </target> 
