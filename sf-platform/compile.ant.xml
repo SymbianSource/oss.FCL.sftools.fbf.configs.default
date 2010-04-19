@@ -39,6 +39,7 @@
         <!-- sf.spec.sbs.tools.config param used. do-target-build will decide to build sequentially/together -->
         <antcall target="sf-do-target-compile" inheritAll="false" inheritRefs="true">
             <param name="i.sf.spec.sbs.config" value="${sf.spec.sbs.tools.config}" />           
+            <param name="qmake.enabled"        value="false"/> <!-- ensure qmake is not run, before its available -->
         </antcall>
       </then>
       <else>
@@ -73,6 +74,7 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
         <param name="build.system" value="${sf.spec.build.system}" />
         <param name="sbs.inputs.list" value="sf.export"/>
+        <param name="qmake.enabled"   value="false"/> <!-- ensure qmake is not run, before its available -->
     </antcall> 
   </target>
 
