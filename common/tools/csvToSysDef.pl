@@ -168,7 +168,7 @@ sub printTree
 
 	foreach my $attr (
 		sort {
-			my $order = "name long-name tech_domain level span schema levels filter introduced deprecated purpose class plugin origin-model bldFile mrp version priority";
+			my $order = "name long-name tech_domain level span schema levels filter introduced deprecated purpose class plugin origin-model bldFile proFile qmakeArgs mrp version priority";
 			my $ixA = index $order, $a;
 			my $ixB = index $order, $b;
 			die "$a $b" if $ixA + $ixB == -2;
