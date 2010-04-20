@@ -182,9 +182,13 @@
             <arg value="--host-drop-path=${sf.spec.test.host.droppath}"/>
         </exec>
     </target>
-	<target name="sf-start-ats">        			
-	    <exec executable="start.cmd" dir="${ats.drive}" spawn="true" failonerror="false"/>
-		<echo message="Waiting for 10 seconds to start the ATS Worker......."/>
-		<sleep seconds="10"/>
+    
+	<target name="sf-start-ats">
+    <if><available file="${ats.drive}/start.cmd"/>        
+    <then>
+        <exec executable="start.cmd" dir="${ats.drive}" spawn="true" failonerror="false"/>
+        <echo message="Waiting for 10 seconds to start the ATS Worker......."/>
+        <sleep seconds="10"/>
+    </then>
     </target> 
 </project>
