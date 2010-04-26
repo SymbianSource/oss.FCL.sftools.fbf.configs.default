@@ -241,6 +241,7 @@
                     <arg value="a"/>
                     <arg value="-t${sf.spec.package.zip.format}"/>
                     <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+					<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                     <arg value="-x@${sf.epoc32.exclusions.file}"/>
                     <arg value="-x!epoc32\gcc"/>
                     <arg value="-x!epoc32\gcc_mingw"/>
@@ -262,6 +263,7 @@
                         <arg value="-t${sf.spec.package.zip.format}"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
                         <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+						<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
                     </exec>
                     <!-- Check that all the files we want in the SDK are zipped -->
@@ -284,6 +286,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_udeb.zip"/>
@@ -293,6 +296,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_urel.zip"/>
@@ -303,6 +307,7 @@
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-ir!epoc32/release/winscw/*.lib"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_lib.zip"/>
             </exec>
             
@@ -311,6 +316,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
                 <arg value="epoc32\release\armv5\udeb"/>
@@ -319,6 +325,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
                 <arg value="epoc32\release\armv5\urel"/>
@@ -327,6 +334,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-ir!epoc32/release/armv5/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
@@ -354,6 +362,7 @@
             <arg value="a"/>
             <arg value="-t${sf.spec.package.zip.format}"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+			<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
             <arg value="epoc32/tools"/>
             <arg value="epoc32/gcc"/>
