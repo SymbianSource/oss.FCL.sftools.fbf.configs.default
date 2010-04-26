@@ -101,6 +101,7 @@
     <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="D:\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
     <property name="sf.spec.test.epocroot"       value="winscw_smoketest"/>
+	<property name="sf.spec.test.target"         value="winscw"/> <!-- This specifies the target on which tests will be run -->
 
     <!-- ATS properties -->
     <property name="sf.spec.test.package.location"  value="\\${sf.spec.test.host.name}\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
