@@ -2,7 +2,7 @@
 <project name="run-qmake-${ant['sysdef.configuration']}" default="all">
 
     <target name="all">
-    <if><available file="${r'$'}{build.drive}/epoc32/tools/qmake.bat" type="file"/>
+    <if><available file="${r'$'}{build.drive}/epoc32/tools/qt/qmake.exe" type="file"/>
     <then>
 
         <parallel threadCount="${r'$'}{number.of.threads}">
