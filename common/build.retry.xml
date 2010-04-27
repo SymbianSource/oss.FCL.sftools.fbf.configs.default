@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="SF-RETRY" default="all" xmlns:hlm="http://www.nokia.com/helium">
+
+    <dirname property="sf.retry.dir" file="${ant.file.SF-RETRY}"/>
+
+    <macrodef name="retry">
+        <attribute name="tries" default="3" description="How many times to try the nested script"/>
+        <attribute name="uniquename" description="An identifier specific to this thread, or a constant for single-threaded contexts"/>
+        <attribute name="failonerror" default="true" description="Set to false to avoid an abort after all attempts"/>
+        <element name="sequential" description="The tasks to retry"/>
+        <element name="cleanup" optional="true" description="Tasks to run to clean up after a failed try"/>
+        <sequential>
+            <trycatch reference="exception.@{uniquename}.ref" property="exception.@{uniquename}.prop">
+                <try>
+                    <sequential/>
+                </try>
+                <catch>
+                    <math result="newtries.@{uniquename}" operation="-" operand2="@{tries}" operand1="1" datatype="int"/>
+                    <if>
+                        <not>
+                            <equals arg1="${newtries.@{uniquename}}" arg2="0"/>
+                        </not>
+                        <then>
+                            <!-- Clean up ready to try again -->
+                            <cleanup/>
+                            <sleep seconds="1"/>
+                            <!-- Recurse (via helper) -->
+                            <retry-helper tries="${newtries.@{uniquename}}" uniquename="@{uniquename}" failonerror="@{failonerror}">
+                                <sequence>
+                                    <sequential/>
+                                </sequence>
+                                <cleanup-helper>
+                                    <cleanup/>
+                                </cleanup-helper>
+                            </retry-helper>
+                        </then>
+                        <else>
+                            <if>
+                                <istrue value="@{failonerror}"/>
+                                <then>
+                                    <throw refid="exception.@{uniquename}.ref"/>
+                                </then>
+                            </if>
+                        </else>
+                    </if>
+                </catch>
+            </trycatch>
+        </sequential>
+    </macrodef>
+    <macrodef name="retry-helper" description="Don't use this directly, use 'retry'">
+        <attribute name="tries"/>
+        <attribute name="uniquename"/>
+        <attribute name="failonerror"/>
+        <element name="sequence"/>
+        <element name="cleanup-helper"/>
+        <sequential>
+            <retry tries="@{tries}" uniquename="@{uniquename}" failonerror="@{failonerror}">
+                <sequential>
+                    <sequence/>
+                </sequential>
+                <cleanup>
+                    <cleanup-helper/>
+                </cleanup>
+            </retry>
+        </sequential>
+    </macrodef>
+
+</project>

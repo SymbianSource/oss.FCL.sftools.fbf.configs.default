@@ -3,6 +3,8 @@
 
 <#assign dollar = "$"/>
 
+    <import file="${dollar}{sf.common.config.dir}/build.retry.xml"/>
+
     <!-- Convert \s in cache location, because otherwise they disappear entirely when used in a regex replacement! -->
     <propertyregex property="sf.spec.sourcesync.cachelocation.for.regex" input="${dollar}{sf.spec.sourcesync.cachelocation}" regexp="\\" replace="/" global="true" defaultValue="${dollar}{sf.spec.sourcesync.cachelocation}"/>
 
@@ -30,14 +32,20 @@
         </if>
         
         <!-- Convert source tag/branch to to changeset hash, in case it's a local tag on the server -->
-        <exec executable="hg" outputproperty="sf.sourcesync.${count}.checksum">
-            <arg value="id"/>
-            <arg value="${pkg_detail.source}"/>
-            <arg value="-r"/>
-            <arg value="${pkg_detail.pattern}"/>
-            <arg value="-q"/>
-        </exec>
-        
+        <retry tries="10" uniquename="${count}">
+            <sequential>
+                <exec executable="hg" failonerror="true" output="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum" error="nul:">
+                    <arg value="id"/>
+                    <arg value="${pkg_detail.source}"/>
+                    <arg value="-r"/>
+                    <arg value="${pkg_detail.pattern}"/>
+                    <arg value="-q"/>
+                </exec>
+                <loadfile property="sf.sourcesync.${count}.checksum" srcFile="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum"/>
+                <propertyregex property="sf.sourcesync.${count}.checksum" override="true" input="${dollar}{sf.sourcesync.${count}.checksum}" regexp="(\S{12})" select="\1"/>
+            </sequential>
+        </retry>
+
         <if>
             <and>
                 <isset property="sf.spec.sourcesync.cachelocation.${count}"/>
@@ -45,13 +53,18 @@
             </and>
             <then>
                 <!-- Package in cache already -->
-                <echo message="Pull from ${pkg_detail.source} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
-                <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="false" resultproperty="sf.spec.sourcesync.cache.pull.error.code.${count}">
-                    <arg value="pull"/>
-                    <arg value="${pkg_detail.source}"/>
-                </exec>
+                <retry tries="3" uniquename="${count}" failonerror="0">
+                    <sequential>
+                        <echo message="Pull from ${pkg_detail.source} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                        <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="true">
+                            <arg value="pull"/>
+                            <arg value="${pkg_detail.source}"/>
+                        </exec>
+                        <property name="sf.spec.sourcesync.cache.pull.succeeded.${count}" value="1"/>
+                    </sequential>
+                </retry>
                 <if>
-                    <equals arg1="0" arg2="${dollar}{sf.spec.sourcesync.cache.pull.error.code.${count}}"/>
+                    <isset property="sf.spec.sourcesync.cache.pull.succeeded.${count}"/>
                     <then>
                         <echo message="Clone from ${dollar}{sf.spec.sourcesync.cachelocation.${count}} to ${ant['build.drive']}${pkg_detail.dst}"/>
                         <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
@@ -78,13 +91,20 @@
                             </if>
                         </forget>
                         <!-- In the meantime, by-pass it for this build -->
-                        <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
-                        <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
-                            <arg value="clone"/>
-                            <arg value="-U"/>
-                            <arg value="${pkg_detail.source}"/>
-                            <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
-                        </exec>
+                        <retry tries="30" uniquename="${count}">
+                            <sequential>
+                                <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                                <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                                    <arg value="clone"/>
+                                    <arg value="-U"/>
+                                    <arg value="${pkg_detail.source}"/>
+                                    <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                                </exec>
+                            </sequential>
+                            <cleanup>
+                                <delete dir="${ant['build.drive']}${pkg_detail.dst}"/>
+                            </cleanup>
+                        </retry>
                     </else>
                 </if>
                 <!-- Update to required revision -->
@@ -95,13 +115,21 @@
                 </exec>
             </then>
             <else>
-                <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
-                <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
-                    <arg value="clone"/>
-                    <arg value="-U"/>
-                    <arg value="${pkg_detail.source}"/>
-                    <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
-                </exec>
+                <!-- Package not in cache, or cache not in use -->
+                <retry tries="10" uniquename="${count}">
+                    <sequential>
+                        <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                        <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
+                            <arg value="clone"/>
+                            <arg value="-U"/>
+                            <arg value="${pkg_detail.source}"/>
+                            <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
+                        </exec>
+                    </sequential>
+                    <cleanup>
+                        <delete dir="${ant['build.drive']}${pkg_detail.dst}"/>
+                    </cleanup>
+                </retry>
                 <!-- Update to required version -->
                 <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" failonerror="true">
                     <arg value="update"/>

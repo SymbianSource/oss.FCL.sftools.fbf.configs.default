@@ -31,5 +31,8 @@
   
   <property name="sf.spec.smoketest.enable" value="false"/> <!-- This disables publishing Smoke Test Report -->
 
+  <!-- Enable qmake processing for any units with proFile attributes -->
+  <property name="qmake.enabled" value="true"/>
+
 </project>
 
