@@ -153,7 +153,6 @@
             <arg value="--target=${sf.spec.test.target}"/>
         </exec>
         <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"  failonerror="false"/>
-        <copy file="${build.drive}/epoc32/rom/syborg/syborg.dtb" todir="${sf.spec.test.workerroot}" failonerror="false"/>
         
         <echo message="INFO Updating smoketest package with test info"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
@@ -172,6 +171,11 @@
 	<!-- Sending testdrop to ATS3 -->
 	
     <target name="sf-send-testpkg" depends="sf-start-ats,sf-find-ATS-worker-root,sf-make-junction">
+        <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
+          <then> 
+            <copy file="${build.drive}/epoc32/rom/syborg/syborg.dtb" todir="${sf.spec.test.workerroot}" failonerror="false"/>
+          </then>
+        </if>
         <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
         <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
