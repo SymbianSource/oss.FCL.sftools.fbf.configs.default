@@ -22,7 +22,7 @@
   
   <!-- compile sbs.tools.config and sbs.config. tools built only if its not being unpacked first.
        note: must be called from sf-os/s60-compile targets, as sys model input needed -->
-  <target name="sf-do-compile">
+  <target name="sf-do-compile" depends="create-canonical-sysdef-file">
     <echo message="INFO Using Helium 7+ for sf-do-compile"/>
     
     <propertyregex property="sf.unpack.tools" override="true" input="${sf.spec.baseline.getenv_options}" regexp="-i tools" select="true" defaultValue="false" casesensitive="false"/>
