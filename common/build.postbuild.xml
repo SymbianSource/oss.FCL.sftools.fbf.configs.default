@@ -340,9 +340,13 @@
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
                 <arg value="epoc32\release\armv5\lib"/>
             </exec>
-            <runtarget target="sf-package-tools"/>
+            
 
         </parallel>
+        
+        <runtarget target="sf-package-tools"/>
+        
+        
         <!-- Generate release_metadata entries for the above zips -->
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
