@@ -155,22 +155,35 @@
         <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"  failonerror="false"/>
         
         <echo message="INFO Updating smoketest package with test info"/>
-        <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
-            <arg value="ats_specialise_test_drop.pl"/>
-            <arg value="--test-drop-name=Smoketest-${build.id}"/> 
-            <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
-            <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
-            <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
-            <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
-            <arg value="--publish=${publish.dir}\ats_reports"/>
-			<arg value="--bld-drive=${build.drive}"/>
-            <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
-              <then>
-                <arg value="--test-target=Syborg_stif"/>
-                <arg value="--image-path=${sf.spec.test.imagepath}"/>
-              </then>
-            </if>
-        </exec>
+
+        <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
+          <then>
+            <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+              <arg value="ats_specialise_test_drop.pl"/>
+              <arg value="--test-drop-name=Smoketest-${build.id}"/> 
+              <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
+              <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
+              <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
+              <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
+              <arg value="--publish=${publish.dir}\ats_reports"/>
+              <arg value="--bld-drive=${build.drive}"/>
+              <arg value="--test-target=Syborg_stif"/>
+              <arg value="--image-path=${sf.spec.test.imagepath}"/>
+            </exec>
+          </then>
+          <else>		
+            <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+              <arg value="ats_specialise_test_drop.pl"/>
+              <arg value="--test-drop-name=Smoketest-${build.id}"/> 
+              <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
+              <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
+              <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
+              <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
+              <arg value="--publish=${publish.dir}\ats_reports"/>
+              <arg value="--bld-drive=${build.drive}"/>
+            </exec>
+          </else>
+        </if>
         <!-- Now ready to send to ATS3 -->
     </target>   
 
