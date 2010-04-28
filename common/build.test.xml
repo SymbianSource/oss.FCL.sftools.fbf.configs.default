@@ -164,6 +164,12 @@
             <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
             <arg value="--publish=${publish.dir}\ats_reports"/>
 			<arg value="--bld-drive=${build.drive}"/>
+            <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
+              <then>
+                <arg value="--test-target=Syborg_stif"/>
+                <arg value="--image-path=${sf.spec.test.imagepath}"/>
+              </then>
+            </if>
         </exec>
         <!-- Now ready to send to ATS3 -->
     </target>   
@@ -171,6 +177,12 @@
 	<!-- Sending testdrop to ATS3 -->
 	
     <target name="sf-send-testpkg" depends="sf-start-ats,sf-find-ATS-worker-root,sf-make-junction">
+        <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
+          <then>
+            <delete file="${sf.spec.test.workerroot}/syborg.dtb" quiet="true"/>
+            <copy file="${build.drive}/epoc32/rom/syborg/syborg.dtb" todir="${sf.spec.test.workerroot}" failonerror="false"/>
+          </then>
+        </if>
         <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
         <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
