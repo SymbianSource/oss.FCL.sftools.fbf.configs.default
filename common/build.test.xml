@@ -172,7 +172,8 @@
 	
     <target name="sf-send-testpkg" depends="sf-start-ats,sf-find-ATS-worker-root,sf-make-junction">
         <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
-          <then> 
+          <then>
+            <delete file="${sf.spec.test.workerroot}/syborg.dtb" quiet="true"/>
             <copy file="${build.drive}/epoc32/rom/syborg/syborg.dtb" todir="${sf.spec.test.workerroot}" failonerror="false"/>
           </then>
         </if>
