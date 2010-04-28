@@ -40,6 +40,8 @@ my $xml_in;		# Name of the input xml file. Always 'test.xml' if extracted from z
 my $temp_dest_name; # Leafname of temporary output file, if $destfile undefined.
 my $publish;	# Publishing folder for ats reports.
 my $bld_drive;  # Subst'd drive
+my $test_target; # The target which the tests will be run on
+my $image_path; # The path to the ROM image used for testing (not valid for WINSCW target)
 
 sub usage($);
 sub help();
@@ -53,7 +55,9 @@ my %optmap = (  'test-drop-name' => \$test_drop_name,
 			    'dest' => \$destfile,
                 'help' => \$help,
                 'publish' => \$publish,
-				'bld-drive' => \$bld_drive);
+				'bld-drive' => \$bld_drive,
+                'test-target' => \$test_target,
+                'image-path' => \$image_path);
 
 GetOptions(\%optmap,
           'test-drop-name=s',
@@ -63,7 +67,9 @@ GetOptions(\%optmap,
           'dest=s',
           'help!',
           'publish=s', 
-		  'bld-drive=s') 
+		  'bld-drive=s',
+          'test-target=s',
+          'image-path=s') 
           or usage_error();
 
 # Check if Tie::File module installed
@@ -126,18 +132,25 @@ else {
 
 # Parse the input XML into hashref.
 my $test_drop = XMLin("./$xml_in", keeproot => 1,
-    forcearray => [ 'name', 'id','owner','priority','buildid','postAction','type','target','device', 'property', 'command', 'param'],#
+    forcearray => [ 'name', 'id','owner','priority','buildid','postAction','type','target','device', 'property', 'command', 'param','plan'],#
         keyattr => [] );
     
 # Insert the specified test drop name, if any.
 $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 # Insert the specified build id, if any.
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
+# Insert the path to the ROM image
+if $image_path {
+    my $flash_params = $test_drop->{'test'}->{'plan'}->[0]->{'flash'};
+    $flash_params->[1] = { 'target-alias' => $test_target, 'images' => $image_path };
+    }
+
+
 # Insert the FileStoreAction parameter
 my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'}, if $publish;
 $postaction_params->[1] = { 'name' => "to-folder", 'value' => $publish }, if $publish;
 
-if ($host_name) { # Also insert specified host name
+if ($host_name and (lc($test_target) ne "winscw") { # Also insert specified host name if target is WINSCW
 	my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};
     
     foreach my $device (@{$devices}) {
