@@ -637,8 +637,11 @@
         <delete file="${sf.releasenotes.wiki.txt}"/>
         <!-- FCL Usage and Changesets -->
         <exec executable="perl" dir="${build.drive}" output="${sf.releasenotes.wiki.txt}">
+            <arg value="-I"/>
+            <arg value="${sf.common.config.dir}/tools/lib"/>
             <arg value="${build.drive}/utilities/releaseAutomation/releaseNotes.pl"/>
-            <arg value="${build.log.dir}/BOM/sources.csv"/>
+            <arg value="--sources=${build.log.dir}/BOM/sources.csv"/>
+            <arg value="--baseline=${sf.previous.pdk.tag}"/>
         </exec>
         <!-- Package Comparison and FCL Usage -->
         <exec executable="perl" dir="${sf.spec.sourcesync.sourcespecdir}" output="${sf.releasenotes.wiki.txt}" append="true">
