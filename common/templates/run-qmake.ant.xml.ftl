@@ -6,19 +6,19 @@
 	        <sequential>
 
 	<#list data["//unit/@bldFile/.."] as unit>
-          <#if (unit.@bldFile=="mw/qt/src/s60installs/deviceconfiguration")>
+          <#if (unit.@bldFile=="/sf/mw/qt/src/s60installs/deviceconfiguration")>
                 <echo>INFO: Building qmake for ${unit.@bldFile}</echo>
                 <if>
-                    <available file="${r'$'}{build.drive}/sf/${unit.@bldFile}" type="dir"/>
+                    <available file="${r'$'}{build.drive}/${unit.@bldFile}" type="dir"/>
                     <then>
-                        <exec executable="cmd" dir="${r'$'}{build.drive}/sf/${unit.@bldFile}" failonerror="false">
+                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
                             <arg value="/C"/>
                             <arg line="sbs -c tools2 -j 4 --logfile=${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_qmake.log"/>
                         </exec>
                     </then>
                     <else>
-                       <echo message="ERROR: Directory ${r'$'}{build.drive}/sf/${unit.@bldFile} doesn't exist."/>
-                       <fail message="Unit mw/qt/src/s60installs/deviceconfiguration is in the model, but not present on disk. Cannot build qmake!"/>
+                       <echo message="ERROR: Directory ${r'$'}{build.drive}/${unit.@bldFile} doesn't exist."/>
+                       <fail message="Unit /sf/mw/qt/src/s60installs/deviceconfiguration is in the model, but not present on disk. Cannot build qmake!"/>
                     </else>
                 </if>          
 	      </#if>
