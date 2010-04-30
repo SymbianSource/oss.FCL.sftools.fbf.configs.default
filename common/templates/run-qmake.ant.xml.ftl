@@ -2,34 +2,29 @@
 <project name="run-qmake-${ant['sysdef.configuration']}" default="all">
 
     <target name="all">
-    <if><available file="${r'$'}{build.drive}/epoc32/tools/qt/qmake.exe" type="file"/>
-    <then>
-            <sequential>
-    <#list data["//unit/@proFile/.."] as unit>
-          <#if (unit.@proFile=="projects.pro")>
-                <echo>Running qmake for ${unit.@bldFile}/${unit.@proFile}</echo>
+
+	        <sequential>
+
+	<#list data["//unit/@bldFile/.."] as unit>
+          <#if (unit.@bldFile=="mw/qt/src/s60installs/deviceconfiguration")>
+                <echo>INFO: Building qmake for ${unit.@bldFile}</echo>
                 <if>
-                    <available file="${r'$'}{build.drive}/${unit.@bldFile}" type="dir"/>
+                    <available file="${r'$'}{build.drive}/sf/${unit.@bldFile}" type="dir"/>
                     <then>
-                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
+                        <exec executable="cmd" dir="${r'$'}{build.drive}/sf/${unit.@bldFile}" failonerror="false">
                             <arg value="/C"/>
-                            <arg value="qmake"/>
-                            <!-- arg value="-listgen"/ -->
-                            <#if unit.@qmakeArgs[0]??>
-                            <arg line="${unit.@qmakeArgs?xml}"/>
-                            <#else>
-                            <arg line="${ant['qt.qmake.default.args']?xml}"/>
-                            </#if>
-                            <arg value="${unit.@proFile?xml}"/>
+                            <arg line="sbs -c tools2 -j 4 --logfile=${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_qmake.log"/>
                         </exec>
                     </then>
                     <else>
-                       <echo message="ERROR: Directory ${r'$'}{build.drive}/${unit.@bldFile} doesn't exist."/>
+                       <echo message="ERROR: Directory ${r'$'}{build.drive}/sf/${unit.@bldFile} doesn't exist."/>
+                       <fail message="Unit mw/qt/src/s60installs/deviceconfiguration is in the model, but not present on disk. Cannot build qmake!"/>
                     </else>
                 </if>          
-	  </#if>
-    </#list>
-            </sequential>
+	      </#if>
+    </#list>			
+			</sequential>
+	
             <sequential>
     <#list data["//unit/@proFile/.."] as unit>
           <#if (unit.@proFile=="hb.pro")>
@@ -89,8 +84,6 @@
     </#list>
         </parallel>
 
-    </then>
-    </if>
     </target>
     
 </project>
