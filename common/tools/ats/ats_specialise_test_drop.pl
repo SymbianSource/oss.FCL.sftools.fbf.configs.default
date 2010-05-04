@@ -56,7 +56,6 @@ my %optmap = (  'test-drop-name' => \$test_drop_name,
                 'help' => \$help,
                 'publish' => \$publish,
                 'bld-drive' => \$bld_drive,
-                'test-target' => \$test_target,
                 'image-path' => \$image_path);
 
 GetOptions(\%optmap,
@@ -68,7 +67,6 @@ GetOptions(\%optmap,
           'help!',
           'publish=s', 
           'bld-drive=s',
-          'test-target=s',
           'image-path=s') 
           or usage_error();
 
@@ -132,7 +130,7 @@ else {
 
 # Parse the input XML into hashref.
 my $test_drop = XMLin("./$xml_in", keeproot => 1,
-    forcearray => [ 'name', 'id', 'owner', 'priority', 'buildid', 'postAction', 'type', 'target', 'device', 'property', 'command', 'param', 'plan'],#
+    forcearray => [ 'name', 'id', 'owner', 'priority', 'buildid', 'postAction', 'type', 'target', 'device', 'property', 'command', 'param', 'plan', 'session', 'set', 'alias' ],#
         keyattr => [] );
     
 # Insert the specified test drop name, if any.
@@ -141,9 +139,14 @@ $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
 # Insert the path to the ROM image
 if ($image_path) {
-    $test_drop->{'test'}->{'plan'}->[0]->{'flash'}->[0];
-    my $flash_params = $test_drop->{'test'}->{'plan'}->[0]->{'flash'};
-    $flash_params->[0] = { 'target-alias' => $test_target, 'images' => $image_path };
+	my $set_params;
+	my $flash_params;
+	foreach $set_params (@{$test_drop->{'test'}->{'plan'}->[0]->{'session'}->[0]->{'set'}}) {
+		$test_target = $set_params->{'target'}->[0]->{'device'}->[0]->{'alias'};
+		$set_params->{'flash'}->[0];
+		$flash_params = $set_params->{'flash'};
+		$flash_params->[0] = { 'target-alias' => $test_target, 'images' => $image_path };
+	}
 }
 
 # Insert the FileStoreAction parameter
