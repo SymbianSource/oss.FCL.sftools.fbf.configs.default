@@ -48,8 +48,8 @@
 
     <echo message="INFO Getting bootstrap environment listing"/>
     <antcall target="sf-list-dir" inheritAll="false">
-      <param name="sf.dir.location" value="${build.drive}/"/> 
-      <param name="sf.dir.exclude"  value="${build.drive}/epoc32/build"/>     
+      <param name="sf.dir.location" value="epoc32"/> 
+      <param name="sf.dir.exclude"  value="epoc32/build"/>     
       <param name="sf.list.name" value="bootstrap"/>
     </antcall>    
   </target>

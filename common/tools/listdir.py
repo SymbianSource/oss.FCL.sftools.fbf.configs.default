@@ -26,9 +26,9 @@ def main():
   if(len(sys.argv)>2):
     x_dirs = string.lower(sys.argv[2])
     exclude_dirs = re.split(',', x_dirs)
-  scandir(directory, exclude_dirs,directory)
+  scandir(directory, exclude_dirs)
 
-def scandir(top, exclude_dirs,directory):
+def scandir(top, exclude_dirs):
     fixpath = re.compile('\\\\')    
     fixroot = re.compile('^%s\\\\' % top)
     for root, dirs, files in os.walk(top, topdown=True):
@@ -38,6 +38,6 @@ def scandir(top, exclude_dirs,directory):
         for name in files:
             filename = os.path.join(root, name)
             fn = string.lower(fixpath.sub('/',fixroot.sub('',filename)))
-            print fn.strip(directory)
+            print top+"/"+fn
 
 main()

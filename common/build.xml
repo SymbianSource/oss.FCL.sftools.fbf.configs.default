@@ -497,7 +497,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <istrue value="${sf.spec.dirlist.enable}"/>
             <then>
                 <echo message="Dirlist name: ${sf.currentlist.name} requested for ${sf.dir.location} excluding ${sf.dir.exclude}"/>
-                <exec executable="python" dir="${build.log.dir}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
+                <exec executable="python" dir="${build.drive}/" failonerror="true" output="${build.log.dir}/listdir_${build.id}_${sf.currentlist.name}.log">
                     <arg value="${sf.common.config.dir}/tools/listdir.py"/>
                     <arg value="${sf.dir.location}"/>
                     <arg value="${sf.dir.exclude}"/>

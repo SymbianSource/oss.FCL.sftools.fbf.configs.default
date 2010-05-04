@@ -101,7 +101,8 @@
     <property name="sf.spec.test.host.password"  value="admin"/>
     <property name="sf.spec.test.host.droppath"  value="D:\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
     <property name="sf.spec.test.epocroot"       value="winscw_smoketest"/>
-	<property name="sf.spec.test.target"         value="winscw"/> <!-- This specifies the target on which tests will be run -->
+    <property name="sf.spec.test.target"         value="winscw"/> <!-- This specifies the target on which tests will be run -->
+    <property name="sf.spec.test.imagepath"      value="D:\epoc32\rom\syborg_tshell_ARMV5_udeb.img"/> <!-- This specifies the path to the ROM image used for testing -->
 
     <!-- ATS properties -->
     <property name="sf.spec.test.package.location"  value="\\${sf.spec.test.host.name}\ats3_testdrop_arrivals\${env.COMPUTERNAME}"/>
