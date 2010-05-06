@@ -36,7 +36,6 @@
                     <stopwatch name="sf-postbuild packaging binaries"/>
                     <echo message="INFO Packaging Binaries"/>
                     <runtarget target="sf-package-binary"/>
-<!--                    <runtarget target="sf-package-tools"/> -->
     
                     <echo message="INFO Validate Zip files"/>
                     <runtarget target="sf-package-validate"/>
@@ -79,9 +78,9 @@
 
         <!-- copy log files linked to the generation of roms for REE -->
         <runtarget target="sf-copy-rom-logs"/>
-		
-		<runtarget target="sf-merge-brag"/>
-		
+
+        <runtarget target="sf-merge-brag"/>
+
         <!-- Zip up all the logs -->
         <runtarget target="sf-zip-logs"/>
         
@@ -151,7 +150,7 @@
         </exec>
         <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
-            <arg value="evalid -g epoc32/cshlpcmp_template 	output/md5/epoc32_cshlpcmp_template.md5"/>
+            <arg value="evalid -g epoc32/cshlpcmp_template output/md5/epoc32_cshlpcmp_template.md5"/>
         </exec>
         <exec executable="cmd" dir="${build.drive}/">
             <arg value="/c"/>
@@ -241,11 +240,12 @@
                     <arg value="a"/>
                     <arg value="-t${sf.spec.package.zip.format}"/>
                     <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-					<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                    <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                     <arg value="-x@${sf.epoc32.exclusions.file}"/>
                     <arg value="-x!epoc32\gcc"/>
                     <arg value="-x!epoc32\gcc_mingw"/>
                     <arg value="-x!epoc32\tools"/>
+                    <arg value="-x!epoc32\data\buildinfo.txt"/>
                     <arg value="-x!epoc32\build"/>
                     <arg value="-x!epoc32\release\armv5"/>
                     <arg value="-x!epoc32\release\winscw"/>
@@ -253,7 +253,7 @@
                     <arg value="${build.drive}/output/zips/release/binaries_epoc.zip"/>
                     <arg value="epoc32\"/>
                 </exec>
-	    </sequential>
+            </sequential>
             
             <if>
                 <isset property="sf.sdk.header.list.file"/>
@@ -263,7 +263,7 @@
                         <arg value="-t${sf.spec.package.zip.format}"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
                         <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-						<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                        <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
                     </exec>
                     <!-- Check that all the files we want in the SDK are zipped -->
@@ -286,7 +286,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_udeb.zip"/>
@@ -296,7 +296,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_urel.zip"/>
@@ -307,7 +307,7 @@
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-ir!epoc32/release/winscw/*.lib"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_lib.zip"/>
             </exec>
             
@@ -316,7 +316,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
                 <arg value="epoc32\release\armv5\udeb"/>
@@ -325,7 +325,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
                 <arg value="epoc32\release\armv5\urel"/>
@@ -334,18 +334,15 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-				<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-ir!epoc32/release/armv5/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.zip"/>
                 <arg value="epoc32\release\armv5\lib"/>
             </exec>
-            
-
         </parallel>
         
         <runtarget target="sf-package-tools"/>
-        
         
         <!-- Generate release_metadata entries for the above zips -->
         <antcall target="sf-zip-content">
@@ -366,11 +363,12 @@
             <arg value="a"/>
             <arg value="-t${sf.spec.package.zip.format}"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-			<arg value="-x@${sf.spec.prebuilt.excludelist}"/>
-            <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/> 
+            <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+            <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/>
             <arg value="epoc32/tools"/>
             <arg value="epoc32/gcc"/>
             <arg value="epoc32/gcc_mingw"/>
+            <arg value="epoc32/data/buildinfo.txt"/>
         </exec>
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
@@ -576,16 +574,16 @@
         </data>
       </fmpp>
       <!-- Send the data to the server -->
-	  <exec executable="python">
-		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
-		    <arg value="-u"/>
-		    <arg value="http://${diamonds.host}${diamonds.build.id}"/>
-		    <arg value="-f"/>
-		    <arg value="${build.log.dir}/linksForDiamonds.xml"/>
-	  </exec>
+      <exec executable="python">
+        <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+        <arg value="-u"/>
+        <arg value="http://${diamonds.host}${diamonds.build.id}"/>
+        <arg value="-f"/>
+        <arg value="${build.log.dir}/linksForDiamonds.xml"/>
+      </exec>
     </target>
-	
-	<target name="sf-merge-brag">
+
+    <target name="sf-merge-brag">
         <!-- Merge all our bits of XML together -->
         <exec executable="perl" output="${build.log.dir}/summary/_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/mergeXML.pl"/>
@@ -593,8 +591,8 @@
             <arg value="--merge=buildStatus,phase(name),step(name),failures(level)"/>
             <arg value="${build.log.dir}/summary/*?_BRAG.xml"/>
         </exec>
-	</target>
-	
+    </target>
+
     <target name="sf-brag-to-diamonds">
         <!-- Run XSL transform to create file to send to diamonds -->
         <java jar="${sf.common.config.dir}/sysdefdowngrade/xalan-j_2_7_1/xalan.jar" fork="true">
@@ -704,7 +702,7 @@
                 <mkdir dir="${build.output.dir}/zips/release"/> <!-- workaround for when there's no other releaseables, just the logs -->
                 <zip destfile="${build.output.dir}/zips/release/build_logs.zip" basedir="${build.drive}"> 
                     <include name="output/logs/**"/>
-					<exclude name="output/logs/BC/**"/>
+                    <exclude name="output/logs/BC/**"/>
                     <exclude name="output/logs/BOM/**"/>
                     <exclude name="output/logs/deliverables/**"/>
                     <exclude name="output/logs/releaseables/**"/>
@@ -731,16 +729,16 @@
         <copy todir="${publish.dir}/html" preservelastmodified="true" failonerror="false">
            <fileset dir="${build.log.dir}/html"><include name="*.html"/></fileset>
         </copy>
-		<mkdir dir="${publish.dir}/BC"/>
+        <mkdir dir="${publish.dir}/BC"/>
         <copy todir="${publish.dir}/BC" preservelastmodified="true" failonerror="false">
            <fileset dir="${build.log.dir}/BC/">
-		       <include name="BBCResults.xsl"/>
-			   <include name="headers_report.xml"/>
-			   <include name="libraries_report.xml"/>
-		   </fileset>
+               <include name="BBCResults.xsl"/>
+               <include name="headers_report.xml"/>
+               <include name="libraries_report.xml"/>
+           </fileset>
         </copy>
-		<mkdir dir="${publish.dir}/ats_reports"/>
-		<copy file="${sf.common.config.dir}/tools/ats/report_dummy.html" tofile="${publish.dir}/ats_reports/index.html" failonerror="false"/>
+        <mkdir dir="${publish.dir}/ats_reports"/>
+        <copy file="${sf.common.config.dir}/tools/ats/report_dummy.html" tofile="${publish.dir}/ats_reports/index.html" failonerror="false"/>
     </target>
 
     <!-- TODO: Make this work for package builds once we have sysmodel story worked out -->
@@ -766,13 +764,13 @@
     
     <target name="sf-check-missing-os-files" depends="sf-compile-options">
         <hlm:argSet id="sbs.check.tools.var">
-                <hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />
-                <hlm:arg name="run-check" value="true" />
+            <hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />
+            <hlm:arg name="run-check" value="true" />
         </hlm:argSet>
      
         <hlm:argSet id="sbs.check.main.var">
-                <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-                <hlm:arg name="run-check" value="true" />
+            <hlm:arg name="config" value="${sf.spec.sbs.config}" />
+            <hlm:arg name="run-check" value="true" />
         </hlm:argSet>     
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
             <param name="build.system" value="${sf.spec.build.system}" />
@@ -787,7 +785,7 @@
           <then>
             <for list="${sf.spec.sbs.config}" delimiter="," param="sf.spec.check.splitconfig">
               <sequential>
-        				<echo message="INFO [Iterative check] @{sf.spec.check.splitconfig}"/>
+                <echo message="INFO [Iterative check] @{sf.spec.check.splitconfig}"/>
                 <hlm:argSet id="sbs.check.iterate.main.var">
                     <hlm:arg name="config" value="@{sf.spec.check.splitconfig}" />
                     <hlm:arg name="run-check" value="true" />
@@ -802,11 +800,11 @@
                     <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
                     <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
                 </antcall>
-      				</sequential>
-      			</for>	
-      		</then>		
-        <else>
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+              </sequential>
+            </for>
+          </then>
+          <else>
+          <antcall target="compile-main" inheritAll="false" inheritRefs="true">
             <param name="build.system" value="${sf.spec.build.system}" />
             <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
             <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
@@ -814,9 +812,9 @@
             <reference refid="sbs.check.main.var" torefid="sbs.var" />
             <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
             <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
-        </antcall>
+          </antcall>
         </else>
-        </if> 
+      </if> 
     </target>
 
     <target name="sf-check-missing-s60-files" depends="sf-compile-options">
@@ -866,13 +864,12 @@
             <then>
                 <echo message="INFO Packaging Binaries"/>
                 <runtarget target="sf-package-binary"/>
-<!--                <runtarget target="sf-package-tools"/> -->
 
                 <echo message="INFO Validate Zip files"/>
                 <runtarget target="sf-package-validate"/>
             </then>
         </if>
-		<runtarget target="sf-merge-brag"/>
+        <runtarget target="sf-merge-brag"/>
         <runtarget target="sf-zip-logs"/>
                 
         <if>
