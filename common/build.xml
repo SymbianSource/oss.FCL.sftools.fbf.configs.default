@@ -334,13 +334,13 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     
     <target name="sf-get-utils">
     	<stopwatch name="sf-get-utils"/>
-			<echo message="Cloning utilities repository to ${build.drive}/utilities"/>
-            <exec executable="hg">
-              <arg value="clone"/>
-              <arg value="-rdefault"/>
-              <arg value="http://developer.symbian.org/oss/MCL/sftools/fbf/utilities"/>
-              <arg value="${build.drive}/utilities"/>
-            </exec>
+        <echo message="Cloning utilities repository to ${build.drive}/utilities"/>
+        <exec executable="hg">
+            <arg value="clone"/>
+            <arg value="-rdefault"/>
+            <arg value="http://developer.symbian.org/oss/MCL/sftools/fbf/utilities"/>
+            <arg value="${build.drive}/utilities"/>
+        </exec>
     	<stopwatch name="sf-get-utils" action="elapsed"/>
     </target>
 
