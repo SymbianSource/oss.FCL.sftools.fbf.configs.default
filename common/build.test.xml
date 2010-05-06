@@ -208,13 +208,23 @@
         </exec>
     </target>
     
-	<target name="sf-start-ats">
-    <if><available file="${ats.drive}/start.cmd"/>        
-    <then>
-        <exec executable="start.cmd" dir="${ats.drive}" spawn="true" failonerror="false"/>
-        <echo message="Waiting for 10 seconds to start the ATS Worker......."/>
-        <sleep seconds="10"/>
-    </then>
-    </if>
+    <target name="sf-start-ats">
+        <if><available file="${ats.drive}/start.cmd"/>        
+            <then>
+                <forget>
+                    <exec executable="cmd" dir="${ats.drive}" failonerror="true">
+                        <arg value="/c"/>
+                        <arg value="start"/>
+                        <arg value='"ATS3 STAF"'/>
+                        <arg value="/D"/>
+                        <arg value="."/>
+                        <arg value="/MAX"/>
+                        <arg value="run.cmd"/>
+                    </exec>
+                </forget>
+                <echo message="Waiting for 10 seconds for the ATS Worker to start......."/>
+                <sleep seconds="10"/>
+            </then>
+        </if>
     </target> 
 </project>
