@@ -7,7 +7,7 @@
 
 	<#list data["//unit/@bldFile/.."] as unit>
           <#if (unit.@bldFile=="/sf/mw/qt/src/s60installs/deviceconfiguration")>
-                <echo>INFO: Building qmake for ${unit.@bldFile}</echo>
+                <echo>INFO: Building and configuring qmake for ${unit.@bldFile}</echo>
                 <if>
                     <available file="${r'$'}{build.drive}/${unit.@bldFile}" type="dir"/>
                     <then>
@@ -24,7 +24,28 @@
 	      </#if>
     </#list>			
 			</sequential>
-	
+
+	        <sequential>
+
+	<#list data["//unit/@bldFile/.."] as unit>
+          <#if (unit.@bldFile=="/sf/mw/qtextensions/group")>
+                <echo>INFO: Configuring qtextensions for ${unit.@bldFile}</echo>
+                <if>
+                    <available file="${r'$'}{build.drive}/${unit.@bldFile}" type="dir"/>
+                    <then>
+                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
+                            <arg value="/C"/>
+                            <arg line="sbs -c tools2 -j 4 --logfile=${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_qtextensions.log"/>
+                        </exec>
+                    </then>
+                    <else>
+                       <echo message="ERROR: Directory ${r'$'}{build.drive}/${unit.@bldFile} doesn't exist."/>
+                    </else>
+                </if>          
+	      </#if>
+    </#list>			
+			</sequential>
+			
             <sequential>
     <#list data["//unit/@proFile/.."] as unit>
           <#if (unit.@proFile=="hb.pro")>
