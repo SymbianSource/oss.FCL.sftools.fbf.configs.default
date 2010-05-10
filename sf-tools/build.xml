@@ -101,6 +101,12 @@
         <arg value="epoc32\"/>
     </exec>
 
+	<!--  create a manifest. Currently just list of all files in the archive -->
+    <exec executable="7z" dir="${build.drive}" output="${build.log.dir}/manifest_${build.id}_binaries_${sf.spec.job.name}.log">
+        <arg value="l"/>
+        <arg value="${build.drive}/output/zips/release/binaries_${sf.spec.job.name}.zip"/>
+	</exec>
+
     <antcall target="sf-zip-content">
         <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
         <param name="zip.target.name" value="bin-${sf.spec.job.name}-metadata" />
