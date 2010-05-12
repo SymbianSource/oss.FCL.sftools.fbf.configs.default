@@ -22,11 +22,23 @@
   
   <!-- compile sbs.tools.config and sbs.config. tools built only if its not being unpacked first.
        note: must be called from sf-os/s60-compile targets, as sys model input needed -->
-  <target name="sf-do-compile" depends="sf-do-full-export">
+  <target name="sf-do-compile" depends="create-canonical-sysdef-file">
     <echo message="INFO Using Helium 7+ for sf-do-compile"/>
-        
+    
     <propertyregex property="sf.unpack.tools" override="true" input="${sf.spec.baseline.getenv_options}" regexp="-i tools" select="true" defaultValue="false" casesensitive="false"/>
-  
+
+    <!-- explicitly run qmake once, as iterative build will repeat the step. if qmake is not unpacked already, then this step is skipped  -->
+    <antcall target="run-qmake" inheritAll="false" inheritRefs="true">
+      <param name="qmake.enabled" value="true"/>
+      <param name="sysdef.configuration" value="${sysdef.configurations.list}"/>
+    </antcall>
+
+
+    <!-- perform initial exports -->
+    <antcall target="sf-do-full-export" inheritAll="false" inheritRefs="true">
+        <param name="sf.export.stage.name" value="full_export"/>
+    </antcall>	  
+	
     <if> <!-- If tools baseline unpack has not been specified, or its not a "fast" build then try to build them -->
       <or>
         <isfalse value="${sf.unpack.tools}"/>
@@ -39,14 +51,13 @@
         <!-- sf.spec.sbs.tools.config param used. do-target-build will decide to build sequentially/together -->
         <antcall target="sf-do-target-compile" inheritAll="false" inheritRefs="true">
             <param name="i.sf.spec.sbs.config" value="${sf.spec.sbs.tools.config}" />           
-            <param name="qmake.enabled"        value="false"/> <!-- ensure qmake is not run, before its available -->
         </antcall>
       </then>
       <else>
         <echo message="INFO Skipping tools build, tools were unpacked from ${sf.spec.baseline.location}"/>        
       </else>
       </if>
-      
+      	  	  
       <!-- sf.spec.sbs.config param used. do-target-build will decide to build sequentially/together -->
       <antcall target="sf-do-target-compile" inheritAll="false" inheritRefs="true">
           <param name="i.sf.spec.sbs.config" value="${sf.spec.sbs.config}" />
@@ -63,8 +74,8 @@
             <arg line="-k" />
             <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
             <arg line="-t ${sf.spec.sbs.retry.limit}"/>
-            <arg name="--logfile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_full_export.log" />
-            <arg name="--makefile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_full_export_Makefile" />
+            <arg name="--logfile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_${sf.export.stage.name}.log" />
+            <arg name="--makefile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_${sf.export.stage.name}_Makefile" />
             <arg line="--export-only"/>
         </sbsOptions>
     </hlm:sbsinput>
@@ -74,7 +85,6 @@
     <antcall target="compile-main" inheritAll="false" inheritRefs="true">
         <param name="build.system" value="${sf.spec.build.system}" />
         <param name="sbs.inputs.list" value="sf.export"/>
-        <param name="qmake.enabled"   value="false"/> <!-- ensure qmake is not run, before its available -->
     </antcall> 
   </target>
 

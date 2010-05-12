@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SF-POSTBUILD" xmlns:hlm="http://www.nokia.com/helium">
-    <target name="sf-postbuild">
+    <target name="sf-postbuild" depends="sf-build-roms">
         <stopwatch name="sf-postbuild"/>
         <echo>[SF-POSTBUILD]</echo>
         
@@ -911,4 +911,14 @@
         </copy>
     </target>
 
+    <target name="sf-build-roms">
+        <if>
+            <istrue value="${sf.spec.referenceroms.createimages.enable}" />
+            <then>
+                <echo message="INFO Building iMaker configurations"/>
+                <runtarget target="build-roms"/>
+            </then>
+        </if>    
+    </target>
+    
 </project>
