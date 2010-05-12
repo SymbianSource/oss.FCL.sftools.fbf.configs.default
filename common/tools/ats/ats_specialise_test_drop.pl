@@ -141,8 +141,8 @@ $test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
 $test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
 # Insert the path to the ROM image
 if ($image_path) {
-    $test_drop->{'test'}->{'plan'}->[0]->{'flash'}->[0];
-    my $flash_params = $test_drop->{'test'}->{'plan'}->[0]->{'flash'};
+	$test_drop->{'test'}->{'plan'}->[0]->{'flash'}->[0];
+	my $flash_params = $test_drop->{'test'}->{'plan'}->[0]->{'flash'};
     $flash_params->[0] = { 'target-alias' => $test_target, 'images' => $image_path };
 }
 
