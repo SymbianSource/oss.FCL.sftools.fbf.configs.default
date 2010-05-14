@@ -247,6 +247,7 @@
                     <arg value="-x!epoc32\tools"/>
                     <arg value="-x!epoc32\data\buildinfo.txt"/>
                     <arg value="-x!epoc32\data\config\features.dat"/>
+                    <arg value="-x!epoc32\data\media"/> <!-- Files created when emulator is used to create comms database - not worth releasing-->
                     <arg value="-x!epoc32\build"/>
                     <arg value="-x!epoc32\release\armv5"/>
                     <arg value="-x!epoc32\release\winscw"/>
