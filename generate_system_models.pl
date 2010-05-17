@@ -103,6 +103,12 @@ for my $codeline (@codelines)
 		my $splitmodel_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\$codeline";
 		print "$splitmodel_cmd\n";
 		system($splitmodel_cmd);
+		if ($codeline eq 'symbian3') # also update CompilerCompatibility
+		{
+			my $splitmodel2_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\CompilerCompatibility";
+			print "$splitmodel2_cmd\n";
+			system($splitmodel2_cmd);
+		}
 		my $diff_cmd = "hg -R packages diff --stat";
 		print "$diff_cmd\n";
 		my @diff_output = `$diff_cmd`;
