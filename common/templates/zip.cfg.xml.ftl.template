@@ -118,7 +118,7 @@
 			</config>
 		</config>
 
-                <!-- For packaging tools builds such as "overlay", identified by sf.spec.job.name -->
+		<!-- For packaging tools builds such as "prebuilt", identified by sf.spec.job.name -->
 		<config name="bin-${sf.spec.job.name}-metadata" abstract="true">
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />
 			<set name="grace.filters" value="emu"/>
@@ -129,6 +129,7 @@
 			</config>
 		</config>
 
+		
 		<!-- "Null" info entries, which match no files, but do populate the release_metadata.xml -->
 		<config name="info-just-metadata" abstract="true">
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />

@@ -220,7 +220,7 @@
         </zip>
     </target>    
     
-    <target name="sf-package-binary" depends="sf-package-postbuild-rnd">
+    <target name="sf-package-binary" depends="sf-package-postbuild-rnd,sf-merge-manifest">
         <!-- Warning: Reverting to using the He zipper will also revert to a single zip for the binaries:
              would need to update the template and possibly the script that populates it -->
         <!--antcall target="sf-zip-content">
@@ -239,8 +239,9 @@
                 <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
                     <arg value="a"/>
                     <arg value="-t${sf.spec.package.zip.format}"/>
-                    <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                    <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/> <!-- rnd content taken from internal hg repos -->
                     <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                    <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/> <!-- merged list of prebuilt content such as binaries_prebuilt -->
                     <arg value="-x@${sf.epoc32.exclusions.file}"/>
                     <arg value="-x!epoc32\gcc"/>
                     <arg value="-x!epoc32\gcc_mingw"/>
@@ -265,6 +266,7 @@
                         <arg value="-t${sf.spec.package.zip.format}"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
                         <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                        <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                         <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
                     </exec>
@@ -288,6 +290,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
@@ -298,6 +301,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
@@ -309,6 +313,7 @@
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-ir!epoc32/release/winscw/*.lib"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_lib.zip"/>
             </exec>
@@ -318,6 +323,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
@@ -327,6 +333,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
@@ -336,6 +343,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-ir!epoc32/release/armv5/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
@@ -345,6 +353,7 @@
         </parallel>
         
         <runtarget target="sf-package-tools"/>
+        <runtarget target="sf-package-prebuilt"/>
         
         <!-- Generate release_metadata entries for the above zips -->
         <antcall target="sf-zip-content">
@@ -365,6 +374,7 @@
             <arg value="a"/>
             <arg value="-t${sf.spec.package.zip.format}"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+            <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
             <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/>
             <arg value="epoc32/tools"/>
@@ -390,6 +400,53 @@
         </exec>  
     </target>
 
+    <!-- merge manifests for prebuilt stuff delivered at the start of build process -->
+    <target name="sf-merge-manifest">
+      <echo message="INFO Build drive is ${build.drive} "/>
+      <concat destfile="${build.drive}\output\temp_build_files\manifest_excludelist.txt">
+        <fileset dir="${build.drive}" includes="*manifest*"/>
+      </concat>
+       
+       <!-- touch file to update/create it in the event that there are no manifest* files available 
+            as 7z will not be happy being given a non-existent file -->  
+      <touch file="${build.drive}\output\temp_build_files\manifest_excludelist.txt"/>
+    </target>
+
+    <target name="sf-package-prebuilt" depends="sf-merge-manifest">
+    <!-- for each prebuilt manifest* file, repackage -->  
+
+      <for param="manifest">
+        <path>
+          <fileset dir="${build.drive}\">
+            <include name="manifest*.txt"/>
+            <exclude name="manifest*restricted*.txt"/> <!-- dont repack restricted content such as testconfigfileparser -->
+          </fileset>
+        </path>
+        <!-- strip manifest_ and .txt extension for matched file -->
+        <sequential>
+        <propertyregex property="manifest.shortname" override="true" input="@{manifest}" regexp="manifest_(\S+)(.txt)" select="\1" global="true"  casesensitive="false"/>
+        <propertyregex property="manifest.fullname"  override="true" input="@{manifest}" regexp="(.*)" select="\1" global="true"  casesensitive="false"/>
+        <propertyregex property="manifest.pkgname"   override="true" input="@{manifest}" regexp="manifest_binaries_(\S+)(.txt)" select="\1" global="true"  casesensitive="false"/>
+
+        <echo message="INFO Packaging ${manifest.fullname} into ${manifest.shortname}.zip"/>
+
+        <exec executable="7za" dir="${build.drive}/" output="${build.drive}/zip_${manifest.shortname}.log">
+            <arg value="a"/>
+            <arg value="-t${sf.spec.package.zip.format}"/>
+            <arg value="-i@${manifest.fullname}"/>
+            <arg value="${build.drive}/output/zips/release/${manifest.shortname}.zip"/> 
+        </exec>
+
+        <!-- merge release metadata -->
+        <antcall target="sf-zip-content">
+            <param name="zip.config.file"  value="${temp.build.dir}/zip.cfg.xml.ftl"/>
+            <param name="zip.target.name"  value="bin-${manifest.pkgname}-metadata" />
+            <param name="sf.spec.job.name" value="${manifest.pkgname}" />
+        </antcall>
+        </sequential>  
+      </for>
+
+    </target>
     <!-- runs analysis of missing bins and source -->
     <target name="sf-run-analysis">
         <stopwatch name="sf-run-analysis"/>
