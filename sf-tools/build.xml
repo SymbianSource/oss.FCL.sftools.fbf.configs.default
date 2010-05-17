@@ -89,31 +89,38 @@
 
  </target>
 
- <target name="sf-package-binary">
+ <target name="sf-create-manifest">
+
+ <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
+   <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+   <propertyregex property="i.sf.spec.sbs.config.expanded.logname" override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace="_"    defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+   
+   <echo message="INFO Creating WHAT output for target : ${i.sf.spec.sbs.config.expanded}"/>
+   <echo message="INFO Logname: ${i.sf.spec.sbs.config.expanded.logname} + Config: ${sf.spec.sysdef.configurations.list}"/>
+   
+   <!-- define sbs args, log name etc -->
+   <exec executable="cmd" dir="${build.drive}" failonerror="false" output="${build.drive}/manifest_binaries_${sf.spec.job.name}.txt">
+            <arg line="/c sbs.bat"/>
+            <arg line="-c ${i.sf.spec.sbs.config.expanded}"/>
+            <arg line="-s ${build.drive}\output\build\canonical_system_definition.xml"/>
+            <arg line="${sf.spec.sbs.options}"/>
+            <arg line="--what"/>
+            <!-- output only what is found on disk -->
+            <arg line=" | perl -pe &quot;while ($line=&lt;STDIN&gt;) { my $orig =$line; chomp $line; print $orig if (-e &quot;$line&quot;); };&quot;"/>
+            <arg line=" | perl -pe &quot;s/^${build.drive}\\//; s/\\/\//g; &quot;"/> <!-- remove drive and backslash to fwdslash-->
+            <arg line=" | findstr /B /V tools"/> <!-- ignore raptor exports into root of drive-->
+   </exec>
+
+   </target>
+ 
+ <target name="sf-package-binary" depends="sf-create-manifest">
 
     <exec executable="7z" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_${sf.spec.job.name}.log">
         <arg value="a"/>
         <arg value="-t${sf.spec.package.zip.format}"/>
-        <arg value="-x@${build.log.dir}/listdir_${build.id}_bootstrap.log"/>
-        <arg value="-x!epoc32\build"/>
-        <arg value="-x!sf"/>
+        <arg value="-i@${build.drive}/manifest_binaries_${sf.spec.job.name}.txt"/>
         <arg value="${build.drive}/output/zips/release/binaries_${sf.spec.job.name}.zip"/>
-        <arg value="epoc32\"/>
-    </exec>
-
-    <!--  create a manifest in the root of the build drive -->
-    <exec executable="perl" dir="${build.drive}" output="${build.log.dir}/manifest_binaries_${sf.spec.job.name}.txt">
-        <arg value="${sf.common.config.dir}/tools/7z_list_to_manifest.pl"/>
-        <arg value="${build.drive}\output\zips\release\binaries_${sf.spec.job.name}.zip"/>
-        <arg value="-z"/>
-    </exec>
-
-    <!--  add manifest to zip and update release meta data -->
-    <exec executable="7z" dir="${build.drive}">
-        <arg value="a"/>
-        <arg value="-t${sf.spec.package.zip.format}"/>
-        <arg value="${build.drive}/output/zips/release/binaries_${sf.spec.job.name}.zip"/>
-        <arg value="${build.log.dir}/manifest_binaries_${sf.spec.job.name}.txt"/>
+        <arg value="manifest_binaries_${sf.spec.job.name}.txt"/>
     </exec>
 
     <antcall target="sf-zip-content">
