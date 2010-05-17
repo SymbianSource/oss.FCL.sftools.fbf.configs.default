@@ -337,7 +337,8 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <echo message="Cloning utilities repository to ${build.drive}/utilities"/>
         <exec executable="hg">
             <arg value="clone"/>
-            <arg value="-rdefault"/>
+            <arg value="--updaterev"/>
+            <arg value="default"/>
             <arg value="http://developer.symbian.org/oss/MCL/sftools/fbf/utilities"/>
             <arg value="${build.drive}/utilities"/>
         </exec>
