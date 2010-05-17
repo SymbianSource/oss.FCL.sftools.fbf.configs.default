@@ -34,6 +34,9 @@ for my $codeline (@codelines)
 
 	# Full model in schema 3.0.0 format, including all of the test units.
 	print "\n\n### GENERATE FULL MODEL ###\n";
+	my $updatehifi_cmd = "hg -R packages update -r HighFidelityModel";
+	print "$updatehifi_cmd\n";
+	system($updatehifi_cmd);
 	my $full_cmd = "$XALAN_C -o $codeline\\full_system_model_3.0.xml $ROOT_SYSDEF $SYSDEFTOOLS_PATH\\joinsysdef.xsl";
 	print "$full_cmd\n";
 	system($full_cmd);
@@ -91,6 +94,30 @@ for my $codeline (@codelines)
 		system("hg -R platforms add");
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
 		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
+		
+		# Split model into package models
+		print "\n\n### SPLIT MODEL INTO PACKAGE MODELS ###\n";
+		my $updatedefault_cmd = "hg -R packages update -r default";
+		print "$updatedefault_cmd\n";
+		system($updatedefault_cmd);
+		my $splitmodel_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\$codeline";
+		print "$splitmodel_cmd\n";
+		system($splitmodel_cmd);
+		my $diff_cmd = "hg -R packages diff --stat";
+		print "$diff_cmd\n";
+		my @diff_output = `$diff_cmd`;
+		if (@diff_output)
+		{
+			my $add_cmd = "hg -R packages add";
+			print "$add_cmd\n";
+			system($add_cmd);
+			my $commit_cmd = "hg -R packages commit -m \"Update package models from auto generated system model (packages\@$changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"";
+			print "$commit_cmd\n";
+			system($commit_cmd);
+			my $push_cmd = "hg -R packages push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/packages";
+			print "$push_cmd\n";
+			system($push_cmd);
+		}
 	}
 }
 
