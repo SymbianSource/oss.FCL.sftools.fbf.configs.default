@@ -19,11 +19,24 @@
 	<xsl:variable name="unknownCount" select="count(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/failure)+sum(phase/step/failures[@level!='critical' and @level!='major' and @level!='minor']/@count)"/>
 
 	<h2>
-	Overall BRAGG staus: 
+	Build BRAG status: 
 	<xsl:choose>
 		<xsl:when test="$criticalCount != 0">RED</xsl:when>
 		<xsl:when test="$majorCount != 0">AMBER</xsl:when>
 		<xsl:when test="$unknownCount != 0">AMBER</xsl:when>
+		<xsl:otherwise>GREEN</xsl:otherwise>
+	</xsl:choose>
+	</h2>
+
+	<xsl:variable name="totalCount" select="sum(phase/step/nestedtests[@property='total']/@count)"/>
+	<xsl:variable name="failedCount" select="sum(phase/step/nestedtests[@property='failed']/@count)"/>
+	<xsl:variable name="failRate" select="($failedCount div $totalCount)*100"/>
+	<h2>
+	Test BRAG status:
+	<xsl:choose>
+		<xsl:when test="$totalCount = 0">N/A</xsl:when>
+		<xsl:when test="$failRate > 50">RED</xsl:when>
+		<xsl:when test="$failedCount > 0">AMBER</xsl:when>
 		<xsl:otherwise>GREEN</xsl:otherwise>
 	</xsl:choose>
 	</h2>
@@ -41,39 +54,70 @@
 	<table border="1">
 
 	<xsl:for-each select="phase">
-		<tr>
-		<th colspan='2'>Phase: <xsl:value-of select="@name"/></th>
-		</tr>
-		<xsl:for-each select="step">
+		<xsl:if test="step/failures">
 			<tr>
-			<xsl:choose>
-			<xsl:when test="@detailshref">
-			<td colspan='2'>Step: <a><xsl:attribute name="href"><xsl:value-of select="@detailshref"/></xsl:attribute><xsl:value-of select="@name"/></a></td>
-			</xsl:when>
-			<xsl:otherwise>
-			<td colspan='2'>Step: <xsl:value-of select="@name"/></td>
-			</xsl:otherwise>
-			</xsl:choose>
+			<th colspan='2'>Phase: <xsl:value-of select="@name"/></th>
 			</tr>
-			<xsl:for-each select="failures">
+			<xsl:for-each select="step">
 				<tr>
-				<td>Failures: <xsl:value-of select="@level"/></td>
-				
 				<xsl:choose>
-				<xsl:when test="@count">
-				<td>Number: <xsl:value-of select="@count"/></td>
+				<xsl:when test="@detailshref">
+				<td colspan='2'>Step: <a><xsl:attribute name="href"><xsl:value-of select="@detailshref"/></xsl:attribute><xsl:value-of select="@name"/></a></td>
 				</xsl:when>
 				<xsl:otherwise>
-				<td>Number: <xsl:value-of select="count(failure)"/></td>
+				<td colspan='2'>Step: <xsl:value-of select="@name"/></td>
 				</xsl:otherwise>
 				</xsl:choose>
 				</tr>
+				<xsl:for-each select="failures">
+					<tr>
+					<td>Failures: <xsl:value-of select="@level"/></td>
+					
+					<xsl:choose>
+					<xsl:when test="@count">
+					<td>Number: <xsl:value-of select="@count"/></td>
+					</xsl:when>
+					<xsl:otherwise>
+					<td>Number: <xsl:value-of select="count(failure)"/></td>
+					</xsl:otherwise>
+					</xsl:choose>
+					</tr>
+				</xsl:for-each>
 			</xsl:for-each>
-		</xsl:for-each>
+		</xsl:if>
 	</xsl:for-each>
 
 	</table>
 
+	<br/>
+	<table border="1">
+	<xsl:for-each select="phase">
+		<xsl:if test="step/nestedtests">
+			<tr>
+			<th colspan='2'>Phase: <xsl:value-of select="@name"/></th>
+			</tr>
+			<xsl:for-each select="step">
+				<tr>
+				<xsl:choose>
+				<xsl:when test="@detailshref">
+				<td colspan='2'>Step: <a><xsl:attribute name="href"><xsl:value-of select="@detailshref"/></xsl:attribute><xsl:value-of select="@name"/></a></td>
+				</xsl:when>
+				<xsl:otherwise>
+				<td colspan='2'>Step: <xsl:value-of select="@name"/></td>
+				</xsl:otherwise>
+				</xsl:choose>
+				</tr>
+				<xsl:for-each select="nestedtests">
+					<tr>
+					<td>Tests: <xsl:value-of select="@property"/></td>
+					<td>Number: <xsl:value-of select="@count"/></td>
+					</tr>
+				</xsl:for-each>
+			</xsl:for-each>
+		</xsl:if>
+	</xsl:for-each>
+	</table>
+	
 	<h2>Floating failures by phase/step/severity</h2>
 	<xsl:if test="count(phase/step/failures/failure/@package) = count(phase/step/failures/failure)">
 		<p>No failures to show. Please also check the <a href="../html/index.html">Raptor build summary</a> for details on that part of the build</p>
