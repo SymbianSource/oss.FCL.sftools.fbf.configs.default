@@ -236,7 +236,7 @@
                     </then>
                 </if>
                 <property name="sf.epoc32.exclusions.file" value="nul:"/>
-                <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
+                <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_epoc32.log">
                     <arg value="a"/>
                     <arg value="-t${sf.spec.package.zip.format}"/>
                     <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/> <!-- rnd content taken from internal hg repos -->
@@ -261,7 +261,7 @@
             <if>
                 <isset property="sf.sdk.header.list.file"/>
                 <then>
-                    <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_sdk.log">
+                    <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_sdk.log">
                         <arg value="a"/>
                         <arg value="-t${sf.spec.package.zip.format}"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
@@ -286,7 +286,7 @@
             </if>
             
             <!-- WinsCW binaries, by udeb/urel/lib -->
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_udeb.log">
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_winscw_udeb.log">
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
@@ -297,7 +297,7 @@
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_udeb.zip"/>
                 <arg value="epoc32\release\winscw\udeb"/>
             </exec>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_urel.log">
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_winscw_urel.log">
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
@@ -308,7 +308,7 @@
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_urel.zip"/>
                 <arg value="epoc32\release\winscw\urel"/>
             </exec>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_winscw_lib.log">
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_winscw_lib.log">
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-ir!epoc32/release/winscw/*.lib"/>
@@ -319,7 +319,7 @@
             </exec>
             
             <!-- ARMv5 binaries, by udeb/urel/lib -->
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_udeb.log">
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_armv5_udeb.log">
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
@@ -329,7 +329,7 @@
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
                 <arg value="epoc32\release\armv5\udeb"/>
             </exec>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_urel.log">
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_armv5_urel.log">
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
@@ -339,7 +339,7 @@
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
                 <arg value="epoc32\release\armv5\urel"/>
             </exec>
-            <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_binaries_armv5_lib.log">
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_armv5_lib.log">
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
@@ -370,11 +370,11 @@
     </target>
 
     <target name="sf-package-tools" depends="sf-merge-manifest">
-        <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
+        <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
             <arg value="a"/>
             <arg value="-t${sf.spec.package.zip.format}"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-            <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
+            <arg value="-x@/output/temp_build_files/manifest_excludelist.txt"/>
             <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/>
             <arg value="epoc32/tools"/>
@@ -404,7 +404,7 @@
     <target name="sf-merge-manifest">
       <echo message="INFO Build drive is ${build.drive} "/>
       <concat destfile="${build.drive}\output\temp_build_files\manifest_excludelist.txt">
-        <fileset dir="${build.drive}" includes="*manifest*"/>
+        <fileset dir="${build.drive}" includes="*manifest*" excludes="manifest_excludelist.txt"/>
       </concat>
        
        <!-- touch file to update/create it in the event that there are no manifest* files available 
