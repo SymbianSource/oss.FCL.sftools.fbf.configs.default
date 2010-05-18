@@ -10,6 +10,9 @@ chdir("tmp");
 
 print "\n\n### CLONE MCL/sftools/fbf/projects/packages REPO ###\n";
 system("hg clone http://developer.symbian.org/oss/MCL/sftools/fbf/projects/packages");
+my $updatehifi_cmd = "hg -R packages update -r HighFidelityModel";
+print "$updatehifi_cmd\n";
+system($updatehifi_cmd);
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
 my $timestamp = sprintf "%4d%02d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min,$sec;
 #print "\n\n### CLONE MCL/sf/os/buildtools REPO ###\n";
@@ -59,53 +62,27 @@ for my $codeline (@codelines)
 	system($downgrade_cmd);
 
 	print "\n\n### PUSH TO PLATFORMS REPOSITORY (auto) ###\n";
-	my $isdifferent = 1;
-	#compare to latest
-	if (-d "platforms\\$codeline\\single\\sysdefs\\auto")
+	mkdir("platforms\\$codeline") if (!-d "platforms\\$codeline");
+	mkdir("platforms\\$codeline\\single") if (!-d "platforms\\$codeline\\single");
+	mkdir("platforms\\$codeline\\single\\sysdefs") if (!-d "platforms\\$codeline\\single\\sysdefs");
+	my $updatesysdef_cmd = "copy /Y $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\system_model.xml";
+	print "$updatesysdef_cmd\n";
+	system($updatesysdef_cmd);
+	my $diff_cmd = "hg -R platforms diff --stat";
+	print "$diff_cmd\n";
+	my @diff_output = `$diff_cmd`;
+	if (@diff_output)
 	{
-		opendir(DIR, "platforms\\$codeline\\single\\sysdefs\\auto");
-		my @files = grep(($_ !~ /^\.\.?$/ and $_ =~ /^model_/), readdir(DIR));
-		@files = sort { $b cmp $a } @files;
-		close(DIR);
-		
-		my $mostrecent = shift @files;
-		print "mostrecent $mostrecent\n";
-		
-		#compare
-		my $file1 = '';
-		my $file2 = '';
-		{
-			local $/ = undef;
-			open(FILE1, "platforms\\$codeline\\single\\sysdefs\\auto\\$mostrecent");
-			{
-				$file1 = <FILE1>;
-			}
-			close(FILE1);
-			open(FILE2, "$codeline\\system_model.xml");
-			{
-				$file2 = <FILE2>;
-			}
-			close(FILE2);
-		}
-		$isdifferent = 0 if ($file1 eq $file2);
-	}
-	if ($isdifferent)
-	{
-		mkdir("platforms\\$codeline") if (!-d "platforms\\$codeline");
-		mkdir("platforms\\$codeline\\single") if (!-d "platforms\\$codeline\\single");
-		mkdir("platforms\\$codeline\\single\\sysdefs") if (!-d "platforms\\$codeline\\single\\sysdefs");
-		mkdir("platforms\\$codeline\\single\\sysdefs\\auto") if (!-d "platforms\\$codeline\\single\\sysdefs\\auto");
-		system("copy $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\auto\\model_$timestamp\_$packages_changeset.xml");
-		system("hg -R platforms add");
+		system("hg -R platforms add"); # just in case this is a new platform
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
-		#system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
+		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
 		
 		# Split model into package models
 		print "\n\n### SPLIT MODEL INTO PACKAGE MODELS ###\n";
 		my $updatedefault_cmd = "hg -R packages update -r default";
 		print "$updatedefault_cmd\n";
 		system($updatedefault_cmd);
-		my $rmdir_cmd = "del /S packages\\symbian3\\package_definition.xml";
+		my $rmdir_cmd = "del /S packages\\symbian3\\package_definition.xml >nul";
 		print "$rmdir_cmd\n";
 		system($rmdir_cmd);
 		my $splitmodel_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\$codeline";
@@ -113,7 +90,7 @@ for my $codeline (@codelines)
 		system($splitmodel_cmd);
 		if ($codeline eq 'symbian3') # also update CompilerCompatibility
 		{
-			my $rmdir2_cmd = "del /S  packages\\CompilerCompatibility\\package_definition.xml";
+			my $rmdir2_cmd = "del /S  packages\\CompilerCompatibility\\package_definition.xml >nul";
 			print "$rmdir2_cmd\n";
 			system($rmdir2_cmd);
 			my $splitmodel2_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\CompilerCompatibility";
@@ -133,7 +110,7 @@ for my $codeline (@codelines)
 			system($commit_cmd);
 			my $push_cmd = "hg -R packages push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/packages";
 			print "$push_cmd\n";
-			#system($push_cmd);
+			system($push_cmd);
 		}
 	}
 }
