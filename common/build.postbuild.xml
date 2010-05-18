@@ -241,7 +241,7 @@
                     <arg value="-t${sf.spec.package.zip.format}"/>
                     <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/> <!-- rnd content taken from internal hg repos -->
                     <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
-                    <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/> <!-- merged list of prebuilt content such as binaries_prebuilt -->
+                    <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/> <!-- merged list of prebuilt content such as binaries_prebuilt -->
                     <arg value="-x@${sf.epoc32.exclusions.file}"/>
                     <arg value="-x!epoc32\gcc"/>
                     <arg value="-x!epoc32\gcc_mingw"/>
@@ -266,7 +266,7 @@
                         <arg value="-t${sf.spec.package.zip.format}"/>
                         <arg value="-i@${sf.sdk.header.list.file}"/>
                         <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                        <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                        <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                         <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
                     </exec>
@@ -290,7 +290,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
@@ -301,7 +301,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-xr!*.lib"/>
@@ -313,7 +313,7 @@
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-ir!epoc32/release/winscw/*.lib"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="${build.drive}/output/zips/release/binaries_winscw_lib.zip"/>
             </exec>
@@ -323,7 +323,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_udeb.zip"/>
@@ -333,7 +333,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_urel.zip"/>
@@ -343,7 +343,7 @@
                 <arg value="a"/>
                 <arg value="-t${sf.spec.package.zip.format}"/>
                 <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-                <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                 <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
                 <arg value="-xr!*.sym"/>
                 <arg value="-ir!epoc32/release/armv5/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
@@ -369,12 +369,12 @@
         </antcall>
     </target>
 
-    <target name="sf-package-tools" >
+    <target name="sf-package-tools" depends="sf-merge-manifest">
         <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/zip_${build.id}_tools_epoc32.log">
             <arg value="a"/>
             <arg value="-t${sf.spec.package.zip.format}"/>
             <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
-            <arg value="-x@$output/temp_build_files/manifest_excludelist.txt"/>
+            <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
             <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
             <arg value="${build.drive}/output/zips/release/tools_epoc.zip"/>
             <arg value="epoc32/tools"/>
