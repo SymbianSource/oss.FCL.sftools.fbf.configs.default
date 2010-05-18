@@ -1,0 +1,57 @@
+<test-report>
+  <name>Smoketest</name>
+  <date>06-05-2010</date>
+  <baseline>PDK_3.0.h</baseline>
+  <target>Syborg</target> <!-- Winscw, Syborg, Zoom2 -->
+  <tester></tester>
+  <test-set id="">
+    <test-case id="1">
+      <priority>1</priority>
+      <title>Boot to standby screen without errors</title>
+      <description></description>
+      <result>NOT RUN</result> <!-- PASSED, FAILED or NOT RUN -->
+      <bugid></bugid>
+      <comment></comment>
+    </test-case>
+    <test-case id="2">
+      <priority>1</priority>
+      <title>Play MPEG-3 audio file</title>
+      <description></description>
+      <result>NOT RUN</result>
+      <bugid></bugid>
+      <comment></comment>
+    </test-case>
+    <test-case id="3">
+      <priority>1</priority>
+      <title>Play MPEG-4 video with sound</title>
+      <description></description>
+      <result>NOT RUN</result>
+      <bugid></bugid>
+      <comment></comment>
+    </test-case>
+    <test-case id="4">
+      <priority>1</priority>
+      <title>View complex website (symbian.org)</title>
+      <description></description>
+      <result>NOT RUN</result>
+      <bugid></bugid>
+      <comment></comment>
+    </test-case>
+    <test-case id="5">
+      <priority>1</priority>
+      <title>Receive phone call</title>
+      <description></description>
+      <result>NOT RUN</result>
+      <bugid></bugid>
+      <comment></comment>
+    </test-case>
+    <test-case id="6">
+      <priority>1</priority>
+      <title>Make phone call</title>
+      <description></description>
+      <result>NOT RUN</result>
+      <bugid></bugid>
+      <comment></comment>
+    </test-case>
+  </test-set>
+</test-report>
