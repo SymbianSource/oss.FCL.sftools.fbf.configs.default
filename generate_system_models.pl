@@ -82,7 +82,7 @@ for my $codeline (@codelines)
 		my $updatedefault_cmd = "hg -R packages update -r default";
 		print "$updatedefault_cmd\n";
 		system($updatedefault_cmd);
-		my $rmdir_cmd = "del /S packages\\symbian3\\package_definition.xml >nul";
+		my $rmdir_cmd = "del /S packages\\$codeline\\package_definition.xml >nul";
 		print "$rmdir_cmd\n";
 		system($rmdir_cmd);
 		my $splitmodel_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\$codeline";
