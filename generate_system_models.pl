@@ -36,7 +36,7 @@ for my $codeline (@codelines)
 
 	# Full model in schema 3.0.0 format, including all of the test units.
 	print "\n\n### GENERATE FULL MODEL ###\n";
-	my $updatehifi_cmd = "hg -R packages update -r HighFidelityModel";
+	my $updatehifi_cmd = "hg -R packages update -r HighFidelityModel -C";
 	print "$updatehifi_cmd\n";
 	system($updatehifi_cmd);
 	if (!$packages_changeset)
