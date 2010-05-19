@@ -68,12 +68,12 @@ for my $codeline (@codelines)
 	my $updatesysdef_cmd = "copy /Y $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\system_model.xml";
 	print "$updatesysdef_cmd\n";
 	system($updatesysdef_cmd);
+	system("hg -R platforms add"); # just in case this is a new platform
 	my $diff_cmd = "hg -R platforms diff --stat";
 	print "$diff_cmd\n";
 	my @diff_output = `$diff_cmd`;
 	if (@diff_output)
 	{
-		system("hg -R platforms add"); # just in case this is a new platform
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
 		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
 		
@@ -97,14 +97,14 @@ for my $codeline (@codelines)
 			print "$splitmodel2_cmd\n";
 			system($splitmodel2_cmd);
 		}
+		my $addremove_cmd = "hg -R packages addremove";
+		print "$addremove_cmd\n";
+		system($addremove_cmd);
 		my $diff_cmd = "hg -R packages diff --stat";
 		print "$diff_cmd\n";
 		my @diff_output = `$diff_cmd`;
 		if (@diff_output)
 		{
-			my $addremove_cmd = "hg -R packages addremove";
-			print "$addremove_cmd\n";
-			system($addremove_cmd);
 			my $commit_cmd = "hg -R packages commit -m \"Update package models from auto generated system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"";
 			print "$commit_cmd\n";
 			system($commit_cmd);
