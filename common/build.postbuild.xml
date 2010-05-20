@@ -492,6 +492,7 @@
         <arg value="--basedir=${build.log.dir}"/>
         <fileset dir="${build.log.dir}">
           <include name="*_compile.log"/>
+          <include name="*_export.log"/>  <!-- for explicit export step -->
           <exclude name="*build_check_compile.log"/>
         </fileset>
       </apply>
