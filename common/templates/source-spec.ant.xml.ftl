@@ -51,7 +51,7 @@
                     <arg value="id"/>
                     <arg value="${dollar}{sources.${count}.URL}"/>
                     <arg value="-r"/>
-                    <arg value="${pkg_detail.pattern}"/>
+                    <arg value="${dollar}{sources.${count}.revision}"/>
                     <arg value="-q"/>
                 </exec>
                 <loadfile property="sf.sourcesync.${count}.checksum" srcFile="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum"/>
