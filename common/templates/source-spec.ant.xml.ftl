@@ -17,6 +17,19 @@
 <#list data as csv_file>
   <#list csv_file as pkg_detail>
     <target name="sf-prebuild-${count}">
+    	
+    	<!-- if defined the revision override take that as revision and change the url to point to FCL -->
+    	<if>
+    		<not><equals arg1="${ant['sf.spec.sources.revision']}" arg2="" trim="true"/></not>
+    		<then>
+    			<property name="sources.${count}.revision" value="${ant['sf.spec.sources.revision']}"/>
+    			<propertyregex property="sources.${count}.URL" input="${pkg_detail.source}" regexp="/MCL/" casesensitive="false" replace="/FCL/"/>
+    		</then>
+    		<else>
+    			<property name="sources.${count}.revision" value="${pkg_detail.pattern}"/>
+    			<property name="sources.${count}.URL" value="${pkg_detail.source}"/>
+    		</else>
+    	</if>
         
         <!-- Create sf\layer dir on build dir -->
         <mkdir dir="${ant['build.drive']}${pkg_detail.dst}"/>
@@ -26,8 +39,8 @@
             <istrue value="${dollar}{sf.spec.sourcesync.usecache}"/>
             <then>
                 <!-- Work out cache location from source location -->
-                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^http://developer.symbian.org/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/Live/"/>
-                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${pkg_detail.source}" regexp="^${ant['sf.spec.sourcesync.local.development.area']}/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/LocalDev/"/>
+                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${dollar}{sources.${count}.URL}" regexp="^http://developer.symbian.org/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/Live/"/>
+                <propertyregex property="sf.spec.sourcesync.cachelocation.${count}" input="${dollar}{sources.${count}.URL}" regexp="^${ant['sf.spec.sourcesync.local.development.area']}/" casesensitive="false" replace="${dollar}{sf.spec.sourcesync.cachelocation.for.regex}/LocalDev/"/>
             </then>
         </if>
         
@@ -36,7 +49,7 @@
             <sequential>
                 <exec executable="hg" failonerror="true" output="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum" error="nul:">
                     <arg value="id"/>
-                    <arg value="${pkg_detail.source}"/>
+                    <arg value="${dollar}{sources.${count}.URL}"/>
                     <arg value="-r"/>
                     <arg value="${pkg_detail.pattern}"/>
                     <arg value="-q"/>
@@ -55,10 +68,10 @@
                 <!-- Package in cache already -->
                 <retry tries="3" uniquename="${count}" failonerror="0">
                     <sequential>
-                        <echo message="Pull from ${pkg_detail.source} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
+                        <echo message="Pull from ${dollar}{sources.${count}.URL} to ${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
                         <exec executable="hg" dir="${dollar}{sf.spec.sourcesync.cachelocation.${count}}" failonerror="true">
                             <arg value="pull"/>
-                            <arg value="${pkg_detail.source}"/>
+                            <arg value="${dollar}{sources.${count}.URL}"/>
                         </exec>
                         <property name="sf.spec.sourcesync.cache.pull.succeeded.${count}" value="1"/>
                     </sequential>
@@ -93,11 +106,11 @@
                         <!-- In the meantime, by-pass it for this build -->
                         <retry tries="30" uniquename="${count}">
                             <sequential>
-                                <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                                <echo message="Clone from ${dollar}{sources.${count}.URL} to ${ant['build.drive']}${pkg_detail.dst}"/>
                                 <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
                                     <arg value="clone"/>
                                     <arg value="-U"/>
-                                    <arg value="${pkg_detail.source}"/>
+                                    <arg value="${dollar}{sources.${count}.URL}"/>
                                     <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
                                 </exec>
                             </sequential>
@@ -118,11 +131,11 @@
                 <!-- Package not in cache, or cache not in use -->
                 <retry tries="10" uniquename="${count}">
                     <sequential>
-                        <echo message="Clone from ${pkg_detail.source} to ${ant['build.drive']}${pkg_detail.dst}"/>
+                        <echo message="Clone from ${dollar}{sources.${count}.URL} to ${ant['build.drive']}${pkg_detail.dst}"/>
                         <exec executable="hg" dir="${ant['build.drive']}/" failonerror="true">
                             <arg value="clone"/>
                             <arg value="-U"/>
-                            <arg value="${pkg_detail.source}"/>
+                            <arg value="${dollar}{sources.${count}.URL}"/>
                             <arg value="${ant['build.drive']}${pkg_detail.dst}"/>
                         </exec>
                     </sequential>
@@ -150,7 +163,7 @@
                                 <arg value="clone"/>
                                 <arg value="-r"/>
                                 <arg value="null"/>
-                                <arg value="${pkg_detail.source}"/>
+                                <arg value="${dollar}{sources.${count}.URL}"/>
                                 <arg value="${dollar}{sf.spec.sourcesync.cachelocation.${count}}"/>
                             </exec>
                             <!-- Set the speed-up flag on the cache repo -->
@@ -172,7 +185,7 @@
     
     <target name="sf-bom-info-${count}">
         <!-- record info on source code repo/rev in BOM file  -->
-        <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true" message="${pkg_detail.source},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}${dollar}{line.separator}"/>
+        <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true" message="${dollar}{sources.${count}.URL},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}${dollar}{line.separator}"/>
     </target>
     
     <target name="sf-bom-change-info-${count}">
@@ -185,7 +198,7 @@
             </then>
         </if>
         <echo message="Writing BOM changes since ${dollar}{sf.previous.pdk.tag} for ${pkg_detail.dst}" />
-        <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${pkg_detail.source}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
+        <echo file="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true" message="${dollar}{line.separator}${dollar}{sources.${count}.URL}${dollar}{line.separator}${pkg_detail.dst}${dollar}{line.separator}${dollar}{line.separator}" />
             <exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" output="${ant['build.drive']}/output/logs/BOM/changes.txt" append="true">
                 <arg value="log"/>
                 <arg value="-r"/>
