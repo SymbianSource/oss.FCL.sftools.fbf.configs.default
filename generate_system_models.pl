@@ -65,7 +65,8 @@ for my $codeline (@codelines)
 	mkdir("platforms\\$codeline") if (!-d "platforms\\$codeline");
 	mkdir("platforms\\$codeline\\single") if (!-d "platforms\\$codeline\\single");
 	mkdir("platforms\\$codeline\\single\\sysdefs") if (!-d "platforms\\$codeline\\single\\sysdefs");
-	my $updatesysdef_cmd = "copy /Y $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\system_model.xml";
+	mkdir("platforms\\$codeline\\single\\sysdefs\\auto") if (!-d "platforms\\$codeline\\single\\sysdefs\\auto");
+	my $updatesysdef_cmd = "copy /Y $codeline\\system_model.xml platforms\\$codeline\\single\\sysdefs\\auto\\system_model.xml";
 	print "$updatesysdef_cmd\n";
 	system($updatesysdef_cmd);
 	system("hg -R platforms add"); # just in case this is a new platform
@@ -74,6 +75,7 @@ for my $codeline (@codelines)
 	my @diff_output = `$diff_cmd`;
 	if (@diff_output)
 	{
+		system("hg -R platforms add");
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
 		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
 		
