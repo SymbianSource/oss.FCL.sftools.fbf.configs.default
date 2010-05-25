@@ -79,41 +79,6 @@ for my $codeline (@codelines)
 		system("hg -R platforms commit -m \"Add auto generated $codeline system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"");
 		system("hg -R platforms push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/platforms");
 		
-		# Split model into package models
-		print "\n\n### SPLIT MODEL INTO PACKAGE MODELS ###\n";
-		my $updatedefault_cmd = "hg -R packages update -r default";
-		print "$updatedefault_cmd\n";
-		system($updatedefault_cmd);
-		my $rmdir_cmd = "del /S packages\\$codeline\\package_definition.xml >nul";
-		print "$rmdir_cmd\n";
-		system($rmdir_cmd);
-		my $splitmodel_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\$codeline";
-		print "$splitmodel_cmd\n";
-		system($splitmodel_cmd);
-		if ($codeline eq 'symbian3') # also update CompilerCompatibility
-		{
-			my $rmdir2_cmd = "del /S  packages\\CompilerCompatibility\\package_definition.xml >nul";
-			print "$rmdir2_cmd\n";
-			system($rmdir2_cmd);
-			my $splitmodel2_cmd = "perl ..\\split_sysdef.pl -s $codeline\\system_model.xml -o packages\\CompilerCompatibility";
-			print "$splitmodel2_cmd\n";
-			system($splitmodel2_cmd);
-		}
-		my $addremove_cmd = "hg -R packages addremove";
-		print "$addremove_cmd\n";
-		system($addremove_cmd);
-		my $diff_cmd = "hg -R packages diff --stat";
-		print "$diff_cmd\n";
-		my @diff_output = `$diff_cmd`;
-		if (@diff_output)
-		{
-			my $commit_cmd = "hg -R packages commit -m \"Update package models from auto generated system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"";
-			print "$commit_cmd\n";
-			system($commit_cmd);
-			my $push_cmd = "hg -R packages push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/packages";
-			print "$push_cmd\n";
-			system($push_cmd);
-		}
 	}
 }
 
