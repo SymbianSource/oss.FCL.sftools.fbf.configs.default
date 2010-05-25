@@ -23,7 +23,7 @@
     		<not><equals arg1="${ant['sf.spec.sources.revision']}" arg2="" trim="true"/></not>
     		<then>
     			<property name="sources.${count}.revision" value="${ant['sf.spec.sources.revision']}"/>
-    			<propertyregex property="sources.${count}.URL" input="${pkg_detail.source}" regexp="/MCL/" casesensitive="false" replace="/FCL/"/>
+    			<propertyregex property="sources.${count}.URL" input="${pkg_detail.source}" regexp="/MCL/" casesensitive="false" replace="/FCL/" defaultValue="${pkg_detail.source}"/>
     		</then>
     		<else>
     			<property name="sources.${count}.revision" value="${pkg_detail.pattern}"/>
