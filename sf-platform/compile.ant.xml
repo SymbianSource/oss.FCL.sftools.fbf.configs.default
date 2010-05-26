@@ -33,11 +33,16 @@
       <param name="sysdef.configuration" value="${sysdef.configurations.list}"/>
     </antcall>
 
-
     <!-- perform initial exports -->
     <antcall target="sf-do-full-export" inheritAll="false" inheritRefs="true">
         <param name="sf.export.stage.name" value="full_export"/>
     </antcall>	  
+
+    <!-- explicitly run qmake second time to allow -configure options to be applied -->
+    <antcall target="run-qmake" inheritAll="false" inheritRefs="true">
+      <param name="qmake.enabled" value="true"/>
+      <param name="sysdef.configuration" value="${sysdef.configurations.list}"/>
+    </antcall>
 	
     <if> <!-- If tools baseline unpack has not been specified, or its not a "fast" build then try to build them -->
       <or>
