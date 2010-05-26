@@ -22,7 +22,10 @@ opendir(DIR, "packages");
 my @codelines = grep(($_ !~ /^\.\.?$/ and $_ =~ /^symbian/), readdir(DIR));
 close(DIR);
 
-my $packages_changeset = '';
+# get the changeset from the platform repo 
+my $platform_changeset = `hg -R platforms identify -i`;
+chomp $platform_changeset;
+print "-->$platform_changeset<--\n";
 
 # loop over codelines
 for my $codeline (@codelines)
@@ -57,7 +60,7 @@ for my $codeline (@codelines)
 	my @diff_output = `$diff_cmd`;
 	if (@diff_output)
 	{
-		my $commit_cmd = "hg -R packages commit -m \"Update package models from auto generated system model (packages\@$packages_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"";
+		my $commit_cmd = "hg -R packages commit -m \"Update package models from latest system model  (platform\@$platform_changeset)\" -u\"Dario Sestito <darios\@symbian.org>\"";
 		print "$commit_cmd\n";
 		system($commit_cmd);
 		my $push_cmd = "hg -R packages push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/packages";
