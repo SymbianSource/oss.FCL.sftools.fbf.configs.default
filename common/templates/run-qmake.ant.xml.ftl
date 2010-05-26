@@ -59,7 +59,7 @@
                         <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
                             <arg value="/C"/>
                             <arg value="python"/>
-                            <arg line ="configure.py --qmake-bin=\epoc32\tools\qmake.bat --qmake-spec=symbian-sbsv2 --platform=symbian --qmake-options=MMP_RULES+=EXPORTUNFROZEN"/>
+                            <arg line ="configure.py --qmake-bin=\epoc32\tools\qmake.bat --qmake-spec=symbian-sbsv2 --platform=symbian --qmake-options=MMP_RULES+=EXPORTUNFROZEN CONFIG-=sgimagelite_support DEFINES+=HB_EFFECTS_OPENVG DEFINES+=HB_FILTER_EFFECTS"/>
                         </exec>
                     </then>
                     <else>
