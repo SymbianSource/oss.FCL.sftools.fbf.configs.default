@@ -69,11 +69,11 @@ my $xml_content = <<_EOX;
 <diamonds-build>
   <schema>14</schema>
   <faults>
-    <total severity=\"Raptor Build Critical\">$critical</total>
-    <total severity=\"Raptor Build Major\">$major</total>
-    <total severity=\"Raptor Build Minor\">$minor</total>
-    <total severity=\"Raptor Build Unknown\">$unknown</total>
     <total severity=\"Missing Artifacts\">$missing</total>
+    <total severity=\"Raptor Build Unknown\">$unknown</total>
+    <total severity=\"Raptor Build Minor\">$minor</total>
+    <total severity=\"Raptor Build Major\">$major</total>
+    <total severity=\"Raptor Build Critical\">$critical</total>
   </faults>
 </diamonds-build>
 _EOX
