@@ -59,17 +59,20 @@
                         <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
                             <arg value="/C"/>
                             <arg value="python"/>
-                            <arg line ="configure.py --qmake-bin=\epoc32\tools\qmake.bat --qmake-spec=symbian-sbsv2 --platform=symbian --qmake-options=MMP_RULES+=EXPORTUNFROZEN CONFIG-=sgimagelite_support DEFINES+=HB_EFFECTS_OPENVG DEFINES+=HB_FILTER_EFFECTS"/>
+                            <arg line ="configure.py --qmake-bin=\epoc32\tools\qmake.bat --qmake-spec=symbian-sbsv2 --platform=symbian --qmake-options=MMP_RULES+=EXPORTUNFROZEN CONFIG+=sgimagelite_support DEFINES+=HB_EFFECTS_OPENVG DEFINES+=HB_FILTER_EFFECTS"/>
+                        </exec>
+                        
+                        <echo>INFO: Exporting Orbit mkspecs to epoc32\tools for ${unit.@bldFile}/${unit.@proFile}</echo>
+                        <echo>INFO: Running Orbit theme installer, make install step</echo>
+                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
+                            <arg value="/C"/>
+                            <arg value="make install"/>
                         </exec>
                     </then>
                     <else>
                        <echo message="ERROR: Directory ${r'$'}{build.drive}/${unit.@bldFile} doesn't exist."/>
                     </else>
                 </if>
-                <echo>INFO: Exporting Orbit mkspecs to epoc32\tools for ${unit.@bldFile}/${unit.@proFile}</echo>
-
-                <copy file="${r'$'}{build.drive}/${unit.@bldFile}/hb_install.prf" todir="${r'$'}{build.drive}/epoc32/tools/qt/mkspecs/features" overwrite="true"/>
-                <copy file="${r'$'}{build.drive}/${unit.@bldFile}/hb.prf"         todir="${r'$'}{build.drive}/epoc32/tools/qt/mkspecs/features" overwrite="true"/>
 	  </#if>
     </#list>
 
