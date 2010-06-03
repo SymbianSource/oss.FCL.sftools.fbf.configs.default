@@ -13,7 +13,7 @@
     <propertyregex override="yes" property="package"  input="${pkg_detail.dst}" regexp=".*sf[\\\/]([^\\^\/]+)[\\\/]([^\\^\/]+)" replace="\1/\2"/>
     <echo message="Calling truclean script for package ${dollar}{package}"/>
       <exec executable="perl" dir="${ant['build.drive']}/" failonerror="false" output="${ant['build.log.dir']}/truclean.log">
-        <arg value="${ant['build.drive']}/utilities/truclean.pl"/>
+        <arg value="${ant['build.drive']}/utilities/uh_parser/truclean.pl"/>
         <arg value="--packageexpr=${dollar}{package}"/>
         <arg value="--releaseablesdir=${ant['build.drive']}/build_info/logs/releaseables"/>
       </exec>
