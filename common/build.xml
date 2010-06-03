@@ -127,7 +127,7 @@
       - END OF PROPERTY DEFINITIONS, TARGETS START HERE
       -->
     
-    <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,create-bom,log-build-env">
+    <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,create-bom,log-build-env,sf-get-utils">
         <!-- Test for the disk space we would like for this build -->
 	<fail>
             <condition>
@@ -154,8 +154,9 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
 
     <target name="sf-check-env">
     	<!-- Dario's environment dumper -->
-    	<exec executable="perl" dir="${build.drive}">
-            <arg value="${sf.common.config.dir}/tools/envinfo.pl"/>
+    	<exec executable="perl" dir="${build.drive}/utilities/envinfo">
+            <arg value="envinfo.pl"/>
+            <arg value="-d"/>
         </exec>
     	
         <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
@@ -251,7 +252,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
-    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-envinfo,sf-diamonds-tag-build,sf-get-utils,sf-getenvs,sf-syncsource,sf-diamondize-bom">
+    <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-envinfo,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom">
         <stopwatch name="sf-prebuild" action="elapsed"/>
     </target>
     
