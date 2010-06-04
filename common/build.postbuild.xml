@@ -785,6 +785,9 @@
                 <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
                     <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
                     <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
+                    <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
+                        <include name="envinfo.txt"/>
+                    </zipfileset>
                 </zip>
                 <antcall target="sf-zip-content">
                     <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>

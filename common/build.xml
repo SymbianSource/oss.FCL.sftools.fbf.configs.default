@@ -153,11 +153,29 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     </target>
 
     <target name="sf-check-env">
-    	<!-- Dario's environment dumper -->
-    	<exec executable="perl" dir="${build.drive}/utilities/envinfo">
-            <arg value="envinfo.pl"/>
-            <arg value="-d"/>
-        </exec>
+        <echo message="Create report on environment info"/>
+        <!-- Dario's environment dumper -->
+    	  <if>
+            <isset property="sf.spec.baseline.location"/>
+            <then>
+                <exec executable="perl" dir="${build.drive}/utilities/envinfo">
+                    <arg value="envinfo.pl"/>
+                    <arg value="-r"/>
+                    <arg value="-c"/>
+                    <arg value="${sf.spec.baseline.location}"/>
+                </exec>
+            </then>
+            <else>
+                <exec executable="perl" dir="${build.drive}/utilities/envinfo">
+                    <arg value="envinfo.pl"/>
+                    <arg value="-r"/>
+                </exec>
+            </else>
+      </if>
+      <echo message="Translate \output\logs\envinfo.txt into a Diamonds file"/>
+      <exec executable="perl" dir="${build.drive}">
+          <arg value="${sf.common.config.dir}/tools/envinfo2diamonds.pl"/>
+      </exec>
     	
         <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
         <if><available file="${sf.project.location}/BuildEnv.xml"/>        
