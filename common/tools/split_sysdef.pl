@@ -13,8 +13,10 @@
 # Split a system model file into many package model files (one per package)
 
 use strict;
+
 use Getopt::Long;
 use XML::DOM;
+use File::Path;
 
 my $DEFAULT_OUTDIR = "models";
 
@@ -40,7 +42,7 @@ if ($help)
 	exit(0);
 }
 
-mkdir("$outdir") if (!-d$outdir);
+mkpath("$outdir") if (!-d $outdir);
 
 my $parser = new XML::DOM::Parser;
 my $doc = $parser->parsefile ($sysdef);
