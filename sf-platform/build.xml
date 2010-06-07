@@ -128,6 +128,13 @@
       </filterchain>
     </copy>
 
+    <!-- Now also break up the system definition into a set of package definitions that it corresponds to -->
+    <exec executable="perl.exe">
+        <arg value="${sf.common.config.dir}/tools/split_sysdef.pl"/>
+        <arg value="--sysdef=${canonical.sysdef.file}"/>
+        <arg value="--outdir=${build.log.dir}/BOM/package_definitions"/>
+    </exec>
+
  </target>
 
   <!--
@@ -140,7 +147,7 @@
     ==       s60 build will be skipped if sf.spec.s60.skipbuild=true
     ==
     -->
-    <target name="sf-compile">
+  <target name="sf-compile">
     <stopwatch name="sf-compile"/>
 
     <!-- TODO clean up to single target once genxml v2.0.0 merge is fixed -->
