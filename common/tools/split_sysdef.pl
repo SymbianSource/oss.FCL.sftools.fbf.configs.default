@@ -95,8 +95,8 @@ my $systemmodel = $systemdefinition->getElementsByTagName("systemModel")->item(0
 my $systemmodel_attributes = $systemmodel->getAttributes();
 my $systemmodel_attributes_tostring = '';
 for ($systemmodel_attributes->getValues) {$systemmodel_attributes_tostring .= " ".$_->getName."=\"".$_->getValue."\"";}
-$packagedef_header .= "<systemModel$systemmodel_attributes_tostring>\n";
-$packagedef_trailer = "\n</systemModel>".$packagedef_trailer;
+$packagedef_header .= " <systemModel$systemmodel_attributes_tostring>\n";
+$packagedef_trailer = "\n </systemModel>".$packagedef_trailer;
 
 for my $layer ( $systemmodel->getElementsByTagName("layer") )
 {
@@ -105,8 +105,8 @@ for my $layer ( $systemmodel->getElementsByTagName("layer") )
 	my $layer_attributes = $layer->getAttributes();
 	my $layer_attributes_tostring = '';
 	for ($layer_attributes->getValues) {$layer_attributes_tostring .= " ".$_->getName."=\"".$_->getValue."\"";}
-	my $layer_header = "<layer$layer_attributes_tostring>\n";
-	my $layer_trailer = "\n</layer>";
+	my $layer_header = "  <layer$layer_attributes_tostring>\n   ";
+	my $layer_trailer = "\n  </layer>";
 	
 	for my $block ( $layer->getElementsByTagName("block") )
 	{
