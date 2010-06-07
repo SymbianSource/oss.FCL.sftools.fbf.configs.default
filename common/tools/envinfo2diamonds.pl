@@ -17,7 +17,7 @@ use strict;
 use Getopt::Long;
 
 my $input = "\\output\\logs\\envinfo.txt";
-my $output = "\\output\\logs\\envinfo_diamonds.xml";
+my $output = "\\output\\logs\\diamonds_envinfo.xml";
 my $help = 0;
 GetOptions((
 	'in=s' => \$input,
@@ -31,7 +31,7 @@ if ($help)
 	print "Usage: perl envinfo2diamonds.pl [-i INFILE] [-o OUTFILE]\n";
 	print "\n";
 	print "INFILE is optional, its default is \\output\\logs\\envinfo.txt\n";
-	print "OUTFILE is optional, its default is \\output\\logs\\envinfo_diamonds.xml\n";
+	print "OUTFILE is optional, its default is \\output\\logs\\diamonds_envinfo.xml\n";
 	exit(0);
 }
 
