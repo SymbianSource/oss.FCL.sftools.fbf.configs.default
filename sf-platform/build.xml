@@ -132,7 +132,7 @@
     <exec executable="perl.exe">
         <arg value="${sf.common.config.dir}/tools/split_sysdef.pl"/>
         <arg value="--sysdef=${canonical.sysdef.file}"/>
-        <arg value="--outdir=${build.log.dir}/BOM/package_definitions"/>
+        <arg value="--outdir=${build.log.dir}/package_definitions"/>
     </exec>
 
  </target>
