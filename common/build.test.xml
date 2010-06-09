@@ -151,6 +151,7 @@
         <exec executable="perl" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="smoketest.pl"/>
 			<arg value="--target=${sf.spec.test.target}"/>
+			<arg value="--ats-version=${sf.spec.ats.version}"/>
         </exec>
         <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"  failonerror="false"/>
         
