@@ -781,15 +781,29 @@
                     <exclude name="output/logs/releaseables/**"/>
                 </zip>
                 <!-- workaround for the time when when 'sf-run-analysis-raptor' has not been run -->
-                <mkdir dir="${build.drive}/output/logs/releaseables"/> 
-                <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
-                    <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
-                    <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
-                    <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
-                        <include name="envinfo.txt"/>
-                    </zipfileset>
-                    <zipfileset dir="${build.drive}/output/logs/package_definitions" prefix="build_info/package_definitions"/>
-                </zip>
+                <mkdir dir="${build.drive}/output/logs/releaseables"/>
+				<if>
+	                <available file="${build.drive}/output/logs/package_definitions" type="dir"/>
+	                <then>
+		                <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
+	            	        <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
+	        	            <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
+	    	                <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
+		                        <include name="envinfo.txt"/>
+	                    	</zipfileset>
+	                    	<zipfileset dir="${build.drive}/output/logs/package_definitions" prefix="build_info/package_definitions"/>
+	                	</zip>
+	                </then>
+	                <else>
+	                	<zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
+	            	        <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
+	        	            <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
+	    	                <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
+		                        <include name="envinfo.txt"/>
+	                    	</zipfileset>
+	                	</zip>
+	                </else>
+	            </if>
                 <antcall target="sf-zip-content">
                     <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
                     <param name="zip.target.name" value="info-just-metadata" />
