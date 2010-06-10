@@ -100,7 +100,41 @@
     </target>
 
     <target name="sf-tag-hg-code">
-        <property name="sf.tagafterbuild.tag" value="${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}"/>
+        <!-- To do the tagging, we need to know what tag to use, and who the author is (from hg's perspective) -->
+        <fail message="This target needs to have all the details specified, or to be run interactively so it can query the user">
+            <condition>
+                <and>
+                    <isset property="sf.hudson.executor.number"/>
+                    <not>
+                        <or>
+                            <isset property="sf.tagafterbuild.tag"/>
+                            <isset property="sf.hg.ui.username"/>
+                        </or>
+                    </not>
+                </and>
+            </condition>
+        </fail>
+
+        <!-- Ask the user, interactively, what tag to use -->
+        <input addproperty="sf.tagafterbuild.tag" message="Enter the tag to apply to the code (eg &quot;PDK_1.0.1&quot;):"/>
+        <fail message="No tag supplied">
+            <condition>
+                <length string="${sf.tagafterbuild.tag}" trim="true" length="0"/>
+            </condition>
+        </fail>
+
+        <!-- Now get the username sorted out -->
+        <exec executable="hg" outputproperty="sf.hg.showconfig.ui.username">
+            <arg value="showconfig"/>
+            <arg value="ui.username"/>
+        </exec>
+        <input addproperty="sf.hg.ui.username" message="Enter hg author credentials (eg &quot;Fred Bloggs &lt;fredb@example.org&gt;&quot;) default is" defaultvalue="${sf.hg.showconfig.ui.username}"/>
+        <fail message="No author supplied">
+            <condition>
+                <length string="${sf.hg.ui.username}" trim="true" length="0"/>
+            </condition>
+        </fail>
+
         <fmpp sourceFile="${sf.common.config.dir}/templates/tag-hg-code.ant.xml.ftl"
               outputFile="${temp.build.dir}/tag-hg-code.ant.xml">
             <data expandProperties="yes">
@@ -109,6 +143,59 @@
             </data>
         </fmpp>
         <ant antfile="${temp.build.dir}/tag-hg-code.ant.xml"/>
+    </target>
+
+    <target name="sf-push-hg-tags">
+        <!-- To do the pushing, we need to have a set of credentials for the developer.symbian.org site -->
+        <fail message="This target needs to have loging credentials specified specified, or to be run interactively so it can query the user">
+            <condition>
+                <and>
+                    <isset property="sf.hudson.executor.number"/>
+                    <not>
+                        <or>
+                            <isset property="sf.symbian.account.username"/>
+                            <isset property="sf.symbian.account.password"/>
+                        </or>
+                    </not>
+                </and>
+            </condition>
+        </fail>
+
+        <input addproperty="sf.symbian.account.username" message="Enter symbian.org username (eg &quot;fredb&quot;)"/>
+        <fail message="No author supplied">
+            <condition>
+                <length string="${sf.hg.ui.username}" trim="true" length="0"/>
+            </condition>
+        </fail>
+
+        <input addproperty="sf.symbian.account.password" message="Enter symbian.org password (eg &quot;unguessable&quot;)">
+            <!-- Ant 1.8 supports secure here, which would be an improvement... -->
+            <handler type="default"/>
+        </input>
+        <fail message="No password supplied">
+            <condition>
+                <length string="${sf.hg.ui.password}" trim="true" length="0"/>
+            </condition>
+        </fail>
+
+        <if>
+            <not>
+                <available file="${build.drive}/tagging" type="dir"/>
+            </not>
+            <then>
+                <!-- No dir with tagged repos in - create them! -->
+                <runtarget target="sf-tag-hg-code"/>
+            </then>
+        </if>
+
+        <fmpp sourceFile="${sf.common.config.dir}/templates/push-hg-tags.ant.xml.ftl"
+              outputFile="${temp.build.dir}/push-hg-tags.ant.xml">
+            <data expandProperties="yes">
+                ant: antProperties()
+                data: csv(${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}, {separator:','})
+            </data>
+        </fmpp>
+        <ant antfile="${temp.build.dir}/push-hg-tags.ant.xml"/>
     </target>
 
     <target name="sf-run-evalid" >
@@ -630,12 +717,12 @@
           </exec>
           <echo message="Send ${build.log.dir}/diamonds_uh.xml to Diamonds"/>
           <exec executable="python">
-		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
-		    <arg value="-u"/>
-		    <arg value="http://${diamonds.host}${diamonds.build.id}"/>
-		    <arg value="-f"/>
-		    <arg value="${build.log.dir}/diamonds_uh.xml"/>
-		  </exec>
+            <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+            <arg value="-u"/>
+            <arg value="http://${diamonds.host}${diamonds.build.id}"/>
+            <arg value="-f"/>
+            <arg value="${build.log.dir}/diamonds_uh.xml"/>
+          </exec>
         </then>
       </if>
     </target>
