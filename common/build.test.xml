@@ -120,7 +120,7 @@
                               <arg value="--dest=${sf.spec.test.package.location}\${env.COMPUTERNAME}-bctest-${build.id}_${program}" />
                               <arg value="--publish=${publish.dir}\ats_reports\${program}"/>
                             </exec>
-                            <!-- Now ready to send to ATS3 -->  
+                            <!-- Now ready to send to ATS -->  
 					      <echo message="Sending Test drop :  ${program} ............" />									
 					<antcall target="sf-send-testpkg" inheritAll="false">
                         <param name="sf.spec.test.package.name" value="${env.COMPUTERNAME}-bctest-${build.id}_${program}"/>
@@ -138,7 +138,7 @@
 		</if>	
     </target>
     
-	<!-- Preparing smoketest package (zip) for sending to ATS3 -->
+	<!-- Preparing smoketest package (zip) for sending to ATS -->
 	
 	<target name="sf-build-smoketestpkg" depends="sf-getenv-tools">
         <echo message="INFO Building smoketest"/>
@@ -171,10 +171,10 @@
           <arg value="--ats-version=${sf.spec.ats.version}"/>
         </exec>
 
-        <!-- Now ready to send to ATS3 -->
+        <!-- Now ready to send to ATS -->
     </target>   
 
-	<!-- Sending testdrop to ATS3 -->
+	<!-- Sending testdrop to ATS -->
 	
     <target name="sf-send-testpkg" depends="sf-start-ats,sf-find-ATS-worker-root,sf-make-junction">
         <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
@@ -186,13 +186,15 @@
         <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
         <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
-            <arg value="ats3_testdrop.pl"/>
+            <arg value="ats_testdrop.pl"/>
             <arg value="--host=${sf.spec.test.host.name}"/>
             <arg value="--username=${sf.spec.test.host.username}"/>
             <arg value="--password=${sf.spec.test.host.password}"/>
             <arg value="--local-test-pkg=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
             <arg value="--local-drop-path=${sf.spec.test.workerroot}\${sf.spec.test.package.droppath}"/>
             <arg value="--host-drop-path=${sf.spec.test.host.droppath}"/>
+            <arg value="--ats-version=${sf.spec.ats.version}"/>
+            <arg value="--ats-worker-path=${sf.spec.ats_worker.drive}"/>
         </exec>
     </target>
     
