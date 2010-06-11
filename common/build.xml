@@ -119,7 +119,11 @@
           <hlm:signalInput id="signalRunQMakeInput" failbuild="never">
             <hlm:notifierListRef refid="defaultFailNotifier" />
           </hlm:signalInput>
-
+          
+           <!-- allow use of a release_metadata.xml without all referenced files being present -->
+          <hlm:signalInput id="getenvSignalInput" failbuild="never">
+              <hlm:notifierListRef refid="defaultFailNotifier" />
+          </hlm:signalInput>
       </then>
     </if>
     
@@ -144,6 +148,9 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
         <tempfile property="prep.dynamic.config" suffix="ant.xml" destdir="${temp.build.dir}"/>
 
         <runtarget target="sf-check-env"/>
+        
+        <!-- create zips folder for use later -->
+        <mkdir dir="${build.drive}/output/zips"/>
         <stopwatch name="sf-prep" action="elapsed"/>
     </target>
 
@@ -155,7 +162,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
     <target name="sf-check-env">
         <echo message="Create report on environment info"/>
         <!-- Dario's environment dumper -->
-    	  <if>
+        <if>
             <isset property="sf.spec.baseline.location"/>
             <then>
                 <exec executable="perl" dir="${build.drive}/utilities/envinfo">
@@ -248,26 +255,6 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <!-- Delete build directory -->
         <delete dir="${prep.build.dir}"/>
     </target>
-    
-    <!-- Note: Not used from Helium 7 onwards -->
-    <target name="generate-layers">
-       <echo message="canno-file:${canonical.sysdef.file}"/>
-       <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
-
-       <!-- All we want is a sysdef with the config name appended, so just copy it -->
-       <echo message="INFO: Skip GenXML and copy sysdef to sysdef+config name"/>
-       <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-
-        <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml">
-        <filterchain>
-            <linecontainsregexp negate="true">
-                <regexp pattern="^\s*$"/>
-            </linecontainsregexp>
-        </filterchain>
-        </copy>
-        <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" todir="${build.log.dir}/BOM/"/>
-        <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
-    </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
     <target name="sf-prebuild-noprep" depends="sf-prebuild-announce,sf-diamonds-connect,sf-diamonds-envinfo,sf-diamonds-tag-build,sf-getenvs,sf-syncsource,sf-diamondize-bom">
@@ -348,11 +335,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="identify"/>
             <arg value="-i"/>
         </exec>
-	<echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
+        <echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
     </target>
     
     <target name="sf-get-utils">
-    	<stopwatch name="sf-get-utils"/>
+      <stopwatch name="sf-get-utils"/>
         <echo message="Cloning utilities repository to ${build.drive}/utilities"/>
         <exec executable="hg">
             <arg value="clone"/>
@@ -361,7 +348,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="http://developer.symbian.org/oss/MCL/sftools/fbf/utilities"/>
             <arg value="${build.drive}/utilities"/>
         </exec>
-    	<stopwatch name="sf-get-utils" action="elapsed"/>
+      <stopwatch name="sf-get-utils" action="elapsed"/>
     </target>
 
     <target name="sf-getenvs">
@@ -400,6 +387,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                 <echo message="${sf.spec.baseline.location}" file="${build.drive}/output/logs/BOM/baseline.txt"/>
                 
                 <!-- run internal target preparation-getenv -->
+                <delete file="${build.drive}/currentRelease.xml"/>        
                 <runtarget target="preparation-getenv"/>
                 <stopwatch name="sf-getenvs (baseline)" action="elapsed"/>
             </then>
@@ -431,8 +419,17 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <stopwatch name="sf-get-source"/>
         <!-- Get test manifest, and move resolved csv so that it doesnt conflict with source-spec.ant.xml -->
-        <ant antfile="${temp.build.dir}/source-test-spec.ant.xml" />
-        <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_test.csv"/>
+        <if>
+            <istrue value="${sf.spec.smoketest.enable}"/>
+            <then>
+                <ant antfile="${temp.build.dir}/source-test-spec.ant.xml" />
+                <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_test.csv"/>
+            </then>
+        </if>
+
+        <ant antfile="${temp.build.dir}/source-rnd-spec.ant.xml" />
+        <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_rnd.csv"/>
+
         <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
         <stopwatch name="sf-get-source" action="elapsed"/>
     </target>
@@ -481,9 +478,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
                 <property name="sf.source.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+                <property name="sf.source_rnd.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}"/>
             </then>
         </if>
-        <property name="sf.source.csv.file" value="nul:"/>
+        <property name="sf.source.csv.file"     value="nul:"/>
+        <property name="sf.source_rnd.csv.file" value="nul:"/>
 
         <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
               outputFile="${temp.build.dir}/source-spec.ant.xml">
@@ -494,15 +493,31 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                     ]
               </data>
         </fmpp>
+
         <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
-              outputFile="${temp.build.dir}/source-test-spec.ant.xml">
+              outputFile="${temp.build.dir}/source-rnd-spec.ant.xml">
               <data expandProperties="yes">
                     ant: antProperties()
                     data: [
-                        csv(${sf.test.csv.file}, {separator:','})
+                        csv(${sf.source_rnd.csv.file}, {separator:','})
                     ]
               </data>
         </fmpp>
+
+        <if>
+            <istrue value="${sf.spec.smoketest.enable}"/>
+            <then>
+            <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
+                  outputFile="${temp.build.dir}/source-test-spec.ant.xml">
+                  <data expandProperties="yes">
+                        ant: antProperties()
+                        data: [
+                            csv(${sf.test.csv.file}, {separator:','})
+                        ]
+                  </data>
+            </fmpp>
+            </then>
+        </if>
     </target>
     
     <!-- generate dir list using passed location and name 
@@ -625,7 +640,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                 project: csv(${build.drive}/output/logs/BOM/project.csv,{separator:',',headers:[loc,dst,rev]})
                 baseline: slicedText(${build.drive}/output/logs/BOM/baseline.txt,{trim})
                 toolsbaseline: slicedText(${build.drive}/output/logs/BOM/toolsbaseline.txt,{trim})
-                sources: csv(${build.drive}/output/logs/BOM/sources.csv,{separator:',',headers:[loc,dst,type,rev,sysdef]})              
+                sources: csv(${build.drive}/output/logs/BOM/sources.csv, {separator:',',headers:[loc,dst,type,rev,sysdef]})
             </data>
         </fmpp>
         <!-- Make a copy in BOM dir -->
@@ -740,7 +755,19 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                     <arg value="@{rndZip}"/>
                 </exec>
             </sequential>
-	</for>
+        </for>
+
+        <if><istrue value="${sf.spec.baseline.enable}"/>
+        <then>
+
+        <!-- also unpack any rnd bins from baseline location. may collide with package build getenv -->
+        <delete file="${build.drive}/currentRelease.xml"/>        
+        <antcall target="preparation-getenv" inheritAll="false">
+            <param name="base_release.path"           value="${sf.spec.baseline.location}"/>
+            <param name="base_release.getenv_options" value="-i rnd -k"/>
+        </antcall>
+        </then>
+        </if>
     </target>
 
   <target name="sf-compile-options">  

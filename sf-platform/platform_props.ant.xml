@@ -17,6 +17,9 @@
   
   <property name="sf.spec.prebuilt.excludelist"     value="${sf.spec.job.dir}/../prebuilt_excludelist.txt"/>
 
+  <property name="sf.spec.systemdefinition.location" value="${sf.project.location}\sysdefs\"/>
+  <property name="sf.spec.systemdefinition.filename" value="system_model.xml"/>
+
   <property name="sf.spec.sourcesync.usecache"     value="true"/>
 
   <!-- generate dir list(s) of epoc32 tree -->

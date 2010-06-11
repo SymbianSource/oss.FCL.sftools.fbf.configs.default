@@ -63,7 +63,13 @@
     <touch file="${build.drive}/${sf.spec.bldmefirst.s60.sbs.variant.cfg}" />
     <delete file="${build.log.dir}/${build.id}_bldmefirst-s60.log"/>
 
-    <property name="sf.compile.bldmefirst.command.sbsexport" value="sbs EXPORT --ignore-os-detection --export-only"/>
+    <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
+    <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+    <propertyregex property="i.sf.spec.sbs.tools.config.expanded"   override="true" input="${sf.spec.sbs.tools.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+
+    <echo message="INFO Target : ${i.sf.spec.sbs.config.expanded} ${i.sf.spec.sbs.tools.config.expanded}"/>
+
+    <property name="sf.compile.bldmefirst.command.sbsexport" value="sbs EXPORT --ignore-os-detection --export-only -c ${i.sf.spec.sbs.config.expanded} -c ${i.sf.spec.sbs.tools.config.expanded}"/>
     <!-- do bldmefirst stage 1-->
     <for list="${sf.spec.bldmefirst.s60.exports}" delimiter="," param="sf.spec.bldmefirst.s60.export">
       <sequential>

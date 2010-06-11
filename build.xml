@@ -7,9 +7,6 @@
   <property name="sf.project.location" value="${sf.config.dir}/../build/config/${sf.subproject.path}"/>
   <property name="sf.project.name" value="job"/>
   
-  <!-- import job properties -->
-  <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" optional="yes"/>
-  
   <!-- Override Helium defaults to allow winscw builds without RVCT -->
   <target name="check-env-arm-license"/>
   <target name="get-arm-license"/>
@@ -18,6 +15,15 @@
   <!-- import helium task definitions to allow usage of ant-contrib tasks -->
   <import file="${helium.dir}/helium_preinclude.ant.xml"/>
    
+  <!-- import job properties -->
+  <if><isfalse value="${sf.production.build}"/>
+    <then>
+      <echo message="INFO Using Public properties defined in ${sf.project.location}/public_override_props.ant.xml"/>
+      <import file="${sf.project.location}/public_override_props.ant.xml" optional="yes"/>
+    </then>
+  </if>
+  <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" optional="yes"/>
+  
   <!-- set sf.spec.job.name and sf.spec.job.codeline if they are not specified in the project's job_props.ant.xml -->
   <propertyregex override="yes" property="jobname" input="${sf.subproject.path}" regexp=".*[\\/]([^\\^/]+)" replace="\1"/>
   <property name="jobname" value="${sf.subproject.path}"/>
