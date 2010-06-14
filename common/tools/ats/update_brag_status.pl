@@ -19,7 +19,8 @@ use XML::Simple;
 use Tie::File;
 
 my $brag_file;
-my $ats_report;
+my $ats3_report;
+my $ats4_report;
 my $test_report;
 my $help;
 my $line;
@@ -46,13 +47,15 @@ sub help();
 sub usage_error();
 
 my %optmap = (  'brag-file' => \$brag_file,
-			    'ats-report' => \$ats_report,
+			    'ats3-report' => \$ats3_report,
+				'ats4-report' => \$ats4_report,
 			    'test-report' => \$test_report,
 				'help' => \$help);
 
 GetOptions(\%optmap,
           'brag-file=s',
-          'ats-report=s',
+          'ats3-report=s',
+          'ats4-report=s',
           'test-report=s',
 		  'help!') 
           or usage_error();
@@ -64,42 +67,68 @@ if ($help) {
 # --brag-file is mandatory.
 usage_error(), unless (defined($brag_file));
 
-# --ats-report is mandatory.
-usage_error(), unless (defined($ats_report));
+# --ats3-report/ats4-report is mandatory.
+usage_error(), unless ((defined($ats3_report)) || (defined($ats4_report)));
 
-open (FILE, "<$ats_report") or die ("Couldn't open $ats_report for reading: $!\n");
-my $read_flag = -1;
-print "Reading $ats_report... ";
-while ($line = <FILE>) {
-	chomp $line;
-	if ($read_flag >= 0) { $read_flag++ }
-	if ($read_flag == 1) { # Get Total number of tests.
-		$auto_tests_total = $line;
-		# Remove td tags.
-		$auto_tests_total =~ s/^.*\">//;
-		$auto_tests_total =~ s/<.*//;
+if (defined($ats3_report)) { # Get ATS3 Smoketest results.
+	open (FILE, "<$ats3_report") or die ("Couldn't open $ats3_report for reading: $!\n");
+	my $read_flag = -1;
+	print "Reading $ats3_report... ";
+	while ($line = <FILE>) {
+		chomp $line;
+		if ($read_flag >= 0) { $read_flag++ }
+		if ($read_flag == 1) { # Get Total number of tests.
+			$auto_tests_total = $line;
+			# Remove td tags.
+			$auto_tests_total =~ s/^.*\">//;
+			$auto_tests_total =~ s/<.*//;
+		}
+		if ($read_flag == 4) { # Get number of Passed tests.
+			($auto_tests_passed) = split /\//,$line;
+			$auto_tests_passed =~ s/^.*\">//; # Remove opening td tag.
+		}
+		if ($read_flag == 5) { # Get number of Failed tests.
+			($auto_tests_failed) = split /\//,$line;
+			$auto_tests_failed =~ s/^.*\">//; # Remove opening td tag.
+		}
+		if ($read_flag == 7) { # Get number of Not run tests.
+			($auto_tests_notrun) = split /\//,$line;
+			$auto_tests_notrun =~ s/^.*\">//; # Remove opening td tag.
+		}
+		if ($line eq "<td class=\"tableData\">Nested tests<\/td>") { # Set flag for reading results.
+			$read_flag = 0;
+		}
+		if (($line eq "<\/tr>") && ($read_flag >= 0)) { # Exit loop.
+			last;
+		};
 	}
-	if ($read_flag == 4) { # Get number of Passed tests.
-		($auto_tests_passed) = split /\//,$line;
-		$auto_tests_passed =~ s/^.*\">//; # Remove opening td tag.
-	}
-	if ($read_flag == 5) { # Get number of Failed tests.
-		($auto_tests_failed) = split /\//,$line;
-		$auto_tests_failed =~ s/^.*\">//; # Remove opening td tag.
-
-	}
-	if ($read_flag == 7) { # Get number of Not run tests.
-		($auto_tests_notrun) = split /\//,$line;
-		$auto_tests_notrun =~ s/^.*\">//; # Remove opening td tag.
-	}
-	if ($line eq "<td class=\"tableData\">Nested tests<\/td>") { # Set flag for reading results.
-		$read_flag = 0;
-	}
-	if (($line eq "<\/tr>") && ($read_flag >= 0)) { # Exit loop.
-		last;
-	};
+	close FILE;
 }
-close FILE;
+if (defined($ats4_report)) { # Get ATS4 Smoketest results.
+	$auto_tests_total = 0;
+	$auto_tests_passed = 0;
+	$auto_tests_failed = 0;
+	$auto_tests_notrun = 0;
+	open (FILE, "<$ats4_report") or die ("Couldn't open $ats4_report for reading: $!\n");
+	my $read_flag = -1;
+	print "Reading $ats4_report... ";
+	while ($line = <FILE>) {
+		chomp $line;
+		if ($read_flag >= 0) { $read_flag++ }
+		if ($read_flag == 3) { # Get status.
+			$auto_tests_total++;
+			if ($line =~ "PASSED") { $auto_tests_passed++ }
+			if ($line =~ "FAILED") { $auto_tests_failed++ }
+			if (($line =~ "SKIPPED") || ($line =~ "NOT_AVAILABLE")) { $auto_tests_notrun++ }
+			# Re-set flag.
+			$read_flag = -1;
+		}
+		if ($line eq "<result type=\"TestCaseResult\">") { # Set flag for reading results.
+			$read_flag = 0;
+		}
+	}
+	close FILE;
+}
 print "complete\n";
 print "Total number of tests: $auto_tests_total\n";
 print "Passed tests: $auto_tests_passed\n";
@@ -110,7 +139,8 @@ print "Not run tests: $auto_tests_notrun\n";
 $temp_path = $brag_file;
 $temp_path =~ s/\\/\//g; # Replace \ with /
 $temp_path =~ s/\/summary\/.*//;
-$detailshref = $ats_report;
+if (defined($ats3_report)) { $detailshref = $ats3_report };
+if (defined($ats4_report)) { $detailshref = $ats4_report };
 $detailshref =~ s/\\/\//g; # Replace \ with /
 $detailshref =~ s/($temp_path)/../;
 
@@ -227,13 +257,14 @@ sub usage($)
             "Specify the BRAG xml file and ATS report\n" .
             "synopsis:\n" .
             "  update_brag_status.pl --help\n" .
-            "  update_brag_status.pl [--brag-file=XML_FILE] [--ats-report=HTML_REPORT] [--test-report=XML_REPORT] \n" .
+            "  update_brag_status.pl [--brag-file=XML_FILE] [--ats3-report=HTML_REPORT] [--ats4-report=SIMPLELOGGER_REPORT] [--test-report=XML_REPORT] \n" .
             "options:\n" .
-            "  --help                        Display this help and exit.\n" .
-            "  --brag-file=XML_FILE          XML_FILE is the full path to the file containing BRAG summary.\n" .
-            "  --ats-report=HTML_REPORT      HTML_REPORT is the full path to the ATS report.\n" .
-            "  --test-report=XML_REPORT      XML_REPORT is the name of the test report for manually executed tests.\n" .
-			"                                If not specified only automated tests results will be taken into account.\n";
+            "  --help                            Display this help and exit.\n" .
+            "  --brag-file=XML_FILE              XML_FILE is the full path to the file containing BRAG summary.\n" .
+            "  --ats3-report=HTML_REPORT         HTML_REPORT is the full path to the ATS3 report.\n" .
+            "  --ats4-report=SIMPLELOGGER_REPORT SIMPLELOGGER_REPORT is the full path to the ATS4 report.\n" .
+            "  --test-report=XML_REPORT          XML_REPORT is the name of the test report for manually executed tests.\n" .
+			"                                    If not specified only automated tests results will be taken into account.\n";
     exit $error;            
 }
 
