@@ -233,8 +233,8 @@
                         <arg value="startAgent.cmd"/>
                     </exec>
                 </forget>
-                <echo message="Waiting for 10 seconds for the ATS4 Agent(s) to start......."/>
-                <sleep seconds="10"/>
+                <echo message="Waiting for 30 seconds for the ATS4 Agent(s) to start......."/>
+                <sleep seconds="30"/>
                 <forget>
                     <exec executable="cmd" dir="${ats.drive}" failonerror="true">
                         <arg value="/c"/>
@@ -246,8 +246,8 @@
                         <arg value="startEngine.cmd"/>
                     </exec>
                 </forget>
-                <echo message="Waiting for 10 seconds for the ATS4 Engine to start......."/>
-                <sleep seconds="10"/>
+                <echo message="Waiting for 30 seconds for the ATS4 Engine to start......."/>
+                <sleep seconds="30"/>
             </then>
         </if>
     </target> 
