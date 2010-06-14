@@ -47,7 +47,7 @@
     <if> <!-- If tools baseline unpack has not been specified, or its not a "fast" build then try to build them -->
       <or>
         <isfalse value="${sf.unpack.tools}"/>
-        <isfalse value="${sf.spec.baseline.enable}"/>
+        <isfalse value="${sf.spec.toolsbaseline.enable}"/>
         <isfalse value="${sf.os.compile.fast}"/>
       </or>
       <then>
@@ -59,7 +59,7 @@
         </antcall>
       </then>
       <else>
-        <echo message="INFO Skipping tools build, tools were unpacked from ${sf.spec.baseline.location}"/>        
+        <echo message="INFO Skipping tools build, tools were unpacked from ${sf.spec.toolsbaseline.location}"/>
       </else>
       </if>
       	  	  
@@ -78,7 +78,7 @@
   
     <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
     <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
-    <propertyregex property="i.sf.spec.sbs.tools.config.expanded"   override="true" input="${sf.spec.sbs.tools.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+    <propertyregex property="i.sf.spec.sbs.tools.config.expanded"   override="true" input="${sf.spec.sbs.tools.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.tools.config}" global="true"  casesensitive="false"/>
 
     <hlm:sbsinput id="sf.export">
         <sbsOptions>
