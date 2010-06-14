@@ -26,6 +26,7 @@ use File::Copy;
 use Data::Dumper;
 
 my $test_drop_name;	# Test drop name to be embedded in output XML
+my $test_drop;
 my $build_id;   # Build ID to be embedded in output XML 
 my $host_name;  # Host name to be embedded in output XML
 my $srcfile;	# Input test drop file, either .xml or .zip
@@ -42,6 +43,7 @@ my $publish;	# Publishing folder for ats reports.
 my $bld_drive;  # Subst'd drive
 my $test_target; # The target which the tests will be run on
 my $image_path; # The path to the ROM image used for testing (not valid for WINSCW target)
+my $ats_version; # The version of ATS used for running tests
 
 sub usage($);
 sub help();
@@ -53,10 +55,12 @@ my %optmap = (  'test-drop-name' => \$test_drop_name,
                 'build-id' => \$build_id,
                 'src' => \$srcfile,
                 'dest' => \$destfile,
-                'help' => \$help,
                 'publish' => \$publish,
                 'bld-drive' => \$bld_drive,
-                'image-path' => \$image_path);
+				'test-target' => \$test_target,
+                'image-path' => \$image_path,
+				'ats-version' => \$ats_version,
+                'help' => \$help);
 
 GetOptions(\%optmap,
           'test-drop-name=s',
@@ -64,10 +68,12 @@ GetOptions(\%optmap,
           'build-id=s',
           'src=s',
           'dest=s',
-          'help!',
           'publish=s', 
           'bld-drive=s',
-          'image-path=s') 
+		  'test-target=s',
+          'image-path=s',
+		  'ats-version=s',
+          'help!') 
           or usage_error();
 
 # Check if Tie::File module installed
@@ -101,7 +107,6 @@ else {
     $destfile =~ s/$srctype$//;
 }
 
-
 if ($srctype =~ /^\.zip$/) { # Test drop is zip. Must contain test.xml.
     $xml_in = "test.xml"; # This is our input XML.
     if ( -f $xml_in) {
@@ -128,41 +133,112 @@ else {
     $xml_in = $srcfile;
 }
 
+# --test-target is not mandatory.
+if (!defined($test_target)) { # Set winscw by default
+	$test_target = "winscw" 
+}
+
+# --ats-version is not mandatory.
+if (!defined($ats_version)) { # Set ats3 by default
+	$ats_version = "ats3" 
+}
+
 # Parse the input XML into hashref.
-my $test_drop = XMLin("./$xml_in", keeproot => 1,
-    forcearray => [ 'name', 'id', 'owner', 'priority', 'buildid', 'postAction', 'type', 'target', 'device', 'property', 'command', 'param', 'plan', 'session', 'set', 'alias' ],#
+if (lc($ats_version) eq "ats4") {
+	$test_drop = XMLin("./$xml_in", keeproot => 1,
+        forcearray => [ 'metadata', 'meta', 'agents', 'agent', 'property', 'postActions', 'action', 'type', 'parameters', 'parameter', 'execution', 'initialization', 'task', 'alias' ],#
         keyattr => [] );
+} else { # ats3 format
+	$test_drop = XMLin("./$xml_in", keeproot => 1,
+        forcearray => [ 'name', 'id', 'owner', 'priority', 'buildid', 'postAction', 'type', 'target', 'device', 'property', 'command', 'param', 'plan', 'session', 'set', 'alias' ],#
+        keyattr => [] );
+}
     
 # Insert the specified test drop name, if any.
-$test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
+if (lc($ats_version) eq "ats4") {
+	# Assumption: meta 'name' exists in test plan
+	$test_drop->{'testrun'}->{'metadata'}->[0]->{'meta'}->[0] = { 'name' => "name", 'content' => $test_drop_name }, if $test_drop_name;
+} else {
+	$test_drop->{'test'}->{'name'}->[0] = $test_drop_name, if $test_drop_name;
+}
 # Insert the specified build id, if any.
-$test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
+if (lc($ats_version) eq "ats4") {
+	if ($build_id) {
+		my $meta_num = @{$test_drop->{'testrun'}->{'metadata'}->[0]->{'meta'}};
+		$test_drop->{'testrun'}->{'metadata'}->[0]->{'meta'}->[$meta_num];
+		$test_drop->{'testrun'}->{'metadata'}->[0]->{'meta'}->[$meta_num] = { 'name' => "diamonds-buildid", 'content' => $build_id };
+		$test_drop->{'testrun'}->{'metadata'}->[0]->{'meta'}->[$meta_num+1];
+		$test_drop->{'testrun'}->{'metadata'}->[0]->{'meta'}->[$meta_num+1] = { 'name' => "diamonds-testtype", 'content' => "Smoke" }; # Hard-coded Smoke
+	}
+} else {
+	$test_drop->{'test'}->{'buildid'}->[0] = $build_id, if $build_id;
+}
 # Insert the path to the ROM image
-if ($image_path) {
-	my $set_params;
-	my $flash_params;
-	foreach $set_params (@{$test_drop->{'test'}->{'plan'}->[0]->{'session'}->[0]->{'set'}}) {
-		$test_target = $set_params->{'target'}->[0]->{'device'}->[0]->{'alias'};
-		$set_params->{'flash'}->[0];
-		$flash_params = $set_params->{'flash'};
-		$flash_params->[0] = { 'target-alias' => $test_target, 'images' => $image_path };
+if (lc($ats_version) eq "ats4") {
+	if (($image_path) && (lc($test_target) ne "winscw")) {
+		my $agent_alias = $test_drop->{'testrun'}->{'agents'}->[0]->{'agent'}->[0]->{'alias'};
+		my $task_num = @{$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}};
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num];
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num] = { 'agents' => $agent_alias };
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'type'}->[0];
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'type'}->[0] = "FlashTask";
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0];
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[0];
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[0] = { 'name' => "image-1", 'value' => $image_path };
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[1];
+		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[1] = { 'name' => "timeout", 'value' => "1200" };
+	}
+} else {
+	if (($image_path) && (lc($test_target) ne "winscw")) {
+		my $device_alias;
+		my $set_params;
+		my $flash_params;
+		foreach $set_params (@{$test_drop->{'test'}->{'plan'}->[0]->{'session'}->[0]->{'set'}}) {
+			$device_alias = $set_params->{'target'}->[0]->{'device'}->[0]->{'alias'};
+			$set_params->{'flash'}->[0];
+			$flash_params = $set_params->{'flash'};
+			$flash_params->[0] = { 'target-alias' => $device_alias, 'images' => $image_path };
+		}
 	}
 }
 
 # Insert the FileStoreAction parameter
-my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'}, if $publish;
-$postaction_params->[1] = { 'name' => "to-folder", 'value' => $publish }, if $publish;
+if (lc($ats_version) eq "ats4") {
+	if ($publish) {
+		my $action_num = @{$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}};
+		$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}->[$action_num];
+		$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}->[$action_num]->{'type'}->[0];
+		$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}->[$action_num]->{'type'}->[0] = "FileStoreAction";
+		$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}->[$action_num]->{'parameters'}->[0];
+		$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}->[$action_num]->{'parameters'}->[0]->{'parameter'}->[0];
+		$test_drop->{'testrun'}->{'postActions'}->[0]->{'action'}->[$action_num]->{'parameters'}->[0]->{'parameter'}->[0] = { 'name' => "dst", 'value' => $publish };
+	}
+} else {
+	if ($publish) {
+		my $postaction_params = $test_drop->{'test'}->{'postAction'}->[0]->{'params'}->{'param'};
+		$postaction_params->[1] = { 'name' => "to-folder", 'value' => $publish };
+	}
+}
 
-if ($host_name) { # Also insert specified host name
-	my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};
-    
-    foreach my $device (@{$devices}) {
-        my $device_properties = $device->{'property'};
-        my $num_properties = @{$device_properties};
-        
-        $device_properties->[$num_properties] = { 'name' => "HOST", 'value' => "$host_name" };
-        $device->{'property'} = $device_properties;
-    }
+# Also insert specified host name
+if (lc($ats_version) eq "ats4") {
+	if ($host_name) {
+		# Assumption: 'agent' element with 'property' exists in test plan
+		my $agent_name = uc($test_target) . " on " . $host_name;
+		$test_drop->{'testrun'}->{'agents'}->[0]->{'agent'}->[0]->{'property'}->[0] = { 'name' => "name", 'value' => $agent_name };
+	}
+} else {
+	if ($host_name) { 
+		my $devices = $test_drop->{'test'}->{'target'}->[0]->{'device'};
+		
+		foreach my $device (@{$devices}) {
+			my $device_properties = $device->{'property'};
+			my $num_properties = @{$device_properties};
+			
+			$device_properties->[$num_properties] = { 'name' => "HOST", 'value' => "$host_name" };
+			$device->{'property'} = $device_properties;
+		}
+	}
 }
 
 if ($srctype =~ /^\.xml$/i ) { # Input file was XML
@@ -176,7 +252,7 @@ else { #Input file was a zip.
     open OUT,">test.xml" or die("Cannot open file \"test.xml\" for writing. $!\n");
     print OUT XMLout($test_drop, keeproot => 1);
     close OUT;
-	if ($publish) { #Move <type>FileStoreAction</type> above <params>
+	if (($publish) && (lc($ats_version) eq "ats3")) { #Move <type>FileStoreAction</type> above <params>
 		my @lines;
 		tie @lines, 'Tie::File', "test.xml" or die("Cannot tie file \"test.xml\". $!\n");
 		my $current_line = 0;
@@ -224,18 +300,24 @@ sub usage($)
             "Specify the name, build id and target device in an ATS XML test drop\n" .
             "synopsis:\n" .
             "  ats_specialise_test_drop.pl --help\n" .
-            "  ats_specialise_test_drop.pl [--test-drop-name=TESTNAME] [--build-id=BUILDID] [--host-name=HOSTNAME] [--dest=FILE] --src=FILE \n" .
+            "  ats_specialise_test_drop.pl [--test-drop-name=TESTNAME] [--build-id=BUILDID] [--host-name=HOSTNAME] [--dest=FILE] --src=FILE [--publish=DIR] [--bld-drive=DRIVE] [--test-target=TARGET] [--image-path=PATH] [--ats-version=VERSION]\n" .
             "options:\n" .
             "  --help                        Display this help and exit\n" .
             "  --test-drop-name=TESTNAME     TESTNAME is the desired name of the test drop. If not specified then the test drop name is not modified.\n" .
             "  --build-id=BUILDID            BUILDID is id of the build being tested. If not specified then the build id is not modified.\n" .            
-            "  --host-name=HOSTNAME        HOSTNAME  is the name of the ATS worker on which the test should be run. " .
+            "  --host-name=HOSTNAME          HOSTNAME  is the name of the ATS worker on which the test should be run. " .
             "If not specified then the test device name is not modified.\n" .
             "  --src=INFILE                  INFILE is the file containing the test drop XML to be modified, or else a zip file " .
             "                                containing the test drop XML in the file 'test.xml'. INFILE must have extension .xml or.zip\n" .
             "  --dest=OUTFILE                The modified output will be written to the file OUTFILE.EXT " .
             "where EXT is same extention, .xml or .zip, found on INFILE. " .
-            "If OUTFILE is not specified then INFILE is modified\n";              
+            "If OUTFILE is not specified then INFILE is modified\n" . 
+            "  --publish=DIR                 DIR is the publishing folder for ats reports (optional).\n" .
+            "  --bld-drive=DRIVE             DRIVE is the subst'd drive on which the build is stored (optional).\n" .
+			"  --test-target=TARGET          TARGET is the target which the tests will be run on. If not specified WINSCW will be set by default\n" .
+            "  --image-path=PATH             PATH is the path to the ROM image used for testing (not valid for WINSCW target).\n" .
+            "  --ats-version=VERSION         VERSION is the version of ATS which will be used to run the tests. If not specified ATS3 will be set by default.\n";
+			
     exit $error;            
 }
 

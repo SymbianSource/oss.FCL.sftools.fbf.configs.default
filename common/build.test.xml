@@ -120,7 +120,7 @@
                               <arg value="--dest=${sf.spec.test.package.location}\${env.COMPUTERNAME}-bctest-${build.id}_${program}" />
                               <arg value="--publish=${publish.dir}\ats_reports\${program}"/>
                             </exec>
-                            <!-- Now ready to send to ATS3 -->  
+                            <!-- Now ready to send to ATS -->  
 					      <echo message="Sending Test drop :  ${program} ............" />									
 					<antcall target="sf-send-testpkg" inheritAll="false">
                         <param name="sf.spec.test.package.name" value="${env.COMPUTERNAME}-bctest-${build.id}_${program}"/>
@@ -138,7 +138,7 @@
 		</if>	
     </target>
     
-	<!-- Preparing smoketest package (zip) for sending to ATS3 -->
+	<!-- Preparing smoketest package (zip) for sending to ATS -->
 	
 	<target name="sf-build-smoketestpkg" depends="sf-getenv-tools">
         <echo message="INFO Building smoketest"/>
@@ -151,42 +151,30 @@
         <exec executable="perl" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="smoketest.pl"/>
 			<arg value="--target=${sf.spec.test.target}"/>
+			<arg value="--ats-version=${sf.spec.ats.version}"/>
         </exec>
         <copy file="${build.drive}/smoketest/group/smoketest.zip" todir="${sf.spec.test.package.location}"  failonerror="false"/>
         
         <echo message="INFO Updating smoketest package with test info"/>
 
-        <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
-          <then>
-            <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
-              <arg value="ats_specialise_test_drop.pl"/>
-              <arg value="--test-drop-name=Smoketest-${build.id}"/> 
-              <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
-              <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
-              <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
-              <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
-              <arg value="--publish=${publish.dir}\ats_reports"/>
-              <arg value="--bld-drive=${build.drive}"/>
-              <arg value="--image-path=${sf.spec.test.imagepath}"/>
-            </exec>
-          </then>
-          <else>		
-            <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
-              <arg value="ats_specialise_test_drop.pl"/>
-              <arg value="--test-drop-name=Smoketest-${build.id}"/> 
-              <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
-              <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
-              <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
-              <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
-              <arg value="--publish=${publish.dir}\ats_reports"/>
-              <arg value="--bld-drive=${build.drive}"/>
-            </exec>
-          </else>
-        </if>
-        <!-- Now ready to send to ATS3 -->
+        <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+          <arg value="ats_specialise_test_drop.pl"/>
+          <arg value="--test-drop-name=Smoketest-${build.id}"/> 
+          <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
+          <arg value="--src=${sf.spec.test.package.location}\smoketest.zip"/>
+          <arg value="--dest=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>	
+          <arg value="--build-id=http://${sf.spec.publish.diamonds.server}${diamonds.build.id}"/>	
+          <arg value="--publish=${publish.dir}\ats_reports"/>
+          <arg value="--bld-drive=${build.drive}"/>
+          <arg value="--test-target=${sf.spec.test.target}"/>
+          <arg value="--image-path=${sf.spec.test.imagepath}"/>
+          <arg value="--ats-version=${sf.spec.ats.version}"/>
+        </exec>
+
+        <!-- Now ready to send to ATS -->
     </target>   
 
-	<!-- Sending testdrop to ATS3 -->
+	<!-- Sending testdrop to ATS -->
 	
     <target name="sf-send-testpkg" depends="sf-start-ats,sf-find-ATS-worker-root,sf-make-junction">
         <if><equals arg1="${sf.spec.test.target}" arg2="syborg"/>
@@ -198,31 +186,67 @@
         <mkdir dir="${sf.spec.test.workerroot}/${sf.spec.test.package.droppath}"/>
         <echo message="Sending test package ${sf.spec.test.package.name} to ${sf.spec.test.host.name} path ${sf.spec.test.host.droppath}"/>
         <exec executable="perl" dir="${sf.common.config.dir}/tools/ats" failonerror="false" output="${build.log.dir}/ATS_${build.id}_testdrop.log">
-            <arg value="ats3_testdrop.pl"/>
+            <arg value="ats_testdrop.pl"/>
             <arg value="--host=${sf.spec.test.host.name}"/>
             <arg value="--username=${sf.spec.test.host.username}"/>
             <arg value="--password=${sf.spec.test.host.password}"/>
             <arg value="--local-test-pkg=${sf.spec.test.package.location}\${sf.spec.test.package.name}"/>
             <arg value="--local-drop-path=${sf.spec.test.workerroot}\${sf.spec.test.package.droppath}"/>
             <arg value="--host-drop-path=${sf.spec.test.host.droppath}"/>
+            <arg value="--ats-version=${sf.spec.ats.version}"/>
+            <arg value="--ats-worker-path=${sf.spec.ats_worker.drive}"/>
         </exec>
     </target>
     
     <target name="sf-start-ats">
-        <if><available file="${ats.drive}/start.cmd"/>        
+        <if><equals arg1="${sf.spec.ats.version}" arg2="ats3"/>
+            <then>
+                <if><available file="${ats.drive}/start.cmd"/>  
+                    <then>
+                        <forget>
+                            <exec executable="cmd" dir="${ats.drive}" failonerror="true">
+                                <arg value="/c"/>
+                                <arg value="start"/>
+                                <arg value='"ATS3 STAF"'/>
+                                <arg value="/D"/>
+                                <arg value="."/>
+                                <arg value="/MAX"/>
+                                <arg value="run.cmd"/>
+                            </exec>
+                        </forget>
+                        <echo message="Waiting for 10 seconds for the ATS Worker to start......."/>
+                        <sleep seconds="10"/>
+                    </then>
+                </if>
+            </then>
+        </if>
+        <if><equals arg1="${sf.spec.ats.version}" arg2="ats4"/>
             <then>
                 <forget>
                     <exec executable="cmd" dir="${ats.drive}" failonerror="true">
                         <arg value="/c"/>
                         <arg value="start"/>
-                        <arg value='"ATS3 STAF"'/>
+                        <arg value='"ATS4 Agent"'/>
                         <arg value="/D"/>
                         <arg value="."/>
                         <arg value="/MAX"/>
-                        <arg value="run.cmd"/>
+                        <arg value="startAgent.cmd"/>
                     </exec>
                 </forget>
-                <echo message="Waiting for 10 seconds for the ATS Worker to start......."/>
+                <echo message="Waiting for 10 seconds for the ATS4 Agent(s) to start......."/>
+                <sleep seconds="10"/>
+                <forget>
+                    <exec executable="cmd" dir="${ats.drive}" failonerror="true">
+                        <arg value="/c"/>
+                        <arg value="start"/>
+                        <arg value='"ATS4 Engine"'/>
+                        <arg value="/D"/>
+                        <arg value="."/>
+                        <arg value="/MAX"/>
+                        <arg value="startEngine.cmd"/>
+                    </exec>
+                </forget>
+                <echo message="Waiting for 10 seconds for the ATS4 Engine to start......."/>
                 <sleep seconds="10"/>
             </then>
         </if>

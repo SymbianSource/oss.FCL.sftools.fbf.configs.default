@@ -80,18 +80,10 @@
 			<exec executable="hg" dir="${ant['build.drive']}/tagging${pkg_detail.dst}" logError="true">
 				<arg value="--quiet"/>
 				<arg value="commit"/>
+				<arg value="--user"/>
+				<arg value="${dollar}{sf.hg.ui.username}"/>
 				<arg value="--message"/>
 				<arg value="Added tag ${ant['sf.tagafterbuild.tag']} for changeset ${dollar}{hash12.${count}}"/>
-			</exec>
-			<!-- Work out the URL of the web *MCL* -->
-			<propertyregex property="mcl.${count}" input="${pkg_detail.source}" regexp="(developer.symbian.org)/(oss|sfl)/FCL/(sf|sftools)" casesensitive="false" replace="\1/\2/MCL/\3" defaultValue="${pkg_detail.source}"/>
-			<echo message="Outgoing changes for ${dollar}{mcl.${count}}:"/>
-			<exec executable="hg" dir="${ant['build.drive']}/tagging${pkg_detail.dst}" logError="true">
-				<arg value="out"/>
-				<arg value="--force"/>
-				<arg value="--rev"/>
-				<arg value="TAGS"/>
-				<arg value="${dollar}{mcl.${count}}"/>
 			</exec>
 		</target>
 		
