@@ -176,16 +176,17 @@ if (lc($ats_version) eq "ats4") {
 # Insert the path to the ROM image
 if (lc($ats_version) eq "ats4") {
 	if (($image_path) && (lc($test_target) ne "winscw")) {
-		my $agent_alias = $test_drop->{'testrun'}->{'agents'}->[0]->{'agent'}->[0]->{'alias'};
-		my $task_num = @{$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}};
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num];
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num] = { 'agents' => $agent_alias };
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'type'}->[0];
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'type'}->[0] = "FlashTask";
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0];
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[0];
+#		my $agent_alias = $test_drop->{'testrun'}->{'agents'}->[0]->{'agent'}->[0]->{'alias'};
+#		my $task_num = @{$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}};
+		my $task_num = 0; # Assuming FlashTask is the first task in the initialization section
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num];
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num] = { 'agents' => $agent_alias };
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'type'}->[0];
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'type'}->[0] = "FlashTask";
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0];
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[0];
 		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[0] = { 'name' => "image-1", 'value' => $image_path };
-		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[1];
+#		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[1];
 		$test_drop->{'testrun'}->{'execution'}->[0]->{'initialization'}->[0]->{'task'}->[$task_num]->{'parameters'}->[0]->{'parameter'}->[1] = { 'name' => "timeout", 'value' => "1200" };
 	}
 } else {
