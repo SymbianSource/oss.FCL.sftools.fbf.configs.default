@@ -225,29 +225,19 @@
                 <forget>
                     <exec executable="cmd" dir="${ats.drive}" failonerror="true">
                         <arg value="/c"/>
-                        <arg value="start"/>
-                        <arg value='"ATS4 Agent"'/>
-                        <arg value="/D"/>
-                        <arg value="."/>
-                        <arg value="/MAX"/>
                         <arg value="startAgent.cmd"/>
                     </exec>
                 </forget>
-                <echo message="Waiting for 10 seconds for the ATS4 Agent(s) to start......."/>
-                <sleep seconds="10"/>
+                <echo message="Waiting for 20 seconds for the ATS4 Agent(s) to start......."/>
+                <sleep seconds="20"/>
                 <forget>
                     <exec executable="cmd" dir="${ats.drive}" failonerror="true">
                         <arg value="/c"/>
-                        <arg value="start"/>
-                        <arg value='"ATS4 Engine"'/>
-                        <arg value="/D"/>
-                        <arg value="."/>
-                        <arg value="/MAX"/>
                         <arg value="startEngine.cmd"/>
                     </exec>
                 </forget>
-                <echo message="Waiting for 10 seconds for the ATS4 Engine to start......."/>
-                <sleep seconds="10"/>
+                <echo message="Waiting for 20 seconds for the ATS4 Engine to start......."/>
+                <sleep seconds="20"/>
             </then>
         </if>
     </target> 
