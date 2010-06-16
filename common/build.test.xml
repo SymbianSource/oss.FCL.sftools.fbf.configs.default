@@ -223,10 +223,30 @@
         <if><equals arg1="${sf.spec.ats.version}" arg2="ats4"/>
             <then>
                 <forget>
-                    <exec executable="startAgent.cmd" dir="${ats.drive}" failonerror="false">
+                    <exec executable="cmd" dir="${ats.drive}" failonerror="true">
+                        <arg value="/c"/>
+                        <arg value="start"/>
+                        <arg value='"ATS4 Agent"'/>
+                        <arg value="/D"/>
+                        <arg value="."/>
+                        <arg value="/MAX"/>
+                        <arg value="startAgent.cmd"/>
                     </exec>
                 </forget>
                 <echo message="Waiting for 10 seconds for the ATS4 Agent(s) to start......."/>
+                <sleep seconds="10"/>
+                <forget>
+                    <exec executable="cmd" dir="${ats.drive}" failonerror="true">
+                        <arg value="/c"/>
+                        <arg value="start"/>
+                        <arg value='"ATS4 Engine"'/>
+                        <arg value="/D"/>
+                        <arg value="."/>
+                        <arg value="/MAX"/>
+                        <arg value="startEngine.cmd"/>
+                    </exec>
+                </forget>
+                <echo message="Waiting for 10 seconds for the ATS4 Engine to start......."/>
                 <sleep seconds="10"/>
             </then>
         </if>
