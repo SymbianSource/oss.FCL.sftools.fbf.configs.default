@@ -142,9 +142,20 @@
 	
 	<target name="sf-build-smoketestpkg" depends="sf-getenv-tools">
         <echo message="INFO Building smoketest"/>
+		
+		<antcall target="run-qmake" inheritAll="false" inheritRefs="true">
+			<param name="qmake.enabled" value="true"/>
+			<param name="sysdef.configuration" value="${build.drive}\interim\sf-test\platform\smoketest\package_definition.xml"/>
+		</antcall>
+		
         <exec executable="cmd" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="/c"/>
-            <arg value="sbs -b bld.inf -c winscw_udeb.test"/>
+            <arg value="sbs -b bld.inf -c winscw_udeb -s package_definition.xml"/>
+        </exec>
+		
+        <exec executable="cmd" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
+            <arg value="/c"/>
+            <arg value="sbs -b bld.inf -c winscw_udeb.test -s package_definition.xml"/>
         </exec>
 
         <echo message="INFO Creating smoketest testpackage"/>
