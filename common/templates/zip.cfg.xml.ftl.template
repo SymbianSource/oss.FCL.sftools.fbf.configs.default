@@ -15,9 +15,9 @@
 		<!--  Metadata creation -->
 		<set name="grace.template" value="${temp.build.dir}/release_metadata_template.xml" />
 		<set name="grace.metadata" value="true" />
-		<set name="grace.service" value="${grace.service.name}" />
-		<set name="grace.product" value="${grace.product.name}" />
-		<set name="grace.release" value="${grace.release.name}" />
+		<set name="grace.service" value="" />
+		<set name="grace.product" value="${build.family}" />
+		<set name="grace.release" value="${build.version}" />
 		
 		<!-- Options that apply to all configs - don't put in any hg internals! -->
 		<set name="exclude" value="**/.hg/**"/>
@@ -121,7 +121,7 @@
 		<!-- For packaging tools builds such as "prebuilt", identified by sf.spec.job.name -->
 		<config name="bin-${sf.spec.job.name}-metadata" abstract="true">
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />
-			<set name="grace.filters" value="emu"/>
+			<set name="grace.filters" value="prebuilt"/>
 			<set name="include" value="*"/>
 			<set name="exclude" value="**"/>
 			<config name="${sf.spec.job.name}">

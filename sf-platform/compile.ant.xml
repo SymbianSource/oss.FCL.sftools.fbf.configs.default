@@ -24,8 +24,6 @@
        note: must be called from sf-os/s60-compile targets, as sys model input needed -->
   <target name="sf-do-compile" depends="create-canonical-sysdef-file">
     <echo message="INFO Using Helium 7+ for sf-do-compile"/>
-    
-    <propertyregex property="sf.unpack.tools" override="true" input="${sf.spec.baseline.getenv_options}" regexp="-i tools" select="true" defaultValue="false" casesensitive="false"/>
 
     <!-- explicitly run qmake once, as iterative build will repeat the step. if qmake is not unpacked already, then this step is skipped  -->
     <antcall target="run-qmake" inheritAll="false" inheritRefs="true">
@@ -46,8 +44,7 @@
 	
     <if> <!-- If tools baseline unpack has not been specified, or its not a "fast" build then try to build them -->
       <or>
-        <isfalse value="${sf.unpack.tools}"/>
-        <isfalse value="${sf.spec.baseline.enable}"/>
+        <isfalse value="${sf.spec.toolsbaseline.enable}"/>
         <isfalse value="${sf.os.compile.fast}"/>
       </or>
       <then>
@@ -59,7 +56,7 @@
         </antcall>
       </then>
       <else>
-        <echo message="INFO Skipping tools build, tools were unpacked from ${sf.spec.baseline.location}"/>        
+        <echo message="INFO Skipping tools build, tools were unpacked from ${sf.spec.toolsbaseline.location}"/>
       </else>
       </if>
       	  	  
@@ -69,13 +66,20 @@
       </antcall>
   
       <!-- Export model to BOM, as generate-layers target is no longer called from compile-main target -->
-      <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configurations.list}.xml" todir="${build.log.dir}/BOM/"/>
+      <!-- Name of file in BOM should always be system_model.xml, so that it can be predictably re-used again -->
+      <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configurations.list}.xml" tofile="${build.log.dir}/BOM/system_model.xml"/>
   </target>
 
   <!-- perform export only first to assist when parallel makefile parsing -->
   <target name="sf-do-full-export">
+  
+    <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
+    <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+    <propertyregex property="i.sf.spec.sbs.tools.config.expanded"   override="true" input="${sf.spec.sbs.tools.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.tools.config}" global="true"  casesensitive="false"/>
+
     <hlm:sbsinput id="sf.export">
         <sbsOptions>
+            <arg line="-c ${i.sf.spec.sbs.config.expanded} -c ${i.sf.spec.sbs.tools.config.expanded}"/>
             <arg line="-k" />
             <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
             <arg line="-t ${sf.spec.sbs.retry.limit}"/>
