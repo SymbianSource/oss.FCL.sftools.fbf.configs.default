@@ -741,7 +741,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     
     <!-- Unpack the rnd zips ready to be used in the build -->
     <target name="sf-unpack-rnd">
-        <echo message="Unpacking any available RnD binaries"/>
+        <echo message="INFO Unpacking any available RnD binaries"/>
         <for param="rndZip">
             <fileset dir="${build.drive}/output/zips/">
                 <include name="binaries_*.zip"/> <!-- Internal rnd bins -->
