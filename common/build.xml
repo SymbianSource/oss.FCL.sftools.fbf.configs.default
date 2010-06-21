@@ -92,7 +92,7 @@
              
     <!-- Import functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.postbuild.xml"/>
-	
+    
     <!-- Import test functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.test.xml"/>
     
@@ -133,7 +133,7 @@
     
     <target name="sf-prep" depends="sf-prep-announce,prep-drive,init-build-area,create-bom,log-build-env,sf-get-utils">
         <!-- Test for the disk space we would like for this build -->
-	<fail>
+        <fail>
             <condition>
                 <not>
                     <or>
@@ -183,7 +183,7 @@ Insufficient space to run this build to completion. (Was looking for ${sf.drive.
       <exec executable="perl" dir="${build.drive}">
           <arg value="${sf.common.config.dir}/tools/envinfo2diamonds.pl"/>
       </exec>
-    	
+        
         <!-- Conditional location of BuildEnv.xml. Project always preferred to default -->
         <if><available file="${sf.project.location}/BuildEnv.xml"/>        
             <then>
@@ -285,12 +285,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
           <echo>[SF-DIAMONDS-ENVINFO]</echo>
           <echo message="Send ${build.log.dir}/diamonds_envinfo.xml to Diamonds"/>
           <exec executable="python">
-		    <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
-		    <arg value="-u"/>
-		    <arg value="http://${diamonds.host}${diamonds.build.id}"/>
-		    <arg value="-f"/>
-		    <arg value="${build.log.dir}/diamonds_envinfo.xml"/>
-		  </exec>
+            <arg value="${sf.common.config.dir}/tools/brag/send_xml_to_diamonds.py"/>
+            <arg value="-u"/>
+            <arg value="http://${diamonds.host}${diamonds.build.id}"/>
+            <arg value="-f"/>
+            <arg value="${build.log.dir}/diamonds_envinfo.xml"/>
+          </exec>
         </then>
       </if>
     </target>
@@ -427,9 +427,14 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             </then>
         </if>
 
-        <ant antfile="${temp.build.dir}/source-rnd-spec.ant.xml" />
-        <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_rnd.csv"/>
 
+        <if><available file="${temp.build.dir}/source-rnd-spec.ant.xml"/>
+          <then>
+              <ant antfile="${temp.build.dir}/source-rnd-spec.ant.xml" />
+              <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_rnd.csv"/>
+          </then>
+        </if>
+        
         <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
         <stopwatch name="sf-get-source" action="elapsed"/>
     </target>
@@ -493,17 +498,20 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                     ]
               </data>
         </fmpp>
-
-        <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
-              outputFile="${temp.build.dir}/source-rnd-spec.ant.xml">
-              <data expandProperties="yes">
-                    ant: antProperties()
-                    data: [
-                        csv(${sf.source_rnd.csv.file}, {separator:','})
-                    ]
-              </data>
-        </fmpp>
-
+		
+        <if><available file="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}"/>
+          <then>
+            <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
+                  outputFile="${temp.build.dir}/source-rnd-spec.ant.xml">
+                  <data expandProperties="yes">
+                        ant: antProperties()
+                        data: [
+                            csv(${sf.source_rnd.csv.file}, {separator:','})
+                        ]
+                  </data>
+            </fmpp>
+          </then>
+        </if>
         <if>
             <istrue value="${sf.spec.smoketest.enable}"/>
             <then>
@@ -648,7 +656,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-preprocess-package-config">
-	<echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+    <echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
@@ -781,7 +789,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <echo message="Generating ${sf.brag.id}_BRAG.xml from ${sf.brag.log}"/>
         <exec executable="perl" failonerror="false" output="${build.log.dir}/summary/${sf.brag.id}_BRAG.xml" logError="true">
             <arg value="${sf.common.config.dir}/tools/brag/logToBRAG.pl"/>
-	    <arg value="--phase=${sf.brag.phase}"/>
+        <arg value="--phase=${sf.brag.phase}"/>
             <arg value="--step=${sf.brag.step}"/>
             <arg value="--rules=${sf.common.config.dir}/tools/brag/rules.${sf.brag.id}.tsv"/>
             <arg value="${sf.brag.log}"/>
