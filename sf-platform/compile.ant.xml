@@ -83,7 +83,7 @@
             <arg line="-k" />
             <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
             <arg line="-t ${sf.spec.sbs.retry.limit}"/>
-            <arg name="--logfile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_${sf.export.stage.name}.log" />
+            <arg name="--logfile" value="${build.drive}/output/logs/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_${sf.export.stage.name}.log" />
             <arg name="--makefile" value="${compile.log.dir}/${build.id}_${sf.spec.os.sysdef.clean.configurations.list}_compile_${sf.export.stage.name}_Makefile" />
             <arg line="--export-only"/>
         </sbsOptions>
@@ -115,7 +115,7 @@
                     <arg line="-t ${sf.spec.sbs.retry.limit}"/>
                     <arg line="${sf.spec.sbs.options}"/>
                     <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
-                    <arg name="--logfile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
+                    <arg name="--logfile" value="${build.drive}/output/logs/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
                     <arg name="--makefile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_${sf.spec.os.sysdef.clean.configurations.list}_Makefile" />
                     <arg line="--noexport"/>
                 </sbsOptions>
@@ -149,7 +149,7 @@
                     <arg line="-t ${sf.spec.sbs.retry.limit}"/>
                     <arg line="${sf.spec.sbs.options}"/>
                     <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
-                    <arg name="--logfile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
+                    <arg name="--logfile" value="${build.drive}/output/logs/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_compile.log" />
                     <arg name="--makefile" value="${compile.log.dir}/${build.id}_${i.sf.spec.sbs.config.expanded.logname}_${sf.spec.os.sysdef.clean.configurations.list}_Makefile" />
                     <arg line="--noexport"/>
                 </sbsOptions>
