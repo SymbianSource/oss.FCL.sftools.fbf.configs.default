@@ -142,11 +142,17 @@
 	
 	<target name="sf-build-smoketestpkg" depends="sf-getenv-tools">
         <echo message="INFO Building smoketest"/>
-		
-		<antcall target="run-qmake" inheritAll="false" inheritRefs="true">
-			<param name="qmake.enabled" value="true"/>
-			<param name="sysdef.configuration" value="${build.drive}\interim\sf-test\platform\smoketest\package_definition.xml"/>
-		</antcall>
+         <fmpp sourceFile="${qt.qmake.ant.template}" outputFile="${temp.build.dir}/run-qmake-test.ant.xml">
+            <data expandProperties="yes">
+                data: xml(${build.drive}/interim/sf-test/platform/smoketest/package_definition.xml)
+                ant: antProperties()
+
+            </data>
+        </fmpp>
+		<hlm:assertFileExists xmlns:hlm="http://www.nokia.com/helium" file="${temp.build.dir}/run-qmake-test.ant.xml"/>
+
+		<!-- Running the qmake steps -->
+        <ant antfile="${temp.build.dir}/run-qmake-test.ant.xml" dir="${build.drive}/" output="${compile.log.dir}/${build.id}_test.qmake.log"/>
 		
         <exec executable="cmd" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
             <arg value="/c"/>
