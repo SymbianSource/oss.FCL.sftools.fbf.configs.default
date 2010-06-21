@@ -96,6 +96,7 @@
                 <runtarget target="sf-publish"/>
             </then>
         </if>
+        <runtarget target="sf-build-summary"/>
         <stopwatch name="sf-postbuild" action="elapsed"/>
     </target>
 
@@ -1098,5 +1099,24 @@
             </then>
         </if>    
     </target>
-    
+
+    <!-- Transform BRAG xslt and display status at the end of the build -->
+    <target name="sf-build-summary">
+    <delete dir="${build.drive}/output/logs/summary/">
+      <include name="**/*.html"/>
+    </delete>
+     <xslt basedir="${build.drive}/output/logs/summary" destdir="${temp.build.dir}" extension=".html" style="."/>	
+    <loadfile srcFile="${temp.build.dir}/_BRAG.html" property="sf.brag.status">
+    <filterchain>
+      <linecontainsregexp>
+        <regexp pattern="(BLACK|RED|AMBER|GREEN)"/>
+      </linecontainsregexp>
+	  <trim/>
+      <striplinebreaks/>
+      <deletecharacters chars="\&gt;\&lt;\h2\h1\/"/>
+    </filterchain>
+    </loadfile>	
+    <echo message="BRAG STATUS: [${sf.brag.status}] - full build details available at ${build.drive}\output\logs\html\index.html"/>
+	</target>
+
 </project>
