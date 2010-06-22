@@ -144,7 +144,7 @@
         <echo message="INFO Building smoketest"/>
          <fmpp sourceFile="${qt.qmake.ant.template}" outputFile="${temp.build.dir}/run-qmake-test.ant.xml">
             <data expandProperties="yes">
-                data: xml(${build.drive}/interim/sf-test/platform/smoketest/package_definition.xml)
+                data: xml(${build.drive}/smoketest/package_definition.xml)
                 ant: antProperties()
 
             </data>
