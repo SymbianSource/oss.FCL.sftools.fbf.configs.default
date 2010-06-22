@@ -18,8 +18,12 @@
   <!-- import job properties -->
   <if><isfalse value="${sf.production.build}"/>
     <then>
-      <echo message="INFO Using Public properties defined in ${sf.project.location}/public_override_props.ant.xml"/>
-      <import file="${sf.project.location}/public_override_props.ant.xml" optional="yes"/>
+      <if><available file="${sf.project.location}/public_override_props.ant.xml"/>
+      <then>
+          <echo message="INFO Using Public properties defined in ${sf.project.location}/public_override_props.ant.xml"/>
+          <import file="${sf.project.location}/public_override_props.ant.xml" optional="yes"/>
+      </then>
+      </if>
     </then>
   </if>
   <import file="${sf.project.location}/${sf.project.name}_props.ant.xml" optional="yes"/>

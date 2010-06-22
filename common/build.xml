@@ -222,6 +222,26 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </fail>
     </target>
 
+    <!-- Note: Not used from Helium 7 onwards -->
+    <target name="generate-layers">
+       <echo message="canno-file:${canonical.sysdef.file}"/>
+       <echo message="raptor-filters:raptor_${sysdef.configuration}"/>
+
+       <!-- All we want is a sysdef with the config name appended, so just copy it -->
+       <echo message="INFO: Skip GenXML and copy sysdef to sysdef+config name"/>
+       <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+
+        <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml">
+        <filterchain>
+            <linecontainsregexp negate="true">
+                <regexp pattern="^\s*$"/>
+            </linecontainsregexp>
+        </filterchain>
+        </copy>
+        <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" todir="${build.log.dir}/BOM/"/>
+        <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+    </target>
+
     <target name="sf-summary" depends="">
         <echo>[SF-SUMMARY]</echo>
         <echo message="Generating build summary"/>
