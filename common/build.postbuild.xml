@@ -1105,7 +1105,7 @@
     <delete dir="${build.drive}/output/logs/summary/">
       <include name="**/*.html"/>
     </delete>
-     <xslt basedir="${build.drive}/output/logs/summary" destdir="${temp.build.dir}" extension=".html" style="."/>	
+     <xslt basedir="${build.drive}/output/logs/summary" destdir="${temp.build.dir}" extension=".html" style="brag.xsl"/>	
     <loadfile srcFile="${temp.build.dir}/_BRAG.html" property="sf.brag.status">
     <filterchain>
       <linecontainsregexp>
@@ -1116,7 +1116,7 @@
       <deletecharacters chars="\&gt;\&lt;\h2\h1\/"/>
     </filterchain>
     </loadfile>	
-    <echo message="BRAG STATUS: [${sf.brag.status}] - full build details available at ${build.drive}\output\logs\html\index.html"/>
+    <echo message="BRAG STATUS: [${sf.brag.status}] - full build details available at ${build.drive}\output\logs\summary\_BRAG.xml"/>
 	</target>
 
 </project>
