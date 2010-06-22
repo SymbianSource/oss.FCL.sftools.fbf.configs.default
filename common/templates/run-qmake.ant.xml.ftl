@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="run-qmake-${ant['sysdef.configuration']}" default="all">
+<project name="run-qmake" default="all">
 
     <target name="all">
 
