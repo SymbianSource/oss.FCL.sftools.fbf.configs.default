@@ -3,10 +3,12 @@
 
     <target name="all">
 
-    <if><not><available file="${r'$'}{build.drive}/epoc32/tools/qt/qmake.exe" type="file"/></not>
+    <!-- Qmake needs to have been built in this environment, to generate bld.infs to built Qt itself.  
+         Qmake.exe only exists in the source tree if its been built  -->
+
+    <if><not><available file="${r'$'}{build.drive}/sf/mw/qt/bin/qmake.exe" type="file"/></not>
     <then>
 	        <sequential>
-
 	<#list data["//unit/@bldFile/.."] as unit>
           <#if (unit.@bldFile=="/sf/mw/qt/src/s60installs/deviceconfiguration")>
                 <echo>INFO: Building and configuring qmake for ${unit.@bldFile}</echo>

@@ -7,15 +7,17 @@
 
   <property name="sf.spec.bldmefirst.s60.variant" value="western" /> <!-- western|apac|japan -->
 
-  <property name="sf.spec.baseline.getenv_options" value="-I tools -k"/> <!-- Sync the tools... -->
+  <property name="sf.spec.baseline.getenv_options" value="-i prebuilt -k"/> <!-- unpack anything prebuilt from baseline -->
   <property name="sf.spec.baseline.clean"          value="false"/>
   <property name="sf.spec.baseline.select"         value="location" />
 
-  <property name="sf.spec.toolsbaseline.getenv_options" value="-i emu -k"/>
+  <property name="sf.spec.toolsbaseline.getenv_options" value="-i tools -k"/>
   <property name="sf.spec.toolsbaseline.select"         value="location" />
-  <property name="sf.spec.toolsbaseline.location"       value="\\v800008\Builds01\PDT\PDT_b50" /> <!-- for TEF etc -->
   
   <property name="sf.spec.prebuilt.excludelist"     value="${sf.spec.job.dir}/../prebuilt_excludelist.txt"/>
+
+  <property name="sf.spec.systemdefinition.location" value="${sf.project.location}\sysdefs\"/>
+  <property name="sf.spec.systemdefinition.filename" value="system_model.xml"/>
 
   <property name="sf.spec.sourcesync.usecache"     value="true"/>
 

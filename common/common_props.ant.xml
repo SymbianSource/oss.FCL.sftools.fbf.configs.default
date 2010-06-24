@@ -49,9 +49,16 @@
     <property name="sf.spec.sourcesync.enable" value="true"/>
     <property name="sf.spec.sourcesync.usecache" value="false"/>
     <property name="sf.spec.sourcesync.sourcespecfile" value="sources.csv"/>
+    <property name="sf.spec.sourcesync.sourcespecfile.rnd" value="sources_rnd.csv"/>
     <property name="sf.spec.sourcesync.cache.path" value="hgcache"/> <!-- Path relative to root of some drive for location of hg cache -->
     <property name="sf.spec.sourcesync.local.development.area" value="//v800008/Builds01"/> <!-- Location of a "development area" which should be cached on build machines (in addition to developer.symbian.org content) -->
     <property name="sf.spec.sources.revision" value=""/>
+
+    <!-- package builds, this is the actual file, for platform this is the dir -->
+    <property name="sf.spec.systemdefinition.location" value=""/>
+    
+    <!-- model file name relative to location (above) -->
+    <property name="sf.spec.systemdefinition.filename" value=""/>
     
     <property name="sf.spec.baseline.enable" value="true"/>
     <property name="sf.spec.baseline.select" value="auto"/> <!-- auto|explicit|location -->

@@ -104,6 +104,7 @@
             <arg line="-c ${i.sf.spec.sbs.config.expanded}"/>
             <arg line="-s ${build.drive}\output\build\canonical_system_definition.xml"/>
             <arg line="${sf.spec.sbs.options}"/>
+            <arg line="-k"/>
             <arg line="--what"/>
             <!-- output only what is found on disk -->
             <arg line=" | perl -pe &quot;while ($line=&lt;STDIN&gt;) { my $orig =$line; chomp $line; print $orig if (-e &quot;$line&quot;); };&quot;"/>
