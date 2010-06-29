@@ -41,6 +41,7 @@ my $existing_results;
 my $n;
 my $m;
 my @lines;
+my $man_detailshref;
 
 sub usage($);
 sub help();
@@ -143,6 +144,11 @@ if (defined($ats3_report)) { $detailshref = $ats3_report };
 if (defined($ats4_report)) { $detailshref = $ats4_report };
 $detailshref =~ s/\\/\//g; # Replace \ with /
 $detailshref =~ s/($temp_path)/../;
+if (defined($test_report)) {
+	$man_detailshref = $test_report;
+	$man_detailshref =~ s/\\/\//g; # Replace \ with /
+	$man_detailshref =~ s/($temp_path)/../;
+}
 
 if (defined($test_report)) { # Get manual Smoketest results.
 	print "Parsing " . $test_report . "... ";
@@ -205,7 +211,7 @@ splice @lines, $n, 0, "<nestedtests count=\"$auto_tests_failed\" property=\"fail
 splice @lines, $n, 0, "<nestedtests count=\"$auto_tests_notrun\" property=\"not run\"/>"; $n++;
 splice @lines, $n, 0, "<\/step>"; $n++;
 if (defined($test_report)) {
-	splice @lines, $n, 0, "<step name=\"Smoketest - manual tests\">"; $n++;
+	splice @lines, $n, 0, "<step detailshref=\"$man_detailshref\" name=\"Smoketest - manual tests\">"; $n++;
 	splice @lines, $n, 0, "<nestedtests count=\"$man_tests_total\" property=\"total\"/>"; $n++;
 	splice @lines, $n, 0, "<nestedtests count=\"$man_tests_passed\" property=\"passed\"/>"; $n++;
 	splice @lines, $n, 0, "<nestedtests count=\"$man_tests_failed\" property=\"failed\"/>"; $n++;
@@ -235,7 +241,7 @@ print FILE "<nestedtests count=\"$auto_tests_failed\" property=\"failed\"/>\n";
 print FILE "<nestedtests count=\"$auto_tests_notrun\" property=\"not run\"/>\n";
 print FILE "<\/step>\n";
 if (defined($test_report)) {
-	print FILE "<step name=\"Smoketest - manual tests\">\n";
+	print FILE "<step detailshref=\"$man_detailshref\" name=\"Smoketest - manual tests\">\n";
 	print FILE "<nestedtests count=\"$man_tests_total\" property=\"total\"/>\n";
 	print FILE "<nestedtests count=\"$man_tests_passed\" property=\"passed\"/>\n";
 	print FILE "<nestedtests count=\"$man_tests_failed\" property=\"failed\"/>\n";
