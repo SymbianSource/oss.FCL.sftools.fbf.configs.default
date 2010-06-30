@@ -145,7 +145,7 @@
 		
 		<!-- Have to replace qt.conf with the one in the smoketest package -->
 		<copy file="${build.drive}/epoc32/tools/qt/qt.conf" tofile="${build.drive}/epoc32/tools/qt/qt.conf.temp" overwrite="true" />
-		<copy file="${build.drive}/smoketest/qt.conf.smoketest" tofile="${build.drive}/epoc32/tools/qt/qt.conf" overwrite="true" />
+		<copy file="${build.drive}/smoketest/qt/qt.conf.smoketest" tofile="${build.drive}/epoc32/tools/qt/qt.conf" overwrite="true" />
 		
          <fmpp sourceFile="${qt.qmake.ant.template}" outputFile="${temp.build.dir}/run-qmake-test.ant.xml">
             <data expandProperties="yes">
