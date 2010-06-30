@@ -142,6 +142,11 @@
 	
 	<target name="sf-build-smoketestpkg" depends="sf-getenv-tools">
         <echo message="INFO Building smoketest"/>
+		
+		<!-- Have to replace qt.conf with the one in the smoketest package -->
+		<copy file="${build.drive}/epoc32/tools/qt/qt.conf" tofile="${build.drive}/epoc32/tools/qt/qt.conf.temp" overwrite="true" />
+		<copy file="${build.drive}/smoketest/qt.conf.smoketest" tofile="${build.drive}/epoc32/tools/qt/qt.conf" overwrite="true" />
+		
          <fmpp sourceFile="${qt.qmake.ant.template}" outputFile="${temp.build.dir}/run-qmake-test.ant.xml">
             <data expandProperties="yes">
                 data: xml(${build.drive}/smoketest/package_definition.xml)
@@ -163,6 +168,10 @@
             <arg value="/c"/>
             <arg value="sbs -c winscw_udeb.test -s package_definition.xml"/>
         </exec>
+		
+		<!-- Be a good boy and put the file back where it was -->
+		<copy file="${build.drive}/epoc32/tools/qt/qt.conf" tofile="${build.drive}/epoc32/tools/qt/qt.conf.smoketest" overwrite="true" />
+		<copy file="${build.drive}/epoc32/tools/qt/qt.conf.temp" tofile="${build.drive}/epoc32/tools/qt/qt.conf" overwrite="true" />
 
         <echo message="INFO Creating smoketest testpackage"/>
         <exec executable="perl" dir="${build.drive}/smoketest/group" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_smoketest.log">
