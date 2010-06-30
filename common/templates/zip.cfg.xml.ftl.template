@@ -15,7 +15,7 @@
 		<!--  Metadata creation -->
 		<set name="grace.template" value="${temp.build.dir}/release_metadata_template.xml" />
 		<set name="grace.metadata" value="true" />
-		<set name="grace.service" value="" />
+		<set name="grace.service" value="${build.family}" />
 		<set name="grace.product" value="${build.family}" />
 		<set name="grace.release" value="${build.version}" />
 		

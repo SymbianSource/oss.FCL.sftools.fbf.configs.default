@@ -51,6 +51,7 @@
         <fileset dir="${build.drive}/${sf.spec.bldmefirst.gt.hrh}" includes="*.hrh"/>
     </copy>
     <copy file="${build.drive}/${sf.spec.bldmefirst.gt.variant}" tofile="${build.drive}/epoc32/tools/variant/variant.cfg" failonerror="true" verbose="true" overwrite="true" preservelastmodified="true" />
+    <copy file="${build.drive}/${sf.spec.bldmefirst.sbs.config.xml}" tofile="${build.drive}/epoc32/sbs_config/s60_sbs_config.xml" failonerror="false" verbose="true" overwrite="true" preservelastmodified="true" />
 	<if><isset property="sf.spec.bldmefirst.gt.hrh.os"/>
 	 <then>
 	  <copy file="${build.drive}/${sf.spec.bldmefirst.gt.hrh.os}" tofile="${build.drive}/epoc32/include/variant/Symbian_OS.hrh" failonerror="false" overwrite="true" verbose="true" preservelastmodified="true" />

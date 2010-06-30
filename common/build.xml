@@ -676,10 +676,24 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-preprocess-package-config">
+	<!-- preprocess by stripping the header of the rnd source and concat with sources.csv -->
+    <loadfile srcfile="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}" property="rnd.source.no.header" failonerror="false">
+    <filterchain>
+      <headfilter skip="1"/>
+    </filterchain>
+    </loadfile>
+    <echo message="${rnd.source.no.header}" file="${temp.build.dir}/sources_rnd_no_header.csv"/>
+    
+    <!-- order is important as the rnd source now has no header -->
+    <concat destfile="${temp.build.dir}/sources.csv" force="yes">
+       <file file="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+       <file file="${temp.build.dir}/sources_rnd_no_header.csv"/>
+    </concat>
+
     <echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
-            <arg value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+            <arg value="${temp.build.dir}/sources.csv"/>
             <arg value="${sf.common.config.dir}/templates/zip.cfg.xml.ftl.template"/>
             <arg value="${temp.build.dir}/zip.cfg.xml.ftl"/>
             <arg value="${build.log.dir}/rnd_excludefile.txt"/>
