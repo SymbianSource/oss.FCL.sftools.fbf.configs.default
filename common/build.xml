@@ -126,7 +126,7 @@
           </hlm:signalInput>
 
           <!-- configure stages -->
-          <hlm:stage id="preparation" starttarget="sf-prep" endtarget="sf-compile"/>
+          <hlm:stage id="preparation" starttarget="sf-prebuild" endtarget="sf-prebuild"/>
           <hlm:stage id="compilation" starttarget="sf-compile" endtarget="sf-compile"/>
           <hlm:stage id="postbuild" starttarget="sf-postbuild" endtarget="sf-postbuild"/>
 
