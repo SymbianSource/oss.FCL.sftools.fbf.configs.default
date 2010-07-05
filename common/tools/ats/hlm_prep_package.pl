@@ -11,7 +11,7 @@
 #   Maciej Seroka, maciej@symbian.org
 #
 # Description:
-#   This is a script for fixing pkg files.
+#   This is a script for fixing pkg and ini files.
 
 use strict;
 use File::Copy;
@@ -19,11 +19,13 @@ use Tie::File;
 use File::Find;
 
 my @files;
+my @ini_files;
 my @lines;
 my $file;
 my $n;
 my $file_fixed;
 sub Wanted;
+sub Parse_ini;
 
 my $package_path;
 if ($ARGV[0]) {
@@ -33,7 +35,7 @@ else { die "Missing parameter \"package path\". For example: D:\\sf\\app\\musicp
 
 find(\&Wanted, $package_path);
 
-#Copy a pkg file and replace \armv5\urel with $(platform)\$(target)
+Copy a pkg file and replace \armv5\urel with $(platform)\$(target)
 foreach $file (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,org"
 	copy($file,$file . ".orig") or die ("Cannot copy file \"$file\". $!\n");
 	tie (@lines, 'Tie::File', $file, recsep => "\n") or die ("Cannot tie file \"$file\". $!\n");
@@ -56,8 +58,38 @@ foreach $file (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,o
 	untie @lines;
 }
 
+find(\&Parse_ini, $package_path);
+
+foreach $file (@ini_files) {
+	if ($file =~ m/\/init\//) { # Only operate on files from /init/ directories
+		copy($file,$file . ".orig") or die ("Cannot copy file \"$file\". $!\n");
+		tie (@lines, 'Tie::File', $file, recsep => "\n") or die ("Cannot tie file \"$file\". $!\n");
+		$n = 0;
+		$file_fixed = 0;
+		foreach (@lines) {
+			if (lc(@lines[$n]) =~ m/^separateprocesses/) {
+				@lines[$n] = '#' . @lines[$n];
+				$file_fixed = 1;
+			}
+			if (lc(@lines[$n]) =~ m/^uitestingsupport/) {
+				@lines[$n] = '#' . @lines[$n];
+				$file_fixed = 1;
+			}
+			$n++;
+		}
+		if ($file_fixed) { print $file . " fixed.\n"; }
+		untie @lines;
+	}
+}
+
 sub Wanted {
     # only operate on .pkg files
 	/.pkg$/ or return;
     push (@files, $File::Find::name);
+}
+
+sub Parse_ini {
+    # only operate on .ini files
+	/\.ini$/ or return;
+    push (@ini_files, $File::Find::name);
 }
