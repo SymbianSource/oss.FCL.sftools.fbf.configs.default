@@ -35,7 +35,7 @@ else { die "Missing parameter \"package path\". For example: D:\\sf\\app\\musicp
 
 find(\&Wanted, $package_path);
 
-Copy a pkg file and replace \armv5\urel with $(platform)\$(target)
+#Copy a pkg file and replace \armv5\urel with $(platform)\$(target)
 foreach $file (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,org"
 	copy($file,$file . ".orig") or die ("Cannot copy file \"$file\". $!\n");
 	tie (@lines, 'Tie::File', $file, recsep => "\n") or die ("Cannot tie file \"$file\". $!\n");
