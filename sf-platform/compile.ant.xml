@@ -12,14 +12,6 @@
     </antcall>
   </target>
   
-  <!-- compile specified sysdef file. called from sf-compile target in sf-platform/build.xml -->
-  <target name="sf-s60-compile">
-    <antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
-        <param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-        <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-    </antcall>
-  </target>
-  
   <!-- compile sbs.tools.config and sbs.config. tools built only if its not being unpacked first.
        note: must be called from sf-os/s60-compile targets, as sys model input needed -->
   <target name="sf-do-compile" depends="create-canonical-sysdef-file">
