@@ -922,23 +922,7 @@
 
     <!-- TODO: Make this work for package builds once we have sysmodel story worked out -->
     <target name="sf-run-analysis-missing-files" if="sf.spec.checkbuild">
-    <!-- splitbuild is only set for Platform builds -->
-       <if><istrue value="${sf.spec.splitbuild}"/>
-       <then>
-            <if><istrue value="${sf.spec.os.skipbuild}" />
-                <then><echo message="Skipping OS file check"/></then>
-                <else><runtarget target="sf-check-missing-os-files"/></else>
-            </if>
-
-            <if><istrue value="${sf.spec.s60.skipbuild}" />
-                <then><echo message="Skipping S60 file check"/></then>
-                <else><runtarget target="sf-check-missing-s60-files"/></else>
-            </if>
-       </then>
-       <else>
-            <runtarget target="sf-check-missing-os-files"/>
-       </else>
-    </if>
+        <runtarget target="sf-check-missing-os-files"/>
     </target>
     
     <target name="sf-check-missing-os-files" depends="sf-compile-options">
@@ -954,7 +938,6 @@
         <antcall target="compile-main" inheritAll="false" inheritRefs="true">
             <param name="build.system" value="${sf.spec.build.system}" />
             <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-            <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
             <param name="build.id" value ="sbs_check"/>
             <reference refid="sbs.check.tools.var" torefid="sbs.var" />
             <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
@@ -973,7 +956,6 @@
                 <antcall target="compile-main" inheritAll="false" inheritRefs="true">
                     <param name="build.system" value="${sf.spec.build.system}" />
                     <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-                    <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
                     <param name="build.id" value ="sbs_check"/>
                     <reference refid="sbs.check.iterate.main.var" torefid="sbs.var" />
                     <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
@@ -986,7 +968,6 @@
           <antcall target="compile-main" inheritAll="false" inheritRefs="true">
             <param name="build.system" value="${sf.spec.build.system}" />
             <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
-            <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
             <param name="build.id" value ="sbs_check"/>
             <reference refid="sbs.check.main.var" torefid="sbs.var" />
             <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
@@ -996,38 +977,6 @@
       </if> 
     </target>
 
-    <target name="sf-check-missing-s60-files" depends="sf-compile-options">
-    
-        <hlm:argSet id="sbs.check.tools.var">
-                <hlm:arg name="config" value="${sf.spec.sbs.tools.config}" />
-                <hlm:arg name="run-check" value="true" />
-        </hlm:argSet>
-     
-        <hlm:argSet id="sbs.check.main.var">
-                <hlm:arg name="config" value="${sf.spec.sbs.config}" />
-                <hlm:arg name="run-check" value="true" />
-        </hlm:argSet>     
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-            <param name="build.system" value="${sf.spec.build.system}" />
-            <param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-            <param name="sf.spec.sysdef.version" value ="${sf.spec.s60.sysdef.version}"/>
-            <param name="build.id" value ="sbs_check"/>
-            <reference refid="sbs.check.tools.var" torefid="sbs.var" />
-            <reference refid="sbs.toolsbuild.options" torefid="sbs.make.options" />
-            <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-        </antcall> 
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-            <param name="build.system" value="${sf.spec.build.system}" />
-            <param name="sysdef.configurations.list" value="${sf.spec.s60.sysdef.clean.configurations.list}" />
-            <param name="sf.spec.sysdef.version" value ="${sf.spec.os.sysdef.version}"/>
-            <param name="build.id" value ="sbs_check"/>
-            <reference refid="sbs.check.main.var" torefid="sbs.var" />
-            <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-            <reference refid="sf.spec.s60.system.definition.files" torefid="system.definition.files" />
-        </antcall>
-        
-    </target>
-    
     <target name="sf-create-public-PDK" depends="sf-prebuild,sf-run-sfl-licence-munging" >
         <if>
             <istrue value="${sf.spec.md5.enable}"/>

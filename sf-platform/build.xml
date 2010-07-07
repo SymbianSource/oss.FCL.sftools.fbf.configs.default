@@ -150,41 +150,21 @@
     == Desc: Override of common sf-compile target defined in
     ==       common\build.xml
     ==
-    ==       os  build will be skipped if sf.spec.os.skipbuild=true
-    ==       s60 build will be skipped if sf.spec.s60.skipbuild=true
-    ==
     -->
   <target name="sf-compile">
     <stopwatch name="sf-compile"/>
 
-    <!-- TODO clean up to single target once genxml v2.0.0 merge is fixed -->
-    <if><istrue value="${sf.spec.splitbuild}"/>
-      <then>
-        <if><istrue value="${sf.spec.os.skipbuild}" />
-          <then><echo message="Skipping OS build"/></then>
-          <else><runtarget target="sf-os-compile"/></else>
-        </if>
-
-        <if><istrue value="${sf.spec.s60.skipbuild}" />
-          <then><echo message="Skipping S60 build"/></then>
-          <else><runtarget target="sf-s60-compile"/></else>
-        </if>
-      </then>
-      <else>
-        <!-- TODO targets for single sysdef build -->
-        <runtarget target="sf-os-compile"/>
-      </else>
-    </if>
+    <runtarget target="sf-os-compile"/>
 
     <!-- always run cenrep -->
     <if><equals arg1="${sf.spec.job.name}" arg2="symbian2"/>
-    <then>
+      <then>
         <runtarget target="sf-s60-create-cenrep"/>
-    </then>
-    <else>
+      </then>
+      <else>
         <!-- symbian3+ should use ConE -->
         <runtarget target="sf-s60-cone-cenrep"/>
-    </else>
+      </else>
     </if>
     <stopwatch name="sf-compile" action="elapsed"/>
   </target>
