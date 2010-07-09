@@ -32,10 +32,9 @@
 	<context id="Common">
 		<tool name="Perl">
 			<location strict="false" value="C:\apps\perl\bin\perl.exe"/>
-			<verify version="5.6.1" showstopper="true" >
-				<check name="version" execute="%location% -v" values="v5\.6\.1" locator="This is perl, (.*) built"/>
-				<check name="build" execute="%location% -v" values="build 633|build 635|build 638" locator="Binary (.*) provided by ActiveState" log="true"/>
-				<check name="module SAX version" execute="ppm query sax" values="0\.15" locator="XML-SAX \[(.*)\] Simple API" />
+			<verify version="5.10.1" showstopper="true" >
+				<check name="version" execute="%location% -v" values="v5\.10\.1" locator="This is perl, (.*) built"/>
+				<check name="build" execute="%location% -v" values="build *" locator="Binary (.*) provided by ActiveState" log="true"/>
 			</verify>
 		</tool>
 		<tool name="Mercurial">
@@ -46,8 +45,8 @@
 		</tool>
 		<tool name="Python">
 			<location strict="false" value="c:\apps\python25\python.exe"/>
-			<verify version="2.5" showstopper="false">
-				<check name="version" execute="%location% -V" values="2\.5\.[0-9]" locator="Python (.*)"/>
+			<verify version="2.5 or 2.6]" showstopper="false">
+				<check name="version" execute="%location% -V" values="2\.[5-6]\.[0-9]" locator="Python (.*)"/>
 			</verify>
 		</tool>
 		<tool name="Java Compiler">
@@ -79,8 +78,8 @@
 		</tool>
 		<tool name="Raptor">
 			<location strict="false" value="C:\apps\raptor2.7.2\bin\sbs.bat"/>
-			<verify version="2.9.*" showstopper="true">
-				<check name="version" execute="%SBS_HOME%\bin\sbs.bat -version" values="2\.9\.\d" locator="sbs version (.*) \["/>
+			<verify version="2.12.* or 2.14.*" showstopper="true">
+				<check name="version" execute="%SBS_HOME%\bin\sbs.bat -version" values="2\.1[2|4]\.\d" locator="sbs version (.*) \["/>
 			</verify>
 		</tool>
 	</context>
