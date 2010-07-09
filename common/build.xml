@@ -302,6 +302,17 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
           <echo message="diamonds.build.id=${diamonds.build.id}" file="${build.log.dir}/diamonds_build_id.properties"/>
         </then>
       </if>
+      
+      <tstamp>
+        <format property="time.now" pattern="yyyy-MM-dd HH:mm:ss" locale="en,UK"/>
+      </tstamp>
+
+      <echo message="build_id_string	${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="package	${sf.spec.job.name}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="platform	${sf.spec.job.codeline}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="started	${time.now}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="creator	${env.USERNAME}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="machine	${env.COMPUTERNAME}" file="${build.log.dir}/bitinfo.txt" append="true"/>
     </target>
     
     <target name="sf-diamonds-envinfo">

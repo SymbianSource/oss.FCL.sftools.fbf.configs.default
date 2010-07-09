@@ -18,6 +18,7 @@ use Getopt::Long;
 
 my $input = "\\output\\logs\\envinfo.txt";
 my $output = "\\output\\logs\\diamonds_envinfo.xml";
+my $bit_output = "\\output\\logs\\bitinfo.txt";
 my $help = 0;
 GetOptions((
 	'in=s' => \$input,
@@ -70,6 +71,11 @@ for my $tool_info (@environment_info)
 {
 	$tools_lines .= "   <tool><name>$tool_info->{name}</name><version>$tool_info->{version}</version></tool>\n";
 }
+my $bit_tools_lines = '';
+for my $bit_tool_info (@environment_info)
+{
+	$bit_tools_lines .= "envinfo\t$tool_info->{name},$tool_info->{version}\n";
+} 
 
 $xml_content =~ s/_HERE_TOOLS_LINES_/$tools_lines/;
 
@@ -82,4 +88,10 @@ if (open(ENVINFO, ">$output"))
 else
 {
 	warn "Could not write to file: $output\n";
+}
+
+if (open(BITINFO, ">>$bit_output"))
+{
+	print BITINFO $bit_tools_lines;
+	close(BITINFO);
 }
