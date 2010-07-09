@@ -61,6 +61,8 @@
 				<arg value="-i"/>
 				<arg value="${pkg_detail.dst}"/>
 			</exec>
+			<!-- Remove any '+' on the end of the hash (indicating that the package overwrote some of its own source files during the build) -->
+			<propertyregex property="hash12.${count}" override="true" input="${dollar}{hash12.${count}}" regexp="\+$" replace=""/>
 			<!-- Get the full hash id -->
 			<exec executable="hg" dir="${ant['build.drive']}${pkg_detail.dst}" outputproperty="hash40.${count}" logError="true">
 				<arg value="log"/>
