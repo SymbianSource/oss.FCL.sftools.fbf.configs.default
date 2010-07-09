@@ -41,10 +41,16 @@ foreach $file (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,o
 	tie (@lines, 'Tie::File', $file, recsep => "\n") or die ("Cannot tie file \"$file\". $!\n");
 	$n = 0;
 	$file_fixed = 0;
+	print @lines[49] . "\n";
 	foreach (@lines) {
 		if (lc(@lines[$n]) =~ m/epoc32\\release\\armv5\\urel\\/) {
 			@lines[$n] = lc(@lines[$n]);
 			@lines[$n] =~ s/\\armv5\\urel\\/\\\$(platform)\\\$(target)\\/;
+			$file_fixed = 1;
+		}
+		if (lc(@lines[$n]) =~ m/epoc32\/release\/armv5\/urel\//) {
+			@lines[$n] = lc(@lines[$n]);
+			@lines[$n] =~ s/\/armv5\/urel\//\/\$(platform)\/\$(target)\//;
 			$file_fixed = 1;
 		}
 		if (lc(@lines[$n]) =~ m/epoc32\\release\\armv5\\udeb\\/) {
@@ -52,6 +58,11 @@ foreach $file (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,o
 			@lines[$n] =~ s/\\armv5\\udeb\\/\\\$(platform)\\\$(target)\\/;
 			$file_fixed = 1;
 		}
+#		if (lc(@lines[$n]) =~ m/e:\\/) { # Replace e: with c:
+#			@lines[$n] = lc(@lines[$n]);
+#			@lines[$n] =~ s/e:\\/c:\\/;
+#			$file_fixed = 1;
+#		}
 		$n++;
 	}
 	if ($file_fixed) { print $file . " fixed.\n"; }
@@ -61,7 +72,7 @@ foreach $file (@files) { #Replace "//v800020/Publish" with "http://cdn.symbian,o
 find(\&Parse_ini, $package_path);
 
 foreach $file (@ini_files) {
-	if ($file =~ m/\/init\//) { # Only operate on files from /init/ directories
+	if ((lc($file) =~ m/\/init\//) || (lc($file) =~ m/\/group\//)) { # Only operate on files from /init/ directories
 		copy($file,$file . ".orig") or die ("Cannot copy file \"$file\". $!\n");
 		tie (@lines, 'Tie::File', $file, recsep => "\n") or die ("Cannot tie file \"$file\". $!\n");
 		$n = 0;
