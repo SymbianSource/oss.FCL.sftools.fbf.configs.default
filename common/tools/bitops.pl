@@ -1,4 +1,8 @@
 use strict;
+
+use FindBin;
+use lib "$FindBin::Bin/lib";
+
 use Date::Calc qw{Delta_DHMS This_Year};
 use DBI;
 
