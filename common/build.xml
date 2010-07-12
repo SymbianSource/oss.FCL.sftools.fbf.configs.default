@@ -802,12 +802,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     <target name="sf-unpack-rnd">
         <echo message="INFO Unpacking any available RnD binaries"/>
         <for param="rndZip">
-            <fileset dir="${build.drive}/output/zips/">
+            <fileset dir="${build.drive}/output/zips/" erroronmissingdir="false">
                 <include name="binaries_*.zip"/> <!-- Internal rnd bins -->
                 <include name="release/bin_*.zip"/> <!-- Releaseable rnd bins -->
             </fileset>
             <sequential>
-                <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log" append="true">
+                <exec executable="7za" dir="${build.drive}" output="${build.log.dir}/unzip_${build.id}_binaries_rnd.log" append="true" failonerror="false">
                     <arg value="x"/>
                     <arg value="-y"/> <!-- Need to unpack in overwrite mode, due to TEF -->
                     <arg value="-i!epoc32\*"/> <!-- Only unzip items into the epoc32 tree -->
