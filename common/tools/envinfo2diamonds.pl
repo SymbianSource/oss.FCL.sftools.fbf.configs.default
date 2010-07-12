@@ -74,7 +74,7 @@ for my $tool_info (@environment_info)
 my $bit_tools_lines = '';
 for my $bit_tool_info (@environment_info)
 {
-	$bit_tools_lines .= "envinfo\t$tool_info->{name},$tool_info->{version}\n";
+	$bit_tools_lines .= "envinfo\t$bit_tool_info->{name},$bit_tool_info->{version}\n";
 } 
 
 $xml_content =~ s/_HERE_TOOLS_LINES_/$tools_lines/;
