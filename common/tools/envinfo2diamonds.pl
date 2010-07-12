@@ -54,7 +54,6 @@ while (<INFILE>)
 close(INFILE);
 
 # write diamonds file
-@environment_info = reverse(@environment_info);
 
 my $xml_content = <<_EOX;
 <?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -67,7 +66,7 @@ _HERE_TOOLS_LINES_
 _EOX
 
 my $tools_lines = '';
-for my $tool_info (@environment_info)
+for my $tool_info (reverse(@environment_info))
 {
 	$tools_lines .= "   <tool><name>$tool_info->{name}</name><version>$tool_info->{version}</version></tool>\n";
 }
