@@ -13,7 +13,7 @@
   
   <property name="sf.spec.toolsbaseline.enable" value="false"/>
   
-  <property name="sf.spec.package.src.enable" value="true"/>
+  <property name="sf.spec.package.src.enable" value="false"/>
   
   <property name="sf.spec.build.clean.enable" value="true"/>
   
