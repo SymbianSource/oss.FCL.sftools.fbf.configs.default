@@ -303,10 +303,10 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         </then>
       </if>
       
+      <!-- Supply build-start info in a BIT file -->
       <tstamp>
         <format property="time.now" pattern="yyyy-MM-dd HH:mm:ss" locale="en,UK"/>
       </tstamp>
-
       <echo message="build_id_string&#x0009;${sf.spec.job.name}_${sf.spec.job.codeline}.${sf.spec.job.number}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
       <echo message="package&#x0009;${sf.spec.job.name}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
       <echo message="platform&#x0009;${sf.spec.job.codeline}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
@@ -345,6 +345,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
           </exec>
         </then>
       </if>
+      <!-- Supply labels info to the BIT file -->
+      <for list="${sf.spec.publish.diamonds.tag}" param="label">
+        <sequential>
+          <echo message="label&#x0009;@{label}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+        </sequential>
+      </for>
     </target>
     
     <target name="sf-record-proj-conf-bom">
