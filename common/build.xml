@@ -279,7 +279,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             </then>
         </if>
         <!-- Delete build directory -->
-        <delete dir="${prep.build.dir}"/>
+        <delete dir="${prep.build.dir}" failonerror="false" deleteonexit="true"/>
     </target>
 
     <target name="sf-prebuild" depends="sf-prep,sf-prebuild-noprep"/>
