@@ -368,6 +368,8 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="-i"/>
         </exec>
         <echo message="${sf.job.bom.config.repo},sf-config,${sf.job.bom.config.checksum}" file="${build.drive}/output/logs/BOM/config.csv"/>
+        <!-- Record revision of config repository into BIT file -->
+        <echo message="content&#x0009;config,${sf.job.bom.config.repo},${sf.job.bom.config.checksum}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
 
         <exec executable="hg" dir="${sf.project.location}" outputproperty="sf.job.bom.project.repo">
             <arg value="showconfig"/>
@@ -379,6 +381,8 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="-i"/>
         </exec>
         <echo message="${sf.job.bom.project.repo},build/config,${sf.job.bom.project.checksum}" file="${build.drive}/output/logs/BOM/project.csv"/>
+        <!-- Record revision of project repository into BIT file -->
+        <echo message="content&#x0009;project,${sf.job.bom.project.repo},${sf.job.bom.project.checksum}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
     </target>
     
     <target name="sf-get-utils">
@@ -391,6 +395,12 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <arg value="http://developer.symbian.org/oss/MCL/sftools/fbf/utilities"/>
             <arg value="${build.drive}/utilities"/>
         </exec>
+        <exec executable="hg" dir="${build.drive}/utilities" outputproperty="sf.job.bom.utilities.checksum">
+            <arg value="identify"/>
+            <arg value="-i"/>
+        </exec>
+        <!-- Record revision of utilities repository into BIT file -->
+        <echo message="content&#x0009;utilities,http://developer.symbian.org/oss/MCL/sftools/fbf/utilities,${sf.job.bom.utilities.checksum}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
       <stopwatch name="sf-get-utils" action="elapsed"/>
     </target>
 
@@ -406,8 +416,9 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <then>
                 <stopwatch name="sf-getenvs (tools)"/>
 
-                <!-- record toolsbaseline information in BOM file -->
+                <!-- record toolsbaseline information in BOM file and in BIT file -->
                 <echo message="${sf.spec.toolsbaseline.location}" file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
+                <echo message="content&#x0009;toolsbaseline,toolsbaseline,${sf.spec.toolsbaseline.location}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
 
                 <!-- wrapper around preparation-getenv but with diff params -->
                 <runtarget target="sf-getenv-tools"/>
@@ -426,8 +437,9 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             <istrue value="${sf.spec.baseline.enable}" />
             <then>
                 <stopwatch name="sf-getenvs (baseline)"/>
-                <!-- record baseline information in BOM file -->
+                <!-- record baseline information in BOM file and in BIT file -->
                 <echo message="${sf.spec.baseline.location}" file="${build.drive}/output/logs/BOM/baseline.txt"/>
+                <echo message="content&#x0009;baseline,baseline,${sf.spec.baseline.location}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
                 
                 <!-- run internal target preparation-getenv -->
                 <delete file="${build.drive}/currentRelease.xml"/>        

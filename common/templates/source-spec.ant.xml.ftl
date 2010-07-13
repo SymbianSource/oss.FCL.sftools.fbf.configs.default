@@ -184,8 +184,9 @@
     </target>
     
     <target name="sf-bom-info-${count}">
-        <!-- record info on source code repo/rev in BOM file  -->
+        <!-- record info on source code repo/rev in BOM file and in BIT file -->
         <echo file="${ant['build.drive']}/output/logs/BOM/sources.csv" append="true" message="${dollar}{sources.${count}.URL},${pkg_detail.dst},changeset,${dollar}{sf.sourcesync.${count}.checksum},${pkg_detail.sysdef}${dollar}{line.separator}"/>
+        <echo message="content&#x0009;sources,${dollar}{sources.${count}.URL},${dollar}{sf.sourcesync.${count}.checksum}&#x000d;&#x000a;" file="${ant['build.log.dir']}/bitinfo.txt" append="true"/>
     </target>
     
     <target name="sf-bom-change-info-${count}">
