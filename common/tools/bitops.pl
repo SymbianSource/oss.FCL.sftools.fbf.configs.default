@@ -63,6 +63,7 @@ File format:
   - failure (CATEGORY,COUNT)
   - report (NAME,URL,TYPE)
   - content (NAME,URL,REVISION)
+  - baseline (TYPE,PATH)
   - label (VALUE)
 _EOH
 	exit(0);
@@ -75,6 +76,7 @@ my $envinfo = [];
 my $failures = [];
 my $reports = [];
 my $content = [];
+my $baselines = [];
 my $labels = [];
 my $testing_entry = {};
 
@@ -206,6 +208,28 @@ sub parse_file
           return 1;
         }
       }
+      elsif ($attr =~ /^(baseline)$/i)
+      {
+        $attr = lc($attr);
+        if ($value =~ /([^,]*),([^,]*)/)
+        {
+          my $type = $1;
+          my $path = $2;
+          
+          if (!$type || !$path)
+          {
+            print "ERROR: Type or path empty: \"$value\"\n";
+            return 1;
+          }
+          print " found ($type,$path) for table 'baselines'\n" if ($verbose);
+          push(@{$baselines}, {type=>$type, path=>$path});
+        }
+        else
+        {
+          print "ERROR: Could not understand value of baseline: \"$value\"\n";
+          return 1;
+        }
+      }
       elsif ($attr =~ /^(label)$/i)
       {
         print " found ($attr,$value) for table 'labels'\n" if ($verbose);
@@ -328,6 +352,22 @@ if ($create)
       print " execute '$name, $url, $revision'\n" if ($verbose);  
       $query->execute($name, $url, $revision)
 		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n" if (!$dryrun);
+    }
+  }
+  if (@{$baselines})
+  {
+    print " prepare_cached 'insert into baselines (build_id,type,path) values ($newbuildid,?,?)'\n" if ($verbose);
+    my $query = $db->prepare_cached("insert into baselines (build_id,type,path) values ($newbuildid,?,?)")
+      or die("Couldn't prepare query insert into baselines: " . $db->errstr()) if (!$dryrun);
+      
+    for my $entry (@{$baselines})
+    {
+      my $type = $entry->{type};
+      my $path = $entry->{path};
+    
+      print " execute '$type, $path'\n" if ($verbose);  
+      $query->execute($type, $path)
+		    or print "WARNING: Couldn't execute insert into baselines ($type,$path): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$labels})
@@ -466,6 +506,30 @@ else
       print " execute '$name,$url,$revision'\n" if ($verbose);  
       $query->execute($name, $url, $revision)
 		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n" if (!$dryrun);
+    }
+  }
+  if (@{$baselines})
+  {
+    print " prepare 'delete from baselines where build_id=$id'\n" if ($verbose);
+    my $delete_query = $db->prepare("delete from baselines where build_id=$id")
+      or die("Couldn't prepare query delete from baselines: " . $db->errstr()) if (!$dryrun);
+    
+    print " execute ''\n" if ($verbose);  
+    $delete_query->execute()
+		    or print "WARNING: Couldn't execute delete from baselines: " . $db->errstr() . "\n" if (!$dryrun);
+    
+    print " prepare 'insert into baselines (build_id,type,path) values ($id,?,?)'\n" if ($verbose);
+    my $query = $db->prepare_cached("insert into baselines (build_id,type,path) values ($id,?,?)")
+      or die("Couldn't prepare query insert into baselines: " . $db->errstr()) if (!$dryrun);
+      
+    for my $entry (@{$baselines})
+    {
+      my $type = $entry->{type};
+      my $path = $entry->{path};
+    
+      print " execute '$type,$path'\n" if ($verbose);  
+      $query->execute($type, $path)
+		    or print "WARNING: Couldn't execute insert into baselines ($type,$path): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$labels})
