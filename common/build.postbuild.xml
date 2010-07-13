@@ -762,7 +762,7 @@
             <arg value="-XSL"/>
             <arg value="${sf.common.config.dir}/tools/brag/bragForDiamonds.xsl"/>
             <arg value="-OUT"/>
-            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+            <arg value="${build.log.dir}/diamonds-status.xml"/>
         </java>
         <if>
             <istrue value="${sf.spec.publish.enable}"/>
@@ -789,7 +789,7 @@
                             <arg value="-u"/>
                             <arg value="http://${diamonds.host}${diamonds.build.id}"/>
                             <arg value="-f"/>
-                            <arg value="${temp.build.dir}/bragForDiamonds.xml"/>
+                            <arg value="${build.log.dir}/diamonds-status.xml"/>
                         </exec>
                     </then>
                     <else>
