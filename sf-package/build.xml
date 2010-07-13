@@ -58,7 +58,7 @@
             <arg line="-t ${sf.spec.sbs.retry.limit}"/>
             <arg line="${sf.spec.sbs.options}"/>
             <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
-            <arg name="--logfile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_compile.log" />
+            <arg name="--logfile" value="${build.log.dir}/${build.id}_@{item.sbs.splitconfig}_compile.log" />
             <arg name="--makefile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_Makefile" />
         </sbsOptions>
       </hlm:sbsinput>
