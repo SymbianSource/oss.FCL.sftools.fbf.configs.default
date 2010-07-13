@@ -804,7 +804,7 @@
         <available property="sf-utilities-available" file="${build.drive}/utilities" type="dir"/>
     </target>
 
-    <target name="sf-compare-to-baseline" depends="sf-diamondize-bom,sf-check-utilities-dir" if="sf-utilities-available">
+    <target name="sf-compare-to-baseline" depends="sf-check-utilities-dir" if="sf-utilities-available">
         <property name="sf.releasenotes.wiki.txt" value="${build.log.dir}/releaseNotes.wiki.txt"/>
         <delete file="${sf.releasenotes.wiki.txt}"/>
         <!-- FCL Usage and Changesets -->
