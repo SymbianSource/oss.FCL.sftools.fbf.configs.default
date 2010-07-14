@@ -148,7 +148,7 @@ sub parse_file
           my $category = $1;
           my $count = $2;
           
-          if (!$category || !$count)
+          if (!$category || !defined $count || $count eq '')
           {
             print "ERROR: Category or count empty: \"$value\"\n";
             return 1;
