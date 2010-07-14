@@ -18,6 +18,7 @@ use Getopt::Long;
 
 my $input = "\\output\\logs\\html\\index.html";
 my $output = "\\output\\logs\\diamonds_uh.xml";
+my $bit_output = "\\output\\logs\\bitinfo.txt";
 my $help = 0;
 GetOptions((
 	'in=s' => \$input,
@@ -87,4 +88,13 @@ if (open(XML, ">$output"))
 else
 {
 	warn "Could not write to file: $output\n";
+}
+
+if (open(BITINFO, ">>$bit_output"))
+{
+	print BITINFO "failure\tmissing,$missing\n";
+	print BITINFO "failure\tminor,$minor\n";
+	print BITINFO "failure\tmajor,$major\n";
+	print BITINFO "failure\tcritical,$critical\n";
+	close(BITINFO);
 }
