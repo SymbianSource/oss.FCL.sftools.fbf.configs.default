@@ -742,6 +742,26 @@
         <arg value="-f"/>
         <arg value="${build.log.dir}/linksForDiamonds.xml"/>
       </exec>
+      
+      <echo message="report&#x0009;Summary,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/summary/_brag.xml,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="report&#x0009;Raptor Build Summary,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/html/index.html,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="report&#x0009;Build BOM,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/build_BOM.zip,file${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <echo message="report&#x0009;Build Logs,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/build_logs.zip,file${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      <if><and><equals arg1="${sf.spec.smoketest.enable}" arg2="true"/><equals arg1="${sf.spec.ats.version}" arg2="ats3"/></and><then>
+        <echo message="report&#x0009;Smoke Test Report,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/ats_reports/ATS3Report.html,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      </then></if>
+      <if><and><equals arg1="${sf.spec.smoketest.enable}" arg2="true"/><equals arg1="${sf.spec.ats.version}" arg2="ats4"/></and><then>
+        <echo message="report&#x0009;Smoke Test Report,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/ats_reports/simplelogger/testreport.xml,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      </then></if>
+      <if><and><equals arg1="${sf.spec.bccheck.enable}" arg2="true"/><equals arg1="${sf.spec.bccheck.enable.ha}" arg2="true"/></and><then>
+        <echo message="report&#x0009;Binary Compatibility Report (Headerfiles),http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/BC/headers_report.xml,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      </then></if>
+      <if><and><equals arg1="${sf.spec.bccheck.enable}" arg2="true"/><equals arg1="${sf.spec.bccheck.enable.la}" arg2="true"/></and><then>
+        <echo message="report&#x0009;Binary Compatibility Report (Libraries),http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/BC/libraries_report.xml,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      </then></if>
+      <if><equals arg1="${sf.spec.bccheck.enable.dynamic}" arg2="true"/><then>
+        <echo message="report&#x0009;Dynamic BC Test Reports,http://cdn.symbian.org/SF_builds/${sf.spec.job.name}/builds/${sf.spec.job.codeline}/${build.id}/ats_reports/index.html,report${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+      </then></if>
     </target>
 
     <target name="sf-merge-brag">
@@ -1066,6 +1086,9 @@
     </filterchain>
     </loadfile>	
     <echo message="BRAG STATUS: [${sf.brag.status}] - full build details available at ${build.drive}\output\logs\summary\_BRAG.xml"/>
+    
+    <!-- record brag information in BIT file -->
+    <echo message="build_brag&#x0009;${sf.brag.status}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
 	</target>
 
 </project>
