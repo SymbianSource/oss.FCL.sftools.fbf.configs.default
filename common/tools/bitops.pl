@@ -13,12 +13,14 @@ my $create = 0;
 my $id = '';
 my $file = '';
 my $verbose = 0;
+my $dryrun = 0;
 GetOptions((
 	'create!' => \$create,
 	'file=s' => \$file,
 	'id=s' => \$id,
 	'help!' => \$help,
-	'verbose!' => \$verbose
+	'verbose!' => \$verbose,
+	'dryrun!' => \$dryrun,
 ));
 
 if ($help||!$file)
@@ -38,6 +40,9 @@ Options:
                         provided in FILE.
   -f FILE, --file FILE  Use attributes in FILE to create/update the build info
                         See below for file format.
+  -v, --verbose         Increase info level
+  -d, --dryrun          Only show what would happen, do not actually interact
+                        with the DB
   
 File format:
   File must be a list of attribute-value-pairs. One avp per line, on each line
@@ -58,6 +63,7 @@ File format:
   - failure (CATEGORY,COUNT)
   - report (NAME,URL,TYPE)
   - content (NAME,URL,REVISION)
+  - baseline (TYPE,PATH)
   - label (VALUE)
 _EOH
 	exit(0);
@@ -70,23 +76,26 @@ my $envinfo = [];
 my $failures = [];
 my $reports = [];
 my $content = [];
+my $baselines = [];
 my $labels = [];
 my $testing_entry = {};
 
 sub ConnectToDB()
 {
 	$db = DBI->connect('DBI:mysql:bit:v800016:3306','fbf','mysql')
-		or die("Couldn't connect to database: " . DBI->errstr());
+		or die("Couldn't connect to database: " . DBI->errstr()) if (!$dryrun);
 }
 
 sub DisconnectFromDB()
 {
-	$db->disconnect();
+	$db->disconnect() if (!$dryrun);
 }
 
 sub parse_file
 {
   my ($file) = @_;
+  
+  print "Reading $file...\n" if ($verbose);
   
   open(FILE, $file) or die "Can't open file $file";
   
@@ -191,11 +200,33 @@ sub parse_file
             return 1;
           }
           print " found ($name,$url,$revision) for table 'content'\n" if ($verbose);
-          push(@{$reports}, {name=>$name, url=>$url, revision=>$revision});
+          push(@{$content}, {name=>$name, url=>$url, revision=>$revision});
         }
         else
         {
           print "ERROR: Could not understand value of content: \"$value\"\n";
+          return 1;
+        }
+      }
+      elsif ($attr =~ /^(baseline)$/i)
+      {
+        $attr = lc($attr);
+        if ($value =~ /([^,]*),([^,]*)/)
+        {
+          my $type = $1;
+          my $path = $2;
+          
+          if (!$type || !$path)
+          {
+            print "ERROR: Type or path empty: \"$value\"\n";
+            return 1;
+          }
+          print " found ($type,$path) for table 'baselines'\n" if ($verbose);
+          push(@{$baselines}, {type=>$type, path=>$path});
+        }
+        else
+        {
+          print "ERROR: Could not understand value of baseline: \"$value\"\n";
           return 1;
         }
       }
@@ -231,6 +262,8 @@ if ($r)
   exit(1);
 }
 
+print "Executing SQL commands...\n" if ($verbose);
+
 ConnectToDB();
 my $newbuildid = -1;
 if ($create)
@@ -250,17 +283,17 @@ if ($create)
     $qm_list =~ s/,$//;
     
     my $query = $db->prepare("insert into builds ($field_list) values ($qm_list)")
-      or die("Couldn't prepare query insert into builds: " . $db->errstr());
+      or die("Couldn't prepare query insert into builds: " . $db->errstr()) if (!$dryrun);
 
     $query->execute(@fields)
-		  or print "WARNING: Couldn't execute insert into builds (@fields): " . $db->errstr() . "\n";
+		  or print "WARNING: Couldn't execute insert into builds (@fields): " . $db->errstr() . "\n" if (!$dryrun);
 		  
-		$newbuildid = $db->last_insert_id(undef, undef, undef, undef);
+		$newbuildid = $db->last_insert_id(undef, undef, undef, undef) if (!$dryrun);
   }
   if (@{$envinfo})
   {
     my $query = $db->prepare_cached("insert into envinfo (build_id,tool,version) values ($newbuildid,?,?)")
-      or die("Couldn't prepare query insert into envinfo: " . $db->errstr());
+      or die("Couldn't prepare query insert into envinfo: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$envinfo})
     {
@@ -268,14 +301,14 @@ if ($create)
       my $version = $entry->{version};
       
       $query->execute($tool, $version)
-		    or print "WARNING: Couldn't execute insert into envinfo ($tool,$version): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into envinfo ($tool,$version): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$failures})
   {
     print " prepare_cached 'insert into failures (build_id,category,count) values ($newbuildid,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into failures (build_id,category,count) values ($newbuildid,?,?)")
-      or die("Couldn't prepare query insert into failures: " . $db->errstr());
+      or die("Couldn't prepare query insert into failures: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$failures})
     {
@@ -284,14 +317,14 @@ if ($create)
     
       print " execute '$category, $count'\n" if ($verbose);  
       $query->execute($category, $count)
-		    or print "WARNING: Couldn't execute insert into failures ($category,$count): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into failures ($category,$count): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$reports})
   {
     print " prepare_cached 'insert into reports (build_id,name,url,type) values ($newbuildid,?,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into reports (build_id,name,url,type) values ($newbuildid,?,?,?)")
-      or die("Couldn't prepare query insert into reports: " . $db->errstr());
+      or die("Couldn't prepare query insert into reports: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$reports})
     {
@@ -301,14 +334,14 @@ if ($create)
     
       print " execute '$name, $url, $type'\n" if ($verbose);  
       $query->execute($name, $url, $type)
-		    or print "WARNING: Couldn't execute insert into reports ($name,$url,$type): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into reports ($name,$url,$type): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$content})
   {
     print " prepare_cached 'insert into content (build_id,name,url,revision) values ($newbuildid,?,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into content (build_id,name,url,revision) values ($newbuildid,?,?,?)")
-      or die("Couldn't prepare query insert into content: " . $db->errstr());
+      or die("Couldn't prepare query insert into content: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$content})
     {
@@ -318,14 +351,30 @@ if ($create)
     
       print " execute '$name, $url, $revision'\n" if ($verbose);  
       $query->execute($name, $url, $revision)
-		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n" if (!$dryrun);
+    }
+  }
+  if (@{$baselines})
+  {
+    print " prepare_cached 'insert into baselines (build_id,type,path) values ($newbuildid,?,?)'\n" if ($verbose);
+    my $query = $db->prepare_cached("insert into baselines (build_id,type,path) values ($newbuildid,?,?)")
+      or die("Couldn't prepare query insert into baselines: " . $db->errstr()) if (!$dryrun);
+      
+    for my $entry (@{$baselines})
+    {
+      my $type = $entry->{type};
+      my $path = $entry->{path};
+    
+      print " execute '$type, $path'\n" if ($verbose);  
+      $query->execute($type, $path)
+		    or print "WARNING: Couldn't execute insert into baselines ($type,$path): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$labels})
   {
     print " prepare_cached 'insert into labels (build_id,label) values ($newbuildid,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into labels (build_id,label) values ($newbuildid,?)")
-      or die("Couldn't prepare query insert into labels: " . $db->errstr());
+      or die("Couldn't prepare query insert into labels: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$labels})
     {
@@ -333,7 +382,7 @@ if ($create)
     
       print " execute '$label'\n" if ($verbose);  
       $query->execute($label)
-		    or print "WARNING: Couldn't execute insert into revision ($label): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into revision ($label): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   print "new build id: $newbuildid\n";
@@ -355,49 +404,49 @@ else
     
     print " prepare 'update builds set $field_list where id=$id'\n" if ($verbose);
     my $query = $db->prepare("update builds set $field_list where id=$id")
-      or die("Couldn't prepare query update builds: " . $db->errstr());
+      or die("Couldn't prepare query update builds: " . $db->errstr()) if (!$dryrun);
 
     print " execute '@fields'\n" if ($verbose);
     $query->execute(@fields)
-		  or print "WARNING: Couldn't execute update builds (@fields): " . $db->errstr() . "\n";
+		  or print "WARNING: Couldn't execute update builds (@fields): " . $db->errstr() . "\n" if (!$dryrun);
   }
   if (@{$envinfo})
   {
     print " prepare 'delete from envinfo where build_id=$id'\n" if ($verbose);
     my $delete_query = $db->prepare("delete from envinfo where build_id=$id")
-      or die("Couldn't prepare query delete from envinfo: " . $db->errstr());
+      or die("Couldn't prepare query delete from envinfo: " . $db->errstr()) if (!$dryrun);
     
     print " execute ''\n" if ($verbose);  
     $delete_query->execute()
-		    or print "WARNING: Couldn't execute delete from envinfo: " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute delete from envinfo: " . $db->errstr() . "\n" if (!$dryrun);
     
     print " prepare 'insert into envinfo (build_id,tool,version) values ($id,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into envinfo (build_id,tool,version) values ($id,?,?)")
-      or die("Couldn't prepare query insert into envinfo: " . $db->errstr());
+      or die("Couldn't prepare query insert into envinfo: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$envinfo})
     {
       my $tool = $entry->{tool};
       my $version = $entry->{version};
     
-      print " execute '$tool,$version'\n" if ($verbose);  
+      print " execute '$tool,$version'\n" if ($verbose);
       $query->execute($tool, $version)
-		    or print "WARNING: Couldn't execute insert into envinfo ($tool,$version): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into envinfo ($tool,$version): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$failures})
   {
     print " prepare 'delete from failures where build_id=$id'\n" if ($verbose);
     my $delete_query = $db->prepare("delete from failures where build_id=$id")
-      or die("Couldn't prepare query delete from failures: " . $db->errstr());
+      or die("Couldn't prepare query delete from failures: " . $db->errstr()) if (!$dryrun);
     
     print " execute ''\n" if ($verbose);  
     $delete_query->execute()
-		    or print "WARNING: Couldn't execute delete from failures: " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute delete from failures: " . $db->errstr() . "\n" if (!$dryrun);
     
     print " prepare 'insert into failures (build_id,category,count) values ($id,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into failures (build_id,category,count) values ($id,?,?)")
-      or die("Couldn't prepare query insert into failures: " . $db->errstr());
+      or die("Couldn't prepare query insert into failures: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$failures})
     {
@@ -406,14 +455,14 @@ else
     
       print " execute '$category,$count'\n" if ($verbose);  
       $query->execute($category, $count)
-		    or print "WARNING: Couldn't execute insert into failures ($category,$count): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into failures ($category,$count): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$reports})
   {
     print " prepare 'delete from reports where build_id=$id'\n" if ($verbose);
     my $delete_query = $db->prepare("delete from reports where build_id=$id")
-      or die("Couldn't prepare query delete from reports: " . $db->errstr());
+      or die("Couldn't prepare query delete from reports: " . $db->errstr()) if (!$dryrun);
     
     print " execute ''\n" if ($verbose);  
     $delete_query->execute()
@@ -421,7 +470,7 @@ else
     
     print " prepare 'insert into reports (build_id,name,url,type) values ($id,?,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into reports (build_id,name,url,type) values ($id,?,?,?)")
-      or die("Couldn't prepare query insert into failures: " . $db->errstr());
+      or die("Couldn't prepare query insert into failures: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$reports})
     {
@@ -431,22 +480,22 @@ else
     
       print " execute '$name,$url,$type'\n" if ($verbose);  
       $query->execute($name, $url, $type)
-		    or print "WARNING: Couldn't execute insert into reports ($name,$url,$type): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into reports ($name,$url,$type): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$content})
   {
     print " prepare 'delete from content where build_id=$id'\n" if ($verbose);
     my $delete_query = $db->prepare("delete from content where build_id=$id")
-      or die("Couldn't prepare query delete from content: " . $db->errstr());
+      or die("Couldn't prepare query delete from content: " . $db->errstr()) if (!$dryrun);
     
     print " execute ''\n" if ($verbose);  
     $delete_query->execute()
-		    or print "WARNING: Couldn't execute delete from content: " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute delete from content: " . $db->errstr() . "\n" if (!$dryrun);
     
     print " prepare 'insert into content (build_id,name,url,revision) values ($id,?,?,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into content (build_id,name,url,revision) values ($id,?,?,?)")
-      or die("Couldn't prepare query insert into content: " . $db->errstr());
+      or die("Couldn't prepare query insert into content: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$content})
     {
@@ -456,22 +505,46 @@ else
     
       print " execute '$name,$url,$revision'\n" if ($verbose);  
       $query->execute($name, $url, $revision)
-		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n" if (!$dryrun);
+    }
+  }
+  if (@{$baselines})
+  {
+    print " prepare 'delete from baselines where build_id=$id'\n" if ($verbose);
+    my $delete_query = $db->prepare("delete from baselines where build_id=$id")
+      or die("Couldn't prepare query delete from baselines: " . $db->errstr()) if (!$dryrun);
+    
+    print " execute ''\n" if ($verbose);  
+    $delete_query->execute()
+		    or print "WARNING: Couldn't execute delete from baselines: " . $db->errstr() . "\n" if (!$dryrun);
+    
+    print " prepare 'insert into baselines (build_id,type,path) values ($id,?,?)'\n" if ($verbose);
+    my $query = $db->prepare_cached("insert into baselines (build_id,type,path) values ($id,?,?)")
+      or die("Couldn't prepare query insert into baselines: " . $db->errstr()) if (!$dryrun);
+      
+    for my $entry (@{$baselines})
+    {
+      my $type = $entry->{type};
+      my $path = $entry->{path};
+    
+      print " execute '$type,$path'\n" if ($verbose);  
+      $query->execute($type, $path)
+		    or print "WARNING: Couldn't execute insert into baselines ($type,$path): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
   if (@{$labels})
   {
     print " prepare 'delete from labels where build_id=$id'\n" if ($verbose);
     my $delete_query = $db->prepare("delete from labels where build_id=$id")
-      or die("Couldn't prepare query delete from labels: " . $db->errstr());
+      or die("Couldn't prepare query delete from labels: " . $db->errstr()) if (!$dryrun);
     
     print " execute ''\n" if ($verbose);  
     $delete_query->execute()
-		    or print "WARNING: Couldn't execute delete from labels: " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute delete from labels: " . $db->errstr() . "\n" if (!$dryrun);
     
     print " prepare 'insert into labels (build_id,label) values ($id,?)'\n" if ($verbose);
     my $query = $db->prepare_cached("insert into label (build_id,label) values ($id,?)")
-      or die("Couldn't prepare query insert into label: " . $db->errstr());
+      or die("Couldn't prepare query insert into label: " . $db->errstr()) if (!$dryrun);
       
     for my $entry (@{$labels})
     {
@@ -479,7 +552,7 @@ else
       
       print " execute '$label'\n" if ($verbose);  
       $query->execute($label)
-		    or print "WARNING: Couldn't execute insert into labels ($label): " . $db->errstr() . "\n";
+		    or print "WARNING: Couldn't execute insert into labels ($label): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
 }

@@ -418,7 +418,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
 
                 <!-- record toolsbaseline information in BOM file and in BIT file -->
                 <echo message="${sf.spec.toolsbaseline.location}" file="${build.drive}/output/logs/BOM/toolsbaseline.txt"/>
-                <echo message="content&#x0009;toolsbaseline,toolsbaseline,${sf.spec.toolsbaseline.location}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+                <echo message="baseline&#x0009;toolsbaseline${sf.spec.toolsbaseline.location}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
 
                 <!-- wrapper around preparation-getenv but with diff params -->
                 <runtarget target="sf-getenv-tools"/>
@@ -439,7 +439,9 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
                 <stopwatch name="sf-getenvs (baseline)"/>
                 <!-- record baseline information in BOM file and in BIT file -->
                 <echo message="${sf.spec.baseline.location}" file="${build.drive}/output/logs/BOM/baseline.txt"/>
-                <echo message="content&#x0009;baseline,baseline,${sf.spec.baseline.location}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+                <echo message="baseline&#x0009;baseline,${sf.spec.baseline.location}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+                <propertyregex property="sf.baseline.version" override="true" input="${sf.spec.baseline.location}" regexp=".*\\(.*)" select="\1" global="true" casesensitive="false"/>
+                <echo message="baseline_short&#x0009;${sf.baseline.version}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
                 
                 <!-- run internal target preparation-getenv -->
                 <delete file="${build.drive}/currentRelease.xml"/>        
