@@ -58,7 +58,7 @@
                 <if>
                     <available file="${r'$'}{build.drive}/${unit.@bldFile}" type="dir"/>
                     <then>
-                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
+                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false" output="${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_hb_configure.log">
                             <arg value="/C"/>
                             <arg value="python"/>
                             <arg line ="configure.py --qmake-bin=\epoc32\tools\qmake.bat --qmake-spec=symbian-sbsv2 --platform=symbian --qmake-options=MMP_RULES+=EXPORTUNFROZEN CONFIG+=sgimagelite_support DEFINES+=HB_EFFECTS_OPENVG DEFINES+=HB_FILTER_EFFECTS"/>
@@ -66,7 +66,7 @@
                         
                         <echo>INFO: Exporting Orbit mkspecs to epoc32\tools for ${unit.@bldFile}/${unit.@proFile}</echo>
                         <echo>INFO: Running Orbit theme installer, make install step</echo>
-                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false">
+                        <exec executable="cmd" dir="${r'$'}{build.drive}/${unit.@bldFile}" failonerror="false" output="${r'$'}{build.drive}/output/logs/${ant['build.id']}_install_hb_configure.log">
                             <arg value="/C"/>
                             <arg value="make install"/>
                         </exec>
