@@ -335,7 +335,11 @@
                     <arg value="-x!epoc32\gcc_mingw"/>
                     <arg value="-x!epoc32\tools"/>
                     <arg value="-x!epoc32\data\buildinfo.txt"/>
+                    <!-- Feature database artifacts released as part of the tools zip -->
                     <arg value="-x!epoc32\data\config\features.dat"/>
+                    <arg value="-x!epoc32\include\featureuids.h"/>
+                    <arg value="-x!epoc32\rom\include\feature.iby"/>
+                    <arg value="-x!epoc32\rom\include\featuredatabase.xml"/>
                     <arg value="-x!epoc32\data\media"/> <!-- Files created when emulator is used to create comms database - not worth releasing-->
                     <arg value="-x!epoc32\build"/>
                     <arg value="-x!epoc32\release\armv5"/>
@@ -470,6 +474,9 @@
             <arg value="epoc32/gcc_mingw"/>
             <arg value="epoc32/data/buildinfo.txt"/>
             <arg value="epoc32/data/config/features.dat"/>
+            <arg value="epoc32/include/featureuids.h"/>
+            <arg value="epoc32/rom/include/feature.iby"/>
+            <arg value="epoc32/rom/include/featuredatabase.xml"/>
         </exec>
         <antcall target="sf-zip-content">
             <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
