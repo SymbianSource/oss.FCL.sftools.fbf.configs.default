@@ -360,6 +360,7 @@
                         <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
                         <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
                         <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                        <arg value="-x!epoc32/include/featureuids.h"/> <!-- This needs to come from the tools zip instead -->
                         <arg value="${build.drive}/output/zips/release/binaries_epoc_sdk.zip"/>
                     </exec>
                     <!-- Check that all the files we want in the SDK are zipped -->
