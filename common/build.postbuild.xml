@@ -898,28 +898,28 @@
                 </zip>
                 <!-- workaround for the time when when 'sf-run-analysis-raptor' has not been run -->
                 <mkdir dir="${build.drive}/output/logs/releaseables"/>
-				<if>
-	                <available file="${build.drive}/output/logs/package_definitions" type="dir"/>
-	                <then>
-		                <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
-	            	        <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
-	        	            <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
-	    	                <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
-		                        <include name="envinfo.txt"/>
-	                    	</zipfileset>
-	                    	<zipfileset dir="${build.drive}/output/logs/package_definitions" prefix="build_info/package_definitions"/>
-	                	</zip>
-	                </then>
-	                <else>
-	                	<zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
-	            	        <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
-	        	            <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
-	    	                <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
-		                        <include name="envinfo.txt"/>
-	                    	</zipfileset>
-	                	</zip>
-	                </else>
-	            </if>
+                <if>
+                    <available file="${build.drive}/output/logs/package_definitions" type="dir"/>
+                    <then>
+                        <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
+                            <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
+                            <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
+                            <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
+                                <include name="envinfo.txt"/>
+                            </zipfileset>
+                            <zipfileset dir="${build.drive}/output/logs/package_definitions" prefix="build_info/package_definitions"/>
+                        </zip>
+                    </then>
+                    <else>
+                        <zip destfile="${build.output.dir}/zips/release/build_BOM.zip">
+                            <zipfileset dir="${build.drive}/output/logs/BOM" prefix="build_info/logs/BOM"/>
+                            <zipfileset dir="${build.drive}/output/logs/releaseables" prefix="build_info/logs/releaseables"/>
+                            <zipfileset dir="${build.drive}/output/logs" prefix="build_info/logs/BOM">
+                                <include name="envinfo.txt"/>
+                            </zipfileset>
+                        </zip>
+                    </else>
+                </if>
                 <antcall target="sf-zip-content">
                     <param name="zip.config.file" value="${temp.build.dir}/zip.cfg.xml.ftl"/>
                     <param name="zip.target.name" value="info-just-metadata" />
@@ -1068,13 +1068,27 @@
     </target>
 
     <target name="sf-build-roms">
-        <if>
-            <istrue value="${sf.spec.referenceroms.createimages.enable}" />
-            <then>
-                <echo message="INFO Building iMaker configurations"/>
-                <runtarget target="build-roms"/>
-            </then>
-        </if>    
+        <!-- find out if this is an arm build, if it is, then build roms -->
+        <propertyregex property="sf.is.arm.build"  override="true" input="${sf.spec.sbs.config}" regexp="(arm.*)" replace="true" casesensitive="false"/>
+    
+        <if><isset property="sf.is.arm.build"/> 
+        <then>
+            <mkdir dir="${roms.log.dir}"/>
+            <echo message="INFO Building Syborg MiniGUI stripped ROM"/>
+            <exec executable="cmd" dir="${build.drive}/epoc32/rom" failonerror="false">
+                <arg value="/c"/>
+                <arg value="buildrom syborg minigui-stripped"/>
+            </exec>
+            <if>
+                <!-- is iMaker rom building enabled? -->
+                <istrue value="${sf.spec.referenceroms.createimages.enable}" />
+                <then>
+                    <echo message="INFO Building iMaker configurations"/>
+                    <runtarget target="build-roms"/>
+                </then>
+            </if>
+        </then>
+        </if>        
     </target>
 
     <!-- Transform BRAG xslt and display status at the end of the build -->
@@ -1082,21 +1096,21 @@
     <delete dir="${build.drive}/output/logs/summary/">
       <include name="**/*.html"/>
     </delete>
-     <xslt basedir="${build.drive}/output/logs/summary" destdir="${temp.build.dir}" extension=".html" style="brag.xsl"/>	
+     <xslt basedir="${build.drive}/output/logs/summary" destdir="${temp.build.dir}" extension=".html" style="brag.xsl"/>    
     <loadfile srcFile="${temp.build.dir}/_BRAG.html" property="sf.brag.status">
     <filterchain>
       <linecontainsregexp>
         <regexp pattern="(BLACK|RED|AMBER|GREEN)"/>
       </linecontainsregexp>
-	  <trim/>
+      <trim/>
       <striplinebreaks/>
       <deletecharacters chars="\&gt;\&lt;\h2\h1\/"/>
     </filterchain>
-    </loadfile>	
+    </loadfile>    
     <echo message="BRAG STATUS: [${sf.brag.status}] - full build details available at ${build.drive}\output\logs\summary\_BRAG.xml"/>
     
     <!-- record brag information in BIT file -->
     <echo message="build_brag&#x0009;${sf.brag.status}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
-	</target>
+    </target>
 
 </project>

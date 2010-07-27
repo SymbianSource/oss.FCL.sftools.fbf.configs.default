@@ -128,8 +128,9 @@
           <!-- configure stages -->
           <hlm:stage id="preparation" starttarget="sf-prebuild" endtarget="sf-prebuild"/>
           <hlm:stage id="compilation" starttarget="sf-compile" endtarget="sf-compile"/>
+          <hlm:stage id="romcreation" starttarget="sf-build-roms" endtarget="sf-build-roms"/>
           <hlm:stage id="postbuild" starttarget="sf-postbuild" endtarget="sf-postbuild"/>
-
+          
       </then>
     </if>
     
