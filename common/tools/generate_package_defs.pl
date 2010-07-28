@@ -52,6 +52,15 @@ for my $codeline (@codelines)
 		print "$splitmodel2_cmd\n";
 		system($splitmodel2_cmd);
 	}
+	if ($codeline eq 'symbian4') # also update tip_pbc (package based contribution) branch
+	{
+		my $rmdir3_cmd = "del /S  packages\\tip_pbc\\package_definition.xml >nul";
+		print "$rmdir3_cmd\n";
+		system($rmdir3_cmd);
+		my $splitmodel3_cmd = "perl ..\\split_sysdef.pl -s platforms\\$codeline\\single\\sysdefs\\system_model.xml -o packages\\tip_pbc";
+		print "$splitmodel3_cmd\n";
+		system($splitmodel3_cmd);
+	}
 	my $addremove_cmd = "hg -R packages addremove";
 	print "$addremove_cmd\n";
 	system($addremove_cmd);
@@ -65,7 +74,7 @@ for my $codeline (@codelines)
 		system($commit_cmd);
 		my $push_cmd = "hg -R packages push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/packages";
 		print "$push_cmd\n";
-		system($push_cmd);
+		#system($push_cmd);
 	}
 }
 
