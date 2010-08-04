@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <project name="run-qmake" default="all">
 
-    <target name="all">
+    <target name="all" depends="sf-build-qmake,sf-build-qtextension-tools,sf-configure-orbit,sd-qmake-all-profiles"/>
 
     <!-- Qmake needs to have been built in this environment, to generate bld.infs to built Qt itself.  
          Qmake.exe only exists in the source tree if its been built  -->
-
+    <target name="sf-build-qmake">
         <if><not><available file="${r'$'}{build.drive}/sf/mw/qt/bin/qmake.exe" type="file"/></not>
             <then>
                 <sequential>
@@ -28,7 +28,9 @@
                 </sequential>
             </then>
         </if>
+    </target>
 
+    <target name="sf-build-qtextension-tools">
         <sequential>
   <#list data["//unit[@bldFile = '/sf/mw/qtextensions/group']"] as unit>
             <echo>INFO: Configuring qtextensions for ${unit.@bldFile}</echo>
@@ -46,7 +48,9 @@
             </if>          
   </#list>
         </sequential>
+    </target>
 
+    <target name="sf-configure-orbit">
         <sequential>
   <#list data["//unit[@proFile = 'hb.pro']"] as unit>
             <echo>Running configure.py for ${unit.@bldFile}/${unit.@proFile}</echo>
@@ -72,7 +76,9 @@
             </if>
   </#list>
         </sequential>
+    </target>
 
+    <target name="sd-qmake-all-profiles">
         <parallel threadCount="${r'$'}{number.of.threads}">
   <#list data["//unit[@proFile != 'hb.pro']"] as unit>
             <sequential>
