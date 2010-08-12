@@ -72,14 +72,43 @@
       </antcall>    
       </sequential>
     </for>
-    
+    <!-- build test code -->	
+    <if><istrue value="${sf.spec.package.test.enable}"/>
+        <then>
+            <for list="${sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
+              <sequential>
+      
+              <hlm:sbsinput id="sf.build">
+                <sbsOptions>
+                    <arg line="-c @{item.sbs.splitconfig}.test"/>
+                    <arg line="-k" />
+                    <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
+                    <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+                    <arg line="${sf.spec.sbs.options}"/>
+                    <arg name="--filters" value="&quot;${sf.spec.sbs.filter.list}&quot;"/>
+                    <arg name="--logfile" value="${build.log.dir}/${build.id}_@{item.sbs.splitconfig}_compile.log" />
+                    <arg name="--makefile" value="${compile.log.dir}/${build.id}_@{item.sbs.splitconfig}_Makefile" />
+                </sbsOptions>
+              </hlm:sbsinput>
+      
+              <echo message="INFO [Iterative compile] Building target: @{item.sbs.splitconfig}"/>
+              <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+                  <param name="build.system" value="${sf.spec.build.system}" />
+                  <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
+                  <param name="sbs.inputs.list" value="sf.build"/>
+                  <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
+              </antcall>    
+              </sequential>
+           </for>
+         </then>
+    </if>
     
     <!-- CHECK -->
     <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">
       <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools2_rel -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
       <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
     </exec>
-    
+   
   </target>
         
         
@@ -127,6 +156,49 @@
     </exec>
     
   </target>
+        
+        
+  <target name="sf-test-package">
+
+    <echo message="INFO Preparing package"/>
+    <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" output="${build.log.dir}/ATS_${build.id}_prep_package.log">
+        <arg value="hlm_prep_package.pl"/>
+        <arg value="--csv-file=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+        <arg value="--bld-drive=${build.drive}"/>
+    </exec>
+  
+    <echo message="INFO Building package test drop(s)"/>
+<!--    <runtarget target="ats-test"/> --> <!-- Supported from Helium 9.0.5 onwards -->
+    <echo message="INFO Skipped - Helium 9.0.5+ required"/>
+	
+    <for param="file">
+        <path>
+            <fileset dir="${build.drive}/output/ats" includes="*.zip"/>
+        </path>
+        <sequential>
+            <propertyregex override="yes" property="program"  input="@{file}" regexp="([^\\/\/]*)$" select="\1"/>  						
+            <echo message="INFO Updating package test drop with test info"/>
+            <echo message="************ Test drop name:  ${program} " />
+            <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" append="true" output="${build.log.dir}/ATS_${build.id}_packagetest.log">
+                <arg value="ats_specialise_test_drop.pl"/>
+                <arg value="--test-drop-name=${env.COMPUTERNAME}-packagetest-${build.id}_${program}"/> 
+                <arg value="--host-name=${env.COMPUTERNAME}.ad-sfpd.intra"/>
+                <arg value="--src=${build.drive}/output/ats/${program}"/>
+                <arg value="--dest=${sf.spec.test.package.location}\${env.COMPUTERNAME}-packagetest-${build.id}_${program}" />
+                <arg value="--publish=${publish.dir}\ats_reports\${program}"/>
+                <arg value="--ats-version=ats4"/> <!-- Hard-coded ats-version as Test Drop Generator for WINSCW supports only ATS4 -->
+            </exec>
+            <!-- Now ready to send to ATS -->  
+            <echo message="Sending test drop :  ${program} ............" />
+            <antcall target="sf-send-testpkg" inheritAll="false">
+                <param name="sf.spec.test.package.name" value="${env.COMPUTERNAME}-packagetest-${build.id}_${program}"/>
+            </antcall>
+        </sequential>
+    </for>
+
+  </target>
+
+  <target name="ats-emulator-zip"/> <!-- This is to override exisiting Helium target called from ats-test -->
   
 </project>
 

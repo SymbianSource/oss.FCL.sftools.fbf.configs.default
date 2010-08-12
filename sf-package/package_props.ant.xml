@@ -34,5 +34,17 @@
   <!-- Enable qmake processing for any units with proFile attributes -->
   <property name="qmake.enabled" value="true"/>
 
+  <!-- Properties used to generate ATS test drop -->
+  <property name="enabled.ats" value="true"/>
+  <property name="ats4.enabled" value="true"/>
+  <property name="ats.emulator.enable" value="true"/>
+  <property name="ats.product.name" value="MY_AGENT_NAME"/> <!-- Agent name will be replaced later while specialising test drop -->
+  <property name="ats.email.list" value="user@symbian.org"/>
+  <property name="ats.flash.images" value=""/> <!-- This should be changed in order to generate a test drop for armv5 devices -->
+  <property name="ats.target.platform" value="winscw udeb"/>
+  <property name="skip.ats.sending" value="true"/> <!-- Test drop will be sent using a separate target -->
+  <property name="ats.testrun.name" value="Package tests"/>
+  <property name="ats.test.timeout" value="3600"/>
+  
 </project>
 

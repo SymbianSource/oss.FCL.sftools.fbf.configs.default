@@ -132,6 +132,9 @@
 	
 	<!-- Smoketest properties -->
 	<property name="sf.spec.smoketest.enable" value="true"/> <!-- This disables publishing Smoke Test Report -->
+
+    <!-- Package tests properties -->
+    <property name="sf.spec.package.test.enable" value="false"/> <!-- This disables package tests -->
 </project>
 
 

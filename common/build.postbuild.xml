@@ -76,6 +76,13 @@
             </then>
         </if>
 
+        <!-- Launch package tests -->
+        <if><istrue value="${sf.spec.package.test.enable}"/>
+            <then>
+                <runtarget target="sf-test-package"/>
+            </then>
+        </if>
+
         <!-- copy log files linked to the generation of roms for REE -->
         <runtarget target="sf-copy-rom-logs"/>
 
