@@ -81,7 +81,7 @@ for my $codeline (@codelines)
 		system($commit_cmd);
 		my $push_cmd = "hg -R packages push http://darios:symbian696b\@developer.symbian.org/oss/MCL/sftools/fbf/projects/packages";
 		print "$push_cmd\n";
-		#system($push_cmd);
+		system($push_cmd);
 	}
 }
 
