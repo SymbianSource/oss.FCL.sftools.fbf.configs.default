@@ -1,0 +1,1414 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>XML Services BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="XML Services BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="XML Services Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+            <set id="" name="XML Engine DOM API Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="XmlSrv_XMLEngDOM_BinCont" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="XeDomBCTester.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="XeDomBCTester.dll"/>
+							<param dst="c:\sys\bin\XeDomBCTester.dll"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/chunkparser/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/chunkparser/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/dom/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/dom/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/Encoding/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/Encoding/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/xmlconf/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/xmlconf/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/appcontents/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/appcontents/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/contents/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/contents/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/copy/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/copy/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/create/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/create/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/move/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/move/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/remove/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/remove/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/bincont/correct/partial/replace/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/bincont/correct/partial/replace/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/xmlconf/xmltest/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/xmlconf/xmltest/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/xmlconf/xmltest/not_wf/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/xmlconf/xmltest/not_wf/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="XMLTest.out (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/output/xmlconf/xmltest/wf/XMLTest.out"/>
+							<param dst="c:/XMLTest/output/xmlconf/xmltest/wf/XMLTest.out"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="bincont input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/bincont/*"/>
+							<param dst="c:/XMLTest/input/bincont"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="chunk input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/chunk/*"/>
+							<param dst="c:/XMLTest/input/chunk"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="containers input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/containers/*"/>
+							<param dst="c:/XMLTest/input/containers"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="dom input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/dom/*"/>
+							<param dst="c:/XMLTest/input/dom"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="correct input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/correct/XML_correct_012.xml"/>
+							<param dst="c:/XMLTest/input/correct/XML_correct_012.xml"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="Encoding input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/Encoding/*"/>
+							<param dst="c:/XMLTest/input/Encoding"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="filecontainer input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/filecontainer/*"/>
+							<param dst="c:/XMLTest/input/filecontainer"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="not_wf input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/xmlconf/xmltest/not_wf/*"/>
+							<param dst="c:/XMLTest/input/xmlconf/xmltest/not_wf"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="wf input files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/input/xmlconf/xmltest/wf/*"/>
+							<param dst="c:/XMLTest/input/xmlconf/xmltest/wf"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="chunkparser pattern files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/pattern/chunkparser/*"/>
+							<param dst="c:/XMLTest/pattern/chunkparser"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="dom pattern files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/pattern/dom/*"/>
+							<param dst="c:/XMLTest/pattern/dom"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>	
+					<step id="" name="Encoding pattern files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/pattern/Encoding/*"/>
+							<param dst="c:/XMLTest/pattern/Encoding"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>	
+					<step id="" name="not_wf pattern files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/pattern/xmlconf/xmltest/not_wf/*"/>
+							<param dst="c:/XMLTest/pattern/xmlconf/xmltest/not_wf"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>	
+					<step id="" name="wf pattern files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="XMLTest/pattern/xmlconf/xmltest/wf/*"/>
+							<param dst="c:/XMLTest/pattern/xmlconf/xmltest/wf"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>	
+					<step id="" name="DomBinCont.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomBinCont.cfg"/>
+							<param dst="c:/TestFramework/DomBinCont.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomBinCont (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomBinCont.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomBinCont (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_FileCont" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomFileCont.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomFileCont.cfg"/>
+							<param dst="c:/TestFramework/DomFileCont.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomFileCont (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomFileCont.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomFileCont (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_ChunkCont" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomChunkCont.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomChunkCont.cfg"/>
+							<param dst="c:/TestFramework/DomChunkCont.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomChunkCont (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomChunkCont.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomChunkCont (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_NotWF" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomNotWF.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomNotWF.cfg"/>
+							<param dst="c:/TestFramework/DomNotWF.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomNotWF (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomNotWF.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomNotWF (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomChunkparser" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomChunkParser.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomChunkParser.cfg"/>
+							<param dst="c:/TestFramework/DomChunkParser.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomChunkparser (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomChunkparser.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomChunkparser (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomElem" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomElem.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomElem.cfg"/>
+							<param dst="c:/TestFramework/DomElem.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomElem (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomElem.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomElem (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomEncoding" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomEncoding.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomEncoding.cfg"/>
+							<param dst="c:/TestFramework/DomEncoding.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomEncoding (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomEncoding.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomEncoding (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomModif" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomModif.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomModif.cfg"/>
+							<param dst="c:/TestFramework/DomModif.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomModif (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomModif.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomModif (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_WF" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomWF.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomWF.cfg"/>
+							<param dst="c:/TestFramework/DomWF.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomWF (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomWF.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomWF (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomXmlId" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomXmlId.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomXmlId.cfg"/>
+							<param dst="c:/TestFramework/DomXmlId.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomXmlId (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomXmlId.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomXmlId (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomNodeFilter" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomNodeFilter.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomNodeFilter.cfg"/>
+							<param dst="c:/TestFramework/DomNodeFilter.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomNodeFilter (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomNodeFilter.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomNodeFilter (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="XmlSrv_XMLEngDOM_DomXPath" harness="ATSINTERFACE" enabled="true" passrate="100">
+					<step id="" name="DomXPath.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework/DomXPath.cfg"/>
+							<param dst="c:/TestFramework/DomXPath.cfg"/>
+							<param component-path="xmlsrvtest" />
+						</params>
+					</step>
+					<step id="" name="DomXPath (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\testframework\DomXPath.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="DomXPath (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+			</set>			
+		</session>
+	</plan>
+	<files>
+		<file>xmlsrvtest/winscw_udeb/XeDomBCTester.dll</file>
+		<file>xmlsrvtest/general/TestFramework/DomBinCont.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomChunkCont.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomChunkParser.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomElem.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomEncoding.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomFileCont.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomModif.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomNodeFilter.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomNotWF.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomWF.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomXmlId.cfg</file>
+		<file>xmlsrvtest/general/TestFramework/DomXPath.cfg</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/chunkparser/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/dom/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/Encoding/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/xmlconf/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/appcontents/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/contents/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/copy/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/create/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/move/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/remove/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/bincont/correct/partial/replace/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/xmlconf/xmltest/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/xmlconf/xmltest/not_wf/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/output/xmlconf/xmltest/wf/XMLTest.out</file>
+		<file>xmlsrvtest/general/XMLTest/input/bincont/CreateSequenceSec.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/bincont/signed-doc.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_00.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_01.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_02.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_03.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_04.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_05.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_06.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_07.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_09.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_not_wf_10.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_01.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_02.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_03.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_04.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_05.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_06.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_07.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_08.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_09.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_10.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/chunk/XML_wf_11.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/ascii.bin</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/entities.txt</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/errors.doc</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/html.zip</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/login.gif</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/not-escaped.txt</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/petit.jpg</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/picture.jpg</file>
+		<file>xmlsrvtest/general/XMLTest/input/containers/zip.bin</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_000.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_001.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_002.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_003.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_004.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_005.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_elem_006.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_ID_01.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_01.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_02.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_03.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_04.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_05.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_06.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_07.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_08.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_09.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_modif_10.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/DOM_nodefilter.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/xpath_01.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/dom/xpath_02.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/correct/XML_correct_012.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_001.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_002.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_003.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_004.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_005.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_006.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_007.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_008.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_009.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/Encoding/XML_encoding_010.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/filecontainer/icon.gif</file>
+		<file>xmlsrvtest/general/XMLTest/input/filecontainer/test.doc</file>
+		<file>xmlsrvtest/general/XMLTest/input/filecontainer/test.jpg</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_001.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_002.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_003.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_004.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_005.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_006.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_007.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_008.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_009.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_010.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_011.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_012.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_013.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_014.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_015.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_016.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_017.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_018.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_019.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_020.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_021.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_022.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_023.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_024.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_025.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_026.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_027.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_028.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_029.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_030.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_031.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_032.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_033.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_034.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_035.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_036.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_037.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_038.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_039.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_040.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_041.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_042.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_043.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_044.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_045.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_046.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_047.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_048.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_049.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_050.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_051.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_052.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_053.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_054.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_055.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_056.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_057.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_058.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_059.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_060.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_061.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_062.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_063.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_064.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_065.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_066.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_067.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_068.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_069.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_070.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_071.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_072.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_073.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_074.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_075.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_076.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_077.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_078.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_079.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_080.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_081.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_082.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_083.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_084.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_085.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_086.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_087.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_088.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_089.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_090.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_091.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_092.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_093.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_094.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_095.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_096.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_097.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_098.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_099.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_100.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_101.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_102.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_103.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_104.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_105.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_106.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_107.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_108.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_109.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_110.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_111.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_112.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_113.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_114.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_115.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_116.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_117.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_118.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_119.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_120.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_121.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_122.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_123.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_124.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_125.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_126.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_127.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_128.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_129.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_130.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_131.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_132.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_133.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_134.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_135.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_136.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_137.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_138.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_139.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_140.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_141.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_142.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_143.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_144.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_145.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_146.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_147.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_148.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_149.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_150.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_151.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_152.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_153.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_154.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_155.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_156.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_157.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_158.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_159.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_160.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_161.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_162.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_163.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_164.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_165.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_166.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_167.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_168.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_169.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_170.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_171.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_172.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_173.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_174.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_175.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_176.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_177.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_178.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_179.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_180.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_181.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_182.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_183.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_184.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_185.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/not_wf/XML_not_wf_186.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_001.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_002.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_003.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_004.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_005.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_006.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_007.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_008.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_009.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_010.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_011.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_012.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_013.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_014.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_015.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_016.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_017.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_018.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_019.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_020.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_021.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_022.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_023.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_024.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_025.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_026.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_027.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_028.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_029.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_030.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_031.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_032.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_033.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_034.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_035.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_036.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_037.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_038.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_039.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_040.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_041.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_042.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_043.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_044.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_045.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_046.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_047.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_048.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_049.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_050.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_051.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_052.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_053.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_054.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_055.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_056.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_057.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_058.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_059.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_060.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_061.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_062.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_063.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_064.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_065.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_066.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_067.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_068.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_070.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_071.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_072.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_073.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_074.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_075.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_077.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_078.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_079.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_080.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_081.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_082.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_083.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_084.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_085.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_086.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_087.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_088.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_089.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_092.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_093.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_094.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_095.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_096.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_097.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_098.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_099.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_100.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_101.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_102.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_103.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_104.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_105.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_106.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_107.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_108.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_109.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_110.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_111.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_112.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_113.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_114.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_115.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_116.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_117.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_118.xml</file>
+		<file>xmlsrvtest/general/XMLTest/input/xmlconf/xmltest/wf/XML_wf_119.xml</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_01.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_02.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_03.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_04.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_05.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_06.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_07.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_08.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_09.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_10.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_11.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_not_wf_12.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_01.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_02.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_03.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_04.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_05.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_06.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_07.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_08.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_09.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/chunkparser/DOM_XML_chunk_wf_10.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_elem_001.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_elem_002.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_elem_003.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_elem_004.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_elem_005.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_elem_006.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_inner_01.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_inner_02.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_inner_03.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_inner_04.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_001.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_002.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_003.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_004.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_005.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_006.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_008.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_009.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_010.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_011.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_012.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_013.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_014.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_015.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_016.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_017.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_018.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_019.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_020.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_021.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_022.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_034.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_035.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_036.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_041.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_modif_046.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_nodefilter_01.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_outer_01.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_outer_02.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_outer_03.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_outer_04.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_save_01.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_save_02.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_save_03.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/dom/DOM_xmlid_08.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_001.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_002.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_003.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_004.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_005.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_006.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_007.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_008.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_009.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/Encoding/DOM_XML_encoding_010.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_001.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_001b.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_002.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_003.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_004.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_005.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_006.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_007.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_008.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_009.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_010.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_011.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_012.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_013.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_014.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_015.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_016.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_017.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_018.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_019.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_020.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_021.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_022.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_023.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_024.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_025.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_026.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_027.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_028.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_029.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_030.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_031.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_032.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_033.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_034.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_035.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_036.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_037.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_038.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_039.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_040.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_041.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_042.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_043.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_044.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_045.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_046.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_047.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_048.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_049.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_050.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_051.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_052.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_053.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_054.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_055.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_056.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_057.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_058.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_059.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_060.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_061.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_062.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_063.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_064.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_065.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_066.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_067.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_068.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_069.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_070.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_071.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_072.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_073.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_074.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_075.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_076.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_077.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_078.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_079.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_080.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_081.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_082.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_083.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_084.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_085.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_086.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_087.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_088.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_089.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_090.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_091.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_092.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_093.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_094.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_095.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_096.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_097.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_098.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_099.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_100.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_101.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_102.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_103.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_104.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_105.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_106.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_107.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_108.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_109.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_110.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_111.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_112.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_113.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_114.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_115.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_116.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_117.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_118.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_119.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_120.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_121.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_122.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_123.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_124.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_125.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_126.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_127.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_128.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_129.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_130.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_131.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_132.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_133.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_134.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_135.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_136.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_137.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_138.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_139.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_140.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_141.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_142.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_143.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_144.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_145.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_146.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_147.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_148.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_149.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_150.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_151.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_152.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_153.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_154.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_155.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_156.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_157.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_158.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_159.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_160.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_161.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_162.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_163.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_164.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_165.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_166.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_167.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_168.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_169.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_170.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_171.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_172.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_173.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_174.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_175.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_176.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_177.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_178.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_179.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_180.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_181.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_182.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_183.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_184.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_185.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/not_wf/DOM_XML_not_wf_186.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_001.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_002.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_003.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_004.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_005.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_006.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_007.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_008.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_009.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_010.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_011.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_012.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_013.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_014.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_015.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_016.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_017.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_018.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_019.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_020.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_021.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_022.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_023.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_024.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_025.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_026.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_027.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_028.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_029.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_030.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_031.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_032.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_033.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_034.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_035.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_036.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_037.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_038.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_039.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_040.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_041.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_042.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_043.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_044.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_045.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_046.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_047.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_048.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_049.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_050.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_051.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_052.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_053.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_054.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_055.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_056.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_057.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_058.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_059.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_060.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_061.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_062.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_063.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_064.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_065.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_066.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_067.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_068.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_070.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_071.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_072.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_073.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_074.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_075.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_077.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_078.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_079.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_080.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_081.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_082.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_083.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_084.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_085.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_086.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_087.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_088.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_089.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_092.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_093.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_094.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_095.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_096.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_097.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_098.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_099.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_100.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_101.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_102.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_103.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_104.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_105.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_106.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_107.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_108.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_109.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_110.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_111.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_112.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_113.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_114.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_115.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_116.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_117.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_118.ref</file>
+		<file>xmlsrvtest/general/XMLTest/pattern/xmlconf/xmltest/wf/DOM_XML_wf_119.ref</file>
+	</files>
+</test>
