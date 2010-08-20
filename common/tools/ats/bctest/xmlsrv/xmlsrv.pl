@@ -19,7 +19,7 @@ use strict;
 use File::Copy;
 use File::Path;
 
-unlink "xmlsrv.zip";
+unlink "xmlsrvtest.zip";
 rmtree "temp";
 mkpath "temp/xmlsrvtest/general/TestFramework";
 mkpath "temp/xmlsrvtest/general/XMLTest";

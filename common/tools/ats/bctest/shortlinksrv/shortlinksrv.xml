@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>Shortlink Services BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="GENERIC" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="Shortlink Services BC WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Shortlink Services Binary Compatibility Tests" harness="GENERIC" enabled="true" passrate="100">
+            <set id="" name="Bluetooth Tests" harness="GENERIC" enabled="true" passrate="100">
+                <case id="" name="T_BTSockAddrAPI" harness="GENERIC" enabled="true" passrate="100">
+                    <step id="" name="T_BTSockAddrAPI.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="T_BTSockAddrAPI.exe"/>
+							<param dst="c:\sys\bin\T_BTSockAddrAPI.exe"/>
+							<param component-path="shortlinksrvtest" />
+						</params>
+					</step>
+					<step id="" name="BT-SOCK-ADDR-PublicApi.script (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="BT-SOCK-ADDR-PublicApi.script"/>
+							<param dst="c:/bluetooth/BT-SOCK-ADDR-PublicApi.script"/>
+							<param component-path="shortlinksrvtest/bluetooth" />
+						</params>
+					</step>
+					<step id="" name="BT-SOCK-ADDR-PublicApi.ini (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="BT-SOCK-ADDR-PublicApi.ini"/>
+							<param dst="c:/bluetooth/BT-SOCK-ADDR-PublicApi.ini"/>
+							<param component-path="shortlinksrvtest/bluetooth" />
+						</params>
+					</step>
+					<step id="" name="BT-SOCK-ADDR-PublicApi (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\bluetooth\BT-SOCK-ADDR-PublicApi.script"/>
+                            <param result-file="c:\logs\testexecute\BT-SOCK-ADDR-PublicApi.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+                </case>
+			</set>			
+		</session>
+	</plan>
+	<files>
+		<file>shortlinksrvtest/winscw_udeb/T_BTSockAddrAPI.exe</file>
+		<file>shortlinksrvtest/bluetooth/general/BT-SOCK-ADDR-PublicApi.script</file>
+		<file>shortlinksrvtest/bluetooth/general/BT-SOCK-ADDR-PublicApi.ini</file>
+	</files>
+</test>
