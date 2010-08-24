@@ -1,0 +1,1298 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>Standard Libraries BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="GENERIC" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="Standard Libraries BC WINSCW UDEB" harness="GENERIC" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Standard Libraries Binary Compatibility Tests" harness="GENERIC" enabled="true" passrate="100">
+            <set id="" name="Apps Tests" harness="GENERIC" enabled="true" passrate="100">
+                <case id="" name="OsSrv_Stdlibs_Libc" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="tstdapis files (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="*"/>
+							<param dst="c:/tstdapis"/>
+							<param component-path="stdlibstest/tstdapis" />
+						</params>
+					</step>
+					<step id="" name="config.ini (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="config.ini"/>
+							<param dst="c:/system/data/config.ini"/>
+							<param component-path="stdlibstest/systemdata" />
+						</params>
+					</step>
+                    <step id="" name="ConfTimeZone.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ConfTimeZone.exe"/>
+							<param dst="c:\sys\bin\ConfTimeZone.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tcomport.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tcomport.exe"/>
+							<param dst="c:\sys\bin\tcomport.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tctype.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tctype.exe"/>
+							<param dst="c:\sys\bin\tctype.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tdb_blr.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tdb_blr.exe"/>
+							<param dst="c:\sys\bin\tdb_blr.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tftw.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tftw.exe"/>
+							<param dst="c:\sys\bin\tftw.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tlibcwchar.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tlibcwchar.exe"/>
+							<param dst="c:\sys\bin\tlibcwchar.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tlink.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tlink.exe"/>
+							<param dst="c:\sys\bin\tlink.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tloc_blr.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tloc_blr.exe"/>
+							<param dst="c:\sys\bin\tloc_blr.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tmkfifo.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmkfifo.exe"/>
+							<param dst="c:\sys\bin\tmkfifo.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tmmap.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmmap.exe"/>
+							<param dst="c:\sys\bin\tmmap.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tprogname.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tprogname.exe"/>
+							<param dst="c:\sys\bin\tprogname.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tregex.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tregex.exe"/>
+							<param dst="c:\sys\bin\tregex.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tselect.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tselect.exe"/>
+							<param dst="c:\sys\bin\tselect.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemaphore.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemaphore.exe"/>
+							<param dst="c:\sys\bin\tsemaphore.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tshm.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tshm.exe"/>
+							<param dst="c:\sys\bin\tshm.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tstdio.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tstdio.exe"/>
+							<param dst="c:\sys\bin\tstdio.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tstring.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tstring.exe"/>
+							<param dst="c:\sys\bin\tstring.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsyscalls.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsyscalls.exe"/>
+							<param dst="c:\sys\bin\tsyscalls.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsyssim.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsyssim.exe"/>
+							<param dst="c:\sys\bin\tsyssim.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsysunistd.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsysunistd.exe"/>
+							<param dst="c:\sys\bin\tsysunistd.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="twchar.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="twchar.exe"/>
+							<param dst="c:\sys\bin\twchar.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="twcharapi.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="twcharapi.exe"/>
+							<param dst="c:\sys\bin\twcharapi.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="twctype.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="twctype.exe"/>
+							<param dst="c:\sys\bin\twctype.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="twideapis.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="twideapis.exe"/>
+							<param dst="c:\sys\bin\twideapis.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tglob.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tglob.exe"/>
+							<param dst="c:\sys\bin\tglob.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="ttime_blr.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="ttime_blr.exe"/>
+							<param dst="c:\sys\bin\ttime_blr.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+					<step id="" name="tcomport (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tcomport.script"/>
+                            <param result-file="c:\logs\testexecute\tcomport.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tctype (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tctype.script"/>
+                            <param result-file="c:\logs\testexecute\tctype.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tdb_blr (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tdb_blr.script"/>
+                            <param result-file="c:\logs\testexecute\tdb_blr.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tftw (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tftw.script"/>
+                            <param result-file="c:\logs\testexecute\tftw.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tglob_test (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tglob_test.script"/>
+                            <param result-file="c:\logs\testexecute\tglob_test.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tlibcwchar (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tlibcwchar.script"/>
+                            <param result-file="c:\logs\testexecute\tlibcwchar.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tlink (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tlink.script"/>
+                            <param result-file="c:\logs\testexecute\tlink.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tloc_blr (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tloc_blr.script"/>
+                            <param result-file="c:\logs\testexecute\tloc_blr.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tmkfifo (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tmkfifo.script"/>
+                            <param result-file="c:\logs\testexecute\tmkfifo.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tmmap (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tmmap.script"/>
+                            <param result-file="c:\logs\testexecute\tmmap.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tprogname (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tprogname.script"/>
+                            <param result-file="c:\logs\testexecute\tprogname.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tregex (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tregex.script"/>
+                            <param result-file="c:\logs\testexecute\tregex.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tselect (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tselect.script"/>
+                            <param result-file="c:\logs\testexecute\tselect.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemaphore (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemaphore.script"/>
+                            <param result-file="c:\logs\testexecute\tsemaphore.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tstdio_auto (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tstdio_auto.script"/>
+                            <param result-file="c:\logs\testexecute\tstdio_auto.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tstdio_fileop (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tstdio_fileop.script"/>
+                            <param result-file="c:\logs\testexecute\tstdio_fileop.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsyscalls (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsyscalls.script"/>
+                            <param result-file="c:\logs\testexecute\tsyscalls.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsyscalls1 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsyscalls1.script"/>
+                            <param result-file="c:\logs\testexecute\tsyscalls1.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsyscalls2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsyscalls2.script"/>
+                            <param result-file="c:\logs\testexecute\tsyscalls2.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsyssim (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsyssim.script"/>
+                            <param result-file="c:\logs\testexecute\tsyssim.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsysunistd (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsysunistd.script"/>
+                            <param result-file="c:\logs\testexecute\tsysunistd.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="twchar (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\twchar.script"/>
+                            <param result-file="c:\logs\testexecute\twchar.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="twcharapi (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\twcharapi.script"/>
+                            <param result-file="c:\logs\testexecute\twcharapi.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="twctype (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\twctype.script"/>
+                            <param result-file="c:\logs\testexecute\twctype.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="twideapis (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\twideapis.script"/>
+                            <param result-file="c:\logs\testexecute\twideapis.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="ConfTimeZone.exe 1 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ConfTimeZone.exe"/>
+							<param parameters="1"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ttime_blr (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\ttime_blr.script"/>
+                            <param result-file="c:\logs\testexecute\ttime_blr.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tshm (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tshm.script"/>
+                            <param result-file="c:\logs\testexecute\tshm.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tstring (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tstring.script"/>
+                            <param result-file="c:\logs\testexecute\tstring.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="ConfTimeZone.exe 2 (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="ConfTimeZone.exe"/>
+							<param parameters="2"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="ConfTimeZone (fetch-log)" harness="GENERIC" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\TestFramework\STDLIBS\Stdlibs_Preconfig.txt" /> 
+						</params>
+					</step>
+                </case>
+                <case id="" name="OsSrv_Stdlibs_Libdl" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="tstdapis files (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="*"/>
+							<param dst="c:/tstdapis"/>
+							<param component-path="stdlibstest/tstdapis" />
+						</params>
+					</step>
+                    <step id="" name="tdl.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tdl.exe"/>
+							<param dst="c:\sys\bin\tdl.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="arithmeticoper1.dll (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="arithmeticoper1.dll"/>
+							<param dst="c:\sys\bin\arithmeticoper1.dll"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="arithmeticoper2.dll (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="arithmeticoper2.dll"/>
+							<param dst="c:\sys\bin\arithmeticoper2.dll"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="arithmeticoper3.dll (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="arithmeticoper3.dll"/>
+							<param dst="c:\sys\bin\arithmeticoper3.dll"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="arithmeticoper4.dll (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="arithmeticoper4.dll"/>
+							<param dst="c:\sys\bin\arithmeticoper4.dll"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="dll1.dll (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="dll1.dll"/>
+							<param dst="c:\sys\bin\dll1.dll"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+					<step id="" name="tdl (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tdl.script"/>
+                            <param result-file="c:\logs\testexecute\tdl.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+                </case>
+                <case id="" name="OsSrv_Stdlibs_libm" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="tstdapis files (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="*"/>
+							<param dst="c:/tstdapis"/>
+							<param component-path="stdlibstest/tstdapis" />
+						</params>
+					</step>
+                    <step id="" name="tdouble_blr.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tdouble_blr.exe"/>
+							<param dst="c:\sys\bin\tdouble_blr.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tldouble_blr.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tldouble_blr.exe"/>
+							<param dst="c:\sys\bin\tldouble_blr.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tfloat_blr.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tfloat_blr.exe"/>
+							<param dst="c:\sys\bin\tfloat_blr.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+					<step id="" name="tdouble_blr (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tdouble_blr.script"/>
+                            <param result-file="c:\logs\testexecute\tdouble_blr.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tdouble_pow (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tdouble_pow.script"/>
+                            <param result-file="c:\logs\testexecute\tdouble_pow.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tdouble_misc (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tdouble_misc.script"/>
+                            <param result-file="c:\logs\testexecute\tdouble_misc.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tldouble_blr (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tldouble_blr.script"/>
+                            <param result-file="c:\logs\testexecute\tldouble_blr.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tldouble_pow (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tldouble_pow.script"/>
+                            <param result-file="c:\logs\testexecute\tldouble_pow.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tldouble_misc (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tldouble_misc.script"/>
+                            <param result-file="c:\logs\testexecute\tldouble_misc.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tfloat_blr (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tfloat_blr.script"/>
+                            <param result-file="c:\logs\testexecute\tfloat_blr.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+                </case>
+                <case id="" name="OsSrv_Stdlibs_libpthread" harness="GENERIC" enabled="true" passrate="100">
+					<step id="" name="tstdapis files (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="*"/>
+							<param dst="c:/tstdapis"/>
+							<param component-path="stdlibstest/tstdapis" />
+						</params>
+					</step>
+					<step id="" name="testharness.dll (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="testharness.dll"/>
+							<param dst="c:\sys\bin\testharness.dll"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tcondbroadcast.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tcondbroadcast.exe"/>
+							<param dst="c:\sys\bin\tcondbroadcast.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tconddestroy.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tconddestroy.exe"/>
+							<param dst="c:\sys\bin\tconddestroy.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tcondinit.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tcondinit.exe"/>
+							<param dst="c:\sys\bin\tcondinit.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tcondsignal.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tcondsignal.exe"/>
+							<param dst="c:\sys\bin\tcondsignal.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tcondwait.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tcondwait.exe"/>
+							<param dst="c:\sys\bin\tcondwait.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tmutex.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tmutex.exe"/>
+							<param dst="c:\sys\bin\tmutex.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tpthread.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tpthread.exe"/>
+							<param dst="c:\sys\bin\tpthread.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tpthreadonce.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tpthreadonce.exe"/>
+							<param dst="c:\sys\bin\tpthreadonce.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemdestroy.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemdestroy.exe"/>
+							<param dst="c:\sys\bin\tsemdestroy.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemgetvalue.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemgetvalue.exe"/>
+							<param dst="c:\sys\bin\tsemgetvalue.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tseminit.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tseminit.exe"/>
+							<param dst="c:\sys\bin\tseminit.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemopen.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemopen.exe"/>
+							<param dst="c:\sys\bin\tsemopen.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsempost.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsempost.exe"/>
+							<param dst="c:\sys\bin\tsempost.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemtimedwait.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemtimedwait.exe"/>
+							<param dst="c:\sys\bin\tsemtimedwait.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemtrywait.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemtrywait.exe"/>
+							<param dst="c:\sys\bin\tsemtrywait.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+                    <step id="" name="tsemwait.exe (install)" harness="GENERIC" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="tsemwait.exe"/>
+							<param dst="c:\sys\bin\tsemwait.exe"/>
+							<param component-path="stdlibstest" />
+						</params>
+					</step>
+					<step id="" name="tcondbroadcast (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tcondbroadcast.script"/>
+                            <param result-file="c:\logs\testexecute\tcondbroadcast.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tconddestroy (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tconddestroy.script"/>
+                            <param result-file="c:\logs\testexecute\tconddestroy.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tcondinit (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tcondinit.script"/>
+                            <param result-file="c:\logs\testexecute\tcondinit.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tcondsignal (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tcondsignal.script"/>
+                            <param result-file="c:\logs\testexecute\tcondsignal.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tcondwait (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tcondwait.script"/>
+                            <param result-file="c:\logs\testexecute\tcondwait.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tmutex (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tmutex.script"/>
+                            <param result-file="c:\logs\testexecute\tmutex.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tpthread (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tpthread.script"/>
+                            <param result-file="c:\logs\testexecute\tpthread.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tpthreadonce (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tpthreadonce.script"/>
+                            <param result-file="c:\logs\testexecute\tpthreadonce.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemdestroy (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemdestroy.script"/>
+                            <param result-file="c:\logs\testexecute\tsemdestroy.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemgetvalue (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemgetvalue.script"/>
+                            <param result-file="c:\logs\testexecute\tsemgetvalue.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tseminit (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tseminit.script"/>
+                            <param result-file="c:\logs\testexecute\tseminit.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemopen (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemopen.script"/>
+                            <param result-file="c:\logs\testexecute\tsemopen.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsempost (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsempost.script"/>
+                            <param result-file="c:\logs\testexecute\tsempost.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemtimedwait (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemtimedwait.script"/>
+                            <param result-file="c:\logs\testexecute\tsemtimedwait.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemtrywait (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemtrywait.script"/>
+                            <param result-file="c:\logs\testexecute\tsemtrywait.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+					<step id="" name="tsemwait (execute)" harness="GENERIC" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="testexecute.exe"/>
+							<param parameters="c:\tstdapis\tsemwait.script"/>
+                            <param result-file="c:\logs\testexecute\tsemwait.htm"/>
+                            <param timeout="3600"/>
+							<param parser="TEFTestResultParser"/>
+							<param leave-old-result="true"/>
+						</params>
+					</step>
+                </case>
+			</set>			
+		</session>
+	</plan>
+	<files>
+		<file>stdlibstest/winscw_udeb/ConfTimeZone.exe</file>
+		<!-- libm -->
+		<file>stdlibstest/winscw_udeb/tdouble_blr.exe</file>
+		<file>stdlibstest/winscw_udeb/tldouble_blr.exe</file>
+		<file>stdlibstest/winscw_udeb/tfloat_blr.exe</file>
+		<file>stdlibstest/tstdapis/general/tdouble_blr.ini</file>
+		<file>stdlibstest/tstdapis/general/tdouble_blr.script</file>
+		<file>stdlibstest/tstdapis/general/tdouble_pow.script</file>
+		<file>stdlibstest/tstdapis/general/tdouble_misc.script</file>
+		<file>stdlibstest/tstdapis/general/tfloat_blr.script</file>
+		<file>stdlibstest/tstdapis/general/tfloat_blr.ini</file>
+		<file>stdlibstest/tstdapis/general/tldouble_blr.script</file>
+		<file>stdlibstest/tstdapis/general/tldouble_pow.script</file>
+		<file>stdlibstest/tstdapis/general/tldouble_misc.script</file>
+		<file>stdlibstest/tstdapis/general/tldouble_blr.ini</file>
+		<!-- libpthread -->
+		<file>stdlibstest/winscw_udeb/testharness.dll</file>
+		<file>stdlibstest/winscw_udeb/tcondbroadcast.exe</file>
+		<file>stdlibstest/tstdapis/general/tcondbroadcast.script</file>
+		<file>stdlibstest/winscw_udeb/tconddestroy.exe</file>
+		<file>stdlibstest/tstdapis/general/tconddestroy.script</file>
+		<file>stdlibstest/winscw_udeb/tcondinit.exe</file>
+		<file>stdlibstest/tstdapis/general/tcondinit.script</file>
+		<file>stdlibstest/winscw_udeb/tcondsignal.exe</file>
+		<file>stdlibstest/tstdapis/general/tcondsignal.script</file>
+		<file>stdlibstest/winscw_udeb/tcondwait.exe</file>
+		<file>stdlibstest/tstdapis/general/tcondwait.script</file>
+		<file>stdlibstest/winscw_udeb/tmutex.exe</file>
+		<file>stdlibstest/tstdapis/general/tmutex.script</file>
+		<file>stdlibstest/tstdapis/general/tmutex.ini</file>
+		<file>stdlibstest/winscw_udeb/tpthread.exe</file>
+		<file>stdlibstest/tstdapis/general/tpthread.ini</file>
+		<file>stdlibstest/tstdapis/general/tpthread.script</file>
+		<file>stdlibstest/winscw_udeb/tpthreadonce.exe</file>
+		<file>stdlibstest/tstdapis/general/tpthreadonce.script</file>
+		<file>stdlibstest/winscw_udeb/tsemdestroy.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemdestroy.script</file>
+		<file>stdlibstest/winscw_udeb/tsemgetvalue.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemgetvalue.script</file>
+		<file>stdlibstest/winscw_udeb/tseminit.exe</file>
+		<file>stdlibstest/tstdapis/general/tseminit.script</file>
+		<file>stdlibstest/winscw_udeb/tsemopen.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemopen.script</file>
+		<file>stdlibstest/winscw_udeb/tsempost.exe</file>
+		<file>stdlibstest/tstdapis/general/tsempost.script</file>
+		<file>stdlibstest/winscw_udeb/tsemtimedwait.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemtimedwait.script</file>
+		<file>stdlibstest/winscw_udeb/tsemtrywait.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemtrywait.script</file>
+		<file>stdlibstest/winscw_udeb/tsemwait.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemwait.script</file>
+		<!-- libdl -->
+		<file>stdlibstest/winscw_udeb/tdl.exe</file>
+		<file>stdlibstest/tstdapis/general/tdl.script</file>
+		<file>stdlibstest/tstdapis/general/tdl.ini</file>
+		<file>stdlibstest/winscw_udeb/arithmeticoper1.dll</file>
+		<file>stdlibstest/winscw_udeb/arithmeticoper2.dll</file>
+		<file>stdlibstest/winscw_udeb/arithmeticoper3.dll</file>
+		<file>stdlibstest/winscw_udeb/arithmeticoper4.dll</file>
+		<file>stdlibstest/winscw_udeb/dll1.dll</file>
+		<!-- libc -->
+		<file>stdlibstest/winscw_udeb/tcomport.exe</file>
+		<file>stdlibstest/tstdapis/general/tcomport.script</file>
+		<file>stdlibstest/systemdata/general/config.ini</file>
+		<file>stdlibstest/winscw_udeb/tctype.exe</file>
+		<file>stdlibstest/tstdapis/general/tctype.script</file>
+		<file>stdlibstest/winscw_udeb/tdb_blr.exe</file>
+		<file>stdlibstest/tstdapis/general/tdb_blr.script</file>
+		<file>stdlibstest/tstdapis/general/tdb_blr.ini</file>
+		<file>stdlibstest/winscw_udeb/tftw.exe</file>
+		<file>stdlibstest/tstdapis/general/tftw.script</file>
+		<file>stdlibstest/tstdapis/general/tftw.ini</file>
+		<file>stdlibstest/winscw_udeb/tlibcwchar.exe</file>
+		<file>stdlibstest/tstdapis/general/tlibcwchar.script</file>
+		<file>stdlibstest/winscw_udeb/tlink.exe</file>
+		<file>stdlibstest/tstdapis/general/tlink.script</file>
+		<file>stdlibstest/tstdapis/general/tlink.ini</file>
+		<file>stdlibstest/winscw_udeb/tloc_blr.exe</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr.script</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_iconv.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_posix.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr1.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr2.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant1.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant2.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant3.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant4.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant5.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant6.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant7.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant8.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant9.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant10.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant11.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant13.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant14.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant15.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant16.ini</file>
+		<file>stdlibstest/tstdapis/general/tloc_blr_variant17.ini</file>
+		<file>stdlibstest/winscw_udeb/tmkfifo.exe</file>
+		<file>stdlibstest/tstdapis/general/tmkfifo.script</file>
+		<file>stdlibstest/tstdapis/general/tmkfifo.ini</file>
+		<file>stdlibstest/winscw_udeb/tmmap.exe</file>
+		<file>stdlibstest/tstdapis/general/tmmap.script</file>
+		<file>stdlibstest/tstdapis/general/tmmap.ini</file>
+		<file>stdlibstest/winscw_udeb/tprogname.exe</file>
+		<file>stdlibstest/tstdapis/general/tprogname.script</file>
+		<file>stdlibstest/winscw_udeb/tregex.exe</file>
+		<file>stdlibstest/tstdapis/general/tregex.script</file>
+		<file>stdlibstest/tstdapis/general/tregex.ini</file>
+		<file>stdlibstest/winscw_udeb/tselect.exe</file>
+		<file>stdlibstest/tstdapis/general/tselect.script</file>
+		<file>stdlibstest/winscw_udeb/tsemaphore.exe</file>
+		<file>stdlibstest/tstdapis/general/tsemaphore.script</file>
+		<file>stdlibstest/tstdapis/general/tsemaphore.ini</file>
+		<file>stdlibstest/winscw_udeb/tshm.exe</file>
+		<file>stdlibstest/tstdapis/general/tshm.script</file>
+		<file>stdlibstest/tstdapis/general/tshm.ini</file>
+		<file>stdlibstest/winscw_udeb/tstdio.exe</file>
+		<file>stdlibstest/tstdapis/general/tstdio_auto.script</file>
+		<file>stdlibstest/tstdapis/general/tstdio_manual.script</file>
+		<file>stdlibstest/tstdapis/general/tstdio_fileop.script</file>
+		<file>stdlibstest/tstdapis/general/tstdio.ini</file>
+		<file>stdlibstest/winscw_udeb/tstring.exe</file>
+		<file>stdlibstest/tstdapis/general/tstring.script</file>
+		<file>stdlibstest/tstdapis/general/tstring.ini</file>
+		<file>stdlibstest/winscw_udeb/tsyscalls.exe</file>
+		<file>stdlibstest/tstdapis/general/tsyscalls.script</file>
+		<file>stdlibstest/tstdapis/general/tsyscalls1.script</file>
+		<file>stdlibstest/tstdapis/general/tsyscalls2.script</file>
+		<file>stdlibstest/tstdapis/general/tsyscalls.ini</file>
+		<file>stdlibstest/winscw_udeb/tsyssim.exe</file>
+		<file>stdlibstest/tstdapis/general/tsyssim.script</file>
+		<file>stdlibstest/winscw_udeb/tsysunistd.exe</file>
+		<file>stdlibstest/tstdapis/general/tsysunistd.script</file>
+		<file>stdlibstest/tstdapis/general/tsysunistd.ini</file>
+		<file>stdlibstest/winscw_udeb/twchar.exe</file>
+		<file>stdlibstest/tstdapis/general/twchar.script</file>
+		<file>stdlibstest/winscw_udeb/twcharapi.exe</file>
+		<file>stdlibstest/tstdapis/general/twcharapi.script</file>
+		<file>stdlibstest/tstdapis/general/twcharapi.ini</file>
+		<file>stdlibstest/winscw_udeb/twctype.exe</file>
+		<file>stdlibstest/tstdapis/general/twctype.script</file>
+		<file>stdlibstest/tstdapis/general/twctype.ini</file>
+		<file>stdlibstest/winscw_udeb/twideapis.exe</file>
+		<file>stdlibstest/tstdapis/general/twideapis.script</file>
+		<file>stdlibstest/tstdapis/general/twideapis.ini</file>
+		<file>stdlibstest/winscw_udeb/tglob.exe</file>
+		<file>stdlibstest/tstdapis/general/tglob_test.script</file>
+		<file>stdlibstest/winscw_udeb/ttime_blr.exe</file>
+		<file>stdlibstest/tstdapis/general/ttime_blr.script</file>
+		<file>stdlibstest/tstdapis/general/ttime_blr.ini</file>
+	</files>
+</test>

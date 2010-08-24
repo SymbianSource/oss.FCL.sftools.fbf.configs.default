@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>Notepad BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="Notepad BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Notepad Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+            <set id="" name="notepad_library_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="notepad_library_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="TestNpdApi.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="TestNpdApi.dll"/>
+							<param dst="c:\sys\bin\TestNpdApi.dll"/>
+							<param component-path="notepadtest" />
+						</params>
+					</step>
+					<step id="" name="TestNpdApi.txt (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testingdata\TestNpdApi.txt"/>
+							<param dst="c:\testing\data\TestNpdApi.txt"/>
+							<param component-path="notepadtest" />
+						</params>
+					</step>
+					<step id="" name="testframework_npd.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework\testframework_npd.ini"/>
+							<param dst="c:\TestFramework\TestFramework.ini"/>
+							<param component-path="notepadtest" />
+						</params>
+					</step>
+					<step id="" name="TestNpdApi.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework\TestNpdApi.cfg"/>
+							<param dst="c:\TestFramework\TestNpdApi.cfg"/>
+							<param component-path="notepadtest" />
+						</params>
+					</step>
+					<step id="" name="ui_TestNpdApi.cfg (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="TestFramework\ui_TestNpdApi.cfg"/>
+							<param dst="c:\TestFramework\ui_TestNpdApi.cfg"/>
+							<param component-path="notepadtest" />
+						</params>
+					</step>
+					<step id="" name="TestNpdApi (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testcombiner -config C:\TestFramework\TestNpdApi.cfg"/>
+                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="TestNpdApi (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+			</set>			
+		</session>
+	</plan>
+	<files>
+		<file>notepadtest/winscw_udeb/TestNpdApi.dll</file>
+		<file>notepadtest/general/testingdata/TestNpdApi.txt</file>
+		<file>notepadtest/general/TestFramework/testframework_npd.ini</file>
+		<file>notepadtest/general/TestFramework/TestNpdApi.cfg</file>
+		<file>notepadtest/general/TestFramework/ui_TestNpdApi.cfg</file>
+	</files>
+</test>

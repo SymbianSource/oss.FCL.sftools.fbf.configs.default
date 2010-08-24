@@ -12,7 +12,7 @@
 # Maciej Seroka <maciejs@symbian.org>
 #
 # Description:
-# Script to build ATS test drop for Shortlink Services tests
+# Script to build ATS test drop for Shortlink Services BC tests
 
 
 use strict;

@@ -12,7 +12,7 @@
 # Maciej Seroka <maciejs@symbian.org>
 #
 # Description:
-# Script to build ATS test drop for XML Services tests
+# Script to build ATS test drop for XML Services BC tests
 
 
 use strict;
