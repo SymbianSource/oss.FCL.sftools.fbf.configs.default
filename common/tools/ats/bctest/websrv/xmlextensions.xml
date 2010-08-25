@@ -9,7 +9,7 @@
 		<params>
 			<param name="report-type" value="ATS3_REPORT"/>
 		</params>
-    </postAction>
+	</postAction>
 	<name>XML Extensions BC Tests</name>
 	<target>
         <device rank="master" alias="emulator_udeb">
@@ -94,6 +94,13 @@
 						<command>fetch-log</command>
 						<params>
 							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+					<step id="" name="WSTester result (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param delete="true"/>
+							<param path="c:\WSTester\result\*"/>
 						</params>
 					</step>
                 </case>
