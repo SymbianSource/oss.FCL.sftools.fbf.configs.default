@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>XML Extensions BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="XML Extensions BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="XML Extensions Binary Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+            <set id="" name="XML Extensions API Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+                <case id="" name="xml_extensions_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="WSTester.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="WSTester.dll"/>
+							<param dst="c:\sys\bin\WSTester.dll"/>
+							<param component-path="xmlextensionstest" />
+						</params>
+					</step>
+					<step id="" name="XMLExtensions.in (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="WSTester/XMLExtensions.in"/>
+							<param dst="c:\WSTester\XMLExtensions.in"/>
+							<param component-path="xmlextensionstest" />
+						</params>
+					</step>
+					<step id="" name="WSTester init files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="WSTester/init/*"/>
+							<param dst="c:\WSTester\init"/>
+							<param component-path="xmlextensionstest" />
+						</params>
+					</step>
+					<step id="" name="WSTester reference files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="WSTester/reference/*"/>
+							<param dst="c:\WSTester\reference"/>
+							<param component-path="xmlextensionstest" />
+						</params>
+					</step>
+					<step id="" name="WSTester xml files (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="WSTester/xml/*"/>
+							<param dst="c:\WSTester\xml"/>
+							<param component-path="xmlextensionstest" />
+						</params>
+					</step>
+                    <step id="" name="WSTester result (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\WSTester\result" /> 
+                        </params>
+                    </step>
+					<step id="" name="XMLExtensions (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule testscripter -config c:\WSTester\XMLExtensions.in"/>
+                            <param result-file="c:\spd_logs\xml\testscripter.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="XMLExtensions (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+                </case>
+			</set>			
+		</session>
+	</plan>
+	<files>
+		<file>xmlextensionstest/winscw_udeb/WSTester.dll</file>
+		<file>xmlextensionstest/general/WSTester/XMLExtensions.in</file>
+		<file>xmlextensionstest/general/WSTester/init/SenIdentities_CM_001_002.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenIdentities_CM_001_003.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenIdentities_CM_001_004.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenIdentities_CM_001_006.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenIdentities_CM_001_012.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenSessions.testNetwork.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenSessions_CM_001_002.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenSessions_CM_001_003.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenSessions_CM_001_004.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenSessions_CM_001_006.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/SenSessions_CM_001_012.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/senidentities_tgx.xml</file>
+		<file>xmlextensionstest/general/WSTester/init/sensessions_lab.xml</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_101_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_101_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_102_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_102_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_103_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_103_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_103_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_104_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_104_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_105_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_105_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_105_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_107_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_107_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_108_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_108_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_109_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_109_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_110_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_110_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_110_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_111_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_111_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_112_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_112_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_113_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_113_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_113_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_114_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_114_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_114_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_115_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_115_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_115_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_116_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_116_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_119_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_119_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_120_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_120_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_121_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_121_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_121_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_122_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_122_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_123_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_123_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_123_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_123_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_124_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_124_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_125_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_125_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_126_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_126_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_126_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_126_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_127_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_127_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_127_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_127_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_128_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_129_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_129_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_129_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_130_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_131_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_131_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_132_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_132_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_133_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_133_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_133_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_133_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_134_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_134_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_135_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-HF_135_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_001_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_002_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_002_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_002_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_003_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_003_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_003_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_004_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_004_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_005_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_006_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_006_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_006_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_006_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_007_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_008_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_009_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_009_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_009_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_009_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_010_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_010_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_010_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_010_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_011_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_011_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_011_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_011_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_012_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_012_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_012_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_013_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_014_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_015_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_016_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_016_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_017_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_017_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_018_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_018_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_018_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_018_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_019_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_019_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_019_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_020_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_020_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_020_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_021_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_021_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_005.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_006.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_007.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_008.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_009.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_010.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_011.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_012.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_013.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_014.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_015.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_016.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_017.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_018.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_019.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_020.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_021.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_022.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_023.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_024.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_025.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_026.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_027.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_028.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_029.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_030.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_031.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_032.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_033.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_034.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_035.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_036.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_037.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_038.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_039.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_040.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_022_041.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_005.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_006.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_007.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_008.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_009.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_010.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_011.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_012.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_013.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_014.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_015.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_016.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_017.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_018.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_019.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_020.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_021.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_022.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_023.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/WS-XML_023_024.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_004.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_005.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_006.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_007.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_009.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_010.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_011.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_012.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_013.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_001_014.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_003_001.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_003_002.ref</file>
+		<file>xmlextensionstest/general/WSTester/reference/ws-hf_003_003.ref</file>
+		<file>xmlextensionstest/general/WSTester/xml/001.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/003.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/006.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/007.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/008.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/009.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/010.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/011.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/013.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/015.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/016.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/019.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/020.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/021.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/022.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/027.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/028.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/029.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/033.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/034.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/037.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/038.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/039.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/041.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/Internal_Entity_Replacement&amp;Notation_Declaration.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attrib_no_wspace.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attrib_quotes_not_matching.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attrib_value_contain_symbol.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attrib_value_empty.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attribute_FIXED.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attribute_REQUIRED.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attribute_implied.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/attribute_types.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_before_declaration.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_before_root.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_in_DTD.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_lowerrcase.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_nested.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_ws_after_declar.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/cdata_ws_before_declar.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/char_ref_decimal.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/char_ref_predefined.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/comments_before_xml_dec.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/comments_hiding_tag.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/comments_in_tag.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/comments_including_hyphen.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/comments_nested.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/comments_wspace.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/element_name_missing.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/element_type_declare.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/element_type_mixed_content.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/element_wspace_bef_decl.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/empty.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/end_of_line.css</file>
+		<file>xmlextensionstest/general/WSTester/xml/end_of_line.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_decl_empty.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_decl_illegal_char.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_decl_illegal_chars.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_decl_missing_quotes.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_decl_no_wspace.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_decl_quote_not_match.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_missing_name.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_name_as_period.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_outside_root.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_ref.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_ref_as_period.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_ref_in_markup.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_references.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/entity_wspace_before_decl.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/external_entities.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/iso.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/language_identification.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/multiple_entities.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/no_root_end_tag.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/no_root_provided.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/no_xml_decl_version.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/parameter_entity.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/parameter_name_not_matching.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/parameter_ref_as_period.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/pi_after_root_element.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/pi_in_child_element.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/pi_in_root_element.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/prolog_dtd.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/sample.css</file>
+		<file>xmlextensionstest/general/WSTester/xml/standalone.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/standard.css</file>
+		<file>xmlextensionstest/general/WSTester/xml/start_end.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/syntax_name.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/syntax_name_digit.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/syntax_name_hyphen.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/syntax_name_space.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/unicode.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/well_formed.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/well_formed_valid.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_attr_ext_entity_noref.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_attr_ext_entity_ref.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_attr_lt.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_elem.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_elem_mismatch.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_elem_mm_nest.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_legal_bs_dec.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_legal_bs_hex.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_legal_nul_dec.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_legal_nul_hex.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_markupdecl.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_tag.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_tag_empty.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/wf_constraint_tag_start.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_decl_in_DTD.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_decl_uppercase.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_decla_using_exclam.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_declar_missing_quote.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_declar_wspace_bef_decl.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_standalne_value_invalid.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_standalone_no_uppercase.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_standalone_yes_uppercse.xml</file>
+		<file>xmlextensionstest/general/WSTester/xml/xml_version_bad_value.xml</file>
+	</files>
+</test>
