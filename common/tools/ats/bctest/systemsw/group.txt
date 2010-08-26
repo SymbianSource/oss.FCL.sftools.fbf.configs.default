@@ -11,3 +11,4 @@ sf/os/devicesrv/devicesrv_pub/vibra_api/tsrc/bc/vibra/group
 sf/os/devicesrv/resourcemgmt/tsrc/public/basic/group
 sf/os/devicesrv/devicesrv_pub/version_info_api/tsrc/bc/platformvertest/group
 sf/os/devicesrv/devicesrv_pub/accessory_monitoring_api/tsrc/bc/accmonapibctests/group
+sftools/ana/compatanamdw/apicompatanamdw/bcdrivers/os/devicesrv/SystemSW/central_repository_notification_handler_api/group
