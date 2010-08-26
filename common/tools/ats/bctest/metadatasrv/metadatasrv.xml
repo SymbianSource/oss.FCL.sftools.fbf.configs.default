@@ -14,6 +14,7 @@
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
         </device>
 	</target>
 	<plan id="" name="Metadata Services BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">

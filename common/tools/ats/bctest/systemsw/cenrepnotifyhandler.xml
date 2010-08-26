@@ -8,6 +8,7 @@
 		<type>FileStoreAction</type>
 		<params>
 			<param name="report-type" value="ATS3_REPORT"/>
+            <property name="TYPE" value="WINSCW" />
 		</params>
     </postAction>
 	<name>Central Repository Notification Handler BC Tests</name>
