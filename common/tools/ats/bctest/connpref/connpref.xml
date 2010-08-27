@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>Extended Connection Pref BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="Extended Connection Pref BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Extended Connection Pref Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="extended_connpref_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="extended_connpref_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="econnprefbc.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="econnprefbc.dll"/>
+							<param dst="c:\sys\bin\econnprefbc.dll"/>
+							<param component-path="connpreftest" />
+						</params>
+					</step>
+					<step id="" name="testframework_connpref.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_connpref.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="connpreftest" />
+						</params>
+					</step>
+					<step id="" name="econnprefbc (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule econnprefbc"/>
+							<param result-file="c:\spd_logs\xml\econnprefbc.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="econnprefbc (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>connpreftest/winscw_udeb/econnprefbc.dll</file>
+		<file>connpreftest/general/testframework/testframework_connpref.ini</file>
+	</files>
+</test>
