@@ -8,13 +8,13 @@
 		<type>FileStoreAction</type>
 		<params>
 			<param name="report-type" value="ATS3_REPORT"/>
-            <property name="TYPE" value="WINSCW" />
 		</params>
     </postAction>
 	<name>Central Repository Notification Handler BC Tests</name>
 	<target>
         <device rank="master" alias="emulator_udeb">
             <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
         </device>
 	</target>
 	<plan id="" name="Central Repository Notification Handler BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">

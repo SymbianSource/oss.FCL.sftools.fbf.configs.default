@@ -15,6 +15,7 @@
 	<target>
 		<device alias="emulator_udeb" rank="master">
 			<property name="harness" value="GENERIC" />
+			<property name="TYPE" value="WINSCW" />
 		</device>
 	</target>
 	<plan id="" name="Base SVS Plan" harness="GENERIC" enabled="true" passrate="100">
