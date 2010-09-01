@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<test>
+	<id>1</id>
+	<owner>admin</owner>
+	<priority>10</priority>
+	<buildid></buildid>
+	<postAction>
+		<type>FileStoreAction</type>
+		<params>
+			<param name="report-type" value="ATS3_REPORT"/>
+		</params>
+    </postAction>
+	<name>Connection Settings BC Tests</name>
+	<target>
+        <device rank="master" alias="emulator_udeb">
+            <property name="HARNESS" value="ATSINTERFACE" />
+            <property name="TYPE" value="WINSCW" />
+        </device>
+	</target>
+	<plan id="" name="Connection Settings BC WINSCW UDEB" harness="ATSINTERFACE" enabled="true" passrate="100">
+		<target>
+			<device rank="master" alias="emulator_udeb"/>
+		</target>
+		<session id="" name="Connection Settings Compatibility Tests" harness="ATSINTERFACE" enabled="true" passrate="100">
+			<set id="" name="connection_settings_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+				<case id="" name="connection_settings_api" harness="ATSINTERFACE" enabled="true" passrate="100">
+                    <step id="" name="SPD_Logs XML (makedir)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+                        <command>makedir</command>
+                        <params>
+                            <param dir="c:\spd_logs\xml" /> 
+                        </params>
+                    </step>
+                    <step id="" name="cmmgrbc.dll (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="binary"/>
+							<param src="cmmgrbc.dll"/>
+							<param dst="c:\sys\bin\cmmgrbc.dll"/>
+							<param component-path="cmmgrbctest" />
+						</params>
+					</step>
+					<step id="" name="testframework_cmmgrbc.ini (install)" harness="ATSINTERFACE" enabled="true" passrate="100" significant="false">
+						<command>install</command>
+						<params>
+							<param type="data"/>
+							<param src="testframework/testframework_cmmgrbc.ini"/>
+							<param dst="c:\testframework\testframework.ini"/>
+							<param component-path="cmmgrbctest" />
+						</params>
+					</step>
+					<step id="" name="cmmgrbc (execute)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>execute</command>
+						<params>
+							<param file="atsinterface.exe"/>
+							<param parameters="-testmodule cmmgrbc"/>
+							<param result-file="c:\spd_logs\xml\cmmgrbc.xml"/>
+                            <param timeout="3600"/>
+						</params>
+					</step>
+					<step id="" name="cmmgrbc (fetch-log)" harness="ATSINTERFACE" enabled="true" passrate="100">
+						<command>fetch-log</command>
+						<params>
+							<param path="c:\logs\testframework\TestReport.txt" /> 
+						</params>
+					</step>
+				</case>
+			</set>
+		</session>
+	</plan>
+	<files>
+		<file>cmmgrbctest/winscw_udeb/cmmgrbc.dll</file>
+		<file>cmmgrbctest/general/testframework/testframework_cmmgrbc.ini</file>
+	</files>
+</test>

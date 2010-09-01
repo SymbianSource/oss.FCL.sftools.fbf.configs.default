@@ -1,0 +1,1 @@
+This replaced the old connset bc test suite (1 Sep 2010).
