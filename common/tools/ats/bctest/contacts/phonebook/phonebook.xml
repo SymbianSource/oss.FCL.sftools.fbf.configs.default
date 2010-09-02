@@ -936,7 +936,7 @@
 						<params>
 							<param file="atsinterface.exe"/>
 							<param parameters="-testmodule testcombiner -config C:\TestFramework\tcspeeddial.cfg -engineini C:\TestFramework\testframework.ini"/>
-                            <param result-file="c:\spd_logs\xml\testcombiner.xml"/>
+                            <param result-file="c:\spd_logs\xml\testcombiner@1.xml"/>
                             <param timeout="900"/>
 						</params>
 					</step>
