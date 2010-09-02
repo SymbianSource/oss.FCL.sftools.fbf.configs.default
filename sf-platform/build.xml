@@ -129,8 +129,8 @@
         <replaceregex pattern="mrp=&quot;app" replace="mrp=&quot;/sf/app" flags="gi"/>
         <replaceregex pattern="bldFile=&quot;tools" replace="bldFile=&quot;/sf/tools" flags="gi"/>
         <replaceregex pattern="mrp=&quot;tools" replace="mrp=&quot;/sf/tools" flags="gi"/>
-        <replaceregex pattern="bldFile=&quot;adaptation" replace="bldFile=&quot;/sf/adaptation" flags="gi"/>
-        <replaceregex pattern="mrp=&quot;adaptation" replace="mrp=&quot;/sf/adaptation" flags="gi"/>
+        <replaceregex pattern="bldFile=&quot;adapt" replace="bldFile=&quot;/sf/adapt" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;adapt" replace="mrp=&quot;/sf/adapt" flags="gi"/>
         <expandproperties/>
       </filterchain>
     </copy>

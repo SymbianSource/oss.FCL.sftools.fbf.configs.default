@@ -56,7 +56,7 @@ for my $unit ( $doc->getElementsByTagName("unit") )
 		$bldfile =~ s,\\,/,g;
 		$bldfile = "/$bldfile" if ( $bldfile !~ m,^/, );
 		$bldfile = "/sf$bldfile" if ( $bldfile !~ m,^/sf, );
-		if ($bldfile =~ m,^/sf/(os|mw|app|tools|ostools|adaptation)/,)
+		if ($bldfile =~ m,^/sf/(os|mw|app|tools|ostools|adaptation|adapt)/,)
 		{
 			$unit->setAttribute("bldFile", $bldfile);
 		}
@@ -72,7 +72,7 @@ for my $unit ( $doc->getElementsByTagName("unit") )
 		$mrp =~ s,\\,/,g;
 		$mrp = "/$mrp" if ( $mrp !~ m,^/, );
 		$mrp = "/sf$mrp" if ( $mrp !~ m,^/sf, );
-		if ($mrp =~ m,^/sf/(os|mw|app|tools|ostools|adaptation)/,)
+		if ($mrp =~ m,^/sf/(os|mw|app|tools|ostools|adaptation|adapt)/,)
 		{
 			$unit->setAttribute("mrp", $mrp);
 		}
