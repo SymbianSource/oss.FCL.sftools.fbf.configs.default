@@ -53,7 +53,7 @@ while (<INDEX>)
 		$minor += $3;
 		$unknown += $4;
 	}
-	elsif($line =~ m,<tr><td><a href='.+'>.+</a></td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td></tr>,)
+	elsif($line =~ m,<tr><td><a href='.+'>.+</a></td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)</td><td>(\d+)/\d*</td></tr>,)
 	{
 		$critical += $1;
 		$major += $2;
