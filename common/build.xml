@@ -476,28 +476,24 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     
     <target name="sf-get-source" depends="sf-generate-source-spec">
         <stopwatch name="sf-get-source"/>
+        <!-- Get test manifest, and move resolved csv so that it doesnt conflict with source-spec.ant.xml -->
         <if>
-            <istrue value="${sf.spec.sourcesync.enable}"/>
+            <istrue value="${sf.spec.smoketest.enable}"/>
             <then>
-                <!-- Get test manifest, and move resolved csv so that it doesnt conflict with source-spec.ant.xml -->
-                <if>
-                    <available file="${temp.build.dir}/source-test-spec.ant.xml"/>
-                    <then>
-                        <ant antfile="${temp.build.dir}/source-test-spec.ant.xml" />
-                        <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_test.csv"/>
-                    </then>
-                </if>
-        
-                <if><available file="${temp.build.dir}/source-rnd-spec.ant.xml"/>
-                    <then>
-                        <ant antfile="${temp.build.dir}/source-rnd-spec.ant.xml" />
-                        <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_rnd.csv"/>
-                    </then>
-                </if>
-                
-                <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
+                <ant antfile="${temp.build.dir}/source-test-spec.ant.xml" />
+                <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_test.csv"/>
             </then>
         </if>
+
+
+        <if><available file="${temp.build.dir}/source-rnd-spec.ant.xml"/>
+          <then>
+              <ant antfile="${temp.build.dir}/source-rnd-spec.ant.xml" />
+              <move file="${build.drive}/output/logs/BOM/sources.csv" tofile="${build.drive}/output/logs/BOM/sources_rnd.csv"/>
+          </then>
+        </if>
+        
+        <ant antfile="${temp.build.dir}/source-spec.ant.xml" />
         <stopwatch name="sf-get-source" action="elapsed"/>
     </target>
     
@@ -539,23 +535,29 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
         <!-- TODO: 2. Change fmpp data to be a full property rather than relative path -->
         <delete file="${temp.build.dir}/source-spec.ant.xml"/>
         
-        <property name="sf.source.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
-        <if><available file="${sf.source.csv.file}"/>
+        <property name="sf.test.csv.file" value="nul:"/>
+        
+        <if>
+            <istrue value="${sf.spec.sourcesync.enable}" />
             <then>
-                <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
-                      outputFile="${temp.build.dir}/source-spec.ant.xml">
-                    <data expandProperties="yes">
-                        ant: antProperties()
-                        data: [
-                            csv(${sf.source.csv.file}, {separator:','})
-                        ]
-                    </data>
-                </fmpp>
+                <property name="sf.source.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+                <property name="sf.source_rnd.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}"/>
             </then>
         </if>
+        <property name="sf.source.csv.file"     value="nul:"/>
+        <property name="sf.source_rnd.csv.file" value="nul:"/>
 
-        <property name="sf.source_rnd.csv.file" value="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}"/>
-        <if><available file="${sf.source_rnd.csv.file}"/>
+        <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
+              outputFile="${temp.build.dir}/source-spec.ant.xml">
+              <data expandProperties="yes">
+                    ant: antProperties()
+                    data: [
+                        csv(${sf.source.csv.file}, {separator:','})
+                    ]
+              </data>
+        </fmpp>
+		
+        <if><available file="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}"/>
           <then>
             <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
                   outputFile="${temp.build.dir}/source-rnd-spec.ant.xml">
@@ -568,10 +570,8 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
             </fmpp>
           </then>
         </if>
-
-        <property name="sf.test.csv.file" value="nul:"/>
         <if>
-            <available file="${sf.test.csv.file}"/>
+            <istrue value="${sf.spec.smoketest.enable}"/>
             <then>
             <fmpp sourceFile="${sf.common.config.dir}/templates/source-spec.ant.xml.ftl"
                   outputFile="${temp.build.dir}/source-test-spec.ant.xml">
@@ -714,21 +714,21 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     </target>
 
     <target name="sf-preprocess-package-config">
-        <!-- preprocess by stripping the header of the rnd source and concat with sources.csv -->
-        <loadfile srcfile="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}" property="rnd.source.no.header" failonerror="false">
-            <filterchain>
-                <headfilter skip="1"/>
-            </filterchain>
-        </loadfile>
-        <echo message="${rnd.source.no.header}" file="${temp.build.dir}/sources_rnd_no_header.csv"/>
+	<!-- preprocess by stripping the header of the rnd source and concat with sources.csv -->
+    <loadfile srcfile="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile.rnd}" property="rnd.source.no.header" failonerror="false">
+    <filterchain>
+      <headfilter skip="1"/>
+    </filterchain>
+    </loadfile>
+    <echo message="${rnd.source.no.header}" file="${temp.build.dir}/sources_rnd_no_header.csv"/>
+    
+    <!-- order is important as the rnd source now has no header -->
+    <concat destfile="${temp.build.dir}/sources.csv" force="yes">
+       <file file="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+       <file file="${temp.build.dir}/sources_rnd_no_header.csv"/>
+    </concat>
 
-        <!-- order is important as the rnd source now has no header -->
-        <concat destfile="${temp.build.dir}/sources.csv" force="yes">
-           <file file="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
-           <file file="${temp.build.dir}/sources_rnd_no_header.csv"/>
-        </concat>
-
-        <echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
+    <echo message="${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
         <exec executable="perl" dir="${build.drive}/" failonerror="false" output="${build.log.dir}/zipconfig.log">
             <arg value="${sf.common.config.dir}/tools/populateziptemplate.pl"/>
             <arg value="${temp.build.dir}/sources.csv"/>
@@ -822,7 +822,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
     <!-- Unpack the rnd zips ready to be used in the build -->
     <target name="sf-unpack-rnd">
         <echo message="INFO Unpacking any available RnD binaries"/>
-        <mkdir dir="${build.drive}/output/zips/"/>
+		<mkdir dir="${build.drive}/output/zips/"/>
         <for param="rndZip">
             <fileset dir="${build.drive}/output/zips/">
                 <include name="binaries_*.zip"/> <!-- Internal rnd bins -->
