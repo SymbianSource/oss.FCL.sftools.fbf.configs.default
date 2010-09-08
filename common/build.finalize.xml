@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SF-FINALIZE" xmlns:hlm="http://www.nokia.com/helium">
+  
+  <!-- Transform BRAG xslt and display status at the end of the build -->
+  <target name="sf-finalize">
+    <delete dir="${build.drive}/output/logs/summary/">
+      <include name="**/*.html"/>
+    </delete>
+    <available property="sf-summary-dir-available" file="${build.drive}/output/logs/summary" type="dir"/>
+    <if><isset property="sf-summary-dir-available"/>
+      <then>
+        <xslt basedir="${build.drive}/output/logs/summary" destdir="${temp.build.dir}" extension=".html" style="brag.xsl"/>    
+        <loadfile srcFile="${temp.build.dir}/_BRAG.html" property="sf.brag.status">
+          <filterchain>
+            <linecontainsregexp>
+             <regexp pattern="(BLACK|RED|AMBER|GREEN)"/>
+            </linecontainsregexp>
+            <trim/>
+            <striplinebreaks/>
+            <deletecharacters chars="\&gt;\&lt;\h2\h1\/"/>
+          </filterchain>
+        </loadfile>
+      </then>
+      <else>
+        <property name="sf.brag.status" value="BLACK"/>
+      </else>
+    </if>
+    <echo message="BRAG STATUS: [${sf.brag.status}] - full build details available at ${build.drive}\output\logs\summary\_BRAG.xml"/>
+    
+    <!-- record brag information in BIT file -->
+    <echo message="build_brag&#x0009;${sf.brag.status}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+    
+    <!-- record build finished time in BIT file -->
+    <tstamp>
+      <format property="sf.build.finishedtime" pattern="yyyy-MM-dd HH:mm:ss" locale="en,UK"/>
+    </tstamp>
+    <echo message="finished&#x0009;${sf.build.finishedtime}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+    
+    <!-- upload BIT info to database -->
+    <exec executable="perl" dir="${sf.common.config.dir}/tools" failonerror="false">
+        <arg value="bitops.pl"/>
+        <arg value="-c"/>
+        <arg value="-f"/>
+        <arg value="${build.log.dir}/bitinfo.txt"/>
+    </exec>
+  </target>
+	
+</project>

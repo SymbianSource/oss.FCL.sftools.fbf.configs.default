@@ -92,6 +92,7 @@
              
     <!-- Import functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.postbuild.xml"/>
+    <import file="${sf.common.config.dir}/build.finalize.xml"/>
     
     <!-- Import test functionality distributed into other file(s) -->
     <import file="${sf.common.config.dir}/build.test.xml"/>
