@@ -25,7 +25,9 @@
       <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
     </exec>
     
-    
+    <!-- Moved from generate-layers -->
+    <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" todir="${build.log.dir}/BOM/"/>
+
     <!-- helium 7+ should use new sf-package-compile target -->
     <if>
         <or>
