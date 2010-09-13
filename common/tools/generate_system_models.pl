@@ -3,6 +3,7 @@ use strict;
 my $SYSDEFTOOLS_PATH = "packages\\sysdeftools";
 my $XALAN_J = "java -jar $SYSDEFTOOLS_PATH\\xalan.jar";
 my $XALAN_C = "packages\\sysmodelgen\\rsc\\installed\\Xalan\\Xalan.exe";
+my $joinsysdef_cmd = "perl $SYSDEFTOOLS_PATH\\joinsysdef.pl ";
 
 system("rmdir /S /Q tmp") if (-d "tmp");
 mkdir("tmp");
@@ -45,7 +46,16 @@ for my $codeline (@codelines)
 		chomp $packages_changeset;
 		print "-->$packages_changeset<--\n";
 	}
-	my $full_cmd = "$XALAN_C -o $codeline\\full_system_model_3.0.xml $ROOT_SYSDEF $SYSDEFTOOLS_PATH\\joinsysdef.xsl";
+	my $full_cmd = '';
+	if ($codeline eq "symbian3")
+	{
+		$full_cmd = "$XALAN_C -o $codeline\\full_system_model_3.0.xml $ROOT_SYSDEF $SYSDEFTOOLS_PATH\\joinsysdef.xsl";	
+	}
+	elsif ($codeline eq "symbian4")
+	{
+		my $config_dir = "packages\\$codeline\\config";
+		$full_cmd = "$joinsysdef_cmd --out=$codeline\\full_system_model_3.0.xml --exclude-meta=Api --path=$ROOT_SYSDEF --config=$config_dir\\bldvariant.hrh -I$config_dir $ROOT_SYSDEF";
+	}
 	print "$full_cmd\n";
 	system($full_cmd);
 
