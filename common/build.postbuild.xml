@@ -891,8 +891,8 @@
 
     <!-- package all logs into zipfile for publishing -->
     <target name="sf-zip-logs" >
-        <!-- Moved from generate-layers -->
-        <copy overwrite="true" file="${build.drive}/output/build/canonical_system_definition_${sf.spec.sysdef.configurations.list}.xml" todir="${build.log.dir}/BOM/"/>
+        <!-- Moved from generate-layers, for Package build only. -->
+        <copy overwrite="true" file="${build.drive}/output/build/canonical_system_definition_${sf.spec.sysdef.configurations.list}.xml" todir="${build.log.dir}/BOM/" failonerror="false"/>
         <if>
             <istrue value="${sf.spec.logs.zip.enable}"/>
             <then>
