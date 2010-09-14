@@ -54,7 +54,8 @@ for my $codeline (@codelines)
 	elsif ($codeline eq "symbian4")
 	{
 		my $config_dir = "packages\\$codeline\\config";
-		$full_cmd = "$joinsysdef_cmd --out=$codeline\\full_system_model_3.0.xml --exclude-meta=Api --path=$ROOT_SYSDEF --config=$config_dir\\bldvariant.hrh -I$config_dir $ROOT_SYSDEF";
+		my $path = "os/deviceplatformrelease/foundation_system/system_model/system_definition.xml";
+		$full_cmd = "$joinsysdef_cmd --out=$codeline\\full_system_model_3.0.xml --exclude-meta=Api --path=$path --config=$config_dir\\bldvariant.hrh -I$config_dir $ROOT_SYSDEF";
 	}
 	print "$full_cmd\n";
 	system($full_cmd);
