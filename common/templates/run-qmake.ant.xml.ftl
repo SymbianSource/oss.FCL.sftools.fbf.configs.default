@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="run-qmake" default="all">
 
-    <target name="all" depends="sf-build-qmake,sf-build-qtextension-tools,sf-configure-orbit,sd-qmake-all-profiles"/>
+    <target name="all" depends="sf-build-qmake,sf-build-qtmobility-tools,sf-build-qtextension-tools,sf-configure-orbit,sd-qmake-all-profiles"/>
 
     <!-- Qmake needs to have been built in this environment, to generate bld.infs to built Qt itself.  
          Qmake.exe only exists in the source tree if its been built  -->
@@ -28,6 +28,26 @@
                 </sequential>
             </then>
         </if>
+    </target>
+
+    <target name="sf-build-qtmobility-tools">
+        <sequential>
+  <#list data["//unit[@bldFile = '/sf/mw/qtmobility/group']"] as unit>
+            <echo>INFO: Configuring qtmobility for ${unit.@bldFile}</echo>
+            <if>
+                <available file="${r'$'}{build.drive}${unit.@bldFile}" type="dir"/>
+                <then>
+                    <exec executable="cmd" dir="${r'$'}{build.drive}${unit.@bldFile}" failonerror="false">
+                        <arg value="/C"/>
+                        <arg line="sbs -c tools2 -j 4 --logfile=${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_qtmobility.log"/>
+                    </exec>
+                </then>
+                <else>
+                    <echo message="ERROR: Directory ${r'$'}{build.drive}${unit.@bldFile} doesn't exist."/>
+                </else>
+            </if>          
+  </#list>
+        </sequential>
     </target>
 
     <target name="sf-build-qtextension-tools">
