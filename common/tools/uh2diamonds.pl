@@ -95,6 +95,7 @@ if (open(BITINFO, ">>$bit_output"))
 	print BITINFO "failure\tmissing,$missing\n";
 	print BITINFO "failure\tminor,$minor\n";
 	print BITINFO "failure\tmajor,$major\n";
+	print BITINFO "failure\tunknown,$unknown\n";
 	print BITINFO "failure\tcritical,$critical\n";
 	close(BITINFO);
 }
