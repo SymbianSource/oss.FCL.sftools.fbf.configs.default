@@ -741,7 +741,38 @@
         </then>
       </if>
     </target>
-    
+
+
+    <target name="sf-run-analysis-depends">
+
+        <for param="binary" parallel="true" threadCount="${env.NUMBER_OF_PROCESSORS}">
+
+        <fileset dir="${build.drive}/epoc32/release/winscw/udeb">
+            <filename name="*.dll"/>
+            <filename name="*.exe"/>
+        </fileset>
+
+        <sequential>
+
+        <propertyregex property="binary.filename"  override="true" input="@{binary}" regexp="\\([^\\]*)$" select="\1" casesensitive="false"/>
+        <echo message="INFO Processing ${binary.filename}"/>
+
+        <exec executable="cmd" dir="${sf.common.config.dir}/tools/analysis/" output="${temp.build.dir}/${binary.filename}.depends.out">
+            <arg value="/c"/>            
+            <arg value="perl"/>            
+            <arg value="depends.pl"/>            
+ 	    <arg value="@{binary}"/>
+        </exec>
+
+        </sequential>  
+      </for>
+
+      <concat destfile="${build.log.dir}\analysis\${build.id}_depends.log">
+        <fileset dir="${temp.build.dir}" includes="*depends.out"/>
+      </concat>
+
+    </target>
+
     <target name="sf-links-to-diamonds">
       <fmpp sourceFile="${sf.common.config.dir}/diamonds/linksForDiamonds.xml.ftl" outputFile="${build.log.dir}/linksForDiamonds.xml">
         <data expandProperties="yes">
