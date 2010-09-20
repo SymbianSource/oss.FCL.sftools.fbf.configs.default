@@ -555,6 +555,13 @@
         <mkdir dir="${build.log.dir}/analysis"/>
         <parallel>
           <runtarget target="sf-run-analysis-ant"/>
+          <if><istrue value="${sf.spec.analysis.depends.enable}"/>
+          <then>
+              <runtarget target="sf-run-analysis-depends"/>
+          </then>
+          </if>
+          <runtarget target="sf-run-analysis-ant"/>
+
           <runtarget target="sf-run-analysis-raptor"/>
           <runtarget target="sf-run-analysis-yarp"/>
           <runtarget target="sf-run-analysis-whatlog-summary"/>
@@ -742,10 +749,9 @@
       </if>
     </target>
 
-
     <target name="sf-run-analysis-depends">
 
-        <for param="binary" parallel="true" threadCount="${env.NUMBER_OF_PROCESSORS}">
+      <for param="binary" parallel="true" threadCount="${env.NUMBER_OF_PROCESSORS}">
 
         <fileset dir="${build.drive}/epoc32/release/winscw/udeb">
             <filename name="*.dll"/>
@@ -761,7 +767,7 @@
             <arg value="/c"/>            
             <arg value="perl"/>            
             <arg value="depends.pl"/>            
- 	    <arg value="@{binary}"/>
+            <arg value="@{binary}"/>
         </exec>
 
         </sequential>  

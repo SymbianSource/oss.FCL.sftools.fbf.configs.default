@@ -101,7 +101,8 @@
 <!--<property name="sf.sdk.header.list.file"     value=""/> --> <!-- Set this to package SDK headers separately from the rest of epoc32 -->
 
     <!-- enable creation of MD5s -->
-    <property name="sf.spec.md5.enable"          value="false"/>
+    <property name="sf.spec.md5.enable"              value="false"/>
+    <property name="sf.spec.analysis.depends.enable" value="false"/>
 
     <!-- ATS client properties -->
     <property name="sf.spec.test.sendpkg.enable" value="false"/>

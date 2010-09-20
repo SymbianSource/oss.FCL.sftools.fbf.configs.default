@@ -40,7 +40,9 @@
   <property name="sf.spec.package.bin.enable"  value="true"/>
   <property name="sf.spec.package.src.enable"  value="true"/>
  
-  <property name="sf.spec.md5.enable"          value="true"/>
+  <property name="sf.spec.md5.enable"               value="true"/>
+
+  <property name="sf.spec.analysis.depends.enable"  value="false"/>
 
 </project>
 
