@@ -134,7 +134,7 @@ close(ANTENVLOG); # Close file $buildid_ant_env.log
 # List of data to extract from the file $buildid_ant_env.log
 #Fri Aug 14 17:04:54 BST 2009 on the second line of the file
 #base_release.getenv_options=-I tools
-#bom.log=\\\\v800008\\Builds01\\SF_builds\\platform\\builds\\MCL\\platform_MCL.PDK-101/logs/platform_MCL.PDK-101_bom.xml
+#bom.log=\\\\v800020\\SF_builds\\platform\\builds\\MCL\\platform_MCL.PDK-101/logs/platform_MCL.PDK-101_bom.xml
 #build.family=platform or package		->DONE!!
 #build.id=platform_MCL.PDK-101			->1st thing done in this script!!
 #build.name=platform or serviceapi		->DONE!!
@@ -145,7 +145,7 @@ close(ANTENVLOG); # Close file $buildid_ant_env.log
 #env.ANT_CMD_LINE_ARGS=-Dhelium.dir "C\:\\Symbian\\Tools\\PDT_1.0\\helium" sf-build -Dbuild.drive m\: -Dsf.spec.job.codeline MCL -Dsf.spec.job.number PDK-101 -Dsf.project.location f\:\\\\Dev\\maintools\\build\\config\\foundation -Dsf.spec.job.rootdir f\:\\\\Dev\\fbf_job -Dsf.spec.sbs.config winscw_udeb.whatlog -Dsf.spec.test.sendpkg.enable false
 #env.COMPUTERNAME=UK-ARNAUDL			->DONE!!
 #env.USERNAME=arnaudl					->DONE!!
-#publish.dir=\\\\v800008\\Builds01\\SF_builds\\platform\\builds\\MCL\\platform_MCL.PDK-101		->DONE!!
+#publish.dir=\\\\v800020\\SF_builds\\platform\\builds\\MCL\\platform_MCL.PDK-101		->DONE!!
 #sf.spec.sbs.config=winscw				->DONE!!
 #sbs.config=armv5						->DONE!!
 #sf.spec.baseline.enable=true			->DONE!!
@@ -262,7 +262,7 @@ else
 	print BUILDSUMMARYHTML "corebuildversion_val=?<br/>";
 }
 
-#publish.dir=\\\\v800008\\Builds01\\SF_builds\\platform\\builds\\MCL\\platform_MCL.PDK-101
+#publish.dir=\\\\v800020\\SF_builds\\platform\\builds\\MCL\\platform_MCL.PDK-101
 if ($antenvlog =~ /publish\.dir=([^=]*)\n/)
 {
 	print "Publish directory is: $1\n";
@@ -574,7 +574,7 @@ else
 #"^publish:$" - publication starts
 #????
 
-#"\[copy\] Copying \d+ files to \\\\v800008\\Builds01\\SF_builds\\" - publication ends
+#"\[copy\] Copying \d+ files to \\\\v800020\\SF_builds\\" - publication ends
 #????
 
 #BRAG
