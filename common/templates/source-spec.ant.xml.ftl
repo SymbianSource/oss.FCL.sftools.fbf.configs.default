@@ -47,7 +47,7 @@
         <!-- Convert source tag/branch to to changeset hash, in case it's a local tag on the server -->
         <retry tries="10" uniquename="${count}" failonerror="false">
             <sequential>
-                <exec executable="hg" failonerror="true" output="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum" error="nul:">
+                <exec executable="hg" failonerror="true" output="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum" error="${ant['temp.build.dir']}/sf.sourcesync.${count}.checksum.error.txt">
                     <arg value="id"/>
                     <arg value="${dollar}{sources.${count}.URL}"/>
                     <arg value="-r"/>
