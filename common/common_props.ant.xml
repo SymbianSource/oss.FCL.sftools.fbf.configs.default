@@ -137,6 +137,9 @@
 
     <!-- Package tests properties -->
     <property name="sf.spec.package.test.enable" value="false"/> <!-- This disables package tests -->
+	
+	<property name="sf.spec.publish.release.zips.enable" value="false"/>
+	<property name="sf.spec.publish.release.zips.location" value="\\v800020\Candidates"/>
 </project>
 
 
