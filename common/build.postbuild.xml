@@ -995,7 +995,7 @@
         <then>
             <mkdir dir="${sf.spec.publish.release.zips.location}/${build.id}"/>
 			<copy todir="${sf.spec.publish.release.zips.location}/${build.id}" preservelastmodified="true" failonerror="false">
-				<fileset dir="${build.output.dir}/zips/release/"><include name="*.zip"/></fileset>
+				<fileset dir="${build.output.dir}/zips/release/"><include name="*.*"/></fileset>
 			</copy>
         </then>
         </if>
