@@ -72,7 +72,7 @@
 		</config>
 		<!-- "Null" tools entry, which matches no files, but does populate the release_metadata.xml -->
 		<config name="tools">
-			<set name="name" value="tools_epoc"/>
+			<set name="name" value="tools_epoc.${sf.spec.package.zip.format}"/>
 			<set name="archives.dir" value="${build.output.dir}/zips/release" />
 			<set name="grace.filters" value="tools"/>
 			<set name="include" value="*"/>
@@ -85,25 +85,25 @@
 			<set name="include" value="*"/>
 			<set name="exclude" value="**"/>
 			<config name="core">
-				<set name="name" value="binaries_epoc"/>
+				<set name="name" value="binaries_epoc.${sf.spec.package.zip.format}"/>
 			</config>
 			<config name="armv5_udeb">
-				<set name="name" value="binaries_armv5_udeb"/>
+				<set name="name" value="binaries_armv5_udeb.${sf.spec.package.zip.format}"/>
 			</config>
 			<config name="armv5_urel">
-				<set name="name" value="binaries_armv5_urel"/>
+				<set name="name" value="binaries_armv5_urel.${sf.spec.package.zip.format}"/>
 			</config>
 			<config name="armv5_lib">
-				<set name="name" value="binaries_armv5_lib"/>
+				<set name="name" value="binaries_armv5_lib.${sf.spec.package.zip.format}"/>
 			</config>
 			<config name="winscw_udeb">
-				<set name="name" value="binaries_winscw_udeb"/>
+				<set name="name" value="binaries_winscw_udeb.${sf.spec.package.zip.format}"/>
 			</config>
 			<config name="winscw_urel">
-				<set name="name" value="binaries_winscw_urel"/>
+				<set name="name" value="binaries_winscw_urel.${sf.spec.package.zip.format}"/>
 			</config>
 			<config name="winscw_lib">
-				<set name="name" value="binaries_winscw_lib"/>
+				<set name="name" value="binaries_winscw_lib.${sf.spec.package.zip.format}"/>
 			</config>
 
 		</config>
@@ -114,7 +114,7 @@
 			<set name="include" value="*"/>
 			<set name="exclude" value="**"/>
 			<config name="sdk">
-				<set name="name" value="binaries_epoc_sdk"/>
+				<set name="name" value="binaries_epoc_sdk.${sf.spec.package.zip.format}"/>
 			</config>
 		</config>
 
@@ -125,7 +125,7 @@
 			<set name="include" value="*"/>
 			<set name="exclude" value="**"/>
 			<config name="${sf.spec.job.name}">
-				<set name="name" value="binaries_${sf.spec.job.name}"/>
+				<set name="name" value="binaries_${sf.spec.job.name}.${sf.spec.package.zip.format}"/>
 			</config>
 		</config>
 
