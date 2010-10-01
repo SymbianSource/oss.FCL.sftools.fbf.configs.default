@@ -10,6 +10,10 @@
         <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
         <reference refid="sf.spec.os.system.definition.files" torefid="system.definition.files" />
     </antcall>
+	<antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
+        <param name="sysdef.configurations.list" value="${sf.spec.os.sysdef.clean.configurations.list}" />
+        <reference refid="sf.spec.tools.system.definition.files" torefid="system.definition.files" />
+    </antcall>
   </target>
   
   <!-- compile sbs.tools.config and sbs.config. tools built only if its not being unpacked first.
