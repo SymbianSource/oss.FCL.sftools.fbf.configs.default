@@ -105,7 +105,9 @@
 			<config name="winscw_lib">
 				<set name="name" value="binaries_winscw_lib.${sf.spec.package.zip.format}"/>
 			</config>
-
+			<config name="rom_images">
+				<set name="name" value="binaries_rom_images.${sf.spec.package.zip.format}"/>
+			</config>
 		</config>
 		<!-- "Null" SDK entry, which matches no files, but does populate the release_metadata.xml -->
 		<config name="bin-sdk-just-metadata" abstract="true">
