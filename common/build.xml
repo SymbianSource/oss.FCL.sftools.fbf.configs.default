@@ -786,16 +786,15 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
               </else>
             </if>
 
-            <!-- Now patch up zip filenames and to avoid double extensions -->
-            <move verbose="true" todir="${build.drive}/output/zips/">
+            <!-- Now patch up zip filenames and to avoid double extensions and patch up the release metadata to match -->
+<!--        <move verbose="true" todir="${build.drive}/output/zips/">
               <fileset dir="${build.drive}/output/zips/" includes="**/*.zip"/>
               <mapper type="regexp" from="^(.+?\.(7z|zip))\.zip$" to="\1"/>
             </move>
-
-            <!-- And patch up the release metadata to match -->
-            <replaceregexp match="\.(7z|zip)\.zip" replace=".\1">
+            <replaceregexp match="\.(7z|zip)\.zip" replace=".\1" flags="g">
               <fileset dir="${build.drive}/output/zips/" includes="**/release_metadata.xml"/>
             </replaceregexp>
+-->
           </then>
           <else>
             <echo message="ERROR ${zip.config.file} not available for zipping!"/>
