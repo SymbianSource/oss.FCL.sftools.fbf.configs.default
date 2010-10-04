@@ -43,7 +43,7 @@ for my $codeline (@codelines)
 	my $splitmodel_cmd = "perl ..\\split_sysdef.pl -s platforms\\$codeline\\single\\sysdefs\\system_model.xml -o packages\\$codeline";
 	print "$splitmodel_cmd\n";
 	system($splitmodel_cmd);
-	if ($codeline eq 'symbian3') # also update CompilerCompatibility and tip_bulk_s3
+	if ($codeline eq 'symbian3') # also update CompilerCompatibility, tip_bulk_s3 and RCL_3
 	{
 		my $rmdir2_cmd = "del /S  packages\\CompilerCompatibility\\package_definition.xml >nul";
 		print "$rmdir2_cmd\n";
@@ -58,6 +58,13 @@ for my $codeline (@codelines)
 		my $splitmodel3_cmd = "perl ..\\split_sysdef.pl -s platforms\\$codeline\\single\\sysdefs\\system_model.xml -o packages\\tip_bulk_s3";
 		print "$splitmodel3_cmd\n";
 		system($splitmodel3_cmd);
+		
+		my $rmdir4_cmd = "del /S  packages\\RCL_3\\package_definition.xml >nul";
+		print "$rmdir4_cmd\n";
+		system($rmdir4_cmd);
+		my $splitmodel4_cmd = "perl ..\\split_sysdef.pl -s platforms\\$codeline\\single\\sysdefs\\system_model.xml -o packages\\RCL_3";
+		print "$splitmodel4_cmd\n";
+		system($splitmodel4_cmd);
 	}
 	if ($codeline eq 'symbian4') # also update tip_pbc (package based contribution) branch
 	{
