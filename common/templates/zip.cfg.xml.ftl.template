@@ -96,6 +96,15 @@
 			<config name="armv5_lib">
 				<set name="name" value="binaries_armv5_lib.${sf.spec.package.zip.format}"/>
 			</config>
+			<config name="armv5smp_udeb">
+				<set name="name" value="binaries_armv5smp_udeb.${sf.spec.package.zip.format}"/>
+			</config>
+			<config name="armv5smp_urel">
+				<set name="name" value="binaries_armv5smp_urel.${sf.spec.package.zip.format}"/>
+			</config>
+			<config name="armv5smp_lib">
+				<set name="name" value="binaries_armv5smp_lib.${sf.spec.package.zip.format}"/>
+			</config>
 			<config name="winscw_udeb">
 				<set name="name" value="binaries_winscw_udeb.${sf.spec.package.zip.format}"/>
 			</config>

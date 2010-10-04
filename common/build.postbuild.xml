@@ -351,6 +351,7 @@
                     <arg value="-x!epoc32\data\media"/> <!-- Files created when emulator is used to create comms database - not worth releasing-->
                     <arg value="-x!epoc32\build"/>
                     <arg value="-x!epoc32\release\armv5"/>
+                    <arg value="-x!epoc32\release\armv5smp"/>
                     <arg value="-x!epoc32\release\winscw"/>
                     <arg value="-xr!*.sym"/>
                     <arg value="${build.drive}/output/zips/release/binaries_epoc.${sf.spec.package.zip.format}.zip"/>
@@ -450,6 +451,39 @@
                 <arg value="-ir!epoc32/release/armv5/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
                 <arg value="${build.drive}/output/zips/release/binaries_armv5_lib.${sf.spec.package.zip.format}.zip"/>
                 <arg value="epoc32\release\armv5\lib"/>
+            </exec>
+
+            <!-- ARMv5 SMP binaries, by udeb/urel/lib -->
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_armv5smp_udeb.log">
+                <arg value="a"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5smp_udeb.${sf.spec.package.zip.format}.zip"/>
+                <arg value="epoc32\release\armv5smp\udeb"/>
+            </exec>
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_armv5smp_urel.log">
+                <arg value="a"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="${build.drive}/output/zips/release/binaries_armv5smp_urel.${sf.spec.package.zip.format}.zip"/>
+                <arg value="epoc32\release\armv5smp\urel"/>
+            </exec>
+            <exec executable="7za" dir="${build.drive}/" output="${build.log.dir}/zip_${build.id}_binaries_armv5smp_lib.log">
+                <arg value="a"/>
+                <arg value="-t${sf.spec.package.zip.format}"/>
+                <arg value="-x@${build.log.dir}/rnd_excludefile.txt"/>
+                <arg value="-x@output/temp_build_files/manifest_excludelist.txt"/>
+                <arg value="-x@${sf.spec.prebuilt.excludelist}"/>
+                <arg value="-xr!*.sym"/>
+                <arg value="-ir!epoc32/release/armv5smp/_*.bin"/> <!-- include bootloaders in common lib zipfile -->
+                <arg value="${build.drive}/output/zips/release/binaries_armv5smp_lib.${sf.spec.package.zip.format}.zip"/>
+                <arg value="epoc32\release\armv5smp\lib"/>
             </exec>
 
             <!-- ROM images -->
