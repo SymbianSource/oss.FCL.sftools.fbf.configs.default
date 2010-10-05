@@ -722,6 +722,7 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
       <headfilter skip="1"/>
     </filterchain>
     </loadfile>
+    <property name="rnd.source.no.header" value=""/>
     <echo message="${rnd.source.no.header}" file="${temp.build.dir}/sources_rnd_no_header.csv"/>
     
     <!-- order is important as the rnd source now has no header -->
