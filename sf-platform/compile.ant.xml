@@ -15,14 +15,18 @@
       <!-- Name of file in BOM should always be system_model.xml, so that it can be predictably re-used again -->
       <copy file="${build.drive}/output/build/canonical_system_definition_${sf.spec.os.sysdef.clean.configurations.list}.xml" tofile="${build.log.dir}/BOM/system_model.xml"/>
 
-    <antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
-        <param name="sysdef.configurations.list" value="bldmelast" />
-        <reference refid="sf.spec.tools.system.definition.files" torefid="system.definition.files" />
-    </antcall>
+    <if><available file="${sf.spec.tools.systemdefinition.location}/tools_model.xml"/>
+      <then>
+            <antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
+              <param name="sysdef.configurations.list" value="bldmelast" />
+              <reference refid="sf.spec.tools.system.definition.files" torefid="system.definition.files" />
+            </antcall>
 
-      <!-- Export model to BOM, as generate-layers target is no longer called from compile-main target -->
-      <!-- Name of file in BOM should always be system_model.xml, so that it can be predictably re-used again -->
-      <copy file="${build.drive}/output/build/canonical_system_definition_bldmelast.xml" tofile="${build.log.dir}/BOM/tools_model.xml"/>
+            <!-- Export model to BOM, as generate-layers target is no longer called from compile-main target -->
+            <!-- Name of file in BOM should always be tools_model.xml, so that it can be predictably re-used again -->
+            <copy file="${build.drive}/output/build/canonical_system_definition_bldmelast.xml" tofile="${build.log.dir}/BOM/tools_model.xml"/>
+      </then>
+    </if>
 
   </target>
 
