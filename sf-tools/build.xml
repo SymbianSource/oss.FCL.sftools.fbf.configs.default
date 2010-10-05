@@ -3,6 +3,9 @@
   <!-- location of this config -->
   <dirname property="sf.tools.config.dir" file="${ant.file.SF-TOOLS-CONFIG}"/>
 
+  <!-- tools template -->
+  <property name="qt.qmake.ant.template" value="${sf.tools.config.dir}/templates/run-qmake.ant.xml.ftl"/>
+
   <!-- import package properties -->
   <import file="${sf.tools.config.dir}/tools_props.ant.xml" optional="true"/>
   
@@ -58,6 +61,12 @@
   
   
  <target name="sf-compile" depends="sf-platform-bootstrap-gt">
+
+    <!-- explicitly run qmake once, as iterative build will repeat the step. if qmake is not unpacked already, then this step is skipped  -->
+    <antcall target="run-qmake" inheritAll="false" inheritRefs="true">
+      <param name="qmake.enabled" value="true"/>
+      <param name="sysdef.configuration" value="${sysdef.configurations.list}"/>
+    </antcall>
 
    <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
    <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
