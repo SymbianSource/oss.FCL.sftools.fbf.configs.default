@@ -10,6 +10,7 @@ use Getopt::Long;
 
 my $help = 0;
 my $create = 0;
+my $stringcheck = 0;
 my $file = '';
 my $id = '';
 my $append = 0;
@@ -18,6 +19,7 @@ my $verbose = 0;
 my $dryrun = 0;
 GetOptions((
 	'create!' => \$create,
+	'stringcheck!' => \$stringcheck,
 	'file=s' => \$file,
 	'update=s' => \$id,
 	'append!' => \$append,
@@ -34,7 +36,7 @@ bitops
 Executes operations on the BIT db
 
 Usage:
-  bitops.pl -c -f FILE
+  bitops.pl -c [-n] -f FILE
   bitops.pl -u ID [-a] -f FILE
   bitops.pl -r ID
 
@@ -43,6 +45,8 @@ Options:
   -c, --create          Create entry for a new build then set the attributes to
                         the values provided in FILE. Returns the build id for
                         the newly created build.
+  -s, --stringcheck     Check that the build_id_string is unique, otherwise do
+                        not create build.
   -u ID, --update ID    Update entry for build number ID with the values
                         provided in FILE. For the update operation only the
                         entry in the BUILDS table will be actually updated, the
@@ -328,6 +332,25 @@ ConnectToDB();
 my $newbuildid = -1;
 if ($create)
 {
+  if ($stringcheck && defined $builds_entry->{build_id_string} && !$dryrun)
+  {
+    print "Check that the build_id_string is unique\n" if ($verbose);
+    my $query=$db->prepare("select id from builds where build_id_string='$builds_entry->{build_id_string}';");
+    $query->execute();
+    my @ids_existing=();
+    my $id_existing=-1;
+    $query->bind_columns(\$id_existing);
+    while($query->fetch())
+    {
+      push(@ids_existing, $id_existing);
+    }
+    if (scalar(@ids_existing))
+    {
+      print "ERROR: The supplied build_id_string already exists for build id: @ids_existing. Not creating build.\n";
+      exit(1);
+	}
+  }
+  
   if (keys %{$builds_entry})
   {
     my $field_list = '';
