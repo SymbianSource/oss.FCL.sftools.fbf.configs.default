@@ -296,7 +296,11 @@ Build Environment Check failed (${sf.checkenv.exit}). To stop this failure abort
           <format property="sf.build.starttime" pattern="yyyy-MM-dd HH:mm:ss" locale="en,UK"/>
         </tstamp>
         <echo message="started&#x0009;${sf.build.starttime}${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
-        <echo message="report&#x0009;Hudson Console Log (internal link),http://v800016.ad-sfpd.intra:8080/job/${sf.spec.job.name}/${env.BUILD_NUMBER}/console,link${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+        <if><equals arg1="${sf.project.type}" arg2="package"/><then>
+          <echo message="report&#x0009;Hudson Console Log (internal link),http://v800016.ad-sfpd.intra:8080/job/${sf.spec.job.name}/${env.BUILD_NUMBER}/console,link${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+        </then><else>
+          <echo message="report&#x0009;Hudson Console Log (internal link),http://v800002.ad-sfpd.intra:8080/job/Platform_sf/${env.BUILD_NUMBER}/console,link${line.separator}" file="${build.log.dir}/bitinfo.txt" append="true"/>
+        </else></if>
     </target>
     
     <target name="sf-diamonds-connect">
