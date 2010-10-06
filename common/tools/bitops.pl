@@ -15,6 +15,7 @@ my $file = '';
 my $id = '';
 my $append = 0;
 my $delete = '';
+my $testingonly = 0;
 my $verbose = 0;
 my $dryrun = 0;
 GetOptions((
@@ -24,6 +25,7 @@ GetOptions((
 	'update=s' => \$id,
 	'append!' => \$append,
 	'remove=s' => \$delete,
+	'testingonly!' => \$testingonly,
 	'help!' => \$help,
 	'verbose!' => \$verbose,
 	'dryrun!' => \$dryrun,
@@ -37,7 +39,7 @@ Executes operations on the BIT db
 
 Usage:
   bitops.pl -c [-n] -f FILE
-  bitops.pl -u ID [-a] -f FILE
+  bitops.pl -u ID [-a] [-t] -f FILE
   bitops.pl -r ID
 
 Options:
@@ -57,6 +59,8 @@ Options:
                         BUILDS before inserting the data supplied. This option
                         must be used in conjuntion with -u (see info for -u
                         option for more information)
+  -t, --testingonly     Only update the TESTING table and use ID obtained by
+                        match of build_id_string
   -r, --remove          Remove build ID (entries in all tables) from the db
   -f FILE, --file FILE  Use attributes in FILE to create/update the build info
                         See below for file format.
@@ -498,15 +502,36 @@ if ($create)
 }
 elsif ($id)
 {
-  print "Updating build $id\n";
+  my $extra = '';
+  $extra="for TESTING table only" if ($testingonly);
+  print "Updating build $id $extra\n";
   
-  if (defined $builds_entry->{id} && $id != $builds_entry->{id})
+  if (defined $builds_entry->{id} && $id != $builds_entry->{id} && !$testingonly)
   {
     print "ERROR: The build id specified in the input file is different than the one on the command line. Not updating build.\n";
     exit(1);
   }
   
-  if (keys %{$builds_entry})
+  if ($testingonly)
+  {
+	die "build_id_string must be provided" if (!defined $builds_entry->{build_id_string});
+    print "Search for matching build_id_string\n" if ($verbose);
+    my $query=$db->prepare("select id from builds where build_id_string='$builds_entry->{build_id_string}';");
+    $query->execute();
+    my @ids_existing=();
+    my $id_existing=-1;
+    $query->bind_columns(\$id_existing);
+    while($query->fetch())
+    {
+      push(@ids_existing, $id_existing);
+    }
+    die "More than 1 id matching: @ids_existing" if (scalar(@ids_existing)>1);
+    $id=shift @ids_existing;
+    $builds_entry->{id}=$id;
+    print "Now changing id to $id\n";
+  }
+  
+  if (keys %{$builds_entry} && !$testingonly)
   {
     my $field_list = '';
     my @fields = ();
@@ -525,7 +550,7 @@ elsif ($id)
     $query->execute(@fields)
 		  or print "WARNING: Couldn't execute update builds (@fields): " . $db->errstr() . "\n" if (!$dryrun);
   }
-  if (@{$envinfo})
+  if (@{$envinfo} && !$testingonly)
   {
 	if (!$append)
 	{
@@ -552,7 +577,7 @@ elsif ($id)
 		    or print "WARNING: Couldn't execute insert into envinfo ($tool,$version): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
-  if (@{$failures})
+  if (@{$failures} && !$testingonly)
   {
     if (!$append)
 	{
@@ -579,7 +604,7 @@ elsif ($id)
 		    or print "WARNING: Couldn't execute insert into failures ($category,$count): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
-  if (@{$reports})
+  if (@{$reports} && !$testingonly)
   {
     if (!$append)
 	{
@@ -607,7 +632,7 @@ elsif ($id)
 		    or print "WARNING: Couldn't execute insert into reports ($name,$url,$type): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
-  if (@{$content})
+  if (@{$content} && !$testingonly)
   {
     if (!$append)
 	{
@@ -635,7 +660,7 @@ elsif ($id)
 		    or print "WARNING: Couldn't execute insert into content ($name,$url,$revision): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
-  if (@{$baselines})
+  if (@{$baselines} && !$testingonly)
   {
     if (!$append)
 	{
@@ -662,7 +687,7 @@ elsif ($id)
 		    or print "WARNING: Couldn't execute insert into baselines ($type,$path): " . $db->errstr() . "\n" if (!$dryrun);
     }
   }
-  if (@{$labels})
+  if (@{$labels} && !$testingonly)
   {
     if (!$append)
 	{
