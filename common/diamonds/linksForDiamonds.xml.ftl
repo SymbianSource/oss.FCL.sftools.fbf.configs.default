@@ -22,20 +22,6 @@
       <name>Build Logs</name>
       <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\build_logs.zip</url>
     </file>
-    <#if "${ant['sf.spec.smoketest.enable']}" = "true" && "${ant['sf.spec.ats.version']}" = "ats3">
-      <file>
-        <type>log</type>
-        <name>Smoke Test Report</name>
-        <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\ats_reports\ATS3Report.html</url>	  
-      </file>
-    </#if>
-    <#if "${ant['sf.spec.smoketest.enable']}" = "true" && "${ant['sf.spec.ats.version']}" = "ats4">
-      <file>
-        <type>log</type>
-        <name>Smoke Test Report</name>
-        <url>file:///${ant['sf.spec.publish.networkdrive']}\${ant['sf.spec.job.name']}\builds\${ant['sf.spec.job.codeline']}\${ant['build.id']}\ats_reports\simplelogger\testreport.xml</url>	  
-      </file>
-    </#if>
     <#if "${ant['sf.spec.bccheck.enable']}" = "true" && "${ant['sf.spec.bccheck.enable.ha']}" = "true">
       <file>
         <type>log</type>
