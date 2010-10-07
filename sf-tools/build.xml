@@ -6,6 +6,9 @@
   <!-- import package properties -->
   <import file="${sf.tools.config.dir}/tools_props.ant.xml" optional="true"/>
   
+  <!-- use sf-tools -->
+  <property name="qt.qmake.ant.template" value="${sf.tools.config.dir}/run-qmake.ant.xml.ftl"/> <!-- override helium default to use our own template -->
+
   <!-- import common properties/targets/references -->
   <import file="../common/build.xml" />
   
