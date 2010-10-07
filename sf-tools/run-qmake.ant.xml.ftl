@@ -6,11 +6,6 @@
 
     <target name="sf-configure-orbit">
         <sequential>
-  <#list data["//unit[@proFile = 'hb.pro']"] as unit>
-            <echo>Running configure.py for ${unit.@bldFile}/${unit.@proFile}</echo>
-            <if>
-                <available file="${r'$'}{build.drive}${unit.@bldFile}" type="dir"/>
-                <then>
                     <exec executable="cmd" dir="${r'$'}{build.drive}${unit.@bldFile}" failonerror="false" output="${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_hb_configure.log">
                         <arg value="/C"/>
                         <arg value="python"/>
@@ -23,12 +18,6 @@
                         <arg value="/C"/>
                         <arg value="make install"/>
                     </exec>
-                </then>
-                <else>
-                    <echo message="ERROR: Directory ${r'$'}{build.drive}${unit.@bldFile} doesn't exist."/>
-                </else>
-            </if>
-  </#list>
         </sequential>
     </target>
 
