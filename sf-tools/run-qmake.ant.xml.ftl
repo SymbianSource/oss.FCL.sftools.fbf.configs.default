@@ -16,13 +16,13 @@
                     <echo>INFO: Making host based tools.</echo>
                     <exec executable="cmd" dir="${r'$'}{build.drive}/sf/mw/hb" failonerror="false" output="${r'$'}{build.drive}/output/logs/${ant['build.id']}_compile_hb_make.log">
                         <arg value="/C"/>
-                        <arg value="make"/>
+                        <arg value="mingw32-make"/>
                     </exec>
                     <echo>INFO: Exporting Orbit mkspecs to epoc32\tools</echo>
                     <echo>INFO: Running Orbit theme installer, make install step</echo>
                     <exec executable="cmd" dir="${r'$'}{build.drive}/sf/mw/hb" failonerror="false" output="${r'$'}{build.drive}/output/logs/${ant['build.id']}_install_hb_configure.log">
                         <arg value="/C"/>
-                        <arg value="make install"/>
+                        <arg value="mingw32-make install"/>
                     </exec>
         </sequential>
     </target>
