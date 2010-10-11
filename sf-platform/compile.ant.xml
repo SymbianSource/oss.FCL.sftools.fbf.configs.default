@@ -17,6 +17,12 @@
 
     <if><available file="${sf.spec.systemdefinition.location}/tools_model.xml"/>
       <then>
+            <!-- perform reallyclean to remove any exported artefacts that are going to be rebuilt -->
+            <antcall target="sf-do-reallyclean" inheritAll="false" inheritRefs="true">
+              <param name="sysdef.configurations.list" value="bldmelast" />
+              <reference refid="sf.spec.tools.system.definition.files" torefid="system.definition.files" />
+            </antcall>
+
             <antcall target="sf-do-compile" inheritAll="false" inheritRefs="true">
               <param name="sysdef.configurations.list" value="bldmelast" />
               <reference refid="sf.spec.tools.system.definition.files" torefid="system.definition.files" />
@@ -107,6 +113,34 @@
         <param name="build.system" value="${sf.spec.build.system}" />
         <param name="sysdef.configuration" value="${sysdef.configurations.list}"/>
         <param name="sbs.inputs.list" value="sf.export"/>
+    </antcall> 
+  </target>
+
+  <!-- perform reallyclean -->
+  <target name="sf-do-reallyclean">
+  
+    <!-- turn comma separated list into sbs friendly -c list, and _ separated list for friendly log names -->
+    <propertyregex property="i.sf.spec.sbs.config.expanded"         override="true" input="${sf.spec.sbs.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.config}" global="true"  casesensitive="false"/>
+    <propertyregex property="i.sf.spec.sbs.tools.config.expanded"   override="true" input="${sf.spec.sbs.tools.config}" regexp="(,)" replace=" -c " defaultValue="${sf.spec.sbs.tools.config}" global="true"  casesensitive="false"/>
+
+    <hlm:sbsinput id="sf.reallyclean">
+        <sbsOptions>
+            <arg line="-c ${i.sf.spec.sbs.config.expanded} -c ${i.sf.spec.sbs.tools.config.expanded}"/>
+            <arg line="-k" />
+            <arg line="-j ${sf.spec.sbs.numberofjobs}"/>
+            <arg line="-t ${sf.spec.sbs.retry.limit}"/>
+            <arg name="--logfile" value="${build.drive}/output/logs/${build.id}_${sysdef.configurations.list}_reallyclean.log" />
+            <arg name="--makefile" value="${compile.log.dir}/${build.id}_${sysdef.configurations.list}_reallyclean_Makefile" />
+            <arg line="REALLYCLEAN"/>
+        </sbsOptions>
+    </hlm:sbsinput>
+    
+    <!-- call helium's compile-main target using the sbsInput args defined above -->
+    <echo message="INFO REALLCLEAN for all targets"/>
+    <antcall target="compile-main" inheritAll="false" inheritRefs="true">
+        <param name="build.system" value="${sf.spec.build.system}" />
+        <param name="sysdef.configuration" value="${sysdef.configurations.list}"/>
+        <param name="sbs.inputs.list" value="sf.reallyclean"/>
     </antcall> 
   </target>
 
