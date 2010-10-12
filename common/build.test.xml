@@ -4,13 +4,17 @@
     <target name="sf-test-smoketest" depends="sf-prebuild,sf-build-smoketestpkg,sf-send-testpkg,sf-zip-logs,sf-publish" />
     <target name="sf-test-bc-check" depends="sf-prebuild,sf-bc-check,sf-zip-logs,sf-publish" />
 
-    <target name="sf-find-ATS-worker-root">
-      <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/devices" failonerror="false" outputproperty="sf.spec.test.workerroot">
-        <arg value="-pe"/>
-        <arg value="&quot;m/TEMPDIR=(\S+)/;print $1;s/.*\n//g&quot;"/>
-        <arg value="${env.COMPUTERNAME}\EMULATOR_GENERIC_${env.COMPUTERNAME}.properties" /> 
-      </exec>
-      <echo message="ATS Worker Root = ${sf.spec.test.workerroot}"/> 
+    <target name="sf-find-ATS-worker-root" unless="sf.spec.test.workerroot">
+      <property file="${sf.common.config.dir}/tools/ats/devices/${env.COMPUTERNAME}/EMULATOR_GENERIC_${env.COMPUTERNAME}.properties" prefix="sf.test.searching.for.temp.dir"/>
+      <fail message="Unable to read TEMPDIR from ${sf.common.config.dir}/tools/ats/devices/${env.COMPUTERNAME}/EMULATOR_GENERIC_${env.COMPUTERNAME}.properties to set ATS worker root">
+        <condition>
+          <not>
+            <isset property="sf.test.searching.for.temp.dir.TEMPDIR"/>
+          </not>
+        </condition>
+      </fail>
+      <property name="sf.spec.test.workerroot" value="${sf.test.searching.for.temp.dir.TEMPDIR}"/>
+      <echo message="ATS Worker Root = ${sf.spec.test.workerroot}"/>
     </target>
     
     <target name ="sf-make-junction" depends="sf-find-ATS-worker-root">        
@@ -24,7 +28,7 @@
     </target>
 
     <target name ="sf-delete-junction" depends="sf-find-ATS-worker-root">
-        <exec executable="junction.exe" dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}" failonerror="false" output="${build.log.dir}/ATS_${build.id}_delete_junction.log">
+      <exec executable="junction.exe" dir="${sf.spec.test.workerroot}/${sf.spec.test.epocroot}" failonerror="false" output="${build.log.dir}/ATS_${build.id}_delete_junction.log">
         <arg value="-d"/>
         <arg value="epoc32"/>
       </exec>
