@@ -1182,6 +1182,11 @@
                 <arg value="/c"/>
                 <arg value="buildrom syborg minigui-stripped"/>
             </exec>
+        	<echo message="INFO Building Naviengine MiniGUI stripped ROM"/>
+            <exec executable="cmd" dir="${build.drive}/epoc32/rom" failonerror="false">
+                <arg value="/c"/>
+                <arg value="buildrom naviengine minigui-stripped"/>
+            </exec>
             <if>
                 <!-- is iMaker rom building enabled? -->
                 <istrue value="${sf.spec.referenceroms.createimages.enable}" />
