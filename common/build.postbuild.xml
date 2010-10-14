@@ -887,6 +887,7 @@
             <arg value="${sf.common.config.dir}/tools/mergeXML.pl"/>
             <arg value="--xsl=brag.xsl"/>
             <arg value="--merge=buildStatus,phase(name),step(name),failures(level)"/>
+            <arg value="--sortByTime"/>
             <arg value="${build.log.dir}/summary/*?_BRAG.xml"/>
         </exec>
     </target>

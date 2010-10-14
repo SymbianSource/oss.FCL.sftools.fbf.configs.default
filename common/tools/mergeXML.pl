@@ -26,10 +26,12 @@ use XML::Printer;
 # Read option arguments
 my $howtoString;
 my $xslLink;
+my $sortByTime;
 my $help;
 GetOptions((
 	'xsl=s' => \$xslLink,
 	'merge=s' => \$howtoString,
+	'sortByTime!' => \$sortByTime,
 	'help!' => \$help,
 ));
 
@@ -59,6 +61,11 @@ foreach my $term (split m{\s*,\s*}, $howtoString)
 
 # Expand wildcards
 @ARGV = map { glob $_ } @ARGV;
+if ($sortByTime)
+{
+	# Sort by creation time (this helps the BRAG merging put the phases & steps in the right build sequence)
+	@ARGV = sort { (stat($a))[10] <=> (stat($b))[10] } @ARGV;
+}
 
 # Merge all the trees together
 my $outTree = mergeMultipleTrees($mergeTags, @ARGV);
