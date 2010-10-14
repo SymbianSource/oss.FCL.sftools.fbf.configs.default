@@ -61,6 +61,9 @@
             <param name="zip.target.name" value="md5-just-metadata" />
         </antcall>
  
+        <!-- All zips now zipped, so check for collisions  (apart from logs, which cannot be processed) -->
+        <runtarget target="sf-detect-archive-collisions"/>
+
         <!-- Launch smoketest -->
         <if><istrue value="${sf.spec.test.sendpkg.enable}"/>
             <then>
@@ -826,6 +829,20 @@
         <fileset dir="${temp.build.dir}" includes="*depends.out"/>
       </concat>
 
+    </target>
+
+    <target name="sf-detect-archive-collisions">
+        <exec executable="perl" output="${build.log.dir}/detectArchiveCollisions.log">
+            <arg value="${sf.common.config.dir}/tools/detectArchiveCollisions.pl"/>
+            <arg value="${build.drive}/output/zips/release/*.zip"/>
+            <arg value="${build.drive}/output/zips/release/*.7z"/>
+        </exec>
+        <antcall target="sf-log-to-brag">
+            <param name="sf.brag.id" value="ArchiveCollisions"/>
+            <param name="sf.brag.log" value="${build.log.dir}/detectArchiveCollisions.log"/>
+            <param name="sf.brag.phase" value="Postbuild"/>
+            <param name="sf.brag.step" value="Detect Archive Collisions"/>
+        </antcall>
     </target>
 
     <target name="sf-links-to-diamonds">
