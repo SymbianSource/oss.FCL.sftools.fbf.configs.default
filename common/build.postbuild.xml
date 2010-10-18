@@ -1197,7 +1197,12 @@
         	<echo message="INFO Building Naviengine MiniGUI stripped ROM"/>
             <exec executable="cmd" dir="${build.drive}/epoc32/rom" failonerror="false">
                 <arg value="/c"/>
-                <arg value="buildrom naviengine minigui-stripped"/>
+                <arg value="buildrom -onaviengine_minigui-stripped naviengine minigui-stripped"/>
+            </exec>
+            <echo message="INFO Building Naviengine SMP MiniGUI stripped ROM"/>
+            <exec executable="cmd" dir="${build.drive}/epoc32/rom" failonerror="false">
+                <arg value="/c"/>
+                <arg value="buildrom -onaviengine_minigui-stripped_SMP -DSMP naviengine minigui-stripped"/>
             </exec>
             <if>
                 <!-- is iMaker rom building enabled? -->
