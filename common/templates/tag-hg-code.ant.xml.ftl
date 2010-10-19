@@ -15,7 +15,7 @@
 				<arg value="clone"/>
 				<arg value="--rev"/>
 				<arg value="TAGS"/>
-				<arg value="${pkg_detail.dst}"/>
+				<arg value="${pkg_detail.source}"/>
 				<arg value="tagging${pkg_detail.dst}"/>
 			</exec>
 			<if>
