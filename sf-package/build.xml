@@ -15,8 +15,7 @@
   <!-- import package references -->
   <import file="${sf.package.config.dir}/package_refs.ant.xml" />
   
-  <target name="sf-compile">
-  
+  <target name="sf-ensure-v2-sysdef">
     <!-- Check that package_definition is not in v 3.0.0 otherwise transforms it to 2.0.1 -->
     <echo message="Check that model file is in a version usable by Raptor"/>
     <exec executable="perl" dir="${sf.common.config.dir}/sysdefdowngrade" failonerror="false" output="${build.log.dir}/sysdefdowngrade.log">
@@ -24,27 +23,9 @@
       <arg value="--model=${build.drive}/${sf.spec.systemdefinition.location}"/>
       <arg value="--sources=${sf.spec.sourcesync.sourcespecdir}/${sf.spec.sourcesync.sourcespecfile}"/>
     </exec>
-    
-    <!-- helium 7+ should use new sf-package-compile target -->
-    <if>
-        <or>
-          <equals arg1="${helium.version}" arg2="7.0"/>
-          <equals arg1="${last.major.helium.version}" arg2="7.0"/>
-        </or>
-        <then>
-            <runtarget target="sf-package-compile"/>
-        </then>
-        <else>
-            <runtarget target="sf-package-compile-hlm-5"/>
-        </else>
-    </if>
-    
   </target>
   
-    
-    
-  <target name="sf-package-compile">
-
+  <target name="sf-compile" depends="sf-ensure-v2-sysdef">
     <!-- build stuff -->
     <for list="${sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
       <sequential>
@@ -107,58 +88,9 @@
       <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools2_rel -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
       <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
     </exec>
-   
   </target>
-        
-        
-  <target name="sf-package-compile-hlm-5">
-
-    <for list="${sf.spec.sbs.config}" delimiter="," param="item.sbs.splitconfig">
-      <sequential>
-        <echo message="INFO [Iterative compile] Building target: @{item.sbs.splitconfig}"/>
-        
-        <!-- Do CLEAN
-        <hlm:argSet id="sbs.iterate.clean.var">
-          <hlm:arg name="config" value="@{item.sbs.splitconfig}" />
-          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-          <hlm:arg name="command" value="CLEAN"/>
-        </hlm:argSet>
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-          <param name="build.system" value="${sf.spec.build.system}" />
-          <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-          <reference refid="sbs.iterate.clean.var" torefid="sbs.var" />
-          <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-          <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-        </antcall>
-        -->
-
-        <!-- Do BUILD -->
-        <hlm:argSet id="sbs.main.iterate.sbs.var">
-          <hlm:arg name="config" value="@{item.sbs.splitconfig}" />
-          <hlm:arg name="enable-filter" value="${sf.spec.logs.raptorfilter.enable}" />
-          <hlm:arg name="retry-limit" value="${sf.spec.sbs.retry.limit}" />
-        </hlm:argSet>
-        <antcall target="compile-main" inheritAll="false" inheritRefs="true">
-          <param name="build.system" value="${sf.spec.build.system}" />
-          <param name="sysdef.configurations.list" value="${sf.spec.sysdef.configurations.list}" />
-          <reference refid="sbs.main.iterate.sbs.var" torefid="sbs.var" />
-          <reference refid="sbs.fullbuild.options" torefid="sbs.make.options" />
-          <reference refid="sf.spec.system.definition.files" torefid="system.definition.files" />
-        </antcall>                
-      </sequential>
-    </for>
-    
-    <!-- CHECK -->
-    <exec executable="cmd" dir="${build.drive}/" output="${build.drive}/output\logs\build_check_compile.log">
-      <arg value="/c sbs.bat -s ${build.drive}/output\build\canonical_system_definition_SF.xml -k -c tools2_rel -c winscw -c armv5 -j 32 --check -m ${build.drive}/output\logs\build_check_Makefile"/>
-      <!-- argument of -j option can be parameterized with: ${number.of.threads} -->
-    </exec>
-    
-  </target>
-        
         
   <target name="sf-test-package">
-
     <echo message="INFO Preparing package"/>
     <exec executable="perl" dir="${sf.common.config.dir}/tools/ats/" failonerror="false" output="${build.log.dir}/ATS_${build.id}_prep_package.log">
         <arg value="hlm_prep_package.pl"/>
