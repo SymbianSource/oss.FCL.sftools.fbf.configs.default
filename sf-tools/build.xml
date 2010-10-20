@@ -15,17 +15,6 @@
   <!-- import package references -->
   <import file="${sf.tools.config.dir}/tools_refs.ant.xml"  optional="true"/>
   
-    <!-- Support Helium 7+ only for Tools build -->
-    <if>
-        <or>
-          <equals arg1="${helium.version}" arg2="5.0"/>
-          <equals arg1="${last.major.helium.version}" arg2="5.0"/>
-        </or>
-        <then>
-            <fail>INFO Tools build requires minimum of Helium 7.0</fail>
-        </then>
-    </if>
-    
   <target name="sf-build-noprep" depends="sf-platform-bootstrap-gt,sf-compile,sf-postbuild">
     <echo>[SF-BUILD-NOPREP] INFO:(tools)</echo>
     <echo>[SF-BUILD-NOPREP] WARNING: Not generating model from packages</echo>
@@ -133,10 +122,6 @@
     </antcall>
  </target>
  
-  <target name="create-canonical-sysdef-file">
-     <copy file="${sf.spec.systemdefinition.location}" tofile="${canonical.sysdef.file}" failonerror="true" verbose="true"/>
-  </target>
-
  <!-- do nothing for this in a tools build -->
  <target name="sf-copy-rom-logs"/>
     
