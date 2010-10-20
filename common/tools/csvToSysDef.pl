@@ -59,10 +59,11 @@ foreach my $package (@packages)
 	if (!-f $pkgDef)
 	{
 		# Not there, so look for the pkg defn in the root of the package tree
-		warn "Warning: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
+		warn "WARNING: Package $package->{dst} does not appear on the local system\n" unless -d $package->{dst};
 		$pkgDef = "$package->{dst}/$package->{sysdef}";
 	}
-	die "Unable to locate any package_definition at all for $package->{dst}" unless -f $pkgDef;
+	warn "INFO: sources.csv lists '$package->{sysdef}', which is not supplied in $package->{dst}\n" if -d "$package->{dst}" && !-f "$package->{dst}/$package->{sysdef}";
+	die "ERROR: Unable to locate any package_definition at all for $package->{dst}" unless -f $pkgDef;
 
 	warn "Including $pkgDef for $package->{dst}\n";
 	my $pkgTree = eval { $parser->parsefile($pkgDef) } or die "Failed to parse $pkgDef : $@";
