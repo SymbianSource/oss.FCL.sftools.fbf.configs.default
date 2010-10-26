@@ -123,6 +123,8 @@
         <replaceregex pattern="mrp=&quot;tools" replace="mrp=&quot;/sf/tools" flags="gi"/>
         <replaceregex pattern="bldFile=&quot;adapt" replace="bldFile=&quot;/sf/adapt" flags="gi"/>
         <replaceregex pattern="mrp=&quot;adapt" replace="mrp=&quot;/sf/adapt" flags="gi"/>
+        <replaceregex pattern="bldFile=&quot;incubator" replace="bldFile=&quot;/sf/incubator" flags="gi"/>
+        <replaceregex pattern="mrp=&quot;incubator" replace="mrp=&quot;/sf/incubator" flags="gi"/>
         <expandproperties/>
       </filterchain>
     </copy>
